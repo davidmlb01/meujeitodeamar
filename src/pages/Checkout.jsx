@@ -30,10 +30,10 @@ const SUMMARY_BULLETS = [
 ]
 
 const CHECKOUT_URLS = {
-  base:     'https://pay.kiwify.com.br/eIDBOuv',
-  ob1:      'https://kiwify.app/tRUbpQG',
-  ob2:      'https://kiwify.app/AksVsYF',
-  ob1ob2:   'https://pay.kiwify.com.br/BOSdbTz',
+  base:   'https://pay.kiwify.com.br/eIDBOuv',
+  ob1:    'https://pay.kiwify.com.br/IOnRmNN',
+  ob2:    'https://pay.kiwify.com.br/botDBb2',
+  ob1ob2: 'https://pay.kiwify.com.br/BOSdbTz',
 }
 
 function getCheckoutUrl(ob1, ob2) {
