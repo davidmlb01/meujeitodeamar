@@ -1,0 +1,105 @@
+.resultado {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.resultado__inner {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: var(--space-12) var(--space-6) var(--space-16);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* ── Hero ── */
+.resultado__intro {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.resultado__headline {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 400;
+  line-height: 1.15;
+  /* color set inline via style prop */
+}
+
+/* ── Body copy ── */
+.resultado__body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--lh-body);
+  color: var(--text);
+  white-space: pre-line;
+}
+
+/* ── Divider ── */
+.resultado__divider {
+  height: 1px;
+  background: var(--subtle);
+  border: none;
+}
+
+/* ── Locked section ── */
+.resultado__locked {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.resultado__locked-intro {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--lh-body);
+  color: var(--text);
+}
+
+.resultado__locked-desc {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--lh-body);
+  color: var(--muted);
+  white-space: pre-line;
+}
+
+.resultado__topics {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.resultado__topic {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--text);
+}
+
+/* ── CTA section ── */
+.resultado__cta-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.resultado__cta-wrap {
+  width: 100%;
+}
+
+.resultado__guarantee {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  color: var(--muted);
+  text-align: center;
+  line-height: var(--lh-small);
+}
