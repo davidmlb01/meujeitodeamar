@@ -36,7 +36,7 @@ function openKiwifyCheckout() {
   if (productId && window.KiwifyCheckout) {
     window.KiwifyCheckout.open(productId)
   } else if (fallbackUrl) {
-    window.open(fallbackUrl, '_blank', 'noopener')
+    window.location.href = fallbackUrl
   }
 }
 
