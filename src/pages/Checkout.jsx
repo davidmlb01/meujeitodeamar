@@ -29,9 +29,18 @@ const SUMMARY_BULLETS = [
   'Caminhos concretos de transformação',
 ]
 
-function openKiwifyCheckout() {
-  const url = import.meta.env.VITE_PAYMENT_URL || 'https://pay.kiwify.com.br/eIDBOuv'
-  window.location.href = url
+const CHECKOUT_URLS = {
+  base:     'https://pay.kiwify.com.br/eIDBOuv',
+  ob1:      'https://kiwify.app/tRUbpQG',
+  ob2:      'https://kiwify.app/AksVsYF',
+  ob1ob2:   'https://pay.kiwify.com.br/BOSdbTz',
+}
+
+function getCheckoutUrl(ob1, ob2) {
+  if (ob1 && ob2) return CHECKOUT_URLS.ob1ob2
+  if (ob1) return CHECKOUT_URLS.ob1
+  if (ob2) return CHECKOUT_URLS.ob2
+  return CHECKOUT_URLS.base
 }
 
 export default function Checkout() {
@@ -39,6 +48,10 @@ export default function Checkout() {
   const [ob2, setOb2] = useState(false)
 
   const total = PRICE_BASE + (ob1 ? PRICE_OB1 : 0) + (ob2 ? PRICE_OB2 : 0)
+
+  function handleCheckout() {
+    window.location.href = getCheckoutUrl(ob1, ob2)
+  }
 
   return (
     <div className="checkout">
@@ -138,7 +151,7 @@ export default function Checkout() {
 
         {/* CTA */}
         <div className="checkout__cta-section">
-          <Button onClick={openKiwifyCheckout}>
+          <Button onClick={handleCheckout}>
             Finalizar Pedido e Receber Minha Leitura
           </Button>
         </div>
