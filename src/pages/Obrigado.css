@@ -1,0 +1,222 @@
+.obrigado {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.obrigado__inner {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-6) var(--space-16);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* ── Confirmação ── */
+.obrigado__confirm {
+  text-align: center;
+  padding: var(--space-8) var(--space-6);
+  background: var(--bg-warm);
+  border-radius: var(--radius-card);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.obrigado__confirm-icon {
+  font-size: 40px;
+  line-height: 1;
+}
+
+.obrigado__confirm-title {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  font-weight: 400;
+  color: var(--text);
+}
+
+.obrigado__confirm-sub {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--muted);
+  line-height: var(--lh-body);
+}
+
+/* ── Upsell ── */
+.obrigado__upsell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.obrigado__upsell-hook {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.obrigado__upsell-headline {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 4vw, 34px);
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.obrigado__upsell-body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--lh-body);
+  color: var(--text);
+}
+
+.obrigado__upsell-body p + p {
+  margin-top: var(--space-4);
+}
+
+/* ── Produto ── */
+.obrigado__product {
+  background: var(--bg-warm);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.obrigado__product-title {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.obrigado__bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.obrigado__bullet {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--text);
+  display: flex;
+  gap: var(--space-2);
+}
+
+.obrigado__bullet::before {
+  content: '✓';
+  color: var(--dark);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* ── Preço ── */
+.obrigado__price-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--subtle);
+}
+
+.obrigado__price-original {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.obrigado__price-current {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  font-weight: 500;
+  color: var(--dark);
+}
+
+.obrigado__price-note {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  color: var(--muted);
+  line-height: var(--lh-small);
+}
+
+/* ── CTAs ── */
+.obrigado__ctas {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.obrigado__decline {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  color: var(--muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  padding: var(--space-2);
+}
+
+/* ── Instrução pós-compra ── */
+.obrigado__next {
+  padding: var(--space-6);
+  border-top: 1px solid var(--subtle);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.obrigado__next-title {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.obrigado__next-body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--lh-body);
+  color: var(--muted);
+}
+
+/* ── Footer ── */
+.obrigado__footer {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.obrigado__footer-site {
+  font-family: var(--font-display);
+  font-size: var(--text-small);
+  color: var(--muted);
+}
+
+.obrigado__footer-links {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.obrigado__footer-links a {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.obrigado__footer-links a:hover {
+  color: var(--text);
+}

@@ -1,3 +1,4 @@
+export { Analytics } from './Analytics/Analytics'
 export { Button } from './Button/Button'
 export { ProgressBar } from './ProgressBar/ProgressBar'
 export { Badge } from './Badge/Badge'

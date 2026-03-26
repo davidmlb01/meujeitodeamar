@@ -1,0 +1,114 @@
+.legal {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.legal__inner {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-6) var(--space-16);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.legal__back {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  color: var(--muted);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.legal__back:hover {
+  color: var(--text);
+}
+
+.legal__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--subtle);
+}
+
+.legal__title {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 4vw, 34px);
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.legal__updated {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  color: var(--muted);
+}
+
+.legal__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.legal__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.legal__section-title {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.legal__section-body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--lh-body);
+  color: var(--muted);
+}
+
+.legal__section-body p + p {
+  margin-top: var(--space-3);
+}
+
+.legal__section-body ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.legal__section-body li {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.legal__section-body li::before {
+  content: '–';
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.legal__contact {
+  padding: var(--space-6);
+  background: var(--bg-warm);
+  border-radius: var(--radius-card);
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  color: var(--muted);
+  line-height: var(--lh-body);
+}
+
+.legal__contact a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

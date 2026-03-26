@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Analytics } from './components'
 import LandingPage from './pages/LandingPage'
 import QuizB from './pages/QuizB'
 import Resultado from './pages/Resultado'
@@ -10,6 +11,7 @@ import Termos from './pages/Termos'
 export default function App() {
   return (
     <BrowserRouter>
+      <Analytics />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/quiz/b" element={<QuizB />} />
