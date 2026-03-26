@@ -12,14 +12,10 @@ const UPSELL_BULLETS = [
 ]
 
 function openUpsellCheckout() {
-  const productId = import.meta.env.VITE_KIWIFY_UPSELL_ID
-  const fallbackUrl = import.meta.env.VITE_PAYMENT_URL
-
-  if (productId && window.KiwifyCheckout) {
-    window.KiwifyCheckout.open(productId)
-  } else if (fallbackUrl) {
-    window.location.href = fallbackUrl
-  }
+  const url = import.meta.env.VITE_KIWIFY_UPSELL_ID
+    ? `https://pay.kiwify.com.br/${import.meta.env.VITE_KIWIFY_UPSELL_ID}`
+    : 'https://pay.kiwify.com.br/Rf1DTRA'
+  window.location.href = url
 }
 
 export default function Obrigado() {

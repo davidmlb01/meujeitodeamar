@@ -30,14 +30,8 @@ const SUMMARY_BULLETS = [
 ]
 
 function openKiwifyCheckout() {
-  const productId = import.meta.env.VITE_KIWIFY_PRODUCT_ID
-  const fallbackUrl = import.meta.env.VITE_PAYMENT_URL
-
-  if (productId && window.KiwifyCheckout) {
-    window.KiwifyCheckout.open(productId)
-  } else if (fallbackUrl) {
-    window.location.href = fallbackUrl
-  }
+  const url = import.meta.env.VITE_PAYMENT_URL || 'https://pay.kiwify.com.br/eIDBOuv'
+  window.location.href = url
 }
 
 export default function Checkout() {
