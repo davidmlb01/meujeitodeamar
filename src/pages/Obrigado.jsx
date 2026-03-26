@@ -66,9 +66,9 @@ export default function Obrigado() {
 
               <div className="obrigado__price-block">
                 <p className="obrigado__price-original">4 leituras individuais · R$148</p>
-                <p className="obrigado__price-current">R$37</p>
+                <p className="obrigado__price-current">R$67</p>
                 <p className="obrigado__price-note">
-                  O mesmo valor da sua leitura individual. Pelas quatro. Disponível apenas nessa página.
+                  Pelas quatro leituras completas. Disponível apenas nessa página.
                 </p>
               </div>
             </div>
@@ -76,7 +76,7 @@ export default function Obrigado() {
             {/* CTAs */}
             <div className="obrigado__ctas">
               <Button onClick={openUpsellCheckout}>
-                SIM, quero o Combo Completo por R$37
+                SIM, quero o Combo Completo por R$67
               </Button>
               <button
                 className="obrigado__decline"
