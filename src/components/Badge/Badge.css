@@ -1,0 +1,18 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: var(--text-badge);
+  font-weight: 600;
+  line-height: var(--lh-tight);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.badge--locked {
+  background: var(--subtle);
+  color: var(--muted);
+}

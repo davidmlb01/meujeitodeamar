@@ -34,9 +34,26 @@
   /* ── Touch targets (acessibilidade) ── */
   --touch-target: 44px;
 
-  /* ── Tipografia ── */
+  /* ── Tipografia — famílias ── */
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-body:    'Jost', system-ui, sans-serif;
+
+  /* ── Tipografia — escala de tamanhos ── */
+  --text-h1:    32px;   /* mobile */
+  --text-h2:    24px;
+  --text-h3:    20px;
+  --text-body:  16px;
+  --text-small: 13px;
+  --text-cta:   16px;
+  --text-badge: 13px;
+
+  /* ── Tipografia — line heights ── */
+  --lh-h1:    1.1;
+  --lh-h2:    1.2;
+  --lh-h3:    1.3;
+  --lh-body:  1.6;
+  --lh-small: 1.5;
+  --lh-tight: 1;
 
   /* ── Transições ── */
   --transition-fast:   150ms ease-out;

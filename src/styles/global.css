@@ -28,23 +28,37 @@ body {
 
 h1, h2, h3 {
   font-family: var(--font-display);
-  line-height: 1.15;
   font-weight: 400;
   color: var(--text);
 }
 
-h1 { font-size: clamp(28px, 5vw, 48px); }
-h2 { font-size: clamp(22px, 3.5vw, 36px); }
-h3 { font-size: clamp(18px, 2.5vw, 28px); }
+h1 {
+  font-size: var(--text-h1);
+  line-height: var(--lh-h1);
+}
+h2 {
+  font-size: var(--text-h2);
+  line-height: var(--lh-h2);
+}
+h3 {
+  font-size: var(--text-h3);
+  line-height: var(--lh-h3);
+}
+
+@media (min-width: 768px) {
+  h1 { font-size: 48px; }
+  h2 { font-size: 36px; }
+  h3 { font-size: 28px; }
+}
 
 p, li {
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: var(--text-body);
+  line-height: var(--lh-body);
 }
 
 small, .text-small {
-  font-size: 0.8125rem; /* 13px */
-  line-height: 1.5;
+  font-size: var(--text-small);
+  line-height: var(--lh-small);
 }
 
 /* ── Links ── */

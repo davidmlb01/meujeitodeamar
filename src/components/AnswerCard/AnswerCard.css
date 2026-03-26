@@ -1,0 +1,31 @@
+.answer-card {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: var(--touch-target);
+  padding: var(--space-4);
+  background: var(--bg);
+  border: 1.5px solid var(--subtle);
+  border-radius: var(--radius-card);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--text);
+  line-height: var(--lh-body);
+  cursor: pointer;
+  text-align: left;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.answer-card:hover:not(.answer-card--disabled) {
+  background: var(--bg-warm);
+}
+
+.answer-card--selected {
+  border-color: var(--dark);
+  background: rgba(216, 167, 177, 0.15);
+}
+
+.answer-card--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
