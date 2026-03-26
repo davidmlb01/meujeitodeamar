@@ -1,0 +1,41 @@
+/* ── Card / page wrapper ── */
+.container {
+  background-color: var(--bg);
+  max-width: 680px;
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--space-6); /* 24px */
+  min-height: 100vh;
+}
+
+/* ── Desktop: card flutuante no canvas escuro ── */
+@media (min-width: 768px) {
+  .container {
+    min-height: unset;
+    margin: var(--space-8) auto;
+    border-radius: var(--radius-card);
+    padding: var(--space-12) var(--space-8);
+  }
+}
+
+/* ── Container mais largo (checkout) ── */
+.container--wide {
+  max-width: 800px;
+}
+
+/* ── Stack vertical ── */
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.stack--sm { gap: var(--space-2); }
+.stack--md { gap: var(--space-4); }
+.stack--lg { gap: var(--space-6); }
+.stack--xl { gap: var(--space-8); }
+
+/* ── Texto centralizado ── */
+.text-center { text-align: center; }
+
+/* ── Largura total ── */
+.w-full { width: 100%; }

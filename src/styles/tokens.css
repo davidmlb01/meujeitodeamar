@@ -1,0 +1,45 @@
+:root {
+  /* ── Paleta base ── */
+  --bg:       #E8D9C1;   /* Nude — background de todas as telas */
+  --bg-warm:  #DFD0B7;   /* Warm nude — hover states, fundo alternativo */
+  --dark:     #4B1D3F;   /* Burgundy — progress bar, destaques */
+  --cta:      #4B1D3F;   /* Burgundy — botões CTA */
+  --text:     #1B1B11;   /* Off Black — corpo de texto, títulos */
+  --muted:    #A89080;   /* Muted — textos secundários, placeholders */
+  --subtle:   #D4C5AE;   /* Subtle — bordas, dividers, bg de progresso */
+  --sand:     #D8A7B1;   /* Rose Smoke — tipologias, destaques suaves */
+  --white:    #F5EEE4;   /* Off White — texto sobre fundo escuro */
+
+  /* ── Tipologias (Rose Smoke family) ── */
+  --ansioso:  #D8A7B1;
+  --distante: #C4909C;
+  --seguro:   #BF8A96;
+  --confuso:  #D4B5B0;
+
+  /* ── Espaçamento (base 8px) ── */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ── Border radius ── */
+  --radius-pill:  100px;
+  --radius-card:  12px;
+  --radius-input: 8px;
+
+  /* ── Touch targets (acessibilidade) ── */
+  --touch-target: 44px;
+
+  /* ── Tipografia ── */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Jost', system-ui, sans-serif;
+
+  /* ── Transições ── */
+  --transition-fast:   150ms ease-out;
+  --transition-normal: 250ms ease-in-out;
+  --transition-slow:   300ms ease-out;
+}

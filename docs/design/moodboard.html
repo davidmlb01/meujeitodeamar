@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moodboard — meujeitodeamar.com.br</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #FAFAF8;
+      --dark:      #6B2040;
+      --text:      #2D2530;
+      --subtle:    #E8E4DF;
+
+      --ansioso:       #A85475;
+      --ansioso-light: #F5E8EF;
+      --ansioso-dark:  #6B2D47;
+
+      --distante:       #4D7FA6;
+      --distante-light: #E6EFF6;
+      --distante-dark:  #2E5070;
+
+      --seguro:       #4A7C59;
+      --seguro-light: #E8F2EB;
+      --seguro-dark:  #2C4E36;
+
+      --confuso:       #B8673A;
+      --confuso-light: #F5ECE5;
+      --confuso-dark:  #7A3E1E;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ─── HEADER ─── */
+    .header {
+      background: var(--dark);
+      color: var(--bg);
+      padding: 64px 48px 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .header-left {}
+    .header-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      margin-bottom: 12px;
+    }
+    .header-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: 1.05;
+      font-weight: 400;
+    }
+    .header-title em {
+      font-style: italic;
+      opacity: 0.6;
+    }
+    .header-right {
+      text-align: right;
+    }
+    .header-meta {
+      font-size: 12px;
+      opacity: 0.4;
+      line-height: 1.8;
+    }
+
+    /* ─── SECTIONS ─── */
+    .section {
+      padding: 72px 48px;
+      border-bottom: 1px solid var(--subtle);
+    }
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ansioso);
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 28px;
+      font-weight: 400;
+      margin-bottom: 40px;
+      color: var(--dark);
+    }
+
+    /* ─── MOODWORDS ─── */
+    .moodwords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .moodword {
+      padding: 10px 20px;
+      border: 1.5px solid var(--subtle);
+      border-radius: 100px;
+      font-size: 14px;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+    .moodword.dark {
+      background: var(--dark);
+      color: var(--bg);
+      border-color: var(--dark);
+    }
+    .moodword.accent {
+      background: var(--ansioso);
+      color: white;
+      border-color: var(--ansioso);
+    }
+
+    /* ─── BRAND COLORS ─── */
+    .color-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .color-card {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--subtle);
+    }
+    .color-swatch {
+      height: 80px;
+    }
+    .color-info {
+      padding: 14px 16px;
+      background: white;
+    }
+    .color-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--dark);
+      margin-bottom: 2px;
+    }
+    .color-hex {
+      font-size: 11px;
+      font-family: monospace;
+      color: #888;
+      letter-spacing: 0.05em;
+    }
+    .color-desc {
+      font-size: 11px;
+      color: #aaa;
+      margin-top: 4px;
+    }
+
+    /* ─── STYLE CARDS ─── */
+    .style-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .style-card {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--subtle);
+    }
+    .style-card-hero {
+      padding: 32px 28px 28px;
+      position: relative;
+    }
+    .style-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+    .style-card-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      color: white;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .style-card-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.5;
+    }
+    .style-card-body {
+      padding: 20px 24px;
+      background: white;
+    }
+    .style-tag {
+      display: inline-block;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 100px;
+      margin: 3px 3px 0 0;
+      font-weight: 500;
+    }
+    .style-swatches {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .style-swatch-item {
+      flex: 1;
+      height: 32px;
+      border-radius: 6px;
+    }
+    .style-swatch-hex {
+      font-size: 10px;
+      font-family: monospace;
+      color: #aaa;
+      text-align: center;
+      margin-top: 4px;
+    }
+
+    .ansioso-card .style-card-hero { background: linear-gradient(135deg, var(--ansioso-dark) 0%, var(--ansioso) 100%); }
+    .ansioso-tag { background: var(--ansioso-light); color: var(--ansioso-dark); }
+
+    .distante-card .style-card-hero { background: linear-gradient(135deg, var(--distante-dark) 0%, var(--distante) 100%); }
+    .distante-tag { background: var(--distante-light); color: var(--distante-dark); }
+
+    .seguro-card .style-card-hero { background: linear-gradient(135deg, var(--seguro-dark) 0%, var(--seguro) 100%); }
+    .seguro-tag { background: var(--seguro-light); color: var(--seguro-dark); }
+
+    .confuso-card .style-card-hero { background: linear-gradient(135deg, var(--confuso-dark) 0%, var(--confuso) 100%); }
+    .confuso-tag { background: var(--confuso-light); color: var(--confuso-dark); }
+
+    /* ─── TYPOGRAPHY ─── */
+    .type-showcase {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    @media (max-width: 700px) { .type-showcase { grid-template-columns: 1fr; } }
+    .type-block {
+      padding: 36px;
+      background: white;
+      border-radius: 16px;
+      border: 1px solid var(--subtle);
+    }
+    .type-label {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #bbb;
+      margin-bottom: 16px;
+    }
+    .type-specimen-serif {
+      font-family: 'DM Serif Display', serif;
+      font-size: 38px;
+      line-height: 1.1;
+      color: var(--dark);
+      font-weight: 400;
+    }
+    .type-specimen-serif em { font-style: italic; color: var(--ansioso); }
+    .type-specimen-sans {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text);
+      font-weight: 400;
+    }
+    .type-meta {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--subtle);
+      font-size: 11px;
+      color: #bbb;
+    }
+
+    /* ─── UI PREVIEW ─── */
+    .ui-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 900px) { .ui-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .ui-grid { grid-template-columns: 1fr; } }
+
+    .ui-card {
+      background: white;
+      border-radius: 16px;
+      border: 1px solid var(--subtle);
+      overflow: hidden;
+    }
+    .ui-card-header {
+      height: 6px;
+    }
+    .ui-card-body { padding: 24px; }
+    .ui-card-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.4;
+      margin-bottom: 8px;
+    }
+    .ui-card-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      color: var(--dark);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .ui-card-text {
+      font-size: 13px;
+      color: #888;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .ui-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* ─── DARK SECTION ─── */
+    .dark-section {
+      background: var(--dark);
+      color: var(--bg);
+    }
+    .dark-section .section-title { color: var(--bg); }
+    .dark-section .section-label { color: var(--confuso); }
+
+    .dark-showcase {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    @media (max-width: 700px) { .dark-showcase { grid-template-columns: 1fr; } }
+
+    .dark-text-block {}
+    .dark-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: 42px;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      font-weight: 400;
+    }
+    .dark-headline em { font-style: italic; opacity: 0.5; }
+    .dark-sub {
+      font-size: 16px;
+      opacity: 0.6;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .dark-cta {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 100px;
+      background: var(--ansioso);
+      color: white;
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .dark-quote-block {
+      background: rgba(255,255,255,0.06);
+      border-left: 3px solid var(--ansioso);
+      border-radius: 0 12px 12px 0;
+      padding: 28px 28px;
+      align-self: flex-start;
+    }
+    .dark-quote {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      font-style: italic;
+      line-height: 1.4;
+      opacity: 0.9;
+      margin-bottom: 12px;
+    }
+    .dark-quote-attr {
+      font-size: 12px;
+      opacity: 0.4;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ─── SCALE ─── */
+    .type-scale {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 40px;
+      background: white;
+      border-radius: 16px;
+      border: 1px solid var(--subtle);
+    }
+    .scale-row {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--subtle);
+    }
+    .scale-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .scale-meta {
+      min-width: 100px;
+      font-size: 11px;
+      font-family: monospace;
+      color: #bbb;
+    }
+    .scale-serif-xl { font-family: 'DM Serif Display', serif; font-size: 52px; line-height: 1; color: var(--dark); }
+    .scale-serif-lg { font-family: 'DM Serif Display', serif; font-size: 36px; line-height: 1.1; color: var(--dark); }
+    .scale-serif-md { font-family: 'DM Serif Display', serif; font-size: 26px; line-height: 1.2; color: var(--dark); }
+    .scale-sans-lg { font-family: 'DM Sans', sans-serif; font-size: 18px; color: var(--text); font-weight: 500; }
+    .scale-sans-md { font-family: 'DM Sans', sans-serif; font-size: 15px; color: var(--text); }
+    .scale-sans-sm { font-family: 'DM Sans', sans-serif; font-size: 12px; color: #888; letter-spacing: 0.08em; text-transform: uppercase; }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      background: var(--dark);
+      padding: 40px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      color: var(--bg);
+      opacity: 0.7;
+    }
+    .footer-meta {
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <div class="header-label">Identidade Visual — Moodboard v1.0</div>
+    <div class="header-title">
+      meu jeito<br><em>de amar</em>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="header-meta">
+      Projeto Freud<br>
+      meujeitodeamar.com.br<br>
+      Design: Uma (@ux-design-expert)<br>
+      2026
+    </div>
+  </div>
+</div>
+
+<!-- MOODWORDS -->
+<div class="section">
+  <div class="section-label">Direção criativa</div>
+  <div class="section-title">Tom e Personalidade</div>
+  <div class="moodwords">
+    <span class="moodword dark">Editorial</span>
+    <span class="moodword dark">Íntimo</span>
+    <span class="moodword accent">Emocional</span>
+    <span class="moodword">Premium</span>
+    <span class="moodword">Humano</span>
+    <span class="moodword">Profundo</span>
+    <span class="moodword">Honesto</span>
+    <span class="moodword dark">Sofisticado</span>
+    <span class="moodword">Científico mas acessível</span>
+    <span class="moodword">Não clínico</span>
+    <span class="moodword">Não autoajuda genérica</span>
+    <span class="moodword accent">Que ressoa</span>
+  </div>
+
+  <div style="margin-top: 48px; padding: 32px; background: white; border-radius: 16px; border: 1px solid var(--subtle);">
+    <div class="type-label">Posicionamento visual em relação ao mercado</div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 16px; text-align: center;">
+      <div>
+        <div style="height: 4px; background: #eee; border-radius: 2px; margin-bottom: 12px;"></div>
+        <div style="font-size: 12px; color: #bbb; font-weight: 500;">Testes gratuitos<br>do mercado</div>
+        <div style="font-size: 11px; color: #ddd; margin-top: 6px;">Genérico, sem profundidade</div>
+      </div>
+      <div>
+        <div style="height: 4px; background: var(--ansioso); border-radius: 2px; margin-bottom: 12px;"></div>
+        <div style="font-size: 12px; color: var(--dark); font-weight: 600;">meujeitodeamar<br>.com.br</div>
+        <div style="font-size: 11px; color: #888; margin-top: 6px;">Premium acessível, emocional</div>
+      </div>
+      <div>
+        <div style="height: 4px; background: #ccc; border-radius: 2px; margin-bottom: 12px;"></div>
+        <div style="font-size: 12px; color: #bbb; font-weight: 500;">Terapia tradicional<br>R$250/sessão</div>
+        <div style="font-size: 11px; color: #ddd; margin-top: 6px;">Inacessível, lento</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BRAND COLORS -->
+<div class="section">
+  <div class="section-label">Paleta de Marca</div>
+  <div class="section-title">Cores Base</div>
+  <div class="color-row">
+    <div class="color-card">
+      <div class="color-swatch" style="background: #FAFAF8; border-bottom: 1px solid #eee;"></div>
+      <div class="color-info">
+        <div class="color-name">Creme Quente</div>
+        <div class="color-hex">#FAFAF8</div>
+        <div class="color-desc">Background principal</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background: #6B2040;"></div>
+      <div class="color-info">
+        <div class="color-name">Vinho Bordeaux</div>
+        <div class="color-hex">#6B2040</div>
+        <div class="color-desc">Hero, botões CTA, headers escuros</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background: #2D2530;"></div>
+      <div class="color-info">
+        <div class="color-name">Grafite Quente</div>
+        <div class="color-hex">#2D2530</div>
+        <div class="color-desc">Corpo do texto</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background: #E8E4DF; border-bottom: 1px solid #ddd;"></div>
+      <div class="color-info">
+        <div class="color-name">Cinza Névoa</div>
+        <div class="color-hex">#E8E4DF</div>
+        <div class="color-desc">Divisores, cards neutros</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STYLE CARDS -->
+<div class="section">
+  <div class="section-label">Paleta dos Estilos</div>
+  <div class="section-title">Os 4 Jeitos de Amar</div>
+  <div class="style-grid">
+
+    <!-- ANSIOSO -->
+    <div class="style-card ansioso-card">
+      <div class="style-card-hero">
+        <div class="style-card-icon">🌹</div>
+        <div class="style-card-name">Coração Ansioso</div>
+        <div class="style-card-desc">Intensidade emocional. Amor que sente tudo. Presença total.</div>
+      </div>
+      <div class="style-card-body">
+        <span class="style-tag ansioso-tag">Rosa Vinho</span>
+        <span class="style-tag ansioso-tag">Intensidade</span>
+        <span class="style-tag ansioso-tag">Entrega</span>
+        <div class="style-swatches">
+          <div>
+            <div class="style-swatch-item" style="background: var(--ansioso-dark);"></div>
+            <div class="style-swatch-hex">#6B2D47</div>
+          </div>
+          <div>
+            <div class="style-swatch-item" style="background: var(--ansioso);"></div>
+            <div class="style-swatch-hex">#A85475</div>
+          </div>
+          <div>
+            <div class="style-swatch-item" style="background: var(--ansioso-light); border: 1px solid #e0c8d2;"></div>
+            <div class="style-swatch-hex">#F5E8EF</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DISTANTE -->
+    <div class="style-card distante-card">
+      <div class="style-card-hero">
+        <div class="style-card-icon">🌊</div>
+        <div class="style-card-name">Coração Distante</div>
+        <div class="style-card-desc">Reserva calculada. Independência como escudo. Profundidade escondida.</div>
+      </div>
+      <div class="style-card-body">
+        <span class="style-tag distante-tag">Ardósia Azul</span>
+        <span class="style-tag distante-tag">Reserva</span>
+        <span class="style-tag distante-tag">Controle</span>
+        <div class="style-swatches">
+          <div>
+            <div class="style-swatch-item" style="background: var(--distante-dark);"></div>
+            <div class="style-swatch-hex">#2E5070</div>
+          </div>
+          <div>
+            <div class="style-swatch-item" style="background: var(--distante);"></div>
+            <div class="style-swatch-hex">#4D7FA6</div>
+          </div>
+          <div>
+            <div class="style-swatch-item" style="background: var(--distante-light); border: 1px solid #c8d8e8;"></div>
+            <div class="style-swatch-hex">#E6EFF6</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEGURO -->
+    <div class="style-card seguro-card">
+      <div class="style-card-hero">
+        <div class="style-card-icon">🌿</div>
+        <div class="style-card-name">Coração Seguro</div>
+        <div class="style-card-desc">Base sólida. Presença sem sufocamento. Amor que fica.</div>
+      </div>
+      <div class="style-card-body">
+        <span class="style-tag seguro-tag">Sálvia Floresta</span>
+        <span class="style-tag seguro-tag">Equilíbrio</span>
+        <span class="style-tag seguro-tag">Confiança</span>
+        <div class="style-swatches">
+          <div>
+            <div class="style-swatch-item" style="background: var(--seguro-dark);"></div>
+            <div class="style-swatch-hex">#2C4E36</div>
+          </div>
+          <div>
+            <div class="style-swatch-item" style="background: var(--seguro);"></div>
+            <div class="style-swatch-hex">#4A7C59</div>
+          </div>
+          <div>
+            <div class="style-swatch-item" style="background: var(--seguro-light); border: 1px solid #c8dace;"></div>
+            <div class="style-swatch-hex">#E8F2EB</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONFUSO -->
+    <div class="style-card confuso-card">
+      <div class="style-card-hero">
+        <div class="style-card-icon">🔥</div>
+        <div class="style-card-name">Coração Confuso</div>
+        <div class="style-card-desc">Calor e distância ao mesmo tempo. Complexidade genuína. Oscilação real.</div>
+      </div>
+      <div class="style-card-body">
+        <span class="style-tag confuso-tag">Terracota</span>
+        <span class="style-tag confuso-tag">Complexidade</span>
+        <span class="style-tag confuso-tag">Oscilação</span>
+        <div class="style-swatches">
+          <div>
+            <div class="style-swatch-item" style="background: var(--confuso-dark);"></div>
+            <div class="style-swatch-hex">#7A3E1E</div>
+          </div>
+          <div>
+            <div class="style-swatch-item" style="background: var(--confuso);"></div>
+            <div class="style-swatch-hex">#B8673A</div>
+          </div>
+          <div>
+            <div class="style-swatch-item" style="background: var(--confuso-light); border: 1px solid #e0cfc4;"></div>
+            <div class="style-swatch-hex">#F5ECE5</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TYPOGRAPHY -->
+<div class="section">
+  <div class="section-label">Tipografia</div>
+  <div class="section-title">Sistema DM Serif + DM Sans</div>
+
+  <div class="type-showcase" style="margin-bottom: 32px;">
+    <div class="type-block">
+      <div class="type-label">DM Serif Display — Títulos e Headlines</div>
+      <div class="type-specimen-serif">
+        Você ama do jeito que <em>aprendeu</em> a amar.
+      </div>
+      <div class="type-meta">Google Fonts · Grátis · Display serif · Peso único · Itálico disponível</div>
+    </div>
+    <div class="type-block">
+      <div class="type-label">DM Sans — Corpo e Interface</div>
+      <div class="type-specimen-sans">
+        Nos primeiros anos da sua vida, as pessoas ao seu redor te ensinaram, sem querer, sem perceber, o que esperar do amor. Esse aprendizado está com você até hoje.
+      </div>
+      <div class="type-meta">Google Fonts · Grátis · Variable font · 300–700 · Ótico 9–40pt</div>
+    </div>
+  </div>
+
+  <div class="type-scale">
+    <div class="scale-row">
+      <div class="scale-meta">Serif XL / Hero</div>
+      <div class="scale-serif-xl">Seu jeito de amar.</div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-meta">Serif LG / H1</div>
+      <div class="scale-serif-lg">Você ama com o coração ansioso.</div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-meta">Serif MD / H2</div>
+      <div class="scale-serif-md">De onde veio o seu jeito de amar</div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-meta">Sans LG / Subtítulo</div>
+      <div class="scale-sans-lg">Em 5 minutos, você vai entender algo sobre você.</div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-meta">Sans MD / Corpo</div>
+      <div class="scale-sans-md">Ela não era carente demais. Não era fraca. Ela simplesmente nunca tinha entendido o seu jeito de amar.</div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-meta">Sans SM / Label</div>
+      <div class="scale-sans-sm">Entrega imediata por email · Garantia de 7 dias</div>
+    </div>
+  </div>
+</div>
+
+<!-- UI COMPONENTS PREVIEW -->
+<div class="section">
+  <div class="section-label">Componentes</div>
+  <div class="section-title">Prévia da Interface</div>
+  <div class="ui-grid">
+
+    <div class="ui-card">
+      <div class="ui-card-header" style="background: var(--ansioso);"></div>
+      <div class="ui-card-body">
+        <div class="ui-card-eyebrow">Seu resultado</div>
+        <div class="ui-card-title">Coração Ansioso</div>
+        <div class="ui-card-text">Você ama com intensidade. Sente tudo. E existe uma razão muito específica para isso.</div>
+        <div class="ui-btn" style="background: var(--ansioso);">Quero minha leitura por R$37</div>
+      </div>
+    </div>
+
+    <div class="ui-card">
+      <div class="ui-card-header" style="background: var(--distante);"></div>
+      <div class="ui-card-body">
+        <div class="ui-card-eyebrow">Seu resultado</div>
+        <div class="ui-card-title">Coração Distante</div>
+        <div class="ui-card-text">Você aprendeu, muito cedo, que sentir demais é perigoso. Então você criou distância.</div>
+        <div class="ui-btn" style="background: var(--distante);">Quero minha leitura por R$37</div>
+      </div>
+    </div>
+
+    <div class="ui-card">
+      <div class="ui-card-header" style="background: var(--seguro);"></div>
+      <div class="ui-card-body">
+        <div class="ui-card-eyebrow">Seu resultado</div>
+        <div class="ui-card-title">Coração Seguro</div>
+        <div class="ui-card-text">Você desenvolveu algo que a maioria das pessoas nunca teve: uma base emocional estável.</div>
+        <div class="ui-btn" style="background: var(--seguro);">Quero minha leitura por R$37</div>
+      </div>
+    </div>
+
+    <div class="ui-card" style="grid-column: span 1;">
+      <div class="ui-card-header" style="background: var(--confuso);"></div>
+      <div class="ui-card-body">
+        <div class="ui-card-eyebrow">Seu resultado</div>
+        <div class="ui-card-title">Coração Confuso</div>
+        <div class="ui-card-text">Às vezes você quer muito perto. Às vezes você precisa de distância. E você mesmo não entende por que muda tanto.</div>
+        <div class="ui-btn" style="background: var(--confuso);">Quero minha leitura por R$37</div>
+      </div>
+    </div>
+
+    <div class="ui-card" style="background: var(--dark); border-color: transparent;">
+      <div class="ui-card-header" style="background: rgba(255,255,255,0.1);"></div>
+      <div class="ui-card-body">
+        <div class="ui-card-eyebrow" style="color: rgba(255,255,255,0.4);">Garantia</div>
+        <div class="ui-card-title" style="color: white; font-family: 'DM Serif Display', serif; font-size: 18px;">7 dias, sem perguntas.</div>
+        <div class="ui-card-text" style="color: rgba(255,255,255,0.5);">Se não valeu cada centavo, manda um email. Você recebe tudo de volta.</div>
+        <div style="font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; text-transform: uppercase;">Risco zero</div>
+      </div>
+    </div>
+
+    <div class="ui-card" style="background: var(--ansioso-light); border-color: transparent;">
+      <div class="ui-card-body" style="padding-top: 32px;">
+        <div class="ui-card-eyebrow" style="color: var(--ansioso);">Pergunta do quiz</div>
+        <div style="font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--dark); margin-bottom: 20px; line-height: 1.3;">Quando alguém que você ama fica em silêncio por um dia, você sente...</div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="padding: 10px 14px; background: white; border-radius: 8px; font-size: 13px; border: 1.5px solid var(--ansioso); color: var(--ansioso-dark);">Ansiedade imediata. Alguma coisa aconteceu.</div>
+          <div style="padding: 10px 14px; background: white; border-radius: 8px; font-size: 13px; border: 1px solid #eee; color: #888;">Nada em especial. Cada um tem seu espaço.</div>
+          <div style="padding: 10px 14px; background: white; border-radius: 8px; font-size: 13px; border: 1px solid #eee; color: #888;">Alívio. Precisava de um tempo também.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DARK MODE SHOWCASE -->
+<div class="section dark-section">
+  <div class="section-label">Seção Dark</div>
+  <div class="section-title">Tom Editorial — Fundo Escuro</div>
+  <div class="dark-showcase">
+    <div class="dark-text-block">
+      <div class="dark-headline">
+        Você não pode mudar<br>o que não consegue <em>ver.</em>
+      </div>
+      <div class="dark-sub">
+        Em 5 minutos, você vai entender algo sobre você que levaria anos de terapia para descobrir.
+      </div>
+      <div class="dark-cta">Descobrir o meu jeito de amar por R$37</div>
+    </div>
+    <div class="dark-quote-block">
+      <div class="dark-quote">"Eu entendi tudo. Por que nada mudou?"</div>
+      <div class="dark-quote-attr">Ana, 28 anos — e a resposta que mudou tudo</div>
+    </div>
+  </div>
+</div>
+
+<!-- FULL PALETTE REFERENCE -->
+<div class="section">
+  <div class="section-label">Referência Técnica</div>
+  <div class="section-title">Tokens Completos</div>
+  <div style="background: var(--dark); border-radius: 16px; padding: 36px; font-family: monospace; font-size: 13px; line-height: 2; color: rgba(255,255,255,0.7);">
+    <span style="color: rgba(255,255,255,0.3);">/* Brand */</span><br>
+    <span style="color: #7FDBCA;">--color-bg:</span>           <span style="color: #FAFAF8;">#FAFAF8;</span>   <span style="color: rgba(255,255,255,0.25);">/* creme quente */</span><br>
+    <span style="color: #7FDBCA;">--color-dark:</span>         <span style="color: #1C1520;">#1C1520;</span>   <span style="color: rgba(255,255,255,0.25);">/* ameixa profunda */</span><br>
+    <span style="color: #7FDBCA;">--color-text:</span>         <span style="color: #2D2530;">#2D2530;</span>   <span style="color: rgba(255,255,255,0.25);">/* grafite quente */</span><br>
+    <span style="color: #7FDBCA;">--color-subtle:</span>       <span style="color: #E8E4DF;">#E8E4DF;</span>   <span style="color: rgba(255,255,255,0.25);">/* cinza névoa */</span><br>
+    <br>
+    <span style="color: rgba(255,255,255,0.3);">/* Coração Ansioso */</span><br>
+    <span style="color: #A85475;">--color-ansioso:</span>      <span style="color: #A85475;">#A85475;</span>   <span style="color: rgba(255,255,255,0.25);">/* rosa vinho */</span><br>
+    <span style="color: #A85475;">--color-ansioso-light:</span><span style="color: #F5E8EF;">#F5E8EF;</span><br>
+    <span style="color: #A85475;">--color-ansioso-dark:</span> <span style="color: #6B2D47;">#6B2D47;</span><br>
+    <br>
+    <span style="color: rgba(255,255,255,0.3);">/* Coração Distante */</span><br>
+    <span style="color: #4D7FA6;">--color-distante:</span>     <span style="color: #4D7FA6;">#4D7FA6;</span>   <span style="color: rgba(255,255,255,0.25);">/* ardósia azul */</span><br>
+    <span style="color: #4D7FA6;">--color-distante-light:</span><span style="color: #E6EFF6;">#E6EFF6;</span><br>
+    <span style="color: #4D7FA6;">--color-distante-dark:</span><span style="color: #2E5070;">#2E5070;</span><br>
+    <br>
+    <span style="color: rgba(255,255,255,0.3);">/* Coração Seguro */</span><br>
+    <span style="color: #4A7C59;">--color-seguro:</span>       <span style="color: #4A7C59;">#4A7C59;</span>   <span style="color: rgba(255,255,255,0.25);">/* sálvia floresta */</span><br>
+    <span style="color: #4A7C59;">--color-seguro-light:</span> <span style="color: #E8F2EB;">#E8F2EB;</span><br>
+    <span style="color: #4A7C59;">--color-seguro-dark:</span>  <span style="color: #2C4E36;">#2C4E36;</span><br>
+    <br>
+    <span style="color: rgba(255,255,255,0.3);">/* Coração Confuso */</span><br>
+    <span style="color: #B8673A;">--color-confuso:</span>      <span style="color: #B8673A;">#B8673A;</span>   <span style="color: rgba(255,255,255,0.25);">/* terracota */</span><br>
+    <span style="color: #B8673A;">--color-confuso-light:</span><span style="color: #F5ECE5;">#F5ECE5;</span><br>
+    <span style="color: #B8673A;">--color-confuso-dark:</span> <span style="color: #7A3E1E;">#7A3E1E;</span><br>
+    <br>
+    <span style="color: rgba(255,255,255,0.3);">/* Typography */</span><br>
+    <span style="color: #7FDBCA;">--font-display:</span>  <span style="color: rgba(255,255,255,0.8);">'DM Serif Display', serif;</span><br>
+    <span style="color: #7FDBCA;">--font-body:</span>     <span style="color: rgba(255,255,255,0.8);">'DM Sans', sans-serif;</span>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-brand">meujeitodeamar.com.br</div>
+  <div class="footer-meta">Moodboard v1.0 · Projeto Freud · @ux-design-expert · 2026</div>
+</div>
+
+</body>
+</html>

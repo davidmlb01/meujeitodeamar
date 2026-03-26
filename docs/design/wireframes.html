@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wireframes — meujeitodeamar.com.br</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:ital,wght@0,200;0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #E8D9C1;   /* Nude — base do site */
+      --bg-warm:  #DFD0B7;   /* Nude escuro — cards, seções alternadas */
+      --dark:     #4B1D3F;   /* Burgundy — seções dark e detalhes */
+      --cta:      #4B1D3F;   /* Burgundy — botões e CTAs */
+      --text:     #1B1B11;   /* Off Black — tipografia */
+      --muted:    #A89080;   /* Nude médio — texto secundário */
+      --subtle:   #D4C5AE;   /* Nude claro — bordas, divisores */
+      --sand:     #D8A7B1;   /* Rose Smoke — accent */
+      --white:    #F5EEE4;   /* Off white quente */
+
+      /* Tipologias — família Rose Smoke */
+      --ansioso:       #D8A7B1;   /* Rose Smoke */
+      --ansioso-light: #F5E8EC;
+      --ansioso-dark:  #4B1D3F;   /* Burgundy */
+
+      --distante:       #C4909C;   /* Rose médio */
+      --distante-light: #F0E2E6;
+      --distante-dark:  #4B1D3F;
+
+      --seguro:       #BF8A96;   /* Rose muted */
+      --seguro-light: #EDE0E4;
+      --seguro-dark:  #4B1D3F;
+
+      --confuso:       #D4B5B0;   /* Rose quente */
+      --confuso-light: #F5EDEC;
+      --confuso-dark:  #4B1D3F;
+
+      --font-display: 'Cormorant Garamond', serif;
+      --font-body:    'Jost', sans-serif;
+      --radius:    12px;
+      --radius-lg: 20px;
+      --radius-full: 100px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: #2A1A20;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 300;
+    }
+
+    /* ─── TOP NAV ─── */
+    .screen-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #0E0B07;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      overflow-x: auto;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      height: 48px;
+    }
+    .screen-nav-label {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+      white-space: nowrap;
+      margin-right: 20px;
+      font-family: var(--font-body);
+    }
+    .screen-btn {
+      padding: 0 18px;
+      height: 48px;
+      font-size: 12px;
+      font-family: var(--font-body);
+      font-weight: 300;
+      background: transparent;
+      color: rgba(255,255,255,0.3);
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+      letter-spacing: 0.02em;
+    }
+    .screen-btn:hover { color: rgba(255,255,255,0.6); }
+    .screen-btn.active {
+      color: var(--sand);
+      border-bottom-color: var(--cta);
+    }
+
+    /* ─── SCREEN WRAPPER ─── */
+    .screen-wrapper {
+      padding: 40px 32px 64px;
+    }
+    .screen-block { display: none; }
+    .screen-block.active { display: block; }
+
+    /* ─── DEVICE TOGGLE ─── */
+    .device-toggle {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 28px;
+    }
+    .device-toggle-label {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+      margin-right: 12px;
+      font-family: var(--font-body);
+    }
+    .device-btn {
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-family: var(--font-body);
+      font-weight: 300;
+      background: transparent;
+      color: rgba(255,255,255,0.3);
+      border: 1px solid rgba(255,255,255,0.08);
+      cursor: pointer;
+      transition: all 0.15s;
+      letter-spacing: 0.05em;
+    }
+    .device-btn.active {
+      background: var(--cta);
+      color: var(--bg);
+      border-color: var(--cta);
+    }
+
+    /* ─── VIEWS ─── */
+    .view-panel { display: none; }
+    .view-panel.active { display: flex; gap: 32px; flex-wrap: wrap; justify-content: center; align-items: flex-start; }
+
+    /* ─── PHONE FRAME ─── */
+    .phone {
+      width: 375px;
+      min-height: 812px;
+      background: var(--bg);
+      border-radius: 44px;
+      overflow: hidden;
+      border: 6px solid #2A2520;
+      box-shadow: 0 32px 64px rgba(0,0,0,0.5);
+      flex-shrink: 0;
+    }
+    .phone-notch {
+      height: 40px;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .phone-notch-pill {
+      width: 110px;
+      height: 28px;
+      background: #000;
+      border-radius: 100px;
+    }
+
+    /* ─── BROWSER FRAME ─── */
+    .browser {
+      width: 100%;
+      max-width: 1100px;
+      background: var(--bg);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+    }
+    .browser-chrome {
+      height: 40px;
+      background: #1E1810;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .browser-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .browser-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .browser-dot-r { background: #FF5F57; }
+    .browser-dot-y { background: #FFBD2E; }
+    .browser-dot-g { background: #28CA41; }
+    .browser-url {
+      flex: 1;
+      background: rgba(255,255,255,0.06);
+      border-radius: 6px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      gap: 6px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      font-family: var(--font-body);
+      font-weight: 300;
+    }
+
+    /* ─── ANNOTATIONS ─── */
+    .annotation-list {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius);
+      padding: 20px;
+      width: 300px;
+      flex-shrink: 0;
+    }
+    @media (max-width: 900px) { .annotation-list { width: 100%; } }
+    .annotation-title {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+      margin-bottom: 14px;
+      font-family: var(--font-body);
+    }
+    .annotation-item {
+      display: flex;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .annotation-item:last-child { border-bottom: none; }
+    .annotation-num {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--cta);
+      color: white;
+      font-size: 9px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-family: var(--font-body);
+    }
+    .annotation-text {
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.55;
+      font-weight: 300;
+    }
+    .annotation-text strong { color: rgba(255,255,255,0.75); font-weight: 400; }
+
+    /* ════════════════════════════════════════
+       TELA 01 — LANDING PAGE
+    ════════════════════════════════════════ */
+
+    /* Topbar */
+    .lp-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--subtle);
+      background: var(--bg);
+    }
+    .lp-logo {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--text);
+    }
+
+    /* Hero mobile */
+    .lp-hero {
+      background: var(--bg);
+      padding: 56px 28px 52px;
+      text-align: center;
+    }
+    .lp-hero-headline {
+      font-family: var(--font-display);
+      font-size: 34px;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .lp-hero-headline em { font-style: italic; color: var(--cta); }
+    .lp-hero-sub {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(27,27,17,0.6);
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+    .lp-hero-cta {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: var(--cta);
+      color: var(--bg);
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 12px;
+      font-family: var(--font-body);
+      letter-spacing: 0.02em;
+    }
+    .lp-hero-under {
+      font-size: 11px;
+      font-weight: 400;
+      color: rgba(27,27,17,0.5);
+      letter-spacing: 0.08em;
+    }
+
+    /* Como funciona mobile */
+    .lp-steps-section {
+      padding: 28px 24px;
+      background: var(--white);
+    }
+    .lp-steps-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .lp-steps { display: flex; flex-direction: column; gap: 10px; }
+    .lp-step {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 12px 14px;
+      background: var(--bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--subtle);
+    }
+    .lp-step-num {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--muted);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 20px;
+    }
+    .lp-step-text {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.5;
+      padding-top: 2px;
+    }
+    .lp-footer {
+      padding: 20px 24px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 200;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* Hero desktop */
+    .lp-d-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 64px;
+      border-bottom: 1px solid var(--subtle);
+      background: var(--bg);
+    }
+    .lp-d-logo {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--muted);
+    }
+    .lp-d-hero {
+      background: var(--bg);
+      padding: 88px 64px 96px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .lp-d-headline {
+      font-family: var(--font-display);
+      font-size: 64px;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.05;
+      margin-bottom: 24px;
+    }
+    .lp-d-headline em { font-style: italic; color: var(--cta); }
+    .lp-d-sub {
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(27,27,17,0.6);
+      line-height: 1.75;
+      margin-bottom: 40px;
+      max-width: 380px;
+    }
+    .lp-d-cta {
+      display: inline-block;
+      padding: 18px 40px;
+      background: var(--cta);
+      color: var(--bg);
+      border-radius: var(--radius-full);
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      margin-bottom: 14px;
+      font-family: var(--font-body);
+    }
+    .lp-d-under {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(27,27,17,0.5);
+      letter-spacing: 0.08em;
+    }
+    .lp-d-right {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .lp-d-step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 20px 24px;
+      background: var(--white);
+      border: 1px solid var(--subtle);
+      border-radius: var(--radius);
+    }
+    .lp-d-step-num {
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--sand);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .lp-d-step-text {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.55;
+      padding-top: 6px;
+    }
+    .lp-d-footer {
+      padding: 20px 64px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 200;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      background: var(--bg-warm);
+      border-top: 1px solid var(--subtle);
+    }
+
+    /* ════════════════════════════════════════
+       TELA 02 — QUIZ
+    ════════════════════════════════════════ */
+    .quiz-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      background: var(--bg);
+    }
+    .quiz-close { font-size: 16px; color: var(--muted); }
+    .quiz-count { font-size: 12px; font-weight: 300; color: var(--muted); }
+    .quiz-progress-bar {
+      height: 2px;
+      background: var(--subtle);
+    }
+    .quiz-progress-fill {
+      height: 100%;
+      background: var(--cta);
+    }
+    .quiz-body { padding: 32px 24px 24px; }
+    .quiz-question {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 28px;
+    }
+    .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+    .quiz-option {
+      padding: 14px 16px;
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1.5px solid var(--subtle);
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .quiz-option.selected {
+      border-color: var(--cta);
+      background: var(--bg-warm);
+      color: var(--text);
+    }
+    .quiz-footer {
+      padding: 12px 24px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .quiz-next-btn {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: var(--cta);
+      color: var(--bg);
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 400;
+      text-align: center;
+      font-family: var(--font-body);
+      letter-spacing: 0.02em;
+    }
+    .quiz-skip { font-size: 12px; font-weight: 300; color: var(--muted); text-align: center; }
+
+    /* Quiz desktop */
+    .quiz-d-wrap {
+      min-height: 600px;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+    }
+    .quiz-d-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 64px;
+      border-bottom: 1px solid var(--subtle);
+    }
+    .quiz-d-logo {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--text);
+    }
+    .quiz-d-progress-wrap {
+      flex: 1;
+      max-width: 400px;
+    }
+    .quiz-d-count {
+      font-size: 12px;
+      font-weight: 200;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+    .quiz-d-body {
+      flex: 1;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 64px 32px;
+      width: 100%;
+    }
+    .quiz-d-question {
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.25;
+      margin-bottom: 40px;
+    }
+    .quiz-d-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+    .quiz-d-option {
+      padding: 18px 20px;
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1.5px solid var(--subtle);
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .quiz-d-option.selected {
+      border-color: var(--cta);
+      background: var(--bg-warm);
+    }
+    .quiz-d-footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .quiz-d-next {
+      padding: 16px 48px;
+      background: var(--cta);
+      color: var(--bg);
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 400;
+      font-family: var(--font-body);
+      letter-spacing: 0.03em;
+    }
+    .quiz-d-skip {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--muted);
+    }
+
+    /* ════════════════════════════════════════
+       TELA 03 — RESULTADO
+    ════════════════════════════════════════ */
+    .res-hero {
+      background: linear-gradient(160deg, var(--ansioso-dark) 0%, var(--ansioso) 100%);
+      padding: 44px 24px 40px;
+      text-align: center;
+    }
+    .res-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin: 0 auto 18px;
+    }
+    .res-label {
+      font-size: 10px;
+      font-weight: 200;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 8px;
+    }
+    .res-name {
+      font-family: var(--font-display);
+      font-size: 40px;
+      font-weight: 300;
+      color: white;
+      line-height: 1.05;
+      margin-bottom: 14px;
+    }
+    .res-tagline {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.65;
+    }
+    .res-teaser {
+      padding: 28px 24px;
+      border-bottom: 1px solid var(--subtle);
+    }
+    .res-teaser-intro {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+    .res-lock {
+      background: var(--white);
+      border: 1px solid var(--subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .res-lock-header {
+      padding: 14px 18px;
+      background: var(--ansioso-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .res-lock-title {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--ansioso-dark);
+    }
+    .res-lock-badge {
+      font-size: 10px;
+      font-weight: 400;
+      white-space: nowrap;
+      flex-shrink: 0;
+      padding: 3px 10px;
+      background: var(--ansioso);
+      color: white;
+      border-radius: var(--radius-full);
+      letter-spacing: 0.03em;
+    }
+    .res-lock-items { padding: 14px 18px; display: flex; flex-direction: column; gap: 10px; }
+    .res-lock-item { display: flex; gap: 10px; align-items: flex-start; }
+    .res-lock-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--muted);
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+    .res-lock-text { font-size: 13px; font-weight: 300; color: var(--text); line-height: 1.5; }
+    .res-lock-blur { font-size: 13px; color: transparent; background: var(--subtle); border-radius: 3px; user-select: none; }
+    .res-cta-section {
+      padding: 24px;
+      background: var(--white);
+    }
+    .res-cta-price {
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .res-cta-sub { font-size: 11px; font-weight: 300; color: var(--muted); margin-bottom: 16px; letter-spacing: 0.04em; }
+    .res-cta-btn {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: var(--cta);
+      color: var(--bg);
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 10px;
+      font-family: var(--font-body);
+      letter-spacing: 0.02em;
+    }
+    .res-cta-guarantee { font-size: 11px; font-weight: 300; color: var(--muted); text-align: center; }
+
+    /* Resultado desktop */
+    .res-d-hero {
+      background: linear-gradient(120deg, var(--ansioso-dark) 0%, var(--ansioso) 100%);
+      padding: 72px 80px 64px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 80px;
+      align-items: center;
+    }
+    .res-d-left {}
+    .res-d-eyebrow {
+      font-size: 11px;
+      font-weight: 200;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 12px;
+    }
+    .res-d-name {
+      font-family: var(--font-display);
+      font-size: 72px;
+      font-weight: 300;
+      color: white;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .res-d-tagline {
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      max-width: 440px;
+    }
+    .res-d-icon-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .res-d-icon {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 44px;
+    }
+    .res-d-body {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 48px;
+      padding: 48px 80px;
+      align-items: start;
+      background: var(--bg);
+    }
+    .res-d-teaser-text {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+    .res-d-lock {
+      background: var(--white);
+      border: 1px solid var(--subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .res-d-lock-header {
+      padding: 14px 20px;
+      background: var(--ansioso-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .res-d-lock-title { font-size: 13px; font-weight: 400; color: var(--ansioso-dark); }
+    .res-d-lock-badge { font-size: 10px; padding: 3px 10px; background: var(--ansioso); color: white; border-radius: var(--radius-full); }
+    .res-d-lock-items { padding: 16px 20px; display: flex; flex-direction: column; gap: 10px; }
+    .res-d-lock-item { display: flex; gap: 10px; }
+    .res-d-lock-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--muted); margin-top: 8px; flex-shrink: 0; }
+    .res-d-lock-text { font-size: 14px; font-weight: 300; color: var(--text); line-height: 1.5; }
+    .res-d-lock-blur { font-size: 14px; color: transparent; background: var(--subtle); border-radius: 3px; user-select: none; }
+    .res-d-cta-panel {
+      background: var(--white);
+      border: 1px solid var(--subtle);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      position: sticky;
+      top: 24px;
+    }
+    .res-d-price {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .res-d-price-sub { font-size: 12px; font-weight: 300; color: var(--muted); margin-bottom: 24px; }
+    .res-d-btn {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: var(--cta);
+      color: var(--bg);
+      border-radius: var(--radius-full);
+      font-size: 15px;
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 12px;
+      font-family: var(--font-body);
+      letter-spacing: 0.02em;
+    }
+    .res-d-guarantee { font-size: 12px; font-weight: 300; color: var(--muted); text-align: center; }
+    .res-d-divider { height: 1px; background: var(--subtle); margin: 20px 0; }
+
+    /* ════════════════════════════════════════
+       TELA 04 — CHECKOUT
+    ════════════════════════════════════════ */
+    .co-header {
+      background: var(--dark);
+      padding: 24px 24px 20px;
+      text-align: center;
+    }
+    .co-header-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+    .co-header-sub { font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.35); }
+    .co-section { padding: 20px 24px; border-bottom: 1px solid var(--subtle); background: var(--bg); }
+    .co-section-title { font-size: 11px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+    .co-summary-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 16px;
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--subtle);
+    }
+    .co-summary-name { font-size: 14px; font-weight: 400; color: var(--text); }
+    .co-summary-price { font-family: var(--font-display); font-size: 20px; font-weight: 500; color: var(--text); }
+    .co-ob {
+      background: var(--white);
+      border: 1.5px solid var(--subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .co-ob.highlighted { border-color: var(--cta); }
+    .co-ob-top { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px 12px; }
+    .co-checkbox {
+      width: 18px; height: 18px;
+      border-radius: 4px;
+      border: 1.5px solid var(--subtle);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .co-checkbox.checked {
+      background: var(--cta);
+      border-color: var(--cta);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 11px;
+    }
+    .co-ob-name { font-size: 13px; font-weight: 400; color: var(--text); margin-bottom: 3px; }
+    .co-ob-price { font-family: var(--font-display); font-size: 18px; font-weight: 500; color: var(--cta); }
+    .co-ob-body { padding: 0 16px 14px; font-size: 12px; font-weight: 300; color: var(--muted); line-height: 1.6; }
+    .co-form { display: flex; flex-direction: column; gap: 12px; }
+    .co-field { display: flex; flex-direction: column; gap: 5px; }
+    .co-label { font-size: 10px; font-weight: 200; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+    .co-input {
+      padding: 12px 14px;
+      background: var(--white);
+      border: 1.5px solid var(--subtle);
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text);
+      font-family: var(--font-body);
+    }
+    .co-input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .co-ssl { display: flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 300; color: var(--muted); }
+    .co-submit-btn {
+      display: block;
+      width: 100%;
+      padding: 18px;
+      background: var(--cta);
+      color: var(--bg);
+      border-radius: var(--radius-full);
+      font-size: 15px;
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 8px;
+      font-family: var(--font-body);
+      letter-spacing: 0.02em;
+    }
+    .co-submit-sub { font-size: 11px; font-weight: 300; color: var(--muted); text-align: center; }
+    .co-guarantee-bar {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 16px 24px;
+      background: var(--white);
+      border-top: 1px solid var(--subtle);
+    }
+    .co-guarantee-text { font-size: 12px; font-weight: 300; color: var(--muted); line-height: 1.5; }
+    .co-guarantee-text strong { color: var(--text); font-weight: 400; }
+
+    /* Checkout desktop */
+    .co-d-header {
+      background: var(--dark);
+      padding: 20px 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .co-d-logo { font-family: var(--font-display); font-size: 18px; font-style: italic; font-weight: 300; color: rgba(255,255,255,0.5); }
+    .co-d-secure { font-size: 11px; font-weight: 300; color: rgba(255,255,255,0.3); display: flex; gap: 6px; align-items: center; }
+    .co-d-body {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 0;
+      background: var(--bg);
+      min-height: 600px;
+    }
+    .co-d-left {
+      padding: 40px 48px;
+      border-right: 1px solid var(--subtle);
+    }
+    .co-d-right {
+      padding: 40px 40px;
+      background: var(--white);
+    }
+    .co-d-section-title { font-size: 11px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; margin-top: 28px; }
+    .co-d-section-title:first-child { margin-top: 0; }
+    .co-d-summary {
+      padding: 18px 20px;
+      background: var(--bg-warm);
+      border-radius: var(--radius);
+      border: 1px solid var(--subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .co-d-summary-name { font-size: 15px; font-weight: 400; color: var(--text); }
+    .co-d-summary-price { font-family: var(--font-display); font-size: 24px; font-weight: 500; color: var(--text); }
+    .co-d-obs { display: flex; flex-direction: column; gap: 10px; }
+    .co-d-ob {
+      background: var(--white);
+      border: 1.5px solid var(--subtle);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .co-d-ob.highlighted { border-color: var(--cta); }
+    .co-d-ob-info { flex: 1; }
+    .co-d-ob-name { font-size: 13px; font-weight: 400; color: var(--text); margin-bottom: 3px; }
+    .co-d-ob-desc { font-size: 12px; font-weight: 300; color: var(--muted); line-height: 1.5; }
+    .co-d-ob-price { font-family: var(--font-display); font-size: 18px; font-weight: 500; color: var(--cta); white-space: nowrap; padding-top: 2px; }
+    .co-d-form { display: flex; flex-direction: column; gap: 14px; }
+    .co-d-total {
+      background: var(--bg-warm);
+      border: 1px solid var(--subtle);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+    .co-d-total-label { font-size: 11px; font-weight: 300; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+    .co-d-total-value { font-family: var(--font-display); font-size: 36px; font-weight: 500; color: var(--text); }
+    .co-d-total-items { font-size: 12px; font-weight: 300; color: var(--muted); margin-top: 4px; }
+    .co-d-submit {
+      display: block;
+      width: 100%;
+      padding: 18px;
+      background: var(--cta);
+      color: var(--bg);
+      border-radius: var(--radius-full);
+      font-size: 15px;
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 10px;
+      font-family: var(--font-body);
+      letter-spacing: 0.02em;
+    }
+    .co-d-guarantee { font-size: 12px; font-weight: 300; color: var(--muted); text-align: center; line-height: 1.5; }
+
+    /* ════════════════════════════════════════
+       TELA 05 — OBRIGADO + UPSELL
+    ════════════════════════════════════════ */
+    .ob-confirmation {
+      background: var(--seguro);
+      padding: 32px 24px 28px;
+      text-align: center;
+    }
+    .ob-confirmation-icon { font-size: 40px; margin-bottom: 10px; }
+    .ob-confirmation-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 300;
+      color: white;
+      margin-bottom: 8px;
+    }
+    .ob-confirmation-sub { font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.65); line-height: 1.5; }
+    .ob-attention {
+      background: var(--bg-warm);
+      padding: 14px 24px;
+      border-bottom: 2px solid var(--sand);
+    }
+    .ob-attention-text { font-size: 13px; font-weight: 400; color: var(--text); text-align: center; }
+    .ob-upsell { padding: 28px 24px; border-bottom: 1px solid var(--subtle); }
+    .ob-upsell-headline {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+    .ob-upsell-headline em { font-style: italic; color: var(--cta); }
+    .ob-upsell-body { font-size: 13px; font-weight: 300; color: var(--text); line-height: 1.75; margin-bottom: 20px; }
+    .ob-upsell-includes { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+    .ob-upsell-include {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 10px 14px;
+      background: var(--white);
+      border-radius: 8px;
+      border: 1px solid var(--subtle);
+    }
+    .ob-include-icon { font-size: 15px; flex-shrink: 0; }
+    .ob-include-text { font-size: 13px; font-weight: 300; color: var(--text); }
+    .ob-price-box {
+      background: var(--dark);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+    .ob-price-original { font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.3); text-decoration: line-through; margin-bottom: 4px; }
+    .ob-price-current { font-family: var(--font-display); font-size: 44px; font-weight: 300; color: white; margin-bottom: 4px; }
+    .ob-price-sub { font-size: 11px; font-weight: 200; color: rgba(255,255,255,0.35); letter-spacing: 0.05em; }
+    .ob-yes-btn {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: var(--cta);
+      color: var(--bg);
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 10px;
+      font-family: var(--font-body);
+    }
+    .ob-no-btn { display: block; text-align: center; font-size: 12px; font-weight: 300; color: var(--muted); padding: 10px; }
+    .ob-after { padding: 24px; border-bottom: 1px solid var(--subtle); }
+    .ob-after-title { font-family: var(--font-display); font-size: 18px; font-weight: 400; font-style: italic; color: var(--text); margin-bottom: 10px; }
+    .ob-after-text { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.7; }
+    .ob-footer { padding: 20px 24px; text-align: center; }
+    .ob-footer-links { display: flex; justify-content: center; gap: 16px; font-size: 11px; font-weight: 300; color: var(--muted); margin-top: 6px; }
+
+    /* Obrigado desktop */
+    .ob-d-wrap { background: var(--bg); }
+    .ob-d-confirmation {
+      background: var(--seguro);
+      padding: 40px 80px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .ob-d-conf-icon { font-size: 48px; }
+    .ob-d-conf-title { font-family: var(--font-display); font-size: 32px; font-weight: 300; color: white; margin-bottom: 6px; }
+    .ob-d-conf-sub { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.6); }
+    .ob-d-attention {
+      background: var(--bg-warm);
+      padding: 14px 80px;
+      border-bottom: 2px solid var(--sand);
+      text-align: center;
+    }
+    .ob-d-attention-text { font-size: 14px; font-weight: 400; color: var(--text); }
+    .ob-d-body {
+      display: block;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 56px 40px;
+    }
+    .ob-d-headline { font-family: var(--font-display); font-size: 40px; font-weight: 300; color: var(--text); line-height: 1.2; margin-bottom: 16px; }
+    .ob-d-headline em { font-style: italic; color: var(--cta); }
+    .ob-d-body-text { font-size: 15px; font-weight: 300; color: var(--text); line-height: 1.8; margin-bottom: 28px; }
+    .ob-d-includes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 0; }
+    .ob-d-include {
+      display: flex;
+      gap: 10px;
+      padding: 12px 14px;
+      background: var(--white);
+      border-radius: 8px;
+      border: 1px solid var(--subtle);
+    }
+    .ob-d-include-icon { font-size: 15px; }
+    .ob-d-include-text { font-size: 13px; font-weight: 300; color: var(--text); }
+    .ob-d-panel {
+      background: var(--white);
+      border: 1px solid var(--subtle);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      position: sticky;
+      top: 24px;
+    }
+    .ob-d-price-label { font-size: 11px; font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .ob-d-price-original { font-size: 13px; font-weight: 300; color: var(--muted); text-decoration: line-through; margin-bottom: 4px; }
+    .ob-d-price-current { font-family: var(--font-display); font-size: 56px; font-weight: 300; color: var(--text); line-height: 1; margin-bottom: 4px; }
+    .ob-d-price-sub { font-size: 11px; font-weight: 200; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 24px; }
+    .ob-d-yes {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: var(--cta);
+      color: var(--bg);
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 10px;
+      font-family: var(--font-body);
+    }
+    .ob-d-no { display: block; text-align: center; font-size: 12px; font-weight: 300; color: var(--muted); padding: 8px; }
+    .ob-d-footer {
+      padding: 20px 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--subtle);
+    }
+    .ob-d-footer-brand { font-family: var(--font-display); font-size: 16px; font-style: italic; font-weight: 300; color: var(--muted); }
+    .ob-d-footer-links { display: flex; gap: 20px; font-size: 11px; font-weight: 300; color: var(--muted); }
+
+    /* screen label */
+    .screen-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .screen-info-label {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+      font-family: var(--font-body);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<div class="screen-nav">
+  <span class="screen-nav-label">Telas</span>
+  <button class="screen-btn active" onclick="showScreen('landing')">01 Landing Page</button>
+  <button class="screen-btn" onclick="showScreen('quiz')">02 Quiz</button>
+  <button class="screen-btn" onclick="showScreen('resultado')">03 Resultado</button>
+  <button class="screen-btn" onclick="showScreen('checkout')">04 Checkout</button>
+  <button class="screen-btn" onclick="showScreen('obrigado')">05 Obrigado</button>
+</div>
+
+<div class="screen-wrapper">
+
+<!-- ══════════════════════════════════════
+     TELA 01 · LANDING PAGE
+══════════════════════════════════════ -->
+<div class="screen-block active" id="screen-landing">
+  <div class="screen-info">
+    <span class="screen-info-label">01 · Landing Page · Quiz entry</span>
+    <div class="device-toggle">
+      <span class="device-toggle-label">Ver</span>
+      <button class="device-btn active" onclick="toggleDevice('landing','mobile',this)">Mobile 375</button>
+      <button class="device-btn" onclick="toggleDevice('landing','desktop',this)">Desktop 1280</button>
+    </div>
+  </div>
+
+  <!-- MOBILE -->
+  <div class="view-panel active" id="landing-mobile">
+    <div class="phone">
+      <div class="phone-notch"><div class="phone-notch-pill"></div></div>
+      <div class="lp-hero">
+        <div class="lp-hero-headline">Você ama do jeito que <em>aprendeu a amar.</em></div>
+        <div class="lp-hero-sub">Não é fraqueza. Não é destino.<br>É um padrão. E ele tem nome.</div>
+        <div class="lp-hero-cta">Clique e descubra o seu jeito de amar</div>
+        <div class="lp-hero-under">20 perguntas · Resultado imediato · 100% gratuito</div>
+      </div>
+      <div class="lp-steps-section">
+        <div class="lp-steps-title">Simples assim:</div>
+        <div class="lp-steps">
+          <div class="lp-step"><div class="lp-step-num">1</div><div class="lp-step-text">Responda 20 perguntas sobre como você lida com os seus relacionamentos</div></div>
+          <div class="lp-step"><div class="lp-step-num">2</div><div class="lp-step-text">Descubra o seu jeito de amar em minutos</div></div>
+        </div>
+      </div>
+      <div class="lp-footer">Termos de uso · Política de privacidade · Suporte</div>
+    </div>
+
+    <div class="annotation-list">
+      <div class="annotation-title">Anotações · Landing Page</div>
+      <div class="annotation-item"><div class="annotation-num">1</div><div class="annotation-text"><strong>Objetivo único:</strong> clique no quiz. Preço, Ana, bullets e garantia removidos — pertencem às telas seguintes.</div></div>
+      <div class="annotation-item"><div class="annotation-num">2</div><div class="annotation-text"><strong>Hero escuro (--dark):</strong> contraste editorial com creme. Cria separação visual entre "frame do produto" e conteúdo.</div></div>
+      <div class="annotation-item"><div class="annotation-num">3</div><div class="annotation-text"><strong>Botão Mogno (--cta):</strong> quente, leve, harmonioso. Não interrompe o fluxo visual como o preto faria.</div></div>
+      <div class="annotation-item"><div class="annotation-num">4</div><div class="annotation-text"><strong>"100% gratuito"</strong> — remove barreira de entrada. O preço R$37 aparece pela primeira vez na tela de Resultado.</div></div>
+      <div class="annotation-item"><div class="annotation-num">5</div><div class="annotation-text"><strong>Sem menu:</strong> zero vazamento de tráfego. A única ação possível é entrar no quiz.</div></div>
+    </div>
+  </div>
+
+  <!-- DESKTOP -->
+  <div class="view-panel" id="landing-desktop">
+    <div style="width:100%; max-width:1100px;">
+      <div class="browser">
+        <div class="browser-chrome">
+          <div class="browser-dots"><div class="browser-dot browser-dot-r"></div><div class="browser-dot browser-dot-y"></div><div class="browser-dot browser-dot-g"></div></div>
+          <div class="browser-url">🔒 meujeitodeamar.com.br</div>
+        </div>
+        <div class="lp-d-hero">
+          <div>
+            <div class="lp-d-headline">Você ama do jeito que <em>aprendeu a amar.</em></div>
+            <div class="lp-d-sub">Não é fraqueza. Não é destino.<br>É um padrão. E ele tem nome.</div>
+            <div style="text-align:center;">
+              <div class="lp-d-cta" style="display:block; text-align:center;">Clique e descubra o seu jeito de amar</div>
+              <div class="lp-d-under" style="display:block; text-align:center; margin-top:10px;">20 perguntas · Resultado imediato · 100% gratuito</div>
+            </div>
+          </div>
+          <div class="lp-d-right">
+            <div style="font-family:var(--font-display); font-size:22px; font-weight:400; color:var(--text); margin-bottom:16px;">Simples assim:</div>
+            <div class="lp-d-step"><div class="lp-d-step-num">1</div><div class="lp-d-step-text">Responda 20 perguntas sobre como você lida com os seus relacionamentos</div></div>
+            <div class="lp-d-step"><div class="lp-d-step-num">2</div><div class="lp-d-step-text">Descubra o seu jeito de amar em minutos</div></div>
+          </div>
+        </div>
+        <div class="lp-d-footer">Termos de Uso · Política de Privacidade · Suporte</div>
+      </div>
+    </div>
+    <div class="annotation-list">
+      <div class="annotation-title">Anotações · Desktop</div>
+      <div class="annotation-item"><div class="annotation-num">1</div><div class="annotation-text"><strong>2 colunas no hero:</strong> copy à esquerda, "como funciona" à direita. Aproveita o espaço sem encher.</div></div>
+      <div class="annotation-item"><div class="annotation-num">2</div><div class="annotation-text"><strong>Headline 64px Cormorant:</strong> tipografia é o herói, não imagens. Segue a direção editorial das referências.</div></div>
+      <div class="annotation-item"><div class="annotation-num">3</div><div class="annotation-text"><strong>Steps como cards translúcidos</strong> — criam estrutura visual sem cor. Números em itálico Cormorant.</div></div>
+      <div class="annotation-item"><div class="annotation-num">4</div><div class="annotation-text"><strong>CTA inline</strong> — não ocupa toda a largura em desktop. Proporção correta para layout de 2 colunas.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TELA 02 · QUIZ
+══════════════════════════════════════ -->
+<div class="screen-block" id="screen-quiz">
+  <div class="screen-info">
+    <span class="screen-info-label">02 · Quiz Versão C · 20 situações · pergunta 3 de 20</span>
+    <div class="device-toggle">
+      <span class="device-toggle-label">Ver</span>
+      <button class="device-btn active" onclick="toggleDevice('quiz','mobile',this)">Mobile 375</button>
+      <button class="device-btn" onclick="toggleDevice('quiz','desktop',this)">Desktop 1280</button>
+    </div>
+  </div>
+
+  <!-- MOBILE -->
+  <div class="view-panel active" id="quiz-mobile">
+    <div class="phone">
+      <div class="phone-notch"><div class="phone-notch-pill"></div></div>
+      <div class="quiz-topbar">
+        <div class="quiz-close">✕</div>
+        <div class="quiz-count">3 de 20</div>
+      </div>
+      <div class="quiz-progress-bar"><div class="quiz-progress-fill" style="width:15%;"></div></div>
+      <div class="quiz-body">
+        <div class="quiz-question">Quando alguém que você ama fica em silêncio por um dia inteiro, o que acontece dentro de você?</div>
+        <div class="quiz-options">
+          <div class="quiz-option selected">Uma ansiedade que aumenta com o tempo. Fico pensando se fiz algo errado.</div>
+          <div class="quiz-option">Nada em especial. Cada um tem o seu espaço, isso é normal.</div>
+          <div class="quiz-option">Um alívio. Eu também precisava de um tempo para mim.</div>
+          <div class="quiz-option">Depende do dia. Às vezes me preocupo muito, às vezes nem lembro.</div>
+        </div>
+      </div>
+      <div class="quiz-footer">
+        <div class="quiz-next-btn">Próxima pergunta →</div>
+        <div class="quiz-skip">Pular esta pergunta</div>
+      </div>
+    </div>
+
+    <div class="annotation-list">
+      <div class="annotation-title">Anotações · Quiz</div>
+      <div class="annotation-item"><div class="annotation-num">1</div><div class="annotation-text"><strong>Barra 2px Mogno</strong> — discreta, sutil. Não distrai, mas cria sunk cost progressivo.</div></div>
+      <div class="annotation-item"><div class="annotation-num">2</div><div class="annotation-text"><strong>Linguagem situacional</strong> — sem termos clínicos. "O que acontece dentro de você?" em vez de "Você é ansioso?"</div></div>
+      <div class="annotation-item"><div class="annotation-num">3</div><div class="annotation-text"><strong>Seleção = borda Mogno + bg-warm</strong> — feedback visual sem cor viva. Editorial e limpo.</div></div>
+      <div class="annotation-item"><div class="annotation-num">4</div><div class="annotation-text"><strong>4 opções</strong> mapeiam os 4 estilos sem revelar qual é qual. Ordem randomizada por sessão.</div></div>
+      <div class="annotation-item"><div class="annotation-num">5</div><div class="annotation-text"><strong>Versão C aprovada</strong> — 8 situações. A e B ficam para teste futuro.</div></div>
+    </div>
+  </div>
+
+  <!-- DESKTOP -->
+  <div class="view-panel" id="quiz-desktop">
+    <div style="width:100%; max-width:1100px;">
+      <div class="browser">
+        <div class="browser-chrome">
+          <div class="browser-dots"><div class="browser-dot browser-dot-r"></div><div class="browser-dot browser-dot-y"></div><div class="browser-dot browser-dot-g"></div></div>
+          <div class="browser-url">🔒 meujeitodeamar.com.br/quiz</div>
+        </div>
+        <div class="quiz-d-wrap">
+          <div class="quiz-d-header">
+            <div class="quiz-d-logo"></div>
+            <div class="quiz-d-progress-wrap">
+              <div class="quiz-progress-bar"><div class="quiz-progress-fill" style="width:15%;"></div></div>
+              <div style="display:flex; justify-content:space-between; font-size:11px; font-weight:200; color:var(--muted); margin-top:5px;">
+                <span>pergunta 3 de 20</span><span>15%</span>
+              </div>
+            </div>
+            <div class="quiz-d-count">✕</div>
+          </div>
+          <div class="quiz-d-body">
+            <div class="quiz-d-question">Quando alguém que você ama fica em silêncio por um dia inteiro, o que acontece dentro de você?</div>
+            <div class="quiz-d-options">
+              <div class="quiz-d-option selected">Uma ansiedade que aumenta com o tempo. Fico pensando se fiz algo errado.</div>
+              <div class="quiz-d-option">Nada em especial. Cada um tem o seu espaço, isso é normal.</div>
+              <div class="quiz-d-option">Um alívio. Eu também precisava de um tempo para mim.</div>
+              <div class="quiz-d-option">Depende do dia. Às vezes me preocupo muito, às vezes nem lembro.</div>
+            </div>
+            <div class="quiz-d-footer-row">
+              <div class="quiz-d-skip">Pular esta pergunta</div>
+              <div class="quiz-d-next">Próxima pergunta →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation-list">
+      <div class="annotation-title">Anotações · Desktop</div>
+      <div class="annotation-item"><div class="annotation-num">1</div><div class="annotation-text"><strong>Layout centrado, max 680px</strong> — não estica a leitura. Coluna de texto ideal para leitura confortável.</div></div>
+      <div class="annotation-item"><div class="annotation-num">2</div><div class="annotation-text"><strong>Opções em 2x2</strong> — aproveita largura desktop sem criar opções muito longas. Mais rápido de escanear.</div></div>
+      <div class="annotation-item"><div class="annotation-num">3</div><div class="annotation-text"><strong>Pular à esquerda, avançar à direita</strong> — hierarquia visual clara. CTA positivo no lado dominante.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TELA 03 · RESULTADO
+══════════════════════════════════════ -->
+<div class="screen-block" id="screen-resultado">
+  <div class="screen-info">
+    <span class="screen-info-label">03 · Resultado · Coração Ansioso · 1ª página de vendas</span>
+    <div class="device-toggle">
+      <span class="device-toggle-label">Ver</span>
+      <button class="device-btn active" onclick="toggleDevice('resultado','mobile',this)">Mobile 375</button>
+      <button class="device-btn" onclick="toggleDevice('resultado','desktop',this)">Desktop 1280</button>
+    </div>
+  </div>
+
+  <!-- MOBILE -->
+  <div class="view-panel active" id="resultado-mobile">
+    <div class="phone">
+      <div class="phone-notch"><div class="phone-notch-pill"></div></div>
+      <div class="res-hero">
+        <div class="res-icon">🌹</div>
+        <div class="res-label">Seu jeito de amar é</div>
+        <div class="res-name">Coração Ansioso</div>
+        <div class="res-tagline">Você ama com intensidade. Sente tudo. E existe uma razão muito específica para isso.</div>
+      </div>
+      <div class="res-teaser">
+        <div class="res-teaser-intro">Esse padrão não surgiu do nada. Ele foi a resposta mais inteligente que você encontrou para se proteger, num momento em que você precisava de proteção. A questão é: ele ainda faz sentido hoje?</div>
+        <div style="font-size:13px; font-weight:300; color:var(--muted); line-height:1.7; padding:0 0 20px;">Para entender o seu jeito de amar de verdade, você precisa ir além do rótulo. Precisa entender a origem. Os padrões. Os pontos cegos. E o que fazer com tudo isso.</div>
+        <div class="res-lock">
+          <div class="res-lock-header">
+            <div class="res-lock-title">Desbloqueie sua leitura completa. Entenda os seus padrões:</div>
+            <div class="res-lock-badge">🔒 Bloqueado</div>
+          </div>
+          <div class="res-lock-items">
+            <div class="res-lock-item"><div class="res-lock-dot"></div><div class="res-lock-text">De onde veio esse padrão e por que ele faz tanto sentido</div></div>
+            <div class="res-lock-item"><div class="res-lock-dot"></div><div class="res-lock-text">Por que você sente tanto quando o outro se distancia</div></div>
+            <div class="res-lock-item"><div class="res-lock-dot"></div><div class="res-lock-text">O que você faz nos relacionamentos sem perceber</div></div>
+            <div class="res-lock-item"><div class="res-lock-dot"></div><div class="res-lock-text"><span class="res-lock-blur">Como transformar esse padrão sem se perder</span></div></div>
+            <div class="res-lock-item"><div class="res-lock-dot"></div><div class="res-lock-text"><span class="res-lock-blur">Como você se conecta com cada jeito de amar</span></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="res-cta-section" style="text-align:center;">
+        <div style="font-family:var(--font-display); font-size:20px; font-weight:400; color:var(--text); margin-bottom:14px; letter-spacing:0.01em;">Desbloqueie sua leitura completa.</div>
+        <div class="res-cta-price">Apenas R$37</div>
+        <div class="res-cta-sub">Entrega imediata · Acesso vitalício</div>
+        <div class="res-cta-btn">Quero minha leitura completa</div>
+        <div class="res-cta-guarantee">🛡️ Garantia de 7 dias, sem perguntas</div>
+      </div>
+    </div>
+
+    <div class="annotation-list">
+      <div class="annotation-title">Anotações · Resultado</div>
+      <div class="annotation-item"><div class="annotation-num">1</div><div class="annotation-text"><strong>1ª aparição do preço.</strong> A pessoa completou o quiz no pico de curiosidade. R$37 aparece aqui, nunca antes.</div></div>
+      <div class="annotation-item"><div class="annotation-num">2</div><div class="annotation-text"><strong>Hero colorido como reveal emocional</strong> — contraste com o ambiente neutro anterior. Cor do estilo cria identidade.</div></div>
+      <div class="annotation-item"><div class="annotation-num">3</div><div class="annotation-text"><strong>Reconhecimento cirúrgico</strong> — "mensagem no entregue" é comportamento específico. A pessoa sente que foi lida.</div></div>
+      <div class="annotation-item"><div class="annotation-num">4</div><div class="annotation-text"><strong>Últimos 2 itens borrados</strong> — desejo pelo conteúdo bloqueado. Joe Sugarman: curiosity-driven CTA.</div></div>
+      <div class="annotation-item"><div class="annotation-num">5</div><div class="annotation-text"><strong>4 páginas, 1 template</strong> — dados dinâmicos via query string. Cor, ícone e copy mudam por estilo.</div></div>
+    </div>
+  </div>
+
+  <!-- DESKTOP -->
+  <div class="view-panel" id="resultado-desktop">
+    <div style="width:100%; max-width:1100px;">
+      <div class="browser">
+        <div class="browser-chrome">
+          <div class="browser-dots"><div class="browser-dot browser-dot-r"></div><div class="browser-dot browser-dot-y"></div><div class="browser-dot browser-dot-g"></div></div>
+          <div class="browser-url">🔒 meujeitodeamar.com.br/resultado?estilo=ansioso</div>
+        </div>
+        <div>
+          <div class="res-d-hero">
+            <div class="res-d-left">
+              <div class="res-d-eyebrow">Seu jeito de amar é</div>
+              <div class="res-d-name">Coração<br>Ansioso</div>
+              <div class="res-d-tagline">Você ama com intensidade. Sente tudo.<br>E existe uma razão muito específica para isso.</div>
+            </div>
+            <div class="res-d-icon-wrap">
+              <div class="res-d-icon">🌹</div>
+            </div>
+          </div>
+          <div class="res-d-body" style="display:block; max-width:680px; margin:0 auto; padding:48px 64px;">
+            <div class="res-d-teaser-text">Esse padrão não surgiu do nada. Ele foi a resposta mais inteligente que você encontrou para se proteger, num momento em que você precisava de proteção. A questão é: ele ainda faz sentido hoje?</div>
+            <div style="font-size:14px; font-weight:300; color:var(--muted); line-height:1.75; margin-bottom:24px;">Para entender o seu jeito de amar de verdade, você precisa ir além do rótulo. Precisa entender a origem. Os padrões. Os pontos cegos. E o que fazer com tudo isso.</div>
+            <div class="res-d-lock">
+              <div class="res-d-lock-header">
+                <div class="res-d-lock-title">Sua leitura completa responde:</div>
+                <div class="res-d-lock-badge">🔒 Bloqueado</div>
+              </div>
+              <div class="res-d-lock-items">
+                <div class="res-d-lock-item"><div class="res-d-lock-dot"></div><div class="res-d-lock-text">De onde veio esse padrão e por que ele faz tanto sentido</div></div>
+                <div class="res-d-lock-item"><div class="res-d-lock-dot"></div><div class="res-d-lock-text">Por que você sente tanto quando o outro se distancia</div></div>
+                <div class="res-d-lock-item"><div class="res-d-lock-dot"></div><div class="res-d-lock-text">O que você faz nos relacionamentos sem perceber</div></div>
+                <div class="res-d-lock-item"><div class="res-d-lock-dot"></div><div class="res-d-lock-text"><span class="res-d-lock-blur">Como transformar esse padrão sem se perder</span></div></div>
+                <div class="res-d-lock-item"><div class="res-d-lock-dot"></div><div class="res-d-lock-text"><span class="res-d-lock-blur">Como você se conecta com cada jeito de amar</span></div></div>
+              </div>
+            </div>
+            <div class="res-d-cta-panel" style="position:static; width:100%; margin-top:32px;">
+              <div style="font-family:var(--font-display); font-size:22px; font-weight:400; color:var(--text); margin-bottom:16px; letter-spacing:0.01em;">Desbloqueie agora a sua leitura completa.</div>
+              <div class="res-d-price">Apenas R$37</div>
+              <div class="res-d-price-sub">Entrega imediata · Acesso vitalício</div>
+              <div class="res-d-divider"></div>
+              <div class="res-d-btn">Quero minha leitura completa</div>
+              <div class="res-d-guarantee">🛡️ Garantia de 7 dias, sem perguntas</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation-list">
+      <div class="annotation-title">Anotações · Desktop</div>
+      <div class="annotation-item"><div class="annotation-num">1</div><div class="annotation-text"><strong>Hero 2 colunas:</strong> nome do estilo grande à esquerda, ícone à direita. Headline 72px Cormorant cria impacto.</div></div>
+      <div class="annotation-item"><div class="annotation-num">2</div><div class="annotation-text"><strong>CTA panel sticky 360px</strong> — acompanha o scroll. O preço R$37 sempre visível enquanto o usuário lê o teaser.</div></div>
+      <div class="annotation-item"><div class="annotation-num">3</div><div class="annotation-text"><strong>Teaser mais longo em desktop</strong> — leitura confortável. Mobile é mais curto para não exigir scroll antes do CTA.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TELA 04 · CHECKOUT
+══════════════════════════════════════ -->
+<div class="screen-block" id="screen-checkout">
+  <div class="screen-info">
+    <span class="screen-info-label">04 · Checkout + Order Bumps</span>
+    <div class="device-toggle">
+      <span class="device-toggle-label">Ver</span>
+      <button class="device-btn active" onclick="toggleDevice('checkout','mobile',this)">Mobile 375</button>
+      <button class="device-btn" onclick="toggleDevice('checkout','desktop',this)">Desktop 1280</button>
+    </div>
+  </div>
+
+  <!-- MOBILE -->
+  <div class="view-panel active" id="checkout-mobile">
+    <div class="phone">
+      <div class="phone-notch"><div class="phone-notch-pill"></div></div>
+      <div class="co-header">
+        <div class="co-header-title">Você está a um passo.</div>
+        <div class="co-header-sub">Preencha os dados abaixo para receber sua leitura.</div>
+      </div>
+      <div class="co-section">
+        <div class="co-section-title">Seu pedido</div>
+        <div class="co-summary-item">
+          <div><div class="co-summary-name">Leitura: Coração Ansioso</div><div style="font-size:11px; font-weight:300; color:var(--muted); margin-top:2px;">Entrega imediata</div></div>
+          <div class="co-summary-price">R$37</div>
+        </div>
+      </div>
+      <div class="co-section">
+        <div class="co-section-title">Pagamento</div>
+        <div class="co-form">
+          <div class="co-field"><div class="co-label">Nome completo</div><div class="co-input" style="color:#ccc;">Ana Rodrigues</div></div>
+          <div class="co-field"><div class="co-label">Email</div><div class="co-input" style="color:#ccc;">ana@email.com</div></div>
+          <div class="co-field"><div class="co-label">Número do cartão</div><div class="co-input" style="color:var(--muted);">0000 0000 0000 0000</div></div>
+          <div class="co-input-row">
+            <div class="co-field"><div class="co-label">Validade</div><div class="co-input" style="color:var(--muted);">MM/AA</div></div>
+            <div class="co-field"><div class="co-label">CVV</div><div class="co-input" style="color:var(--muted);">•••</div></div>
+          </div>
+          <div class="co-ssl">🔒 <span>Dados protegidos com SSL 256-bit</span></div>
+        </div>
+      </div>
+      <div class="co-section">
+        <div class="co-section-title">Adicione ao pedido</div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div class="co-ob highlighted">
+            <div class="co-ob-top"><div class="co-checkbox checked">✓</div><div><div class="co-ob-name">Guia de Relacionamentos por Estilo</div><div class="co-ob-price">+ R$27</div></div></div>
+            <div class="co-ob-body">As pessoas ao seu redor também têm o jeito delas de amar. Seu parceiro. Sua mãe. Esse guia te mostra como cada um funciona.</div>
+          </div>
+          <div class="co-ob">
+            <div class="co-ob-top"><div class="co-checkbox"></div><div><div class="co-ob-name">Leitura de quem eu amo</div><div class="co-ob-price" style="color:var(--confuso);">+ R$19</div></div></div>
+            <div class="co-ob-body">Escolha 1 perfil e receba a leitura completa de uma pessoa específica da sua vida.</div>
+          </div>
+        </div>
+      </div>
+      <div class="co-section">
+        <div class="co-submit-btn">Finalizar e receber minha leitura</div>
+        <div class="co-submit-sub">Será cobrado R$64 (leitura R$37 + guia R$27)</div>
+      </div>
+      <div class="co-guarantee-bar">
+        <span style="font-size:24px;">🛡️</span>
+        <div class="co-guarantee-text"><strong>Garantia incondicional de 7 dias.</strong> Não gostou, devolvemos tudo sem perguntas.</div>
+      </div>
+    </div>
+
+    <div class="annotation-list">
+      <div class="annotation-title">Anotações · Checkout</div>
+      <div class="annotation-item"><div class="annotation-num">1</div><div class="annotation-text"><strong>OB1 pré-selecionado</strong> — take rate maior. Usuário precisa desmarcar ativamente. Padrão Dan Kennedy.</div></div>
+      <div class="annotation-item"><div class="annotation-num">2</div><div class="annotation-text"><strong>OB2 não selecionado</strong> — dois pré-selecionados seria agressivo para ticket de R$37.</div></div>
+      <div class="annotation-item"><div class="annotation-num">3</div><div class="annotation-text"><strong>Total dinâmico</strong> — "Será cobrado R$XX" reflete os bumps marcados em tempo real.</div></div>
+      <div class="annotation-item"><div class="annotation-num">4</div><div class="annotation-text"><strong>Header --dark</strong> — separação mental entre resultado emocional e ação de pagamento.</div></div>
+    </div>
+  </div>
+
+  <!-- DESKTOP -->
+  <div class="view-panel" id="checkout-desktop">
+    <div style="width:100%; max-width:1100px;">
+      <div class="browser">
+        <div class="browser-chrome">
+          <div class="browser-dots"><div class="browser-dot browser-dot-r"></div><div class="browser-dot browser-dot-y"></div><div class="browser-dot browser-dot-g"></div></div>
+          <div class="browser-url">🔒 meujeitodeamar.com.br/checkout</div>
+        </div>
+        <div>
+          <div class="co-d-header">
+            <div class="co-d-logo"></div>
+            <div class="co-d-secure">🔒 <span>Checkout 100% seguro</span></div>
+          </div>
+          <div class="co-d-body">
+            <div class="co-d-left">
+              <div class="co-d-section-title">Seu pedido</div>
+              <div class="co-d-summary">
+                <div><div class="co-d-summary-name">Leitura Completa: Coração Ansioso</div><div style="font-size:12px; font-weight:300; color:var(--muted); margin-top:3px;">Entrega imediata · Acesso vitalício</div></div>
+                <div class="co-d-summary-price">R$37</div>
+              </div>
+              <div class="co-d-section-title">Dados de pagamento</div>
+              <div class="co-d-form">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                  <div class="co-field"><div class="co-label">Nome completo</div><div class="co-input" style="color:#ccc;">Ana Rodrigues</div></div>
+                  <div class="co-field"><div class="co-label">Email</div><div class="co-input" style="color:#ccc;">ana@email.com</div></div>
+                </div>
+                <div class="co-field"><div class="co-label">Número do cartão</div><div class="co-input" style="color:var(--muted);">0000 0000 0000 0000</div></div>
+                <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
+                  <div class="co-field"><div class="co-label">Validade</div><div class="co-input" style="color:var(--muted);">MM/AA</div></div>
+                  <div class="co-field"><div class="co-label">CVV</div><div class="co-input" style="color:var(--muted);">•••</div></div>
+                  <div></div>
+                </div>
+                <div class="co-ssl">🔒 <span>Dados protegidos com SSL 256-bit</span></div>
+              </div>
+              <div class="co-d-section-title">Adicionar ao pedido</div>
+              <div class="co-d-obs">
+                <div class="co-d-ob highlighted">
+                  <div class="co-checkbox checked" style="margin-top:3px;">✓</div>
+                  <div class="co-d-ob-info">
+                    <div class="co-d-ob-name">Guia de Relacionamentos por Estilo</div>
+                    <div class="co-d-ob-desc">As pessoas ao seu redor também têm o jeito delas de amar. Esse guia te mostra como cada um funciona e como se comunicar sem criar conflito.</div>
+                  </div>
+                  <div class="co-d-ob-price">+ R$27</div>
+                </div>
+                <div class="co-d-ob">
+                  <div class="co-checkbox" style="margin-top:3px;"></div>
+                  <div class="co-d-ob-info">
+                    <div class="co-d-ob-name">Leitura de quem eu amo</div>
+                    <div class="co-d-ob-desc">Escolha 1 perfil e receba a leitura completa de uma pessoa específica da sua vida. Parceiro, mãe, amigo.</div>
+                  </div>
+                  <div class="co-d-ob-price" style="color:var(--confuso);">+ R$19</div>
+                </div>
+              </div>
+            </div>
+            <div class="co-d-right">
+              <div class="co-d-section-title" style="margin-top:0;">Total</div>
+              <div class="co-d-total">
+                <div class="co-d-total-label">A cobrar</div>
+                <div class="co-d-total-value">R$64</div>
+                <div class="co-d-total-items">Leitura R$37 + Guia R$27</div>
+              </div>
+              <div class="co-d-submit">Finalizar e receber minha leitura</div>
+              <div class="co-d-guarantee">🛡️ Garantia incondicional de 7 dias.<br>Não gostou, devolvemos tudo sem perguntas.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation-list">
+      <div class="annotation-title">Anotações · Desktop</div>
+      <div class="annotation-item"><div class="annotation-num">1</div><div class="annotation-text"><strong>2 colunas:</strong> produto + bumps + form à esquerda (60%), resumo + submit à direita (40%). Layout padrão checkout premium.</div></div>
+      <div class="annotation-item"><div class="annotation-num">2</div><div class="annotation-text"><strong>Painel direito sticky</strong> — total sempre visível durante preenchimento do formulário.</div></div>
+      <div class="annotation-item"><div class="annotation-num">3</div><div class="annotation-text"><strong>Form em 2 colunas</strong> — nome e email lado a lado. Menos scroll, mais rápido em desktop.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TELA 05 · OBRIGADO + UPSELL
+══════════════════════════════════════ -->
+<div class="screen-block" id="screen-obrigado">
+  <div class="screen-info">
+    <span class="screen-info-label">05 · Obrigado + Upsell Combo R$37</span>
+    <div class="device-toggle">
+      <span class="device-toggle-label">Ver</span>
+      <button class="device-btn active" onclick="toggleDevice('obrigado','mobile',this)">Mobile 375</button>
+      <button class="device-btn" onclick="toggleDevice('obrigado','desktop',this)">Desktop 1280</button>
+    </div>
+  </div>
+
+  <!-- MOBILE -->
+  <div class="view-panel active" id="obrigado-mobile">
+    <div class="phone">
+      <div class="phone-notch"><div class="phone-notch-pill"></div></div>
+      <div class="ob-confirmation">
+        <div class="ob-confirmation-icon">✅</div>
+        <div class="ob-confirmation-title">Pedido confirmado.</div>
+        <div class="ob-confirmation-sub">Sua leitura foi enviada para o seu email. Verifique a caixa de entrada agora.</div>
+      </div>
+      <div class="ob-attention">
+        <div class="ob-attention-text">Aguarde antes de fechar essa página.</div>
+      </div>
+      <div class="ob-upsell">
+        <div class="ob-upsell-headline">Agora você conhece o seu jeito de amar. <em>E as pessoas ao seu redor?</em></div>
+        <div class="ob-upsell-body">Cada pessoa na sua vida ama de um jeito diferente. Seu parceiro. Sua mãe. Seu amigo mais próximo. E enquanto você não entender o jeito deles, vai continuar sem entender os comportamentos deles.</div>
+        <div class="ob-upsell-body" style="margin-top:-8px;">O Combo Completo traz a leitura dos 4 jeitos de amar. Com ele, você consegue identificar e entender as pessoas ao seu redor e saber como se relacionar com cada uma delas.</div>
+        <div class="ob-upsell-includes">
+          <div class="ob-upsell-include"><div class="ob-include-icon">🌹</div><div class="ob-include-text">Leitura completa do Coração Ansioso</div></div>
+          <div class="ob-upsell-include"><div class="ob-include-icon">🌊</div><div class="ob-include-text">Leitura completa do Coração Distante</div></div>
+          <div class="ob-upsell-include"><div class="ob-include-icon">🌿</div><div class="ob-include-text">Leitura completa do Coração Seguro</div></div>
+          <div class="ob-upsell-include"><div class="ob-include-icon">🔥</div><div class="ob-include-text">Leitura completa do Coração Confuso</div></div>
+        </div>
+        <div class="ob-price-box">
+          <div class="ob-price-original" style="color:rgba(255,255,255,0.55); font-size:13px;">4 leituras separadas custariam R$148</div>
+          <div class="ob-price-current">R$67</div>
+          <div class="ob-price-sub" style="color:rgba(255,255,255,0.6); font-size:12px;">Apenas nessa página · Um clique</div>
+        </div>
+        <div class="ob-yes-btn">✓ Sim, quero o Combo por R$67</div>
+        <div class="ob-no-btn">Não, obrigado. Prefiro entender só o meu jeito de amar por enquanto.</div>
+      </div>
+      <div class="ob-after">
+        <div class="ob-after-title">Enquanto você aguarda o email...</div>
+        <div class="ob-after-text">Leia uma vez sem parar. Não analise. Não julgue. Só leia. Muita coisa vai fazer sentido de formas que você não esperava.</div>
+      </div>
+      <div class="ob-footer">
+        <div class="ob-footer-links"><span>Termos de Uso</span><span>Privacidade</span><span>Suporte</span></div>
+      </div>
+    </div>
+
+    <div class="annotation-list">
+      <div class="annotation-title">Anotações · Obrigado</div>
+      <div class="annotation-item"><div class="annotation-num">1</div><div class="annotation-text"><strong>Verde Seguro primeiro</strong> — alivia ansiedade pós-compra antes de qualquer pitch. Ordem importa.</div></div>
+      <div class="annotation-item"><div class="annotation-num">2</div><div class="annotation-text"><strong>"Aguarde"</strong> — pausa ativa. Usuário ainda está na página antes de ver o upsell.</div></div>
+      <div class="annotation-item"><div class="annotation-text"><strong>Price box --dark</strong> — contraste para âncora de preço. R$148 vs R$37 = 75% de redução percebida.</div></div>
+      <div class="annotation-item"><div class="annotation-num">4</div><div class="annotation-text"><strong>Um clique</strong> — dados já salvos. Zero fricção para aceitar o upsell.</div></div>
+      <div class="annotation-item"><div class="annotation-num">5</div><div class="annotation-text"><strong>"Não obrigado" visível</strong> — reduz resistência psicológica. Esconder o skip aumenta desconfiança.</div></div>
+    </div>
+  </div>
+
+  <!-- DESKTOP -->
+  <div class="view-panel" id="obrigado-desktop">
+    <div style="width:100%; max-width:1100px;">
+      <div class="browser">
+        <div class="browser-chrome">
+          <div class="browser-dots"><div class="browser-dot browser-dot-r"></div><div class="browser-dot browser-dot-y"></div><div class="browser-dot browser-dot-g"></div></div>
+          <div class="browser-url">🔒 meujeitodeamar.com.br/obrigado</div>
+        </div>
+        <div class="ob-d-wrap">
+          <div class="ob-d-confirmation">
+            <div class="ob-d-conf-icon">✅</div>
+            <div>
+              <div class="ob-d-conf-title">Pedido confirmado.</div>
+              <div class="ob-d-conf-sub">Sua leitura foi enviada para ana@email.com. Verifique a caixa de entrada agora.</div>
+            </div>
+          </div>
+          <div class="ob-d-attention">
+            <div class="ob-d-attention-text">Aguarde antes de fechar essa página.</div>
+          </div>
+          <div class="ob-d-body">
+            <div>
+              <div class="ob-d-headline">Agora você conhece o seu jeito de amar. <em>E as pessoas ao seu redor?</em></div>
+              <div class="ob-d-body-text">Cada pessoa na sua vida ama de um jeito diferente. Seu parceiro. Sua mãe. Seu amigo mais próximo. E enquanto você não entender o jeito deles, vai continuar sem entender os comportamentos deles.</div>
+              <div class="ob-d-body-text" style="margin-top:-12px;">O Combo Completo traz a leitura dos 4 jeitos de amar. Com ele, você consegue identificar e entender as pessoas ao seu redor e saber como se relacionar com cada uma delas.</div>
+              <div class="ob-d-includes">
+                <div class="ob-d-include"><div class="ob-d-include-icon">🌹</div><div class="ob-d-include-text">Leitura do Coração Ansioso</div></div>
+                <div class="ob-d-include"><div class="ob-d-include-icon">🌊</div><div class="ob-d-include-text">Leitura do Coração Distante</div></div>
+                <div class="ob-d-include"><div class="ob-d-include-icon">🌿</div><div class="ob-d-include-text">Leitura do Coração Seguro</div></div>
+                <div class="ob-d-include"><div class="ob-d-include-icon">🔥</div><div class="ob-d-include-text">Leitura do Coração Confuso</div></div>
+              </div>
+            </div>
+          </div>
+          <div style="max-width:560px; margin:16px auto 40px; padding:0 40px;">
+            <div class="ob-d-panel" style="position:static; width:100%;">
+              <div class="ob-d-price-label">Combo completo</div>
+              <div class="ob-d-price-original" style="color:rgba(27,27,17,0.45); font-size:13px;">4 leituras separadas custariam R$148</div>
+              <div class="ob-d-price-current">R$67</div>
+              <div class="ob-d-price-sub" style="color:var(--muted); font-size:12px;">Apenas nessa página · Um clique · Sem preencher nada</div>
+              <div class="ob-d-yes">✓ Sim, quero o Combo por R$67</div>
+              <div class="ob-d-no">Não, obrigado. Fico só com o meu jeito de amar por enquanto.</div>
+            </div>
+          </div>
+          <div class="ob-d-footer">
+            <div class="ob-d-footer-links"><span>Termos de Uso</span><span>Privacidade</span><span>Suporte</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation-list">
+      <div class="annotation-title">Anotações · Desktop</div>
+      <div class="annotation-item"><div class="annotation-num">1</div><div class="annotation-text"><strong>2 colunas:</strong> copy + includes à esquerda, painel de preço + CTA à direita. Decisão sempre visível.</div></div>
+      <div class="annotation-item"><div class="annotation-num">2</div><div class="annotation-text"><strong>Includes em 2x2</strong> — os 4 estilos em grid. Compacto, rápido de escanear em desktop.</div></div>
+      <div class="annotation-item"><div class="annotation-num">3</div><div class="annotation-text"><strong>Painel sticky</strong> — preço e CTA sempre visíveis durante leitura do copy de upsell.</div></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /screen-wrapper -->
+
+<script>
+  function showScreen(id) {
+    document.querySelectorAll('.screen-block').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.screen-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('screen-' + id).classList.add('active');
+    event.target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleDevice(screen, device, btn) {
+    const mobilePanel = document.getElementById(screen + '-mobile');
+    const desktopPanel = document.getElementById(screen + '-desktop');
+    const btns = btn.parentElement.querySelectorAll('.device-btn');
+    btns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    if (device === 'mobile') {
+      mobilePanel.classList.add('active');
+      desktopPanel.classList.remove('active');
+    } else {
+      desktopPanel.classList.add('active');
+      mobilePanel.classList.remove('active');
+    }
+  }
+</script>
+</body>
+</html>
