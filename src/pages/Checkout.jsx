@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { Button } from '../components'
 import './Checkout.css'
 
@@ -30,27 +30,28 @@ const SUMMARY_BULLETS = [
 ]
 
 const CHECKOUT_URLS = {
-  base:   'https://pay.kiwify.com.br/eIDBOuv',
-  ob1:    'https://pay.kiwify.com.br/IOnRmNN',
-  ob2:    'https://pay.kiwify.com.br/botDBb2',
-  ob1ob2: 'https://pay.kiwify.com.br/BOSdbTz',
+  ansioso: 'https://pay.kiwify.com.br/sEkZDxX',
+  distante: 'https://pay.kiwify.com.br/qRXuct4',
+  seguro:  'https://pay.kiwify.com.br/15XhzVM',
+  confuso: 'https://pay.kiwify.com.br/8VHVs5p',
+  fallback: 'https://pay.kiwify.com.br/sEkZDxX',
 }
 
-function getCheckoutUrl(ob1, ob2) {
-  if (ob1 && ob2) return CHECKOUT_URLS.ob1ob2
-  if (ob1) return CHECKOUT_URLS.ob1
-  if (ob2) return CHECKOUT_URLS.ob2
-  return CHECKOUT_URLS.base
+function getCheckoutUrl(estilo) {
+  return CHECKOUT_URLS[estilo] ?? CHECKOUT_URLS.fallback
 }
 
 export default function Checkout() {
+  const [searchParams] = useSearchParams()
+  const estilo = searchParams.get('estilo') ?? 'ansioso'
+
   const [ob1, setOb1] = useState(false)
   const [ob2, setOb2] = useState(false)
 
   const total = PRICE_BASE + (ob1 ? PRICE_OB1 : 0) + (ob2 ? PRICE_OB2 : 0)
 
   function handleCheckout() {
-    window.location.href = getCheckoutUrl(ob1, ob2)
+    window.location.href = getCheckoutUrl(estilo)
   }
 
   return (

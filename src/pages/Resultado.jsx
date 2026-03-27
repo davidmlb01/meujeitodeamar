@@ -57,7 +57,7 @@ export default function Resultado() {
         {/* CTA */}
         <div className="resultado__cta-section">
           <div className="resultado__cta-wrap">
-            <Link to="/checkout" tabIndex={-1}>
+            <Link to={`/checkout?estilo=${estilo}`} tabIndex={-1}>
               <Button>Quero minha leitura completa por R$37</Button>
             </Link>
           </div>

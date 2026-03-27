@@ -3,29 +3,46 @@ import { Button } from '../components'
 import './LandingPage.css'
 
 const STEPS = [
-  'Responda 20 perguntas simples sobre como você age nos relacionamentos.',
-  'Descubra o seu estilo de apego: seguro, ansioso, evitativo ou desorganizado.',
-  'Entenda os padrões que se repetem — e o que fazer com eles.',
+  'Responda 20 perguntas sobre como você lida com os seus relacionamentos',
+  'Descubra o seu jeito de amar em minutos',
 ]
 
 export default function LandingPage() {
   return (
     <div className="landing">
-      {/* Hero */}
+      {/* Hero — mobile: coluna única / desktop: 2 colunas */}
       <section className="landing__hero">
-        <p className="landing__eyebrow">Quiz gratuito</p>
-        <h1 className="landing__headline">Qual é o seu jeito de amar?</h1>
-        <p className="landing__sub">
-          Responda 20 perguntas e descubra o seu estilo de apego — de graça.
-        </p>
-        <div className="landing__cta">
-          <Link to="/quiz/b" tabIndex={-1}>
-            <Button>Clique e descubra o seu jeito de amar</Button>
-          </Link>
+        {/* Coluna esquerda (mobile: tudo) */}
+        <div className="landing__hero-left">
+          <h1 className="landing__headline">
+            Você ama do jeito que <em>aprendeu a amar.</em>
+          </h1>
+          <p className="landing__sub">
+            Não é fraqueza. Não é destino.<br />É um padrão. E ele tem nome.
+          </p>
+          <div className="landing__cta">
+            <Link to="/quiz/b" tabIndex={-1}>
+              <Button>Clique e descubra o seu jeito de amar</Button>
+            </Link>
+          </div>
+          <p className="landing__under">20 perguntas · Resultado imediato · 100% gratuito</p>
+        </div>
+
+        {/* Coluna direita — só desktop */}
+        <div className="landing__steps-desktop">
+          <p className="landing__steps-desktop-title">Simples assim:</p>
+          <ol className="steps-list">
+            {STEPS.map((text, i) => (
+              <li key={i} className="step">
+                <span className="step__number" aria-hidden="true">{i + 1}</span>
+                <p className="step__text">{text}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
-      {/* Steps */}
+      {/* Steps — só mobile */}
       <section className="landing__steps">
         <div className="landing__steps-inner">
           <h2 className="landing__steps-title">Simples assim:</h2>
@@ -39,15 +56,6 @@ export default function LandingPage() {
           </ol>
         </div>
       </section>
-
-      {/* CTA secundário */}
-      <div className="landing__cta2">
-        <div className="landing__cta2-inner">
-          <Link to="/quiz/b" tabIndex={-1}>
-            <Button>Começar agora</Button>
-          </Link>
-        </div>
-      </div>
 
       {/* Footer */}
       <footer className="landing__footer">
