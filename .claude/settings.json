@@ -1,3 +1,17 @@
 {
-  "language": "portuguese"
+  "language": "portuguese",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"/Users/davidlevy/Desktop/PJ/BIG HEAD\" && if git status --porcelain docs/MASTER-BACKUP.md | grep -q .; then git add docs/MASTER-BACKUP.md && git commit -m \"auto: session backup $(date '+%Y-%m-%d %H:%M')\" && git push && echo '{\"systemMessage\": \"✅ MASTER-BACKUP.md salvo automaticamente.\"}'; fi 2>/dev/null || true",
+            "timeout": 30,
+            "statusMessage": "Salvando backup da sessão..."
+          }
+        ]
+      }
+    ]
+  }
 }
