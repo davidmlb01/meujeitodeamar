@@ -353,4 +353,36 @@ npm run trace -- workflow-name
 - Document breaking changes prominently
 
 ---
+
+## Projeto Freud — Referência Estratégica
+
+O Projeto Freud é uma plataforma de testes psicológicos de baixo ticket. O **meujeitodeamar.com.br** é o V1 de uma esteira de 6 produtos planejados.
+
+**Contexto completo (leia no início de qualquer sessão relacionada):**
+- `docs/MASTER-BACKUP.md` — backup estratégico completo: decisões, roadmap, código, infraestrutura, Kiwify, DNS, copy
+- `docs/prd/freud-meujeitodeamar-prd.md` — PRD oficial com requisitos, monetização e projeções
+
+---
+
+## Processos de Sessão
+
+### Ao fim de cada sessão importante (OBRIGATÓRIO)
+1. Atualizar `docs/MASTER-BACKUP.md` com decisões tomadas, mudanças feitas e estado atual
+2. Atualizar o arquivo de memória do projeto em `~/.claude/projects/.../memory/project_freud_complete.md`
+3. Fazer git commit + push do MASTER-BACKUP.md: `git add docs/MASTER-BACKUP.md && git commit -m "docs: atualiza master backup" && git push`
+4. Sugerir `/save-session` para criar snapshot da sessão no harness
+
+### Durante a sessão (proativo)
+- A cada ~30 minutos de trabalho intenso, sugerir `/save-session` sem esperar o usuário pedir
+- Se a conversa mudar de projeto ou assunto importante, sugerir salvar antes de mudar
+- Usar `/resume-session` no início de sessões para carregar contexto da sessão anterior
+
+### Memória granular por projeto
+- Cada projeto ativo tem seu arquivo dedicado em `~/.claude/projects/.../memory/`
+- Formato: `project_{nome}_complete.md` com contexto estratégico completo (não só status)
+- Conteúdo: visão, decisões-chave, estado atual, roadmap, links para documentos
+- Atualizar ao fim de cada sessão com novas decisões e mudanças
+- O MASTER-BACKUP.md do projeto é o espelho desse arquivo de memória
+
+---
 *Synkra AIOX Claude Code Configuration v2.0*
