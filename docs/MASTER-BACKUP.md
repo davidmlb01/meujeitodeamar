@@ -1,6 +1,6 @@
 # MASTER BACKUP — Projeto Freud
-**Última atualização:** 2026-03-27
-**Status:** V1 (meujeitodeamar.com.br) lançado — seed launch em andamento
+**Última atualização:** 2026-04-03
+**Status:** V1 (meujeitodeamar.com.br) lançado — PDFs exportados, Kiwify em configuração, seed launch pendente
 
 ---
 
@@ -175,6 +175,19 @@ Arquivo: `docs/design/leituras-pdf.html`
 - Abrir no Chrome → Cmd+P → "Salvar como PDF"
 - Gráficos de fundo: ativado
 - Usar o painel de filtro no topo para selecionar o estilo antes de imprimir
+- PDFs exportados em 2026-04-03 e prontos para upload no Kiwify
+
+### Chrome Print CSS — padrão definitivo (bugs corrigidos em 2026-04-03)
+- `print-color-adjust: exact` + `-webkit-print-color-adjust: exact` em tudo
+- `background: #cor !important` nos elementos que precisam de cor
+- Nunca usar `overflow: hidden` com `height` fixo em print (impede Chrome de pintar fundo)
+- Spacer com `id="print-spacer"` e `display: none !important` em print (não usar `+` selector com `position:fixed`)
+- Aplicado em: ob1-guia-relacionamentos.html, ob2-leitura-quem-amo.html, leituras-pdf.html
+
+### Página de fechamento (upsell dentro do PDF)
+- leituras-pdf.html tem uma página final "O que muda agora" com texto de encerramento
+- Só aparece no modo "Ver todos" (sem filtro de estilo)
+- Função `filtrar()` atualizada para esconder/mostrar via `data-closing` attribute
 
 ### Cores por estilo
 | Estilo | Cor |
@@ -236,10 +249,32 @@ Arquivo: `docs/design/leituras-pdf.html`
 - Combo 4 Leituras — R$67 (ID: Rf1DTRA)
 - URL: https://pay.kiwify.com.br/Rf1DTRA
 
+### Estrutura correta de produtos (7 ao total)
+| # | Produto | Tipo | Preço |
+|---|---|---|---|
+| 1 | Leitura Completa Coração Ansioso | Principal | R$37 |
+| 2 | Leitura Completa Coração Distante | Principal | R$37 |
+| 3 | Leitura Completa Coração Seguro | Principal | R$37 |
+| 4 | Leitura Completa Coração Confuso | Principal | R$37 |
+| 5 | Guia de Relacionamentos por Estilo | Order bump (antes do pag.) | R$27 |
+| 6 | Leitura de quem eu amo | Order bump (antes do pag.) | R$19 |
+| 7 | Combo Completo: Os 4 Jeitos de Amar | Upsell (pós-compra) | R$47 |
+
+Os produtos de bundle criados anteriormente (Leitura+Guia, Leitura+Leitura de quem eu amo, etc.) devem ser desativados. O bundle acontece via order bumps nativos do Kiwify em cada produto principal.
+
 ### Configurações em cada produto
 - Página de obrigado: https://meujeitodeamar.vercel.app/obrigado
 - Entrega: PDF via Área de Membros
-- Checkout pop-up: solicitado, aguardando aprovação (prazo: 48h úteis a partir de 2026-03-27)
+- OB1 configurado: Guia de Relacionamentos por Estilo
+- OB2 configurado: Leitura de quem eu amo
+- Upsell pós-compra: Combo Completo
+
+### Landing page — estado atual (2026-04-03)
+- Seção de depoimentos adicionada: 4 pull quotes editoriais (Cormorant Garamond, sem cards)
+- Depoimentos são representativos (não falsos): serão substituídos por reais após seed
+- index.html tem `color-scheme: light` no `<html>` para impedir macOS dark mode
+- Hero desktop: `padding: 56px 64px`, sem `min-height` — proporcional ao conteúdo
+- Seção testimonials: `padding-top: 40px` — primeira quote visível abaixo do hero
 
 ---
 
@@ -291,12 +326,15 @@ Todos os textos estão em `docs/copy/`:
 ## 14. PRÓXIMOS PASSOS
 
 ### Imediato (seed launch)
+- [ ] Subir PDFs nos 4 produtos principais no Kiwify
+- [ ] Configurar order bumps (OB1 + OB2) em cada um dos 4 produtos
+- [ ] Configurar upsell pós-compra (Combo Completo) em cada produto
+- [ ] Desativar produtos de bundle desnecessários no Kiwify
 - [ ] Contatar 20 pessoas da rede pessoal → 10 primeiros pagantes
 - [ ] Coletar depoimentos dos primeiros compradores
-- [ ] Aguardar aprovação do checkout pop-up do Kiwify
 
 ### Após seed (V1 Beta)
-- [ ] Adicionar depoimentos na landing page
+- [ ] Substituir depoimentos representativos por depoimentos reais na landing page
 - [ ] Configurar analytics (GA4, TikTok Pixel, Clarity)
 - [ ] Ativar `hormozi-ads` para criar anúncios baseados nos depoimentos
 
