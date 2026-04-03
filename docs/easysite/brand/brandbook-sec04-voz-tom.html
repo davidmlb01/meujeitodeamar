@@ -1,0 +1,625 @@
+<section id="voz-tom" style="font-family: 'Instrument Sans', sans-serif; background-color: #FAFAF9; color: #080503; padding: 64px 0;">
+
+  <style>
+    #voz-tom * { box-sizing: border-box; }
+
+    #voz-tom .sec-divider {
+      border: none;
+      border-top: 1px solid #DAD7D0;
+      margin: 48px 0;
+    }
+
+    #voz-tom .sec-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #5E534A;
+      margin-bottom: 8px;
+    }
+
+    #voz-tom .sec-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: #080503;
+      margin: 0 0 32px 0;
+      line-height: 1.2;
+    }
+
+    #voz-tom .subsec-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: #080503;
+      margin: 0 0 24px 0;
+    }
+
+    #voz-tom .container {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* 4.1 — Princípios */
+    #voz-tom .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    #voz-tom .principle-card {
+      background: #ECEBE7;
+      padding: 24px;
+      border-radius: 4px;
+    }
+
+    #voz-tom .principle-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.10em;
+      color: #5E534A;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    #voz-tom .principle-name {
+      font-family: 'Instrument Serif', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: #080503;
+      margin: 0 0 6px 0;
+    }
+
+    #voz-tom .principle-def {
+      font-size: 13px;
+      color: #5E534A;
+      font-style: italic;
+      margin: 0 0 14px 0;
+      line-height: 1.5;
+      border-bottom: 1px solid #DAD7D0;
+      padding-bottom: 14px;
+    }
+
+    #voz-tom .principle-practice-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: #5E534A;
+      margin-bottom: 6px;
+    }
+
+    #voz-tom .principle-practice {
+      font-size: 14px;
+      color: #080503;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* 4.2 — Vocabulário */
+    #voz-tom .vocab-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    #voz-tom .vocab-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: #080503;
+      background: #ECEBE7;
+      border: 1px solid #DAD7D0;
+      padding: 7px 14px;
+      border-radius: 2px;
+    }
+
+    #voz-tom .vocab-tag.pattern {
+      font-style: italic;
+      color: #5E534A;
+    }
+
+    /* 4.3 — O que nunca usar */
+    #voz-tom .never-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    #voz-tom .never-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 20px;
+      background: #ECEBE7;
+      border-radius: 4px;
+    }
+
+    #voz-tom .never-icon {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: #8B1A1A;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+      letter-spacing: 0.05em;
+    }
+
+    #voz-tom .never-text {
+      font-size: 14px;
+      color: #080503;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    #voz-tom .never-text strong {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 14px;
+    }
+
+    #voz-tom .never-text span {
+      color: #5E534A;
+      font-size: 13px;
+    }
+
+    /* 4.4 — Exemplos bom x ruim */
+    #voz-tom .examples-list {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    #voz-tom .example-block {
+      border-top: 1px solid #DAD7D0;
+      padding-top: 24px;
+    }
+
+    #voz-tom .example-principle-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #5E534A;
+      margin-bottom: 14px;
+    }
+
+    #voz-tom .example-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    #voz-tom .example-card {
+      background: #ECEBE7;
+      padding: 20px;
+      border-radius: 4px;
+    }
+
+    #voz-tom .example-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    #voz-tom .example-label.good {
+      color: #1A4A1A;
+    }
+
+    #voz-tom .example-label.bad {
+      color: #8B1A1A;
+    }
+
+    #voz-tom .example-copy {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: #080503;
+      line-height: 1.6;
+      margin: 0 0 10px 0;
+      background: #FAFAF9;
+      padding: 10px 12px;
+      border-radius: 3px;
+    }
+
+    #voz-tom .example-why {
+      font-size: 12px;
+      color: #5E534A;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* 4.5 — CTAs */
+    #voz-tom .cta-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    #voz-tom .cta-card {
+      background: #ECEBE7;
+      padding: 24px;
+      border-radius: 4px;
+      display: grid;
+      grid-template-columns: auto 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    #voz-tom .cta-text-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    #voz-tom .cta-text-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: #5E534A;
+    }
+
+    #voz-tom .cta-text-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: #080503;
+      background: #080503;
+      color: #FAFAF9;
+      padding: 8px 16px;
+      border-radius: 2px;
+      display: inline-block;
+      margin-top: 4px;
+    }
+
+    #voz-tom .cta-context-block,
+    #voz-tom .cta-rule-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    #voz-tom .cta-block-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: #5E534A;
+      margin-bottom: 4px;
+    }
+
+    #voz-tom .cta-context-text {
+      font-size: 13px;
+      color: #080503;
+      line-height: 1.5;
+    }
+
+    #voz-tom .cta-rule-text {
+      font-size: 13px;
+      color: #8B1A1A;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 640px) {
+      #voz-tom .example-pair { grid-template-columns: 1fr; }
+      #voz-tom .cta-card { grid-template-columns: 1fr; }
+      #voz-tom .principles-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <div class="container">
+
+    <!-- Cabeçalho da seção -->
+    <p class="sec-label">Seção 04</p>
+    <h2 class="sec-title">Voz e Tom</h2>
+
+    <!-- ─── 4.1 PRINCÍPIOS ─── -->
+    <p class="sec-label">4.1</p>
+    <h3 class="subsec-title">Princípios de voz e tom</h3>
+
+    <div class="principles-grid">
+
+      <div class="principle-card">
+        <p class="principle-number">Princípio 01</p>
+        <h4 class="principle-name">Direto</h4>
+        <p class="principle-def">Vai ao ponto sem rodeios, subordinadas ou qualificações desnecessárias.</p>
+        <p class="principle-practice-label">Na prática</p>
+        <p class="principle-practice">Frases curtas. Verbos no imperativo quando for CTA. Sem introduções longas. O benefício principal aparece na primeira linha.</p>
+      </div>
+
+      <div class="principle-card">
+        <p class="principle-number">Princípio 02</p>
+        <h4 class="principle-name">Acessível</h4>
+        <p class="principle-def">Linguagem do cliente, não do desenvolvedor. Zero jargão técnico.</p>
+        <p class="principle-practice-label">Na prática</p>
+        <p class="principle-practice">Sem palavras como "deploy", "stack", "responsivo", "framework". Se o dono de um salão entende sem dicionário, está correto.</p>
+      </div>
+
+      <div class="principle-card">
+        <p class="principle-number">Princípio 03</p>
+        <h4 class="principle-name">Confiante</h4>
+        <p class="principle-def">Afirma com números concretos. Não promete vagamente, comprova.</p>
+        <p class="principle-practice-label">Na prática</p>
+        <p class="principle-practice">Usar dados reais: "24 horas", "R$397", "100% clientes satisfeitos". Evitar hedging como "pode ser", "talvez", "tende a".</p>
+      </div>
+
+      <div class="principle-card">
+        <p class="principle-number">Princípio 04</p>
+        <h4 class="principle-name">Próximo</h4>
+        <p class="principle-def">Fala com o cliente, não sobre o cliente. Segunda pessoa sempre.</p>
+        <p class="principle-practice-label">Na prática</p>
+        <p class="principle-practice">Sempre "seu site", "seu negócio", "você". Nunca "o cliente" ou "os usuários". Tratar o leitor como o único destinatário da mensagem.</p>
+      </div>
+
+      <div class="principle-card">
+        <p class="principle-number">Princípio 05</p>
+        <h4 class="principle-name">Transparente</h4>
+        <p class="principle-def">Preço visível, prazo explícito, sem letras miúdas.</p>
+        <p class="principle-practice-label">Na prática</p>
+        <p class="principle-practice">O preço aparece desde o hero. O prazo aparece em toda seção relevante. Nunca esconder o que o cliente precisa saber para decidir.</p>
+      </div>
+
+    </div>
+
+    <hr class="sec-divider">
+
+    <!-- ─── 4.2 VOCABULÁRIO ─── -->
+    <p class="sec-label">4.2</p>
+    <h3 class="subsec-title">Vocabulário recorrente</h3>
+
+    <div class="vocab-grid">
+      <span class="vocab-tag">profissional</span>
+      <span class="vocab-tag">24 horas</span>
+      <span class="vocab-tag">menos de 24 horas</span>
+      <span class="vocab-tag">seu site</span>
+      <span class="vocab-tag">seu negócio</span>
+      <span class="vocab-tag">acessível</span>
+      <span class="vocab-tag">popular</span>
+      <span class="vocab-tag">rapidez</span>
+      <span class="vocab-tag">personalizado</span>
+      <span class="vocab-tag">a partir de R$397</span>
+      <span class="vocab-tag pattern">sem complicação</span>
+      <span class="vocab-tag pattern">sem mensalidades</span>
+      <span class="vocab-tag pattern">sem surpresas</span>
+      <span class="vocab-tag pattern">sem compromisso</span>
+      <span class="vocab-tag pattern">deixe o resto com a gente</span>
+      <span class="vocab-tag">pagamento único</span>
+      <span class="vocab-tag">pronto para receber clientes</span>
+      <span class="vocab-tag">no ar</span>
+    </div>
+
+    <p style="font-size: 12px; color: #5E534A; margin-top: 16px; font-family: 'Instrument Sans', sans-serif;">
+      Tags em <em>itálico</em> representam padrões de frase, não palavras isoladas.
+    </p>
+
+    <hr class="sec-divider">
+
+    <!-- ─── 4.3 O QUE NUNCA USAR ─── -->
+    <p class="sec-label">4.3</p>
+    <h3 class="subsec-title">O que nunca usar</h3>
+
+    <ul class="never-list">
+
+      <li>
+        <span class="never-icon">PROIB.</span>
+        <p class="never-text">
+          <strong>Travessão (—) em qualquer texto.</strong>
+          <span>Substituir sempre por vírgula, dois-pontos ou reescrever a frase. Aplica-se a copy, UI, emails, docs e comentários.</span>
+        </p>
+      </li>
+
+      <li>
+        <span class="never-icon">PROIB.</span>
+        <p class="never-text">
+          <strong>Jargão técnico de desenvolvimento.</strong>
+          <span>Palavras como "deploy", "stack", "responsivo", "framework", "UI", "UX", "backend". O público é pequeno empreendedor, não desenvolvedor.</span>
+        </p>
+      </li>
+
+      <li>
+        <span class="never-icon">PROIB.</span>
+        <p class="never-text">
+          <strong>Preço oculto ou "solicite orçamento".</strong>
+          <span>O preço de entrada (R$397) deve estar visível. Frases que escondem custo quebram o princípio de transparência da marca.</span>
+        </p>
+      </li>
+
+      <li>
+        <span class="never-icon">PROIB.</span>
+        <p class="never-text">
+          <strong>Terceira pessoa para o cliente.</strong>
+          <span>Nunca "o cliente receberá", "os usuários podem". Sempre segunda pessoa: "você recebe", "seu site fica pronto".</span>
+        </p>
+      </li>
+
+      <li>
+        <span class="never-icon">PROIB.</span>
+        <p class="never-text">
+          <strong>Hedging e promessas vagas.</strong>
+          <span>Frases como "pode ficar pronto", "geralmente em 24h", "na maioria dos casos". Se o prazo é 24h, escreva 24h. Confiança se expressa com afirmações diretas.</span>
+        </p>
+      </li>
+
+      <li>
+        <span class="never-icon">PROIB.</span>
+        <p class="never-text">
+          <strong>Alterar o texto base dos CTAs canônicos.</strong>
+          <span>"Quero meu site" não vira "Saiba mais", "Clique aqui" ou "Contate-nos". Os CTAs têm intenção e voz definidas. Veja 4.5 para os textos corretos.</span>
+        </p>
+      </li>
+
+      <li>
+        <span class="never-icon">PROIB.</span>
+        <p class="never-text">
+          <strong>Instrument Serif para corpo de texto.</strong>
+          <span>Instrument Serif é exclusivo para headlines e títulos de seção. Corpo de texto usa Instrument Sans. JetBrains Mono é exclusivo para números e dados.</span>
+        </p>
+      </li>
+
+    </ul>
+
+    <hr class="sec-divider">
+
+    <!-- ─── 4.4 EXEMPLOS BOM X RUIM ─── -->
+    <p class="sec-label">4.4</p>
+    <h3 class="subsec-title">Exemplos práticos</h3>
+
+    <div class="examples-list">
+
+      <!-- Princípio 01: Direto -->
+      <div class="example-block">
+        <p class="example-principle-label">Princípio 01 — Direto</p>
+        <div class="example-pair">
+          <div class="example-card">
+            <p class="example-label good">BOM</p>
+            <p class="example-copy">"Entre em contato, preencha o formulário e tenha seu site no ar rapidamente."</p>
+            <p class="example-why">Três ações claras em sequência. Sem introdução. Sem qualificação. O verbo principal aparece no começo de cada cláusula.</p>
+          </div>
+          <div class="example-card">
+            <p class="example-label bad">RUIM</p>
+            <p class="example-copy">"Para que você possa ter um site profissional, nossa equipe está disponível para ajudá-lo a iniciar o processo de criação."</p>
+            <p class="example-why">Subordinadas desnecessárias, voz passiva implícita, benefício enterrado no final. Nenhuma ação clara para o cliente.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Princípio 02: Acessível -->
+      <div class="example-block">
+        <p class="example-principle-label">Princípio 02 — Acessível</p>
+        <div class="example-pair">
+          <div class="example-card">
+            <p class="example-label good">BOM</p>
+            <p class="example-copy">"Preencha o formulário com suas informações e deixe o resto com a gente. Acompanhe tudo em tempo real."</p>
+            <p class="example-why">Linguagem cotidiana. "Deixe o resto com a gente" é coloquial e acolhedor. Qualquer pessoa entende sem precisar de contexto técnico.</p>
+          </div>
+          <div class="example-card">
+            <p class="example-label bad">RUIM</p>
+            <p class="example-copy">"Nossa stack tecnológica garante um deploy rápido com interface responsiva e otimização de performance."</p>
+            <p class="example-why">Quatro jargões técnicos em uma frase. O cliente médio não sabe o que "stack" ou "deploy" significam. A mensagem não chega.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Princípio 03: Confiante -->
+      <div class="example-block">
+        <p class="example-principle-label">Princípio 03 — Confiante</p>
+        <div class="example-pair">
+          <div class="example-card">
+            <p class="example-label good">BOM</p>
+            <p class="example-copy">"Em menos de 24 horas seu site profissional está no ar, pronto para receber clientes."</p>
+            <p class="example-why">Prazo concreto, resultado concreto. Sem hedge. A afirmação é comprometida, não tentativa.</p>
+          </div>
+          <div class="example-card">
+            <p class="example-label bad">RUIM</p>
+            <p class="example-copy">"Na maioria dos casos, conseguimos entregar seu site em aproximadamente 24 horas."</p>
+            <p class="example-why">"Na maioria dos casos" e "aproximadamente" plantam dúvida. Se o prazo é 24h, diga 24h sem qualificadores.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Princípio 04: Próximo -->
+      <div class="example-block">
+        <p class="example-principle-label">Princípio 04 — Próximo</p>
+        <div class="example-pair">
+          <div class="example-card">
+            <p class="example-label good">BOM</p>
+            <p class="example-copy">"Desenvolvemos seguindo suas cores, logo e identidade visual para representar sua marca perfeitamente."</p>
+            <p class="example-why">"Suas cores", "sua marca". Cada elemento de posse reforça que o produto é feito para aquele cliente específico, não para um genérico.</p>
+          </div>
+          <div class="example-card">
+            <p class="example-label bad">RUIM</p>
+            <p class="example-copy">"Os clientes podem enviar suas informações de identidade visual para personalização do projeto."</p>
+            <p class="example-why">"Os clientes" distancia. Voz passiva implícita. Soa como documento corporativo, não como conversa.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Princípio 05: Transparente -->
+      <div class="example-block">
+        <p class="example-principle-label">Princípio 05 — Transparente</p>
+        <div class="example-pair">
+          <div class="example-card">
+            <p class="example-label good">BOM</p>
+            <p class="example-copy">"A partir de R$397. Pagamento único, sem mensalidades ou taxas ocultas."</p>
+            <p class="example-why">Preço explícito, modelo de cobrança explícito, objeção de taxa oculta eliminada na mesma frase. Zero ambiguidade.</p>
+          </div>
+          <div class="example-card">
+            <p class="example-label bad">RUIM</p>
+            <p class="example-copy">"Valores competitivos sob consulta. Entre em contato para receber uma proposta personalizada."</p>
+            <p class="example-why">Esconde o preço. Para o cliente, preço oculto significa preço alto. Quebra o princípio de transparência e aumenta fricção de conversão.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="sec-divider">
+
+    <!-- ─── 4.5 CTAs CANÔNICOS ─── -->
+    <p class="sec-label">4.5</p>
+    <h3 class="subsec-title">CTAs canônicos</h3>
+
+    <div class="cta-list">
+
+      <div class="cta-card">
+        <div class="cta-text-block">
+          <p class="cta-text-label">Texto exato</p>
+          <span class="cta-text-value">Quero meu site</span>
+        </div>
+        <div class="cta-context-block">
+          <p class="cta-block-label">Quando usar</p>
+          <p class="cta-context-text">CTA primário em todos os contextos de topo e meio de página. Navegação, hero, cards de vantagens. É o CTA padrão da marca.</p>
+        </div>
+        <div class="cta-rule-block">
+          <p class="cta-block-label">Nunca alterar</p>
+          <p class="cta-rule-text">Não substituir por "Saiba mais", "Clique aqui", "Contate-nos" ou "Solicite orçamento". O verbo "quero" expressa intenção ativa do cliente.</p>
+        </div>
+      </div>
+
+      <div class="cta-card">
+        <div class="cta-text-block">
+          <p class="cta-text-label">Texto exato</p>
+          <span class="cta-text-value">Quero meu site agora</span>
+        </div>
+        <div class="cta-context-block">
+          <p class="cta-block-label">Quando usar</p>
+          <p class="cta-context-text">CTA de fechamento. Exclusivo para posições finais de página (CTA section, final de landing). O "agora" adiciona urgência depois do cliente já ter lido os argumentos.</p>
+        </div>
+        <div class="cta-rule-block">
+          <p class="cta-block-label">Nunca alterar</p>
+          <p class="cta-rule-text">Não usar "agora" em posições de topo, onde cria pressão prematura. Reservar apenas para o fechamento.</p>
+        </div>
+      </div>
+
+      <div class="cta-card">
+        <div class="cta-text-block">
+          <p class="cta-text-label">Texto exato</p>
+          <span class="cta-text-value">Orçamento grátis e sem compromisso</span>
+        </div>
+        <div class="cta-context-block">
+          <p class="cta-block-label">Quando usar</p>
+          <p class="cta-context-text">CTA secundário, sempre acompanhando o CTA primário de fechamento. Função: reduzir fricção para quem ainda não decidiu. Não substitui o CTA principal.</p>
+        </div>
+        <div class="cta-rule-block">
+          <p class="cta-block-label">Nunca alterar</p>
+          <p class="cta-rule-text">Manter "grátis" e "sem compromisso" juntos. Ambos removem objeções distintas: custo da consulta e obrigação de fechar. Separar enfraquece o efeito.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div><!-- /container -->
+
+</section>
+
+<!--
+COPY SQUAD — SEÇÃO 04
+Agente designado: Vera
+Justificativa: Este escopo é de documentação sistematizada de copy, não de produção criativa pura. Vera tem perfil analítico-estratégico com capacidade de extrair princípios de voz a partir de copy existente, criar taxonomias claras e produzir exemplos didáticos de "bom x ruim" com fundamentação. O trabalho exige discernimento sobre o que a marca é e não é, coerência com fonte única (brandbook.md) e clareza pedagógica, não apenas criatividade de superfície.
+-->

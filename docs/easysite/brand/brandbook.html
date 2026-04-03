@@ -1,0 +1,2135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EasySite — Brandbook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --es-bg: #FAFAF9;
+      --es-fg: #080503;
+      --es-muted: #ECEBE7;
+      --es-mid: #5E534A;
+      --es-border: #DAD7D0;
+      --es-card: #FFFFFF;
+      --font-serif: 'Instrument Serif', serif;
+      --font-sans: 'Instrument Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--es-bg);
+      color: var(--es-fg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 220px;
+      height: 100vh;
+      background-color: var(--es-fg);
+      display: flex;
+      flex-direction: column;
+      padding: 40px 24px;
+      overflow-y: auto;
+      z-index: 100;
+    }
+
+    .sidebar-logo {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      color: var(--es-bg);
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .sidebar-version {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: rgba(250, 250, 249, 0.4);
+      margin-bottom: 48px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .sidebar-nav {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .sidebar-nav a {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      color: rgba(250, 250, 249, 0.55);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.15s, color 0.15s;
+      line-height: 1.4;
+    }
+
+    .sidebar-nav a:hover {
+      background: rgba(250, 250, 249, 0.08);
+      color: var(--es-bg);
+    }
+
+    .sidebar-nav .nav-num {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: rgba(250, 250, 249, 0.3);
+      margin-right: 8px;
+    }
+
+    /* Main */
+    .main {
+      margin-left: 220px;
+      padding: 64px 80px;
+      max-width: 960px;
+    }
+
+    /* Section base */
+    .section {
+      margin-bottom: 120px;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--es-mid);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 42px;
+      font-weight: 400;
+      color: var(--es-fg);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 48px;
+    }
+
+    .subsection {
+      margin-bottom: 64px;
+    }
+
+    .subsection-title {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--es-mid);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--es-border);
+    }
+
+    /* Divider */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--es-border);
+      margin: 80px 0;
+    }
+
+    /* ==================
+       SECAO 01 - MARCA
+    ================== */
+
+    .brand-name {
+      font-family: var(--font-serif);
+      font-size: 72px;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .brand-tagline {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 24px;
+      color: var(--es-mid);
+      margin-bottom: 56px;
+    }
+
+    .positioning-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background-color: var(--es-border);
+      border: 1px solid var(--es-border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 56px;
+    }
+
+    .positioning-block {
+      background-color: var(--es-bg);
+      padding: 32px 28px;
+    }
+
+    .positioning-block-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--es-mid);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .positioning-block-text {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      color: var(--es-fg);
+      line-height: 1.5;
+    }
+
+    .personality-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .personality-card {
+      background-color: var(--es-muted);
+      padding: 24px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .personality-card-attr {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--es-fg);
+      line-height: 1.3;
+    }
+
+    /* ==============================
+       SECAO 02 - IDENTIDADE VISUAL
+    ============================== */
+
+    /* Paleta */
+    .palette-grid {
+      display: flex;
+      gap: 12px;
+    }
+
+    .swatch {
+      flex: 1;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--es-border);
+    }
+
+    .swatch-color {
+      height: 64px;
+    }
+
+    .swatch-info {
+      padding: 12px 14px;
+      background: var(--es-card);
+    }
+
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--es-fg);
+      margin-bottom: 4px;
+    }
+
+    .swatch-use {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      color: var(--es-mid);
+      line-height: 1.4;
+    }
+
+    /* Tipografia */
+    .type-specimen {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background-color: var(--es-border);
+      border: 1px solid var(--es-border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .type-row {
+      background-color: var(--es-bg);
+      padding: 36px 32px;
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .type-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .type-family {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--es-mid);
+      letter-spacing: 0.08em;
+    }
+
+    .type-use {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      color: var(--es-mid);
+      line-height: 1.4;
+    }
+
+    .type-sample-serif {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 400;
+      color: var(--es-fg);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .type-sample-sans {
+      font-family: var(--font-sans);
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--es-fg);
+      line-height: 1.1;
+    }
+
+    .type-sample-mono {
+      font-family: var(--font-mono);
+      font-size: 32px;
+      font-weight: 500;
+      color: var(--es-fg);
+      letter-spacing: -0.02em;
+    }
+
+    /* Espaçamentos */
+    .spacing-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-sans);
+      font-size: 14px;
+    }
+
+    .spacing-table thead tr {
+      border-bottom: 2px solid var(--es-border);
+    }
+
+    .spacing-table th {
+      text-align: left;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--es-mid);
+      padding: 0 0 12px 0;
+    }
+
+    .spacing-table td {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--es-border);
+      color: var(--es-fg);
+      vertical-align: middle;
+    }
+
+    .spacing-table td:first-child {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--es-mid);
+      width: 120px;
+    }
+
+    .spacing-table td:nth-child(2) {
+      width: 80px;
+    }
+
+    .spacing-bar {
+      display: inline-block;
+      height: 8px;
+      background-color: var(--es-fg);
+      border-radius: 2px;
+      opacity: 0.15;
+    }
+
+    .noise-desc {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      color: var(--es-mid);
+      line-height: 1.6;
+      max-width: 600px;
+      padding: 24px;
+      background: var(--es-muted);
+      border-radius: 8px;
+      border-left: 3px solid var(--es-fg);
+    }
+
+    /* ====================
+       SECAO 03 - LOGOTIPO
+    ==================== */
+
+    .logo-versions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .logo-version-sm {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 0;
+    }
+
+    .logo-preview {
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 40px;
+      border: 1px solid var(--es-border);
+    }
+
+    .logo-preview-sm {
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 32px;
+      border: 1px solid var(--es-border);
+    }
+
+    .logo-preview.light {
+      background-color: var(--es-bg);
+    }
+
+    .logo-preview.dark {
+      background-color: var(--es-fg);
+      border-color: transparent;
+    }
+
+    .logo-preview-sm.light {
+      background-color: var(--es-bg);
+    }
+
+    .logo-preview-sm.dark {
+      background-color: var(--es-fg);
+      border-color: transparent;
+    }
+
+    .logo-text {
+      font-family: var(--font-serif);
+      font-size: 48px;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .logo-text.on-light {
+      color: var(--es-fg);
+    }
+
+    .logo-text.on-dark {
+      color: var(--es-bg);
+    }
+
+    .logo-text-sm {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .logo-text-sm.on-light {
+      color: var(--es-fg);
+    }
+
+    .logo-text-sm.on-dark {
+      color: var(--es-bg);
+    }
+
+    .logo-caption {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--es-mid);
+      text-align: center;
+      margin-top: 8px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .logo-caption-group {
+      margin-bottom: 32px;
+    }
+
+    .protection-desc {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      color: var(--es-mid);
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+
+    .forbidden-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--es-border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .forbidden-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px 24px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      color: var(--es-fg);
+      line-height: 1.4;
+      border-bottom: 1px solid var(--es-border);
+    }
+
+    .forbidden-list li:last-child {
+      border-bottom: none;
+    }
+
+    .forbidden-icon {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--es-mid);
+      padding: 2px 8px;
+      background: var(--es-muted);
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ============================================================
+       SEÇÃO 06 — ENXOVAL SOCIAL: classes de preview
+    ============================================================ */
+
+    /* Subsection layout */
+    .subsec-header {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+    .subsec-number {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--es-mid);
+      letter-spacing: 0.08em;
+    }
+    .subsec-title {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--es-fg);
+      margin: 0;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+    .subsec-desc {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--es-mid);
+      line-height: 1.6;
+      margin-bottom: 28px;
+      max-width: 680px;
+    }
+    .subsec-divider {
+      border: none;
+      border-top: 1px solid var(--es-border);
+      margin: 48px 0;
+    }
+
+    /* Preview wrap — items in a row */
+    .preview-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: flex-start;
+    }
+    .preview-item {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .preview-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--es-mid);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .preview-stage {
+      background: var(--es-muted);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Spec card */
+    .spec-card {
+      background: var(--es-muted);
+      border-radius: 10px;
+      padding: 18px 20px;
+      min-width: 240px;
+      max-width: 300px;
+    }
+    .spec-card-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--es-mid);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--es-border);
+    }
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 4px 0;
+      border-bottom: 1px solid var(--es-border);
+      font-size: 11px;
+      line-height: 1.5;
+    }
+    .spec-row:last-child { border-bottom: none; }
+    .spec-key {
+      font-family: var(--font-mono);
+      color: var(--es-mid);
+      flex-shrink: 0;
+      font-size: 10px;
+    }
+    .spec-val {
+      font-family: var(--font-sans);
+      color: var(--es-fg);
+      text-align: right;
+      font-size: 11px;
+    }
+
+    .system-note {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      color: var(--es-mid);
+      background: var(--es-muted);
+      border-left: 3px solid var(--es-border);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      line-height: 1.6;
+    }
+    .container { width: 100%; padding: 0; }
+  </style>
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">EasySite</div>
+    <div class="sidebar-version">Brandbook v2.0</div>
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="#marca"><span class="nav-num">01</span>Marca</a></li>
+        <li><a href="#identidade-visual"><span class="nav-num">02</span>Identidade Visual</a></li>
+        <li><a href="#logotipo"><span class="nav-num">03</span>Logotipo</a></li>
+        <li><a href="#voz-tom"><span class="nav-num">04</span>Voz e Tom</a></li>
+        <li><a href="#aplicacoes"><span class="nav-num">05</span>Aplicações</a></li>
+        <li><a href="#enxoval-social"><span class="nav-num">06</span>Enxoval Social</a></li>
+        <li><a href="#regras-uso"><span class="nav-num">07</span>Regras de Uso</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main">
+
+    <!-- ==================== SECAO 01 — MARCA ==================== -->
+    <section class="section" id="marca">
+      <div class="section-label">01</div>
+      <h1 class="section-title">Marca</h1>
+
+      <div class="brand-name">EasySite</div>
+      <div class="brand-tagline">"Sites profissionais em menos de 24 horas"</div>
+
+      <div class="subsection">
+        <div class="subsection-title">Posicionamento</div>
+        <div class="positioning-grid">
+          <div class="positioning-block">
+            <div class="positioning-block-label">O que resolve</div>
+            <div class="positioning-block-text">A falta de presença digital profissional para pequenos negócios, entregando um site completo em menos de 24 horas.</div>
+          </div>
+          <div class="positioning-block">
+            <div class="positioning-block-label">Para quem</div>
+            <div class="positioning-block-text">Pequenos negócios e profissionais autônomos que precisam de um site profissional rápido e a preço acessível.</div>
+          </div>
+          <div class="positioning-block">
+            <div class="positioning-block-label">Como</div>
+            <div class="positioning-block-text">Processo simples: contato via WhatsApp ou formulário, briefing, entrega do site pronto em menos de 24 horas. A partir de R$397.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Personalidade</div>
+        <div class="personality-grid">
+          <div class="personality-card">
+            <div class="personality-card-attr">Direto</div>
+          </div>
+          <div class="personality-card">
+            <div class="personality-card-attr">Acessível</div>
+          </div>
+          <div class="personality-card">
+            <div class="personality-card-attr">Confiante</div>
+          </div>
+          <div class="personality-card">
+            <div class="personality-card-attr">Próximo</div>
+          </div>
+          <div class="personality-card">
+            <div class="personality-card-attr">Transparente</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ==================== SECAO 02 — IDENTIDADE VISUAL ==================== -->
+    <section class="section" id="identidade-visual">
+      <div class="section-label">02</div>
+      <h2 class="section-title">Identidade Visual</h2>
+
+      <!-- 2.1 Paleta -->
+      <div class="subsection">
+        <div class="subsection-title">2.1 — Paleta de Cores</div>
+        <div class="palette-grid">
+          <div class="swatch">
+            <div class="swatch-color" style="background-color: #FAFAF9;"></div>
+            <div class="swatch-info">
+              <div class="swatch-hex">#FAFAF9</div>
+              <div class="swatch-use">Fundo da página. Base de tudo.</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background-color: #080503;"></div>
+            <div class="swatch-info">
+              <div class="swatch-hex">#080503</div>
+              <div class="swatch-use">Texto principal. CTAs. Seção escura.</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background-color: #ECEBE7;"></div>
+            <div class="swatch-info">
+              <div class="swatch-hex">#ECEBE7</div>
+              <div class="swatch-use">Fundo secundario. Cards. Muted.</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background-color: #5E534A;"></div>
+            <div class="swatch-info">
+              <div class="swatch-hex">#5E534A</div>
+              <div class="swatch-use">Texto de apoio. Labels. Corpo.</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background-color: #DAD7D0;"></div>
+            <div class="swatch-info">
+              <div class="swatch-hex">#DAD7D0</div>
+              <div class="swatch-use">Bordas padrao.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2.2 Tipografia -->
+      <div class="subsection">
+        <div class="subsection-title">2.2 — Tipografia</div>
+        <div class="type-specimen">
+          <div class="type-row">
+            <div class="type-meta">
+              <div class="type-family">Instrument Serif</div>
+              <div class="type-use">Headlines, títulos de seção, logotipo</div>
+            </div>
+            <div class="type-sample-serif">Sites em 24h</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta">
+              <div class="type-family">Instrument Sans</div>
+              <div class="type-use">Corpo de texto, UI geral, botões, labels, nav, footer</div>
+            </div>
+            <div class="type-sample-sans">Preços acessíveis para todos</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta">
+              <div class="type-family">JetBrains Mono</div>
+              <div class="type-use">Numeros e dados em destaque: 24h, R$397, 500+, 18h</div>
+            </div>
+            <div class="type-sample-mono">24h · R$397</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2.3 Espacamentos -->
+      <div class="subsection">
+        <div class="subsection-title">2.3 — Espaçamentos</div>
+        <table class="spacing-table">
+          <thead>
+            <tr>
+              <th>Token</th>
+              <th>Valor</th>
+              <th>Visual</th>
+              <th>Uso principal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>--space-xs</td>
+              <td>8px</td>
+              <td><span class="spacing-bar" style="width: 8px;"></span></td>
+              <td>Gap interno entre elementos pequenos</td>
+            </tr>
+            <tr>
+              <td>--space-sm</td>
+              <td>12px</td>
+              <td><span class="spacing-bar" style="width: 12px;"></span></td>
+              <td>Padding de labels e badges</td>
+            </tr>
+            <tr>
+              <td>--space-md</td>
+              <td>24px</td>
+              <td><span class="spacing-bar" style="width: 24px;"></span></td>
+              <td>Padding interno de cards</td>
+            </tr>
+            <tr>
+              <td>--space-lg</td>
+              <td>40px</td>
+              <td><span class="spacing-bar" style="width: 40px;"></span></td>
+              <td>Separação entre blocos internos</td>
+            </tr>
+            <tr>
+              <td>--space-xl</td>
+              <td>64px</td>
+              <td><span class="spacing-bar" style="width: 64px;"></span></td>
+              <td>Padding de seções e containers principais</td>
+            </tr>
+            <tr>
+              <td>--space-2xl</td>
+              <td>80px</td>
+              <td><span class="spacing-bar" style="width: 80px;"></span></td>
+              <td>Padding horizontal do main content</td>
+            </tr>
+            <tr>
+              <td>--space-hero</td>
+              <td>120px</td>
+              <td><span class="spacing-bar" style="width: 100px;"></span></td>
+              <td>Separação entre seções maiores</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 2.4 Noise overlay -->
+      <div class="subsection">
+        <div class="subsection-title">2.4 — Efeito Noise Overlay</div>
+        <p class="noise-desc">
+          O site utiliza um efeito de textura de ruído (<code>noise-overlay</code>) aplicado sobre o elemento <code>main</code>. Esse overlay cria uma camada sutil de grain sobre o fundo off-white, adicionando profundidade tátil sem alterar a paleta de cores. Em aplicações digitais que sigam este template, o efeito deve ser mantido para preservar a identidade visual.
+        </p>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ==================== SECAO 03 — LOGOTIPO ==================== -->
+    <section class="section" id="logotipo">
+      <div class="section-label">03</div>
+      <h2 class="section-title">Logotipo</h2>
+
+      <!-- Versao principal -->
+      <div class="subsection">
+        <div class="subsection-title">Versao Principal</div>
+        <div class="logo-caption-group">
+          <div class="logo-versions">
+            <div>
+              <div class="logo-preview light">
+                <span class="logo-text on-light">EasySite</span>
+              </div>
+              <div class="logo-caption">Fundo claro</div>
+            </div>
+            <div>
+              <div class="logo-preview dark">
+                <span class="logo-text on-dark">EasySite</span>
+              </div>
+              <div class="logo-caption">Fundo escuro</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Versoes alternativas -->
+      <div class="subsection">
+        <div class="subsection-title">Versoes Alternativas (reduzida)</div>
+        <div class="logo-caption-group">
+          <div class="logo-version-sm">
+            <div>
+              <div class="logo-preview-sm light">
+                <span class="logo-text-sm on-light">EasySite</span>
+              </div>
+              <div class="logo-caption">Fundo claro, reduzida</div>
+            </div>
+            <div>
+              <div class="logo-preview-sm dark">
+                <span class="logo-text-sm on-dark">EasySite</span>
+              </div>
+              <div class="logo-caption">Fundo escuro, reduzida</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Zona de protecao -->
+      <div class="subsection">
+        <div class="subsection-title">Zona de Protecao</div>
+        <p class="protection-desc">
+          Manter uma area de respiro minima ao redor do logotipo equivalente a altura da letra "E" maiuscula em cada lado. Nenhum elemento visual, texto ou imagem deve invadir essa zona. A zona de protecao garante legibilidade e impacto em qualquer contexto de aplicacao.
+        </p>
+      </div>
+
+      <!-- Usos incorretos -->
+      <div class="subsection">
+        <div class="subsection-title">Usos Incorretos</div>
+        <ul class="forbidden-list">
+          <li>
+            <span class="forbidden-icon">X</span>
+            Nao alterar a fonte: o logotipo usa exclusivamente Instrument Serif. Substituir por qualquer outra fonte descaracteriza a marca.
+          </li>
+          <li>
+            <span class="forbidden-icon">X</span>
+            Nao aplicar o logotipo em cores fora da paleta oficial (apenas #080503 sobre fundo claro ou #FAFAF9 sobre fundo escuro).
+          </li>
+          <li>
+            <span class="forbidden-icon">X</span>
+            Nao adicionar efeitos visuais ao logotipo: sombra, gradiente, outline, brilho ou qualquer decoracao nao prevista.
+          </li>
+          <li>
+            <span class="forbidden-icon">X</span>
+            Nao distorcer ou redimensionar o logotipo de forma nao proporcional. Sempre manter a proporcao original ao escalar.
+          </li>
+          <li>
+            <span class="forbidden-icon">X</span>
+            Nao aplicar o logotipo sobre fundos fotograficos, padronagens ou cores que comprometam contraste e legibilidade.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SEÇÃO 04 — VOZ E TOM
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="voz-tom" style="font-family: 'Instrument Sans', sans-serif; background-color: #FAFAF9; color: #080503; padding: 64px 0;">
+
+      <style>
+        #voz-tom * { box-sizing: border-box; }
+
+        #voz-tom .principles-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+          gap: 20px;
+        }
+
+        #voz-tom .principle-card {
+          background: #ECEBE7;
+          padding: 24px;
+          border-radius: 4px;
+        }
+
+        #voz-tom .principle-number {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 11px;
+          letter-spacing: 0.10em;
+          color: #5E534A;
+          text-transform: uppercase;
+          margin-bottom: 8px;
+        }
+
+        #voz-tom .principle-name {
+          font-family: 'Instrument Serif', serif;
+          font-size: 22px;
+          font-weight: 400;
+          color: #080503;
+          margin: 0 0 6px 0;
+        }
+
+        #voz-tom .principle-def {
+          font-size: 13px;
+          color: #5E534A;
+          font-style: italic;
+          margin: 0 0 14px 0;
+          line-height: 1.5;
+          border-bottom: 1px solid #DAD7D0;
+          padding-bottom: 14px;
+        }
+
+        #voz-tom .principle-practice-label {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 10px;
+          letter-spacing: 0.10em;
+          text-transform: uppercase;
+          color: #5E534A;
+          margin-bottom: 6px;
+        }
+
+        #voz-tom .principle-practice {
+          font-size: 14px;
+          color: #080503;
+          line-height: 1.6;
+          margin: 0;
+        }
+
+        #voz-tom .vocab-grid {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+
+        #voz-tom .vocab-tag {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 13px;
+          color: #080503;
+          background: #ECEBE7;
+          border: 1px solid #DAD7D0;
+          padding: 7px 14px;
+          border-radius: 2px;
+        }
+
+        #voz-tom .vocab-tag.pattern {
+          font-style: italic;
+          color: #5E534A;
+        }
+
+        #voz-tom .never-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        #voz-tom .never-list li {
+          display: flex;
+          align-items: flex-start;
+          gap: 14px;
+          padding: 16px 20px;
+          background: #ECEBE7;
+          border-radius: 4px;
+        }
+
+        #voz-tom .never-icon {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 12px;
+          color: #8B1A1A;
+          font-weight: 700;
+          flex-shrink: 0;
+          margin-top: 2px;
+          letter-spacing: 0.05em;
+        }
+
+        #voz-tom .never-text {
+          font-size: 14px;
+          color: #080503;
+          line-height: 1.6;
+          margin: 0;
+        }
+
+        #voz-tom .never-text strong {
+          display: block;
+          margin-bottom: 3px;
+          font-size: 14px;
+        }
+
+        #voz-tom .never-text span {
+          color: #5E534A;
+          font-size: 13px;
+        }
+
+        #voz-tom .examples-list {
+          display: flex;
+          flex-direction: column;
+          gap: 32px;
+        }
+
+        #voz-tom .example-block {
+          border-top: 1px solid #DAD7D0;
+          padding-top: 24px;
+        }
+
+        #voz-tom .example-principle-label {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 11px;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: #5E534A;
+          margin-bottom: 14px;
+        }
+
+        #voz-tom .example-pair {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+        }
+
+        #voz-tom .example-card {
+          background: #ECEBE7;
+          padding: 20px;
+          border-radius: 4px;
+        }
+
+        #voz-tom .example-label {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 11px;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          font-weight: 700;
+          margin-bottom: 10px;
+        }
+
+        #voz-tom .example-label.good { color: #1A4A1A; }
+        #voz-tom .example-label.bad  { color: #8B1A1A; }
+
+        #voz-tom .example-copy {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 13px;
+          color: #080503;
+          line-height: 1.6;
+          margin: 0 0 10px 0;
+          background: #FAFAF9;
+          padding: 10px 12px;
+          border-radius: 3px;
+        }
+
+        #voz-tom .example-why {
+          font-size: 12px;
+          color: #5E534A;
+          line-height: 1.5;
+          margin: 0;
+        }
+
+        #voz-tom .cta-list {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+
+        #voz-tom .cta-card {
+          background: #ECEBE7;
+          padding: 24px;
+          border-radius: 4px;
+          display: grid;
+          grid-template-columns: auto 1fr 1fr;
+          gap: 24px;
+          align-items: start;
+        }
+
+        #voz-tom .cta-text-block {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        #voz-tom .cta-text-label {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 10px;
+          letter-spacing: 0.10em;
+          text-transform: uppercase;
+          color: #5E534A;
+        }
+
+        #voz-tom .cta-text-value {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 14px;
+          font-weight: 700;
+          background: #080503;
+          color: #FAFAF9;
+          padding: 8px 16px;
+          border-radius: 2px;
+          display: inline-block;
+          margin-top: 4px;
+        }
+
+        #voz-tom .cta-context-block,
+        #voz-tom .cta-rule-block {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        #voz-tom .cta-block-label {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 10px;
+          letter-spacing: 0.10em;
+          text-transform: uppercase;
+          color: #5E534A;
+          margin-bottom: 4px;
+        }
+
+        #voz-tom .cta-context-text {
+          font-size: 13px;
+          color: #080503;
+          line-height: 1.5;
+        }
+
+        #voz-tom .cta-rule-text {
+          font-size: 13px;
+          color: #8B1A1A;
+          line-height: 1.5;
+        }
+
+        @media (max-width: 640px) {
+          #voz-tom .example-pair { grid-template-columns: 1fr; }
+          #voz-tom .cta-card { grid-template-columns: 1fr; }
+          #voz-tom .principles-grid { grid-template-columns: 1fr; }
+        }
+      </style>
+
+      <div class="container">
+
+        <p class="sec-label">Seção 04</p>
+        <h2 class="sec-title">Voz e Tom</h2>
+
+        <!-- 4.1 PRINCÍPIOS -->
+        <p class="sec-label">4.1</p>
+        <h3 class="subsec-title">Princípios de voz e tom</h3>
+
+        <div class="principles-grid">
+
+          <div class="principle-card">
+            <p class="principle-number">Princípio 01</p>
+            <h4 class="principle-name">Direto</h4>
+            <p class="principle-def">Vai ao ponto sem rodeios, subordinadas ou qualificações desnecessárias.</p>
+            <p class="principle-practice-label">Na prática</p>
+            <p class="principle-practice">Frases curtas. Verbos no imperativo quando for CTA. Sem introduções longas. O benefício principal aparece na primeira linha.</p>
+          </div>
+
+          <div class="principle-card">
+            <p class="principle-number">Princípio 02</p>
+            <h4 class="principle-name">Acessível</h4>
+            <p class="principle-def">Linguagem do cliente, não do desenvolvedor. Zero jargão técnico.</p>
+            <p class="principle-practice-label">Na prática</p>
+            <p class="principle-practice">Sem palavras como "deploy", "stack", "responsivo", "framework". Se o dono de um salão entende sem dicionário, está correto.</p>
+          </div>
+
+          <div class="principle-card">
+            <p class="principle-number">Princípio 03</p>
+            <h4 class="principle-name">Confiante</h4>
+            <p class="principle-def">Afirma com números concretos. Não promete vagamente, comprova.</p>
+            <p class="principle-practice-label">Na prática</p>
+            <p class="principle-practice">Usar dados reais: "24 horas", "R$397", "100% clientes satisfeitos". Evitar hedging como "pode ser", "talvez", "tende a".</p>
+          </div>
+
+          <div class="principle-card">
+            <p class="principle-number">Princípio 04</p>
+            <h4 class="principle-name">Próximo</h4>
+            <p class="principle-def">Fala com o cliente, não sobre o cliente. Segunda pessoa sempre.</p>
+            <p class="principle-practice-label">Na prática</p>
+            <p class="principle-practice">Sempre "seu site", "seu negócio", "você". Nunca "o cliente" ou "os usuários". Tratar o leitor como o único destinatário da mensagem.</p>
+          </div>
+
+          <div class="principle-card">
+            <p class="principle-number">Princípio 05</p>
+            <h4 class="principle-name">Transparente</h4>
+            <p class="principle-def">Preço visível, prazo explícito, sem letras miúdas.</p>
+            <p class="principle-practice-label">Na prática</p>
+            <p class="principle-practice">O preço aparece desde o hero. O prazo aparece em toda seção relevante. Nunca esconder o que o cliente precisa saber para decidir.</p>
+          </div>
+
+        </div>
+
+        <hr class="sec-divider">
+
+        <!-- 4.2 VOCABULÁRIO -->
+        <p class="sec-label">4.2</p>
+        <h3 class="subsec-title">Vocabulário recorrente</h3>
+
+        <div class="vocab-grid">
+          <span class="vocab-tag">profissional</span>
+          <span class="vocab-tag">24 horas</span>
+          <span class="vocab-tag">menos de 24 horas</span>
+          <span class="vocab-tag">seu site</span>
+          <span class="vocab-tag">seu negócio</span>
+          <span class="vocab-tag">acessível</span>
+          <span class="vocab-tag">popular</span>
+          <span class="vocab-tag">rapidez</span>
+          <span class="vocab-tag">personalizado</span>
+          <span class="vocab-tag">a partir de R$397</span>
+          <span class="vocab-tag pattern">sem complicação</span>
+          <span class="vocab-tag pattern">sem mensalidades</span>
+          <span class="vocab-tag pattern">sem surpresas</span>
+          <span class="vocab-tag pattern">sem compromisso</span>
+          <span class="vocab-tag pattern">deixe o resto com a gente</span>
+          <span class="vocab-tag">pagamento único</span>
+          <span class="vocab-tag">pronto para receber clientes</span>
+          <span class="vocab-tag">no ar</span>
+        </div>
+
+        <p style="font-size: 12px; color: #5E534A; margin-top: 16px;">
+          Tags em <em>itálico</em> representam padrões de frase, não palavras isoladas.
+        </p>
+
+        <hr class="sec-divider">
+
+        <!-- 4.3 O QUE NUNCA USAR -->
+        <p class="sec-label">4.3</p>
+        <h3 class="subsec-title">O que nunca usar</h3>
+
+        <ul class="never-list">
+
+          <li>
+            <span class="never-icon">PROIB.</span>
+            <p class="never-text">
+              <strong>Travessão em qualquer texto.</strong>
+              <span>Substituir sempre por vírgula, dois-pontos ou reescrever a frase. Aplica-se a copy, UI, emails, docs e comentários.</span>
+            </p>
+          </li>
+
+          <li>
+            <span class="never-icon">PROIB.</span>
+            <p class="never-text">
+              <strong>Jargão técnico de desenvolvimento.</strong>
+              <span>Palavras como "deploy", "stack", "responsivo", "framework", "UI", "UX", "backend". O público é pequeno empreendedor, não desenvolvedor.</span>
+            </p>
+          </li>
+
+          <li>
+            <span class="never-icon">PROIB.</span>
+            <p class="never-text">
+              <strong>Preço oculto ou "solicite orçamento".</strong>
+              <span>O preço de entrada (R$397) deve estar visível. Frases que escondem custo quebram o princípio de transparência da marca.</span>
+            </p>
+          </li>
+
+          <li>
+            <span class="never-icon">PROIB.</span>
+            <p class="never-text">
+              <strong>Terceira pessoa para o cliente.</strong>
+              <span>Nunca "o cliente receberá", "os usuários podem". Sempre segunda pessoa: "você recebe", "seu site fica pronto".</span>
+            </p>
+          </li>
+
+          <li>
+            <span class="never-icon">PROIB.</span>
+            <p class="never-text">
+              <strong>Hedging e promessas vagas.</strong>
+              <span>Frases como "pode ficar pronto", "geralmente em 24h", "na maioria dos casos". Se o prazo é 24h, escreva 24h. Confiança se expressa com afirmações diretas.</span>
+            </p>
+          </li>
+
+          <li>
+            <span class="never-icon">PROIB.</span>
+            <p class="never-text">
+              <strong>Alterar o texto base dos CTAs canônicos.</strong>
+              <span>"Quero meu site" não vira "Saiba mais", "Clique aqui" ou "Contate-nos". Os CTAs têm intenção e voz definidas. Veja 4.5 para os textos corretos.</span>
+            </p>
+          </li>
+
+          <li>
+            <span class="never-icon">PROIB.</span>
+            <p class="never-text">
+              <strong>Instrument Serif para corpo de texto.</strong>
+              <span>Instrument Serif é exclusivo para headlines e títulos de seção. Corpo de texto usa Instrument Sans. JetBrains Mono é exclusivo para números e dados.</span>
+            </p>
+          </li>
+
+        </ul>
+
+        <hr class="sec-divider">
+
+        <!-- 4.4 EXEMPLOS BOM X RUIM -->
+        <p class="sec-label">4.4</p>
+        <h3 class="subsec-title">Exemplos práticos</h3>
+
+        <div class="examples-list">
+
+          <div class="example-block">
+            <p class="example-principle-label">Princípio 01: Direto</p>
+            <div class="example-pair">
+              <div class="example-card">
+                <p class="example-label good">BOM</p>
+                <p class="example-copy">"Entre em contato, preencha o formulário e tenha seu site no ar rapidamente."</p>
+                <p class="example-why">Três ações claras em sequência. Sem introdução. Sem qualificação. O verbo principal aparece no começo de cada cláusula.</p>
+              </div>
+              <div class="example-card">
+                <p class="example-label bad">RUIM</p>
+                <p class="example-copy">"Para que você possa ter um site profissional, nossa equipe está disponível para ajudá-lo a iniciar o processo de criação."</p>
+                <p class="example-why">Subordinadas desnecessárias, voz passiva implícita, benefício enterrado no final. Nenhuma ação clara para o cliente.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="example-block">
+            <p class="example-principle-label">Princípio 02: Acessível</p>
+            <div class="example-pair">
+              <div class="example-card">
+                <p class="example-label good">BOM</p>
+                <p class="example-copy">"Preencha o formulário com suas informações e deixe o resto com a gente. Acompanhe tudo em tempo real."</p>
+                <p class="example-why">Linguagem cotidiana. "Deixe o resto com a gente" é coloquial e acolhedor. Qualquer pessoa entende sem precisar de contexto técnico.</p>
+              </div>
+              <div class="example-card">
+                <p class="example-label bad">RUIM</p>
+                <p class="example-copy">"Nossa stack tecnológica garante um deploy rápido com interface responsiva e otimização de performance."</p>
+                <p class="example-why">Quatro jargões técnicos em uma frase. O cliente médio não sabe o que "stack" ou "deploy" significam. A mensagem não chega.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="example-block">
+            <p class="example-principle-label">Princípio 03: Confiante</p>
+            <div class="example-pair">
+              <div class="example-card">
+                <p class="example-label good">BOM</p>
+                <p class="example-copy">"Em menos de 24 horas seu site profissional está no ar, pronto para receber clientes."</p>
+                <p class="example-why">Prazo concreto, resultado concreto. Sem hedge. A afirmação é comprometida, não tentativa.</p>
+              </div>
+              <div class="example-card">
+                <p class="example-label bad">RUIM</p>
+                <p class="example-copy">"Na maioria dos casos, conseguimos entregar seu site em aproximadamente 24 horas."</p>
+                <p class="example-why">"Na maioria dos casos" e "aproximadamente" plantam dúvida. Se o prazo é 24h, diga 24h sem qualificadores.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="example-block">
+            <p class="example-principle-label">Princípio 04: Próximo</p>
+            <div class="example-pair">
+              <div class="example-card">
+                <p class="example-label good">BOM</p>
+                <p class="example-copy">"Desenvolvemos seguindo suas cores, logo e identidade visual para representar sua marca perfeitamente."</p>
+                <p class="example-why">"Suas cores", "sua marca". Cada elemento de posse reforça que o produto é feito para aquele cliente específico, não para um genérico.</p>
+              </div>
+              <div class="example-card">
+                <p class="example-label bad">RUIM</p>
+                <p class="example-copy">"Os clientes podem enviar suas informações de identidade visual para personalização do projeto."</p>
+                <p class="example-why">"Os clientes" distancia. Voz passiva implícita. Soa como documento corporativo, não como conversa.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="example-block">
+            <p class="example-principle-label">Princípio 05: Transparente</p>
+            <div class="example-pair">
+              <div class="example-card">
+                <p class="example-label good">BOM</p>
+                <p class="example-copy">"A partir de R$397. Pagamento único, sem mensalidades ou taxas ocultas."</p>
+                <p class="example-why">Preço explícito, modelo de cobrança explícito, objeção de taxa oculta eliminada na mesma frase. Zero ambiguidade.</p>
+              </div>
+              <div class="example-card">
+                <p class="example-label bad">RUIM</p>
+                <p class="example-copy">"Valores competitivos sob consulta. Entre em contato para receber uma proposta personalizada."</p>
+                <p class="example-why">Esconde o preço. Para o cliente, preço oculto significa preço alto. Quebra o princípio de transparência e aumenta fricção de conversão.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <hr class="sec-divider">
+
+        <!-- 4.5 CTAs CANÔNICOS -->
+        <p class="sec-label">4.5</p>
+        <h3 class="subsec-title">CTAs canônicos</h3>
+
+        <div class="cta-list">
+
+          <div class="cta-card">
+            <div class="cta-text-block">
+              <p class="cta-text-label">Texto exato</p>
+              <span class="cta-text-value">Quero meu site</span>
+            </div>
+            <div class="cta-context-block">
+              <p class="cta-block-label">Quando usar</p>
+              <p class="cta-context-text">CTA primário em todos os contextos de topo e meio de página. Navegação, hero, cards de vantagens. É o CTA padrão da marca.</p>
+            </div>
+            <div class="cta-rule-block">
+              <p class="cta-block-label">Nunca alterar</p>
+              <p class="cta-rule-text">Não substituir por "Saiba mais", "Clique aqui", "Contate-nos" ou "Solicite orçamento". O verbo "quero" expressa intenção ativa do cliente.</p>
+            </div>
+          </div>
+
+          <div class="cta-card">
+            <div class="cta-text-block">
+              <p class="cta-text-label">Texto exato</p>
+              <span class="cta-text-value">Quero meu site agora</span>
+            </div>
+            <div class="cta-context-block">
+              <p class="cta-block-label">Quando usar</p>
+              <p class="cta-context-text">CTA de fechamento. Exclusivo para posições finais de página (CTA section, final de landing). O "agora" adiciona urgência depois do cliente já ter lido os argumentos.</p>
+            </div>
+            <div class="cta-rule-block">
+              <p class="cta-block-label">Nunca alterar</p>
+              <p class="cta-rule-text">Não usar "agora" em posições de topo, onde cria pressão prematura. Reservar apenas para o fechamento.</p>
+            </div>
+          </div>
+
+          <div class="cta-card">
+            <div class="cta-text-block">
+              <p class="cta-text-label">Texto exato</p>
+              <span class="cta-text-value">Orçamento grátis e sem compromisso</span>
+            </div>
+            <div class="cta-context-block">
+              <p class="cta-block-label">Quando usar</p>
+              <p class="cta-context-text">CTA secundário, sempre acompanhando o CTA primário de fechamento. Função: reduzir fricção para quem ainda não decidiu. Não substitui o CTA principal.</p>
+            </div>
+            <div class="cta-rule-block">
+              <p class="cta-block-label">Nunca alterar</p>
+              <p class="cta-rule-text">Manter "grátis" e "sem compromisso" juntos. Ambos removem objeções distintas: custo da consulta e obrigação de fechar. Separar enfraquece o efeito.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div><!-- /container -->
+
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SEÇÃO 05 — APLICAÇÕES
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="aplicacoes" style="font-family: 'Instrument Sans', sans-serif; background-color: #FAFAF9; color: #080503; padding: 64px 0; border-top: 1px solid #DAD7D0;">
+
+      <style>
+        #aplicacoes * { box-sizing: border-box; }
+
+        #aplicacoes .ap-subsec-label {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 11px;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: #5E534A;
+          margin-bottom: 8px;
+        }
+
+        #aplicacoes .ap-subsec-title {
+          font-family: 'Instrument Serif', serif;
+          font-size: 20px;
+          font-weight: 400;
+          color: #080503;
+          margin: 0 0 28px 0;
+        }
+
+        #aplicacoes .ap-divider {
+          border: none;
+          border-top: 1px solid #DAD7D0;
+          margin: 48px 0;
+        }
+
+        #aplicacoes .cards-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1px;
+          background: rgba(8,5,3,0.10);
+          border: 1px solid rgba(8,5,3,0.10);
+          border-radius: 4px;
+          overflow: hidden;
+        }
+
+        #aplicacoes .feature-card {
+          background: #FAFAF9;
+          padding: 28px 24px;
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+        }
+
+        #aplicacoes .card-num {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 11px;
+          letter-spacing: 0.12em;
+          color: #5E534A;
+          text-transform: uppercase;
+        }
+
+        #aplicacoes .card-title {
+          font-family: 'Instrument Serif', serif;
+          font-size: 20px;
+          font-weight: 400;
+          color: #080503;
+          margin: 4px 0 2px;
+        }
+
+        #aplicacoes .card-subtitle {
+          font-size: 13px;
+          color: #5E534A;
+          margin: 0 0 8px;
+        }
+
+        #aplicacoes .card-body {
+          font-size: 14px;
+          color: #5E534A;
+          line-height: 1.6;
+          margin: 0;
+        }
+
+        #aplicacoes .badges-row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 20px;
+          align-items: flex-end;
+        }
+
+        #aplicacoes .badge-item {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 4px;
+        }
+
+        #aplicacoes .badge-number {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 32px;
+          font-weight: 700;
+          color: #080503;
+          line-height: 1;
+        }
+
+        #aplicacoes .badge-label {
+          font-size: 10px;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: #5E534A;
+        }
+
+        #aplicacoes .badge-separator {
+          width: 1px;
+          height: 48px;
+          background: #DAD7D0;
+          align-self: center;
+        }
+
+        #aplicacoes .btns-row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 20px;
+          align-items: flex-start;
+        }
+
+        #aplicacoes .btn-group {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+        }
+
+        #aplicacoes .btn-primary {
+          font-family: 'Instrument Sans', sans-serif;
+          font-size: 14px;
+          font-weight: 600;
+          color: #FAFAF9;
+          background: #080503;
+          border: none;
+          padding: 12px 24px;
+          border-radius: 2px;
+          cursor: default;
+          letter-spacing: 0.01em;
+        }
+
+        #aplicacoes .btn-secondary {
+          font-family: 'Instrument Sans', sans-serif;
+          font-size: 14px;
+          font-weight: 400;
+          color: #080503;
+          background: transparent;
+          border: 1px solid #080503;
+          padding: 12px 24px;
+          border-radius: 2px;
+          cursor: default;
+          letter-spacing: 0.01em;
+        }
+
+        #aplicacoes .btn-annotation {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 10px;
+          letter-spacing: 0.10em;
+          text-transform: uppercase;
+          color: #5E534A;
+        }
+
+        @media (max-width: 640px) {
+          #aplicacoes .cards-grid { grid-template-columns: 1fr; }
+          #aplicacoes .badge-separator { display: none; }
+        }
+      </style>
+
+      <div class="container">
+
+        <p class="sec-label">Seção 05</p>
+        <h2 class="sec-title">Aplicações</h2>
+
+        <!-- 5.1 Cards de vantagens -->
+        <p class="ap-subsec-label">5.1</p>
+        <h3 class="ap-subsec-title">Cards de vantagens</h3>
+
+        <div class="cards-grid">
+
+          <div class="feature-card">
+            <p class="card-num">01</p>
+            <h4 class="card-title">Entrega em 24 Horas</h4>
+            <p class="card-subtitle">Rapidez que você precisa</p>
+            <p class="card-body">Após o briefing aprovado, seu site profissional fica pronto em menos de 24 horas.</p>
+          </div>
+
+          <div class="feature-card">
+            <p class="card-num">02</p>
+            <h4 class="card-title">Design Personalizado</h4>
+            <p class="card-subtitle">Cada site é único</p>
+            <p class="card-body">Desenvolvemos seguindo suas cores, logo e identidade visual para representar sua marca perfeitamente.</p>
+          </div>
+
+          <div class="feature-card">
+            <p class="card-num">03</p>
+            <h4 class="card-title">Processo Simples</h4>
+            <p class="card-subtitle">Sem complicação</p>
+            <p class="card-body">Preencha o formulário com suas informações e deixe o resto com a gente. Acompanhe tudo em tempo real.</p>
+          </div>
+
+          <div class="feature-card">
+            <p class="card-num">04</p>
+            <h4 class="card-title">Preços Acessíveis</h4>
+            <p class="card-subtitle">Sites profissionais a preços populares</p>
+            <p class="card-body">Qualidade que cabe no seu bolso, sem surpresas no orçamento.</p>
+          </div>
+
+        </div>
+
+        <hr class="ap-divider">
+
+        <!-- 5.2 Badges -->
+        <p class="ap-subsec-label">5.2</p>
+        <h3 class="ap-subsec-title">Badges de stats</h3>
+
+        <div class="badges-row">
+
+          <div class="badge-item">
+            <span class="badge-number">24h</span>
+            <span class="badge-label">Rapidez</span>
+          </div>
+
+          <div class="badge-separator"></div>
+
+          <div class="badge-item">
+            <span class="badge-number">500+</span>
+            <span class="badge-label">Experiência</span>
+          </div>
+
+          <div class="badge-separator"></div>
+
+          <div class="badge-item">
+            <span class="badge-number">100%</span>
+            <span class="badge-label">Qualidade</span>
+          </div>
+
+          <div class="badge-separator"></div>
+
+          <div class="badge-item">
+            <span class="badge-number">R$397</span>
+            <span class="badge-label">Preço justo</span>
+          </div>
+
+        </div>
+
+        <hr class="ap-divider">
+
+        <!-- 5.3 Botões -->
+        <p class="ap-subsec-label">5.3</p>
+        <h3 class="ap-subsec-title">Botões</h3>
+
+        <div class="btns-row">
+
+          <div class="btn-group">
+            <button class="btn-primary">Quero meu site</button>
+            <span class="btn-annotation">CTA primário</span>
+          </div>
+
+          <div class="btn-group">
+            <button class="btn-primary">Quero meu site agora</button>
+            <span class="btn-annotation">CTA primário com urgência</span>
+          </div>
+
+          <div class="btn-group">
+            <button class="btn-secondary">Orçamento grátis e sem compromisso</button>
+            <span class="btn-annotation">CTA secundário</span>
+          </div>
+
+        </div>
+
+      </div><!-- /container -->
+
+    </section>
+
+
+    <!-- ============================================================
+         SEÇÃO 06 — ENXOVAL SOCIAL
+    ============================================================ -->
+
+    <section id="enxoval-social">
+      <div class="section-label">06</div>
+      <h2 class="section-title">Enxoval Social</h2>
+
+      <!-- 6.1 Ícone de Perfil -->
+      <h3>6.1 — Ícone de Perfil</h3>
+      <div style="display:flex; gap:24px; margin-bottom:40px;">
+        <!-- Versão escura -->
+        <div style="text-align:center;">
+          <div style="width:80px; height:80px; border-radius:50%; background:#080503; display:flex; flex-direction:column; align-items:center; justify-content:center; margin-bottom:12px;">
+            <span style="font-family:'Instrument Serif',serif; font-size:22px; color:#FAFAF9; line-height:1;">ES</span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:6px; color:rgba(250,250,249,0.5); letter-spacing:0.1em; text-transform:uppercase; margin-top:2px;">easysite</span>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:#5E534A; text-transform:uppercase; letter-spacing:0.08em;">Versão Escura</div>
+        </div>
+        <!-- Versão clara -->
+        <div style="text-align:center;">
+          <div style="width:80px; height:80px; border-radius:50%; background:#FAFAF9; border:2px solid #080503; display:flex; flex-direction:column; align-items:center; justify-content:center; margin-bottom:12px;">
+            <span style="font-family:'Instrument Serif',serif; font-size:22px; color:#080503; line-height:1;">ES</span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:6px; color:rgba(8,5,3,0.4); letter-spacing:0.1em; text-transform:uppercase; margin-top:2px;">easysite</span>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:#5E534A; text-transform:uppercase; letter-spacing:0.08em;">Versão Clara</div>
+        </div>
+      </div>
+
+      <!-- 6.2 Destaques do Instagram -->
+      <h3>6.2 — Destaques do Instagram</h3>
+      <div style="display:flex; gap:16px; margin-bottom:40px;">
+        <div style="text-align:center;">
+          <div style="width:64px; height:64px; border-radius:50%; background:#080503; display:flex; align-items:center; justify-content:center; margin-bottom:8px;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:18px; color:#FAFAF9;">&#9889;</span>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:9px; color:#5E534A; text-transform:uppercase; letter-spacing:0.06em; max-width:64px;">Como Funciona</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="width:64px; height:64px; border-radius:50%; background:#FAFAF9; border:1px solid #DAD7D0; display:flex; align-items:center; justify-content:center; margin-bottom:8px;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:18px; color:#080503;">&#9633;</span>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:9px; color:#5E534A; text-transform:uppercase; letter-spacing:0.06em; max-width:64px;">Portfólio</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="width:64px; height:64px; border-radius:50%; background:#080503; display:flex; align-items:center; justify-content:center; margin-bottom:8px;">
+            <span style="font-family:'Instrument Serif',serif; font-size:22px; color:#FAFAF9;">"</span>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:9px; color:#5E534A; text-transform:uppercase; letter-spacing:0.06em; max-width:64px;">Depoimentos</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="width:64px; height:64px; border-radius:50%; background:#ECEBE7; display:flex; align-items:center; justify-content:center; margin-bottom:8px;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:14px; color:#080503;">R$</span>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:9px; color:#5E534A; text-transform:uppercase; letter-spacing:0.06em; max-width:64px;">Preço</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="width:64px; height:64px; border-radius:50%; background:#FAFAF9; border:1px solid #DAD7D0; display:flex; align-items:center; justify-content:center; margin-bottom:8px;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:14px; color:#080503;">?</span>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:9px; color:#5E534A; text-transform:uppercase; letter-spacing:0.06em; max-width:64px;">FAQ</div>
+        </div>
+      </div>
+
+      <!-- 6.3 Templates de Post -->
+      <h3>6.3 — Templates de Post (formato 4:5)</h3>
+      <div style="display:flex; gap:20px; flex-wrap:wrap; margin-bottom:40px;">
+
+        <!-- Tipo A: Oferta escuro -->
+        <div style="text-align:center;">
+          <div style="width:160px; height:200px; background:#080503; padding:16px; display:flex; flex-direction:column; overflow:hidden; box-sizing:border-box; margin-bottom:8px;">
+            <div style="font-family:'Instrument Serif',serif; color:rgba(250,250,249,0.25); font-size:9px; flex-shrink:0;">EasySite</div>
+            <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+              <div style="font-family:'JetBrains Mono',monospace; font-size:7px; color:rgba(250,250,249,0.5); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">BARBEARIA</div>
+              <div style="font-family:'Instrument Serif',serif; color:#FAFAF9; font-size:13px; line-height:1.3;">Headline do criativo aqui</div>
+            </div>
+            <div style="flex-shrink:0; border-top:1px solid rgba(250,250,249,0.15); padding-top:8px;">
+              <div style="font-family:'JetBrains Mono',monospace; font-size:7px; color:rgba(250,250,249,0.6); text-transform:uppercase; letter-spacing:0.08em;">CTA WHATSAPP</div>
+            </div>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:#5E534A; text-transform:uppercase; letter-spacing:0.06em;">Tipo A</div>
+          <div style="font-family:'Instrument Sans',sans-serif; font-size:11px; color:#5E534A; margin-top:4px;">Oferta / Nicho escuro</div>
+        </div>
+
+        <!-- Tipo B: Capa carrossel claro -->
+        <div style="text-align:center;">
+          <div style="width:160px; height:200px; background:#FAFAF9; border:1px solid #DAD7D0; padding:16px; display:flex; flex-direction:column; overflow:hidden; box-sizing:border-box; margin-bottom:8px;">
+            <div style="font-family:'Instrument Serif',serif; color:rgba(8,5,3,0.25); font-size:9px; flex-shrink:0;">EasySite</div>
+            <div style="flex:1; display:flex; flex-direction:column; justify-content:flex-end; position:relative;">
+              <div style="font-family:'JetBrains Mono',monospace; font-size:40px; color:rgba(8,5,3,0.06); position:absolute; right:-4px; bottom:20px; font-weight:700;">01</div>
+              <div style="font-family:'JetBrains Mono',monospace; font-size:7px; color:#5E534A; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:4px;">PILAR DO CONTEÚDO</div>
+              <div style="font-family:'Instrument Serif',serif; color:#080503; font-size:13px; line-height:1.3;">Headline do carrossel aqui</div>
+            </div>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:#5E534A; text-transform:uppercase; letter-spacing:0.06em;">Tipo B</div>
+          <div style="font-family:'Instrument Sans',sans-serif; font-size:11px; color:#5E534A; margin-top:4px;">Capa de carrossel</div>
+        </div>
+
+        <!-- Tipo C: Depoimento -->
+        <div style="text-align:center;">
+          <div style="width:160px; height:200px; background:#FAFAF9; border:1px solid #DAD7D0; padding:12px; display:flex; flex-direction:column; overflow:hidden; box-sizing:border-box; margin-bottom:8px; position:relative;">
+            <div style="font-family:'Instrument Serif',serif; color:rgba(8,5,3,0.06); font-size:40px; position:absolute; top:4px; left:8px; line-height:1;">"</div>
+            <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding-top:20px;">
+              <div style="font-family:'Instrument Serif',serif; font-style:italic; color:#080503; font-size:10px; line-height:1.5; margin-bottom:12px;">Depoimento do cliente em 1-2 linhas.</div>
+              <div style="font-family:'Instrument Sans',sans-serif; font-weight:600; color:#080503; font-size:9px;">Carla Mendes</div>
+              <div style="font-family:'Instrument Sans',sans-serif; color:#5E534A; font-size:8px;">Clínica Estética CM</div>
+            </div>
+            <div style="flex-shrink:0; border-top:1px solid #DAD7D0; padding-top:6px;">
+              <div style="font-family:'JetBrains Mono',monospace; font-size:7px; color:#5E534A; text-transform:uppercase; letter-spacing:0.06em;">Site pronto em 18h</div>
+            </div>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:#5E534A; text-transform:uppercase; letter-spacing:0.06em;">Tipo C</div>
+          <div style="font-family:'Instrument Sans',sans-serif; font-size:11px; color:#5E534A; margin-top:4px;">Depoimento</div>
+        </div>
+
+        <!-- Tipo D: Antes/Depois split -->
+        <div style="text-align:center;">
+          <div style="width:160px; height:200px; display:flex; flex-direction:column; overflow:hidden; box-sizing:border-box; margin-bottom:8px;">
+            <div style="display:flex; flex:1; min-height:0;">
+              <div style="flex:1; background:#ECEBE7; padding:8px; display:flex; flex-direction:column; justify-content:flex-end;">
+                <div style="font-family:'JetBrains Mono',monospace; font-size:6px; color:#5E534A; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:4px;">SEM SITE</div>
+                <div style="font-family:'Instrument Serif',serif; color:#080503; font-size:10px; line-height:1.3;">Invisível no Google</div>
+              </div>
+              <div style="flex:1; background:#080503; padding:8px; display:flex; flex-direction:column; justify-content:flex-end;">
+                <div style="font-family:'JetBrains Mono',monospace; font-size:6px; color:rgba(250,250,249,0.5); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:4px;">COM EASYSITE</div>
+                <div style="font-family:'Instrument Serif',serif; color:#FAFAF9; font-size:10px; line-height:1.3;">Aparece. Vende.</div>
+              </div>
+            </div>
+            <div style="background:#080503; padding:6px 8px; flex-shrink:0;">
+              <div style="font-family:'JetBrains Mono',monospace; font-size:7px; color:rgba(250,250,249,0.7); text-transform:uppercase; letter-spacing:0.06em;">R$397 · CTA WHATSAPP</div>
+            </div>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:#5E534A; text-transform:uppercase; letter-spacing:0.06em;">Tipo D</div>
+          <div style="font-family:'Instrument Sans',sans-serif; font-size:11px; color:#5E534A; margin-top:4px;">Antes e Depois</div>
+        </div>
+
+        <!-- Tipo E: Slide informativo -->
+        <div style="text-align:center;">
+          <div style="width:160px; height:200px; background:#FAFAF9; border:1px solid #DAD7D0; padding:16px; display:flex; flex-direction:column; overflow:hidden; box-sizing:border-box; margin-bottom:8px;">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:7px; color:#5E534A; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px; flex-shrink:0;">SLIDE INFORMATIVO</div>
+            <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+              <div style="font-family:'Instrument Serif',serif; color:#080503; font-size:12px; line-height:1.4; margin-bottom:8px;">Informação educativa sobre o tema</div>
+              <div style="font-family:'Instrument Sans',sans-serif; color:#5E534A; font-size:9px; line-height:1.5;">Contexto adicional em Instrument Sans.</div>
+            </div>
+            <div style="font-family:'Instrument Serif',serif; font-size:8px; color:rgba(8,5,3,0.3); flex-shrink:0; text-align:right;">EasySite</div>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:#5E534A; text-transform:uppercase; letter-spacing:0.06em;">Tipo E</div>
+          <div style="font-family:'Instrument Sans',sans-serif; font-size:11px; color:#5E534A; margin-top:4px;">Slide informativo</div>
+        </div>
+
+      </div>
+
+      <!-- 6.4 Criativos de Campanha -->
+      <h3>6.4 — Criativos de Campanha WhatsApp</h3>
+      <p>10 criativos estáticos para campanhas de mensagem no Meta Ads. Formato 4:5 (1080×1350px). Sem botão no criativo — a Meta configura o botão de WhatsApp. Apenas CTA em texto.</p>
+      <p>Referência: <span style="font-family:'JetBrains Mono',monospace; font-size:13px;">criativos-wpp-v6.html</span></p>
+
+    </section>
+
+    <!-- ============================================================
+         SEÇÃO 07 — REGRAS DE USO
+    ============================================================ -->
+
+    <section id="regras-uso">
+
+      <div style="margin-bottom: 56px;">
+        <p class="sec-eyebrow">07 — Regras de Uso</p>
+        <h2 class="sec-title">Regras de Uso</h2>
+        <p class="sec-desc">O que pode, o que não pode e o checklist de aprovação para novos materiais da EasySite.</p>
+      </div>
+
+      <!-- 7.1 O que pode -->
+      <div style="margin-bottom: 56px;">
+        <div class="subsec-header">
+          <span class="subsec-number">7.1</span>
+          <h3 class="subsec-title">O que pode</h3>
+        </div>
+        <p class="subsec-desc">Usos aprovados para a marca EasySite.</p>
+        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px; max-width: 680px;">
+          <li style="display: flex; gap: 14px; align-items: flex-start; font-family: var(--font-sans); font-size: 14px; color: var(--es-mid); line-height: 1.6;">
+            <span style="font-family: var(--font-mono); font-size: 12px; color: var(--es-fg); padding-top: 2px; flex-shrink: 0;">01</span>
+            Usar as três fontes oficiais: Instrument Serif nos títulos, Instrument Sans no corpo e UI, JetBrains Mono para números e dados.
+          </li>
+          <li style="display: flex; gap: 14px; align-items: flex-start; font-family: var(--font-sans); font-size: 14px; color: var(--es-mid); line-height: 1.6;">
+            <span style="font-family: var(--font-mono); font-size: 12px; color: var(--es-fg); padding-top: 2px; flex-shrink: 0;">02</span>
+            Aplicar a paleta monocromática quente: #FAFAF9, #080503, #5E534A, #ECEBE7, #DAD7D0.
+          </li>
+          <li style="display: flex; gap: 14px; align-items: flex-start; font-family: var(--font-sans); font-size: 14px; color: var(--es-mid); line-height: 1.6;">
+            <span style="font-family: var(--font-mono); font-size: 12px; color: var(--es-fg); padding-top: 2px; flex-shrink: 0;">03</span>
+            Usar o CTA padrão "Quero meu site" (hero e navegação) ou "Quero meu site agora" (posições finais de página).
+          </li>
+          <li style="display: flex; gap: 14px; align-items: flex-start; font-family: var(--font-sans); font-size: 14px; color: var(--es-mid); line-height: 1.6;">
+            <span style="font-family: var(--font-mono); font-size: 12px; color: var(--es-fg); padding-top: 2px; flex-shrink: 0;">04</span>
+            Tutear sempre: "seu", "você", "seu negócio", "seu salão".
+          </li>
+          <li style="display: flex; gap: 14px; align-items: flex-start; font-family: var(--font-sans); font-size: 14px; color: var(--es-mid); line-height: 1.6;">
+            <span style="font-family: var(--font-mono); font-size: 12px; color: var(--es-fg); padding-top: 2px; flex-shrink: 0;">05</span>
+            Incluir prazo em qualquer copy de oferta: "menos de 24 horas" ou "24h".
+          </li>
+          <li style="display: flex; gap: 14px; align-items: flex-start; font-family: var(--font-sans); font-size: 14px; color: var(--es-mid); line-height: 1.6;">
+            <span style="font-family: var(--font-mono); font-size: 12px; color: var(--es-fg); padding-top: 2px; flex-shrink: 0;">06</span>
+            Exibir o preço quando relevante: "R$397" ou "a partir de R$397". Nunca ocultar.
+          </li>
+          <li style="display: flex; gap: 14px; align-items: flex-start; font-family: var(--font-sans); font-size: 14px; color: var(--es-mid); line-height: 1.6;">
+            <span style="font-family: var(--font-mono); font-size: 12px; color: var(--es-fg); padding-top: 2px; flex-shrink: 0;">07</span>
+            Usar o padrão "Sem X" para remover objeções: "sem mensalidades", "sem complicação", "sem surpresas".
+          </li>
+          <li style="display: flex; gap: 14px; align-items: flex-start; font-family: var(--font-sans); font-size: 14px; color: var(--es-mid); line-height: 1.6;">
+            <span style="font-family: var(--font-mono); font-size: 12px; color: var(--es-fg); padding-top: 2px; flex-shrink: 0;">08</span>
+            Alternar fundos claros (#FAFAF9) e escuros (#080503) para criar ritmo visual em peças sequenciais.
+          </li>
+        </ul>
+      </div>
+
+      <hr class="subsec-divider">
+
+      <!-- 7.2 O que não pode -->
+      <div style="margin-bottom: 56px;">
+        <div class="subsec-header">
+          <span class="subsec-number">7.2</span>
+          <h3 class="subsec-title">O que não pode</h3>
+        </div>
+        <p class="subsec-desc">Proibições absolutas. Qualquer material que viole um item abaixo deve ser corrigido antes da publicação.</p>
+        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px; max-width: 680px;">
+          <li style="display: flex; gap: 14px; align-items: flex-start; font-family: var(--font-sans); font-size: 14px; color: var(--es-mid); line-height: 1.6;">
+            <span style="font-family: var(--font-mono); font-size: 12px; color: #c0392b; padding-top: 2px; flex-shrink: 0;">✕</span>
+            Nunca usar travessão (—). Substituir por vírgula, dois-pontos ou reescrita da frase.
+          </li>
+          <li style="display: flex; gap: 14px; align-items: flex-start; font-family: var(--font-sans); font-size: 14px; color: var(--es-mid); line-height: 1.6;">
+            <span style="font-family: var(--font-mono); font-size: 12px; color: #c0392b; padding-top: 2px; flex-shrink: 0;">✕</span>
+            Nunca usar fontes diferentes das três oficiais (Instrument Serif, Instrument Sans, JetBrains Mono).
+          </li>
+          <li style="display: flex; gap: 14px; align-items: flex-start; font-family: var(--font-sans); font-size: 14px; color: var(--es-mid); line-height: 1.6;">
+            <span style="font-family: var(--font-mono); font-size: 12px; color: #c0392b; padding-top: 2px; flex-shrink: 0;">✕</span>
+            Nunca introduzir cores de acento ou paleta externa sem aprovação. O sistema é monocromático quente.
+          </li>
+          <li style="display: flex; gap: 14px; align-items: flex-start; font-family: var(--font-sans); font-size: 14px; color: var(--es-mid); line-height: 1.6;">
+            <span style="font-family: var(--font-mono); font-size: 12px; color: #c0392b; padding-top: 2px; flex-shrink: 0;">✕</span>
+            Nunca alterar o texto base do CTA principal: "Quero meu site" não vira "Contrate agora" nem "Saiba mais".
+          </li>
+          <li style="display: flex; gap: 14px; align-items: flex-start; font-family: var(--font-sans); font-size: 14px; color: var(--es-mid); line-height: 1.6;">
+            <span style="font-family: var(--font-mono); font-size: 12px; color: #c0392b; padding-top: 2px; flex-shrink: 0;">✕</span>
+            Nunca omitir prazo em peça de oferta. Sem "24 horas" visível, a proposta perde seu diferencial central.
+          </li>
+          <li style="display: flex; gap: 14px; align-items: flex-start; font-family: var(--font-sans); font-size: 14px; color: var(--es-mid); line-height: 1.6;">
+            <span style="font-family: var(--font-mono); font-size: 12px; color: #c0392b; padding-top: 2px; flex-shrink: 0;">✕</span>
+            Nunca usar linguagem técnica sem tradução imediata. Jargão afasta o público-alvo.
+          </li>
+          <li style="display: flex; gap: 14px; align-items: flex-start; font-family: var(--font-sans); font-size: 14px; color: var(--es-mid); line-height: 1.6;">
+            <span style="font-family: var(--font-mono); font-size: 12px; color: #c0392b; padding-top: 2px; flex-shrink: 0;">✕</span>
+            Nunca usar Instrument Serif para corpo de texto corrido. É uma fonte de display, para headlines e títulos.
+          </li>
+          <li style="display: flex; gap: 14px; align-items: flex-start; font-family: var(--font-sans); font-size: 14px; color: var(--es-mid); line-height: 1.6;">
+            <span style="font-family: var(--font-mono); font-size: 12px; color: #c0392b; padding-top: 2px; flex-shrink: 0;">✕</span>
+            Nunca usar JetBrains Mono para textos longos ou parágrafos. É exclusiva para dados numéricos, badges e labels curtos.
+          </li>
+        </ul>
+      </div>
+
+      <hr class="subsec-divider">
+
+      <!-- 7.3 Checklist de Aprovação -->
+      <div>
+        <div class="subsec-header">
+          <span class="subsec-number">7.3</span>
+          <h3 class="subsec-title">Checklist de Aprovação</h3>
+        </div>
+        <p class="subsec-desc">Valide cada novo material antes de publicar. Todos os itens devem estar marcados.</p>
+
+        <div style="display: flex; flex-direction: column; gap: 14px; max-width: 680px;">
+
+          <label style="display: flex; align-items: flex-start; gap: 14px; cursor: pointer; font-family: var(--font-sans); font-size: 14px; color: var(--es-mid); line-height: 1.6;">
+            <input type="checkbox" style="margin-top: 3px; flex-shrink: 0; accent-color: var(--es-fg);">
+            Fontes corretas: Instrument Serif nos títulos, Instrument Sans no corpo, JetBrains Mono nos dados.
+          </label>
+
+          <label style="display: flex; align-items: flex-start; gap: 14px; cursor: pointer; font-family: var(--font-sans); font-size: 14px; color: var(--es-mid); line-height: 1.6;">
+            <input type="checkbox" style="margin-top: 3px; flex-shrink: 0; accent-color: var(--es-fg);">
+            Paleta respeitada: apenas as 5 cores oficiais do sistema (#FAFAF9, #080503, #5E534A, #ECEBE7, #DAD7D0).
+          </label>
+
+          <label style="display: flex; align-items: flex-start; gap: 14px; cursor: pointer; font-family: var(--font-sans); font-size: 14px; color: var(--es-mid); line-height: 1.6;">
+            <input type="checkbox" style="margin-top: 3px; flex-shrink: 0; accent-color: var(--es-fg);">
+            Nenhum travessão (—) no texto. Vírgula ou dois-pontos no lugar.
+          </label>
+
+          <label style="display: flex; align-items: flex-start; gap: 14px; cursor: pointer; font-family: var(--font-sans); font-size: 14px; color: var(--es-mid); line-height: 1.6;">
+            <input type="checkbox" style="margin-top: 3px; flex-shrink: 0; accent-color: var(--es-fg);">
+            CTA com texto padrão: "Quero meu site" ou "Quero meu site agora".
+          </label>
+
+          <label style="display: flex; align-items: flex-start; gap: 14px; cursor: pointer; font-family: var(--font-sans); font-size: 14px; color: var(--es-mid); line-height: 1.6;">
+            <input type="checkbox" style="margin-top: 3px; flex-shrink: 0; accent-color: var(--es-fg);">
+            Prazo visível na peça de oferta: "24 horas" ou "24h".
+          </label>
+
+          <label style="display: flex; align-items: flex-start; gap: 14px; cursor: pointer; font-family: var(--font-sans); font-size: 14px; color: var(--es-mid); line-height: 1.6;">
+            <input type="checkbox" style="margin-top: 3px; flex-shrink: 0; accent-color: var(--es-fg);">
+            Preço presente quando relevante: "R$397" ou "a partir de R$397".
+          </label>
+
+          <label style="display: flex; align-items: flex-start; gap: 14px; cursor: pointer; font-family: var(--font-sans); font-size: 14px; color: var(--es-mid); line-height: 1.6;">
+            <input type="checkbox" style="margin-top: 3px; flex-shrink: 0; accent-color: var(--es-fg);">
+            Tom de voz correto: direto, acessível, confiante, segunda pessoa ("seu", "você").
+          </label>
+
+          <label style="display: flex; align-items: flex-start; gap: 14px; cursor: pointer; font-family: var(--font-sans); font-size: 14px; color: var(--es-mid); line-height: 1.6;">
+            <input type="checkbox" style="margin-top: 3px; flex-shrink: 0; accent-color: var(--es-fg);">
+            Nenhuma fonte ou cor externa não documentada neste brandbook.
+          </label>
+
+          <label style="display: flex; align-items: flex-start; gap: 14px; cursor: pointer; font-family: var(--font-sans); font-size: 14px; color: var(--es-mid); line-height: 1.6;">
+            <input type="checkbox" style="margin-top: 3px; flex-shrink: 0; accent-color: var(--es-fg);">
+            Hierarquia visual clara: headline em Serif se destaca, corpo em Sans apoia, dados em Mono validam.
+          </label>
+
+          <label style="display: flex; align-items: flex-start; gap: 14px; cursor: pointer; font-family: var(--font-sans); font-size: 14px; color: var(--es-mid); line-height: 1.6;">
+            <input type="checkbox" style="margin-top: 3px; flex-shrink: 0; accent-color: var(--es-fg);">
+            Material revisado por quem conhece o brandbook antes da publicação.
+          </label>
+
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+<!-- BRAND SQUAD — BRANDBOOK EASYSITE v4.0 | Fonte: brandbook.md | Seções 04+06: squads especializados -->
+</body>
+</html>

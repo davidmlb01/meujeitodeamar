@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EasySite — 10 Criativos · WhatsApp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:    #FAFAF9;
+      --fg:    #080503;
+      --muted: #ECEBE7;
+      --mid:   #5E534A;
+      --brd:   #DAD7D0;
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans:  'Instrument Sans', system-ui, sans-serif;
+      --mono:  'JetBrains Mono', monospace;
+      --d-bg:  #111;
+      --d-brd: rgba(255,255,255,.07);
+      --d-txt: #e8e8e8;
+      --d-sub: #555;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--d-bg); color: var(--d-txt); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+
+    .page { max-width: 1300px; margin: 0 auto; padding: 52px 44px 80px; }
+    .ph { margin-bottom: 44px; }
+    .ey { font-family: var(--mono); font-size: 11px; color: var(--d-sub); letter-spacing:.1em; text-transform:uppercase; margin-bottom:10px; }
+    h1 { font-family: var(--serif); font-size: 32px; color: var(--d-txt); margin-bottom:6px; }
+    .ds { font-size: 13px; color: var(--d-sub); line-height: 1.7; }
+    .pills { display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
+    .pill { font-family:var(--mono); font-size:10px; color:var(--d-sub); background:#1a1a1a; border:1px solid var(--d-brd); padding:4px 12px; border-radius:20px; }
+    .pill strong { color: #c8f060; }
+    hr { border:none; border-top:1px solid var(--d-brd); margin:40px 0; }
+
+    /* grid */
+    .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:32px; }
+    .card {}
+    .cm { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+    .cn { font-family:var(--mono); font-size:10px; color:var(--d-sub); }
+    .ct { font-size:12px; font-weight:600; color:var(--d-txt); }
+    .tag { margin-left:auto; font-family:var(--mono); font-size:9px; padding:2px 8px; border-radius:4px; }
+    .td { color:#f87171; background:rgba(248,113,113,.1); }
+    .to { color:#c8f060; background:rgba(200,240,96,.1); }
+    .tn { color:#60a5fa; background:rgba(96,165,250,.1); }
+    .tp { color:#34d399; background:rgba(52,211,153,.1); }
+    .tob{ color:#a78bfa; background:rgba(167,139,250,.1); }
+    .note { margin-top:8px; font-size:11px; color:var(--d-sub); line-height:1.6; }
+    .note strong { color:var(--d-txt); }
+
+    /* frame 4:5 com container query */
+    .frame {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--d-brd);
+      container-type: inline-size;
+    }
+
+    /* ─── SISTEMA DE LAYOUT ───
+       Cada criativo é um flex column com 3 zonas fixas:
+       TOPO (logo) → MEIO (conteúdo, flex:1) → RODAPÉ (cta, fixo)
+       Nada usa position:absolute no fluxo de texto.
+    ─────────────────────────── */
+
+    .c {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      padding: 8cqw 8cqw 7cqw;
+    }
+
+    /* logo topo */
+    .logo {
+      font-family: var(--serif);
+      font-size: 3cqw;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-bottom: auto; /* empurra conteúdo para baixo */
+    }
+
+    /* rodapé sempre ao final */
+    .cta-zone {
+      flex-shrink: 0;
+      padding-top: 5cqw;
+      border-top: 1px solid;
+    }
+    .cta-text {
+      font-family: var(--mono);
+      font-size: 2.2cqw;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      line-height: 1.4;
+    }
+
+    /* ═══════════════════════════════
+       C1 — DOR PRIMÁRIA
+       Fundo claro · Headline 72px · Centralizado
+    ═══════════════════════════════ */
+    .c1 { background: var(--bg); text-align: center; justify-content: space-between; }
+    .c1 .logo { color: var(--fg); opacity: .3; margin-bottom: 0; text-align: left; }
+    .c1 .mid { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4cqw; padding: 4cqw 0; }
+    .c1 .hl { font-family: var(--serif); font-size: 12cqw; color: var(--fg); line-height: 1.1; }
+    .c1 .sub { font-family: var(--sans); font-size: 3.8cqw; color: var(--mid); line-height: 1.5; }
+    .c1 .cta-zone { border-color: var(--brd); }
+    .c1 .cta-text { color: var(--fg); }
+
+    /* ═══════════════════════════════
+       C2 — OFERTA DIRETA
+       Fundo escuro · Preço 120px · Centralizado
+    ═══════════════════════════════ */
+    .c2 { background: var(--fg); text-align: center; justify-content: space-between; }
+    .c2 .logo { color: var(--bg); opacity: .2; text-align: left; }
+    .c2 .mid { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3cqw; }
+    .c2 .pre { font-family: var(--sans); font-size: 3.5cqw; color: var(--mid); }
+    .c2 .price { font-family: var(--mono); font-size: 20cqw; font-weight: 700; color: var(--bg); line-height: 1; }
+    .c2 .post { font-family: var(--sans); font-size: 3.2cqw; color: var(--mid); }
+    .c2 .cta-zone { border-color: rgba(255,255,255,.1); }
+    .c2 .cta-text { color: rgba(250,250,249,.4); }
+
+    /* ═══════════════════════════════
+       C3/C5 — NICHO CLARO
+       Tag pill · Headline esquerda · Preço + prazo
+    ═══════════════════════════════ */
+    .c-nicho-light { background: var(--bg); justify-content: space-between; }
+    .c-nicho-light .logo { color: var(--fg); opacity: .3; }
+    .c-nicho-light .mid { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 6cqw; gap: 4cqw; }
+    .c-nicho-light .tag-pill { display: inline-block; font-family: var(--sans); font-size: 2.5cqw; letter-spacing: .1em; text-transform: uppercase; color: var(--bg); background: var(--fg); padding: 1.2cqw 3cqw; border-radius: 4px; align-self: flex-start; }
+    .c-nicho-light .hl { font-family: var(--serif); font-size: 10cqw; color: var(--fg); line-height: 1.1; }
+    .c-nicho-light .price-row { display: flex; align-items: baseline; gap: 2cqw; }
+    .c-nicho-light .price { font-family: var(--mono); font-size: 6cqw; font-weight: 700; color: var(--fg); }
+    .c-nicho-light .prazo { font-family: var(--sans); font-size: 3.5cqw; color: var(--mid); }
+    .c-nicho-light .cta-zone { border-color: var(--brd); }
+    .c-nicho-light .cta-text { color: var(--mid); }
+
+    /* ═══════════════════════════════
+       C4 — NICHO ESCURO
+       Espelho de C3 invertido
+    ═══════════════════════════════ */
+    .c-nicho-dark { background: var(--fg); justify-content: space-between; }
+    .c-nicho-dark .logo { color: var(--bg); opacity: .2; }
+    .c-nicho-dark .mid { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 6cqw; gap: 4cqw; }
+    .c-nicho-dark .tag-pill { display: inline-block; font-family: var(--sans); font-size: 2.5cqw; letter-spacing: .1em; text-transform: uppercase; color: var(--fg); background: var(--bg); padding: 1.2cqw 3cqw; border-radius: 4px; align-self: flex-start; }
+    .c-nicho-dark .hl { font-family: var(--serif); font-size: 10cqw; color: var(--bg); line-height: 1.1; }
+    .c-nicho-dark .price-row { display: flex; align-items: baseline; gap: 2cqw; }
+    .c-nicho-dark .price { font-family: var(--mono); font-size: 6cqw; font-weight: 700; color: var(--bg); }
+    .c-nicho-dark .prazo { font-family: var(--sans); font-size: 3.5cqw; color: var(--mid); }
+    .c-nicho-dark .cta-zone { border-color: rgba(255,255,255,.12); }
+    .c-nicho-dark .cta-text { color: rgba(250,250,249,.4); }
+
+    /* ═══════════════════════════════
+       C6 — ANTES E DEPOIS
+       Split 50/50 + faixa rodapé
+    ═══════════════════════════════ */
+    .c6-wrap { width:100%; height:100%; display:flex; flex-direction:column; }
+    .c6-split { display:grid; grid-template-columns:1fr 1fr; flex:1; min-height:0; }
+    .c6-side { padding: 8cqw 7cqw; display:flex; flex-direction:column; justify-content:center; gap:3.5cqw; }
+    .c6-left  { background: var(--muted); border-right: 1.5px solid var(--fg); }
+    .c6-right { background: var(--fg); }
+    .c6-lbl { font-family:var(--mono); font-size:2.2cqw; letter-spacing:.1em; text-transform:uppercase; margin-bottom:1cqw; }
+    .c6-item { font-family:var(--sans); font-size:3.2cqw; line-height:1.4; display:flex; gap:1.5cqw; align-items:flex-start; }
+    .c6-foot { background:var(--fg); color:var(--bg); font-family:var(--mono); font-size:2.8cqw; letter-spacing:.06em; text-align:center; padding:3.5cqw 5cqw; flex-shrink:0; }
+
+    /* ═══════════════════════════════
+       C7 — PROVA SOCIAL
+       Fundo claro · Borda interna · Aspas deco
+    ═══════════════════════════════ */
+    .c7 { background: var(--bg); justify-content: space-between; position: relative; }
+    .c7::before { content:''; position:absolute; inset:4cqw; border:1.5px solid var(--fg); border-radius:4px; pointer-events:none; }
+    .c7 .logo { color: var(--fg); opacity: .3; position: relative; z-index:1; }
+    .c7 .mid { flex:1; display:flex; flex-direction:column; justify-content:center; gap:3cqw; padding: 0 2cqw; position:relative; z-index:1; }
+    .c7 .aspas { font-family:var(--serif); font-size:22cqw; color:var(--fg); opacity:.08; line-height:.7; }
+    .c7 .quote { font-family:var(--serif); font-style:italic; font-size:5.5cqw; color:var(--fg); line-height:1.45; }
+    .c7 .author { font-family:var(--sans); font-size:3cqw; font-weight:600; color:var(--fg); }
+    .c7 .biz { font-family:var(--sans); font-size:2.5cqw; color:var(--mid); margin-top:.5cqw; }
+    .c7 .badge { display:inline-block; margin-top:2cqw; background:var(--fg); color:var(--bg); font-family:var(--mono); font-size:2.2cqw; padding:.8cqw 2.5cqw; border-radius:20px; }
+    .c7 .cta-zone { border-color:var(--brd); position:relative; z-index:1; }
+    .c7 .cta-text { color:var(--mid); }
+
+    /* ═══════════════════════════════
+       C8 — ÂNCORA DE PREÇO
+       Fundo escuro · Preço riscado vs EasySite
+    ═══════════════════════════════ */
+    .c8 { background: var(--fg); justify-content: space-between; text-align: center; }
+    .c8 .logo { color: var(--bg); opacity: .2; text-align: left; }
+    .c8 .mid { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3cqw; }
+    .c8 .lbl { font-family:var(--sans); font-size:2.8cqw; letter-spacing:.08em; text-transform:uppercase; }
+    .c8 .old-lbl { color:var(--mid); }
+    .c8 .old-price { font-family:var(--mono); font-size:11cqw; font-weight:700; color:rgba(250,250,249,.22); text-decoration:line-through; text-decoration-color:var(--mid); text-decoration-thickness:1px; line-height:1; }
+    .c8 .divider { width:30%; height:1px; background:rgba(255,255,255,.12); }
+    .c8 .new-lbl { color:rgba(250,250,249,.55); }
+    .c8 .new-price { font-family:var(--mono); font-size:18cqw; font-weight:700; color:var(--bg); line-height:1; }
+    .c8 .cta-zone { border-color:rgba(255,255,255,.1); }
+    .c8 .cta-text { color:rgba(250,250,249,.35); }
+
+    /* ═══════════════════════════════
+       C9 — OBJEÇÃO TECNOLOGIA
+       Fundo claro · Headline c/ itálico
+    ═══════════════════════════════ */
+    .c9 { background: var(--bg); text-align: center; justify-content: space-between; }
+    .c9 .logo { color: var(--fg); opacity: .3; text-align: left; }
+    .c9 .mid { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4cqw; padding:4cqw 0; }
+    .c9 .hl { font-family:var(--serif); font-size:11cqw; color:var(--fg); line-height:1.1; }
+    .c9 .hl em { font-style:italic; }
+    .c9 .sub { font-family:var(--sans); font-size:3.8cqw; color:var(--mid); line-height:1.5; }
+    .c9 .cta-zone { border-color:var(--brd); }
+    .c9 .cta-text { color:var(--fg); }
+
+    /* ═══════════════════════════════
+       C10 — COMO FUNCIONA
+       Fundo claro · 3 passos numerados
+    ═══════════════════════════════ */
+    .c10 { background: var(--bg); justify-content: space-between; }
+    .c10 .logo { color: var(--fg); opacity: .3; }
+    .c10 .mid { flex:1; display:flex; flex-direction:column; justify-content:center; padding:3cqw 0; }
+    .c10 .intro { font-family:var(--sans); font-size:2.8cqw; letter-spacing:.1em; text-transform:uppercase; color:var(--mid); margin-bottom:4cqw; }
+    .c10 .step { display:flex; gap:3cqw; align-items:flex-start; padding:3.5cqw 0; border-bottom:1px solid var(--brd); }
+    .c10 .step:last-child { border-bottom:none; }
+    .c10 .sn { font-family:var(--mono); font-size:2.8cqw; font-weight:700; color:var(--mid); opacity:.6; flex-shrink:0; padding-top:.3cqw; min-width:6cqw; }
+    .c10 .sc { display:flex; flex-direction:column; gap:.8cqw; }
+    .c10 .st { font-family:var(--sans); font-size:3.8cqw; font-weight:600; color:var(--fg); line-height:1.3; }
+    .c10 .sd { font-family:var(--sans); font-size:3.2cqw; color:var(--mid); line-height:1.4; }
+    .c10 .foot { display:flex; justify-content:space-between; align-items:baseline; border-top:1.5px solid rgba(8,5,3,.15); padding-top:3.5cqw; margin-top:1cqw; }
+    .c10 .fp { font-family:var(--mono); font-size:5.5cqw; font-weight:700; color:var(--fg); }
+    .c10 .fc { font-family:var(--mono); font-size:2.2cqw; letter-spacing:.08em; text-transform:uppercase; color:var(--mid); text-align:right; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header class="ph">
+    <div class="ey">EasySite — Campanha WhatsApp</div>
+    <h1>10 Criativos Estáticos</h1>
+    <p class="ds">Copy: Copy Squad · Layout: Design Squad · Formato 4:5 (1080×1350px) · Botão WhatsApp configurado na Meta.</p>
+    <div class="pills">
+      <span class="pill">Formato: <strong>4:5 · 1080×1350px</strong></span>
+      <span class="pill">Campanha: <strong>Mensagem WhatsApp</strong></span>
+      <span class="pill">Botão: <strong>configurado na Meta</strong></span>
+    </div>
+  </header>
+
+  <hr>
+
+  <div class="grid">
+
+    <!-- C1 — DOR PRIMÁRIA -->
+    <div class="card">
+      <div class="cm"><span class="cn">01</span><span class="ct">Dor Primária</span><span class="tag td">DOR</span></div>
+      <div class="frame">
+        <div class="c c1">
+          <span class="logo">EasySite</span>
+          <div class="mid">
+            <h2 class="hl">Seu negócio não aparece no Google?</h2>
+            <p class="sub">Sem site, você só existe pra quem já te conhece.</p>
+          </div>
+          <div class="cta-zone">
+            <p class="cta-text">MANDA MENSAGEM AGORA NO WHATSAPP</p>
+          </div>
+        </div>
+      </div>
+      <p class="note"><strong>Funil:</strong> Topo, cold audience</p>
+    </div>
+
+    <!-- C2 — OFERTA DIRETA -->
+    <div class="card">
+      <div class="cm"><span class="cn">02</span><span class="ct">Oferta Direta</span><span class="tag to">OFERTA</span></div>
+      <div class="frame">
+        <div class="c c2">
+          <span class="logo">EasySite</span>
+          <div class="mid">
+            <p class="pre">Site profissional por</p>
+            <p class="price">R$397</p>
+            <p class="post">Sem mensalidade, sem contrato, sem complicação.</p>
+          </div>
+          <div class="cta-zone">
+            <p class="cta-text">FALA COM A GENTE NO WHATSAPP HOJE</p>
+          </div>
+        </div>
+      </div>
+      <p class="note"><strong>Funil:</strong> Fundo, remarketing</p>
+    </div>
+
+    <!-- C3 — NICHO SALÃO -->
+    <div class="card">
+      <div class="cm"><span class="cn">03</span><span class="ct">Nicho — Salão</span><span class="tag tn">NICHO</span></div>
+      <div class="frame">
+        <div class="c c-nicho-light">
+          <span class="logo">EasySite</span>
+          <div class="mid">
+            <span class="tag-pill">SALÃO DE BELEZA</span>
+            <h2 class="hl">Seu salão merece site. Não post no Instagram.</h2>
+            <div class="price-row">
+              <span class="price">R$397</span>
+              <span class="prazo">· Pronto em 24h</span>
+            </div>
+          </div>
+          <div class="cta-zone">
+            <p class="cta-text">QUERO MEU SITE EM 24H VIA WHATSAPP</p>
+          </div>
+        </div>
+      </div>
+      <p class="note"><strong>Funil:</strong> Topo, interesse beleza</p>
+    </div>
+
+    <!-- C4 — NICHO BARBEARIA -->
+    <div class="card">
+      <div class="cm"><span class="cn">04</span><span class="ct">Nicho — Barbearia</span><span class="tag tn">NICHO</span></div>
+      <div class="frame">
+        <div class="c c-nicho-dark">
+          <span class="logo">EasySite</span>
+          <div class="mid">
+            <span class="tag-pill">BARBEARIA</span>
+            <h2 class="hl">Barbearia sem site perde cliente toda semana.</h2>
+            <div class="price-row">
+              <span class="price">R$397</span>
+              <span class="prazo">· Pronto em 24h</span>
+            </div>
+          </div>
+          <div class="cta-zone">
+            <p class="cta-text">CRIA MEU SITE AGORA PELO WHATSAPP</p>
+          </div>
+        </div>
+      </div>
+      <p class="note"><strong>Funil:</strong> Topo, interesse barbearia</p>
+    </div>
+
+    <!-- C5 — NICHO RESTAURANTE -->
+    <div class="card">
+      <div class="cm"><span class="cn">05</span><span class="ct">Nicho — Restaurante</span><span class="tag tn">NICHO</span></div>
+      <div class="frame">
+        <div class="c c-nicho-light">
+          <span class="logo">EasySite</span>
+          <div class="mid">
+            <span class="tag-pill">RESTAURANTE</span>
+            <h2 class="hl">Cardápio, endereço e horário num clique.</h2>
+            <div class="price-row">
+              <span class="price">R$397</span>
+              <span class="prazo">· Pronto em 24h</span>
+            </div>
+          </div>
+          <div class="cta-zone">
+            <p class="cta-text">FALA COM A EASYSITE NO WHATSAPP</p>
+          </div>
+        </div>
+      </div>
+      <p class="note"><strong>Funil:</strong> Topo, interesse gastronomia</p>
+    </div>
+
+    <!-- C6 — ANTES E DEPOIS -->
+    <div class="card">
+      <div class="cm"><span class="cn">06</span><span class="ct">Antes e Depois</span><span class="tag tp">PROVA</span></div>
+      <div class="frame">
+        <div class="c6-wrap">
+          <div class="c6-split">
+            <div class="c6-side c6-left">
+              <div class="c6-lbl" style="color:var(--mid);">SEM SITE</div>
+              <div class="c6-item" style="color:var(--mid);"><span style="opacity:.4;flex-shrink:0;">✕</span>Clientes não te acham no Google</div>
+              <div class="c6-item" style="color:var(--mid);"><span style="opacity:.4;flex-shrink:0;">✕</span>Passa credibilidade zero</div>
+              <div class="c6-item" style="color:var(--mid);"><span style="opacity:.4;flex-shrink:0;">✕</span>Depende 100% do Instagram</div>
+              <div class="c6-item" style="color:var(--mid);"><span style="opacity:.4;flex-shrink:0;">✕</span>Pede indicação no boca a boca</div>
+            </div>
+            <div class="c6-side c6-right">
+              <div class="c6-lbl" style="color:rgba(250,250,249,.45);">COM EASYSITE</div>
+              <div class="c6-item" style="color:var(--bg);"><span style="color:rgba(200,240,96,.8);flex-shrink:0;">✓</span>Aparece nas buscas do Google</div>
+              <div class="c6-item" style="color:var(--bg);"><span style="color:rgba(200,240,96,.8);flex-shrink:0;">✓</span>Site profissional em 24h</div>
+              <div class="c6-item" style="color:var(--bg);"><span style="color:rgba(200,240,96,.8);flex-shrink:0;">✓</span>Presença digital própria</div>
+              <div class="c6-item" style="color:var(--bg);"><span style="color:rgba(200,240,96,.8);flex-shrink:0;">✓</span>Vende por você o dia todo</div>
+            </div>
+          </div>
+          <div class="c6-foot">R$397 · SEM MENSALIDADE · PRONTO AMANHÃ</div>
+        </div>
+      </div>
+      <p class="note"><strong>Funil:</strong> Topo e fundo</p>
+    </div>
+
+    <!-- C7 — PROVA SOCIAL -->
+    <div class="card">
+      <div class="cm"><span class="cn">07</span><span class="ct">Prova Social</span><span class="tag tp">PROVA</span></div>
+      <div class="frame">
+        <div class="c c7">
+          <span class="logo">EasySite</span>
+          <div class="mid">
+            <div class="aspas">"</div>
+            <p class="quote">Triplicou os pedidos pelo Google em 2 meses.</p>
+            <div>
+              <p class="author">Márcia S.</p>
+              <p class="biz">Salão de beleza · 7 anos de negócio</p>
+              <span class="badge">SITE NO AR EM 24H</span>
+            </div>
+          </div>
+          <div class="cta-zone">
+            <p class="cta-text">QUERO O MESMO RESULTADO, FALA COMIGO</p>
+          </div>
+        </div>
+      </div>
+      <p class="note"><strong>Funil:</strong> Meio, remarketing · substituir com depoimento real</p>
+    </div>
+
+    <!-- C8 — ÂNCORA DE PREÇO -->
+    <div class="card">
+      <div class="cm"><span class="cn">08</span><span class="ct">Âncora de Preço</span><span class="tag tob">OBJEÇÃO</span></div>
+      <div class="frame">
+        <div class="c c8">
+          <span class="logo">EasySite</span>
+          <div class="mid">
+            <p class="lbl old-lbl">Agência tradicional</p>
+            <p class="old-price">R$5.000</p>
+            <div class="divider"></div>
+            <p class="lbl new-lbl">EasySite</p>
+            <p class="new-price">R$397</p>
+          </div>
+          <div class="cta-zone">
+            <p class="cta-text">GARANTE O SEU PREÇO PELO WHATSAPP</p>
+          </div>
+        </div>
+      </div>
+      <p class="note"><strong>Funil:</strong> Fundo, objeção de preço</p>
+    </div>
+
+    <!-- C9 — OBJEÇÃO TECNOLOGIA -->
+    <div class="card">
+      <div class="cm"><span class="cn">09</span><span class="ct">Objeção Tecnologia</span><span class="tag tob">OBJEÇÃO</span></div>
+      <div class="frame">
+        <div class="c c9">
+          <span class="logo">EasySite</span>
+          <div class="mid">
+            <h2 class="hl">Você não precisa entender de <em>tecnologia.</em></h2>
+            <p class="sub">A gente faz tudo. Você só aprova e usa.</p>
+          </div>
+          <div class="cta-zone">
+            <p class="cta-text">É SIMPLES ASSIM. FALA NO WHATSAPP.</p>
+          </div>
+        </div>
+      </div>
+      <p class="note"><strong>Funil:</strong> Meio, objeção de complexidade</p>
+    </div>
+
+    <!-- C10 — COMO FUNCIONA -->
+    <div class="card">
+      <div class="cm"><span class="cn">10</span><span class="ct">Como ter seu site em 24h</span><span class="tag to">PROCESSO</span></div>
+      <div class="frame">
+        <div class="c c10">
+          <span class="logo">EasySite</span>
+          <div class="mid">
+            <p class="intro">Ter seu site em 24h tem só 3 passos</p>
+            <div class="step">
+              <span class="sn">01</span>
+              <div class="sc">
+                <p class="st">Manda uma mensagem no WhatsApp</p>
+                <p class="sd">Conta qual é o seu negócio. Sem formulário, sem reunião.</p>
+              </div>
+            </div>
+            <div class="step">
+              <span class="sn">02</span>
+              <div class="sc">
+                <p class="st">A equipe monta e ajusta tudo pra você</p>
+                <p class="sd">Você vê o site antes de publicar. Ajuste sem custo extra.</p>
+              </div>
+            </div>
+            <div class="step">
+              <span class="sn">03</span>
+              <div class="sc">
+                <p class="st">Aprova e seu site vai ao ar ainda hoje</p>
+                <p class="sd">Seu negócio aparece no Google. Em menos de 24 horas.</p>
+              </div>
+            </div>
+            <div class="foot">
+              <span class="fp">R$397</span>
+              <span class="fc">COMEÇA AGORA<br>PELO WHATSAPP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="note"><strong>Funil:</strong> Meio, objeção de processo</p>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

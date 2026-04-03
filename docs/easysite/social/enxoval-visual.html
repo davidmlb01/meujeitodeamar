@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EasySite — Enxoval Visual Instagram</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --es-bg: #FAFAF9;
+      --es-fg: #080503;
+      --es-muted: #ECEBE7;
+      --es-muted-fg: #5E534A;
+      --es-card: #FFFFFF;
+      --es-border: #DAD7D0;
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: 'Instrument Sans', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+
+      /* UI do documento */
+      --ui-bg: #0e0e0e;
+      --ui-card: #161616;
+      --ui-border: rgba(255,255,255,0.08);
+      --ui-text: #f0f0f0;
+      --ui-muted: #888;
+      --ui-faint: #444;
+      --ui-accent: #c8f060;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--ui-bg);
+      color: var(--ui-text);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .layout { display: flex; min-height: 100vh; }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 220px;
+      min-height: 100vh;
+      background: #0a0a0a;
+      border-right: 1px solid var(--ui-border);
+      padding: 32px 20px;
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      overflow-y: auto;
+    }
+    .sidebar-logo { font-family: var(--serif); font-size: 18px; color: var(--ui-text); margin-bottom: 4px; }
+    .sidebar-sub { font-family: var(--mono); font-size: 10px; color: var(--ui-muted); letter-spacing: 0.08em; margin-bottom: 32px; }
+    .sidebar nav { display: flex; flex-direction: column; gap: 2px; }
+    .sidebar nav a {
+      font-size: 13px; color: var(--ui-muted); text-decoration: none;
+      padding: 6px 10px; border-radius: 6px; transition: all 0.15s;
+    }
+    .sidebar nav a:hover { color: var(--ui-text); background: rgba(255,255,255,0.04); }
+    .sidebar nav a.active { color: var(--ui-accent); background: rgba(200,240,96,0.06); }
+    .sidebar-section {
+      font-family: var(--mono); font-size: 9px; color: var(--ui-faint);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 16px 10px 6px;
+    }
+
+    /* MAIN */
+    .main { margin-left: 220px; padding: 48px 56px; max-width: 1200px; }
+
+    .page-header { margin-bottom: 56px; }
+    .page-eyebrow { font-family: var(--mono); font-size: 11px; color: var(--ui-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+    .page-title { font-family: var(--serif); font-size: 40px; color: var(--ui-text); margin-bottom: 8px; }
+    .page-desc { font-size: 15px; color: var(--ui-muted); }
+
+    hr { border: none; border-top: 1px solid var(--ui-border); margin: 48px 0; }
+
+    .section { margin-bottom: 0; }
+    .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 32px; }
+    .section-number { font-family: var(--mono); font-size: 11px; color: var(--ui-muted); }
+    .section-header h2 { font-family: var(--serif); font-size: 26px; color: var(--ui-text); }
+    .section-header p { font-size: 13px; color: var(--ui-muted); margin-top: 8px; }
+
+    h3 { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--ui-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 16px; }
+
+    .label { font-family: var(--mono); font-size: 10px; color: var(--ui-faint); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+
+    /* ASSET GRID */
+    .asset-grid { display: flex; gap: 24px; flex-wrap: wrap; }
+    .asset-frame {
+      background: var(--ui-card);
+      border: 1px solid var(--ui-border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .asset-label {
+      padding: 10px 14px;
+      border-top: 1px solid var(--ui-border);
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--ui-muted);
+      text-align: center;
+    }
+
+    /* ===================== */
+    /* ASSETS — ÍCONE PERFIL */
+    /* ===================== */
+    .profile-icon {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .profile-icon-light {
+      background: var(--es-fg);
+    }
+    .profile-icon-dark {
+      background: var(--es-bg);
+      border: 2px solid var(--es-fg);
+    }
+    .profile-icon-text {
+      font-family: var(--serif);
+      font-size: 42px;
+      line-height: 1;
+    }
+    .profile-icon-sub {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ===================== */
+    /* HIGHLIGHT COVERS       */
+    /* ===================== */
+    .highlight-cover {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .highlight-icon { font-size: 32px; line-height: 1; }
+    .highlight-label-text {
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    /* ======================== */
+    /* POST TEMPLATES           */
+    /* ======================== */
+    .post {
+      width: 320px;
+      height: 320px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* Tipo A — Oferta Direta */
+    .post-oferta {
+      background: var(--es-fg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      text-align: center;
+      gap: 20px;
+    }
+    .post-oferta-badge {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--es-muted-fg);
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+    .post-oferta-headline {
+      font-family: var(--serif);
+      font-size: 22px;
+      color: var(--es-bg);
+      line-height: 1.3;
+    }
+    .post-oferta-price {
+      font-family: var(--mono);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--es-bg);
+    }
+    .post-oferta-cta {
+      background: var(--es-bg);
+      color: var(--es-fg);
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 24px;
+      border-radius: 6px;
+    }
+    .post-oferta-sub {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: rgba(250,250,249,0.4);
+      letter-spacing: 0.08em;
+    }
+
+    /* Tipo B — Capa de Carrossel */
+    .post-capa {
+      background: var(--es-bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 28px;
+      position: relative;
+    }
+    .post-capa::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(to bottom, transparent 30%, rgba(8,5,3,0.06) 100%);
+    }
+    .post-capa-number {
+      font-family: var(--mono);
+      font-size: 72px;
+      font-weight: 700;
+      color: rgba(8,5,3,0.06);
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      line-height: 1;
+    }
+    .post-capa-tag {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--es-muted-fg);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .post-capa-headline {
+      font-family: var(--serif);
+      font-size: 20px;
+      color: var(--es-fg);
+      line-height: 1.3;
+      position: relative;
+    }
+    .post-capa-arrow {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--es-fg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--es-bg);
+      font-size: 14px;
+    }
+    .post-capa-logo {
+      font-family: var(--serif);
+      font-size: 11px;
+      color: var(--es-muted-fg);
+      position: absolute;
+      top: 20px;
+      left: 24px;
+    }
+
+    /* Tipo C — Depoimento */
+    .post-depoimento {
+      background: var(--es-bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 28px;
+      gap: 12px;
+      border: 2px solid var(--es-fg);
+    }
+    .post-depo-aspas {
+      font-family: var(--serif);
+      font-size: 52px;
+      color: var(--es-fg);
+      line-height: 0.6;
+      opacity: 0.15;
+    }
+    .post-depo-text {
+      font-family: var(--serif);
+      font-size: 14px;
+      color: var(--es-fg);
+      line-height: 1.6;
+      font-style: italic;
+    }
+    .post-depo-author {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--es-fg);
+      margin-top: 4px;
+    }
+    .post-depo-business {
+      font-family: var(--sans);
+      font-size: 10px;
+      color: var(--es-muted-fg);
+    }
+    .post-depo-badge {
+      display: inline-block;
+      background: var(--es-fg);
+      color: var(--es-bg);
+      font-family: var(--mono);
+      font-size: 9px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-top: 6px;
+    }
+
+    /* Tipo D — Antes e Depois */
+    .post-before-after {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 100%;
+    }
+    .post-ba-left {
+      background: var(--es-muted);
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1.5px solid var(--es-fg);
+    }
+    .post-ba-right {
+      background: var(--es-fg);
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .post-ba-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .post-ba-item {
+      font-family: var(--sans);
+      font-size: 11px;
+      line-height: 2;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .post-ba-footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--es-fg);
+      color: var(--es-bg);
+      font-family: var(--mono);
+      font-size: 10px;
+      text-align: center;
+      padding: 8px;
+      letter-spacing: 0.06em;
+    }
+
+    /* Tipo E — Slide interno de carrossel */
+    .post-slide {
+      background: var(--es-bg);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+    }
+    .post-slide-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--es-muted-fg);
+    }
+    .post-slide-title {
+      font-family: var(--serif);
+      font-size: 18px;
+      color: var(--es-fg);
+      line-height: 1.3;
+    }
+    .post-slide-body {
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--es-muted-fg);
+      line-height: 1.7;
+    }
+    .post-slide-divider {
+      width: 32px;
+      height: 1.5px;
+      background: var(--es-fg);
+      opacity: 0.2;
+    }
+    .post-slide-logo {
+      font-family: var(--serif);
+      font-size: 10px;
+      color: rgba(8,5,3,0.25);
+      position: absolute;
+      bottom: 16px;
+      right: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">EasySite</div>
+  <div class="sidebar-sub">ENXOVAL VISUAL v1.0</div>
+  <nav>
+    <span class="sidebar-section">Identidade</span>
+    <a href="#perfil">Ícone de Perfil</a>
+    <a href="#highlights">Highlight Covers</a>
+
+    <span class="sidebar-section">Posts</span>
+    <a href="#tipo-a">Tipo A — Oferta</a>
+    <a href="#tipo-b">Tipo B — Capa</a>
+    <a href="#tipo-c">Tipo C — Depoimento</a>
+    <a href="#tipo-d">Tipo D — Antes/Depois</a>
+    <a href="#tipo-e">Tipo E — Slide</a>
+
+    <span class="sidebar-section">Referência</span>
+    <a href="#grid">Grid e Espaçamento</a>
+    <a href="#regras">Regras</a>
+  </nav>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+  <header class="page-header">
+    <div class="page-eyebrow">EasySite — Instagram</div>
+    <h1 class="page-title">Enxoval Visual</h1>
+    <p class="page-desc">Ícone de perfil, highlight covers e templates de post com layout real. Produzir no Canva usando estas especificações.</p>
+  </header>
+
+  <!-- ÍCONE DE PERFIL -->
+  <section class="section" id="perfil">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <h2>Ícone de Perfil</h2>
+    </div>
+    <p style="color:var(--ui-muted);font-size:13px;margin-bottom:28px;">Dimensão final: 320×320px. Área segura circular. Duas versões obrigatórias.</p>
+
+    <div class="asset-grid">
+
+      <!-- Versão Principal -->
+      <div>
+        <div class="label">Versão Principal (fundo escuro)</div>
+        <div class="asset-frame" style="padding:32px;display:inline-flex;">
+          <div class="profile-icon profile-icon-light">
+            <span class="profile-icon-text" style="color:#FAFAF9;">ES</span>
+            <span class="profile-icon-sub" style="color:rgba(250,250,249,0.5);">easysite</span>
+          </div>
+        </div>
+        <div style="margin-top:12px;font-size:12px;color:var(--ui-muted);max-width:200px;line-height:1.6;">
+          Fundo <code style="font-family:var(--mono);color:var(--ui-accent);">#080503</code><br>
+          Texto "ES" — Instrument Serif, 42px, <code style="font-family:var(--mono);color:var(--ui-accent);">#FAFAF9</code><br>
+          Label "easysite" — JetBrains Mono, 9px, 50% opacidade
+        </div>
+      </div>
+
+      <!-- Versão Alternativa -->
+      <div>
+        <div class="label">Versão Alternativa (fundo claro)</div>
+        <div class="asset-frame" style="padding:32px;display:inline-flex;background:var(--es-muted);">
+          <div class="profile-icon profile-icon-dark">
+            <span class="profile-icon-text" style="color:#080503;">ES</span>
+            <span class="profile-icon-sub" style="color:rgba(8,5,3,0.4);">easysite</span>
+          </div>
+        </div>
+        <div style="margin-top:12px;font-size:12px;color:var(--ui-muted);max-width:200px;line-height:1.6;">
+          Fundo <code style="font-family:var(--mono);color:var(--ui-accent);">#FAFAF9</code><br>
+          Borda 2px <code style="font-family:var(--mono);color:var(--ui-accent);">#080503</code><br>
+          Texto "ES" — Instrument Serif, 42px, <code style="font-family:var(--mono);color:var(--ui-accent);">#080503</code>
+        </div>
+      </div>
+
+      <!-- No Instagram -->
+      <div>
+        <div class="label">Preview Instagram (circular)</div>
+        <div class="asset-frame" style="padding:24px;display:inline-flex;flex-direction:column;align-items:center;gap:8px;">
+          <div style="width:80px;height:80px;border-radius:50%;background:#080503;display:flex;align-items:center;justify-content:center;flex-direction:column;border:2px solid rgba(200,240,96,0.4);">
+            <span style="font-family:var(--serif);font-size:20px;color:#FAFAF9;line-height:1;">ES</span>
+            <span style="font-family:var(--mono);font-size:5px;color:rgba(250,250,249,0.5);letter-spacing:0.1em;">easysite</span>
+          </div>
+          <span style="font-size:10px;color:var(--ui-muted);">@easysitebr</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- HIGHLIGHT COVERS -->
+  <section class="section" id="highlights">
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <h2>Highlight Covers</h2>
+    </div>
+    <p style="color:var(--ui-muted);font-size:13px;margin-bottom:28px;">5 covers para os destaques do perfil. Dimensão de design: 1080×1920px. Ícone centralizado na área circular superior (300×300px). Fundo consistente com a paleta da marca.</p>
+
+    <div class="asset-grid" style="align-items:flex-start;">
+
+      <!-- Como Funciona -->
+      <div>
+        <div class="label">01 — Como Funciona</div>
+        <div class="asset-frame" style="padding:20px;display:inline-flex;">
+          <div class="highlight-cover" style="background:#080503;">
+            <div class="highlight-icon">⚡</div>
+            <div class="highlight-label-text" style="color:rgba(250,250,249,0.6);">Como<br>Funciona</div>
+          </div>
+        </div>
+        <div style="margin-top:10px;font-size:11px;color:var(--ui-muted);max-width:160px;line-height:1.6;">
+          Fundo: <code style="font-family:var(--mono);color:var(--ui-accent);">#080503</code><br>
+          Ícone: raio (SVG) — <code style="font-family:var(--mono);color:var(--ui-accent);">#FAFAF9</code><br>
+          Label: JetBrains Mono, 50% opacidade
+        </div>
+      </div>
+
+      <!-- Portfólio -->
+      <div>
+        <div class="label">02 — Portfólio</div>
+        <div class="asset-frame" style="padding:20px;display:inline-flex;">
+          <div class="highlight-cover" style="background:#FAFAF9;border:2px solid #DAD7D0;">
+            <div class="highlight-icon" style="font-size:28px;">🖥</div>
+            <div class="highlight-label-text" style="color:#5E534A;">Portfólio</div>
+          </div>
+        </div>
+        <div style="margin-top:10px;font-size:11px;color:var(--ui-muted);max-width:160px;line-height:1.6;">
+          Fundo: <code style="font-family:var(--mono);color:var(--ui-accent);">#FAFAF9</code><br>
+          Ícone: monitor (SVG) — <code style="font-family:var(--mono);color:var(--ui-accent);">#080503</code><br>
+          Label: JetBrains Mono, <code style="font-family:var(--mono);color:var(--ui-accent);">#5E534A</code>
+        </div>
+      </div>
+
+      <!-- Depoimentos -->
+      <div>
+        <div class="label">03 — Depoimentos</div>
+        <div class="asset-frame" style="padding:20px;display:inline-flex;">
+          <div class="highlight-cover" style="background:#080503;">
+            <div class="highlight-icon" style="color:#FAFAF9;font-size:30px;font-family:'Instrument Serif',serif;line-height:0.8;">"</div>
+            <div class="highlight-label-text" style="color:rgba(250,250,249,0.6);">Depoimentos</div>
+          </div>
+        </div>
+        <div style="margin-top:10px;font-size:11px;color:var(--ui-muted);max-width:160px;line-height:1.6;">
+          Fundo: <code style="font-family:var(--mono);color:var(--ui-accent);">#080503</code><br>
+          Ícone: aspas Instrument Serif — <code style="font-family:var(--mono);color:var(--ui-accent);">#FAFAF9</code><br>
+          Label: JetBrains Mono, 60% opacidade
+        </div>
+      </div>
+
+      <!-- Preço -->
+      <div>
+        <div class="label">04 — Preço</div>
+        <div class="asset-frame" style="padding:20px;display:inline-flex;">
+          <div class="highlight-cover" style="background:#ECEBE7;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;color:#080503;line-height:1;text-align:center;">R$<br>397</div>
+            <div class="highlight-label-text" style="color:#5E534A;">Preço</div>
+          </div>
+        </div>
+        <div style="margin-top:10px;font-size:11px;color:var(--ui-muted);max-width:160px;line-height:1.6;">
+          Fundo: <code style="font-family:var(--mono);color:var(--ui-accent);">#ECEBE7</code><br>
+          Número: JetBrains Mono Bold — <code style="font-family:var(--mono);color:var(--ui-accent);">#080503</code><br>
+          Label: JetBrains Mono, <code style="font-family:var(--mono);color:var(--ui-accent);">#5E534A</code>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div>
+        <div class="label">05 — FAQ</div>
+        <div class="asset-frame" style="padding:20px;display:inline-flex;">
+          <div class="highlight-cover" style="background:#FAFAF9;border:2px solid #DAD7D0;">
+            <div style="font-family:'Instrument Serif',serif;font-size:36px;color:#080503;line-height:1;">?</div>
+            <div class="highlight-label-text" style="color:#5E534A;">FAQ</div>
+          </div>
+        </div>
+        <div style="margin-top:10px;font-size:11px;color:var(--ui-muted);max-width:160px;line-height:1.6;">
+          Fundo: <code style="font-family:var(--mono);color:var(--ui-accent);">#FAFAF9</code><br>
+          Ícone: "?" Instrument Serif — <code style="font-family:var(--mono);color:var(--ui-accent);">#080503</code><br>
+          Label: JetBrains Mono, <code style="font-family:var(--mono);color:var(--ui-accent);">#5E534A</code>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- TIPO A — OFERTA DIRETA -->
+  <section class="section" id="tipo-a">
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <h2>Tipo A — Oferta Direta</h2>
+    </div>
+    <p style="color:var(--ui-muted);font-size:13px;margin-bottom:28px;">Posts de venda direta. Fundo escuro, texto claro. Hierarquia: badge nicho → headline → preço → CTA. Usar nos Posts 6 e 12.</p>
+
+    <div class="asset-grid">
+      <div>
+        <div class="label">Post 6 — Nicho Salão</div>
+        <div class="asset-frame">
+          <div class="post post-oferta">
+            <span class="post-oferta-badge">SALÃO DE BELEZA</span>
+            <p class="post-oferta-headline">Seu salão não tem site?<br>Em 24 horas isso muda.</p>
+            <p class="post-oferta-price">R$397</p>
+            <span class="post-oferta-cta">Quero meu site</span>
+            <span class="post-oferta-sub">TUDO INCLUÍDO · GARANTIA DE SATISFAÇÃO</span>
+          </div>
+          <div class="asset-label">1080×1080px · Fundo #080503</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="label">Variação — Barbearia</div>
+        <div class="asset-frame">
+          <div class="post post-oferta">
+            <span class="post-oferta-badge">BARBEARIA</span>
+            <p class="post-oferta-headline">Sua barbearia não tem site?<br>Em 24 horas isso muda.</p>
+            <p class="post-oferta-price">R$397</p>
+            <span class="post-oferta-cta">Quero meu site</span>
+            <span class="post-oferta-sub">TUDO INCLUÍDO · GARANTIA DE SATISFAÇÃO</span>
+          </div>
+          <div class="asset-label">Trocar badge pelo nicho</div>
+        </div>
+      </div>
+
+      <div style="background:var(--ui-card);border:1px solid var(--ui-border);border-radius:12px;padding:20px;max-width:260px;align-self:flex-start;">
+        <div class="label" style="margin-bottom:16px;">Especificação Tipo A</div>
+        <div style="font-size:12px;color:var(--ui-muted);line-height:2;">
+          <strong style="color:var(--ui-text);">Fundo:</strong> #080503<br>
+          <strong style="color:var(--ui-text);">Badge:</strong> JetBrains Mono 10px, borda 1px rgba(255,255,255,0.15), borderRadius 20px<br>
+          <strong style="color:var(--ui-text);">Headline:</strong> Instrument Serif 22px, #FAFAF9, line-height 1.3<br>
+          <strong style="color:var(--ui-text);">Preço:</strong> JetBrains Mono Bold 28px, #FAFAF9<br>
+          <strong style="color:var(--ui-text);">CTA:</strong> Instrument Sans SemiBold 13px, bg #FAFAF9, fg #080503, padding 10px 24px<br>
+          <strong style="color:var(--ui-text);">Rodapé:</strong> JetBrains Mono 9px, rgba(250,250,249,0.4), spacing 0.08em<br>
+          <strong style="color:var(--ui-text);">Alinhamento:</strong> Centro vertical e horizontal<br>
+          <strong style="color:var(--ui-text);">Margem:</strong> 32px interna
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- TIPO B — CAPA DE CARROSSEL -->
+  <section class="section" id="tipo-b">
+    <div class="section-header">
+      <span class="section-number">04</span>
+      <h2>Tipo B — Capa de Carrossel</h2>
+    </div>
+    <p style="color:var(--ui-muted);font-size:13px;margin-bottom:28px;">Slide 1 de todos os carrosseis. Fundo claro, texto escuro. Indicador de "arraste" no canto inferior direito. Número decorativo no canto superior direito.</p>
+
+    <div class="asset-grid">
+      <div>
+        <div class="label">Post 1 — Apresentação</div>
+        <div class="asset-frame">
+          <div class="post post-capa">
+            <span class="post-capa-logo">EasySite</span>
+            <div class="post-capa-number">01</div>
+            <span class="post-capa-tag">GATILHO DE ENTRADA</span>
+            <h2 class="post-capa-headline">Seu negócio tá invisível no Google?</h2>
+            <div class="post-capa-arrow">›</div>
+          </div>
+          <div class="asset-label">1080×1080px · Fundo #FAFAF9</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="label">Post 2 — Educação</div>
+        <div class="asset-frame">
+          <div class="post post-capa">
+            <span class="post-capa-logo">EasySite</span>
+            <div class="post-capa-number">02</div>
+            <span class="post-capa-tag">EDUCAÇÃO RÁPIDA</span>
+            <h2 class="post-capa-headline">3 clientes que você perdeu essa semana sem saber</h2>
+            <div class="post-capa-arrow">›</div>
+          </div>
+          <div class="asset-label">Pilar altera apenas o tag</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="label">Post 8 — O que o cliente faz</div>
+        <div class="asset-frame">
+          <div class="post post-capa">
+            <span class="post-capa-logo">EasySite</span>
+            <div class="post-capa-number">08</div>
+            <span class="post-capa-tag">EDUCAÇÃO RÁPIDA</span>
+            <h2 class="post-capa-headline">O que o seu cliente faz antes de ligar pra você</h2>
+            <div class="post-capa-arrow">›</div>
+          </div>
+          <div class="asset-label">Mesma estrutura para todos</div>
+        </div>
+      </div>
+
+      <div style="background:var(--ui-card);border:1px solid var(--ui-border);border-radius:12px;padding:20px;max-width:260px;align-self:flex-start;">
+        <div class="label" style="margin-bottom:16px;">Especificação Tipo B</div>
+        <div style="font-size:12px;color:var(--ui-muted);line-height:2;">
+          <strong style="color:var(--ui-text);">Fundo:</strong> #FAFAF9<br>
+          <strong style="color:var(--ui-text);">Logo:</strong> "EasySite" Instrument Serif 11px, topo esquerdo, #5E534A<br>
+          <strong style="color:var(--ui-text);">Número decorativo:</strong> JetBrains Mono Bold 72px, #080503 @ 6% opacidade, topo direito<br>
+          <strong style="color:var(--ui-text);">Tag de pilar:</strong> JetBrains Mono 9px, #5E534A, spacing 0.1em, uppercase<br>
+          <strong style="color:var(--ui-text);">Headline:</strong> Instrument Serif 20px, #080503, line-height 1.3<br>
+          <strong style="color:var(--ui-text);">Seta:</strong> círculo 28px, bg #080503, texto #FAFAF9, canto inferior direito<br>
+          <strong style="color:var(--ui-text);">Posição texto:</strong> alinhado à base, padding 28px
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- TIPO C — DEPOIMENTO -->
+  <section class="section" id="tipo-c">
+    <div class="section-header">
+      <span class="section-number">05</span>
+      <h2>Tipo C — Depoimento</h2>
+    </div>
+    <p style="color:var(--ui-muted);font-size:13px;margin-bottom:28px;">Posts de prova social. Fundo claro, borda escura. Aspas decorativas, depoimento em Instrument Serif itálico, badge de resultado. Usar nos Posts 7 e 11.</p>
+
+    <div class="asset-grid">
+      <div>
+        <div class="label">Post 7 — Depoimento 1</div>
+        <div class="asset-frame">
+          <div class="post post-depoimento">
+            <div class="post-depo-aspas">"</div>
+            <p class="post-depo-text">Achei que ia ser complicado. Em 24 horas o site estava no ar e na semana seguinte já tinha cliente novo que me achou no Google.</p>
+            <div>
+              <p class="post-depo-author">[Nome do cliente]</p>
+              <p class="post-depo-business">[Nome do negócio], [cidade]</p>
+              <span class="post-depo-badge">Site pronto em [X]h</span>
+            </div>
+          </div>
+          <div class="asset-label">1080×1080px · Borda 2px #080503</div>
+        </div>
+      </div>
+
+      <div style="background:var(--ui-card);border:1px solid var(--ui-border);border-radius:12px;padding:20px;max-width:260px;align-self:flex-start;">
+        <div class="label" style="margin-bottom:16px;">Especificação Tipo C</div>
+        <div style="font-size:12px;color:var(--ui-muted);line-height:2;">
+          <strong style="color:var(--ui-text);">Fundo:</strong> #FAFAF9<br>
+          <strong style="color:var(--ui-text);">Borda:</strong> 2px solid #080503<br>
+          <strong style="color:var(--ui-text);">Aspas:</strong> Instrument Serif 52px, #080503 @ 15% opacidade<br>
+          <strong style="color:var(--ui-text);">Depoimento:</strong> Instrument Serif 14px itálico, #080503, line-height 1.6<br>
+          <strong style="color:var(--ui-text);">Nome:</strong> Instrument Sans SemiBold 11px, #080503<br>
+          <strong style="color:var(--ui-text);">Negócio:</strong> Instrument Sans 10px, #5E534A<br>
+          <strong style="color:var(--ui-text);">Badge:</strong> JetBrains Mono 9px, bg #080503, fg #FAFAF9, borderRadius 20px<br>
+          <strong style="color:var(--ui-text);">Padding:</strong> 28px interno
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- TIPO D — ANTES E DEPOIS -->
+  <section class="section" id="tipo-d">
+    <div class="section-header">
+      <span class="section-number">06</span>
+      <h2>Tipo D — Antes e Depois</h2>
+    </div>
+    <p style="color:var(--ui-muted);font-size:13px;margin-bottom:28px;">Layout dividido ao meio. Lado esquerdo cinza/neutro (sem site), lado direito preto (com EasySite). Rodapé com preço e prazo. Usar no Post 12.</p>
+
+    <div class="asset-grid">
+      <div>
+        <div class="label">Post 12 — Comparação Direta</div>
+        <div class="asset-frame">
+          <div class="post" style="position:relative;">
+            <div class="post-before-after">
+              <div class="post-ba-left">
+                <div class="post-ba-label" style="color:#5E534A;">SEM SITE</div>
+                <div class="post-ba-item" style="color:#5E534A;"><span style="opacity:0.4;">✕</span> Invisível no Google</div>
+                <div class="post-ba-item" style="color:#5E534A;"><span style="opacity:0.4;">✕</span> Depende do Instagram</div>
+                <div class="post-ba-item" style="color:#5E534A;"><span style="opacity:0.4;">✕</span> Perde cliente</div>
+                <div class="post-ba-item" style="color:#5E534A;"><span style="opacity:0.4;">✕</span> Parece amador</div>
+              </div>
+              <div class="post-ba-right">
+                <div class="post-ba-label" style="color:rgba(250,250,249,0.5);">COM EASYSITE</div>
+                <div class="post-ba-item" style="color:#FAFAF9;"><span style="color:rgba(200,240,96,0.8);">✓</span> Aparece no Google</div>
+                <div class="post-ba-item" style="color:#FAFAF9;"><span style="color:rgba(200,240,96,0.8);">✓</span> Presença própria</div>
+                <div class="post-ba-item" style="color:#FAFAF9;"><span style="color:rgba(200,240,96,0.8);">✓</span> Cliente novo</div>
+                <div class="post-ba-item" style="color:#FAFAF9;"><span style="color:rgba(200,240,96,0.8);">✓</span> Parece profissional</div>
+              </div>
+            </div>
+            <div class="post-ba-footer">R$397 · PRONTO EM 24 HORAS · LINK NA BIO</div>
+          </div>
+          <div class="asset-label">1080×1080px · Divisão 50/50</div>
+        </div>
+      </div>
+
+      <div style="background:var(--ui-card);border:1px solid var(--ui-border);border-radius:12px;padding:20px;max-width:260px;align-self:flex-start;">
+        <div class="label" style="margin-bottom:16px;">Especificação Tipo D</div>
+        <div style="font-size:12px;color:var(--ui-muted);line-height:2;">
+          <strong style="color:var(--ui-text);">Grid:</strong> 2 colunas, 50% / 50%<br>
+          <strong style="color:var(--ui-text);">Lado esquerdo:</strong> bg #ECEBE7, texto #5E534A<br>
+          <strong style="color:var(--ui-text);">Divisória:</strong> 1.5px solid #080503<br>
+          <strong style="color:var(--ui-text);">Lado direito:</strong> bg #080503, texto #FAFAF9<br>
+          <strong style="color:var(--ui-text);">Labels:</strong> JetBrains Mono 9px, uppercase<br>
+          <strong style="color:var(--ui-text);">Itens:</strong> Instrument Sans 11px, line-height 2<br>
+          <strong style="color:var(--ui-text);">✕ esquerda:</strong> 40% opacidade<br>
+          <strong style="color:var(--ui-text);">✓ direita:</strong> rgba(200,240,96,0.8)<br>
+          <strong style="color:var(--ui-text);">Rodapé:</strong> JetBrains Mono 10px, bg #080503, fg #FAFAF9, padding 8px, separador "·"
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- TIPO E — SLIDE INTERNO -->
+  <section class="section" id="tipo-e">
+    <div class="section-header">
+      <span class="section-number">07</span>
+      <h2>Tipo E — Slide Interno de Carrossel</h2>
+    </div>
+    <p style="color:var(--ui-muted);font-size:13px;margin-bottom:28px;">Slides 2 em diante de qualquer carrossel. Fundo claro, estrutura limpa: número do slide → título → corpo. Logo EasySite no canto inferior direito como marca d'água.</p>
+
+    <div class="asset-grid">
+      <div>
+        <div class="label">Slide informativo</div>
+        <div class="asset-frame">
+          <div class="post post-slide" style="position:relative;">
+            <span class="post-slide-num">02 / 05</span>
+            <div class="post-slide-divider"></div>
+            <h3 class="post-slide-title" style="font-family:var(--serif);font-size:18px;font-weight:400;color:var(--es-fg);line-height:1.3;text-transform:none;letter-spacing:0;">A maioria dos clientes pesquisa no Google antes de ir a um lugar.</h3>
+            <p class="post-slide-body">Se você não tem site, eles acham o concorrente. Todo dia.</p>
+            <span class="post-slide-logo">EasySite</span>
+          </div>
+          <div class="asset-label">1080×1080px · Fundo #FAFAF9</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="label">Slide CTA (último)</div>
+        <div class="asset-frame">
+          <div class="post" style="background:var(--es-fg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;gap:16px;text-align:center;position:relative;">
+            <p style="font-family:var(--serif);font-size:18px;color:var(--es-bg);line-height:1.4;">Seu negócio pode ser o próximo.</p>
+            <span style="font-family:var(--mono);font-size:20px;font-weight:700;color:var(--es-bg);">R$397</span>
+            <span style="background:var(--es-bg);color:var(--es-fg);font-family:var(--sans);font-size:12px;font-weight:600;padding:9px 22px;border-radius:6px;">Quero meu site agora</span>
+            <span style="font-family:var(--mono);font-size:9px;color:rgba(250,250,249,0.4);letter-spacing:0.08em;">24H · TUDO INCLUÍDO · LINK NA BIO</span>
+          </div>
+          <div class="asset-label">Último slide — sempre fundo escuro</div>
+        </div>
+      </div>
+
+      <div style="background:var(--ui-card);border:1px solid var(--ui-border);border-radius:12px;padding:20px;max-width:260px;align-self:flex-start;">
+        <div class="label" style="margin-bottom:16px;">Especificação Tipo E</div>
+        <div style="font-size:12px;color:var(--ui-muted);line-height:2;">
+          <strong style="color:var(--ui-text);">Fundo:</strong> #FAFAF9 (slides info) / #080503 (CTA)<br>
+          <strong style="color:var(--ui-text);">Numeração:</strong> JetBrains Mono 11px, #5E534A (ex: "02 / 05")<br>
+          <strong style="color:var(--ui-text);">Divisória:</strong> 32px wide, 1.5px, #080503 @ 20%<br>
+          <strong style="color:var(--ui-text);">Título:</strong> Instrument Serif 18px, #080503, line-height 1.3<br>
+          <strong style="color:var(--ui-text);">Corpo:</strong> Instrument Sans 12px, #5E534A, line-height 1.7<br>
+          <strong style="color:var(--ui-text);">Logo marca d'água:</strong> Instrument Serif 10px, #080503 @ 25%, canto inferior direito<br>
+          <strong style="color:var(--ui-text);">Padding:</strong> 32px topo, 28px lados
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- GRID E ESPAÇAMENTO -->
+  <section class="section" id="grid">
+    <div class="section-header">
+      <span class="section-number">08</span>
+      <h2>Grid e Espaçamento</h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:0;">
+      <div style="background:var(--ui-card);border:1px solid var(--ui-border);border-radius:10px;padding:20px;">
+        <div class="label">Post Feed (1:1)</div>
+        <div style="font-size:13px;color:var(--ui-muted);line-height:1.8;margin-top:8px;">
+          1080×1080px<br>
+          Margem interna: 80px (7.4%)<br>
+          Área segura: 920×920px<br>
+          Área de rodapé: 60px
+        </div>
+      </div>
+      <div style="background:var(--ui-card);border:1px solid var(--ui-border);border-radius:10px;padding:20px;">
+        <div class="label">Stories / Reels (9:16)</div>
+        <div style="font-size:13px;color:var(--ui-muted);line-height:1.8;margin-top:8px;">
+          1080×1920px<br>
+          Margem segura topo: 200px<br>
+          Margem segura base: 300px<br>
+          Área de conteúdo: 1080×1420px
+        </div>
+      </div>
+      <div style="background:var(--ui-card);border:1px solid var(--ui-border);border-radius:10px;padding:20px;">
+        <div class="label">Highlight Cover (círculo)</div>
+        <div style="font-size:13px;color:var(--ui-muted);line-height:1.8;margin-top:8px;">
+          1080×1920px<br>
+          Ícone centralizado em 300×300px<br>
+          Centro vertical: 560px do topo<br>
+          Background fills todo o frame
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- REGRAS -->
+  <section class="section" id="regras">
+    <div class="section-header">
+      <span class="section-number">09</span>
+      <h2>Regras de Aplicação</h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+      <div style="background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:10px;padding:20px;">
+        <div class="label" style="color:rgba(239,68,68,0.8);">Nunca fazer</div>
+        <ul style="font-size:13px;color:var(--ui-muted);line-height:2.2;list-style:none;padding:0;margin-top:12px;">
+          <li>✕ Usar travessão (—) em qualquer texto</li>
+          <li>✕ Misturar Instrument Serif com corpo de texto</li>
+          <li>✕ Usar JetBrains Mono em headlines</li>
+          <li>✕ Esconder o preço (R$397 sempre visível quando relevante)</li>
+          <li>✕ Post sem CTA ou sem link na bio</li>
+          <li>✕ Fundo colorido que não seja da paleta confirmada</li>
+          <li>✕ Mais de 2 pesos de fonte no mesmo post</li>
+          <li>✕ Texto menor que 10px em qualquer elemento</li>
+        </ul>
+      </div>
+      <div style="background:rgba(200,240,96,0.04);border:1px solid rgba(200,240,96,0.2);border-radius:10px;padding:20px;">
+        <div class="label" style="color:rgba(200,240,96,0.8);">Sempre fazer</div>
+        <ul style="font-size:13px;color:var(--ui-muted);line-height:2.2;list-style:none;padding:0;margin-top:12px;">
+          <li>✓ Instrument Serif apenas em headlines e aspas</li>
+          <li>✓ JetBrains Mono apenas em números e dados</li>
+          <li>✓ Instrument Sans em todo o resto</li>
+          <li>✓ Tutear o leitor ("você", "seu negócio")</li>
+          <li>✓ Frases curtas, uma ideia por parágrafo</li>
+          <li>✓ Logo EasySite visível (canto ou rodapé)</li>
+          <li>✓ Último slide de carrossel sempre com fundo escuro + CTA</li>
+          <li>✓ Consistência de fundo dentro de uma série de carrossel</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+</div>
+
+<script>
+  const sections = document.querySelectorAll('.section[id]');
+  const navLinks = document.querySelectorAll('.sidebar nav a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + entry.target.id) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
