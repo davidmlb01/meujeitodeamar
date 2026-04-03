@@ -7,6 +7,13 @@ const STEPS = [
   'Descubra o seu jeito de amar em minutos',
 ]
 
+const TESTIMONIALS = [
+  'Eu reli um trecho três vezes. Cada vez ficava mais quieta. Não porque era difícil de ler. Porque estava descrevendo coisas que eu faço há anos sem nunca ter dado nome.',
+  'Fiz esperando um resultado genérico. Quando chegou, fiquei procurando a parte que não combinava comigo. Não encontrei.',
+  'Eu me reconheci num comportamento que sempre achei que era personalidade. Não é personalidade. É um padrão. E padrão tem origem. Isso muda o que você faz com ele.',
+  'Não esperava que vinte perguntas pudessem mostrar algo que anos de conversa com amigos não tinham mostrado. Mas a parte dos pontos cegos foi exatamente isso: o que eu faço sem perceber e que afeta todo mundo ao meu redor.',
+]
+
 export default function LandingPage() {
   return (
     <div className="landing">
@@ -54,6 +61,26 @@ export default function LandingPage() {
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      {/* Depoimentos */}
+      <section className="landing__testimonials">
+        <div className="landing__testimonials-inner">
+          <p className="landing__testimonials-label">O que dizem</p>
+          <div className="testimonials-grid">
+            {TESTIMONIALS.map((text, i) => (
+              <blockquote key={i} className="testimonial">
+                <p className="testimonial__text">{text}</p>
+              </blockquote>
+            ))}
+          </div>
+          <div className="landing__testimonials-cta">
+            <Link to="/quiz/b" tabIndex={-1}>
+              <Button>Clique e descubra o seu jeito de amar</Button>
+            </Link>
+            <p className="landing__under">20 perguntas · Resultado imediato · 100% gratuito</p>
+          </div>
         </div>
       </section>
 

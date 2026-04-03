@@ -35,6 +35,8 @@
       background: var(--bg);
       position: relative;
       margin: 24px auto;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
     }
 
     /* ── Capa ── */
@@ -54,7 +56,7 @@
     .cover__intro    { font-family: var(--font-body); font-size: 15px; line-height: 1.7; color: var(--muted); max-width: 320px; }
 
     /* ── Área de conteúdo ── */
-    .pg-body      { padding: 48px 60px 40px; }
+    .pg-body      { padding: 48px 60px 40px; min-height: 297mm; box-sizing: border-box; background: var(--bg); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .pg-body--last { padding-bottom: 60px; } /* espaço para o footer absoluto */
 
     /* Header */
@@ -111,17 +113,20 @@
     @page { size: A4; margin: 0; }
 
     @media print {
-      #export-panel, #export-panel + div { display: none !important; }
+      #export-panel { display: none !important; }
+      #print-spacer  { display: none !important; }
       html, body { width: 210mm; background: transparent; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      /* Print: altura fixa + sem overflow = páginas A4 perfeitas */
       .pdf-page {
         height: 297mm;
-        overflow: hidden;
+        min-height: unset;
         margin: 0;
         break-after: page;
+        background: #E8D9C1 !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
       }
+      .pg-body  { min-height: unset; background: #E8D9C1 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .pg-cover { min-height: unset; background: #E8D9C1 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     }
   </style>
 </head>
@@ -137,7 +142,7 @@
   <button onclick="filtrar(null)" style="background:#7A6A60;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px;color:#F5EEE4;font-weight:600;">Ver todos</button>
   <span style="margin-left:8px;color:#D4C5AE;">→ Clique num estilo, depois Cmd+P</span>
 </div>
-<div style="height:52px;"></div>
+<div id="print-spacer" style="height:52px;"></div>
 
 
 <!-- ════════════════ CAPA ════════════════ -->
@@ -593,10 +598,64 @@
 </div>
 
 
+<!-- ════════════════ FECHAMENTO ════════════════ -->
+<div class="pdf-page" data-closing="true">
+  <div class="pg-body pg-body--last">
+
+    <div class="content__header" style="margin-bottom:32px;">
+      <p class="content__eyebrow">Para terminar</p>
+      <h2 class="content__title">O que muda <em>agora.</em></h2>
+    </div>
+
+    <div class="opening">
+      <p>Você acabou de passar por dentro de quatro jeitos de amar.</p>
+      <p>Não por fora, observando de longe. Por dentro, sentindo a lógica de cada um, os medos que os movem, as necessidades que nunca chegam a ser ditas com clareza.</p>
+      <p>Isso muda alguma coisa.</p>
+    </div>
+
+    <div class="section">
+      <h3 class="section__title">O que muda</h3>
+      <div class="section__body">
+        <p>Não porque você agora sabe o nome das coisas. Nomes não mudam relacionamentos.</p>
+        <p>O que muda é a pergunta que você passa a fazer quando alguém age de um jeito que não faz sentido para você.</p>
+        <p>Antes: <em>"Por que ela está fazendo isso?"</em></p>
+        <p>Agora: <em>"Qual medo está por trás disso?"</em></p>
+        <p>Essa troca de pergunta é pequena. O que ela faz nos seus relacionamentos não é.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3 class="section__title">O que não muda</h3>
+      <div class="section__body">
+        <p>O Coração Ansioso vai continuar precisando de reassurance. O Coração Distante vai continuar recuando quando a pressão aumentar. O Coração Confuso vai continuar oscilando entre querer perto e precisar de espaço.</p>
+        <p>Essas não são falhas. São padrões construídos ao longo de anos, respondendo a experiências reais.</p>
+        <p>A diferença agora é que você não precisa mais interpretar esses padrões pelo filtro do seu próprio jeito de amar.</p>
+        <p>Você tem a tradução.</p>
+      </div>
+    </div>
+
+    <div class="closing">
+      <p>Isso não significa que vai ser fácil.</p>
+      <p>Significa que você tem mais informação do que a maioria das pessoas ao seu redor.</p>
+      <p>Use bem.</p>
+    </div>
+
+  </div>
+  <div class="pg-footer">
+    <span class="footer__site">meujeitodeamar.com.br</span>
+    <div class="footer__line"></div>
+    <span class="footer__site">Os quatro jeitos de amar</span>
+  </div>
+</div>
+
+
 <script>
   function filtrar(estilo) {
     document.querySelectorAll('.pdf-page[data-estilo]').forEach(function(page) {
       page.style.display = (!estilo || page.dataset.estilo === estilo) ? '' : 'none'
+    })
+    document.querySelectorAll('.pdf-page[data-closing]').forEach(function(page) {
+      page.style.display = estilo ? 'none' : ''
     })
   }
 </script>

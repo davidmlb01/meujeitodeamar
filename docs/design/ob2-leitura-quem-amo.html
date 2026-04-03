@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Leitura de Quem Você Ama — Meu Jeito de Amar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:      #E8D9C1;
+      --bg-warm: #DFD0B7;
+      --dark:    #4B1D3F;
+      --text:    #1B1B11;
+      --muted:   #7A6A60;
+      --subtle:  #D4C5AE;
+      --white:   #F5EEE4;
+      --ansioso: #D8A7B1;
+      --distante:#C4909C;
+      --seguro:  #BF8A96;
+      --confuso: #D4B5B0;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Jost', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #ccc; font-family: var(--font-body); color: var(--text); }
+
+    .pdf-page {
+      width: 210mm;
+      min-height: 297mm;
+      background: var(--bg);
+      position: relative;
+      margin: 24px auto;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* Capa */
+    .pg-cover {
+      height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 60px 56px;
+    }
+    .cover__ornament { width: 48px; height: 1px; background: var(--dark); margin: 0 auto 32px; }
+    .cover__site     { font-family: var(--font-body); font-size: 11px; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-bottom: 48px; }
+    .cover__eyebrow  { font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+    .cover__title    { font-family: var(--font-display); font-size: 56px; font-weight: 400; line-height: 1.1; color: var(--text); margin-bottom: 8px; }
+    .cover__title em { font-style: italic; color: var(--dark); }
+    .cover__subtitle { font-family: var(--font-display); font-size: 22px; font-weight: 300; font-style: italic; color: var(--muted); margin-bottom: 48px; }
+    .cover__divider  { width: 32px; height: 1px; background: var(--dark); margin: 0 auto 48px; }
+    .cover__intro    { font-family: var(--font-body); font-size: 15px; line-height: 1.7; color: var(--muted); max-width: 320px; }
+
+    /* Conteúdo */
+    .pg-body       { padding: 48px 60px 40px; min-height: 297mm; box-sizing: border-box; background: var(--bg); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .pg-body--last { padding-bottom: 60px; }
+
+    .content__header  { margin-bottom: 40px; padding-bottom: 28px; border-bottom: 1px solid var(--subtle); }
+    .content__eyebrow { font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .content__title   { font-family: var(--font-display); font-size: 46px; font-weight: 400; line-height: 1.15; color: var(--text); margin-bottom: 6px; }
+    .content__title em { font-style: italic; }
+    .content__tagline { font-family: var(--font-display); font-size: 19px; font-style: italic; color: var(--muted); }
+
+    .opening       { margin-bottom: 32px; }
+    .opening p     { font-family: var(--font-body); font-size: 14px; line-height: 1.75; color: var(--text); }
+    .opening p + p { margin-top: 12px; }
+
+    .section       { margin-bottom: 32px; }
+    .section__title { font-family: var(--font-display); font-size: 24px; font-weight: 500; color: var(--dark); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--subtle); }
+    .section__body  { font-family: var(--font-body); font-size: 13px; line-height: 1.75; color: var(--text); }
+    .section__body p + p { margin-top: 10px; }
+
+    .blindspot            { margin-bottom: 14px; }
+    .blindspot:last-child { margin-bottom: 0; }
+    .blindspot__label     { font-family: var(--font-body); font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+    .blindspot__text      { font-family: var(--font-body); font-size: 13px; line-height: 1.6; color: var(--muted); }
+
+    .need            { display: flex; gap: 14px; margin-bottom: 10px; padding: 10px 14px; background: var(--bg-warm); border-radius: 6px; }
+    .need:last-child { margin-bottom: 0; }
+    .need__label     { font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--dark); white-space: nowrap; min-width: 140px; padding-top: 2px; }
+    .need__text      { font-family: var(--font-body); font-size: 13px; line-height: 1.55; color: var(--muted); }
+
+    .relation             { display: flex; gap: 14px; margin-bottom: 10px; padding: 10px 14px; background: var(--bg-warm); border-radius: 6px; }
+    .relation:last-child  { margin-bottom: 0; }
+    .relation__label      { font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--dark); white-space: nowrap; min-width: 175px; padding-top: 2px; }
+    .relation__text       { font-family: var(--font-body); font-size: 13px; line-height: 1.55; color: var(--muted); }
+
+    .practice             { margin-bottom: 16px; }
+    .practice:last-child  { margin-bottom: 0; }
+    .practice__label      { font-family: var(--font-body); font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .practice__text       { font-family: var(--font-body); font-size: 13px; line-height: 1.65; color: var(--muted); }
+
+    .closing       { margin-top: 28px; padding: 24px 28px; background: var(--dark); border-radius: 8px; }
+    .closing p     { font-family: var(--font-display); font-size: 19px; font-style: italic; line-height: 1.55; color: var(--white); }
+    .closing p + p { margin-top: 10px; }
+
+    .pg-footer    { position: absolute; bottom: 5px; left: 60px; right: 60px; display: flex; justify-content: space-between; align-items: center; padding-bottom: 6px; }
+    .footer__site { font-family: var(--font-body); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--subtle); }
+    .footer__line { flex: 1; height: 1px; background: var(--subtle); margin: 0 16px; }
+
+    .pg-accent { position: absolute; bottom: 0; left: 0; right: 0; height: 5px; }
+
+    @page { size: A4; margin: 0; }
+
+    @media print {
+      #export-panel  { display: none !important; }
+      #print-spacer  { display: none !important; }
+      html, body { width: 210mm; background: transparent; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .pdf-page {
+        height: 297mm;
+        min-height: unset;
+        margin: 0;
+        break-after: page;
+        background: #E8D9C1 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .pg-body  { min-height: unset; background: #E8D9C1 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .pg-cover { min-height: unset; background: #E8D9C1 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Painel de exportação -->
+<div id="export-panel" style="position:fixed;top:0;left:0;right:0;z-index:999;background:#4B1D3F;padding:12px 24px;display:flex;align-items:center;gap:12px;font-family:'Jost',sans-serif;font-size:13px;color:#F5EEE4;">
+  <span style="font-weight:600;margin-right:4px;">Exportar:</span>
+  <button onclick="filtrar('ansioso')" style="background:#D8A7B1;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;">Ansioso</button>
+  <button onclick="filtrar('distante')" style="background:#C4909C;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;">Distante</button>
+  <button onclick="filtrar('seguro')" style="background:#BF8A96;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;">Seguro</button>
+  <button onclick="filtrar('confuso')" style="background:#D4B5B0;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;">Confuso</button>
+  <button onclick="filtrar(null)" style="background:#7A6A60;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px;color:#F5EEE4;font-weight:600;">Ver todos</button>
+  <span style="margin-left:8px;color:#D4C5AE;">→ Escolha o jeito de amar DELA/DELE, depois Cmd+P</span>
+</div>
+<div id="print-spacer" style="height:52px;"></div>
+
+<script>
+function filtrar(estilo) {
+  document.querySelectorAll('[data-estilo]').forEach(el => {
+    el.style.display = (!estilo || el.dataset.estilo === estilo) ? 'block' : 'none';
+  });
+  document.querySelectorAll('.pdf-page:not([data-estilo])').forEach(el => {
+    el.style.display = estilo ? 'none' : 'block';
+  });
+}
+</script>
+
+
+<!-- ════════════════ CAPA ════════════════ -->
+<div class="pdf-page">
+  <div class="pg-cover">
+    <div class="cover__ornament"></div>
+    <p class="cover__site">meujeitodeamar.com.br</p>
+    <p class="cover__eyebrow">Leitura completa</p>
+    <h1 class="cover__title">A leitura de<br>quem você <em>ama.</em></h1>
+    <p class="cover__subtitle">Entenda o jeito de amar<br>da pessoa que importa para você.</p>
+    <div class="cover__divider"></div>
+    <p class="cover__intro">Esse documento foi escrito para te ajudar a entender uma pessoa específica. Não para te armar contra ela. Mas para que você deixe de interpretar o comportamento dela pelo filtro do seu próprio jeito de amar.</p>
+  </div>
+</div>
+
+
+<!-- ════════════════ ANSIOSO ════════════════ -->
+
+<!-- PG 1 -->
+<div class="pdf-page" data-estilo="ansioso">
+  <div class="pg-body">
+    <div class="content__header">
+      <p class="content__eyebrow">O jeito de amar dela/dele</p>
+      <h2 class="content__title">O Coração <em>Ansioso</em></h2>
+      <p class="content__tagline">Ela/ele ama de verdade. E sente de verdade.</p>
+    </div>
+    <div class="opening">
+      <p>A pessoa que você ama tem um jeito de amar intenso. Ela sente muito. Ela percebe detalhes que passam despercebidos para a maioria. E quando ela se conecta com alguém, essa conexão é completa.</p>
+      <p>O que parece exagero, insegurança ou cobrança quase sempre é outra coisa: é o sistema nervoso dela tentando proteger o que ela mais teme perder.</p>
+    </div>
+    <div class="section">
+      <h3 class="section__title">De onde veio o jeito de amar dela/dele</h3>
+      <div class="section__body">
+        <p>Nos primeiros anos da vida dela, as pessoas que cuidavam dela eram, de alguma forma, imprevisíveis. Não necessariamente ruins. Muitas vezes eram pessoas que a amavam de verdade. Mas o amor que chegava não tinha uma cadência certa. Às vezes estava lá, abundante. Outras vezes sumia sem explicação.</p>
+        <p>O sistema nervoso dela, ainda aprendendo como o mundo funciona, tirou uma conclusão lógica: <strong>o amor é algo que pode sumir. Então preciso ficar de olho.</strong></p>
+        <p>Esse aprendizado ficou. Hoje ele aparece como hipervigilância emocional: uma mensagem que demorou mais do que o normal, um tom de voz diferente, uma resposta mais curta. Para você, pode parecer nada. Para ela, é um sinal de alarme real.</p>
+      </div>
+    </div>
+    <div class="section" style="margin-bottom:0;">
+      <h3 class="section__title">Como ela/ele funciona nos relacionamentos</h3>
+      <div class="section__body">
+        <p>Quando ela se apaixona, ela se apaixona de verdade. Ela está presente, atenta, dedicada. Ela lembra de detalhes. Ela pensa em você quando você não está lá. Ela cuida de formas que muita gente nunca recebeu de ninguém.</p>
+        <p>O problema aparece quando ela começa a sentir, mesmo que vagamente, que você pode estar se afastando. Algo muda. O alarme dispara. O instinto é agir para recuperar a proximidade: mais mensagens, mais perguntas, mais tentativas de reconectar.</p>
+        <p>Às vezes isso aparece como conflito, porque briga ainda é conexão, e conexão é o que ela precisa para sentir que está tudo bem entre vocês. Não é manipulação. É o jeito dela de dizer "eu preciso saber que você ainda está aqui."</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PG 2 -->
+<div class="pdf-page" data-estilo="ansioso">
+  <div class="pg-body">
+    <div class="section">
+      <h3 class="section__title">O que ela/ele realmente precisa</h3>
+      <div class="need">
+        <span class="need__label">Consistência</span>
+        <p class="need__text">Mais do que intensidade, ela precisa de previsibilidade. Uma mensagem simples no horário certo vale mais do que um gesto grandioso depois de três dias de silêncio.</p>
+      </div>
+      <div class="need">
+        <span class="need__label">Reasseguramento direto</span>
+        <p class="need__text">Quando o alarme disparar, ela não precisa que você resolva o que causou o alarme. Ela precisa ouvir que você ainda está lá. Um "estou aqui, tudo bem entre nós" pode interromper um ciclo inteiro.</p>
+      </div>
+      <div class="need">
+        <span class="need__label">Que você não suma sem avisar</span>
+        <p class="need__text">Silêncio não explicado é o maior gatilho dela. Se você precisa de espaço, diga. Não precisa justificar. Só precisar dizer que vai voltar.</p>
+      </div>
+      <div class="need">
+        <span class="need__label">Ser vista, não consertada</span>
+        <p class="need__text">Quando ela estiver no alarme, ela não quer solução. Ela quer presença. "Eu entendo" funciona melhor do que "mas não é tão grave assim."</p>
+      </div>
+    </div>
+    <div class="section" style="margin-bottom:0;">
+      <h3 class="section__title">O que ela/ele faz sem perceber</h3>
+      <div class="blindspot">
+        <p class="blindspot__label">Ela testa sem saber que está testando.</p>
+        <p class="blindspot__text">Às vezes diz que está bem quando não está, esperando que você perceba. Os testes existem porque ela precisa de provas de que o amor está lá. Para você, parecem mensagens contraditórias. Para ela, são tentativas de se sentir segura.</p>
+      </div>
+      <div class="blindspot">
+        <p class="blindspot__label">Ela interpreta silêncio como rejeição.</p>
+        <p class="blindspot__text">Quando você some por um tempo, o cérebro dela vai direto para o pior cenário. Não porque ela seja irracional. Mas porque, na história dela, silêncio muitas vezes antecedia perda.</p>
+      </div>
+      <div class="blindspot">
+        <p class="blindspot__label">Ela dá mais do que pode sustentar.</p>
+        <p class="blindspot__text">E depois ressente quando a entrega não é correspondida. Ela dá o que gostaria de receber. O problema é que nem todo mundo sabe dar dessa forma.</p>
+      </div>
+      <div class="blindspot">
+        <p class="blindspot__label">Ela pode confundir calmaria com falta de interesse.</p>
+        <p class="blindspot__text">Relacionamentos tranquilos, sem drama, às vezes parecem sem sentimento para ela. Se você é um tipo mais calmo, ela pode interpretar sua serenidade como indiferença.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PG 3 -->
+<div class="pdf-page" data-estilo="ansioso">
+  <div class="pg-body pg-body--last">
+    <div class="section">
+      <h3 class="section__title">Como se comunicar com ela/ele</h3>
+      <div class="practice">
+        <p class="practice__label">Seja previsível.</p>
+        <p class="practice__text">Você não precisa estar disponível o tempo todo. Mas precisa ser consistente. Se você sempre responde de manhã, responda de manhã. O padrão é o que acalma o sistema nervoso dela.</p>
+      </div>
+      <div class="practice">
+        <p class="practice__label">Nomeie o que está acontecendo quando precisar de espaço.</p>
+        <p class="practice__text">"Estou com a cabeça cheia, preciso de um tempo, mas estou bem com você." Essa frase sozinha evita horas de ciclo ansioso. Ela não precisa que você explique tudo. Só que você diga que vai voltar.</p>
+      </div>
+      <div class="practice">
+        <p class="practice__label">Diga o que você sente, não só o que você faz.</p>
+        <p class="practice__text">Ações importam. Mas palavras têm um peso diferente para ela. "Gosto de você" dito de forma simples e direta vale mais do que dez gestos sem palavras.</p>
+      </div>
+      <div class="practice">
+        <p class="practice__label">Não minimize o que ela sente.</p>
+        <p class="practice__text">"Você está exagerando" ou "não é tão grave" fecha o canal de comunicação. Em vez disso, tente: "Eu entendo que pareceu assim para você." Isso não significa que você concorda. Significa que você a ouviu.</p>
+      </div>
+    </div>
+    <div class="closing">
+      <p>O jeito de amar dela é intenso porque o amor é intenso para ela. Isso não é um defeito. É uma qualidade que, com a linguagem certa, se transforma numa das formas mais dedicadas de amar que existem.</p>
+      <p>Entender de onde veio não é desculpar tudo. É parar de interpretar como ataque o que é, na verdade, um pedido de segurança.</p>
+    </div>
+  </div>
+  <div class="pg-footer">
+    <span class="footer__site">meujeitodeamar.com.br</span>
+    <div class="footer__line"></div>
+    <span class="footer__site">Coração Ansioso</span>
+  </div>
+  <div class="pg-accent" style="background:var(--ansioso);"></div>
+</div>
+
+
+<!-- ════════════════ DISTANTE ════════════════ -->
+
+<!-- PG 1 -->
+<div class="pdf-page" data-estilo="distante">
+  <div class="pg-body">
+    <div class="content__header">
+      <p class="content__eyebrow">O jeito de amar dela/dele</p>
+      <h2 class="content__title">O Coração <em>Distante</em></h2>
+      <p class="content__tagline">Ela/ele não é fria/frio. Ela/ele é cautelosa/cauteloso.</p>
+    </div>
+    <div class="opening">
+      <p>A pessoa que você ama tem um jeito de amar que pode parecer difícil de alcançar. Você vê ela. Você sente algo real entre vocês. Mas em alguns momentos parece que existe um vidro no meio.</p>
+      <p>Isso não é indiferença. É proteção. E entender de onde veio essa proteção muda completamente a forma como você interpreta o que ela faz.</p>
+    </div>
+    <div class="section">
+      <h3 class="section__title">De onde veio o jeito de amar dela/dele</h3>
+      <div class="section__body">
+        <p>Nos primeiros anos da vida dela, ela aprendeu que precisar de alguém era arriscado. Talvez as pessoas que cuidavam dela estivessem presentes fisicamente mas ausentes emocionalmente. Talvez a resposta para as necessidades dela fosse fria, irritada ou simplesmente ausente.</p>
+        <p>Ela aprendeu, muito cedo, que era melhor resolver as coisas sozinha do que esperar por alguém. Essa foi uma estratégia de sobrevivência brilhante para uma criança. O problema é que ela cresceu. Mas a estratégia ficou.</p>
+        <p>Hoje, quando alguém se aproxima demais, algo no sistema nervoso dela ativa um alarme antigo: <strong>intimidade demais é perigosa. Preserve o espaço. Mantenha o controle.</strong> Não é decisão. É reflexo.</p>
+      </div>
+    </div>
+    <div class="section" style="margin-bottom:0;">
+      <h3 class="section__title">Como ela/ele funciona nos relacionamentos</h3>
+      <div class="section__body">
+        <p>Ela é confiável, funcional, não cria drama. Em muitos contextos, as pessoas a admiram exatamente por isso. Ela não pede demais. Ela não pressiona. Ela está lá de um jeito firme e discreto.</p>
+        <p>Mas quando o relacionamento começa a se aprofundar, algo muda internamente. Quanto mais você se aproxima, mais ela sente um impulso de criar distância. Não porque não gosta de você. Mas porque proximidade demais ativa aquele sistema antigo.</p>
+        <p>Ela some por alguns dias. Responde menos. Fica mais quieta. Para ela, isso é só respirar. Para você, parece rejeição. Essa diferença de interpretação é o maior ponto de atrito no relacionamento com o Coração Distante.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PG 2 -->
+<div class="pdf-page" data-estilo="distante">
+  <div class="pg-body">
+    <div class="section">
+      <h3 class="section__title">O que ela/ele realmente precisa</h3>
+      <div class="need">
+        <span class="need__label">Espaço sem punição</span>
+        <p class="need__text">Quando ela pede espaço, ou some por um tempo, ela não está abandonando você. Ela está regulando o sistema nervoso dela. Reagir com cobrança ou silêncio punitivo confirma o medo que ela já tinha: intimidade custa algo.</p>
+      </div>
+      <div class="need">
+        <span class="need__label">Presença sem pressão</span>
+        <p class="need__text">Ela se abre no ritmo dela. Forçar conversas emocionais ou cobrar mais profundidade antes que ela esteja pronta fecha a porta. Estar presente sem exigir que ela seja diferente do que é no momento é o que cria segurança.</p>
+      </div>
+      <div class="need">
+        <span class="need__label">Que você não suma quando ela some</span>
+        <p class="need__text">Quando ela se afasta, uma parte dela está testando, sem saber, se você vai continuar lá. Se você sumir também, o medo antigo se confirma. Estar lá quando ela voltar é mais poderoso do que qualquer conversa.</p>
+      </div>
+      <div class="need">
+        <span class="need__label">Consistência sem intensidade</span>
+        <p class="need__text">Gestos consistentes e tranquilos constroem mais confiança do que grandes demonstrações seguidas de silêncio. A regularidade é o idioma do amor para ela.</p>
+      </div>
+    </div>
+    <div class="section" style="margin-bottom:0;">
+      <h3 class="section__title">O que ela/ele faz sem perceber</h3>
+      <div class="blindspot">
+        <p class="blindspot__label">Ela desconecta sem avisar.</p>
+        <p class="blindspot__text">Para ela é óbvio que vai voltar. Para você, é uma mensagem de abandono. Ela não percebe o impacto que o silêncio dela tem porque para ela o silêncio é neutro.</p>
+      </div>
+      <div class="blindspot">
+        <p class="blindspot__label">Ela intelectualiza o que sente.</p>
+        <p class="blindspot__text">Quando surge uma conversa emocional difícil, ela analisa em vez de sentir. Isso não é frieza. É o jeito dela de processar sem se expor.</p>
+      </div>
+      <div class="blindspot">
+        <p class="blindspot__label">Ela pode ser difícil de ler.</p>
+        <p class="blindspot__text">Ela acha que está sendo clara. Você acha que ela é um mistério. Esse gap cria insegurança desnecessária, especialmente se você tende a interpretar o comportamento dela pelo filtro do seu próprio jeito de amar.</p>
+      </div>
+      <div class="blindspot">
+        <p class="blindspot__label">Ela protege autonomia mesmo quando não precisa.</p>
+        <p class="blindspot__text">Às vezes evita planos futuros ou mantém uma distância sutil não porque não queira você, mas porque compromisso ainda parece uma ameaça à liberdade que ela aprendeu a proteger.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PG 3 -->
+<div class="pdf-page" data-estilo="distante">
+  <div class="pg-body pg-body--last">
+    <div class="section">
+      <h3 class="section__title">Como se comunicar com ela/ele</h3>
+      <div class="practice">
+        <p class="practice__label">Não reaja ao afastamento com mais pressão.</p>
+        <p class="practice__text">Quando ela some, o instinto é se aproximar mais. Mas para o Coração Distante, isso confirma que intimidade vem com pressão. Estar disponível sem pressionar é o que abre espaço para ela voltar.</p>
+      </div>
+      <div class="practice">
+        <p class="practice__label">Dê nome ao que você precisa, não ao que ela fez de errado.</p>
+        <p class="practice__text">"Eu precisava de uma mensagem tua ontem" abre conversa. "Você desapareceu de novo" fecha. O Coração Distante responde a pedidos diretos muito melhor do que a críticas.</p>
+      </div>
+      <div class="practice">
+        <p class="practice__label">Comemore quando ela se abrir.</p>
+        <p class="practice__text">Quando ela compartilhar algo emocional, por menor que seja, receba sem julgamento e sem analisar demais. Cada vez que ela se abrir e não se arrepender, ela aprende que é seguro fazer isso de novo.</p>
+      </div>
+      <div class="practice">
+        <p class="practice__label">Seja constante.</p>
+        <p class="practice__text">Ela não responde bem a ciclos de intensidade e abandono. O que a faz se aproximar é ver que você está lá de forma estável, sem exigir que ela corresponda na mesma intensidade.</p>
+      </div>
+    </div>
+    <div class="closing">
+      <p>Ela não é fria. Ela é cautelosa. E há uma diferença enorme entre as duas coisas.</p>
+      <p>O que parece distância é, quase sempre, o tempo que ela precisa para aprender que está segura com você. Esse aprendizado não se força. Se constrói, com consistência, ao longo do tempo.</p>
+    </div>
+  </div>
+  <div class="pg-footer">
+    <span class="footer__site">meujeitodeamar.com.br</span>
+    <div class="footer__line"></div>
+    <span class="footer__site">Coração Distante</span>
+  </div>
+  <div class="pg-accent" style="background:var(--distante);"></div>
+</div>
+
+
+<!-- ════════════════ SEGURO ════════════════ -->
+
+<!-- PG 1 -->
+<div class="pdf-page" data-estilo="seguro">
+  <div class="pg-body">
+    <div class="content__header">
+      <p class="content__eyebrow">O jeito de amar dela/dele</p>
+      <h2 class="content__title">O Coração <em>Seguro</em></h2>
+      <p class="content__tagline">Ela/ele está lá. De verdade.</p>
+    </div>
+    <div class="opening">
+      <p>A pessoa que você ama tem um dos jeitos de amar mais raros que existem. Ela consegue estar perto sem sufocar. Ela consegue dar espaço sem sumir. Quando há conflito, ela busca resolução em vez de escalada ou fuga.</p>
+      <p>Mas "seguro" não significa perfeito. E entender os pontos cegos do Coração Seguro é o que vai ajudar você a se relacionar com ela de forma mais verdadeira.</p>
+    </div>
+    <div class="section">
+      <h3 class="section__title">De onde veio o jeito de amar dela/dele</h3>
+      <div class="section__body">
+        <p>Nos primeiros anos da vida dela, ela recebeu algo que muitas pessoas nunca tiveram: consistência. As pessoas que cuidavam dela estavam lá quando ela precisava. Não de forma perfeita, mas de forma suficientemente previsível para que o sistema nervoso dela aprendesse uma verdade fundamental:</p>
+        <p><strong>O amor existe. E ele fica.</strong></p>
+        <p>Isso não significa que ela não teve dificuldades. Significa que a base emocional dela foi construída sobre algo sólido o suficiente para ela conseguir navegar as dificuldades sem perder o equilíbrio. Ela aprendeu que pode se aproximar sem perigo, pode precisar sem ser abandonada, pode dar espaço sem perder a conexão.</p>
+      </div>
+    </div>
+    <div class="section" style="margin-bottom:0;">
+      <h3 class="section__title">Como ela/ele funciona nos relacionamentos</h3>
+      <div class="section__body">
+        <p>Ela consegue estar próxima sem se perder. Oferece presença real sem sufocamento. Consegue dar espaço sem interpretar isso como rejeição. Quando há conflito, tende a buscar resolução em vez de escalada ou fuga.</p>
+        <p>Ela é uma âncora. As pessoas ao lado dela, especialmente as que têm jornadas emocionais mais turbulentas, frequentemente se sentem mais estáveis quando estão com ela.</p>
+        <p>O risco para você é assumir que ela está sempre bem. Que ela não precisa de cuidado. Que a estabilidade dela é automática e não custa nada. Esse é o erro mais comum de quem ama um Coração Seguro.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PG 2 -->
+<div class="pdf-page" data-estilo="seguro">
+  <div class="pg-body">
+    <div class="section">
+      <h3 class="section__title">O que ela/ele realmente precisa</h3>
+      <div class="need">
+        <span class="need__label">Ser cuidada também</span>
+        <p class="need__text">Ela cuida bem. Mas ela também tem necessidades. Como ela não costuma cobrar ou entrar em colapso, é fácil esquecer que ela também precisa de presença, reconhecimento e cuidado ativo.</p>
+      </div>
+      <div class="need">
+        <span class="need__label">Reciprocidade real</span>
+        <p class="need__text">Ela não precisa que você seja perfeita/perfeito. Precisa que o esforço seja mútuo. Um relacionamento onde só ela ancora, com o tempo, esgota até a base mais sólida.</p>
+      </div>
+      <div class="need">
+        <span class="need__label">Que você nomeie o que precisa</span>
+        <p class="need__text">Ela é boa em ouvir. Mas ela não adivinha. Se você precisa de algo específico, dizer diretamente é a forma mais eficiente de receber. Ela vai responder.</p>
+      </div>
+      <div class="need">
+        <span class="need__label">Profundidade, não só estabilidade</span>
+        <p class="need__text">Ela não quer só um relacionamento sem conflito. Ela quer um relacionamento real. Conversas honestas, mesmo as difíceis, são o que aprofundam a conexão para ela.</p>
+      </div>
+    </div>
+    <div class="section" style="margin-bottom:0;">
+      <h3 class="section__title">O que ela/ele faz sem perceber</h3>
+      <div class="blindspot">
+        <p class="blindspot__label">Ela pode subestimar o quanto você está lutando.</p>
+        <p class="blindspot__text">Como a experiência interna dela é relativamente estável, às vezes é difícil para ela entender a profundidade da turbulência que você sente. Pode minimizar sem querer: "mas não é tão grave assim."</p>
+      </div>
+      <div class="blindspot">
+        <p class="blindspot__label">Ela pode parecer pouco intensa.</p>
+        <p class="blindspot__text">A serenidade dela pode ser interpretada como falta de interesse ou entusiasmo. Se você valoriza demonstrações de afeto mais intensas, pode precisar pedir isso diretamente.</p>
+      </div>
+      <div class="blindspot">
+        <p class="blindspot__label">Ela acumula antes de falar.</p>
+        <p class="blindspot__text">Ela tende a estar bem por muito tempo e então, de repente, perceber que está sobrecarregada. Ela nem sempre nomeia as necessidades no momento em que surgem.</p>
+      </div>
+      <div class="blindspot">
+        <p class="blindspot__label">Ela atrai quem precisa de cura.</p>
+        <p class="blindspot__text">O jeito de ser dela é reconfortante para quem vive em turbulência. Ela pode acabar no papel de âncora emocional de forma repetida, sem sempre perceber o custo disso para ela.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PG 3 -->
+<div class="pdf-page" data-estilo="seguro">
+  <div class="pg-body pg-body--last">
+    <div class="section">
+      <h3 class="section__title">Como se comunicar com ela/ele</h3>
+      <div class="practice">
+        <p class="practice__label">Seja direta/direto sobre o que precisa.</p>
+        <p class="practice__text">Ela não vai entrar em colapso se você pedir algo. Ao contrário: ela recebe pedidos diretos muito melhor do que sinais indiretos ou comportamentos que esperam que ela adivinhe.</p>
+      </div>
+      <div class="practice">
+        <p class="practice__label">Pergunte como ela está, de verdade.</p>
+        <p class="practice__text">Não como protocolo. Com espaço para ela responder honestamente. Ela raramente vai implorar por atenção. Mas quando alguém pergunta com genuinidade, ela aprecia profundamente.</p>
+      </div>
+      <div class="practice">
+        <p class="practice__label">Não use a estabilidade dela como desculpa para não trabalhar a sua parte.</p>
+        <p class="practice__text">O fato de ela ser paciente não significa que você pode postergar indefinidamente o crescimento emocional. Ela merece alguém que também faça o esforço de evoluir.</p>
+      </div>
+      <div class="practice">
+        <p class="practice__label">Demonstre que você a vê.</p>
+        <p class="practice__text">Reconheça o que ela faz. Nomeie. "Eu sei que você me segurou quando eu estava mal, e quero que você saiba que eu vi isso." Esse tipo de reconhecimento alimenta o que ela oferece.</p>
+      </div>
+    </div>
+    <div class="closing">
+      <p>A estabilidade que ela oferece é rara e preciosa. Não a desperdice achando que é automática.</p>
+      <p>Ela está lá. A pergunta é: você está presente o suficiente para realmente estar com ela também?</p>
+    </div>
+  </div>
+  <div class="pg-footer">
+    <span class="footer__site">meujeitodeamar.com.br</span>
+    <div class="footer__line"></div>
+    <span class="footer__site">Coração Seguro</span>
+  </div>
+  <div class="pg-accent" style="background:var(--seguro);"></div>
+</div>
+
+
+<!-- ════════════════ CONFUSO ════════════════ -->
+
+<!-- PG 1 -->
+<div class="pdf-page" data-estilo="confuso">
+  <div class="pg-body">
+    <div class="content__header">
+      <p class="content__eyebrow">O jeito de amar dela/dele</p>
+      <h2 class="content__title">O Coração <em>Confuso</em></h2>
+      <p class="content__tagline">Ela/ele não é instável. Ela/ele carrega algo pesado.</p>
+    </div>
+    <div class="opening">
+      <p>A pessoa que você ama tem o jeito de amar mais complexo de entender. Às vezes ela quer muito perto. Em outros momentos ela precisa de distância urgente. E pode mudar de um estado para o outro de formas que confundem você, e às vezes ela mesma.</p>
+      <p>Isso não é instabilidade de caráter. É o reflexo de uma história que criou dois sistemas em conflito. Entender essa história muda tudo.</p>
+    </div>
+    <div class="section">
+      <h3 class="section__title">De onde veio o jeito de amar dela/dele</h3>
+      <div class="section__body">
+        <p>O que aconteceu com ela nos primeiros anos de vida foi mais complicado do que nos outros perfis. As pessoas que deveriam ser a fonte de segurança dela, ao mesmo tempo, eram também uma fonte de medo ou confusão.</p>
+        <p>Quando ela sentia medo ou precisava de conforto, o instinto era se aproximar de quem cuidava dela. Mas se aproximar também trazia risco, ou imprevisibilidade, ou dor. Então o sistema nervoso dela ficou preso entre dois impulsos opostos: <strong>buscar proximidade e fugir dela ao mesmo tempo.</strong></p>
+        <p>Esse conflito não foi resolvido. Foi carregado. E hoje ele aparece nos relacionamentos dela como uma oscilação que ela mesma nem sempre consegue explicar.</p>
+      </div>
+    </div>
+    <div class="section" style="margin-bottom:0;">
+      <h3 class="section__title">Como ela/ele funciona nos relacionamentos</h3>
+      <div class="section__body">
+        <p>Quando ela se conecta com alguém, ela se conecta de verdade. Ela sente muito. Ela dá muito. Ela está completamente presente.</p>
+        <p>Mas em algum momento, algo muda. Pode ser uma palavra dita de forma errada. Uma sensação de que as coisas estão ficando sérias demais. Um gatilho que ela mesma não consegue identificar. E quando isso acontece, ela pode recuar de formas abruptas, ou reagir de formas que parecem desproporcionais para quem está de fora.</p>
+        <p>O ciclo mais comum: conexão intensa, medo da conexão, afastamento, culpa pelo afastamento, reconexão intensa. E recomeça.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PG 2 -->
+<div class="pdf-page" data-estilo="confuso">
+  <div class="pg-body">
+    <div class="section">
+      <h3 class="section__title">O que ela/ele realmente precisa</h3>
+      <div class="need">
+        <span class="need__label">Previsibilidade sua</span>
+        <p class="need__text">O sistema nervoso dela foi calibrado num ambiente caótico. O maior presente que você pode oferecer é ser previsível: estar lá quando disser que vai estar, não desaparecer quando ela oscilar, não explodir quando ela recuar.</p>
+      </div>
+      <div class="need">
+        <span class="need__label">Segurança sem condições</span>
+        <p class="need__text">Ela precisa aprender, através de experiências repetidas com você, que aproximação não traz dor. Cada vez que ela oscila e você continua lá, sem punição e sem abandono, você recondiciona lentamente o sistema antigo dela.</p>
+      </div>
+      <div class="need">
+        <span class="need__label">Paciência com o ciclo</span>
+        <p class="need__text">O ciclo dela não vai sumir de um dia para o outro. Ela precisa de alguém que entenda o padrão sem usá-lo como arma. "Você está fazendo de novo" fecha tudo. Presença silenciosa abre.</p>
+      </div>
+      <div class="need">
+        <span class="need__label">Que você não desapareça nos momentos difíceis</span>
+        <p class="need__text">Quando ela mais precisar de você, seu sistema pode ativá-la a se afastar. Ficar presente nesse momento, sem exigir que ela seja diferente, é o que constrói confiança real.</p>
+      </div>
+    </div>
+    <div class="section" style="margin-bottom:0;">
+      <h3 class="section__title">O que ela/ele faz sem perceber</h3>
+      <div class="blindspot">
+        <p class="blindspot__label">Ela pode ser difícil de acompanhar.</p>
+        <p class="blindspot__text">As pessoas ao redor dela nunca têm certeza do que esperar. Ela pode ser muito calorosa num dia e muito distante no outro. Não é manipulação. É o reflexo de dois sistemas em conflito.</p>
+      </div>
+      <div class="blindspot">
+        <p class="blindspot__label">Ela interpreta situações neutras como ameaça.</p>
+        <p class="blindspot__text">O sistema nervoso dela foi calibrado num ambiente onde as ameaças eram reais. Então ele detecta perigo mesmo onde não há. Uma crítica pequena pode parecer um ataque. Uma mudança de planos pode parecer abandono.</p>
+      </div>
+      <div class="blindspot">
+        <p class="blindspot__label">Ela pode sabotar o que está funcionando.</p>
+        <p class="blindspot__text">Quando as coisas vão bem por muito tempo, uma parte dela pode ficar desconfiada. "Bom demais" não combina com o que ela aprendeu que o amor parece. Então ela pode, sem perceber, criar um conflito justamente quando o relacionamento estava encontrando ritmo.</p>
+      </div>
+      <div class="blindspot">
+        <p class="blindspot__label">Ela carrega muita culpa.</p>
+        <p class="blindspot__text">Pelas oscilações, pelo afastamento, pelas reações que ela mesma acha exageradas. Essa culpa é pesada. Recebê-la com compaixão, em vez de concordar que ela errou, é uma das formas mais poderosas de apoiá-la.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PG 3 -->
+<div class="pdf-page" data-estilo="confuso">
+  <div class="pg-body pg-body--last">
+    <div class="section">
+      <h3 class="section__title">Como se comunicar com ela/ele</h3>
+      <div class="practice">
+        <p class="practice__label">Nomeie o que está acontecendo, sem dramatizar.</p>
+        <p class="practice__text">"Percebi que você se afastou um pouco. Eu estou aqui quando você quiser voltar." Sem cobrança, sem punição, sem pressão para explicar. Só a informação de que você continua lá.</p>
+      </div>
+      <div class="practice">
+        <p class="practice__label">Não reaja ao ciclo com o mesmo ciclo.</p>
+        <p class="practice__text">Quando ela recua, o impulso é recuar também ou pressionar para que ela explique. Os dois amplificam o ciclo. Manter um ritmo estável, independente do que ela estiver fazendo, é o que interrompe o padrão.</p>
+      </div>
+      <div class="practice">
+        <p class="practice__label">Separe o comportamento da intenção.</p>
+        <p class="practice__text">Quando ela age de formas que te machucam, pergunte a si mesmo: isso é ataque ou é medo? Na maioria das vezes, para o Coração Confuso, é medo. Essa distinção muda completamente a resposta que vai ajudar.</p>
+      </div>
+      <div class="practice">
+        <p class="practice__label">Cuide dos seus próprios limites.</p>
+        <p class="practice__text">Amar um Coração Confuso exige muito. Você precisa saber o que você consegue oferecer com sustentabilidade. Não por falta de amor, mas porque um cuidador esgotado não consegue cuidar de ninguém.</p>
+      </div>
+    </div>
+    <div class="closing">
+      <p>Ela não está quebrada. Ela está carregando algo pesado que não era dela para carregar desde o início.</p>
+      <p>Entender isso não é desculpar tudo. É parar de interpretar como rejeição o que é, na verdade, um sistema tentando sobreviver da única forma que aprendeu.</p>
+    </div>
+  </div>
+  <div class="pg-footer">
+    <span class="footer__site">meujeitodeamar.com.br</span>
+    <div class="footer__line"></div>
+    <span class="footer__site">Coração Confuso</span>
+  </div>
+  <div class="pg-accent" style="background:var(--confuso);"></div>
+</div>
+
+</body>
+</html>
