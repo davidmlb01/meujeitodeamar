@@ -55,12 +55,47 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 
 ## Infraestrutura Técnica
 
-### Bot WhatsApp
-- Ainda a definir (Meta Cloud API / Twilio / Z-API / Evolution API)
-- Função: responder leads do tráfego pago + prospecção ativa nos leads da planilha
+### Bot WhatsApp "Leo" — IMPLEMENTADO (2026-04-04)
+
+**Stack:**
+- Python 3.11+ / FastAPI (porta 5000)
+- Claude Haiku 4.5 (`claude-haiku-4-5-20251001`) como LLM
+- Evolution API (self-hosted, open source) para envio/recebimento WhatsApp
+- SQLite para persistência (leads, conversations, follow_up_queue, escalations)
+- APScheduler para follow-ups automáticos (1h, 24h, 72h, 7d)
+- PM2 para gerenciamento de processo na VPS
+
+**Localização:** `docs/easysite/bot/` (19 arquivos)
+
+**Stories implementadas:**
+- Story 1.1: FastAPI + Evolution API + webhook base
+- Story 1.2: Claude API + SQLite + fluxo de conversação
+- Story 1.3: Roteamento 3 jornadas (A/B/C) + endpoints externos
+- Story 1.4: Follow-up scheduler APScheduler
+- Story 1.5: Fluxo PIX + notificações admin para David
+
+**Fluxo PIX:**
+- Bot detecta comprovante via keywords + Claude classificação
+- Notifica David via WhatsApp com código (ex: "SIM-042")
+- David responde "SIM-042" para confirmar
+- Bot envia link do formulário de briefing automaticamente
+
+**3 Jornadas:**
+- A (direct_ad): Meta Ads, sem revelar preço imediato
+- B (landing_page): contato proativo com nome + ramo do lead
+- C (prospecting): abordagem com empresa, ramo e cidade (Google Maps)
+
+**VPS:** Hostinger KVM2 (~R$40-50/mês)
+
+**Pendente para deploy:**
+- Preencher 7 placeholders em `system-prompt.md`: CHAVE_PIX, LINK_FORMULARIO, LINK_PORTFOLIO_1/2/3, DEPOIMENTOS, NOME_RESPONSAVEL
+- Configurar WhatsApp Business num número dedicado
+- Instalar Evolution API na VPS
+- Seguir README.md (10 passos) para deploy
 
 ### Script Google Maps
 - Script existente (criado com Claude) — levanta empresas sem site e salva em planilha
+- Para integrar com Jornada C: exportar para Sheets e chamar `POST /api/lead/prospecting/batch`
 
 ### Instagram
 - Perfil a criar
@@ -74,13 +109,13 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 |------|--------|
 | Estrutura do projeto | Criada |
 | PRD | Pendente |
-| Análise Hormozi Squad | Pendente |
-| Análise Brand Squad | Pendente |
+| Análise Hormozi Squad | Concluida |
+| Análise Brand Squad | Concluida |
 | Análise Copy Squad | Pendente |
-| Brandbook | Pendente |
+| Brandbook | Concluido |
 | Enxoval Instagram | Pendente |
-| Criativos de conversão | Pendente |
-| Bot WhatsApp | Pendente |
+| Criativos de conversão | Em andamento |
+| Bot WhatsApp | Codigo pronto, aguardando deploy |
 
 ---
 
@@ -89,27 +124,58 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 - Projeto criado dentro do repo BIG HEAD (`docs/easysite/`)
 - Preço inicial: R$397
 - Estratégia dual de aquisição: tráfego pago + prospecção ativa
+- **2026-04-04:** Evolution API escolhida (open source, self-hosted) em vez de WaAPI/Z-API (ban risk)
+- **2026-04-04:** PIX confirmado via WhatsApp bidirecional (David confirma pelo celular, não painel admin)
+- **2026-04-04:** APScheduler integrado ao FastAPI (não cron externo) para sobreviver restarts
+- **2026-04-04:** Google Sheets para Jornada C via script separado que chama endpoint batch (desacoplado)
+- **2026-04-04:** Claude Haiku 4.5 para respostas e classificação PIX (custo baixo, velocidade alta)
+- **2026-04-04:** DAVID_PHONE separado no webhook — mensagens do David nunca criam lead no banco
+
+---
+
+## Arquivos Principais
+
+| Arquivo | Descricao |
+|---------|-----------|
+| `docs/easysite/bot/main.py` | FastAPI app, webhook handler, lifespan |
+| `docs/easysite/bot/claude_client.py` | Integracao Claude API + classify_pix |
+| `docs/easysite/bot/whatsapp_client.py` | Evolution API send_message |
+| `docs/easysite/bot/router.py` | Roteamento 3 jornadas |
+| `docs/easysite/bot/system-prompt.md` | System prompt do Leo (7 placeholders pendentes) |
+| `docs/easysite/bot/db/models.py` | Tabelas SQLite |
+| `docs/easysite/bot/db/queries.py` | Queries CRUD |
+| `docs/easysite/bot/scheduler/follow_up.py` | APScheduler jobs |
+| `docs/easysite/bot/admin/pix.py` | Deteccao e fluxo PIX |
+| `docs/easysite/bot/admin/handler.py` | Handler comandos admin (David) |
+| `docs/easysite/bot/api/leads.py` | Endpoints Jornada B e C |
+| `docs/easysite/bot/README.md` | Guia de deploy VPS (10 passos) |
+| `docs/easysite/bot/.env.example` | Variaveis de ambiente necessarias |
+| `docs/easysite/bot/ecosystem.config.js` | Configuracao PM2 |
+| `docs/easysite/stories/` | Stories 1.1-1.5, status: Ready for Review |
 
 ---
 
 ## Roadmap
 
-### Fase 1 — Validação (agora)
-- [ ] Squads de branding e copy
-- [ ] Brandbook + enxoval social
+### Fase 1 — Validacao (agora)
+- [x] Squads de branding e copy
+- [x] Brandbook
+- [ ] Enxoval social completo
 - [ ] Perfil Instagram
-- [ ] Bot WhatsApp básico
+- [x] Bot WhatsApp (codigo pronto)
+- [ ] Deploy bot na VPS
+- [ ] Configurar WhatsApp Business
 
-### Fase 2 — Operação
-- [ ] Tráfego pago ativo
-- [ ] Prospecção ativa com planilha
+### Fase 2 — Operacao
+- [ ] Trafego pago ativo
+- [ ] Prospeccao ativa com planilha (Jornada C)
 - [ ] Primeiras vendas
 
 ### Fase 3 — Escala (se validar)
-- [ ] Automação completa
+- [ ] Automacao completa
 - [ ] Equipe de entrega
 - [ ] Novos nichos
 
 ---
 
-*Última atualização: 2026-04-02*
+*Ultima atualizacao: 2026-04-04*
