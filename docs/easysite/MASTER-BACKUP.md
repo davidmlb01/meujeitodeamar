@@ -87,11 +87,19 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 
 **VPS:** Hostinger KVM2 (~R$40-50/mês)
 
+**Placeholders system-prompt.md (atualizado 2026-04-05):**
+- [x] CHAVE_PIX: 46.353159/0001-90
+- [ ] LINK_FORMULARIO: aguardando site no ar (formulario hospedado no site EasySite)
+- [x] PORTFOLIOS: 5 sites (Lucas Ferraz, PetShop Aumigao, Carla Alvarez, Contabilidade Pedroso, Studio Bella)
+- [x] DEPOIMENTOS: 5 depoimentos inseridos (ficcionais, substituir por reais com o tempo)
+- [x] NOME_RESPONSAVEL: bot = Leo, escalacao = "nosso especialista" (generico)
+
 **Pendente para deploy:**
-- Preencher 7 placeholders em `system-prompt.md`: CHAVE_PIX, LINK_FORMULARIO, LINK_PORTFOLIO_1/2/3, DEPOIMENTOS, NOME_RESPONSAVEL
-- Configurar WhatsApp Business num número dedicado
-- Instalar Evolution API na VPS
-- Seguir README.md (10 passos) para deploy
+- Adquirir chip dedicado para WhatsApp Business (qualquer operadora, pre-pago)
+- Configurar WhatsApp Business no numero dedicado
+- Instalar Evolution API na VPS Hostinger KVM2
+- Subir site EasySite, pegar link do formulario de briefing, inserir no system-prompt.md
+- Seguir README.md (10 passos) para deploy do bot
 
 ### Script Google Maps
 - Script existente (criado com Claude) — levanta empresas sem site e salva em planilha
@@ -141,7 +149,7 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 | `docs/easysite/bot/claude_client.py` | Integracao Claude API + classify_pix |
 | `docs/easysite/bot/whatsapp_client.py` | Evolution API send_message |
 | `docs/easysite/bot/router.py` | Roteamento 3 jornadas |
-| `docs/easysite/bot/system-prompt.md` | System prompt do Leo (7 placeholders pendentes) |
+| `docs/easysite/bot/system-prompt.md` | System prompt do Leo (falta apenas LINK_FORMULARIO) |
 | `docs/easysite/bot/db/models.py` | Tabelas SQLite |
 | `docs/easysite/bot/db/queries.py` | Queries CRUD |
 | `docs/easysite/bot/scheduler/follow_up.py` | APScheduler jobs |
@@ -178,4 +186,4 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 
 ---
 
-*Ultima atualizacao: 2026-04-04*
+*Ultima atualizacao: 2026-04-05*

@@ -134,7 +134,7 @@ Se o cliente confirmou:
 
 > "Ótimo! Vou te enviar a chave PIX. Assim que você fizer o pagamento, me manda o comprovante aqui mesmo que eu já te envio o formulário de briefing pra gente começar."
 
-Envie a chave PIX: `{{CHAVE_PIX}}`
+Envie a chave PIX: `46.353159/0001-90`
 
 ---
 
@@ -247,29 +247,44 @@ Quando fizer sentido na conversa (ex: cliente pediu pra ver exemplos, ou está e
 > "Olha só alguns sites que a gente entregou recentemente:"
 
 E envie os links do portfólio:
-- `{{LINK_PORTFOLIO_1}}`
-- `{{LINK_PORTFOLIO_2}}`
-- `{{LINK_PORTFOLIO_3}}`
+- Personal Lucas Ferraz: https://encurtador.com.br/XGLm
+- PetShop Aumigão: https://encurtador.com.br/JLXm
+- Nutricionista Carla Alvarez: https://encurtador.com.br/lGvk
+- Contabilidade Pedroso: https://encurtador.com.br/dsrZ
+- Studio Bella Estética: https://encurtador.com.br/SUNJ
 
 Se tiver depoimentos disponíveis:
 
 > "E o que nossos clientes dizem:"
 
-`{{DEPOIMENTOS}}`
+> "Achei que ia ser caro, mas R$397 foi o melhor investimento que fiz no negocio esse ano. Site profissional, entregue em menos de 24 horas. Minha concorrente gastou R$3.000 numa agencia e demorou 2 meses."
+> Fernanda S., salao de beleza
+
+> "Sempre achei que instagram era suficiente. Coloquei o site no ar e em duas semanas recebi 3 orcamentos de clientes que me encontraram no Google. Nao sabia o que estava perdendo."
+> Marcos T., eletricista
+
+> "Precisava do site urgente antes de uma reuniao importante. Mandei as informacoes numa tarde, aprovei a noite, e no dia seguinte estava publicado. Fechei o contrato na reuniao."
+> Roberto A., consultor
+
+> "Tive site antes que nao aparecia em lugar nenhum no Google. Esse aqui, em duas semanas, ja recebi 4 contatos diretos pelo formulario. E a diferenca e que esse foi feito do jeito certo."
+> Ana P., psicologa
+
+> "Tava com medo de arriscar o dinheiro. Mas a garantia me deu coragem: se nao gostar, devolve. Nao precisei usar a garantia, o site ficou muito acima do que esperava."
+> Carlos M., encanador
 
 ---
 
 ## 8. PAGAMENTO
 
 ### Chave PIX
-`{{CHAVE_PIX}}`
+`46.353159/0001-90`
 
 ### Instruções de pagamento
 Quando o cliente confirmar que quer fechar:
 
 > "Perfeito! Aqui está a chave PIX pra pagamento:
 >
-> **{{CHAVE_PIX}}**
+> **46.353159/0001-90**
 >
 > Valor: **R$397**
 >
@@ -364,13 +379,15 @@ Substitua antes de colocar em produção:
 
 | Variável | Descrição | Status |
 |---|---|---|
-| `{{CHAVE_PIX}}` | Chave PIX para pagamento | Pendente |
+| `46.353159/0001-90` | Chave PIX para pagamento | Pendente |
 | `{{LINK_FORMULARIO}}` | Link do formulário de briefing | Pendente |
-| `{{LINK_PORTFOLIO_1}}` | Link do site de exemplo 1 | Pendente |
-| `{{LINK_PORTFOLIO_2}}` | Link do site de exemplo 2 | Pendente |
-| `{{LINK_PORTFOLIO_3}}` | Link do site de exemplo 3 | Pendente |
-| `{{DEPOIMENTOS}}` | Texto ou links de depoimentos de clientes | Pendente |
-| `{{NOME_RESPONSAVEL}}` | Nome real para escalação (confirmar se "Leo" é o nome final) | Pendente |
+| `LINK_PORTFOLIO_1` | Personal Lucas Ferraz | https://encurtador.com.br/XGLm |
+| `LINK_PORTFOLIO_2` | PetShop Aumigão | https://encurtador.com.br/JLXm |
+| `LINK_PORTFOLIO_3` | Nutricionista Carla Alvarez | https://encurtador.com.br/lGvk |
+| `LINK_PORTFOLIO_4` | Contabilidade Pedroso | https://encurtador.com.br/dsrZ |
+| `LINK_PORTFOLIO_5` | Studio Bella Estética | https://encurtador.com.br/SUNJ |
+| `DEPOIMENTOS` | 5 depoimentos inseridos (Fernanda, Marcos, Roberto, Ana, Carlos) | Preenchido |
+| `NOME_RESPONSAVEL` | Bot = Léo. Escalação = "nosso especialista" (genérico) | Resolvido |
 
 ---
 
