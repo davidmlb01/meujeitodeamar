@@ -111,19 +111,25 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 
 ---
 
-## Estado Atual
+## Estado Atual (2026-04-07) — INFRAESTRUTURA 100% PRONTA
 
 | Item | Status |
 |------|--------|
 | Estrutura do projeto | Criada |
 | PRD | Pendente |
-| Análise Hormozi Squad | Concluida |
-| Análise Brand Squad | Concluida |
-| Análise Copy Squad | Pendente |
+| Analise Hormozi Squad | Concluida |
+| Analise Brand Squad | Concluida |
 | Brandbook | Concluido |
-| Enxoval Instagram | Pendente |
-| Criativos de conversão | Em andamento |
-| Bot WhatsApp | Codigo pronto, aguardando deploy |
+| Criativos de conversao | Concluido (v6, 10 criativos) |
+| Bot WhatsApp Leo | DEPLOYADO E ONLINE (PM2, VPS) |
+| Evolution API VPS | Rodando em 77.37.69.60:8080, instancia easysite |
+| QR code escaneado | Concluido (2026-04-07) |
+| Webhook configurado | Concluido (http://77.37.69.60:5000/webhook) |
+| Site easysite.site | NO AR (https://www.easysite.site) |
+| DNS propagado | Concluido (A @ 216.198.79.1, CNAME www, Hostinger) |
+| Formulario briefing | Concluido (https://www.easysite.site/form) |
+| LINK_FORMULARIO no .env | Concluido |
+| Meta Ads | PENDENTE — ativar em 2026-04-08 |
 
 ---
 
@@ -138,6 +144,18 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 - **2026-04-04:** Google Sheets para Jornada C via script separado que chama endpoint batch (desacoplado)
 - **2026-04-04:** Claude Haiku 4.5 para respostas e classificação PIX (custo baixo, velocidade alta)
 - **2026-04-04:** DAVID_PHONE separado no webhook — mensagens do David nunca criam lead no banco
+- **2026-04-06:** Evolution API deployada na VPS Hostinger KVM2 (srv1500474.hstgr.cloud, IP 77.37.69.60)
+- **2026-04-06:** Bug critico corrigido: versao WhatsApp Web desatualizada causava "Connection Failure" silencioso — corrigido para 2.3000.1035194821
+- **2026-04-06:** Endpoint POST /api/briefing/webhook criado para receber dados do formulario de briefing (Vercel) e notificar David via WhatsApp
+- **2026-04-06:** Numeros configurados: BOT=5511943451866, DAVID=5511989188188
+- **2026-04-06:** QR code gerado com sucesso. WhatsApp nao deixou escanear (restricao de conta nova, aguardar 24-72h)
+- **2026-04-07:** QR code escaneado com sucesso. WhatsApp +5511943451866 conectado a Evolution API
+- **2026-04-07:** Bot Leo deployado na VPS com PM2 e venv. Fluxo completo validado (mensagem recebida, Claude respondendo, envio de volta OK)
+- **2026-04-07:** Issue @lid diagnosticado: Evolution API v2.2.3 nao consegue enviar para JIDs @lid (~0.25% dos contatos). Aceito para MVP
+- **2026-04-07:** DNS easysite.site propagado. Site no ar em https://www.easysite.site
+- **2026-04-07:** DNS configurado via painel Hostinger (nameservers proprios): A @ 216.198.79.1 + CNAME www bdf230b363518e34.vercel-dns-017.com
+- **2026-04-07:** LINK_FORMULARIO atualizado no .env da VPS: https://www.easysite.site/form
+- **2026-04-07:** Infraestrutura 100% pronta. Proximo passo: ativar Meta Ads (2026-04-08)
 
 ---
 
@@ -171,11 +189,15 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 - [ ] Enxoval social completo
 - [ ] Perfil Instagram
 - [x] Bot WhatsApp (codigo pronto)
-- [ ] Deploy bot na VPS
-- [ ] Configurar WhatsApp Business
+- [x] Deploy Evolution API na VPS
+- [x] Configurar WhatsApp Business (numero +5511943451866)
+- [x] Escanear QR code (2026-04-07)
+- [x] Deploy bot Leo (Python/FastAPI) na VPS com PM2
+- [x] Site easysite.site no ar
+- [x] Formulario de briefing configurado
 
 ### Fase 2 — Operacao
-- [ ] Trafego pago ativo
+- [ ] Trafego pago ativo (Meta Ads — ativar 2026-04-08)
 - [ ] Prospeccao ativa com planilha (Jornada C)
 - [ ] Primeiras vendas
 
@@ -186,4 +208,4 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 
 ---
 
-*Ultima atualizacao: 2026-04-05*
+*Ultima atualizacao: 2026-04-06*

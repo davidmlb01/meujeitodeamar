@@ -35,7 +35,15 @@ STATUSES_NO_REPLY = {"pix_pending", "closed_lost", "pix_confirmed"}
 def extract_phone(data: dict) -> str:
     try:
         remote_jid = data["data"]["key"]["remoteJid"]
-        return remote_jid.replace("@s.whatsapp.net", "").replace("@g.us", "")
+        return remote_jid.replace("@s.whatsapp.net", "").replace("@g.us", "").replace("@lid", "")
+    except (KeyError, TypeError):
+        return ""
+
+
+def extract_jid(data: dict) -> str:
+    """Retorna o JID completo para envio de resposta."""
+    try:
+        return data["data"]["key"]["remoteJid"]
     except (KeyError, TypeError):
         return ""
 
@@ -140,6 +148,13 @@ try:
 except ImportError:
     pass
 
+try:
+    from api.briefing import router as briefing_router
+    app.include_router(briefing_router)
+    logger.info("API de briefing registrada")
+except ImportError:
+    pass
+
 
 # ─── Endpoints ────────────────────────────────────────────────────────────────
 
@@ -158,10 +173,18 @@ async def webhook(request: Request):
     if data.get("event") != "messages.upsert":
         return {"status": "ignored_event"}
 
+    # DEBUG temporário: loga payload completo para diagnóstico @lid
+    try:
+        import json as _json
+        logger.info(f"[DEBUG] payload: {_json.dumps(data.get('data', {}), ensure_ascii=False)[:500]}")
+    except Exception:
+        pass
+
     if is_from_me(data):
         return {"status": "ignored_self"}
 
     phone = extract_phone(data)
+    jid = extract_jid(data)
     message = extract_message(data)
     name = extract_name(data)
 
@@ -210,7 +233,7 @@ async def webhook(request: Request):
     save_message(lead["id"], "assistant", reply)
     update_last_bot_message(lead["id"])
 
-    # Enviar via WhatsApp
-    send_message(phone, reply)
+    # Enviar via WhatsApp (usa JID completo para suportar @lid e @s.whatsapp.net)
+    send_message(jid or phone, reply)
 
     return {"status": "ok"}
