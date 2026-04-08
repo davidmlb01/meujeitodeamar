@@ -57,6 +57,15 @@
   color: var(--muted);
 }
 
+.landing__science {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: 400;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: var(--space-2);
+}
+
 /* ── Steps ── */
 .landing__steps {
   background: var(--bg);

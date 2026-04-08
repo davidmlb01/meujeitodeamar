@@ -54,15 +54,35 @@ export default function Resultado() {
 
         <hr className="resultado__divider" />
 
+        {/* Value stack */}
+        <div className="resultado__value-stack-section">
+          <p className="resultado__value-stack-title">O que está na sua leitura completa:</p>
+          <ul className="resultado__value-stack">
+            {result.valueStack.map((item, i) => (
+              <li key={i} className="resultado__value-item">{item}</li>
+            ))}
+          </ul>
+          <p className="resultado__meta">15 minutos de leitura · Linguagem humana, sem jargão clínico</p>
+          <p className="resultado__science">
+            Um teste com base científica. Não um quiz de revista. Já ajudou milhares de pessoas a entender padrões que repetiam há anos sem saber por quê.
+          </p>
+        </div>
+
+        <hr className="resultado__divider" />
+
         {/* CTA */}
         <div className="resultado__cta-section">
+          <p className="resultado__price">R$37</p>
           <div className="resultado__cta-wrap">
             <Link to={`/checkout?estilo=${estilo}`} tabIndex={-1}>
-              <Button>Quero minha leitura completa por R$37</Button>
+              <Button>Desbloquear minha leitura completa</Button>
             </Link>
           </div>
+          <p className="resultado__redirect">
+            Você será redirecionado para o checkout seguro. Entrega por email em menos de 5 minutos.
+          </p>
           <p className="resultado__guarantee">
-            Entrega imediata por email · Garantia de 7 dias, sem perguntas
+            Garantia de 7 dias. Se não fizer sentido, devolvemos tudo, sem perguntas.
           </p>
         </div>
 

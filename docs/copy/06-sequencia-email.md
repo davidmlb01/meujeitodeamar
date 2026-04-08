@@ -71,6 +71,86 @@ P.S. Você já releu a seção de pontos cegos? Vale uma segunda leitura com cal
 
 ---
 
+## EMAIL D+2: COMO É SER AMADO POR VOCÊ
+*(email segmentado: parágrafo central varia por jeito de amar)*
+*(quando o produto "Como é ser amado por você" estiver disponível, CTA vira link de compra)*
+
+**Assunto:** Uma pergunta que você provavelmente nunca fez
+
+**Preview:** Como é estar do outro lado do seu amor?
+
+---
+
+Você passou os últimos dias entendendo o seu jeito de amar.
+
+De onde ele veio. Como ele funciona. O que ele faz em você.
+
+Mas tem uma pergunta que quase ninguém faz.
+
+Como é amar alguém como você?
+
+Não do ponto de vista de quem recebe o seu amor. Do ponto de vista de quem tenta te amar de volta.
+
+*[PARÁGRAFO CENTRAL: inserir versão correspondente ao jeito de amar da compradora]*
+
+Essa é a outra metade da história que a sua leitura não contou.
+
+Entender isso não é sobre culpa. É sobre ver o relacionamento inteiro, não só a metade que você vive por dentro.
+
+Amanhã te conto sobre a Ana.
+
+[assinatura]
+
+---
+
+### PARÁGRAFO CENTRAL: CORAÇÃO ANSIOSO
+
+Quem ama um coração ansioso acorda todos os dias tentando provar que não vai embora.
+
+Sem saber que essa prova nunca vai ser suficiente para o seu sistema nervoso. Não porque o amor não seja real. Porque o alarme foi programado muito antes desse amor existir.
+
+Então a outra pessoa tenta. Está presente. Responde rápido. Demonstra carinho o tempo todo. E ainda assim sente que nunca é exatamente o suficiente. Que sempre tem um milímetro de dúvida que ela não consegue alcançar.
+
+Com o tempo, isso cansa. Não porque ela parou de amar. Porque ninguém consegue correr a mesma corrida sem linha de chegada para sempre.
+
+---
+
+### PARÁGRAFO CENTRAL: CORAÇÃO DISTANTE
+
+Quem ama um coração distante bate numa parede que parece rejeição.
+
+E nunca sabe se o silêncio é tranquilidade ou afastamento. Se o distanciamento é sobre ela ou sobre você. Fica no escuro tentando não interpretar errado o que quase sempre interpreta errado.
+
+Com o tempo, aprende a não pedir o que precisa. Porque pedir parece demais. Porque quando pediu antes, você recuou ainda mais. Então ela vai ficando quieta. Vai precisando menos. Ou fingindo que precisa menos.
+
+E um dia você olha e percebe que ela parou de chegar perto. E não entende bem quando isso aconteceu.
+
+---
+
+### PARÁGRAFO CENTRAL: CORAÇÃO SEGURO
+
+Quem ama um coração seguro costuma esquecer de perguntar o que você precisa.
+
+Porque você sempre parece estar bem. Sempre parece saber o que fazer. Sempre tem espaço para o problema do outro.
+
+E vai chegando um ponto em que você está dando tudo e recebendo muito menos do que precisa, em silêncio, sem reclamar. Porque não é o seu jeito criar problema onde parece não ter.
+
+As pessoas que te amam raramente perguntam como você está de verdade. Não porque não se importam. Porque você nunca pareceu precisar da pergunta. E você nunca ensinou que precisava.
+
+---
+
+### PARÁGRAFO CENTRAL: CORAÇÃO CONFUSO
+
+Quem ama um coração confuso aprende a viver no imprevisível.
+
+Nunca sabe qual versão vai encontrar. Começa a andar na ponta dos pés dentro de um relacionamento que deveria ser lar. E em algum momento começa a se perguntar se está fazendo algo errado. Se é ela a responsável pela distância que aparece e desaparece sem aviso.
+
+Não é. Mas ela não sabe disso.
+
+Ela só sabe que ama você muito e que às vezes isso parece não ser suficiente para te manter perto. E que não entende o que muda entre um dia e o outro.
+
+---
+
 ## EMAIL D+3: FECHAR O LOOP, ABRIR O PRÓXIMO
 
 **Assunto:** o que a Ana fez depois

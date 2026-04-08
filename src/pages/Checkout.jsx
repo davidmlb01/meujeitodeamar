@@ -16,15 +16,16 @@ const OB1_BULLETS = [
 ]
 
 const OB2_BULLETS = [
-  'Leitura completa de 1 perfil à sua escolha',
-  'Inclui "como esse jeito de amar se relaciona com o seu"',
-  'Acesso permanente',
+  'Análise do padrão de atração específico do seu jeito de amar',
+  'Por que certas pessoas parecem inevitáveis desde o primeiro encontro',
+  'O ciclo que se repete e como ele funciona por dentro',
+  'O que muda na sua forma de escolher quando você entende a lógica',
 ]
 
 const SUMMARY_BULLETS = [
   'Seu perfil identificado com precisão',
   'A dinâmica completa do seu padrão nos relacionamentos',
-  'Seus pontos cegos — o que você faz sem perceber',
+  'Seus pontos cegos: o que você faz sem perceber',
   'De onde veio esse jeito de amar',
   'Caminhos concretos de transformação',
 ]
@@ -97,7 +98,7 @@ export default function Checkout() {
             />
             <div>
               <p className="order-bump__label">
-                SIM, quero adicionar o Guia de Relacionamentos por Estilo.
+                SIM, quero adicionar o Guia de Relacionamentos por Jeito de Amar.
               </p>
               <p className="order-bump__price">Adicione por apenas R$27</p>
             </div>
@@ -128,13 +129,13 @@ export default function Checkout() {
             />
             <div>
               <p className="order-bump__label">
-                SIM, quero a leitura de quem eu amo.
+                SIM, quero entender por que escolho quem escolho.
               </p>
               <p className="order-bump__price">Adicione por apenas R$19</p>
             </div>
           </div>
           <p className="order-bump__body">
-            Escolha um perfil e receba a leitura completa daquela pessoa: como ela ama, do que ela precisa, o que a faz recuar, o que a faz se aproximar.
+            Por que eu sempre me apaixono pelo mesmo tipo de pessoa? Não é coincidência. É um padrão com uma lógica precisa. Esta leitura explica o padrão de atração específico do seu jeito de amar e o que muda quando você entende a gravidade que criou essas escolhas.
           </p>
           <ul className="order-bump__bullets">
             {OB2_BULLETS.map((b) => (

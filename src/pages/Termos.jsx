@@ -19,7 +19,7 @@ export default function Termos() {
             <h2 className="legal__section-title">1. O que é este serviço</h2>
             <div className="legal__section-body">
               <p>
-                meujeitodeamar.com.br é uma plataforma de autoconhecimento que oferece um quiz de estilo de apego e materiais digitais de leitura. O conteúdo tem caráter informativo e educativo — não substitui acompanhamento psicológico, terapêutico ou médico.
+                meujeitodeamar.com.br é uma plataforma de autoconhecimento que oferece um quiz sobre o jeito de amar de cada pessoa e materiais digitais de leitura. O conteúdo tem caráter informativo e educativo e não substitui acompanhamento psicológico, terapêutico ou médico.
               </p>
             </div>
           </div>

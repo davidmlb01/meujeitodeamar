@@ -54,6 +54,7 @@
     .cover__subtitle { font-family: var(--font-display); font-size: 23px; font-weight: 300; font-style: italic; color: var(--muted); margin-bottom: 48px; }
     .cover__divider  { width: 32px; height: 1px; background: var(--dark); margin: 0 auto 48px; }
     .cover__intro    { font-family: var(--font-body); font-size: 15px; line-height: 1.7; color: var(--muted); max-width: 320px; }
+    .cover__science  { font-family: var(--font-body); font-size: 11px; line-height: 1.6; color: var(--muted); max-width: 320px; margin-top: 20px; font-style: italic; opacity: 0.75; }
 
     /* ── Área de conteúdo ── */
     .pg-body      { padding: 48px 60px 40px; min-height: 297mm; box-sizing: border-box; background: var(--bg); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -154,7 +155,8 @@
     <h1 class="cover__title">O seu jeito<br>de <em>amar.</em></h1>
     <p class="cover__subtitle">Uma leitura sobre quem você é<br>nos seus relacionamentos.</p>
     <div class="cover__divider"></div>
-    <p class="cover__intro">Esse documento contém a sua leitura completa. Leia uma vez sem parar. Não analise. Não julgue. Depois volte à seção de pontos cegos — essa costuma ser a mais incômoda e a mais útil.</p>
+    <p class="cover__intro">Esse documento contém a sua leitura completa. Leia uma vez sem parar. Não analise. Não julgue. Depois volte à seção de pontos cegos: essa costuma ser a mais incômoda e a mais útil.</p>
+    <p class="cover__science">Baseado na Teoria do Apego, desenvolvida pelo psiquiatra John Bowlby e validada por décadas de pesquisa em psicologia do desenvolvimento.</p>
   </div>
 </div>
 
@@ -649,6 +651,22 @@
 </div>
 
 
+<!-- ════════════════ DISCLAIMER ════════════════ -->
+<div class="pdf-page" data-disclaimer>
+  <div class="pg-body" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;min-height:297mm;">
+    <div style="max-width:420px;">
+      <div class="cover__ornament" style="margin:0 auto 32px;"></div>
+      <p style="font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;">Aviso importante</p>
+      <p style="font-family:var(--font-body);font-size:13px;line-height:1.75;color:var(--text);margin-bottom:20px;">Este material tem caráter informativo e educativo. Não substitui acompanhamento psicológico, terapêutico ou médico profissional.</p>
+      <p style="font-family:var(--font-body);font-size:13px;line-height:1.75;color:var(--muted);margin-bottom:32px;">Se você estiver passando por um momento de sofrimento intenso, busque apoio de um profissional de saúde mental.</p>
+      <div class="cover__divider" style="margin:0 auto 32px;"></div>
+      <p style="font-family:var(--font-body);font-size:11px;line-height:1.6;color:var(--muted);font-style:italic;">Baseado na Teoria do Apego, desenvolvida pelo psiquiatra John Bowlby e validada por décadas de pesquisa em psicologia do desenvolvimento.</p>
+      <p style="font-family:var(--font-body);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--subtle);margin-top:32px;">meujeitodeamar.com.br</p>
+    </div>
+  </div>
+</div>
+
+
 <script>
   function filtrar(estilo) {
     document.querySelectorAll('.pdf-page[data-estilo]').forEach(function(page) {
@@ -656,6 +674,10 @@
     })
     document.querySelectorAll('.pdf-page[data-closing]').forEach(function(page) {
       page.style.display = estilo ? 'none' : ''
+    })
+    // disclaimer sempre visível
+    document.querySelectorAll('.pdf-page[data-disclaimer]').forEach(function(page) {
+      page.style.display = ''
     })
   }
 </script>

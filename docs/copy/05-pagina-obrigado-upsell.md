@@ -1,7 +1,7 @@
 # Copy: Página de Obrigado + Upsell
 **Produto:** meujeitodeamar.com.br
 **Copywriter:** Dan Kennedy
-**Versão:** 1.1 (leitura)
+**Versão:** 2.0 — revisão de proximidade
 
 ---
 
@@ -17,9 +17,9 @@ Verifique sua caixa de entrada agora. O email com a sua leitura foi enviado para
 
 **Aguarde antes de fechar essa página.**
 
-**Você acabou de dar um passo que a maioria das pessoas nunca dá.**
+**Você acabou de fazer algo que a maioria das pessoas nunca faz.**
 
-A maioria das pessoas passa anos repetindo os mesmos padrões nos relacionamentos sem nunca entender de onde eles vieram. Você não. Você quis saber.
+A maioria das pessoas passa anos repetindo os mesmos padrões nos relacionamentos sem nunca parar para perguntar de onde eles vieram. Você parou. Você quis saber. Isso já muda alguma coisa.
 
 E agora que você sabe o seu jeito de amar, há uma coisa que vai transformar completamente a forma como você entende tudo ao seu redor.
 
@@ -27,17 +27,17 @@ E agora que você sabe o seu jeito de amar, há uma coisa que vai transformar co
 
 **O problema que ninguém menciona:**
 
-Você pode conhecer o seu jeito de amar com perfeição.
+Você pode entender o seu jeito de amar com profundidade.
 
-Mas as pessoas ao seu redor ainda são um mistério.
+Mas as pessoas ao seu redor ainda vão ser um mistério.
 
 Por que seu parceiro some por dias sem dar satisfação e depois volta como se nada tivesse acontecido?
 
-Por que sua mãe sempre consegue te fazer sentir culpado sem dizer uma palavra errada?
+Por que sua mãe sempre consegue te fazer sentir culpada sem dizer uma palavra errada?
 
-Por que aquele amigo que você mais gosta é exatamente o mais difícil de manter perto?
+Por que aquela amiga que você mais gosta é exatamente a mais difícil de manter perto?
 
-Cada um deles tem um jeito de amar. E esse jeito explica tudo.
+Cada uma delas tem um jeito de amar. E esse jeito explica tudo.
 
 ---
 
@@ -45,15 +45,21 @@ Cada um deles tem um jeito de amar. E esse jeito explica tudo.
 
 **Combo Completo: Os 4 Jeitos de Amar**
 
-São as leituras completas dos outros três perfis além do seu. Não resumos. As mesmas leituras completas que você acabou de receber, escritas com o mesmo nível de profundidade, para cada um dos outros jeitos de amar.
+São as leituras imersivas dos outros três perfis além do seu. O mesmo formato que você acabou de receber: escrito em profundidade, na segunda pessoa, como se você vivesse por dentro de cada jeito de amar.
+
+Não são resumos. Não são guias de comunicação. São leituras completas, da mesma forma que a sua, para que você entenda cada jeito de amar por dentro, não só por fora.
+
+Quando você ler a leitura do Coração Ansioso, você vai reconhecer alguém. Quando ler a do Coração Distante, vai entender algo que estava confuso há anos. Quando ler a do Coração Confuso, vai parar de interpretar como ataque o que é, quase sempre, medo.
 
 ✓ Leitura completa do Coração Ansioso
 ✓ Leitura completa do Coração Distante
 ✓ Leitura completa do Coração Seguro
 ✓ Leitura completa do Coração Confuso
-✓ Inclui a seção de como cada jeito se relaciona com o seu
+✓ Cada leitura inclui como esse jeito de amar se relaciona com os outros três
 
-Quando você terminar de ler a sua leitura hoje, você vai querer entender as pessoas ao seu redor com a mesma clareza. Esse material estará lá quando você precisar.
+Esse é o material de referência. O que você vai abrir quando alguém na sua vida não fizer sentido.
+
+Não é um guia prático de comunicação. Não é a leitura de uma pessoa específica. É a experiência completa de entender cada jeito de amar por dentro, com a mesma profundidade que você teve com o seu.
 
 ---
 
@@ -63,21 +69,21 @@ Cada leitura individual vale R$37. São quatro leituras.
 
 Você não vai pagar R$148. Nem R$97.
 
-Como você acabou de comprar e está nessa página agora, o preço é R$37 pelo conjunto completo.
+Como você acabou de comprar e está nessa página agora, o preço é R$67 pelo conjunto completo.
 
-O mesmo valor da sua leitura individual. Pelas quatro.
+Menos da metade do valor separado. Pelas quatro leituras completas.
 
 Isso não vai estar disponível em nenhum outro lugar. Quando você sair dessa página, o preço volta ao normal.
 
 ---
 
-[ SIM, quero o Combo Completo por R$37 ]
+[ SIM, quero o Combo Completo por R$67 ]
 
 Um clique. Sem preencher nada. Seus dados já estão aqui.
 
 ---
 
-[ Não, obrigado. Prefiro entender só o meu jeito de amar por enquanto. ]
+[ Não, obrigada. Prefiro entender só o meu jeito de amar por enquanto. ]
 
 ---
 

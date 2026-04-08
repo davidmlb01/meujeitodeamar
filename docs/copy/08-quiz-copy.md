@@ -68,7 +68,7 @@ O que acontece dentro de você?
 Como você recebe isso?
 
 - [ A ] Sinto calor no peito. Finalmente. É o que eu queria.
-- [ B ] Uma parte de mim quer correr. Fico desconfortável com conversas sobre futuro.
+- [ B ] Uma parte de mim quer dar um passo atrás. Fico desconfortável quando as coisas ficam sérias rápido.
 - [ C ] Fico feliz. É bom construir algo junto com quem eu gosto.
 - [ D ] Fico empolgada num momento e assustada no próximo. Os dois ao mesmo tempo, sem conseguir explicar.
 
@@ -287,7 +287,7 @@ Como você se sente?
 
 ### BLOCO 2: Como você se sente perto
 
-**Pergunta 6:** Quando um relacionamento começa a ficar muito íntimo, você:
+**Pergunta 6:** Quando um relacionamento começa a ficar mais próximo, mais sério, você:
 *(opções idênticas à Versão C, Q2)*
 
 **Pergunta 7:** Quanto espaço você precisa num relacionamento?

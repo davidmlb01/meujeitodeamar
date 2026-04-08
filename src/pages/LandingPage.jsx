@@ -33,6 +33,7 @@ export default function LandingPage() {
             </Link>
           </div>
           <p className="landing__under">20 perguntas · Resultado imediato · 100% gratuito</p>
+          <p className="landing__science">Um teste com base científica. Não um quiz de revista.</p>
         </div>
 
         {/* Coluna direita — só desktop */}

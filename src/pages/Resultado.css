@@ -103,3 +103,76 @@
   text-align: center;
   line-height: var(--lh-small);
 }
+
+/* ── Value stack ── */
+.resultado__value-stack-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.resultado__value-stack-title {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 500;
+  color: var(--text);
+}
+
+.resultado__value-stack {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.resultado__value-item {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--lh-body);
+  color: var(--text);
+  padding-left: var(--space-5);
+  position: relative;
+}
+
+.resultado__value-item::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.resultado__meta {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+.resultado__science {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  line-height: var(--lh-body);
+  color: var(--muted);
+  font-style: italic;
+  border-left: 2px solid var(--subtle);
+  padding-left: var(--space-4);
+}
+
+/* ── Price ── */
+.resultado__price {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--text);
+  text-align: center;
+}
+
+/* ── Redirect bridge ── */
+.resultado__redirect {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  color: var(--muted);
+  text-align: center;
+  line-height: var(--lh-small);
+}

@@ -364,13 +364,48 @@ O Projeto Freud é uma plataforma de testes psicológicos de baixo ticket. O **m
 
 ---
 
+## Protocolo de Orquestração (OBRIGATÓRIO — Orion)
+
+### Fluxo obrigatório para qualquer tarefa delegada a squad
+
+**NUNCA** designar agente executor diretamente. O fluxo é sempre:
+
+```
+Orion identifica squad → chama Squad Lead → Squad Lead designa o melhor agente → agente executa
+```
+
+Exemplos:
+- Tarefa de design: Orion → UMA (design lead) → UMA designa especialista
+- Tarefa de copy: Orion → copy lead → lead designa especialista
+- Qualquer squad: sempre via líder primeiro
+
+### Quality Gate — NADA chega ao David com erros
+
+Antes de qualquer entrega ao David, auditoria obrigatória:
+
+```
+Agente executa → Auditoria (erros?) → SIM: retorna ao agente para corrigir → NAO: entrega ao David
+```
+
+Erros auditados: copy (travessão, formatação, grafia), lógica, código, coerência com briefing.
+Se erro encontrado: retorna ao executor com lista específica de problemas. David só recebe quando aprovado.
+
+---
+
 ## Processos de Sessão
 
 ### Ao fim de cada sessão importante (OBRIGATÓRIO)
-1. Atualizar `docs/MASTER-BACKUP.md` com decisões tomadas, mudanças feitas e estado atual
-2. Atualizar o arquivo de memória do projeto em `~/.claude/projects/.../memory/project_freud_complete.md`
-3. Fazer git commit + push do MASTER-BACKUP.md: `git add docs/MASTER-BACKUP.md && git commit -m "docs: atualiza master backup" && git push`
-4. Sugerir `/save-session` para criar snapshot da sessão no harness
+1. Para **cada projeto tocado** na sessão:
+   - Atualizar o `MASTER-BACKUP.md` do projeto com decisões tomadas, mudanças e estado atual
+   - Atualizar o arquivo de memória correspondente em `~/.claude/projects/.../memory/project_{nome}_complete.md`
+   - Se o projeto não tiver arquivo de memória, criar agora
+2. Fazer commit + push de todos os MASTER-BACKUPs modificados
+3. Sugerir `/save-session` para criar snapshot da sessão no harness
+
+### Ao iniciar trabalho em qualquer projeto
+- Verificar se existe `project_{nome}_complete.md` na memória
+- Se não existir: criar ANTES de qualquer outra ação naquele projeto
+- Consultar a memória existente para ter contexto completo antes de agir
 
 ### Durante a sessão (proativo)
 - A cada ~30 minutos de trabalho intenso, sugerir `/save-session` sem esperar o usuário pedir

@@ -1,7 +1,7 @@
 # Copy: Checkout + Order Bumps
 **Produto:** meujeitodeamar.com.br
 **Copywriter:** Dan Kennedy
-**Versão:** 1.1 (leitura)
+**Versão:** 2.0 — revisão de proximidade + fix gap OB2
 
 ---
 
@@ -17,10 +17,10 @@ Preencha os dados abaixo para receber sua leitura completa imediatamente após a
 
 **Sua Leitura Completa: Seu Jeito de Amar**
 
-✓ Seu perfil identificado com precisão
+✓ O seu perfil identificado com precisão
 ✓ A dinâmica completa do seu padrão nos relacionamentos
-✓ Seus pontos cegos, o que você faz sem perceber
-✓ De onde veio esse jeito de amar
+✓ Os seus pontos cegos: o que você faz sem perceber
+✓ De onde veio o seu jeito de amar
 ✓ Caminhos concretos de transformação
 
 **Valor: R$37**
@@ -31,27 +31,27 @@ Entrega imediata por email. Acesso permanente.
 
 ## ORDER BUMP 1
 
-[ ] SIM, quero adicionar o Guia de Relacionamentos por Estilo.
+[ ] SIM, quero adicionar o Guia de Relacionamentos por Jeito de Amar.
 
 **Adicione por apenas R$27**
 
-Você acabou de descobrir o seu jeito de amar.
+Você acabou de receber a leitura do seu jeito de amar.
 
-Mas as pessoas ao seu redor também têm o jeito delas.
+Esse guia é diferente. Ele não é sobre você.
 
-Seu parceiro. Seu ex. Seu pai. Sua mãe. Aquela amiga que some de vez em quando sem aviso.
+É um manual de campo para entender as pessoas ao seu redor: seu parceiro, seu ex, sua mãe, aquela amiga que some sem avisar e volta como se nada tivesse acontecido.
 
-Cada um deles ama de um jeito específico. E quando você não entende o jeito do outro, você interpreta errado. Você reage errado. Você sofre por coisas que não precisariam doer.
+Cada uma dessas pessoas ama de um jeito específico. E quando você não sabe qual jeito é esse, você interpreta o comportamento delas pelo filtro do seu. Você reage errado. Você pede o que elas não conseguem dar. Você sofre por coisas que não precisariam doer.
 
-O Guia de Relacionamentos por Estilo te mostra, em linguagem direta e prática:
+O Guia de Relacionamentos por Jeito de Amar é um manual prático, não uma leitura imersiva. Ele explica como cada jeito de amar funciona por fora, o que cada pessoa realmente precisa (mesmo que nunca peça), por que certas combinações geram atrito e o que dizer em cada situação.
 
-✓ Como funciona cada um dos quatro jeitos de amar
-✓ O que cada pessoa realmente precisa, mesmo que nunca peça diretamente
-✓ Como se comunicar com cada jeito sem criar conflito desnecessário
+✓ Os quatro jeitos de amar explicados do ponto de vista de quem está de fora
+✓ O que cada pessoa precisa, mesmo que nunca peça diretamente
 ✓ Por que certas combinações geram atrito e como navegar isso
-✓ O que fazer quando dois jeitos de amar parecem incompatíveis
+✓ Scripts prontos: o que dizer em cada situação difícil
+✓ As seis dinâmicas de par com o ciclo de conflito de cada uma
 
-São 28 páginas escritas para serem usadas, não arquivadas.
+Não é uma leitura pessoal. Não é sobre autoconhecimento. É uma ferramenta de uso imediato para os relacionamentos que você já tem.
 
 **Adicione por R$27 agora, antes de finalizar o pedido.**
 
@@ -61,21 +61,39 @@ Não estará disponível depois que você sair dessa página.
 
 ## ORDER BUMP 2
 
-[ ] SIM, quero a leitura de quem eu amo.
+[ ] SIM, quero entender por que escolho quem escolho.
 
 **Adicione por apenas R$19**
 
 Você acabou de entender o seu jeito de amar.
 
-Mas tem uma pessoa específica na sua vida que continua sendo um mistério.
+Mas tem uma pergunta que você provavelmente já fez pra si mesma mais de uma vez.
 
-Escolha um perfil e receba a leitura completa daquela pessoa: como ela ama, do que ela precisa, o que a faz recuar, o que a faz se aproximar, o que parece frieza mas não é, o que parece carência mas não é.
+Por que eu sempre me apaixono pelo mesmo tipo de pessoa?
 
-A mesma profundidade que você recebeu. Para a pessoa que importa.
+Por que os relacionamentos parecem diferentes no começo e chegam no mesmo lugar?
 
-✓ Leitura completa de 1 perfil à sua escolha
-✓ Inclui a seção "como esse jeito de amar se relaciona com o seu"
-✓ Acesso permanente
+Por que eu me sinto tão atraída por alguém que, lá no fundo, eu já sei que não vai funcionar?
+
+Não é coincidência. Não é azar. É um padrão. E ele tem uma lógica precisa.
+
+O seu jeito de amar cria uma atração específica. Não aleatória. Existe um tipo de pessoa que o seu sistema nervoso reconhece como familiar desde o primeiro encontro. Que acende algo que parece intenso, certo, quase inevitável.
+
+E quase sempre, esse familiar é exatamente o oposto do que você precisa.
+
+Esta leitura explica a lógica por trás das suas escolhas:
+
+- Por que o seu jeito de amar se sente tão atraído por certos perfis
+- O que esse familiar representa e de onde ele veio
+- Por que o ciclo se repete mesmo quando você já reconhece o padrão
+- O que muda quando você entende a gravidade que criou essas escolhas
+
+Não é sobre culpar o que veio antes. É sobre entender o que criou a atração.
+
+✓ Análise do padrão de atração específico do seu jeito de amar
+✓ Por que certas pessoas parecem inevitáveis desde o primeiro encontro
+✓ O ciclo que se repete e como ele funciona por dentro
+✓ O que muda na sua forma de escolher quando você entende a lógica
 
 **Adicione por R$19. Um clique. Sem nenhum dado adicional.**
 
