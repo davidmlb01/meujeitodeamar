@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Leituras Completas — Meu Jeito de Amar</title>
+  <title>Os 4 Jeitos de Amar — Combo Completo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -27,8 +27,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: #ccc; font-family: var(--font-body); color: var(--text); }
 
-    /* ── Página A4 ── */
-    /* Tela: min-height (sem corte, sem espaço vazio) */
+    /* Página A4 */
     .pdf-page {
       width: 210mm;
       min-height: 297mm;
@@ -39,7 +38,7 @@
       print-color-adjust: exact;
     }
 
-    /* ── Capa ── */
+    /* Capa */
     .pg-cover {
       height: 100%;
       display: flex; flex-direction: column;
@@ -49,16 +48,30 @@
     .cover__ornament { width: 48px; height: 1px; background: var(--dark); margin: 0 auto 32px; }
     .cover__site     { font-family: var(--font-body); font-size: 11px; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-bottom: 48px; }
     .cover__eyebrow  { font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
-    .cover__title    { font-family: var(--font-display); font-size: 60px; font-weight: 400; line-height: 1.1; color: var(--text); margin-bottom: 8px; }
+    .cover__title    { font-family: var(--font-display); font-size: 56px; font-weight: 400; line-height: 1.1; color: var(--text); margin-bottom: 8px; }
     .cover__title em { font-style: italic; color: var(--dark); }
-    .cover__subtitle { font-family: var(--font-display); font-size: 23px; font-weight: 300; font-style: italic; color: var(--muted); margin-bottom: 48px; }
+    .cover__subtitle { font-family: var(--font-display); font-size: 21px; font-weight: 300; font-style: italic; color: var(--muted); margin-bottom: 48px; }
     .cover__divider  { width: 32px; height: 1px; background: var(--dark); margin: 0 auto 48px; }
-    .cover__intro    { font-family: var(--font-body); font-size: 15px; line-height: 1.7; color: var(--muted); max-width: 320px; }
+    .cover__intro    { font-family: var(--font-body); font-size: 15px; line-height: 1.7; color: var(--muted); max-width: 340px; }
     .cover__science  { font-family: var(--font-body); font-size: 11px; line-height: 1.6; color: var(--muted); max-width: 320px; margin-top: 20px; font-style: italic; opacity: 0.75; }
 
-    /* ── Área de conteúdo ── */
+    /* Página de sumário/separador */
+    .pg-divider {
+      height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 60px 56px;
+    }
+    .divider__number { font-family: var(--font-display); font-size: 96px; font-weight: 300; line-height: 1; color: var(--subtle); margin-bottom: 16px; }
+    .divider__label  { font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+    .divider__title  { font-family: var(--font-display); font-size: 42px; font-weight: 400; line-height: 1.2; color: var(--text); margin-bottom: 12px; }
+    .divider__title em { font-style: italic; color: var(--dark); }
+    .divider__tagline { font-family: var(--font-display); font-size: 18px; font-style: italic; color: var(--muted); }
+    .divider__accent { width: 100%; height: 6px; position: absolute; bottom: 0; left: 0; right: 0; }
+
+    /* Área de conteúdo */
     .pg-body      { padding: 48px 60px 40px; min-height: 297mm; box-sizing: border-box; background: var(--bg); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .pg-body--last { padding-bottom: 60px; } /* espaço para o footer absoluto */
+    .pg-body--last { padding-bottom: 60px; }
 
     /* Header */
     .content__header  { margin-bottom: 40px; padding-bottom: 28px; border-bottom: 1px solid var(--subtle); }
@@ -74,7 +87,6 @@
 
     /* Seções */
     .section       { margin-bottom: 32px; }
-
     .section__title { font-family: var(--font-display); font-size: 24px; font-weight: 500; color: var(--dark); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--subtle); }
     .section__body  { font-family: var(--font-body); font-size: 13px; line-height: 1.75; color: var(--text); }
     .section__body p + p { margin-top: 10px; }
@@ -97,20 +109,12 @@
     .practice__label      { font-family: var(--font-body); font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
     .practice__text       { font-family: var(--font-body); font-size: 13px; line-height: 1.65; color: var(--muted); }
 
-    /* Sinais de crescimento */
-    .sinais                { margin-top: 16px; }
-    .sinal                 { display: flex; gap: 14px; margin-bottom: 10px; padding: 12px 16px; background: var(--bg-warm); border-radius: 6px; align-items: flex-start; }
-    .sinal:last-child      { margin-bottom: 0; }
-    .sinal__check          { font-family: var(--font-body); font-size: 12px; font-weight: 700; color: var(--dark); padding-top: 2px; min-width: 14px; }
-    .sinal__text           { font-family: var(--font-body); font-size: 13px; line-height: 1.6; color: var(--text); }
-    .sinais__intro         { font-family: var(--font-body); font-size: 13px; line-height: 1.75; color: var(--muted); margin-bottom: 20px; }
-
     /* Encerramento */
     .closing       { margin-top: 28px; padding: 24px 28px; background: var(--dark); border-radius: 8px; }
     .closing p     { font-family: var(--font-display); font-size: 19px; font-style: italic; line-height: 1.55; color: var(--white); }
     .closing p + p { margin-top: 10px; }
 
-    /* Footer — absoluto no fundo da última página */
+    /* Footer */
     .pg-footer    { position: absolute; bottom: 5px; left: 60px; right: 60px; display: flex; justify-content: space-between; align-items: center; padding-bottom: 6px; }
     .footer__site { font-family: var(--font-body); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--subtle); }
     .footer__line { flex: 1; height: 1px; background: var(--subtle); margin: 0 16px; }
@@ -118,12 +122,10 @@
     /* Barra de cor */
     .pg-accent { position: absolute; bottom: 0; left: 0; right: 0; height: 5px; }
 
-    /* ── Print ── */
+    /* Print */
     @page { size: A4; margin: 0; }
 
     @media print {
-      #export-panel { display: none !important; }
-      #print-spacer  { display: none !important; }
       html, body { width: 210mm; background: transparent; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .pdf-page {
         height: 297mm;
@@ -141,41 +143,40 @@
 </head>
 <body>
 
-<!-- Painel de exportação -->
-<div id="export-panel" style="position:fixed;top:0;left:0;right:0;z-index:999;background:#4B1D3F;padding:12px 24px;display:flex;align-items:center;gap:12px;font-family:'Jost',sans-serif;font-size:13px;color:#F5EEE4;">
-  <span style="font-weight:600;margin-right:4px;">Exportar:</span>
-  <button onclick="filtrar('ansioso')" style="background:#D8A7B1;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;">Ansioso</button>
-  <button onclick="filtrar('distante')" style="background:#C4909C;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;">Distante</button>
-  <button onclick="filtrar('seguro')" style="background:#BF8A96;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;">Seguro</button>
-  <button onclick="filtrar('confuso')" style="background:#D4B5B0;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;">Confuso</button>
-  <button onclick="filtrar(null)" style="background:#7A6A60;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px;color:#F5EEE4;font-weight:600;">Ver todos</button>
-  <span style="margin-left:8px;color:#D4C5AE;">→ Clique num estilo, depois Cmd+P</span>
-</div>
-<div id="print-spacer" style="height:52px;"></div>
-
 
 <!-- ════════════════ CAPA ════════════════ -->
 <div class="pdf-page">
   <div class="pg-cover">
     <div class="cover__ornament"></div>
     <p class="cover__site">meujeitodeamar.com.br</p>
-    <p class="cover__eyebrow">Sua leitura completa</p>
-    <h1 class="cover__title">O seu jeito<br>de <em>amar.</em></h1>
-    <p class="cover__subtitle">Uma leitura sobre quem você é<br>nos seus relacionamentos.</p>
+    <p class="cover__eyebrow">Combo Completo</p>
+    <h1 class="cover__title">Os quatro<br>jeitos de <em>amar.</em></h1>
+    <p class="cover__subtitle">Uma leitura completa sobre cada um<br>dos quatro padrões de apego.</p>
     <div class="cover__divider"></div>
-    <p class="cover__intro">Esse documento contém a sua leitura completa. Leia uma vez sem parar. Não analise. Não julgue. Depois volte à seção de pontos cegos: essa costuma ser a mais incômoda e a mais útil.</p>
+    <p class="cover__intro">Este documento reúne as quatro leituras completas: Coração Ansioso, Coração Distante, Coração Seguro e Coração Confuso. Leia o seu jeito primeiro. Depois leia os outros. O que você vai entender sobre as pessoas ao seu redor vai mudar.</p>
     <p class="cover__science">Baseado na Teoria do Apego, desenvolvida pelo psiquiatra John Bowlby e validada por décadas de pesquisa em psicologia do desenvolvimento.</p>
   </div>
 </div>
 
 
-<!-- ════════════════ ANSIOSO ════════════════ -->
+<!-- ════════════════ SEPARADOR 1 — ANSIOSO ════════════════ -->
+<div class="pdf-page">
+  <div class="pg-divider">
+    <div class="cover__ornament"></div>
+    <p class="divider__number">01</p>
+    <p class="divider__label">Primeiro jeito de amar</p>
+    <h2 class="divider__title">O Coração <em>Ansioso</em></h2>
+    <p class="divider__tagline">Você ama de verdade. E sente de verdade.</p>
+  </div>
+  <div class="divider__accent" style="background: var(--ansioso);"></div>
+</div>
 
-<!-- PG 1 — Origem e Funcionamento -->
-<div class="pdf-page" data-estilo="ansioso">
+
+<!-- ANSIOSO PG 1 -->
+<div class="pdf-page">
   <div class="pg-body">
     <div class="content__header">
-      <p class="content__eyebrow">Seu Jeito de Amar</p>
+      <p class="content__eyebrow">Jeito de Amar 01</p>
       <h2 class="content__title">O Coração <em>Ansioso</em></h2>
       <p class="content__tagline">Você ama de verdade. E sente de verdade.</p>
     </div>
@@ -188,22 +189,22 @@
       <div class="section__body">
         <p>Nos primeiros anos da sua vida, as pessoas que cuidavam de você eram, de alguma forma, imprevisíveis. Não necessariamente ruins. Muitas vezes eram pessoas que te amavam de verdade. Mas o amor que chegava até você não tinha uma cadência certa.</p>
         <p>O seu sistema nervoso, que ainda estava aprendendo como o mundo funciona, tirou uma conclusão lógica: <strong>o amor é algo que pode sumir. Então preciso ficar de olho.</strong></p>
-        <p>Hoje ele aparece como hipervigilância emocional. Uma mensagem que demorou mais. Um tom de voz ligeiramente diferente. Uma resposta mais curta. Para a maioria, essas coisas passam. Para você, elas disparam um alarme — não porque você seja dramático, mas porque o seu sistema nervoso foi treinado para monitorar exatamente isso.</p>
+        <p>Hoje ele aparece como hipervigilância emocional. Uma mensagem que demorou mais. Um tom de voz ligeiramente diferente. Uma resposta mais curta. Para a maioria, essas coisas passam. Para você, elas disparam um alarme, não porque você seja dramático, mas porque o seu sistema nervoso foi treinado para monitorar exatamente isso.</p>
       </div>
     </div>
     <div class="section" style="margin-bottom:0;">
       <h3 class="section__title">Como você funciona nos relacionamentos</h3>
       <div class="section__body">
         <p>Quando você se apaixona, você se apaixona de verdade. Você está presente, atento, dedicado. Você lembra dos detalhes. Você cuida de formas que muitas pessoas nunca receberam de ninguém.</p>
-        <p>O problema aparece quando você começa a sentir que o outro pode estar se afastando. O alarme dispara. Mais mensagens. Mais perguntas. Ou às vezes conflito — porque briga ainda é conexão, e conexão é o que você precisa para sentir que está tudo bem.</p>
-        <p>O ciclo: você sente distância → tenta se aproximar → o outro recua → você sente mais distância ainda. Esse ciclo não é culpa sua. É o seu jeito de amar tentando proteger o que é mais importante para você: a conexão.</p>
+        <p>O problema aparece quando você começa a sentir que o outro pode estar se afastando. O alarme dispara. Mais mensagens. Mais perguntas. Ou às vezes conflito, porque briga ainda é conexão, e conexão é o que você precisa para sentir que está tudo bem.</p>
+        <p>O ciclo: você sente distância, tenta se aproximar, o outro recua, você sente mais distância ainda. Esse ciclo não é culpa sua. É o seu jeito de amar tentando proteger o que é mais importante para você: a conexão.</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- PG 2 — Pontos Cegos + Relações -->
-<div class="pdf-page" data-estilo="ansioso">
+<!-- ANSIOSO PG 2 -->
+<div class="pdf-page">
   <div class="pg-body">
     <div class="section">
       <h3 class="section__title">Seus pontos cegos</h3>
@@ -221,7 +222,7 @@
       </div>
       <div class="blindspot">
         <p class="blindspot__label">Você confunde intensidade com amor.</p>
-        <p class="blindspot__text">Relacionamentos tranquilos às vezes parecem sem sentimento. A calmaria pode ser interpretada como falta de interesse — e isso pode te levar a sabotar exatamente as relações com potencial real.</p>
+        <p class="blindspot__text">Relacionamentos tranquilos às vezes parecem sem sentimento. A calmaria pode ser interpretada como falta de interesse, e isso pode te levar a sabotar exatamente as relações com potencial real.</p>
       </div>
     </div>
     <div class="section" style="margin-bottom:0;">
@@ -232,7 +233,7 @@
       </div>
       <div class="relation">
         <span class="relation__label">❤ Outro Ansioso</span>
-        <p class="relation__text">Intenso e bonito nos primeiros meses. Mas quando os dois entram em modo de alarme ao mesmo tempo, o relacionamento pode se tornar exaustivo — os dois precisando, sem que nenhum consiga oferecer estabilidade.</p>
+        <p class="relation__text">Intenso e bonito nos primeiros meses. Mas quando os dois entram em modo de alarme ao mesmo tempo, o relacionamento pode se tornar exaustivo, os dois precisando, sem que nenhum consiga oferecer estabilidade.</p>
       </div>
       <div class="relation">
         <span class="relation__label">❤ Coração Distante</span>
@@ -246,51 +247,8 @@
   </div>
 </div>
 
-<!-- PG 3 — Como você aparece + Conflito -->
-<div class="pdf-page" data-estilo="ansioso">
-  <div class="pg-body">
-    <div class="section">
-      <h3 class="section__title">Como você aparece para os outros</h3>
-      <div class="section__body">
-        <p>Quem está perto de você costuma descrever uma experiência ambivalente. Por um lado, você é memorável. Você se lembra dos detalhes. Você aparece. Você cuida de formas que muitas pessoas nunca receberam de ninguém.</p>
-        <p>Por outro lado, quando o alarme dispara, as pessoas ao seu redor sentem o peso disso. Elas percebem as perguntas repetidas. Elas sentem quando você está testando. Às vezes se sentem cobradas por algo que não conseguem nomear com clareza.</p>
-        <p>O que elas raramente te dizem: que gostariam de poder te tranquilizar de uma vez por todas. Que ficam exaustas tentando. E que quando você está calmo e presente, são os momentos em que tudo parece possível.</p>
-      </div>
-    </div>
-    <div class="section" style="margin-bottom:0;">
-      <h3 class="section__title">Sua relação com conflito</h3>
-      <div class="section__body">
-        <p>Para você, conflito é melhor que silêncio. Porque briga ainda é contato, e contato ainda é prova de que a relação existe.</p>
-        <p>Quando você sente que algo está errado, a tendência é escalar: mais perguntas, mais mensagens, mais pressão por uma resposta. Não por manipulação. Por necessidade real de confirmação de que o outro ainda está lá.</p>
-        <p>O ciclo mais comum: você sente distância, testa, o outro recua, você pressiona, vem a briga, depois a reconciliação e o alívio. O alívio depois de reconciliar é genuíno. É por isso que o ciclo se repete.</p>
-        <p>O que você realmente precisa num conflito não é vencer. É ouvir: "estou aqui, não vou a lugar nenhum."</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- PG 4 — Sinais de crescimento -->
-<div class="pdf-page" data-estilo="ansioso">
-  <div class="pg-body">
-    <div class="section">
-      <h3 class="section__title">Sinais de que você está crescendo</h3>
-      <p class="sinais__intro">Crescimento não é ausência de alarme. É o que você faz depois que ele dispara. Esses são os sinais concretos de que algo está mudando dentro de você.</p>
-      <div class="sinais">
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você sente o alarme disparar, mas espera antes de agir.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você consegue dizer o que precisa de forma direta, sem testar.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você consegue ficar com incerteza sem catastrofizar.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você para de interpretar silêncio como abandono.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você escolhe parceiros que são consistentemente presentes.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você começa a sentir que calma não é ausência de amor.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você percebe quando está testando e consegue parar no meio.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você reconhece a diferença entre o que está acontecendo agora e o que aconteceu antes.</p></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- PG 5 — Transformação + Encerramento -->
-<div class="pdf-page" data-estilo="ansioso">
+<!-- ANSIOSO PG 3 -->
+<div class="pdf-page">
   <div class="pg-body pg-body--last">
     <div class="section">
       <h3 class="section__title">O caminho de transformação</h3>
@@ -321,13 +279,24 @@
 </div>
 
 
-<!-- ════════════════ DISTANTE ════════════════ -->
+<!-- ════════════════ SEPARADOR 2 — DISTANTE ════════════════ -->
+<div class="pdf-page">
+  <div class="pg-divider">
+    <div class="cover__ornament"></div>
+    <p class="divider__number">02</p>
+    <p class="divider__label">Segundo jeito de amar</p>
+    <h2 class="divider__title">O Coração <em>Distante</em></h2>
+    <p class="divider__tagline">Você não é frio. Você é cauteloso.</p>
+  </div>
+  <div class="divider__accent" style="background: var(--distante);"></div>
+</div>
 
-<!-- PG 1 -->
-<div class="pdf-page" data-estilo="distante">
+
+<!-- DISTANTE PG 1 -->
+<div class="pdf-page">
   <div class="pg-body">
     <div class="content__header">
-      <p class="content__eyebrow">Seu Jeito de Amar</p>
+      <p class="content__eyebrow">Jeito de Amar 02</p>
       <h2 class="content__title">O Coração <em>Distante</em></h2>
       <p class="content__tagline">Você não é frio. Você é cauteloso.</p>
     </div>
@@ -340,7 +309,7 @@
       <div class="section__body">
         <p>Nos primeiros anos da sua vida, você aprendeu que precisar de alguém era arriscado. Talvez as pessoas que cuidavam de você estivessem presentes fisicamente mas ausentes emocionalmente. Talvez você tenha aprendido que era melhor resolver as coisas sozinho do que esperar por alguém.</p>
         <p>Essa foi uma estratégia de sobrevivência brilhante para uma criança. O problema é que você cresceu. Mas a estratégia ficou.</p>
-        <p>O seu sistema nervoso aprendeu que intimidade é perigosa. Então você criou um jeito de estar no mundo que minimiza esse risco: mantenha o controle, não dependa demais, preserve o espaço interno. <strong>Isso não é frieza. É proteção.</strong></p>
+        <p>O seu sistema nervoso aprendeu que intimidade é arriscada. Então você criou um jeito de estar no mundo que minimiza esse risco: mantenha o controle, não dependa demais, preserve o espaço interno. <strong>Isso não é frieza. É proteção.</strong></p>
       </div>
     </div>
     <div class="section" style="margin-bottom:0;">
@@ -354,8 +323,8 @@
   </div>
 </div>
 
-<!-- PG 2 — Pontos Cegos + Relações -->
-<div class="pdf-page" data-estilo="distante">
+<!-- DISTANTE PG 2 -->
+<div class="pdf-page">
   <div class="pg-body">
     <div class="section">
       <h3 class="section__title">Seus pontos cegos</h3>
@@ -369,7 +338,7 @@
       </div>
       <div class="blindspot">
         <p class="blindspot__label">Você valoriza autonomia a ponto de sabotar conexão.</p>
-        <p class="blindspot__text">Às vezes mantém o outro a uma distância segura. Não porque você não queira o relacionamento. Mas porque comprometimento parece uma ameaça à sua liberdade — mesmo quando a liberdade que você protege é de algo que você na verdade deseja.</p>
+        <p class="blindspot__text">Às vezes mantém o outro a uma distância segura. Não porque você não queira o relacionamento. Mas porque comprometimento parece uma ameaça à sua liberdade, mesmo quando a liberdade que você protege é de algo que você na verdade deseja.</p>
       </div>
       <div class="blindspot">
         <p class="blindspot__label">Você pode ser difícil de ler.</p>
@@ -392,57 +361,14 @@
       </div>
       <div class="relation">
         <span class="relation__label">❤ Coração Confuso</span>
-        <p class="relation__text">A imprevisibilidade reforça a sua desconfiança na intimidade. Quando o outro ora quer muito perto, ora quer distância, você tende a se afastar completamente por não saber o que esperar.</p>
+        <p class="relation__text">A imprevisibilidade reforça a sua desconfiança na conexão. Quando o outro ora quer muito perto, ora quer distância, você tende a se afastar completamente por não saber o que esperar.</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- PG 3 — Como você aparece + Conflito -->
-<div class="pdf-page" data-estilo="distante">
-  <div class="pg-body">
-    <div class="section">
-      <h3 class="section__title">Como você aparece para os outros</h3>
-      <div class="section__body">
-        <p>As pessoas ao seu redor te veem como alguém confiável, capaz, autossuficiente. Você é a pessoa que os outros ligam quando precisam de uma perspectiva racional num momento de caos. Você sabe disso.</p>
-        <p>O que você talvez não saiba: que as pessoas que querem estar mais perto de você frequentemente sentem que estão do lado de fora de uma porta fechada. Que tentam e tentam, e nunca chegam onde gostariam. Que às vezes desistem não porque não querem você, mas porque ficam cansadas de não conseguir te acessar.</p>
-        <p>Não porque você seja frio. Mas porque você criou paredes tão eficientes que até você mesmo às vezes perde a chave.</p>
-      </div>
-    </div>
-    <div class="section" style="margin-bottom:0;">
-      <h3 class="section__title">Sua relação com conflito</h3>
-      <div class="section__body">
-        <p>Para você, conflito é ineficiente. Quando algo não funciona, sua tendência é se afastar, processar internamente, e voltar quando tiver clareza. Parece lógico. O problema é que o outro não sabe que você vai voltar.</p>
-        <p>Você sai das conversas antes que elas terminem. Não porque não se importe. Porque o nível de intensidade emocional ultrapassa o que você consegue processar em tempo real. Você precisa de espaço para pensar, mas não avisa que está saindo para pensar.</p>
-        <p>Para o outro, o seu silêncio parece abandono. Para você, é apenas respirar.</p>
-        <p>Em conflito, o que você realmente precisa é de tempo sem pressão. O que o outro precisa é de saber que você vai voltar.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- PG 4 — Sinais de crescimento -->
-<div class="pdf-page" data-estilo="distante">
-  <div class="pg-body">
-    <div class="section">
-      <h3 class="section__title">Sinais de que você está crescendo</h3>
-      <p class="sinais__intro">Crescimento para o Coração Distante não é se tornar outra pessoa. É aprender a estar presente sem sentir que está perdendo quem você é.</p>
-      <div class="sinais">
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você avisa quando vai precisar de espaço, em vez de simplesmente sumir.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você consegue ficar em conversas difíceis por mais tempo do que antes.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você deixa as pessoas se aproximarem sem criar distância imediata.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você percebe o impulso de se fechar antes de agir nele.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você começa a descobrir que estar próximo não significa perder quem você é.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você consegue pedir o que precisa sem se sentir fraco por precisar.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você demonstra o que sente de formas que o outro consegue reconhecer.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você termina as conversas antes de sair, em vez de deixá-las em aberto.</p></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- PG 5 — Transformação + Encerramento -->
-<div class="pdf-page" data-estilo="distante">
+<!-- DISTANTE PG 3 -->
+<div class="pdf-page">
   <div class="pg-body pg-body--last">
     <div class="section">
       <h3 class="section__title">O caminho de transformação</h3>
@@ -452,7 +378,7 @@
       </div>
       <div class="practice">
         <p class="practice__label">Experimente ficar desconfortável por um pouco mais de tempo.</p>
-        <p class="practice__text">Quando surgir o impulso de sumir numa conversa emocional, tente ficar mais trinta segundos. A tolerância à intimidade se constrói em pequenas doses.</p>
+        <p class="practice__text">Quando surgir o impulso de sumir numa conversa emocional, tente ficar mais trinta segundos. A tolerância à conexão se constrói em pequenas doses.</p>
       </div>
       <div class="practice">
         <p class="practice__label">Observe o que acontece depois que você se permite estar perto.</p>
@@ -473,13 +399,24 @@
 </div>
 
 
-<!-- ════════════════ SEGURO ════════════════ -->
+<!-- ════════════════ SEPARADOR 3 — SEGURO ════════════════ -->
+<div class="pdf-page">
+  <div class="pg-divider">
+    <div class="cover__ornament"></div>
+    <p class="divider__number">03</p>
+    <p class="divider__label">Terceiro jeito de amar</p>
+    <h2 class="divider__title">O Coração <em>Seguro</em></h2>
+    <p class="divider__tagline">Você é a âncora. E também precisa ser ancorado.</p>
+  </div>
+  <div class="divider__accent" style="background: var(--seguro);"></div>
+</div>
 
-<!-- PG 1 -->
-<div class="pdf-page" data-estilo="seguro">
+
+<!-- SEGURO PG 1 -->
+<div class="pdf-page">
   <div class="pg-body">
     <div class="content__header">
-      <p class="content__eyebrow">Seu Jeito de Amar</p>
+      <p class="content__eyebrow">Jeito de Amar 03</p>
       <h2 class="content__title">O Coração <em>Seguro</em></h2>
       <p class="content__tagline">Você é a âncora. E também precisa ser ancorado.</p>
     </div>
@@ -490,9 +427,9 @@
     <div class="section">
       <h3 class="section__title">De onde veio o seu jeito de amar</h3>
       <div class="section__body">
-        <p>Nos primeiros anos da sua vida, você recebeu algo que muitas pessoas nunca tiveram: consistência. As pessoas que cuidavam de você estavam lá quando você precisava — não de forma perfeita, mas suficientemente previsível para que o seu sistema nervoso aprendesse uma verdade fundamental:</p>
+        <p>Nos primeiros anos da sua vida, você recebeu algo que muitas pessoas nunca tiveram: consistência. As pessoas que cuidavam de você estavam lá quando você precisava, não de forma perfeita, mas suficientemente previsível para que o seu sistema nervoso aprendesse uma verdade fundamental:</p>
         <p><strong>O amor existe. E ele fica.</strong></p>
-        <p>Você aprendeu que pode se aproximar sem perigo. Que pode precisar de alguém sem ser abandonado. Que conflito não significa o fim do relacionamento. Esse aprendizado é a fundação do seu jeito de amar — e é mais valioso do que você imagina.</p>
+        <p>Você aprendeu que pode se aproximar sem perigo. Que pode precisar de alguém sem ser abandonado. Que conflito não significa o fim do relacionamento. Esse aprendizado é a fundação do seu jeito de amar, e é mais valioso do que você imagina.</p>
       </div>
     </div>
     <div class="section" style="margin-bottom:0;">
@@ -506,8 +443,8 @@
   </div>
 </div>
 
-<!-- PG 2 — Pontos Cegos + Relações -->
-<div class="pdf-page" data-estilo="seguro">
+<!-- SEGURO PG 2 -->
+<div class="pdf-page">
   <div class="pg-body">
     <div class="section">
       <h3 class="section__title">Seus pontos cegos</h3>
@@ -540,7 +477,7 @@
       </div>
       <div class="relation">
         <span class="relation__label">❤ Coração Distante</span>
-        <p class="relation__text">Você tem a capacidade única de criar um ambiente seguro o suficiente para que o Coração Distante aprenda a se aproximar — não porque você persiste, mas porque você está lá de forma estável e sem ameaça.</p>
+        <p class="relation__text">Você tem a capacidade única de criar um ambiente seguro o suficiente para que o Coração Distante aprenda a se aproximar, não porque você persiste, mas porque você está lá de forma estável e sem ameaça.</p>
       </div>
       <div class="relation">
         <span class="relation__label">❤ Coração Confuso</span>
@@ -550,50 +487,8 @@
   </div>
 </div>
 
-<!-- PG 3 — Como você aparece + Conflito -->
-<div class="pdf-page" data-estilo="seguro">
-  <div class="pg-body">
-    <div class="section">
-      <h3 class="section__title">Como você aparece para os outros</h3>
-      <div class="section__body">
-        <p>As pessoas que te conhecem tendem a descrever a experiência de estar com você com palavras como: seguro, tranquilo, presente. Você é o tipo de pessoa que faz outras pessoas se sentirem vistas.</p>
-        <p>Mas há uma consequência não óbvia disso: você vira destino. As pessoas em crise te procuram. As pessoas instáveis gravitam em torno de você. Você se torna âncora de relacionamentos que não necessariamente te ancoram de volta.</p>
-        <p>O que raramente te dizem: que assumem que você está bem porque você parece sempre estar bem. Que às vezes se esquecem de perguntar como você está. Que a sua estabilidade, inadvertidamente, comunica que você não precisa de cuidado. Mas você precisa. E isso é tão verdadeiro quanto qualquer outra coisa nessa leitura.</p>
-      </div>
-    </div>
-    <div class="section" style="margin-bottom:0;">
-      <h3 class="section__title">Sua relação com conflito</h3>
-      <div class="section__body">
-        <p>Você é provavelmente a pessoa mais funcional em uma briga de toda essa lista. Você consegue ouvir sem se sentir atacado. Você consegue discordar sem precisar destruir o outro ou se destruir. Você busca resolução.</p>
-        <p>Mas há um padrão sutil que vale observar: você tende a resolver o conflito depressa demais. Você é eficiente o suficiente para chegar à reconciliação antes que o outro tenha se expressado completamente. Às vezes a pessoa ainda está na raiva e você já está na solução.</p>
-        <p>Deixar o outro terminar de sentir, mesmo quando você já sabe o que vai dizer, é uma habilidade que vai aprofundar seus relacionamentos de formas que você ainda não experimentou completamente.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- PG 4 — Sinais de crescimento -->
-<div class="pdf-page" data-estilo="seguro">
-  <div class="pg-body">
-    <div class="section">
-      <h3 class="section__title">Sinais de que você está crescendo</h3>
-      <p class="sinais__intro">Para o Coração Seguro, crescimento não é aprender a se conectar. É aprender a receber com a mesma generosidade com que oferece.</p>
-      <div class="sinais">
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você nomeia suas próprias necessidades sem esperar ser perguntado.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você escolhe parceiros que também sabem ser âncora.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você deixa o outro sentar com o desconforto em vez de resolver por ele.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você reconhece quando está sendo suporte sem reciprocidade.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você estabelece limites sem precisar justificar longamente.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você permite que cuidem de você sem minimizar o gesto.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você para antes de resolver e pergunta: "você quer solução ou quer ser ouvido?"</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você reconhece quando está sobrecarregado antes de chegar ao limite.</p></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- PG 5 — Transformação + Encerramento -->
-<div class="pdf-page" data-estilo="seguro">
+<!-- SEGURO PG 3 -->
+<div class="pdf-page">
   <div class="pg-body pg-body--last">
     <div class="section">
       <h3 class="section__title">O caminho de aprofundamento</h3>
@@ -623,13 +518,24 @@
 </div>
 
 
-<!-- ════════════════ CONFUSO ════════════════ -->
+<!-- ════════════════ SEPARADOR 4 — CONFUSO ════════════════ -->
+<div class="pdf-page">
+  <div class="pg-divider">
+    <div class="cover__ornament"></div>
+    <p class="divider__number">04</p>
+    <p class="divider__label">Quarto jeito de amar</p>
+    <h2 class="divider__title">O Coração <em>Confuso</em></h2>
+    <p class="divider__tagline">Você não está quebrado. Você está carregando algo pesado.</p>
+  </div>
+  <div class="divider__accent" style="background: var(--confuso);"></div>
+</div>
 
-<!-- PG 1 -->
-<div class="pdf-page" data-estilo="confuso">
+
+<!-- CONFUSO PG 1 -->
+<div class="pdf-page">
   <div class="pg-body">
     <div class="content__header">
-      <p class="content__eyebrow">Seu Jeito de Amar</p>
+      <p class="content__eyebrow">Jeito de Amar 04</p>
       <h2 class="content__title">O Coração <em>Confuso</em></h2>
       <p class="content__tagline">Você não está quebrado. Você está carregando algo pesado.</p>
     </div>
@@ -650,14 +556,14 @@
       <div class="section__body">
         <p>Quando você se conecta com alguém, você se conecta de verdade. Você sente muito. Você dá muito. Você está completamente presente.</p>
         <p>Mas em algum momento, algo muda. Uma palavra dita de forma errada. Uma sensação de que as coisas estão ficando sérias demais. Um gatilho que você mesmo não consegue identificar com clareza.</p>
-        <p>O ciclo mais comum: conexão intensa → medo da conexão → afastamento → culpa → reconexão intensa. Isso não é instabilidade de caráter. É o reflexo de uma história que criou dois sistemas em conflito dentro de você.</p>
+        <p>O ciclo mais comum: conexão intensa, medo da conexão, afastamento, culpa, reconexão intensa. Isso não é instabilidade de caráter. É o reflexo de uma história que criou dois sistemas em conflito dentro de você.</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- PG 2 — Pontos Cegos + Relações -->
-<div class="pdf-page" data-estilo="confuso">
+<!-- CONFUSO PG 2 -->
+<div class="pdf-page">
   <div class="pg-body">
     <div class="section">
       <h3 class="section__title">Seus pontos cegos</h3>
@@ -682,7 +588,7 @@
       <h3 class="section__title">Como você se relaciona com cada jeito de amar</h3>
       <div class="relation">
         <span class="relation__label">❤ Coração Seguro</span>
-        <p class="relation__text">A combinação com mais potencial de cura para você. O Coração Seguro oferece o que você mais precisou: previsibilidade. Com o tempo, você pode começar a aprender que intimidade não é necessariamente perigosa.</p>
+        <p class="relation__text">A combinação com mais potencial de cura para você. O Coração Seguro oferece o que você mais precisou: previsibilidade. Com o tempo, você pode começar a aprender que conexão não é necessariamente perigosa.</p>
       </div>
       <div class="relation">
         <span class="relation__label">❤ Coração Ansioso</span>
@@ -700,51 +606,8 @@
   </div>
 </div>
 
-<!-- PG 3 — Como você aparece + Conflito -->
-<div class="pdf-page" data-estilo="confuso">
-  <div class="pg-body">
-    <div class="section">
-      <h3 class="section__title">Como você aparece para os outros</h3>
-      <div class="section__body">
-        <p>Nos seus melhores momentos, você é magnético. Sua intensidade, sua capacidade de se conectar de verdade, sua presença total criam experiências que as pessoas não esquecem.</p>
-        <p>Mas nos momentos difíceis, as pessoas ao seu redor não sabem o que esperar. Você pode estar completamente presente num dia e completamente inacessível no outro. Elas sentem que estão sempre caminhando em terreno instável, nunca sabendo ao certo onde pisam.</p>
-        <p>O que raramente te dizem: que quando você está bem, a relação com você é uma das melhores que já tiveram. E que quando o gatilho dispara, a distância que você cria dói exatamente na proporção da proximidade que veio antes.</p>
-      </div>
-    </div>
-    <div class="section" style="margin-bottom:0;">
-      <h3 class="section__title">Sua relação com conflito</h3>
-      <div class="section__body">
-        <p>Para você, conflito pode ser duas coisas opostas dependendo do dia. Pode ser uma explosão que você lamenta depois, ou uma saída súbita que deixa o outro sem entender o que aconteceu.</p>
-        <p>Quando um gatilho dispara, a reação costuma ser desproporcional ao evento. Uma palavra dita no tom errado, uma mudança de planos, um silêncio de alguns minutos. Seu sistema nervoso interpreta como ameaça o que para muitos seria neutro.</p>
-        <p>Depois vem a culpa. E então a overcorrection: você tenta compensar, se aproxima demais, pede desculpas em excesso. O ciclo: reação intensa, vergonha, afastamento, culpa, reaproximação.</p>
-        <p>O que você realmente precisa em conflito: tempo para regular, linguagem para o que está sentindo, e uma pessoa que aguente a oscilação sem fugir.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- PG 4 — Sinais de crescimento -->
-<div class="pdf-page" data-estilo="confuso">
-  <div class="pg-body">
-    <div class="section">
-      <h3 class="section__title">Sinais de que você está crescendo</h3>
-      <p class="sinais__intro">Para o Coração Confuso, crescimento é construir previsibilidade. Primeiro para você mesmo. Depois para as pessoas ao seu redor.</p>
-      <div class="sinais">
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você reconhece o gatilho antes que ele tome conta completamente.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você consegue dizer "estou ativado agora, preciso de um momento" em vez de reagir.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você sai do ciclo de culpa mais rápido do que antes.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você deixa os momentos bons serem bons, sem esperar que acabem.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você busca apoio consistente e aparece para ele.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você começa a construir rotinas que criam estabilidade interna.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você para de sabotar o que está funcionando.</p></div>
-        <div class="sinal"><span class="sinal__check">✓</span><p class="sinal__text">Você reconhece seus padrões sem se julgar por tê-los.</p></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- PG 5 — Transformação + Encerramento -->
-<div class="pdf-page" data-estilo="confuso">
+<!-- CONFUSO PG 3 -->
+<div class="pdf-page">
   <div class="pg-body pg-body--last">
     <div class="section">
       <h3 class="section__title">O caminho de transformação</h3>
@@ -780,7 +643,7 @@
 
 
 <!-- ════════════════ FECHAMENTO ════════════════ -->
-<div class="pdf-page" data-closing="true">
+<div class="pdf-page">
   <div class="pg-body pg-body--last">
 
     <div class="content__header" style="margin-bottom:32px;">
@@ -831,7 +694,7 @@
 
 
 <!-- ════════════════ DISCLAIMER ════════════════ -->
-<div class="pdf-page" data-disclaimer>
+<div class="pdf-page">
   <div class="pg-body" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;min-height:297mm;">
     <div style="max-width:420px;">
       <div class="cover__ornament" style="margin:0 auto 32px;"></div>
@@ -846,19 +709,5 @@
 </div>
 
 
-<script>
-  function filtrar(estilo) {
-    document.querySelectorAll('.pdf-page[data-estilo]').forEach(function(page) {
-      page.style.display = (!estilo || page.dataset.estilo === estilo) ? '' : 'none'
-    })
-    document.querySelectorAll('.pdf-page[data-closing]').forEach(function(page) {
-      page.style.display = estilo ? 'none' : ''
-    })
-    // disclaimer sempre visível
-    document.querySelectorAll('.pdf-page[data-disclaimer]').forEach(function(page) {
-      page.style.display = ''
-    })
-  }
-</script>
 </body>
 </html>

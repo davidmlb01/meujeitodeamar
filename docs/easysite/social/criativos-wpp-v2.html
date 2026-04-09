@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasySite — 10 Criativos WhatsApp v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Instrument+Serif:ital,wght@0,400;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+/* ============================================================
+   PAGE SHELL
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --es-bg: #FAFAF9;
+  --es-fg: #080503;
+  --es-muted: #ECEBE7;
+  --es-mid: #5E534A;
+  --es-border: #DAD7D0;
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'Instrument Sans', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+html, body {
+  background: #1A1916;
+  color: #FAFAF9;
+  font-family: var(--sans);
+  min-height: 100vh;
+}
+
+/* ============================================================
+   LAYOUT: SIDEBAR + MAIN
+   ============================================================ */
+
+.page-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: #0E0D0B;
+  border-right: 1px solid rgba(255,255,255,0.07);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 24px 0;
+}
+
+.sidebar-brand {
+  font-family: var(--serif);
+  font-size: 18px;
+  color: rgba(255,255,255,0.6);
+  padding: 0 20px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  margin-bottom: 20px;
+}
+
+.sidebar-brand span {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-top: 4px;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 12px;
+}
+
+.sidebar nav a {
+  display: block;
+  padding: 8px 10px;
+  border-radius: 6px;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  transition: background 0.15s, color 0.15s;
+}
+
+.sidebar nav a:hover {
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.85);
+}
+
+.nav-label {
+  padding: 4px 10px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+  margin-top: 8px;
+}
+
+/* MAIN CONTENT */
+.main {
+  flex: 1;
+  padding: 48px 40px;
+  overflow-x: hidden;
+}
+
+.main-header {
+  margin-bottom: 56px;
+}
+
+.main-header h1 {
+  font-family: var(--serif);
+  font-size: 36px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 8px;
+}
+
+.main-header p {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+
+/* ============================================================
+   CRIATIVO SECTION
+   ============================================================ */
+
+.criativo-section {
+  margin-bottom: 80px;
+  scroll-margin-top: 32px;
+}
+
+.criativo-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.criativo-title {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+
+.criativo-title strong {
+  color: rgba(255,255,255,0.85);
+  font-size: 15px;
+}
+
+.btn-fullsize {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  text-decoration: none;
+  padding: 6px 12px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 4px;
+  transition: all 0.15s;
+}
+
+.btn-fullsize:hover {
+  color: rgba(255,255,255,0.75);
+  border-color: rgba(255,255,255,0.3);
+}
+
+/* ============================================================
+   PREVIEW WRAPPER — escala 40%
+   ============================================================ */
+
+.preview-wrapper {
+  width: calc(1080px * 0.4);
+  height: calc(1350px * 0.4);
+  overflow: hidden;
+  position: relative;
+  border-radius: 4px;
+  box-shadow: 0 8px 48px rgba(0,0,0,0.5);
+}
+
+.preview-scale {
+  transform: scale(0.4);
+  transform-origin: top left;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* ============================================================
+   FRAME BASE — TODOS OS CRIATIVOS
+   ============================================================ */
+
+.frame {
+  width: 1080px;
+  height: 1350px;
+  container-type: inline-size;
+  position: relative;
+  overflow: hidden;
+  font-family: var(--sans);
+}
+
+.c {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 8cqw;
+  box-sizing: border-box;
+}
+
+/* Logo base */
+.logo {
+  font-family: var(--serif);
+  font-size: 3cqw;
+  opacity: 0.25;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* Zona meio */
+.meio {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* CTA zone */
+.cta-zone {
+  flex-shrink: 0;
+  padding-top: 5cqw;
+  border-top: 1px solid;
+}
+
+.cta-text {
+  font-family: var(--mono);
+  font-size: 2.2cqw;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   C1 — DOR PRIMARIA
+   ============================================================ */
+
+#c1 .frame { background: var(--es-bg); }
+#c1 .logo { color: var(--es-fg); }
+#c1 .c { align-items: center; }
+
+#c1 .meio {
+  align-items: center;
+  text-align: center;
+}
+
+#c1 .headline {
+  font-family: var(--serif);
+  font-size: 7.2cqw;
+  font-weight: 400;
+  color: var(--es-fg);
+  line-height: 1.1;
+  max-width: 90%;
+}
+
+#c1 .subtext {
+  font-family: var(--sans);
+  font-size: 2.2cqw;
+  font-weight: 400;
+  color: var(--es-mid);
+  line-height: 1.4;
+  margin-top: 3.2cqw;
+}
+
+#c1 .cta-zone {
+  border-color: var(--es-border);
+  text-align: center;
+  width: 100%;
+}
+
+#c1 .cta-text { color: var(--es-fg); }
+
+/* ============================================================
+   C2 — OFERTA DIRETA
+   ============================================================ */
+
+#c2 .frame { background: var(--es-fg); }
+#c2 .logo { color: var(--es-bg); opacity: 0.2; }
+#c2 .c { align-items: center; }
+
+#c2 .meio {
+  align-items: center;
+  text-align: center;
+}
+
+#c2 .headline-context {
+  font-family: var(--sans);
+  font-size: 1.9cqw;
+  color: var(--es-mid);
+  margin-bottom: 4cqw;
+}
+
+#c2 .preco-destaque {
+  font-family: var(--mono);
+  font-size: 12cqw;
+  font-weight: 700;
+  color: var(--es-bg);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+}
+
+#c2 .descricao {
+  font-family: var(--sans);
+  font-size: 2cqw;
+  color: var(--es-mid);
+  margin-top: 3.5cqw;
+  line-height: 1.4;
+  max-width: 80%;
+  text-align: center;
+}
+
+#c2 .cta-zone {
+  border-color: rgba(218,215,208,0.2);
+  text-align: center;
+  width: 100%;
+}
+
+#c2 .cta-text { color: var(--es-bg); }
+
+/* ============================================================
+   C3 — NICHO SALAO
+   ============================================================ */
+
+#c3 .frame { background: var(--es-bg); }
+#c3 .logo { color: var(--es-fg); }
+
+#c3 .topo {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#c3 .tag-nicho {
+  font-family: var(--sans);
+  font-size: 1.3cqw;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--es-bg);
+  background: var(--es-fg);
+  padding: 0.6cqw 1.4cqw;
+  border-radius: 4px;
+  margin-top: 1.6cqw;
+  display: inline-block;
+}
+
+#c3 .meio {
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+}
+
+#c3 .headline {
+  font-family: var(--serif);
+  font-size: 6.2cqw;
+  font-weight: 400;
+  color: var(--es-fg);
+  line-height: 1.1;
+  max-width: 95%;
+}
+
+#c3 .preco-prazo {
+  display: flex;
+  align-items: center;
+  gap: 1.6cqw;
+  margin-top: 2.4cqw;
+}
+
+#c3 .preco {
+  font-family: var(--mono);
+  font-size: 3.6cqw;
+  color: var(--es-fg);
+}
+
+#c3 .divisor-v {
+  width: 1px;
+  height: 3cqw;
+  background: var(--es-border);
+  flex-shrink: 0;
+}
+
+#c3 .prazo {
+  font-family: var(--sans);
+  font-size: 2cqw;
+  color: var(--es-mid);
+}
+
+#c3 .cta-zone {
+  border-color: var(--es-border);
+  text-align: left;
+}
+
+#c3 .cta-text { color: var(--es-fg); }
+
+/* ============================================================
+   C4 — NICHO BARBEARIA
+   ============================================================ */
+
+#c4 .frame { background: var(--es-fg); }
+#c4 .logo { color: var(--es-bg); opacity: 0.2; }
+
+#c4 .topo {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#c4 .tag-nicho {
+  font-family: var(--sans);
+  font-size: 1.3cqw;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--es-fg);
+  background: var(--es-bg);
+  padding: 0.6cqw 1.4cqw;
+  border-radius: 4px;
+  margin-top: 1.6cqw;
+  display: inline-block;
+}
+
+#c4 .meio {
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+}
+
+#c4 .headline {
+  font-family: var(--serif);
+  font-size: 6.2cqw;
+  font-weight: 400;
+  color: var(--es-bg);
+  line-height: 1.1;
+  max-width: 95%;
+}
+
+#c4 .preco-prazo {
+  display: flex;
+  align-items: center;
+  gap: 1.6cqw;
+  margin-top: 2.4cqw;
+}
+
+#c4 .preco {
+  font-family: var(--mono);
+  font-size: 3.6cqw;
+  color: var(--es-bg);
+}
+
+#c4 .divisor-v {
+  width: 1px;
+  height: 3cqw;
+  background: rgba(218,215,208,0.25);
+  flex-shrink: 0;
+}
+
+#c4 .prazo {
+  font-family: var(--sans);
+  font-size: 2cqw;
+  color: var(--es-mid);
+}
+
+#c4 .cta-zone {
+  border-color: rgba(218,215,208,0.2);
+  text-align: left;
+}
+
+#c4 .cta-text { color: var(--es-bg); }
+
+/* ============================================================
+   C5 — NICHO RESTAURANTE
+   ============================================================ */
+
+#c5 .frame { background: var(--es-bg); }
+#c5 .logo { color: var(--es-fg); }
+
+#c5 .topo {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#c5 .tag-nicho {
+  font-family: var(--sans);
+  font-size: 1.3cqw;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--es-bg);
+  background: var(--es-fg);
+  padding: 0.6cqw 1.4cqw;
+  border-radius: 4px;
+  margin-top: 1.6cqw;
+  display: inline-block;
+}
+
+#c5 .meio {
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+}
+
+#c5 .headline {
+  font-family: var(--serif);
+  font-size: 6.2cqw;
+  font-weight: 400;
+  color: var(--es-fg);
+  line-height: 1.1;
+  max-width: 95%;
+}
+
+#c5 .preco-prazo {
+  display: flex;
+  align-items: center;
+  gap: 1.6cqw;
+  margin-top: 2.4cqw;
+}
+
+#c5 .preco {
+  font-family: var(--mono);
+  font-size: 3.6cqw;
+  color: var(--es-fg);
+}
+
+#c5 .divisor-v {
+  width: 1px;
+  height: 3cqw;
+  background: var(--es-border);
+  flex-shrink: 0;
+}
+
+#c5 .prazo {
+  font-family: var(--sans);
+  font-size: 2cqw;
+  color: var(--es-mid);
+}
+
+#c5 .cta-zone {
+  border-color: var(--es-border);
+  text-align: left;
+}
+
+#c5 .cta-text { color: var(--es-fg); }
+
+/* ============================================================
+   C6 — ANTES E DEPOIS
+   ============================================================ */
+
+#c6 .frame {
+  background: var(--es-fg);
+  display: flex;
+  flex-direction: column;
+}
+
+#c6 .frame .c { padding: 0; }
+
+#c6 .split-body {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+#c6 .lado {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 8cqw 6cqw;
+}
+
+#c6 .lado-esq {
+  background: var(--es-muted);
+  border-right: 1px solid var(--es-border);
+}
+
+#c6 .lado-dir {
+  background: var(--es-fg);
+}
+
+#c6 .lado-label {
+  font-family: var(--sans);
+  font-size: 1.5cqw;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 2.4cqw;
+}
+
+#c6 .lado-esq .lado-label { color: var(--es-mid); }
+#c6 .lado-dir .lado-label { color: rgba(250,250,249,0.6); }
+
+#c6 .lado-headline {
+  font-family: var(--serif);
+  font-size: 3.8cqw;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 3cqw;
+}
+
+#c6 .lado-esq .lado-headline { color: var(--es-fg); }
+#c6 .lado-dir .lado-headline { color: var(--es-bg); }
+
+#c6 .bullet {
+  font-family: var(--sans);
+  font-size: 1.8cqw;
+  line-height: 1.5;
+}
+
+#c6 .lado-esq .bullet { color: var(--es-mid); }
+#c6 .lado-dir .bullet { color: rgba(250,250,249,0.5); }
+
+#c6 .bullet + .bullet {
+  margin-top: 1.2cqw;
+}
+
+#c6 .rodape-unificado {
+  flex-shrink: 0;
+  background: var(--es-fg);
+  border-top: 1px solid rgba(218,215,208,0.15);
+  padding: 4cqw 8cqw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 18%;
+}
+
+#c6 .rodape-preco {
+  font-family: var(--mono);
+  font-size: 4cqw;
+  color: var(--es-bg);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+#c6 .rodape-sub {
+  font-family: var(--mono);
+  font-size: 1.4cqw;
+  color: rgba(250,250,249,0.45);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 0.5cqw;
+}
+
+#c6 .rodape-cta {
+  font-family: var(--mono);
+  font-size: 1.8cqw;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(250,250,249,0.6);
+  text-align: right;
+}
+
+/* ============================================================
+   C7 — PROVA SOCIAL
+   ============================================================ */
+
+#c7 .frame {
+  background: var(--es-bg);
+}
+
+#c7 .inner-border {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1.5px solid var(--es-border);
+  box-sizing: border-box;
+}
+
+#c7 .c {
+  position: relative;
+}
+
+#c7 .aspas {
+  font-family: var(--serif);
+  font-size: 22cqw;
+  color: var(--es-fg);
+  opacity: 0.06;
+  position: absolute;
+  top: 12cqw;
+  left: 6cqw;
+  line-height: 0.7;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+#c7 .logo { color: var(--es-fg); position: relative; z-index: 1; }
+
+#c7 .meio {
+  position: relative;
+  z-index: 1;
+  align-items: center;
+  text-align: center;
+}
+
+#c7 .depoimento {
+  font-family: var(--serif);
+  font-size: 3.4cqw;
+  font-weight: 400;
+  color: var(--es-fg);
+  line-height: 1.4;
+  max-width: 88%;
+}
+
+#c7 .autor {
+  font-family: var(--sans);
+  font-size: 1.6cqw;
+  font-weight: 600;
+  color: var(--es-fg);
+  margin-top: 3.2cqw;
+}
+
+#c7 .badge {
+  font-family: var(--mono);
+  font-size: 1.4cqw;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--es-bg);
+  background: var(--es-fg);
+  padding: 0.4cqw 1.2cqw;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 1.2cqw;
+}
+
+#c7 .cta-zone {
+  border-color: var(--es-border);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+#c7 .cta-text { color: var(--es-fg); }
+
+/* ============================================================
+   C8 — ANCORA DE PRECO
+   ============================================================ */
+
+#c8 .frame { background: var(--es-fg); }
+#c8 .logo { color: var(--es-bg); opacity: 0.2; }
+#c8 .c { align-items: center; }
+
+#c8 .meio {
+  align-items: center;
+  text-align: center;
+}
+
+#c8 .label-contexto {
+  font-family: var(--sans);
+  font-size: 1.6cqw;
+  color: var(--es-mid);
+  margin-bottom: 4cqw;
+}
+
+#c8 .ancora-bloco {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#c8 .label-agencia {
+  font-family: var(--sans);
+  font-size: 1.5cqw;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(94,83,74,0.5);
+}
+
+#c8 .preco-agencia {
+  font-family: var(--mono);
+  font-size: 7.2cqw;
+  color: rgba(250,250,249,0.25);
+  text-decoration: line-through;
+  text-decoration-color: rgba(94,83,74,0.4);
+  text-decoration-thickness: 2px;
+  line-height: 1.1;
+  margin-top: 0.8cqw;
+}
+
+#c8 .divisor-ancora {
+  width: 100%;
+  height: 1px;
+  background: rgba(218,215,208,0.15);
+  margin: 3.2cqw 0;
+}
+
+#c8 .label-easysite {
+  font-family: var(--sans);
+  font-size: 1.5cqw;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(250,250,249,0.6);
+}
+
+#c8 .preco-easysite {
+  font-family: var(--mono);
+  font-size: 11cqw;
+  font-weight: 700;
+  color: var(--es-bg);
+  line-height: 1.0;
+  margin-top: 0.8cqw;
+  letter-spacing: -0.02em;
+}
+
+#c8 .subtext {
+  font-family: var(--sans);
+  font-size: 1.8cqw;
+  color: var(--es-mid);
+  margin-top: 2.4cqw;
+  line-height: 1.4;
+}
+
+#c8 .cta-zone {
+  border-color: rgba(218,215,208,0.2);
+  text-align: center;
+  width: 100%;
+}
+
+#c8 .cta-text { color: var(--es-bg); }
+
+/* ============================================================
+   C9 — OBJECAO TECNOLOGIA
+   ============================================================ */
+
+#c9 .frame { background: var(--es-bg); }
+#c9 .logo { color: var(--es-fg); }
+#c9 .c { align-items: center; }
+
+#c9 .meio {
+  align-items: center;
+  text-align: center;
+}
+
+#c9 .headline {
+  font-family: var(--serif);
+  font-size: 6.8cqw;
+  font-weight: 400;
+  color: var(--es-fg);
+  line-height: 1.1;
+  max-width: 90%;
+}
+
+#c9 .headline em {
+  font-style: italic;
+}
+
+#c9 .subtext {
+  font-family: var(--sans);
+  font-size: 2.2cqw;
+  font-weight: 400;
+  color: var(--es-mid);
+  line-height: 1.4;
+  margin-top: 2.8cqw;
+}
+
+#c9 .cta-zone {
+  border-color: var(--es-border);
+  text-align: center;
+  width: 100%;
+}
+
+#c9 .cta-text { color: var(--es-fg); }
+
+/* ============================================================
+   C10 — COMO FUNCIONA
+   ============================================================ */
+
+#c10 .frame { background: var(--es-bg); }
+#c10 .logo { color: var(--es-fg); }
+
+#c10 .topo {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#c10 .titulo-criativo {
+  font-family: var(--sans);
+  font-size: 1.5cqw;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--es-mid);
+  margin-top: 1.2cqw;
+}
+
+#c10 .meio {
+  justify-content: center;
+  align-items: stretch;
+}
+
+#c10 .passos {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#c10 .passo {
+  padding: 2cqw 0;
+  border-bottom: 1px solid var(--es-border);
+}
+
+#c10 .passo:first-child {
+  border-top: 1px solid var(--es-border);
+}
+
+#c10 .passo-numero-titulo {
+  display: flex;
+  align-items: center;
+  gap: 1.2cqw;
+  margin-bottom: 0.8cqw;
+}
+
+#c10 .passo-num {
+  font-family: var(--mono);
+  font-size: 1.3cqw;
+  text-transform: uppercase;
+  color: rgba(94,83,74,0.6);
+}
+
+#c10 .passo-titulo {
+  font-family: var(--sans);
+  font-size: 2cqw;
+  font-weight: 600;
+  color: var(--es-fg);
+}
+
+#c10 .passo-desc {
+  font-family: var(--sans);
+  font-size: 1.7cqw;
+  font-weight: 400;
+  color: var(--es-mid);
+  line-height: 1.4;
+}
+
+#c10 .cta-zone {
+  border-color: rgba(8,5,3,0.15);
+  border-top-width: 1.5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 4cqw;
+}
+
+#c10 .rodape-preco {
+  font-family: var(--mono);
+  font-size: 3.2cqw;
+  color: var(--es-fg);
+}
+
+#c10 .cta-text {
+  font-size: 1.4cqw;
+  color: var(--es-mid);
+}
+
+/* ============================================================
+   FULLSIZE SECTION (escondida por padrao)
+   ============================================================ */
+
+.fullsize-section {
+  display: none;
+  padding: 48px 40px;
+}
+
+.fullsize-section.active {
+  display: block;
+}
+
+.fullsize-back {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  margin-bottom: 24px;
+  padding: 6px 0;
+}
+
+.fullsize-back:hover { color: rgba(255,255,255,0.75); }
+
+.fullsize-title {
+  font-family: var(--serif);
+  font-size: 24px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 32px;
+}
+
+.fullsize-frame-wrap {
+  display: inline-block;
+  box-shadow: 0 16px 80px rgba(0,0,0,0.6);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+</style>
+</head>
+<body>
+
+<div class="page-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      EasySite
+      <span>10 criativos wpp v2</span>
+    </div>
+    <nav>
+      <div class="nav-label">Dor e Oferta</div>
+      <a href="#c1">C1 — Dor Primaria</a>
+      <a href="#c2">C2 — Oferta Direta</a>
+      <div class="nav-label">Nichos</div>
+      <a href="#c3">C3 — Salao</a>
+      <a href="#c4">C4 — Barbearia</a>
+      <a href="#c5">C5 — Restaurante</a>
+      <div class="nav-label">Conversao</div>
+      <a href="#c6">C6 — Antes e Depois</a>
+      <a href="#c7">C7 — Prova Social</a>
+      <a href="#c8">C8 — Ancora de Preco</a>
+      <div class="nav-label">Objecao e Mecanismo</div>
+      <a href="#c9">C9 — Objecao Tec.</a>
+      <a href="#c10">C10 — Como Funciona</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main" id="main-gallery">
+
+    <div class="main-header">
+      <h1>Criativos WhatsApp</h1>
+      <p>EasySite — Campanha principal — 10 formatos 1080x1350px</p>
+    </div>
+
+    <!-- ======================================================
+         C1 — DOR PRIMARIA
+         ====================================================== -->
+    <section class="criativo-section" id="c1">
+      <div class="criativo-header">
+        <div class="criativo-title"><strong>C1</strong> &nbsp;Dor Primaria</div>
+        <a href="#c1-full" class="btn-fullsize" onclick="showFull('c1-full')">Ver tamanho real</a>
+      </div>
+      <div class="preview-wrapper">
+        <div class="preview-scale">
+          <div class="frame">
+            <div class="c">
+              <div class="logo">EasySite</div>
+              <div class="meio">
+                <div class="headline">Seu negócio não aparece no Google?</div>
+                <div class="subtext">Sem site, você só existe pra quem já te conhece.</div>
+              </div>
+              <div class="cta-zone">
+                <div class="cta-text">Manda mensagem agora no WhatsApp</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         C2 — OFERTA DIRETA
+         ====================================================== -->
+    <section class="criativo-section" id="c2">
+      <div class="criativo-header">
+        <div class="criativo-title"><strong>C2</strong> &nbsp;Oferta Direta</div>
+        <a href="#c2-full" class="btn-fullsize" onclick="showFull('c2-full')">Ver tamanho real</a>
+      </div>
+      <div class="preview-wrapper">
+        <div class="preview-scale">
+          <div class="frame">
+            <div class="c">
+              <div class="logo">EasySite</div>
+              <div class="meio">
+                <div class="headline-context">Site profissional por</div>
+                <div class="preco-destaque">R$397</div>
+                <div class="descricao">Pronto em 24h. Sem mensalidade, sem contrato, sem complicacao.</div>
+              </div>
+              <div class="cta-zone">
+                <div class="cta-text">Fala com a gente no WhatsApp hoje</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         C3 — NICHO SALAO
+         ====================================================== -->
+    <section class="criativo-section" id="c3">
+      <div class="criativo-header">
+        <div class="criativo-title"><strong>C3</strong> &nbsp;Nicho Salao</div>
+        <a href="#c3-full" class="btn-fullsize" onclick="showFull('c3-full')">Ver tamanho real</a>
+      </div>
+      <div class="preview-wrapper">
+        <div class="preview-scale">
+          <div class="frame">
+            <div class="c">
+              <div class="topo">
+                <div class="logo">EasySite</div>
+                <div class="tag-nicho">Salao</div>
+              </div>
+              <div class="meio">
+                <div class="headline">Seu salao merece site. Nao post no Instagram.</div>
+                <div class="preco-prazo">
+                  <div class="preco">R$397</div>
+                  <div class="divisor-v"></div>
+                  <div class="prazo">Pronto em 24h</div>
+                </div>
+              </div>
+              <div class="cta-zone">
+                <div class="cta-text">Quero meu site em 24h via WhatsApp</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         C4 — NICHO BARBEARIA
+         ====================================================== -->
+    <section class="criativo-section" id="c4">
+      <div class="criativo-header">
+        <div class="criativo-title"><strong>C4</strong> &nbsp;Nicho Barbearia</div>
+        <a href="#c4-full" class="btn-fullsize" onclick="showFull('c4-full')">Ver tamanho real</a>
+      </div>
+      <div class="preview-wrapper">
+        <div class="preview-scale">
+          <div class="frame">
+            <div class="c">
+              <div class="topo">
+                <div class="logo">EasySite</div>
+                <div class="tag-nicho">Barbearia</div>
+              </div>
+              <div class="meio">
+                <div class="headline">Barbearia sem site perde cliente toda semana.</div>
+                <div class="preco-prazo">
+                  <div class="preco">R$397</div>
+                  <div class="divisor-v"></div>
+                  <div class="prazo">Pronto em 24h</div>
+                </div>
+              </div>
+              <div class="cta-zone">
+                <div class="cta-text">Cria meu site agora pelo WhatsApp</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         C5 — NICHO RESTAURANTE
+         ====================================================== -->
+    <section class="criativo-section" id="c5">
+      <div class="criativo-header">
+        <div class="criativo-title"><strong>C5</strong> &nbsp;Nicho Restaurante</div>
+        <a href="#c5-full" class="btn-fullsize" onclick="showFull('c5-full')">Ver tamanho real</a>
+      </div>
+      <div class="preview-wrapper">
+        <div class="preview-scale">
+          <div class="frame">
+            <div class="c">
+              <div class="topo">
+                <div class="logo">EasySite</div>
+                <div class="tag-nicho">Restaurante</div>
+              </div>
+              <div class="meio">
+                <div class="headline">Cardapio, endereco e horario num clique.</div>
+                <div class="preco-prazo">
+                  <div class="preco">R$397</div>
+                  <div class="divisor-v"></div>
+                  <div class="prazo">No Google amanha</div>
+                </div>
+              </div>
+              <div class="cta-zone">
+                <div class="cta-text">Fala com a EasySite no WhatsApp</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         C6 — ANTES E DEPOIS
+         ====================================================== -->
+    <section class="criativo-section" id="c6">
+      <div class="criativo-header">
+        <div class="criativo-title"><strong>C6</strong> &nbsp;Antes e Depois</div>
+        <a href="#c6-full" class="btn-fullsize" onclick="showFull('c6-full')">Ver tamanho real</a>
+      </div>
+      <div class="preview-wrapper">
+        <div class="preview-scale">
+          <div class="frame">
+            <div class="c">
+              <div class="split-body">
+                <div class="lado lado-esq">
+                  <div class="lado-label">Sem site</div>
+                  <div class="lado-headline">Invisivel para quem pesquisa</div>
+                  <div class="bullet">Invisivel no Google</div>
+                  <div class="bullet">Zero credibilidade online</div>
+                </div>
+                <div class="lado lado-dir">
+                  <div class="lado-label">Com EasySite</div>
+                  <div class="lado-headline">Aparece. Vende. Cresce.</div>
+                  <div class="bullet">Aparece nas buscas em 24h</div>
+                  <div class="bullet">Site profissional que vende por voce</div>
+                </div>
+              </div>
+              <div class="rodape-unificado">
+                <div>
+                  <div class="rodape-preco">R$397</div>
+                  <div class="rodape-sub">Sem mensalidade. Pronto amanha.</div>
+                </div>
+                <div class="rodape-cta">Cria o meu<br>via WhatsApp</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         C7 — PROVA SOCIAL
+         ====================================================== -->
+    <section class="criativo-section" id="c7">
+      <div class="criativo-header">
+        <div class="criativo-title"><strong>C7</strong> &nbsp;Prova Social</div>
+        <a href="#c7-full" class="btn-fullsize" onclick="showFull('c7-full')">Ver tamanho real</a>
+      </div>
+      <div class="preview-wrapper">
+        <div class="preview-scale">
+          <div class="frame">
+            <div class="inner-border">
+              <div class="c">
+                <div class="aspas">"</div>
+                <div class="logo">EasySite</div>
+                <div class="meio">
+                  <div class="depoimento">"Triplicou os pedidos pelo Google em 2 meses."</div>
+                  <div class="autor">Marcia</div>
+                  <div class="badge">Salao ha 7 anos, site no ar em menos de 24h</div>
+                </div>
+                <div class="cta-zone">
+                  <div class="cta-text">Garante o seu resultado com a EasySite pelo WhatsApp</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         C8 — ANCORA DE PRECO
+         ====================================================== -->
+    <section class="criativo-section" id="c8">
+      <div class="criativo-header">
+        <div class="criativo-title"><strong>C8</strong> &nbsp;Ancora de Preco</div>
+        <a href="#c8-full" class="btn-fullsize" onclick="showFull('c8-full')">Ver tamanho real</a>
+      </div>
+      <div class="preview-wrapper">
+        <div class="preview-scale">
+          <div class="frame">
+            <div class="c">
+              <div class="logo">EasySite</div>
+              <div class="meio">
+                <div class="ancora-bloco">
+                  <div class="label-agencia">Agencia tradicional</div>
+                  <div class="preco-agencia">R$5.000</div>
+                  <div class="divisor-ancora"></div>
+                  <div class="label-easysite">EasySite</div>
+                  <div class="preco-easysite">R$397</div>
+                  <div class="subtext">Site profissional no ar em 24h, sem mensalidade, sem contrato.</div>
+                </div>
+              </div>
+              <div class="cta-zone">
+                <div class="cta-text">Garante o seu preco pelo WhatsApp</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         C9 — OBJECAO TECNOLOGIA
+         ====================================================== -->
+    <section class="criativo-section" id="c9">
+      <div class="criativo-header">
+        <div class="criativo-title"><strong>C9</strong> &nbsp;Objecao Tecnologia</div>
+        <a href="#c9-full" class="btn-fullsize" onclick="showFull('c9-full')">Ver tamanho real</a>
+      </div>
+      <div class="preview-wrapper">
+        <div class="preview-scale">
+          <div class="frame">
+            <div class="c">
+              <div class="logo">EasySite</div>
+              <div class="meio">
+                <div class="headline">Voce <em>nao</em> precisa entender de tecnologia.</div>
+                <div class="subtext">A gente faz tudo. Voce so aprova e usa.</div>
+              </div>
+              <div class="cta-zone">
+                <div class="cta-text">E simples assim, fala no WhatsApp</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         C10 — COMO FUNCIONA
+         ====================================================== -->
+    <section class="criativo-section" id="c10">
+      <div class="criativo-header">
+        <div class="criativo-title"><strong>C10</strong> &nbsp;Como Funciona</div>
+        <a href="#c10-full" class="btn-fullsize" onclick="showFull('c10-full')">Ver tamanho real</a>
+      </div>
+      <div class="preview-wrapper">
+        <div class="preview-scale">
+          <div class="frame">
+            <div class="c">
+              <div class="topo">
+                <div class="logo">EasySite</div>
+                <div class="titulo-criativo">Ter seu site em 24h tem so 3 passos.</div>
+              </div>
+              <div class="meio">
+                <div class="passos">
+                  <div class="passo">
+                    <div class="passo-numero-titulo">
+                      <div class="passo-num">01</div>
+                      <div class="passo-titulo">Voce manda as informacoes</div>
+                    </div>
+                    <div class="passo-desc">Manda pelo WhatsApp os dados do seu negocio: nome, servicos, contato.</div>
+                  </div>
+                  <div class="passo">
+                    <div class="passo-numero-titulo">
+                      <div class="passo-num">02</div>
+                      <div class="passo-titulo">A equipe monta tudo pra voce</div>
+                    </div>
+                    <div class="passo-desc">A equipe EasySite monta e ajusta tudo. Sem voce precisar fazer nada.</div>
+                  </div>
+                  <div class="passo">
+                    <div class="passo-numero-titulo">
+                      <div class="passo-num">03</div>
+                      <div class="passo-titulo">Aprova e vai ao ar hoje</div>
+                    </div>
+                    <div class="passo-desc">Voce aprova o site e ele ja vai ao ar. Tudo em menos de 24h.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="cta-zone">
+                <div class="rodape-preco">R$397</div>
+                <div class="cta-text">Comeca agora pelo WhatsApp</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main><!-- /.main -->
+
+</div><!-- /.page-layout -->
+
+
+<!-- ============================================================
+     FULLSIZE SECTIONS (fora do layout principal)
+     ============================================================ -->
+
+<!-- C1 fullsize -->
+<div class="fullsize-section" id="c1-full">
+  <a href="#c1" class="fullsize-back" onclick="hideFull('c1-full')">Voltar para galeria</a>
+  <div class="fullsize-title">C1 — Dor Primaria</div>
+  <div class="fullsize-frame-wrap">
+    <div class="frame" style="background:var(--es-bg);">
+      <div class="c" style="align-items:center;">
+        <div class="logo" style="color:var(--es-fg);">EasySite</div>
+        <div class="meio" style="align-items:center;text-align:center;">
+          <div style="font-family:var(--serif);font-size:7.2cqw;font-weight:400;color:var(--es-fg);line-height:1.1;max-width:90%;">Seu negócio não aparece no Google?</div>
+          <div style="font-family:var(--sans);font-size:2.2cqw;color:var(--es-mid);line-height:1.4;margin-top:3.2cqw;">Sem site, você só existe pra quem já te conhece.</div>
+        </div>
+        <div class="cta-zone" style="border-color:var(--es-border);text-align:center;width:100%;">
+          <div class="cta-text" style="color:var(--es-fg);">Manda mensagem agora no WhatsApp</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- C2 fullsize -->
+<div class="fullsize-section" id="c2-full">
+  <a href="#c2" class="fullsize-back" onclick="hideFull('c2-full')">Voltar para galeria</a>
+  <div class="fullsize-title">C2 — Oferta Direta</div>
+  <div class="fullsize-frame-wrap">
+    <div class="frame" style="background:var(--es-fg);">
+      <div class="c" style="align-items:center;">
+        <div class="logo" style="color:var(--es-bg);opacity:0.2;">EasySite</div>
+        <div class="meio" style="align-items:center;text-align:center;">
+          <div style="font-family:var(--sans);font-size:1.9cqw;color:var(--es-mid);margin-bottom:4cqw;">Site profissional por</div>
+          <div style="font-family:var(--mono);font-size:12cqw;font-weight:700;color:var(--es-bg);line-height:1.0;letter-spacing:-0.02em;">R$397</div>
+          <div style="font-family:var(--sans);font-size:2cqw;color:var(--es-mid);margin-top:3.5cqw;line-height:1.4;max-width:80%;text-align:center;">Pronto em 24h. Sem mensalidade, sem contrato, sem complicacao.</div>
+        </div>
+        <div class="cta-zone" style="border-color:rgba(218,215,208,0.2);text-align:center;width:100%;">
+          <div class="cta-text" style="color:var(--es-bg);">Fala com a gente no WhatsApp hoje</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- C3 fullsize -->
+<div class="fullsize-section" id="c3-full">
+  <a href="#c3" class="fullsize-back" onclick="hideFull('c3-full')">Voltar para galeria</a>
+  <div class="fullsize-title">C3 — Nicho Salao</div>
+  <div class="fullsize-frame-wrap">
+    <div class="frame" style="background:var(--es-bg);">
+      <div class="c">
+        <div style="flex-shrink:0;display:flex;flex-direction:column;align-items:flex-start;">
+          <div class="logo" style="color:var(--es-fg);">EasySite</div>
+          <div style="font-family:var(--sans);font-size:1.3cqw;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--es-bg);background:var(--es-fg);padding:0.6cqw 1.4cqw;border-radius:4px;margin-top:1.6cqw;display:inline-block;">Salao</div>
+        </div>
+        <div class="meio" style="justify-content:center;align-items:flex-start;text-align:left;">
+          <div style="font-family:var(--serif);font-size:6.2cqw;font-weight:400;color:var(--es-fg);line-height:1.1;max-width:95%;">Seu salao merece site. Nao post no Instagram.</div>
+          <div style="display:flex;align-items:center;gap:1.6cqw;margin-top:2.4cqw;">
+            <div style="font-family:var(--mono);font-size:3.6cqw;color:var(--es-fg);">R$397</div>
+            <div style="width:1px;height:3cqw;background:var(--es-border);flex-shrink:0;"></div>
+            <div style="font-family:var(--sans);font-size:2cqw;color:var(--es-mid);">Pronto em 24h</div>
+          </div>
+        </div>
+        <div class="cta-zone" style="border-color:var(--es-border);text-align:left;">
+          <div class="cta-text" style="color:var(--es-fg);">Quero meu site em 24h via WhatsApp</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- C4 fullsize -->
+<div class="fullsize-section" id="c4-full">
+  <a href="#c4" class="fullsize-back" onclick="hideFull('c4-full')">Voltar para galeria</a>
+  <div class="fullsize-title">C4 — Nicho Barbearia</div>
+  <div class="fullsize-frame-wrap">
+    <div class="frame" style="background:var(--es-fg);">
+      <div class="c">
+        <div style="flex-shrink:0;display:flex;flex-direction:column;align-items:flex-start;">
+          <div class="logo" style="color:var(--es-bg);opacity:0.2;">EasySite</div>
+          <div style="font-family:var(--sans);font-size:1.3cqw;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--es-fg);background:var(--es-bg);padding:0.6cqw 1.4cqw;border-radius:4px;margin-top:1.6cqw;display:inline-block;">Barbearia</div>
+        </div>
+        <div class="meio" style="justify-content:center;align-items:flex-start;text-align:left;">
+          <div style="font-family:var(--serif);font-size:6.2cqw;font-weight:400;color:var(--es-bg);line-height:1.1;max-width:95%;">Barbearia sem site perde cliente toda semana.</div>
+          <div style="display:flex;align-items:center;gap:1.6cqw;margin-top:2.4cqw;">
+            <div style="font-family:var(--mono);font-size:3.6cqw;color:var(--es-bg);">R$397</div>
+            <div style="width:1px;height:3cqw;background:rgba(218,215,208,0.25);flex-shrink:0;"></div>
+            <div style="font-family:var(--sans);font-size:2cqw;color:var(--es-mid);">Pronto em 24h</div>
+          </div>
+        </div>
+        <div class="cta-zone" style="border-color:rgba(218,215,208,0.2);text-align:left;">
+          <div class="cta-text" style="color:var(--es-bg);">Cria meu site agora pelo WhatsApp</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- C5 fullsize -->
+<div class="fullsize-section" id="c5-full">
+  <a href="#c5" class="fullsize-back" onclick="hideFull('c5-full')">Voltar para galeria</a>
+  <div class="fullsize-title">C5 — Nicho Restaurante</div>
+  <div class="fullsize-frame-wrap">
+    <div class="frame" style="background:var(--es-bg);">
+      <div class="c">
+        <div style="flex-shrink:0;display:flex;flex-direction:column;align-items:flex-start;">
+          <div class="logo" style="color:var(--es-fg);">EasySite</div>
+          <div style="font-family:var(--sans);font-size:1.3cqw;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--es-bg);background:var(--es-fg);padding:0.6cqw 1.4cqw;border-radius:4px;margin-top:1.6cqw;display:inline-block;">Restaurante</div>
+        </div>
+        <div class="meio" style="justify-content:center;align-items:flex-start;text-align:left;">
+          <div style="font-family:var(--serif);font-size:6.2cqw;font-weight:400;color:var(--es-fg);line-height:1.1;max-width:95%;">Cardapio, endereco e horario num clique.</div>
+          <div style="display:flex;align-items:center;gap:1.6cqw;margin-top:2.4cqw;">
+            <div style="font-family:var(--mono);font-size:3.6cqw;color:var(--es-fg);">R$397</div>
+            <div style="width:1px;height:3cqw;background:var(--es-border);flex-shrink:0;"></div>
+            <div style="font-family:var(--sans);font-size:2cqw;color:var(--es-mid);">No Google amanha</div>
+          </div>
+        </div>
+        <div class="cta-zone" style="border-color:var(--es-border);text-align:left;">
+          <div class="cta-text" style="color:var(--es-fg);">Fala com a EasySite no WhatsApp</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- C6 fullsize -->
+<div class="fullsize-section" id="c6-full">
+  <a href="#c6" class="fullsize-back" onclick="hideFull('c6-full')">Voltar para galeria</a>
+  <div class="fullsize-title">C6 — Antes e Depois</div>
+  <div class="fullsize-frame-wrap">
+    <div class="frame" style="background:var(--es-fg);display:flex;flex-direction:column;">
+      <div class="c" style="padding:0;">
+        <div style="flex:1;display:flex;flex-direction:row;">
+          <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8cqw 6cqw;background:var(--es-muted);border-right:1px solid var(--es-border);">
+            <div style="font-family:var(--sans);font-size:1.5cqw;text-transform:uppercase;letter-spacing:0.12em;color:var(--es-mid);margin-bottom:2.4cqw;">Sem site</div>
+            <div style="font-family:var(--serif);font-size:3.8cqw;font-weight:400;line-height:1.2;color:var(--es-fg);margin-bottom:3cqw;">Invisivel para quem pesquisa</div>
+            <div style="font-family:var(--sans);font-size:1.8cqw;color:var(--es-mid);line-height:1.5;">Invisivel no Google</div>
+            <div style="font-family:var(--sans);font-size:1.8cqw;color:var(--es-mid);line-height:1.5;margin-top:1.2cqw;">Zero credibilidade online</div>
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8cqw 6cqw;background:var(--es-fg);">
+            <div style="font-family:var(--sans);font-size:1.5cqw;text-transform:uppercase;letter-spacing:0.12em;color:rgba(250,250,249,0.6);margin-bottom:2.4cqw;">Com EasySite</div>
+            <div style="font-family:var(--serif);font-size:3.8cqw;font-weight:400;line-height:1.2;color:var(--es-bg);margin-bottom:3cqw;">Aparece. Vende. Cresce.</div>
+            <div style="font-family:var(--sans);font-size:1.8cqw;color:rgba(250,250,249,0.5);line-height:1.5;">Aparece nas buscas em 24h</div>
+            <div style="font-family:var(--sans);font-size:1.8cqw;color:rgba(250,250,249,0.5);line-height:1.5;margin-top:1.2cqw;">Site profissional que vende por voce</div>
+          </div>
+        </div>
+        <div style="flex-shrink:0;background:var(--es-fg);border-top:1px solid rgba(218,215,208,0.15);padding:4cqw 8cqw;display:flex;align-items:center;justify-content:space-between;height:18%;">
+          <div>
+            <div style="font-family:var(--mono);font-size:4cqw;color:var(--es-bg);font-weight:700;letter-spacing:-0.01em;">R$397</div>
+            <div style="font-family:var(--mono);font-size:1.4cqw;color:rgba(250,250,249,0.45);letter-spacing:0.06em;text-transform:uppercase;margin-top:0.5cqw;">Sem mensalidade. Pronto amanha.</div>
+          </div>
+          <div style="font-family:var(--mono);font-size:1.8cqw;text-transform:uppercase;letter-spacing:0.1em;color:rgba(250,250,249,0.6);text-align:right;">Cria o meu<br>via WhatsApp</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- C7 fullsize -->
+<div class="fullsize-section" id="c7-full">
+  <a href="#c7" class="fullsize-back" onclick="hideFull('c7-full')">Voltar para galeria</a>
+  <div class="fullsize-title">C7 — Prova Social</div>
+  <div class="fullsize-frame-wrap">
+    <div class="frame" style="background:var(--es-bg);">
+      <div style="width:100%;height:100%;display:flex;flex-direction:column;border:1.5px solid var(--es-border);box-sizing:border-box;">
+        <div class="c" style="position:relative;">
+          <div style="font-family:var(--serif);font-size:22cqw;color:var(--es-fg);opacity:0.06;position:absolute;top:12cqw;left:6cqw;line-height:0.7;pointer-events:none;user-select:none;z-index:0;">"</div>
+          <div class="logo" style="color:var(--es-fg);position:relative;z-index:1;">EasySite</div>
+          <div class="meio" style="position:relative;z-index:1;align-items:center;text-align:center;">
+            <div style="font-family:var(--serif);font-size:3.4cqw;font-weight:400;color:var(--es-fg);line-height:1.4;max-width:88%;">"Triplicou os pedidos pelo Google em 2 meses."</div>
+            <div style="font-family:var(--sans);font-size:1.6cqw;font-weight:600;color:var(--es-fg);margin-top:3.2cqw;">Marcia</div>
+            <div style="font-family:var(--mono);font-size:1.4cqw;text-transform:uppercase;letter-spacing:0.08em;color:var(--es-bg);background:var(--es-fg);padding:0.4cqw 1.2cqw;border-radius:4px;display:inline-block;margin-top:1.2cqw;">Salao ha 7 anos, site no ar em menos de 24h</div>
+          </div>
+          <div class="cta-zone" style="border-color:var(--es-border);text-align:center;position:relative;z-index:1;">
+            <div class="cta-text" style="color:var(--es-fg);">Garante o seu resultado com a EasySite pelo WhatsApp</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- C8 fullsize -->
+<div class="fullsize-section" id="c8-full">
+  <a href="#c8" class="fullsize-back" onclick="hideFull('c8-full')">Voltar para galeria</a>
+  <div class="fullsize-title">C8 — Ancora de Preco</div>
+  <div class="fullsize-frame-wrap">
+    <div class="frame" style="background:var(--es-fg);">
+      <div class="c" style="align-items:center;">
+        <div class="logo" style="color:var(--es-bg);opacity:0.2;">EasySite</div>
+        <div class="meio" style="align-items:center;text-align:center;">
+          <div style="width:100%;display:flex;flex-direction:column;align-items:center;">
+            <div style="font-family:var(--sans);font-size:1.5cqw;text-transform:uppercase;letter-spacing:0.08em;color:rgba(94,83,74,0.5);">Agencia tradicional</div>
+            <div style="font-family:var(--mono);font-size:7.2cqw;color:rgba(250,250,249,0.25);text-decoration:line-through;text-decoration-color:rgba(94,83,74,0.4);text-decoration-thickness:2px;line-height:1.1;margin-top:0.8cqw;">R$5.000</div>
+            <div style="width:100%;height:1px;background:rgba(218,215,208,0.15);margin:3.2cqw 0;"></div>
+            <div style="font-family:var(--sans);font-size:1.5cqw;text-transform:uppercase;letter-spacing:0.08em;color:rgba(250,250,249,0.6);">EasySite</div>
+            <div style="font-family:var(--mono);font-size:11cqw;font-weight:700;color:var(--es-bg);line-height:1.0;margin-top:0.8cqw;letter-spacing:-0.02em;">R$397</div>
+            <div style="font-family:var(--sans);font-size:1.8cqw;color:var(--es-mid);margin-top:2.4cqw;line-height:1.4;">Site profissional no ar em 24h, sem mensalidade, sem contrato.</div>
+          </div>
+        </div>
+        <div class="cta-zone" style="border-color:rgba(218,215,208,0.2);text-align:center;width:100%;">
+          <div class="cta-text" style="color:var(--es-bg);">Garante o seu preco pelo WhatsApp</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- C9 fullsize -->
+<div class="fullsize-section" id="c9-full">
+  <a href="#c9" class="fullsize-back" onclick="hideFull('c9-full')">Voltar para galeria</a>
+  <div class="fullsize-title">C9 — Objecao Tecnologia</div>
+  <div class="fullsize-frame-wrap">
+    <div class="frame" style="background:var(--es-bg);">
+      <div class="c" style="align-items:center;">
+        <div class="logo" style="color:var(--es-fg);">EasySite</div>
+        <div class="meio" style="align-items:center;text-align:center;">
+          <div style="font-family:var(--serif);font-size:6.8cqw;font-weight:400;color:var(--es-fg);line-height:1.1;max-width:90%;">Voce <em>nao</em> precisa entender de tecnologia.</div>
+          <div style="font-family:var(--sans);font-size:2.2cqw;color:var(--es-mid);line-height:1.4;margin-top:2.8cqw;">A gente faz tudo. Voce so aprova e usa.</div>
+        </div>
+        <div class="cta-zone" style="border-color:var(--es-border);text-align:center;width:100%;">
+          <div class="cta-text" style="color:var(--es-fg);">E simples assim, fala no WhatsApp</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- C10 fullsize -->
+<div class="fullsize-section" id="c10-full">
+  <a href="#c10" class="fullsize-back" onclick="hideFull('c10-full')">Voltar para galeria</a>
+  <div class="fullsize-title">C10 — Como Funciona</div>
+  <div class="fullsize-frame-wrap">
+    <div class="frame" style="background:var(--es-bg);">
+      <div class="c">
+        <div style="flex-shrink:0;display:flex;flex-direction:column;align-items:flex-start;">
+          <div class="logo" style="color:var(--es-fg);">EasySite</div>
+          <div style="font-family:var(--sans);font-size:1.5cqw;text-transform:uppercase;letter-spacing:0.1em;color:var(--es-mid);margin-top:1.2cqw;">Ter seu site em 24h tem so 3 passos.</div>
+        </div>
+        <div class="meio" style="justify-content:center;align-items:stretch;">
+          <div style="display:flex;flex-direction:column;width:100%;">
+            <div style="padding:2cqw 0;border-top:1px solid var(--es-border);border-bottom:1px solid var(--es-border);">
+              <div style="display:flex;align-items:center;gap:1.2cqw;margin-bottom:0.8cqw;">
+                <div style="font-family:var(--mono);font-size:1.3cqw;text-transform:uppercase;color:rgba(94,83,74,0.6);">01</div>
+                <div style="font-family:var(--sans);font-size:2cqw;font-weight:600;color:var(--es-fg);">Voce manda as informacoes</div>
+              </div>
+              <div style="font-family:var(--sans);font-size:1.7cqw;color:var(--es-mid);line-height:1.4;">Manda pelo WhatsApp os dados do seu negocio: nome, servicos, contato.</div>
+            </div>
+            <div style="padding:2cqw 0;border-bottom:1px solid var(--es-border);">
+              <div style="display:flex;align-items:center;gap:1.2cqw;margin-bottom:0.8cqw;">
+                <div style="font-family:var(--mono);font-size:1.3cqw;text-transform:uppercase;color:rgba(94,83,74,0.6);">02</div>
+                <div style="font-family:var(--sans);font-size:2cqw;font-weight:600;color:var(--es-fg);">A equipe monta tudo pra voce</div>
+              </div>
+              <div style="font-family:var(--sans);font-size:1.7cqw;color:var(--es-mid);line-height:1.4;">A equipe EasySite monta e ajusta tudo. Sem voce precisar fazer nada.</div>
+            </div>
+            <div style="padding:2cqw 0;border-bottom:1px solid var(--es-border);">
+              <div style="display:flex;align-items:center;gap:1.2cqw;margin-bottom:0.8cqw;">
+                <div style="font-family:var(--mono);font-size:1.3cqw;text-transform:uppercase;color:rgba(94,83,74,0.6);">03</div>
+                <div style="font-family:var(--sans);font-size:2cqw;font-weight:600;color:var(--es-fg);">Aprova e vai ao ar hoje</div>
+              </div>
+              <div style="font-family:var(--sans);font-size:1.7cqw;color:var(--es-mid);line-height:1.4;">Voce aprova o site e ele ja vai ao ar. Tudo em menos de 24h.</div>
+            </div>
+          </div>
+        </div>
+        <div class="cta-zone" style="border-color:rgba(8,5,3,0.15);border-top-width:1.5px;display:flex;align-items:center;justify-content:space-between;padding-top:4cqw;">
+          <div style="font-family:var(--mono);font-size:3.2cqw;color:var(--es-fg);">R$397</div>
+          <div class="cta-text" style="color:var(--es-mid);font-size:1.4cqw;">Comeca agora pelo WhatsApp</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+function showFull(id) {
+  // Esconde a galeria principal
+  document.querySelector('.page-layout').style.display = 'none';
+  // Mostra o fullsize
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function hideFull(id) {
+  // Esconde o fullsize
+  document.getElementById(id).classList.remove('active');
+  // Mostra a galeria
+  document.querySelector('.page-layout').style.display = 'flex';
+}
+
+// Navegacao smooth scroll pela sidebar
+document.querySelectorAll('.sidebar nav a').forEach(link => {
+  link.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  });
+});
+</script>
+
+<!--
+DESIGN SQUAD — 10 CRIATIVOS WHATSAPP v2
+Agente designado: Vesper
+Justificativa: Especialista em HTML/CSS tipografico editorial com sistemas de grid e container queries. Domina hierarquia tipografica, layout estrutural sem dependencias de imagens ou icones externos, e traducao fiel de specs visuais em criativos HTML production-ready. Perfil ideal para escopo de producao estatica com sistema de design estabelecido e copy final aprovada.
+Copy source: criativos-copy-final.md
+Layout source: criativos-layout.md
+-->
+
+</body>
+</html>

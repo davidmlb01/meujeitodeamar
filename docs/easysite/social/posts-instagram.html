@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasySite — 12 Posts Instagram</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital,wght@0,400;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #FAFAF9;
+  --fg: #080503;
+  --muted: #ECEBE7;
+  --mid: #5E534A;
+  --border: #DAD7D0;
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'Instrument Sans', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  /* Card dimensions — 1080x1350 at 50% */
+  --card-w: 540px;
+  --card-h: 675px;
+
+  /* Safe zone = 60px at 1080px = 30px at 540px */
+  --sz: 30px;
+}
+
+html, body {
+  background: #111110;
+  color: var(--bg);
+  font-family: var(--sans);
+  min-height: 100vh;
+}
+
+/* LAYOUT */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 230px;
+  flex-shrink: 0;
+  background: #0A0A09;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 24px 0;
+}
+
+.sidebar-brand {
+  padding: 0 20px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 16px;
+}
+.sidebar-brand .name {
+  font-family: var(--serif);
+  font-size: 17px;
+  color: var(--bg);
+}
+.sidebar-brand .sub {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(250,250,249,0.3);
+  margin-top: 3px;
+}
+
+.sidebar nav { display: flex; flex-direction: column; gap: 1px; padding: 0 10px; }
+.sidebar nav a {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  color: rgba(250,250,249,0.45);
+  text-decoration: none;
+  padding: 7px 10px;
+  border-radius: 6px;
+  line-height: 1.3;
+  transition: all 0.15s;
+}
+.sidebar nav a:hover {
+  background: rgba(255,255,255,0.05);
+  color: rgba(250,250,249,0.8);
+}
+.sidebar-section {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(250,250,249,0.2);
+  padding: 16px 20px 6px;
+}
+
+/* MAIN */
+.main {
+  flex: 1;
+  padding: 48px 48px 80px;
+  overflow-x: hidden;
+}
+
+.page-title {
+  font-family: var(--serif);
+  font-size: 28px;
+  color: var(--bg);
+  margin-bottom: 6px;
+}
+.page-sub {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: rgba(250,250,249,0.4);
+  margin-bottom: 48px;
+  line-height: 1.5;
+}
+
+/* SAFE ZONE INFO BOX */
+.sz-info {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 48px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 720px;
+}
+.sz-info-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.sz-info-text { font-size: 12.5px; color: rgba(250,250,249,0.55); line-height: 1.6; }
+.sz-info-text strong { color: rgba(250,250,249,0.8); }
+
+/* POST SECTION */
+.post-section {
+  margin-bottom: 64px;
+  scroll-margin-top: 32px;
+}
+
+.post-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.post-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: rgba(250,250,249,0.25);
+  letter-spacing: 0.08em;
+}
+.post-title {
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--bg);
+}
+.post-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: rgba(250,250,249,0.35);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 4px;
+  padding: 2px 7px;
+}
+.post-desc {
+  font-size: 12px;
+  color: rgba(250,250,249,0.35);
+  margin-bottom: 20px;
+  margin-left: 0;
+}
+
+/* SLIDES ROW */
+.slides-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+.slides-row::-webkit-scrollbar { height: 4px; }
+.slides-row::-webkit-scrollbar-track { background: rgba(255,255,255,0.04); border-radius: 2px; }
+.slides-row::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 2px; }
+
+/* CARD WRAPPER */
+.card-wrap {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+}
+.slide-label {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  color: rgba(250,250,249,0.25);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* THE CARD */
+.card {
+  width: var(--card-w);
+  height: var(--card-h);
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+/* SAFE ZONE OVERLAY — desativado */
+.card::after {
+  content: none;
+}
+
+/* CARD INNER — all content must stay inside safe zone */
+.ci {
+  position: absolute;
+  inset: var(--sz);
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+/* ============================
+   SLIDE BACKGROUNDS
+   ============================ */
+.bg-light  { background: var(--bg); }
+.bg-dark   { background: var(--fg); }
+.bg-muted  { background: var(--muted); }
+.bg-mid    { background: #2A2420; }
+.bg-split  {
+  background: linear-gradient(to right, var(--muted) 50%, var(--fg) 50%);
+}
+
+/* ============================
+   TYPOGRAPHY UTILITIES
+   ============================ */
+.t-serif   { font-family: var(--serif); }
+.t-sans    { font-family: var(--sans); }
+.t-mono    { font-family: var(--mono); }
+.t-light   { color: var(--bg); }
+.t-dark    { color: var(--fg); }
+.t-mid     { color: var(--mid); }
+.t-muted-c { color: var(--border); }
+
+/* SIZE SCALE (relative to card) */
+.fs-xl  { font-size: 52px; line-height: 1.0; }
+.fs-lg  { font-size: 40px; line-height: 1.1; }
+.fs-md  { font-size: 28px; line-height: 1.2; }
+.fs-sm  { font-size: 20px; line-height: 1.3; }
+.fs-xs  { font-size: 15px; line-height: 1.5; }
+.fs-2xs { font-size: 12px; line-height: 1.5; }
+
+.fw-700 { font-weight: 700; }
+.fw-600 { font-weight: 600; }
+.fw-400 { font-weight: 400; }
+
+/* LAYOUT HELPERS */
+.col          { display: flex; flex-direction: column; }
+.col-center   { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.col-between  { display: flex; flex-direction: column; justify-content: space-between; }
+.col-end      { display: flex; flex-direction: column; justify-content: flex-end; }
+.gap-4  { gap: 4px; }
+.gap-8  { gap: 8px; }
+.gap-12 { gap: 12px; }
+.gap-16 { gap: 16px; }
+.gap-20 { gap: 20px; }
+.gap-24 { gap: 24px; }
+.gap-32 { gap: 32px; }
+.mb-auto { margin-bottom: auto; }
+.mt-auto { margin-top: auto; }
+.full-height { height: 100%; }
+
+/* LOGO MARK */
+.logo-mark {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
+
+/* DIVIDER */
+.divider {
+  width: 32px;
+  height: 1.5px;
+  background: currentColor;
+  opacity: 0.25;
+  flex-shrink: 0;
+}
+
+/* STEP ITEM */
+.step {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.step-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  opacity: 0.4;
+  flex-shrink: 0;
+  width: 20px;
+  padding-top: 3px;
+}
+.step-text { font-size: 17px; line-height: 1.35; }
+
+/* CTA BADGE */
+.cta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--fg);
+  color: var(--bg);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 9px 16px;
+  border-radius: 3px;
+  align-self: flex-start;
+}
+.cta-badge.inv {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* QUOTE */
+.quote-mark {
+  font-family: var(--serif);
+  font-size: 72px;
+  line-height: 0.7;
+  opacity: 0.15;
+  flex-shrink: 0;
+}
+
+/* PRICE TAG */
+.price-tag {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 36px;
+  letter-spacing: -0.02em;
+}
+
+/* SPLIT CARD */
+.split-side {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 16px;
+  gap: 10px;
+}
+
+/* TABLE CARD */
+.compare-table { width: 100%; border-collapse: collapse; }
+.compare-table th {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0 0 10px;
+  border-bottom: 1.5px solid currentColor;
+  text-align: left;
+}
+.compare-table td {
+  font-size: 13.5px;
+  line-height: 1.3;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  vertical-align: top;
+}
+.compare-table tr:last-child td { border-bottom: none; }
+.compare-table td:first-child { padding-right: 16px; color: var(--mid); }
+.compare-table td:last-child { font-weight: 600; }
+
+/* CHECKLIST */
+.check-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.check-list li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 16px;
+  line-height: 1.35;
+}
+.check-list li::before {
+  content: '—';
+  font-family: var(--mono);
+  font-size: 11px;
+  opacity: 0.35;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+/* AVATAR PLACEHOLDER */
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+/* ============================
+   LEGEND & CAPTION AREA
+   ============================ */
+.caption-area {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-top: 12px;
+  width: var(--card-w);
+}
+.caption-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(250,250,249,0.25);
+  margin-bottom: 8px;
+}
+.caption-text {
+  font-size: 12px;
+  color: rgba(250,250,249,0.6);
+  line-height: 1.6;
+  white-space: pre-line;
+}
+.hashtags {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: rgba(250,250,249,0.3);
+  margin-top: 8px;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+/* NUMBER LARGE */
+.num-hero {
+  font-family: var(--mono);
+  font-size: 96px;
+  font-weight: 700;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  opacity: 0.12;
+  position: absolute;
+  top: -10px;
+  right: -8px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="name">EasySite</div>
+      <div class="sub">12 Posts Instagram</div>
+    </div>
+    <div class="sidebar-section">Gatilho</div>
+    <nav>
+      <a href="#p1">P01 — Apresentação</a>
+      <a href="#p6">P06 — Nicho Salão</a>
+    </nav>
+    <div class="sidebar-section">Educação</div>
+    <nav>
+      <a href="#p2">P02 — 3 Clientes Perdidos</a>
+      <a href="#p4">P04 — Instagram vs Site</a>
+      <a href="#p8">P08 — O que o cliente faz</a>
+    </nav>
+    <div class="sidebar-section">Antes e Depois</div>
+    <nav>
+      <a href="#p3">P03 — De zero a online</a>
+      <a href="#p9">P09 — Restaurante</a>
+      <a href="#p12">P12 — Comparação direta</a>
+    </nav>
+    <div class="sidebar-section">Bastidores</div>
+    <nav>
+      <a href="#p5">P05 — As 24 horas</a>
+      <a href="#p10">P10 — O que você precisa</a>
+    </nav>
+    <div class="sidebar-section">Depoimento</div>
+    <nav>
+      <a href="#p7">P07 — Depoimento 1</a>
+      <a href="#p11">P11 — Depoimento 2</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="page-title">12 Posts Instagram</div>
+    <div class="page-sub">Formato 4:5 — 1080×1350px — Safe zone 60px em todos os lados<br>Linha vermelha tracejada = limite da safe zone</div>
+
+    <div class="sz-info">
+      <div class="sz-info-icon">⚠️</div>
+      <div class="sz-info-text">
+        <strong>Safe Zone Instagram (2026):</strong> Cada card respeita 60px de margem de segurança em todos os lados. Todo texto e elemento importante está dentro dessa margem. Fora dela: perfil do usuário (canto superior esquerdo), menu "..." (canto superior direito) e indicador de slides (centro inferior) podem cobrir o conteúdo.
+      </div>
+    </div>
+
+    <!-- ============================
+         POST 1 — APRESENTAÇÃO
+         ============================ -->
+    <div class="post-section" id="p1">
+      <div class="post-header">
+        <span class="post-num">01</span>
+        <span class="post-title">Apresentação da Marca</span>
+        <span class="post-tag">Carrossel · 5 slides</span>
+      </div>
+      <div class="post-desc">Pilar: Gatilho de entrada — Objetivo: apresentar a marca para quem não conhece</div>
+
+      <div class="slides-row">
+
+        <!-- Slide 1 — Capa -->
+        <div class="card-wrap">
+          <span class="slide-label">Capa</span>
+          <div class="card bg-dark">
+            <div class="ci col-between full-height">
+              <div class="logo-mark t-light">EasySite</div>
+              <div class="col gap-16">
+                <div class="t-serif fs-lg t-light fw-400" style="max-width:360px;">
+                  Seu negócio tá invisível no Google?
+                </div>
+                <div class="divider t-light" style="opacity:0.2;"></div>
+              </div>
+              <div class="t-mono t-light" style="font-size:11px;opacity:0.3;">easysite.site</div>
+            </div>
+          </div>
+          <div class="caption-area">
+            <div class="caption-label">Legenda</div>
+            <div class="caption-text">Seu negócio tem Instagram mas não tem site?
+
+O Instagram some. Algoritmo muda. Conta cai.
+
+Site não. Site é seu.
+
+E a gente entrega o seu em menos de 24 horas por R$397.
+
+Sem reunião. Sem burocracia. Só manda mensagem e a gente resolve.
+
+Link na bio pra falar com a gente agora.</div>
+            <div class="hashtags">#easysite #sitebarato #criacaodesites #siteprofissional #presencadigital #pequenoempreendedor #negociolocal #empreendedorismo</div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="card-wrap">
+          <span class="slide-label">Slide 2</span>
+          <div class="card bg-light">
+            <div class="ci col-between full-height">
+              <div class="t-mono" style="font-size:10px;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;">O problema</div>
+              <div class="col gap-12">
+                <div class="t-serif fs-md t-dark fw-400" style="max-width:380px;">
+                  A maioria dos clientes pesquisa no Google antes de ir a um lugar.
+                </div>
+                <div class="t-sans fs-xs t-mid">
+                  Se você não tem site, eles acham o concorrente.
+                </div>
+                <div class="t-sans fw-700 t-dark" style="font-size:22px;">Todo dia.</div>
+              </div>
+              <div class="logo-mark" style="color:var(--border);">EasySite</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="card-wrap">
+          <span class="slide-label">Slide 3</span>
+          <div class="card bg-muted">
+            <div class="ci col-between full-height">
+              <div class="t-mono" style="font-size:10px;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;">A solução</div>
+              <div class="col gap-12">
+                <div class="t-serif fs-md t-dark fw-400" style="max-width:380px;">
+                  Criamos seu site profissional em menos de 24 horas.
+                </div>
+                <div class="price-tag t-dark">R$397.</div>
+                <div class="t-sans fs-xs t-mid">
+                  Sem você precisar entender nada de tecnologia.
+                </div>
+              </div>
+              <div class="logo-mark" style="color:var(--border);">EasySite</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="card-wrap">
+          <span class="slide-label">Slide 4</span>
+          <div class="card bg-dark">
+            <div class="ci col-between full-height">
+              <div class="t-mono t-light" style="font-size:10px;opacity:0.4;letter-spacing:0.1em;text-transform:uppercase;">Como funciona</div>
+              <div class="col gap-20">
+                <div class="step">
+                  <span class="step-num t-light">01</span>
+                  <span class="step-text t-light">Você manda uma mensagem no WhatsApp</span>
+                </div>
+                <div class="step">
+                  <span class="step-num t-light">02</span>
+                  <span class="step-text t-light">A gente cria o site</span>
+                </div>
+                <div class="step">
+                  <span class="step-num t-light">03</span>
+                  <span class="step-text t-light">Em 24h, seu negócio aparece no Google</span>
+                </div>
+              </div>
+              <div class="logo-mark t-light">EasySite</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 5 — CTA -->
+        <div class="card-wrap">
+          <span class="slide-label">Slide 5</span>
+          <div class="card bg-light">
+            <div class="ci col-center full-height">
+              <div class="col gap-16 col-center">
+                <div class="t-sans t-mid fs-xs">Tudo incluído.</div>
+                <div class="price-tag t-dark">R$397.</div>
+                <div class="t-sans t-dark fs-xs">Garantia de satisfação.</div>
+                <div style="height:16px;"></div>
+                <div class="cta-badge">Quero meu site agora</div>
+                <div class="t-mono" style="font-size:10px;color:var(--mid);">↑ link na bio</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /slides-row -->
+    </div><!-- /post 1 -->
+
+
+    <!-- ============================
+         POST 2 — 3 CLIENTES PERDIDOS
+         ============================ -->
+    <div class="post-section" id="p2">
+      <div class="post-header">
+        <span class="post-num">02</span>
+        <span class="post-title">3 Clientes que Você Perdeu</span>
+        <span class="post-tag">Carrossel · 5 slides</span>
+      </div>
+      <div class="post-desc">Pilar: Educação rápida — Objetivo: fazer o PME entender que está perdendo cliente</div>
+
+      <div class="slides-row">
+
+        <!-- Capa -->
+        <div class="card-wrap">
+          <span class="slide-label">Capa</span>
+          <div class="card bg-light">
+            <div class="ci col-between full-height">
+              <div class="t-mono" style="font-size:10px;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;">Educação</div>
+              <div class="col gap-12" style="position:relative;">
+                <div class="num-hero t-dark">3</div>
+                <div class="t-serif fs-lg t-dark fw-400" style="max-width:340px;">
+                  3 clientes que você perdeu essa semana sem saber
+                </div>
+              </div>
+              <div class="logo-mark" style="color:var(--border);">EasySite</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="card-wrap">
+          <span class="slide-label">Cliente 1</span>
+          <div class="card bg-muted">
+            <div class="ci col-between full-height">
+              <div class="t-mono" style="font-size:10px;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;">Cliente 01</div>
+              <div class="col gap-12">
+                <div class="t-sans fw-700 t-dark" style="font-size:13px;text-transform:uppercase;letter-spacing:0.06em;">A que pesquisou no Google</div>
+                <div class="divider t-dark"></div>
+                <div class="t-sans t-dark fs-xs" style="max-width:360px;line-height:1.65;">
+                  Ela procurou "salão de beleza perto de mim".<br><br>
+                  Apareceram 4 resultados com site.<br><br>
+                  Você não estava lá.<br><br>
+                  Ela foi no primeiro da lista.
+                </div>
+              </div>
+              <div class="logo-mark" style="color:var(--border);">EasySite</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="card-wrap">
+          <span class="slide-label">Cliente 2</span>
+          <div class="card bg-light">
+            <div class="ci col-between full-height">
+              <div class="t-mono" style="font-size:10px;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;">Cliente 02</div>
+              <div class="col gap-12">
+                <div class="t-sans fw-700 t-dark" style="font-size:13px;text-transform:uppercase;letter-spacing:0.06em;">O que queria ver o cardápio</div>
+                <div class="divider t-dark"></div>
+                <div class="t-sans t-dark fs-xs" style="max-width:360px;line-height:1.65;">
+                  Ele abriu o Google Maps, achou o seu restaurante.<br><br>
+                  Clicou em "website". Não tinha.<br><br>
+                  Foi pro concorrente que tinha cardápio online.
+                </div>
+              </div>
+              <div class="logo-mark" style="color:var(--border);">EasySite</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="card-wrap">
+          <span class="slide-label">Cliente 3</span>
+          <div class="card bg-muted">
+            <div class="ci col-between full-height">
+              <div class="t-mono" style="font-size:10px;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;">Cliente 03</div>
+              <div class="col gap-12">
+                <div class="t-sans fw-700 t-dark" style="font-size:13px;text-transform:uppercase;letter-spacing:0.06em;">A que ia te recomendar</div>
+                <div class="divider t-dark"></div>
+                <div class="t-sans t-dark fs-xs" style="max-width:360px;line-height:1.65;">
+                  Uma amiga perguntou: "você tem o site deles?"<br><br>
+                  A sua cliente disse: "acho que não."<br><br>
+                  A indicação não aconteceu.
+                </div>
+              </div>
+              <div class="logo-mark" style="color:var(--border);">EasySite</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 5 — CTA -->
+        <div class="card-wrap">
+          <span class="slide-label">CTA</span>
+          <div class="card bg-dark">
+            <div class="ci col-between full-height">
+              <div class="t-mono t-light" style="font-size:10px;opacity:0.35;letter-spacing:0.1em;text-transform:uppercase;">A solução</div>
+              <div class="col gap-16">
+                <div class="t-serif fs-md t-light fw-400" style="max-width:360px;">
+                  Esses três cenários acontecem todo dia pra quem não tem site.
+                </div>
+                <div class="t-sans t-light fs-xs" style="opacity:0.7;">A gente resolve isso em 24 horas por R$397.</div>
+                <div class="cta-badge inv">Link na bio →</div>
+              </div>
+              <div class="logo-mark t-light">EasySite</div>
+            </div>
+          </div>
+          <div class="caption-area">
+            <div class="caption-label">Legenda</div>
+            <div class="caption-text">Não dá pra saber quantos clientes você perdeu sem site.
+
+Mas dá pra garantir que a partir de amanhã você não perde mais.
+
+Site profissional em 24 horas por R$397.
+
+Sem precisar entender de tecnologia. Sem reunião. Só manda mensagem.
+
+Link na bio.</div>
+            <div class="hashtags">#presencadigital #negociolocal #sitebarato #empreendedorismo #googlemybusiness #marketingdigital #pequenoempreendedor</div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /post 2 -->
+
+
+    <!-- ============================
+         POST 3 — ANTES E DEPOIS
+         ============================ -->
+    <div class="post-section" id="p3">
+      <div class="post-header">
+        <span class="post-num">03</span>
+        <span class="post-title">De Zero a Online em 24 Horas</span>
+        <span class="post-tag">Carrossel · 5 slides</span>
+      </div>
+      <div class="post-desc">Pilar: Antes e depois — nicho salão/serviço</div>
+
+      <div class="slides-row">
+
+        <div class="card-wrap">
+          <span class="slide-label">Capa</span>
+          <div class="card bg-dark">
+            <div class="ci col-between full-height">
+              <div class="t-mono t-light" style="font-size:10px;opacity:0.35;letter-spacing:0.1em;text-transform:uppercase;">Antes e Depois</div>
+              <div class="col gap-8">
+                <div class="t-serif fs-lg t-light fw-400" style="max-width:340px;">De zero para online em 24 horas</div>
+              </div>
+              <div class="logo-mark t-light">EasySite</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-wrap">
+          <span class="slide-label">Antes</span>
+          <div class="card bg-muted">
+            <div class="ci col-between full-height">
+              <div class="t-mono" style="font-size:10px;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;">Antes</div>
+              <div class="col gap-12">
+                <div class="t-serif fs-md t-dark fw-400">O problema</div>
+                <div class="t-sans t-dark fs-xs" style="line-height:1.65;max-width:380px;">
+                  Busca no Google por "[nome do nicho] em [cidade]".<br><br>
+                  O negócio não aparece.
+                </div>
+                <div style="border:1.5px solid var(--border);border-radius:6px;padding:12px 14px;margin-top:8px;">
+                  <div class="t-mono" style="font-size:10px;color:var(--mid);">Resultado da busca</div>
+                  <div class="t-sans" style="font-size:13px;color:var(--mid);margin-top:4px;opacity:0.6;">Nenhum resultado encontrado</div>
+                </div>
+              </div>
+              <div class="logo-mark" style="color:var(--border);">EasySite</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-wrap">
+          <span class="slide-label">Depois</span>
+          <div class="card bg-light">
+            <div class="ci col-between full-height">
+              <div class="t-mono" style="font-size:10px;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;">Depois</div>
+              <div class="col gap-12">
+                <div class="t-serif fs-md t-dark fw-400">No ar em menos de 24h</div>
+                <div class="t-sans t-dark fs-xs" style="line-height:1.65;">
+                  Site no ar. Endereço. Serviços. Telefone. Botão do WhatsApp.
+                </div>
+                <ul class="check-list" style="margin-top:4px;">
+                  <li class="t-dark fs-xs">Aparece no Google</li>
+                  <li class="t-dark fs-xs">Endereço e horário online</li>
+                  <li class="t-dark fs-xs">Botão de contato direto</li>
+                </ul>
+              </div>
+              <div class="logo-mark" style="color:var(--border);">EasySite</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-wrap">
+          <span class="slide-label">Depoimento</span>
+          <div class="card bg-muted">
+            <div class="ci col-center full-height">
+              <div class="col gap-16 col-center">
+                <div class="quote-mark t-dark">"</div>
+                <div class="t-serif fs-sm t-dark fw-400" style="text-align:center;max-width:360px;">
+                  A gente recebeu mensagem de cliente novo na semana seguinte. Ele disse que achou a gente no Google.
+                </div>
+                <div class="col gap-2" style="align-items:center;">
+                  <div class="t-sans fw-600 t-dark fs-2xs">Marcelo Azevedo</div>
+                  <div class="t-mono" style="font-size:10px;color:var(--mid);">Maricá</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-wrap">
+          <span class="slide-label">CTA</span>
+          <div class="card bg-dark">
+            <div class="ci col-center full-height">
+              <div class="col gap-16 col-center">
+                <div class="t-sans t-light fs-xs" style="opacity:0.6;">Seu negócio pode ser o próximo.</div>
+                <div class="price-tag t-light">Apenas R$397.</div>
+                <div class="t-sans t-light fs-xs" style="opacity:0.6;">24 horas.</div>
+                <div style="height:8px;"></div>
+                <div class="cta-badge inv">Link na bio →</div>
+              </div>
+            </div>
+          </div>
+          <div class="caption-area">
+            <div class="caption-label">Legenda</div>
+            <div class="caption-text">Esse é o [nome do negócio] em [cidade].
+
+Semana passada não tinha site. Hoje está no Google.
+
+O processo inteiro foi pelo WhatsApp. Em menos de 24 horas o site estava no ar.
+
+R$397. Tudo incluído.
+
+Quer o seu? Link na bio.</div>
+            <div class="hashtags">#antesedepois #criacaodesites #sitebarato #siteprofissional #easysite #presencadigital #negociolocal</div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /post 3 -->
+
+
+    <!-- ============================
+         POST 4 — INSTAGRAM VS SITE
+         ============================ -->
+    <div class="post-section" id="p4">
+      <div class="post-header">
+        <span class="post-num">04</span>
+        <span class="post-title">Instagram vs. Site</span>
+        <span class="post-tag">Post Estático</span>
+      </div>
+      <div class="post-desc">Pilar: Educação rápida — Objetivo: derrubar a objeção "tenho Instagram, não preciso de site"</div>
+
+      <div class="slides-row">
+
+        <div class="card-wrap">
+          <span class="slide-label">Post único</span>
+          <div class="card bg-light">
+            <div class="ci col-between full-height">
+              <div class="t-mono" style="font-size:10px;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;">A diferença que importa</div>
+              <div>
+                <table class="compare-table">
+                  <thead>
+                    <tr>
+                      <th style="color:var(--mid);">Instagram</th>
+                      <th style="color:var(--fg);">Site</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Algoritmo decide quem te vê</td>
+                      <td>Google mostra quando pedem</td>
+                    </tr>
+                    <tr>
+                      <td>Conta pode ser suspensa</td>
+                      <td>É seu, ninguém tira</td>
+                    </tr>
+                    <tr>
+                      <td>Novo cliente precisa te seguir</td>
+                      <td>Novo cliente só precisa buscar</td>
+                    </tr>
+                    <tr>
+                      <td>Sem endereço fixo</td>
+                      <td>Endereço que nunca muda</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col gap-8">
+                <div class="t-sans t-dark fw-600" style="font-size:14px;">São duas coisas diferentes.<br>Você precisa dos dois.</div>
+                <div class="cta-badge" style="font-size:11px;">Site em 24h por R$397</div>
+              </div>
+            </div>
+          </div>
+          <div class="caption-area">
+            <div class="caption-label">Legenda</div>
+            <div class="caption-text">Instagram é ótimo pra quem já te conhece.
+
+Site é pra quem ainda não te conhece mas está procurando o que você oferece.
+
+São duas coisas diferentes. Você precisa dos dois.
+
+A gente entrega o site em 24 horas por R$397.
+
+O Instagram você já tem.
+
+Link na bio.</div>
+            <div class="hashtags">#instagram #presencadigital #siteprofissional #marketingdigital #negociolocal #empreendedorismo #sitebarato</div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /post 4 -->
+
+
+    <!-- ============================
+         POST 5 — BASTIDORES 24H
+         ============================ -->
+    <div class="post-section" id="p5">
+      <div class="post-header">
+        <span class="post-num">05</span>
+        <span class="post-title">O que Acontece em 24 Horas</span>
+        <span class="post-tag">Carrossel · 4 slides</span>
+      </div>
+      <div class="post-desc">Pilar: Bastidores — Objetivo: humanizar o processo e mostrar velocidade real</div>
+
+      <div class="slides-row">
+
+        <div class="card-wrap">
+          <span class="slide-label">Capa</span>
+          <div class="card bg-dark">
+            <div class="ci col-between full-height">
+              <div class="t-mono t-light" style="font-size:10px;opacity:0.35;letter-spacing:0.1em;text-transform:uppercase;">Bastidores</div>
+              <div class="col gap-8">
+                <div class="t-serif fs-lg t-light fw-400" style="max-width:340px;">O que acontece em 24 horas</div>
+              </div>
+              <div class="logo-mark t-light">EasySite</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-wrap">
+          <span class="slide-label">14h</span>
+          <div class="card bg-muted">
+            <div class="ci col-between full-height">
+              <div class="t-mono" style="font-size:10px;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;">Começa aqui</div>
+              <div class="col gap-16">
+                <div class="t-mono fw-700 t-dark" style="font-size:28px;">14h00</div>
+                <div class="t-sans t-dark fs-sm" style="line-height:1.4;max-width:360px;">Você manda as informações pelo WhatsApp</div>
+                <div class="t-sans t-mid fs-xs">Nome, endereço, serviços, telefone. Só isso.</div>
+              </div>
+              <div class="logo-mark" style="color:var(--border);">EasySite</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-wrap">
+          <span class="slide-label">14h30</span>
+          <div class="card bg-light">
+            <div class="ci col-between full-height">
+              <div class="t-mono" style="font-size:10px;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;">Em andamento</div>
+              <div class="col gap-16">
+                <div class="t-mono fw-700 t-dark" style="font-size:28px;">14h30</div>
+                <div class="t-sans t-dark fs-sm" style="line-height:1.4;max-width:360px;">A gente já começou</div>
+                <div class="t-sans t-mid fs-xs">Design. Conteúdo. Publicação.</div>
+              </div>
+              <div class="logo-mark" style="color:var(--border);">EasySite</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-wrap">
+          <span class="slide-label">Dia +1</span>
+          <div class="card bg-dark">
+            <div class="ci col-between full-height">
+              <div class="t-mono t-light" style="font-size:10px;opacity:0.35;letter-spacing:0.1em;text-transform:uppercase;">Resultado</div>
+              <div class="col gap-16">
+                <div class="t-mono fw-700 t-light" style="font-size:28px;opacity:0.9;">8h do dia seguinte</div>
+                <div class="t-serif fs-md t-light fw-400" style="max-width:340px;">Seu site está no ar.</div>
+                <div class="t-sans t-light fs-xs" style="opacity:0.6;">Esse é o processo inteiro.</div>
+                <div class="price-tag t-light" style="font-size:28px;">R$397.</div>
+                <div class="cta-badge inv" style="font-size:11px;">Link na bio →</div>
+              </div>
+              <div class="logo-mark t-light">EasySite</div>
+            </div>
+          </div>
+          <div class="caption-area">
+            <div class="caption-label">Legenda</div>
+            <div class="caption-text">Muita gente acha que site demora semanas.
+
+Não precisa.
+
+O processo inteiro é pelo WhatsApp. Você manda as informações, a gente monta, você aprova. Em menos de 24 horas está no ar.
+
+R$397. Tudo incluído.
+
+Link na bio pra começar agora.</div>
+            <div class="hashtags">#bastidores #criacaodesites #sitebarato #easysite #presencadigital #comofoifeito #empreendedorismo</div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /post 5 -->
+
+
+    <!-- ============================
+         POST 6 — NICHO SALÃO
+         ============================ -->
+    <div class="post-section" id="p6">
+      <div class="post-header">
+        <span class="post-num">06</span>
+        <span class="post-title">Gatilho — Nicho Salão</span>
+        <span class="post-tag">Post Estático</span>
+      </div>
+      <div class="post-desc">Pilar: Gatilho de entrada — Objetivo: conversão direta nicho salão/barbearia</div>
+
+      <div class="slides-row">
+
+        <div class="card-wrap">
+          <span class="slide-label">Post único</span>
+          <div class="card" style="background:#1A1A1A;">
+            <div class="ci col-between full-height">
+              <div class="logo-mark t-light">EasySite</div>
+              <div class="col gap-16">
+                <div class="t-serif fs-lg t-light fw-400" style="max-width:340px;line-height:1.05;">
+                  Seu salão não tem site?<br>Em 24 horas isso muda.
+                </div>
+                <div class="price-tag t-light" style="font-size:28px;">R$397.</div>
+                <div style="height:4px;"></div>
+                <div class="cta-badge inv">Quero meu site →</div>
+              </div>
+              <div class="t-mono t-light" style="font-size:10px;opacity:0.25;">easysite.site</div>
+            </div>
+          </div>
+          <div class="caption-area">
+            <div class="caption-label">Legenda</div>
+            <div class="caption-text">Salões e barbearias que aparecem no Google recebem cliente novo toda semana.
+
+Sem precisar fazer nada além de estar lá.
+
+A gente coloca você lá em menos de 24 horas por R$397.
+
+Sem reunião. Sem burocracia. Só manda mensagem.
+
+Link na bio.</div>
+            <div class="hashtags">#salaobeleza #barbearia #sitebarato #criacaodesites #presencadigital #salaodigital #barbeariaprofissional #easysite</div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /post 6 -->
+
+
+    <!-- ============================
+         POST 7 — DEPOIMENTO 1
+         ============================ -->
+    <div class="post-section" id="p7">
+      <div class="post-header">
+        <span class="post-num">07</span>
+        <span class="post-title">Depoimento 1</span>
+        <span class="post-tag">Post Estático</span>
+      </div>
+      <div class="post-desc">Pilar: Depoimento — substituir placeholder com depoimento real do primeiro cliente</div>
+
+      <div class="slides-row">
+
+        <div class="card-wrap">
+          <span class="slide-label">Post único</span>
+          <div class="card bg-muted">
+            <div class="ci col-between full-height">
+              <div class="logo-mark" style="color:var(--border);">EasySite</div>
+              <div class="col gap-16">
+                <div class="quote-mark t-dark">"</div>
+                <div class="t-serif fs-sm t-dark fw-400" style="max-width:380px;line-height:1.45;">
+                  Eu nunca acreditei que um site profissional fosse fazer diferença no meu negócio. Não sabia que ia fazer diferença tão rápido. Em menos de uma semana já estava fechando negócio com vários clientes novos.
+                </div>
+                <div class="divider t-dark"></div>
+                <div class="col gap-2">
+                  <div class="t-sans fw-700 t-dark" style="font-size:14px;">Renata Purcino</div>
+                  <div class="t-mono" style="font-size:10px;color:var(--mid);">Icaraí, Niterói</div>
+                </div>
+              </div>
+              <div class="t-mono" style="font-size:10px;color:var(--mid);">easysite.site</div>
+            </div>
+          </div>
+          <div class="caption-area">
+            <div class="caption-label">Legenda</div>
+            <div class="caption-text">Esse foi o [Nome], dono do [nome do negócio] em [cidade].
+
+Ele não sabia mexer com tecnologia. Não precisou.
+
+Mandou as informações pelo WhatsApp. Em 24 horas o site estava no ar.
+
+R$397. Tudo incluído.
+
+O próximo pode ser você. Link na bio.</div>
+            <div class="hashtags">#depoimento #siteprofissional #easysite #presencadigital #sitebarato #clientesatisfeito #negociolocal</div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /post 7 -->
+
+
+    <!-- ============================
+         POST 8 — O QUE O CLIENTE FAZ
+         ============================ -->
+    <div class="post-section" id="p8">
+      <div class="post-header">
+        <span class="post-num">08</span>
+        <span class="post-title">O que o Cliente Faz Antes de Ligar</span>
+        <span class="post-tag">Carrossel · 6 slides</span>
+      </div>
+      <div class="post-desc">Pilar: Educação rápida — Objetivo: gerar consciência do problema com jornada do cliente</div>
+
+      <div class="slides-row">
+
+        <div class="card-wrap">
+          <span class="slide-label">Capa</span>
+          <div class="card bg-light">
+            <div class="ci col-between full-height">
+              <div class="t-mono" style="font-size:10px;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;">Educação</div>
+              <div class="col gap-12">
+                <div class="t-serif fs-lg t-dark fw-400" style="max-width:360px;">O que o seu cliente faz antes de ligar pra você</div>
+              </div>
+              <div class="logo-mark" style="color:var(--border);">EasySite</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-wrap">
+          <span class="slide-label">Slide 2</span>
+          <div class="card bg-muted">
+            <div class="ci col-between full-height">
+              <div class="t-mono" style="font-size:10px;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;">Passo a passo</div>
+              <div class="col gap-20">
+                <div class="step">
+                  <span class="step-num t-dark">1.</span>
+                  <span class="step-text t-dark">Ele pega o celular</span>
+                </div>
+                <div class="step">
+                  <span class="step-num t-dark">2.</span>
+                  <span class="step-text t-dark">Abre o Google</span>
+                </div>
+                <div class="step">
+                  <span class="step-num t-dark">3.</span>
+                  <span class="step-text t-dark" style="font-weight:600;">"[seu serviço] perto de mim"</span>
+                </div>
+              </div>
+              <div class="logo-mark" style="color:var(--border);">EasySite</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-wrap">
+          <span class="slide-label">Slide 3</span>
+          <div class="card bg-light">
+            <div class="ci col-between full-height">
+              <div class="t-mono" style="font-size:10px;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;">O que o Google mostra</div>
+              <div class="col gap-12">
+                <div class="t-sans t-dark fs-xs" style="line-height:1.7;">
+                  O Google mostra uma lista.<br><br>
+                  Quem tem site aparece com mais informação.<br><br>
+                  Quem não tem site aparece sem nada, ou não aparece.
+                </div>
+              </div>
+              <div class="logo-mark" style="color:var(--border);">EasySite</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-wrap">
+          <span class="slide-label">Slide 4</span>
+          <div class="card bg-muted">
+            <div class="ci col-between full-height">
+              <div class="t-mono" style="font-size:10px;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;">A decisão</div>
+              <div class="col gap-12">
+                <div class="t-sans t-dark fs-xs" style="line-height:1.7;">
+                  O cliente clica no que tem mais informação.<br><br>
+                  Vê o endereço, os serviços, o telefone, o horário.<br><br>
+                  Liga ou vai direto.
+                </div>
+              </div>
+              <div class="logo-mark" style="color:var(--border);">EasySite</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-wrap">
+          <span class="slide-label">Slide 5</span>
+          <div class="card bg-dark">
+            <div class="ci col-center full-height">
+              <div class="t-serif fs-md t-light fw-400" style="text-align:center;max-width:360px;line-height:1.3;">
+                Se você não tem site, esse cliente não chega até você.
+              </div>
+              <div style="height:16px;"></div>
+              <div class="t-sans t-light fs-xs" style="opacity:0.5;text-align:center;">Isso acontece todo dia.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-wrap">
+          <span class="slide-label">CTA</span>
+          <div class="card bg-light">
+            <div class="ci col-center full-height">
+              <div class="col gap-16 col-center">
+                <div class="t-sans t-mid fs-xs">A gente resolve isso em 24 horas.</div>
+                <div class="price-tag t-dark">R$397.</div>
+                <div class="cta-badge">Link na bio →</div>
+              </div>
+            </div>
+          </div>
+          <div class="caption-area">
+            <div class="caption-label">Legenda</div>
+            <div class="caption-text">O Google é o novo boca a boca.
+
+Quando alguém procura um serviço, ele pesquisa primeiro. Só vai perguntar pra amigo se não achar online.
+
+Site profissional em 24 horas por R$397.
+
+Amanhã você já pode estar lá. Link na bio.</div>
+            <div class="hashtags">#google #presencadigital #sitebarato #marketingdigital #negociolocal #pequenoempreendedor #empreendedorismo</div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /post 8 -->
+
+
+    <!-- ============================
+         POST 9 — ANTES E DEPOIS RESTAURANTE
+         ============================ -->
+    <div class="post-section" id="p9">
+      <div class="post-header">
+        <span class="post-num">09</span>
+        <span class="post-title">Restaurante no Google em 24 Horas</span>
+        <span class="post-tag">Carrossel · 5 slides</span>
+      </div>
+      <div class="post-desc">Pilar: Antes e depois — nicho restaurante</div>
+
+      <div class="slides-row">
+
+        <div class="card-wrap">
+          <span class="slide-label">Capa</span>
+          <div class="card bg-dark">
+            <div class="ci col-between full-height">
+              <div class="t-mono t-light" style="font-size:10px;opacity:0.35;letter-spacing:0.1em;text-transform:uppercase;">Antes e Depois</div>
+              <div class="col gap-8">
+                <div class="t-serif fs-lg t-light fw-400" style="max-width:340px;">Restaurante no Google em menos de 24 horas</div>
+              </div>
+              <div class="logo-mark t-light">EasySite</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-wrap">
+          <span class="slide-label">Antes</span>
+          <div class="card bg-muted">
+            <div class="ci col-between full-height">
+              <div class="t-mono" style="font-size:10px;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;">Antes</div>
+              <div class="col gap-12">
+                <div class="t-sans t-dark fs-xs" style="line-height:1.7;max-width:380px;">
+                  Antes, o [nome do restaurante] dependia só do Instagram e do boca a boca.
+                </div>
+                <div class="col gap-8" style="margin-top:8px;">
+                  <div class="t-sans t-mid" style="font-size:13px;">Sem site.</div>
+                  <div class="t-sans t-mid" style="font-size:13px;">Sem cardápio online.</div>
+                  <div class="t-sans t-mid" style="font-size:13px;">Sem endereço no Google.</div>
+                </div>
+              </div>
+              <div class="logo-mark" style="color:var(--border);">EasySite</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-wrap">
+          <span class="slide-label">Depois</span>
+          <div class="card bg-light">
+            <div class="ci col-between full-height">
+              <div class="t-mono" style="font-size:10px;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;">Depois</div>
+              <div class="col gap-12">
+                <div class="t-sans t-dark fs-xs" style="line-height:1.7;">
+                  Site no ar com cardápio, endereço, horário e botão do WhatsApp.
+                </div>
+                <div class="t-mono fw-700 t-dark" style="font-size:22px;">23 horas.</div>
+              </div>
+              <div class="logo-mark" style="color:var(--border);">EasySite</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-wrap">
+          <span class="slide-label">Depoimento</span>
+          <div class="card bg-muted">
+            <div class="ci col-center full-height">
+              <div class="col gap-16 col-center">
+                <div class="quote-mark t-dark">"</div>
+                <div class="t-serif fs-sm t-dark fw-400" style="text-align:center;max-width:360px;line-height:1.45;">
+                  Na primeira semana tive 3 clientes novos que me acharam no Google. Nunca tinham ido antes.
+                </div>
+                <div class="t-sans fw-700 t-dark" style="font-size:13px;">[Nome], [nome do restaurante]</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-wrap">
+          <span class="slide-label">CTA</span>
+          <div class="card bg-dark">
+            <div class="ci col-center full-height">
+              <div class="col gap-12 col-center">
+                <div class="price-tag t-light">R$397.</div>
+                <div class="t-sans t-light fs-xs" style="opacity:0.6;">24h. Garantia.</div>
+                <div style="height:8px;"></div>
+                <div class="cta-badge inv">Link na bio →</div>
+              </div>
+            </div>
+          </div>
+          <div class="caption-area">
+            <div class="caption-label">Legenda</div>
+            <div class="caption-text">Esse é o [nome do restaurante] em [cidade].
+
+Semana passada não aparecia no Google. Essa semana aparece.
+
+A diferença? Um site. R$397. 24 horas.
+
+Se você tem restaurante, lanchonete, bar, qualquer negócio de comida, faz sentido aparecer quando alguém pesquisa fome por perto.
+
+A gente coloca você lá. Link na bio.</div>
+            <div class="hashtags">#restaurante #lanchonete #gastronomia #antesedepois #siteprofissional #sitebarato #easysite #presencadigital</div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /post 9 -->
+
+
+    <!-- ============================
+         POST 10 — O QUE VOCÊ PRECISA
+         ============================ -->
+    <div class="post-section" id="p10">
+      <div class="post-header">
+        <span class="post-num">10</span>
+        <span class="post-title">O que Você Precisa Mandar</span>
+        <span class="post-tag">Carrossel · 4 slides</span>
+      </div>
+      <div class="post-desc">Pilar: Bastidores — Objetivo: remover objeção de complexidade</div>
+
+      <div class="slides-row">
+
+        <div class="card-wrap">
+          <span class="slide-label">Capa</span>
+          <div class="card bg-light">
+            <div class="ci col-between full-height">
+              <div class="t-mono" style="font-size:10px;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;">É simples</div>
+              <div class="col gap-12">
+                <div class="t-serif fs-lg t-dark fw-400" style="max-width:360px;">O que você precisa mandar pra ter um site hoje</div>
+              </div>
+              <div class="logo-mark" style="color:var(--border);">EasySite</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-wrap">
+          <span class="slide-label">A lista</span>
+          <div class="card bg-muted">
+            <div class="ci col-between full-height">
+              <div class="t-mono" style="font-size:10px;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;">O que você manda</div>
+              <ul class="check-list">
+                <li class="t-dark fs-xs">Nome do negócio</li>
+                <li class="t-dark fs-xs">Endereço ou cidade</li>
+                <li class="t-dark fs-xs">Telefone de contato</li>
+                <li class="t-dark fs-xs">O que você oferece</li>
+                <li class="t-dark fs-xs">Horário de funcionamento</li>
+                <li class="t-dark fs-xs">Uma foto (se tiver)</li>
+              </ul>
+              <div class="logo-mark" style="color:var(--border);">EasySite</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-wrap">
+          <span class="slide-label">Slide 3</span>
+          <div class="card bg-dark">
+            <div class="ci col-center full-height">
+              <div class="col gap-16 col-center">
+                <div class="t-serif fs-lg t-light fw-400" style="text-align:center;">Isso é tudo.</div>
+                <div class="divider t-light"></div>
+                <div class="t-sans t-light fs-xs" style="text-align:center;opacity:0.6;max-width:320px;">Com isso a gente cria seu site.<br>Em menos de 24 horas.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-wrap">
+          <span class="slide-label">CTA</span>
+          <div class="card bg-light">
+            <div class="ci col-center full-height">
+              <div class="col gap-12 col-center">
+                <div class="price-tag t-dark">R$397.</div>
+                <div class="t-sans t-mid fs-xs">Tudo incluído.</div>
+                <div style="height:8px;"></div>
+                <div class="cta-badge">Manda uma mensagem agora</div>
+                <div class="t-mono" style="font-size:10px;color:var(--mid);">link na bio</div>
+              </div>
+            </div>
+          </div>
+          <div class="caption-area">
+            <div class="caption-label">Legenda</div>
+            <div class="caption-text">Muita gente não tem site porque acha que precisa de muito.
+
+Não precisa.
+
+Você manda 6 informações pelo WhatsApp. A gente faz o resto. Em 24 horas.
+
+R$397.
+
+Link na bio.</div>
+            <div class="hashtags">#comofazer #criacaodesites #sitebarato #easysite #empreendedorismo #negociolocal #presencadigital</div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /post 10 -->
+
+
+    <!-- ============================
+         POST 11 — DEPOIMENTO 2
+         ============================ -->
+    <div class="post-section" id="p11">
+      <div class="post-header">
+        <span class="post-num">11</span>
+        <span class="post-title">Depoimento 2</span>
+        <span class="post-tag">Carrossel · 4 slides</span>
+      </div>
+      <div class="post-desc">Pilar: Depoimento — substituir placeholders com depoimento real do segundo cliente</div>
+
+      <div class="slides-row">
+
+        <div class="card-wrap">
+          <span class="slide-label">Capa</span>
+          <div class="card bg-muted">
+            <div class="ci col-between full-height">
+              <div class="logo-mark" style="color:var(--border);">EasySite</div>
+              <div class="col gap-12">
+                <div class="t-serif fs-md t-dark fw-400" style="max-width:360px;line-height:1.3;">
+                  "Não sabia que ia fazer diferença tão rápido"
+                </div>
+              </div>
+              <div class="t-mono" style="font-size:10px;color:var(--mid);">easysite.site</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-wrap">
+          <span class="slide-label">Depoimento</span>
+          <div class="card bg-light">
+            <div class="ci col-between full-height">
+              <div class="quote-mark t-dark">"</div>
+              <div class="t-serif fs-sm t-dark fw-400" style="max-width:380px;line-height:1.45;">
+                [Texto completo do depoimento do cliente]
+              </div>
+              <div class="col gap-2">
+                <div class="t-sans fw-700 t-dark" style="font-size:14px;">[Nome]</div>
+                <div class="t-mono" style="font-size:10px;color:var(--mid);">[Negócio], [cidade]</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-wrap">
+          <span class="slide-label">Resultado</span>
+          <div class="card bg-muted">
+            <div class="ci col-between full-height">
+              <div class="t-mono" style="font-size:10px;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;">O resultado</div>
+              <div class="col gap-12">
+                <div class="t-sans t-dark fs-xs" style="line-height:1.65;">
+                  Site no ar em [X] horas.<br><br>
+                  R$397 investidos.
+                </div>
+              </div>
+              <div class="logo-mark" style="color:var(--border);">EasySite</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-wrap">
+          <span class="slide-label">CTA</span>
+          <div class="card bg-dark">
+            <div class="ci col-center full-height">
+              <div class="col gap-16 col-center">
+                <div class="t-sans t-light fs-xs" style="opacity:0.6;">Quer o mesmo resultado?</div>
+                <div class="cta-badge inv">Link na bio →</div>
+              </div>
+            </div>
+          </div>
+          <div class="caption-area">
+            <div class="caption-label">Legenda</div>
+            <div class="caption-text">[Nome] tem [tipo de negócio] há [X] anos.
+
+Não tinha site. Achava que era coisa de empresa grande.
+
+Em 24 horas, mudou de ideia.
+
+R$397. Link na bio.</div>
+            <div class="hashtags">#depoimento #resultadoreal #sitebarato #easysite #negociolocal #empreendedorismo #presencadigital</div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /post 11 -->
+
+
+    <!-- ============================
+         POST 12 — COMPARAÇÃO DIRETA
+         ============================ -->
+    <div class="post-section" id="p12">
+      <div class="post-header">
+        <span class="post-num">12</span>
+        <span class="post-title">Comparação Direta</span>
+        <span class="post-tag">Post Estático · Split</span>
+      </div>
+      <div class="post-desc">Pilar: Antes e depois — Objetivo: comparação visual direta, alto impacto no feed</div>
+
+      <div class="slides-row">
+
+        <div class="card-wrap">
+          <span class="slide-label">Post único</span>
+          <div class="card" style="background:var(--muted);">
+            <!-- Split layout: left muted / right dark -->
+            <div style="position:absolute;inset:0;display:flex;">
+              <!-- Lado esquerdo -->
+              <div class="split-side" style="background:var(--muted);padding-left:var(--sz);padding-right:8px;">
+                <div class="t-mono" style="font-size:9px;color:var(--mid);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px;">Sem site</div>
+                <div class="col gap-10">
+                  <div class="t-sans t-mid fs-2xs" style="line-height:1.5;">Invisível no Google</div>
+                  <div class="t-sans t-mid fs-2xs" style="line-height:1.5;">Depende do Instagram</div>
+                  <div class="t-sans t-mid fs-2xs" style="line-height:1.5;">Perde cliente toda semana</div>
+                  <div class="t-sans t-mid fs-2xs" style="line-height:1.5;">Parece amador</div>
+                </div>
+              </div>
+              <!-- Divisória -->
+              <div style="width:1.5px;background:var(--border);flex-shrink:0;"></div>
+              <!-- Lado direito -->
+              <div class="split-side" style="background:var(--fg);padding-right:var(--sz);padding-left:8px;">
+                <div class="t-mono" style="font-size:9px;color:rgba(250,250,249,0.4);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px;">Com EasySite</div>
+                <div class="col gap-10">
+                  <div class="t-sans t-light fs-2xs fw-600" style="line-height:1.5;">Aparece no Google</div>
+                  <div class="t-sans t-light fs-2xs fw-600" style="line-height:1.5;">Tem presença própria</div>
+                  <div class="t-sans t-light fs-2xs fw-600" style="line-height:1.5;">Recebe cliente novo</div>
+                  <div class="t-sans t-light fs-2xs fw-600" style="line-height:1.5;">Parece profissional</div>
+                </div>
+              </div>
+            </div>
+            <!-- Rodapé centralizado (dentro da safe zone) -->
+            <div style="position:absolute;bottom:var(--sz);left:var(--sz);right:var(--sz);text-align:center;">
+              <div class="t-mono t-dark" style="font-size:10px;background:var(--muted);padding:6px 12px;display:inline-block;border-radius:3px;">
+                R$397 · Pronto em 24h · <span style="font-weight:700;">Link na bio</span>
+              </div>
+            </div>
+            <!-- Safe zone overlay via ::after -->
+          </div>
+          <div class="caption-area">
+            <div class="caption-label">Legenda</div>
+            <div class="caption-text">Essa é a diferença que um site faz.
+
+Não é sobre tecnologia. É sobre aparecer onde o cliente está procurando.
+
+A gente entrega isso em menos de 24 horas por R$397.
+
+Sem você precisar fazer nada além de mandar uma mensagem.
+
+Link na bio.</div>
+            <div class="hashtags">#comparacao #antesedepois #presencadigital #siteprofissional #sitebarato #easysite #negociolocal #empreendedor</div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /post 12 -->
+
+
+    <!-- CALENDAR -->
+    <div class="post-section" id="calendar">
+      <div class="post-header">
+        <span class="post-title">Calendário de Publicação</span>
+        <span class="post-tag">4 semanas</span>
+      </div>
+      <div style="margin-top:16px;overflow-x:auto;">
+        <table style="border-collapse:collapse;width:100%;min-width:560px;font-size:13px;">
+          <thead>
+            <tr>
+              <th style="text-align:left;padding:8px 12px;font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(250,250,249,0.3);border-bottom:1px solid rgba(255,255,255,0.08);">Semana</th>
+              <th style="text-align:left;padding:8px 12px;font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(250,250,249,0.3);border-bottom:1px solid rgba(255,255,255,0.08);">Dia</th>
+              <th style="text-align:left;padding:8px 12px;font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(250,250,249,0.3);border-bottom:1px solid rgba(255,255,255,0.08);">Post</th>
+              <th style="text-align:left;padding:8px 12px;font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(250,250,249,0.3);border-bottom:1px solid rgba(255,255,255,0.08);">Formato</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding:8px 12px;color:rgba(250,250,249,0.3);border-bottom:1px solid rgba(255,255,255,0.05);">S1</td><td style="padding:8px 12px;color:rgba(250,250,249,0.6);border-bottom:1px solid rgba(255,255,255,0.05);">Seg</td><td style="padding:8px 12px;color:rgba(250,250,249,0.8);border-bottom:1px solid rgba(255,255,255,0.05);">P01 — Apresentação da marca</td><td style="padding:8px 12px;color:rgba(250,250,249,0.4);font-family:var(--mono);font-size:11px;border-bottom:1px solid rgba(255,255,255,0.05);">Carrossel</td></tr>
+            <tr><td style="padding:8px 12px;color:rgba(250,250,249,0.3);border-bottom:1px solid rgba(255,255,255,0.05);">S1</td><td style="padding:8px 12px;color:rgba(250,250,249,0.6);border-bottom:1px solid rgba(255,255,255,0.05);">Qua</td><td style="padding:8px 12px;color:rgba(250,250,249,0.8);border-bottom:1px solid rgba(255,255,255,0.05);">P02 — 3 clientes que você perdeu</td><td style="padding:8px 12px;color:rgba(250,250,249,0.4);font-family:var(--mono);font-size:11px;border-bottom:1px solid rgba(255,255,255,0.05);">Carrossel</td></tr>
+            <tr><td style="padding:8px 12px;color:rgba(250,250,249,0.3);border-bottom:1px solid rgba(255,255,255,0.05);">S1</td><td style="padding:8px 12px;color:rgba(250,250,249,0.6);border-bottom:1px solid rgba(255,255,255,0.05);">Sex</td><td style="padding:8px 12px;color:rgba(250,250,249,0.8);border-bottom:1px solid rgba(255,255,255,0.05);">P03 — Antes e depois (salão)</td><td style="padding:8px 12px;color:rgba(250,250,249,0.4);font-family:var(--mono);font-size:11px;border-bottom:1px solid rgba(255,255,255,0.05);">Carrossel</td></tr>
+            <tr><td style="padding:8px 12px;color:rgba(250,250,249,0.3);border-bottom:1px solid rgba(255,255,255,0.05);">S2</td><td style="padding:8px 12px;color:rgba(250,250,249,0.6);border-bottom:1px solid rgba(255,255,255,0.05);">Seg</td><td style="padding:8px 12px;color:rgba(250,250,249,0.8);border-bottom:1px solid rgba(255,255,255,0.05);">P04 — Instagram vs. Site</td><td style="padding:8px 12px;color:rgba(250,250,249,0.4);font-family:var(--mono);font-size:11px;border-bottom:1px solid rgba(255,255,255,0.05);">Estático</td></tr>
+            <tr><td style="padding:8px 12px;color:rgba(250,250,249,0.3);border-bottom:1px solid rgba(255,255,255,0.05);">S2</td><td style="padding:8px 12px;color:rgba(250,250,249,0.6);border-bottom:1px solid rgba(255,255,255,0.05);">Ter</td><td style="padding:8px 12px;color:rgba(250,250,249,0.8);border-bottom:1px solid rgba(255,255,255,0.05);">P05 — Bastidores do processo</td><td style="padding:8px 12px;color:rgba(250,250,249,0.4);font-family:var(--mono);font-size:11px;border-bottom:1px solid rgba(255,255,255,0.05);">Carrossel</td></tr>
+            <tr><td style="padding:8px 12px;color:rgba(250,250,249,0.3);border-bottom:1px solid rgba(255,255,255,0.05);">S2</td><td style="padding:8px 12px;color:rgba(250,250,249,0.6);border-bottom:1px solid rgba(255,255,255,0.05);">Qui</td><td style="padding:8px 12px;color:rgba(250,250,249,0.8);border-bottom:1px solid rgba(255,255,255,0.05);">P06 — Gatilho nicho salão</td><td style="padding:8px 12px;color:rgba(250,250,249,0.4);font-family:var(--mono);font-size:11px;border-bottom:1px solid rgba(255,255,255,0.05);">Estático</td></tr>
+            <tr><td style="padding:8px 12px;color:rgba(250,250,249,0.3);border-bottom:1px solid rgba(255,255,255,0.05);">S3</td><td style="padding:8px 12px;color:rgba(250,250,249,0.6);border-bottom:1px solid rgba(255,255,255,0.05);">Seg</td><td style="padding:8px 12px;color:rgba(250,250,249,0.8);border-bottom:1px solid rgba(255,255,255,0.05);">P07 — Depoimento 1</td><td style="padding:8px 12px;color:rgba(250,250,249,0.4);font-family:var(--mono);font-size:11px;border-bottom:1px solid rgba(255,255,255,0.05);">Estático</td></tr>
+            <tr><td style="padding:8px 12px;color:rgba(250,250,249,0.3);border-bottom:1px solid rgba(255,255,255,0.05);">S3</td><td style="padding:8px 12px;color:rgba(250,250,249,0.6);border-bottom:1px solid rgba(255,255,255,0.05);">Qua</td><td style="padding:8px 12px;color:rgba(250,250,249,0.8);border-bottom:1px solid rgba(255,255,255,0.05);">P08 — O que o cliente faz antes de ligar</td><td style="padding:8px 12px;color:rgba(250,250,249,0.4);font-family:var(--mono);font-size:11px;border-bottom:1px solid rgba(255,255,255,0.05);">Carrossel</td></tr>
+            <tr><td style="padding:8px 12px;color:rgba(250,250,249,0.3);border-bottom:1px solid rgba(255,255,255,0.05);">S3</td><td style="padding:8px 12px;color:rgba(250,250,249,0.6);border-bottom:1px solid rgba(255,255,255,0.05);">Sex</td><td style="padding:8px 12px;color:rgba(250,250,249,0.8);border-bottom:1px solid rgba(255,255,255,0.05);">P09 — Antes e depois (restaurante)</td><td style="padding:8px 12px;color:rgba(250,250,249,0.4);font-family:var(--mono);font-size:11px;border-bottom:1px solid rgba(255,255,255,0.05);">Carrossel</td></tr>
+            <tr><td style="padding:8px 12px;color:rgba(250,250,249,0.3);border-bottom:1px solid rgba(255,255,255,0.05);">S4</td><td style="padding:8px 12px;color:rgba(250,250,249,0.6);border-bottom:1px solid rgba(255,255,255,0.05);">Ter</td><td style="padding:8px 12px;color:rgba(250,250,249,0.8);border-bottom:1px solid rgba(255,255,255,0.05);">P10 — O que você precisa mandar</td><td style="padding:8px 12px;color:rgba(250,250,249,0.4);font-family:var(--mono);font-size:11px;border-bottom:1px solid rgba(255,255,255,0.05);">Carrossel</td></tr>
+            <tr><td style="padding:8px 12px;color:rgba(250,250,249,0.3);border-bottom:1px solid rgba(255,255,255,0.05);">S4</td><td style="padding:8px 12px;color:rgba(250,250,249,0.6);border-bottom:1px solid rgba(255,255,255,0.05);">Qui</td><td style="padding:8px 12px;color:rgba(250,250,249,0.8);border-bottom:1px solid rgba(255,255,255,0.05);">P11 — Depoimento 2</td><td style="padding:8px 12px;color:rgba(250,250,249,0.4);font-family:var(--mono);font-size:11px;border-bottom:1px solid rgba(255,255,255,0.05);">Carrossel</td></tr>
+            <tr><td style="padding:8px 12px;color:rgba(250,250,249,0.3);">S4</td><td style="padding:8px 12px;color:rgba(250,250,249,0.6);">Sáb</td><td style="padding:8px 12px;color:rgba(250,250,249,0.8);">P12 — Comparação direta</td><td style="padding:8px 12px;color:rgba(250,250,249,0.4);font-family:var(--mono);font-size:11px;">Estático</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+// Move todas as .caption-area para fora da .slides-row (corrige overflow-x clipping)
+document.querySelectorAll('.slides-row').forEach(function(row) {
+  var captions = [];
+  row.querySelectorAll('.caption-area').forEach(function(cap) {
+    captions.push(cap.cloneNode(true));
+    cap.remove();
+  });
+  captions.forEach(function(cap) {
+    cap.style.marginTop = '16px';
+    row.parentNode.insertBefore(cap, row.nextSibling);
+  });
+});
+</script>
+
+</body>
+</html>
