@@ -207,6 +207,24 @@
   align-items: center;
 }
 
+.obrigado__upsell-btn {
+  width: 100%;
+  background: var(--cta);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: var(--text-cta);
+  font-weight: 600;
+  padding: var(--space-4) var(--space-6);
+  border: none;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+}
+
+.obrigado__upsell-btn:hover {
+  opacity: 0.88;
+}
+
 .obrigado__decline {
   font-family: var(--font-body);
   font-size: var(--text-small);

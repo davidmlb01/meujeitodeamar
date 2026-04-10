@@ -1,6 +1,5 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Button } from '../components'
 import './Obrigado.css'
 
 const UPSELL_BULLETS = [
@@ -11,15 +10,16 @@ const UPSELL_BULLETS = [
   { label: null, desc: 'Cada leitura inclui como esse jeito de amar se relaciona com os outros três' },
 ]
 
-function openUpsellCheckout() {
-  const url = import.meta.env.VITE_KIWIFY_UPSELL_ID
-    ? `https://pay.kiwify.com.br/${import.meta.env.VITE_KIWIFY_UPSELL_ID}`
-    : 'https://pay.kiwify.com.br/JpX6Dn7'
-  window.location.href = url
-}
-
 export default function Obrigado() {
-  const [declined, setDeclined] = useState(false)
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.src = 'https://snippets.kiwify.com/upsell/upsell.min.js'
+    script.async = true
+    document.body.appendChild(script)
+    return () => {
+      document.body.removeChild(script)
+    }
+  }, [])
 
   return (
     <div className="obrigado">
@@ -37,63 +37,60 @@ export default function Obrigado() {
         </div>
 
         {/* Upsell */}
-        {!declined && (
-          <div className="obrigado__upsell">
-            <hr className="obrigado__divider" />
-            <h2 className="obrigado__upsell-headline">
-              Aguarde um segundo antes de fechar.
-            </h2>
-            <div className="obrigado__upsell-body">
-              <p>Tem uma coisa que faz sentido você saber agora, enquanto isso ainda está fresco.</p>
-              <p>Você acabou de descobrir como você ama. E se for parecido com a maioria das pessoas que passaram por aqui, nas próximas horas você vai começar a pensar nas pessoas ao seu redor com outros olhos.</p>
-              <p>Seu parceiro. Sua mãe. Aquela amiga que você ama mas não entende.</p>
-              <p>E vai perceber que cada um deles também tem um jeito de amar. E que esse jeito explica coisas que você tentou entender por anos sem conseguir.</p>
-            </div>
+        <div className="obrigado__upsell">
+          <hr className="obrigado__divider" />
+          <h2 className="obrigado__upsell-headline">
+            Aguarde um segundo antes de fechar.
+          </h2>
+          <div className="obrigado__upsell-body">
+            <p>Tem uma coisa que faz sentido você saber agora, enquanto isso ainda está fresco.</p>
+            <p>Você acabou de descobrir como você ama. E se for parecido com a maioria das pessoas que passaram por aqui, nas próximas horas você vai começar a pensar nas pessoas ao seu redor com outros olhos.</p>
+            <p>Seu parceiro. Sua mãe. Aquela amiga que você ama mas não entende.</p>
+            <p>E vai perceber que cada um deles também tem um jeito de amar. E que esse jeito explica coisas que você tentou entender por anos sem conseguir.</p>
+          </div>
 
-            {/* Produto */}
-            <div className="obrigado__product">
-              <p className="obrigado__product-title">Combo Completo: Os 4 Jeitos de Amar</p>
-              <ul className="obrigado__bullets">
-                {UPSELL_BULLETS.map((b, i) => (
-                  <li key={i} className={`obrigado__bullet${!b.label ? ' obrigado__bullet--no-check' : ''}`}>
-                    <div className="obrigado__bullet-content">
-                      {b.label && <span className="obrigado__bullet-label">{b.label}</span>}
-                      <span className={b.label ? 'obrigado__bullet-desc' : 'obrigado__bullet-solo'}>{b.desc}</span>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+          {/* Produto */}
+          <div className="obrigado__product">
+            <p className="obrigado__product-title">Combo Completo: Os 4 Jeitos de Amar</p>
+            <ul className="obrigado__bullets">
+              {UPSELL_BULLETS.map((b, i) => (
+                <li key={i} className={`obrigado__bullet${!b.label ? ' obrigado__bullet--no-check' : ''}`}>
+                  <div className="obrigado__bullet-content">
+                    {b.label && <span className="obrigado__bullet-label">{b.label}</span>}
+                    <span className={b.label ? 'obrigado__bullet-desc' : 'obrigado__bullet-solo'}>{b.desc}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
 
-              <p className="obrigado__product-bridge">
-                Você não vai precisar comprar cada leitura separada. Tudo está aqui, no mesmo formato, pelo mesmo padrão.
+            <p className="obrigado__product-bridge">
+              Você não vai precisar comprar cada leitura separada. Tudo está aqui, no mesmo formato, pelo mesmo padrão.
+            </p>
+
+            <div className="obrigado__price-block">
+              <p className="obrigado__price-original">4 leituras individuais · R$148</p>
+              <p className="obrigado__price-current">R$67</p>
+              <p className="obrigado__price-note">
+                Menos da metade do valor separado. Acesso imediato. Um clique.
               </p>
-
-              <div className="obrigado__price-block">
-                <p className="obrigado__price-original">4 leituras individuais · R$148</p>
-                <p className="obrigado__price-current">R$67</p>
-                <p className="obrigado__price-note">
-                  Menos da metade do valor separado. Acesso imediato. Um clique.
-                </p>
-                <p className="obrigado__price-note">
-                  Quando você sair dessa página, o acesso ao combo volta ao preço normal.
-                </p>
-              </div>
-            </div>
-
-            {/* CTAs */}
-            <div className="obrigado__ctas">
-              <Button onClick={openUpsellCheckout}>
-                SIM, quero o Combo Completo por R$67
-              </Button>
-              <button
-                className="obrigado__decline"
-                onClick={() => setDeclined(true)}
-              >
-                Não, obrigado. Prefiro entender só o meu jeito de amar por enquanto.
-              </button>
+              <p className="obrigado__price-note">
+                Quando você sair dessa página, o acesso ao combo volta ao preço normal.
+              </p>
             </div>
           </div>
-        )}
+
+          {/* CTAs — Kiwify nativo */}
+          <div className="obrigado__ctas">
+            <div id="kiwify-upsell-JpX6Dn7" data-upsell-url="" data-downsell-url="">
+              <button id="kiwify-upsell-trigger-JpX6Dn7" className="obrigado__upsell-btn">
+                SIM, quero o Combo Completo por R$67
+              </button>
+              <div id="kiwify-upsell-cancel-trigger-JpX6Dn7" className="obrigado__decline">
+                Não, prefiro ficar só com o meu jeito de amar por enquanto.
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* Instrução pós-compra */}
         <div className="obrigado__next">
