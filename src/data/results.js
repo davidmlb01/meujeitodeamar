@@ -19,8 +19,9 @@ E é exatamente isso que está na sua leitura.
 Não o que você faz. Por que você faz. A origem exata. O momento em que esse padrão se formou. Como ele funciona dentro de você especificamente, não em geral.
 
 E, mais importante: o que muda quando você finalmente entende.`,
-    lockedIntro: 'Sua leitura completa inclui:',
-    lockedDesc: 'Tudo que está acima. Mais a seção que a maioria das pessoas relê duas vezes: os seus pontos cegos. As coisas que você faz nos relacionamentos sem perceber que está fazendo. Que afastam exatamente quem você não quer afastar.\n\nE o caminho de transformação. Não genérico. Específico para o seu jeito de amar.',
+    bridge: 'Escrevi uma leitura completa sobre o coração ansioso.\n\nNão sobre ansiedade em geral. Sobre o sistema nervoso que aprendeu que o amor pode sumir sem aviso, e o que acontece dentro de você quando o silêncio dura mais do que o normal. A origem exata. O mecanismo. E o que muda quando você para de se culpar por vigiar e começa a entender por que vigila.',
+    lockedIntro: 'O que está dentro:',
+    lockedDesc: '',
     valueStack: [
       'A origem exata do seu padrão: de onde veio, quando se formou, por que faz todo o sentido dado o que você viveu',
       'Os seus pontos cegos: o que você faz que afasta exatamente quem você não quer perder',
@@ -49,8 +50,9 @@ Esse gap, entre o que você quer dizer e o que o outro entende, está na raiz de
 Sua leitura explica por que, quando alguém tenta demonstrar mais carinho e se aproximar, algo dentro de você se fecha. Não de forma vaga. De forma precisa, com a origem exata, e com o que acontece no seu interior naquele momento em que alguém chega mais perto do que você está pronta para receber.
 
 E o que fazer com isso.`,
-    lockedIntro: 'Sua leitura completa inclui:',
-    lockedDesc: 'A origem do seu padrão: por que gestos de carinho e aproximação ativam um alerta dentro de você, não conforto. E como criar espaço para o outro sem perder o seu.',
+    bridge: 'Escrevi uma leitura completa sobre o coração distante.\n\nNão sobre distância emocional em geral. Sobre o espaço que você criou para sobreviver e que agora está custando conexão. Por que o alarme dispara quando alguém chega mais perto do que você está pronta para receber. A origem exata desse reflexo. E o que muda quando você entende o mecanismo em vez de lutar contra ele.',
+    lockedIntro: 'O que está dentro:',
+    lockedDesc: '',
     valueStack: [
       'A origem do seu padrão: por que gestos de carinho e aproximação ativam um alerta, não conforto',
       'Os seus pontos cegos: o que parece neutro para você e parece rejeição para quem te ama',
@@ -75,8 +77,9 @@ Porque pessoas como você, que amam de uma forma estável, costumam ser tratadas
 Seguro não é perfeito. Seguro tem pontos cegos. E os seus são específicos para quem tem a sua base.
 
 Sua leitura vai te mostrar exatamente quais são. Como o seu jeito de amar funciona nos relacionamentos com cada um dos outros perfis. E onde está o seu trabalho real, porque todo mundo tem um, independente de onde começou.`,
-    lockedIntro: 'Sua leitura completa inclui:',
-    lockedDesc: 'Os pontos cegos específicos de quem ama de forma estável. Como você funciona com cada um dos outros perfis. E onde está o seu trabalho real, porque seguro não significa sem crescimento.',
+    bridge: 'Escrevi uma leitura completa sobre o coração seguro.\n\nNão sobre estabilidade em geral. Sobre os pontos cegos específicos de quem ama bem e ainda assim pode se perder no processo. Por que pessoas como você costumam ser tratadas como se não precisassem de cuidado. E onde está o seu trabalho real, porque seguro não é o ponto de chegada. É o ponto de partida.',
+    lockedIntro: 'O que está dentro:',
+    lockedDesc: '',
     valueStack: [
       'Os pontos cegos de quem ama de forma estável: o que você não vê justamente porque as coisas funcionam bem',
       'Por que pessoas como você costumam ser tratadas como se não precisassem de cuidado, e como mudar essa dinâmica',
@@ -103,8 +106,9 @@ Quando os dois disparam juntos, você oscila. Não porque escolhe. Porque não s
 Sua leitura explica de onde veio esse conflito. Como ele funciona. E o que fazer naquele segundo, antes de reagir do jeito antigo.
 
 Você não está quebrada. Você está carregando algo que não era seu para carregar desde o início. E entender isso muda tudo.`,
-    lockedIntro: 'Sua leitura completa inclui:',
-    lockedDesc: 'De onde veio o conflito interno. Como ele funciona. O que fazer naquele segundo antes de reagir. E por que você não está quebrada, só sobrecarregada com algo que nunca foi seu.',
+    bridge: 'Escrevi uma leitura completa sobre o coração confuso.\n\nNão sobre apego desorganizado em geral. Sobre esses dois sistemas em conflito dentro de você, a origem exata de cada um, e o que acontece no segundo entre o gatilho e a reação. Por que você afasta quem ama sem querer afastar. E o que muda quando você para de se culpar pela oscilação e começa a entender o mecanismo que a criou.',
+    lockedIntro: 'O que está dentro:',
+    lockedDesc: '',
     valueStack: [
       'Os dois sistemas em conflito dentro de você: de onde cada um veio e por que disputam',
       'O que acontece no segundo entre o gatilho e a reação, e o que fazer naquele segundo específico',

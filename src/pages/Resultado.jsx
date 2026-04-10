@@ -1,8 +1,16 @@
-import { useParams, useNavigate, Link } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { Button, Badge } from '../components'
 import { RESULTS, LOCKED_TOPICS, VALID_ESTILOS } from '../data/results'
 import './Resultado.css'
+
+const KIWIFY_URLS = {
+  ansioso: 'https://pay.kiwify.com.br/sEkZDxX',
+  distante: 'https://pay.kiwify.com.br/qRXuct4',
+  seguro:   'https://pay.kiwify.com.br/15XhzVM',
+  confuso:  'https://pay.kiwify.com.br/8VHVs5p',
+  fallback: 'https://pay.kiwify.com.br/sEkZDxX',
+}
 
 export default function Resultado() {
   const { estilo } = useParams()
@@ -24,10 +32,7 @@ export default function Resultado() {
         {/* Reveal */}
         <div>
           <p className="resultado__intro">{result.intro}</p>
-          <h1
-            className="resultado__headline"
-            style={{ color: result.colorToken }}
-          >
+          <h1 className="resultado__headline">
             {result.headline}
           </h1>
         </div>
@@ -37,16 +42,27 @@ export default function Resultado() {
 
         <hr className="resultado__divider" />
 
+        {/* Bridge — apresenta o produto */}
+        <p className="resultado__bridge">{result.bridge}</p>
+
+        <hr className="resultado__divider" />
+
         {/* Locked section */}
         <div className="resultado__locked">
           <p className="resultado__locked-intro">{result.lockedIntro}</p>
-          <p className="resultado__locked-desc">{result.lockedDesc}</p>
+          {result.lockedDesc ? <p className="resultado__locked-desc">{result.lockedDesc}</p> : null}
 
           <ul className="resultado__topics" aria-label="Conteúdo bloqueado">
             {LOCKED_TOPICS.map((topic) => (
-              <li key={topic} className="resultado__topic">
-                <Badge variant="locked" />
-                <span>{topic}</span>
+              <li key={topic} className="resultado__topic-card">
+                <div className="resultado__topic-card__header">
+                  <Badge variant="locked" />
+                  <span>{topic}</span>
+                </div>
+                <div className="resultado__topic-card__lines" aria-hidden="true">
+                  <div className="resultado__topic-card__line" />
+                  <div className="resultado__topic-card__line resultado__topic-card__line--short" />
+                </div>
               </li>
             ))}
           </ul>
@@ -74,9 +90,9 @@ export default function Resultado() {
         <div className="resultado__cta-section">
           <p className="resultado__price">R$37</p>
           <div className="resultado__cta-wrap">
-            <Link to={`/checkout?estilo=${estilo}`} tabIndex={-1}>
+            <a href={KIWIFY_URLS[estilo] || KIWIFY_URLS.fallback} tabIndex={-1}>
               <Button>Desbloquear minha leitura completa</Button>
-            </Link>
+            </a>
           </div>
           <p className="resultado__redirect">
             Você será redirecionado para o checkout seguro. Entrega por email em menos de 5 minutos.
