@@ -343,7 +343,7 @@ Todos os textos estão em `docs/copy/`:
 
 ### Após seed (V1 Beta)
 - [ ] Substituir depoimentos representativos por depoimentos reais na landing page
-- [ ] Configurar analytics (GA4, TikTok Pixel, Clarity)
+- [~] Configurar analytics (GA4, TikTok Pixel, Clarity)
 - [ ] Ativar `hormozi-ads` para criar anúncios baseados nos depoimentos
 
 ### Após validação V1
