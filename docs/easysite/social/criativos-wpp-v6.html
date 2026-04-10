@@ -144,6 +144,21 @@ html, body {
   scroll-margin-top: 32px;
 }
 
+.btn-download {
+  background: #FAFAF9;
+  color: #080503;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.btn-download:hover { opacity: 0.75; }
+
 .criativo-header {
   display: flex;
   align-items: baseline;
@@ -1092,6 +1107,7 @@ html, body {
       <div class="criativo-header">
         <div class="criativo-title"><strong>C1</strong> &nbsp;Dor Primária</div>
         <a href="#c1-full" class="btn-fullsize" onclick="showFull('c1-full')">Ver tamanho real</a>
+        <button class="btn-download" onclick="downloadCriativo('c1','c1-dor-primaria')">Download PNG</button>
       </div>
       <div class="preview-wrapper">
         <div class="preview-scale">
@@ -1118,6 +1134,7 @@ html, body {
       <div class="criativo-header">
         <div class="criativo-title"><strong>C2</strong> &nbsp;Oferta Direta</div>
         <a href="#c2-full" class="btn-fullsize" onclick="showFull('c2-full')">Ver tamanho real</a>
+        <button class="btn-download" onclick="downloadCriativo('c2','c2-oferta-direta')">Download PNG</button>
       </div>
       <div class="preview-wrapper">
         <div class="preview-scale">
@@ -1145,6 +1162,7 @@ html, body {
       <div class="criativo-header">
         <div class="criativo-title"><strong>C3</strong> &nbsp;Nicho Salão</div>
         <a href="#c3-full" class="btn-fullsize" onclick="showFull('c3-full')">Ver tamanho real</a>
+        <button class="btn-download" onclick="downloadCriativo('c3','c3-nicho-salao')">Download PNG</button>
       </div>
       <div class="preview-wrapper">
         <div class="preview-scale">
@@ -1178,6 +1196,7 @@ html, body {
       <div class="criativo-header">
         <div class="criativo-title"><strong>C4</strong> &nbsp;Nicho Barbearia</div>
         <a href="#c4-full" class="btn-fullsize" onclick="showFull('c4-full')">Ver tamanho real</a>
+        <button class="btn-download" onclick="downloadCriativo('c4','c4-nicho-barbearia')">Download PNG</button>
       </div>
       <div class="preview-wrapper">
         <div class="preview-scale">
@@ -1211,6 +1230,7 @@ html, body {
       <div class="criativo-header">
         <div class="criativo-title"><strong>C5</strong> &nbsp;Nicho Restaurante</div>
         <a href="#c5-full" class="btn-fullsize" onclick="showFull('c5-full')">Ver tamanho real</a>
+        <button class="btn-download" onclick="downloadCriativo('c5','c5-nicho-restaurante')">Download PNG</button>
       </div>
       <div class="preview-wrapper">
         <div class="preview-scale">
@@ -1244,6 +1264,7 @@ html, body {
       <div class="criativo-header">
         <div class="criativo-title"><strong>C6</strong> &nbsp;Antes e Depois</div>
         <a href="#c6-full" class="btn-fullsize" onclick="showFull('c6-full')">Ver tamanho real</a>
+        <button class="btn-download" onclick="downloadCriativo('c6','c6-antes-depois')">Download PNG</button>
       </div>
       <div class="preview-wrapper">
         <div class="preview-scale">
@@ -1283,6 +1304,7 @@ html, body {
       <div class="criativo-header">
         <div class="criativo-title"><strong>C7</strong> &nbsp;Prova Social</div>
         <a href="#c7-full" class="btn-fullsize" onclick="showFull('c7-full')">Ver tamanho real</a>
+        <button class="btn-download" onclick="downloadCriativo('c7','c7-prova-social')">Download PNG</button>
       </div>
       <div class="preview-wrapper">
         <div class="preview-scale">
@@ -1313,6 +1335,7 @@ html, body {
       <div class="criativo-header">
         <div class="criativo-title"><strong>C8</strong> &nbsp;Âncora de Preço</div>
         <a href="#c8-full" class="btn-fullsize" onclick="showFull('c8-full')">Ver tamanho real</a>
+        <button class="btn-download" onclick="downloadCriativo('c8','c8-ancora-preco')">Download PNG</button>
       </div>
       <div class="preview-wrapper">
         <div class="preview-scale">
@@ -1345,6 +1368,7 @@ html, body {
       <div class="criativo-header">
         <div class="criativo-title"><strong>C9</strong> &nbsp;Objeção Tecnologia</div>
         <a href="#c9-full" class="btn-fullsize" onclick="showFull('c9-full')">Ver tamanho real</a>
+        <button class="btn-download" onclick="downloadCriativo('c9','c9-objecao-tecnologia')">Download PNG</button>
       </div>
       <div class="preview-wrapper">
         <div class="preview-scale">
@@ -1371,6 +1395,7 @@ html, body {
       <div class="criativo-header">
         <div class="criativo-title"><strong>C10</strong> &nbsp;Como Funciona</div>
         <a href="#c10-full" class="btn-fullsize" onclick="showFull('c10-full')">Ver tamanho real</a>
+        <button class="btn-download" onclick="downloadCriativo('c10','c10-como-funciona')">Download PNG</button>
       </div>
       <div class="preview-wrapper">
         <div class="preview-scale">
@@ -1706,6 +1731,62 @@ document.querySelectorAll('.sidebar nav a').forEach(link => {
     }
   });
 });
+</script>
+
+<!-- html2canvas para exportação -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+async function downloadCriativo(id, nome) {
+  const fullId = id + '-full';
+  const section = document.getElementById(fullId);
+  if (!section) return;
+
+  const btn = document.querySelector('#' + id + ' .btn-download');
+  if (btn) { btn.textContent = 'Gerando...'; btn.style.opacity = '0.6'; }
+
+  // Mostrar temporariamente
+  const wasHidden = !section.classList.contains('active');
+  if (wasHidden) {
+    section.style.display = 'block';
+    section.style.position = 'fixed';
+    section.style.left = '-9999px';
+    section.style.top = '0';
+  }
+
+  const frame = section.querySelector('.frame');
+  if (!frame) {
+    if (wasHidden) { section.style.display = ''; section.style.position = ''; section.style.left = ''; }
+    return;
+  }
+
+  try {
+    const canvas = await html2canvas(frame, {
+      scale: 1,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: null,
+      width: 1080,
+      height: 1350,
+      logging: false
+    });
+
+    const link = document.createElement('a');
+    link.download = 'easysite-' + nome + '.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  } catch(e) {
+    alert('Erro ao gerar imagem. Tente "Ver tamanho real" e salve manualmente.');
+  }
+
+  if (wasHidden) {
+    section.style.display = '';
+    section.style.position = '';
+    section.style.left = '';
+    section.style.top = '';
+  }
+
+  if (btn) { btn.textContent = 'Download PNG'; btn.style.opacity = '1'; }
+}
 </script>
 
 <!--

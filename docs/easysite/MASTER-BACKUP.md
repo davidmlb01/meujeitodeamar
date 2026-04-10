@@ -134,7 +134,7 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 | Posts Instagram HTML | Concluido (docs/easysite/social/posts-instagram.html — 12 posts) |
 | Copy Meta Ads | Concluido (5 anuncios, texto primario + titulo + descricao) |
 | Estrategia de campanha | Concluido (Pedro Sobral: CBO R$50/dia, 3 conjuntos, criativos P02/P06/P12) |
-| Meta Ads | PENDENTE — David nao tem conta Facebook (passo zero) |
+| Meta Ads | ATIVO — Campanha rodando desde 2026-04-10, 3 criativos no ar |
 
 ---
 
@@ -165,6 +165,7 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 - **2026-04-09:** Instrucao de logo/fotos adicionada ao system prompt: cliente envia para +55 11 98918-8188 apos confirmacao do PIX
 - **2026-04-09:** 12 posts Instagram gerados em HTML (docs/easysite/social/posts-instagram.html) com safe zones, legendas e hashtags. Depoimentos reais: Renata Purcino (Icarai, Niteroi) e Marcelo Azevedo (Marica)
 - **2026-04-09:** Estrategia Meta Ads estruturada por Pedro Sobral (traffic-masters squad). Copy de 5 anuncios prontos. Bloqueio: David nao tem conta no Facebook — passo zero antes de criar BM
+- **2026-04-10:** Meta Ads ativado do zero. Conta Facebook criada (Irineu Figueiredo), BM EasySite, Pagina EasySite, conta de anuncios, Instagram @seueasysite vinculado via Central de Contas, WhatsApp +5511943451866 conectado. Campanha CBO R$50/dia no ar com 3 criativos: P02 (C1 Dor Primaria — Ativo), P06 (C6 Antes e Depois — Em analise), P12 (C8 Ancora de Preco — Em processamento). Destino manual: so WhatsApp. Pixel nao instalado (pendente).
 
 ---
 
