@@ -111,7 +111,7 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 
 ---
 
-## Estado Atual (2026-04-07) — INFRAESTRUTURA 100% PRONTA
+## Estado Atual (2026-04-09) — AGUARDANDO META ADS
 
 | Item | Status |
 |------|--------|
@@ -122,6 +122,8 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 | Brandbook | Concluido |
 | Criativos de conversao | Concluido (v6, 10 criativos) |
 | Bot WhatsApp Leo | DEPLOYADO E ONLINE (PM2, VPS) |
+| Bot Leo — Hormozi 3A | Concluido (secao 16 deployada 2026-04-09) |
+| Bot Leo — logo/fotos | Concluido (instrucao no system prompt: +55 11 98918-8188) |
 | Evolution API VPS | Rodando em 77.37.69.60:8080, instancia easysite |
 | QR code escaneado | Concluido (2026-04-07) |
 | Webhook configurado | Concluido (http://77.37.69.60:5000/webhook) |
@@ -129,7 +131,10 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 | DNS propagado | Concluido (A @ 216.198.79.1, CNAME www, Hostinger) |
 | Formulario briefing | Concluido (https://www.easysite.site/form) |
 | LINK_FORMULARIO no .env | Concluido |
-| Meta Ads | PENDENTE — ativar em 2026-04-08 |
+| Posts Instagram HTML | Concluido (docs/easysite/social/posts-instagram.html — 12 posts) |
+| Copy Meta Ads | Concluido (5 anuncios, texto primario + titulo + descricao) |
+| Estrategia de campanha | Concluido (Pedro Sobral: CBO R$50/dia, 3 conjuntos, criativos P02/P06/P12) |
+| Meta Ads | PENDENTE — David nao tem conta Facebook (passo zero) |
 
 ---
 
@@ -156,6 +161,10 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 - **2026-04-07:** DNS configurado via painel Hostinger (nameservers proprios): A @ 216.198.79.1 + CNAME www bdf230b363518e34.vercel-dns-017.com
 - **2026-04-07:** LINK_FORMULARIO atualizado no .env da VPS: https://www.easysite.site/form
 - **2026-04-07:** Infraestrutura 100% pronta. Proximo passo: ativar Meta Ads (2026-04-08)
+- **2026-04-09:** System prompt atualizado com Framework 3A de Hormozi (Acknowledge, Associate, Ask) — secao 16. Deployado na VPS via scp + pm2 restart
+- **2026-04-09:** Instrucao de logo/fotos adicionada ao system prompt: cliente envia para +55 11 98918-8188 apos confirmacao do PIX
+- **2026-04-09:** 12 posts Instagram gerados em HTML (docs/easysite/social/posts-instagram.html) com safe zones, legendas e hashtags. Depoimentos reais: Renata Purcino (Icarai, Niteroi) e Marcelo Azevedo (Marica)
+- **2026-04-09:** Estrategia Meta Ads estruturada por Pedro Sobral (traffic-masters squad). Copy de 5 anuncios prontos. Bloqueio: David nao tem conta no Facebook — passo zero antes de criar BM
 
 ---
 
