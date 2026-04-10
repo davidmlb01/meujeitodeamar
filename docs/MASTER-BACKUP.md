@@ -1,6 +1,6 @@
 # MASTER BACKUP — Projeto Freud
 **Última atualização:** 2026-04-10
-**Status:** V1 (meujeitodeamar.com.br) lançado — Kiwify 100% configurado (10 produtos, OBs, upsell nativo), seed launch pendente
+**Status:** V1 (meujeitodeamar.com.br) lançado — Analytics ativos (GA4 + Clarity), resultado redesenhado, fluxo corrigido, seed launch pendente
 
 ---
 
@@ -338,12 +338,15 @@ Todos os textos estão em `docs/copy/`:
 - [x] Configurar order bumps (OB1 + OB2) em cada um dos 4 produtos
 - [x] Configurar upsell pós-compra (Combo Completo) em cada produto
 - [x] Desativar produtos de bundle desnecessários no Kiwify
+- [x] Analytics: GA4 G-H86MDFH5C3 + Clarity w9m5j31fmy ativos (2026-04-10)
+- [x] Fluxo corrigido: resultado vai direto para Kiwify (sem página /checkout intermediária)
+- [x] Página resultado redesenhada: headline burgundy 42-64px, cards desfocados, bridge copy por estilo
 - [ ] Contatar 20 pessoas da rede pessoal → 10 primeiros pagantes
 - [ ] Coletar depoimentos dos primeiros compradores
 
 ### Após seed (V1 Beta)
 - [ ] Substituir depoimentos representativos por depoimentos reais na landing page
-- [~] Configurar analytics (GA4, TikTok Pixel, Clarity)
+- [ ] TikTok Pixel (pendente para após seed)
 - [ ] Ativar `hormozi-ads` para criar anúncios baseados nos depoimentos
 
 ### Após validação V1
