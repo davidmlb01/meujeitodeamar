@@ -1,6 +1,6 @@
 # MASTER BACKUP — Projeto Freud
-**Última atualização:** 2026-04-03
-**Status:** V1 (meujeitodeamar.com.br) lançado — PDFs exportados, Kiwify em configuração, seed launch pendente
+**Última atualização:** 2026-04-10
+**Status:** V1 (meujeitodeamar.com.br) lançado — Kiwify 100% configurado (10 produtos, OBs, upsell nativo), seed launch pendente
 
 ---
 
@@ -241,33 +241,31 @@ Arquivo: `docs/design/leituras-pdf.html`
 | Seguro | https://pay.kiwify.com.br/15XhzVM |
 | Confuso | https://pay.kiwify.com.br/8VHVs5p |
 
-### Order Bumps (configurados nativamente no Kiwify em cada produto)
-- OB1: Guia de Relacionamentos por Estilo — R$27 (ID: sp69uDV)
-- OB2: Leitura de quem eu amo — R$19 (ID: ygOkubF)
+### Todos os produtos (10 ao total) — configurados em 2026-04-10
 
-### Upsell pós-compra
-- Combo 4 Leituras — R$67 (ID: Rf1DTRA)
-- URL: https://pay.kiwify.com.br/Rf1DTRA
+| # | Produto | Tipo | Preço | URL |
+|---|---------|------|-------|-----|
+| 1 | Leitura Completa Coração Ansioso | Principal | R$37 | pay.kiwify.com.br/sEkZDxX |
+| 2 | Leitura Completa Coração Distante | Principal | R$37 | pay.kiwify.com.br/qRXuct4 |
+| 3 | Leitura Completa Coração Seguro | Principal | R$37 | pay.kiwify.com.br/15XhzVM |
+| 4 | Leitura Completa Coração Confuso | Principal | R$37 | pay.kiwify.com.br/8VHVs5p |
+| 5 | Guia de Relacionamentos por Jeito de Amar | OB1 (antes do pag.) | R$27 | pay.kiwify.com.br/zoE4iqF |
+| 6 | Por que você escolhe quem escolhe — Ansioso | OB2 (antes do pag.) | R$19 | pay.kiwify.com.br/z4LIzfL |
+| 7 | Por que você escolhe quem escolhe — Distante | OB2 (antes do pag.) | R$19 | pay.kiwify.com.br/EBI4MiS |
+| 8 | Por que você escolhe quem escolhe — Seguro | OB2 (antes do pag.) | R$19 | pay.kiwify.com.br/GTTq7n2 |
+| 9 | Por que você escolhe quem escolhe — Confuso | OB2 (antes do pag.) | R$19 | pay.kiwify.com.br/90tlrT1 |
+| 10 | Combo Completo: Os 4 Jeitos de Amar | Upsell nativo (pós-compra) | R$67 | pay.kiwify.com.br/JpX6Dn7 |
 
-### Estrutura correta de produtos (7 ao total)
-| # | Produto | Tipo | Preço |
-|---|---|---|---|
-| 1 | Leitura Completa Coração Ansioso | Principal | R$37 |
-| 2 | Leitura Completa Coração Distante | Principal | R$37 |
-| 3 | Leitura Completa Coração Seguro | Principal | R$37 |
-| 4 | Leitura Completa Coração Confuso | Principal | R$37 |
-| 5 | Guia de Relacionamentos por Estilo | Order bump (antes do pag.) | R$27 |
-| 6 | Leitura de quem eu amo | Order bump (antes do pag.) | R$19 |
-| 7 | Combo Completo: Os 4 Jeitos de Amar | Upsell (pós-compra) | R$47 |
+**PRECOS DEFINITIVOS — NAO QUESTIONAR:** Principal R$37, OB1 R$27, OB2 R$19, Upsell R$67.
 
-Os produtos de bundle criados anteriormente (Leitura+Guia, Leitura+Leitura de quem eu amo, etc.) devem ser desativados. O bundle acontece via order bumps nativos do Kiwify em cada produto principal.
-
-### Configurações em cada produto
-- Página de obrigado: https://meujeitodeamar.vercel.app/obrigado
-- Entrega: PDF via Área de Membros
-- OB1 configurado: Guia de Relacionamentos por Estilo
-- OB2 configurado: Leitura de quem eu amo
-- Upsell pós-compra: Combo Completo
+### Configurações em cada produto principal (feito em 2026-04-10)
+- Redirect pós-compra: https://www.meujeitodeamar.com.br/obrigado
+- Entrega: PDF via Área de Membros (PDFs novos de 12 páginas subidos)
+- OB1 configurado: Guia de Relacionamentos por Jeito de Amar
+- OB2 configurado: versão correspondente ao estilo do produto
+- Upsell: botão nativo Kiwify na /obrigado (sem configuração separada no Kiwify)
+- Produtos de bundle antigos: desativados
+- Textos de área de membros: configurados em todos os produtos
 
 ### Landing page — estado atual (2026-04-03)
 - Seção de depoimentos adicionada: 4 pull quotes editoriais (Cormorant Garamond, sem cards)
@@ -295,6 +293,16 @@ Os produtos de bundle criados anteriormente (Leitura+Guia, Leitura+Leitura de qu
 - Projeto: meujeitodeamar
 - Domínios: meujeitodeamar.com.br + www.meujeitodeamar.com.br
 - Deploy automático a cada push no main
+
+---
+
+## 11B. SESSAO 2026-04-10 — DECISOES E MUDANCAS
+
+- OB2 tem 4 versoes separadas por estilo (nao um produto unico) — decisao definitiva
+- Upsell nao e configurado no Kiwify como produto vinculado: e a propria pagina /obrigado com botao nativo Kiwify
+- Pagina /obrigado: novo copy (Cyrus + Frank Kern), design refatorado (bullets hierarquicos, preco destacado), botao Kiwify nativo integrado via useEffect
+- PDFs de 12 paginas subidos nos 4 produtos principais
+- Copy de area de membros escrito para todos os 10 produtos
 
 ---
 
