@@ -14,7 +14,7 @@ const UPSELL_BULLETS = [
 function openUpsellCheckout() {
   const url = import.meta.env.VITE_KIWIFY_UPSELL_ID
     ? `https://pay.kiwify.com.br/${import.meta.env.VITE_KIWIFY_UPSELL_ID}`
-    : 'https://pay.kiwify.com.br/Rf1DTRA'
+    : 'https://pay.kiwify.com.br/JpX6Dn7'
   window.location.href = url
 }
 
