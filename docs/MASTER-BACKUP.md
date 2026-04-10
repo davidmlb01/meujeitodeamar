@@ -346,7 +346,7 @@ Todos os textos estão em `docs/copy/`:
 - [x] Fluxo corrigido: resultado vai direto para Kiwify (sem página /checkout intermediária)
 - [x] Página resultado redesenhada: headline burgundy 42-64px, cards desfocados, bridge copy por estilo
 - [x] Checkout headers criados: 4 imagens 2000x590px para Kiwify, com download PNG (2026-04-10)
-- [ ] Subir imagens de topo no Kiwify (4 produtos)
+- [x] Subir imagens de topo no Kiwify (4 produtos) (2026-04-10)
 - [ ] Contatar 20 pessoas da rede pessoal → 10 primeiros pagantes
 - [ ] Coletar depoimentos dos primeiros compradores
 
