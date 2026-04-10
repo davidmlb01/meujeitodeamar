@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout Headers — meujeitodeamar.com.br</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:       #E8D9C1;
+      --bg-warm:  #DFD0B7;
+      --dark:     #4B1D3F;
+      --text:     #1B1B11;
+      --muted:    #A89080;
+      --subtle:   #D4C5AE;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Jost', system-ui, sans-serif;
+
+      /* Card real: 2000x590px — preview a 50%: 1000x295px */
+      --card-w: 1000px;
+      --card-h: 295px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #1B1B11;
+      font-family: var(--font-body);
+      padding: 48px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .section-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #A89080;
+      text-align: center;
+    }
+
+    /* ── Card wrapper (preview 50%) ── */
+    .card-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      width: var(--card-w);
+    }
+
+    /* ── Checkout Header: 1000x295 preview = 2000x590 real ── */
+    .checkout-header {
+      width: var(--card-w);
+      height: var(--card-h);
+      background: var(--bg);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .checkout-header__accent {
+      height: 4px;
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    .checkout-header__body {
+      flex: 1;
+      display: flex;
+      align-items: stretch;
+      padding: 0;
+    }
+
+    /* ── Left column: headline ── */
+    .checkout-header__left {
+      flex: 0 0 58%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 36px 48px 36px 52px;
+      border-right: 1px solid var(--subtle);
+      gap: 10px;
+    }
+
+    .checkout-header__eyebrow {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .checkout-header__headline {
+      font-family: var(--font-display);
+      font-size: 30px;
+      font-weight: 400;
+      line-height: 1.18;
+      color: var(--dark);
+    }
+
+    /* ── Right column: copy + meta ── */
+    .checkout-header__right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 36px 44px 36px 40px;
+      gap: 16px;
+    }
+
+    .checkout-header__copy {
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--text);
+    }
+
+    .checkout-header__copy strong {
+      font-weight: 500;
+      color: var(--dark);
+      display: block;
+      margin-top: 2px;
+    }
+
+    .checkout-header__divider {
+      height: 1px;
+      background: var(--subtle);
+    }
+
+    .checkout-header__meta {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--dark);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.6;
+    }
+
+    /* ── Toolbar ── */
+    .card-toolbar {
+      background: #1e1e12;
+      border-radius: 0 0 8px 8px;
+      padding: 8px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: monospace;
+      font-size: 10px;
+      color: #A89080;
+    }
+
+    .card-toolbar span {
+      color: #D4B5B0;
+      font-weight: bold;
+    }
+
+    .btn-download {
+      background: none;
+      border: 1px solid #A89080;
+      border-radius: 5px;
+      padding: 4px 12px;
+      font-family: monospace;
+      font-size: 10px;
+      color: #A89080;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .btn-download:hover {
+      color: #E8D9C1;
+      border-color: #E8D9C1;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+  <p class="section-label">Checkout Headers — meujeitodeamar.com.br — 2000 × 590 px (preview 50%)</p>
+
+  <!-- ANSIOSO -->
+  <div class="card-wrap">
+    <div class="checkout-header" id="card-ansioso">
+      <div class="checkout-header__accent" style="background: #D8A7B1;"></div>
+      <div class="checkout-header__body">
+        <div class="checkout-header__left">
+          <p class="checkout-header__eyebrow">Coração Ansioso</p>
+          <h2 class="checkout-header__headline">Você está a um passo de entender<br>de onde veio o seu padrão.</h2>
+        </div>
+        <div class="checkout-header__right">
+          <p class="checkout-header__copy">
+            Não em geral.<br><strong>No seu caso específico, com a origem exata.</strong><br>Em 15 minutos de leitura.
+          </p>
+          <div class="checkout-header__divider"></div>
+          <p class="checkout-header__meta">Entrega por email · Acesso imediato · Garantia de 7 dias</p>
+        </div>
+      </div>
+    </div>
+    <div class="card-toolbar">
+      <span>ANSIOSO</span>
+      Kiwify → Imagem de topo → 2000 × 590 px
+      <button class="btn-download" onclick="downloadCard('card-ansioso','checkout-header-ansioso')">↓ PNG</button>
+    </div>
+  </div>
+
+  <!-- DISTANTE -->
+  <div class="card-wrap">
+    <div class="checkout-header" id="card-distante">
+      <div class="checkout-header__accent" style="background: #C4909C;"></div>
+      <div class="checkout-header__body">
+        <div class="checkout-header__left">
+          <p class="checkout-header__eyebrow">Coração Distante</p>
+          <h2 class="checkout-header__headline">Você está a um passo de entender por que<br>o alarme dispara quando alguém chega perto.</h2>
+        </div>
+        <div class="checkout-header__right">
+          <p class="checkout-header__copy">
+            A origem do reflexo.<br><strong>O que muda quando você entende o mecanismo em vez de lutar contra ele.</strong><br>15 minutos.
+          </p>
+          <div class="checkout-header__divider"></div>
+          <p class="checkout-header__meta">Entrega por email · Acesso imediato · Garantia de 7 dias</p>
+        </div>
+      </div>
+    </div>
+    <div class="card-toolbar">
+      <span>DISTANTE</span>
+      Kiwify → Imagem de topo → 2000 × 590 px
+      <button class="btn-download" onclick="downloadCard('card-distante','checkout-header-distante')">↓ PNG</button>
+    </div>
+  </div>
+
+  <!-- SEGURO -->
+  <div class="card-wrap">
+    <div class="checkout-header" id="card-seguro">
+      <div class="checkout-header__accent" style="background: #BF8A96;"></div>
+      <div class="checkout-header__body">
+        <div class="checkout-header__left">
+          <p class="checkout-header__eyebrow">Coração Seguro</p>
+          <h2 class="checkout-header__headline">Você está a um passo de entender<br>o que a sua estabilidade esconde.</h2>
+        </div>
+        <div class="checkout-header__right">
+          <p class="checkout-header__copy">
+            Seguro não é o ponto de chegada.<br><strong>É o ponto de partida.</strong><br>15 minutos.
+          </p>
+          <div class="checkout-header__divider"></div>
+          <p class="checkout-header__meta">Entrega por email · Acesso imediato · Garantia de 7 dias</p>
+        </div>
+      </div>
+    </div>
+    <div class="card-toolbar">
+      <span>SEGURO</span>
+      Kiwify → Imagem de topo → 2000 × 590 px
+      <button class="btn-download" onclick="downloadCard('card-seguro','checkout-header-seguro')">↓ PNG</button>
+    </div>
+  </div>
+
+  <!-- CONFUSO -->
+  <div class="card-wrap">
+    <div class="checkout-header" id="card-confuso">
+      <div class="checkout-header__accent" style="background: #D4B5B0;"></div>
+      <div class="checkout-header__body">
+        <div class="checkout-header__left">
+          <p class="checkout-header__eyebrow">Coração Confuso</p>
+          <h2 class="checkout-header__headline">Você está a um passo de entender<br>os dois sistemas em conflito dentro de você.</h2>
+        </div>
+        <div class="checkout-header__right">
+          <p class="checkout-header__copy">
+            De onde cada um veio.<br><strong>E o que fazer naquele segundo antes de reagir do jeito antigo.</strong><br>15 minutos.
+          </p>
+          <div class="checkout-header__divider"></div>
+          <p class="checkout-header__meta">Entrega por email · Acesso imediato · Garantia de 7 dias</p>
+        </div>
+      </div>
+    </div>
+    <div class="card-toolbar">
+      <span>CONFUSO</span>
+      Kiwify → Imagem de topo → 2000 × 590 px
+      <button class="btn-download" onclick="downloadCard('card-confuso','checkout-header-confuso')">↓ PNG</button>
+    </div>
+  </div>
+
+  <script>
+    function downloadCard(id, filename) {
+      const el = document.getElementById(id);
+      // Preview é 1000x295 — scale=2 gera exatamente 2000x590
+      html2canvas(el, {
+        scale: 2,
+        backgroundColor: '#E8D9C1',
+        useCORS: true,
+        logging: false,
+        width: 1000,
+        height: 295
+      }).then(function(canvas) {
+        const link = document.createElement('a');
+        link.download = filename + '.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      });
+    }
+  </script>
+
+</body>
+</html>
