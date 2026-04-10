@@ -334,10 +334,10 @@ Todos os textos estão em `docs/copy/`:
 ## 14. PRÓXIMOS PASSOS
 
 ### Imediato (seed launch)
-- [~] Subir PDFs nos 4 produtos principais no Kiwify
-- [~] Configurar order bumps (OB1 + OB2) em cada um dos 4 produtos
-- [~] Configurar upsell pós-compra (Combo Completo) em cada produto
-- [~] Desativar produtos de bundle desnecessários no Kiwify
+- [x] Subir PDFs nos 4 produtos principais no Kiwify
+- [x] Configurar order bumps (OB1 + OB2) em cada um dos 4 produtos
+- [x] Configurar upsell pós-compra (Combo Completo) em cada produto
+- [x] Desativar produtos de bundle desnecessários no Kiwify
 - [ ] Contatar 20 pessoas da rede pessoal → 10 primeiros pagantes
 - [ ] Coletar depoimentos dos primeiros compradores
 
