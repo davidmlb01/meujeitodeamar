@@ -196,7 +196,7 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 - [x] Squads de branding e copy
 - [x] Brandbook
 - [ ] Enxoval social completo
-- [ ] Perfil Instagram
+- [x] Perfil Instagram
 - [x] Bot WhatsApp (codigo pronto)
 - [x] Deploy Evolution API na VPS
 - [x] Configurar WhatsApp Business (numero +5511943451866)
@@ -206,7 +206,7 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 - [x] Formulario de briefing configurado
 
 ### Fase 2 — Operacao
-- [ ] Trafego pago ativo (Meta Ads — ativar 2026-04-08)
+- [~] Trafego pago ativo (Meta Ads — ativar 2026-04-08)
 - [ ] Prospeccao ativa com planilha (Jornada C)
 - [ ] Primeiras vendas
 
