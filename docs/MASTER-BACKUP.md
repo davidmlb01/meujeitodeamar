@@ -159,6 +159,7 @@ Produto Principal: Leitura Completa    R$37
 - `docs/design/wireframes.html` — 5 telas aprovadas (mobile + desktop)
 - `docs/design/moodboard.html` — referências visuais
 - `docs/design/leituras-pdf.html` — 4 PDFs (capa + 3 páginas por estilo)
+- `docs/design/checkout-headers.html` — 4 imagens de topo Kiwify (2000x590px), com download PNG
 
 ---
 
@@ -303,6 +304,9 @@ Arquivo: `docs/design/leituras-pdf.html`
 - Pagina /obrigado: novo copy (Cyrus + Frank Kern), design refatorado (bullets hierarquicos, preco destacado), botao Kiwify nativo integrado via useEffect
 - PDFs de 12 paginas subidos nos 4 produtos principais
 - Copy de area de membros escrito para todos os 10 produtos
+- Checkout headers criados: docs/design/checkout-headers.html — 4 cards formato 2000x590px (imagem de topo Kiwify), design system completo, Hormozi copy por estilo, download PNG com html2canvas (scale=2)
+- Layout horizontal: coluna esquerda (eyebrow + headline), coluna direita (copy + meta)
+- Meta "Entrega por email · Acesso imediato · Garantia de 7 dias": uppercase, burgundy, font-weight 500 — tratamento de destaque
 
 ---
 
@@ -341,6 +345,8 @@ Todos os textos estão em `docs/copy/`:
 - [x] Analytics: GA4 G-H86MDFH5C3 + Clarity w9m5j31fmy ativos (2026-04-10)
 - [x] Fluxo corrigido: resultado vai direto para Kiwify (sem página /checkout intermediária)
 - [x] Página resultado redesenhada: headline burgundy 42-64px, cards desfocados, bridge copy por estilo
+- [x] Checkout headers criados: 4 imagens 2000x590px para Kiwify, com download PNG (2026-04-10)
+- [ ] Subir imagens de topo no Kiwify (4 produtos)
 - [ ] Contatar 20 pessoas da rede pessoal → 10 primeiros pagantes
 - [ ] Coletar depoimentos dos primeiros compradores
 
