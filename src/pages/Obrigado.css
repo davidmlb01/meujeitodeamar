@@ -42,6 +42,13 @@
   line-height: var(--lh-body);
 }
 
+/* ── Divider ── */
+.obrigado__divider {
+  border: none;
+  border-top: 1px solid var(--subtle);
+  margin: 0;
+}
+
 /* ── Upsell ── */
 .obrigado__upsell {
   display: flex;
@@ -98,22 +105,65 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--space-4);
 }
 
 .obrigado__bullet {
-  font-family: var(--font-body);
-  font-size: var(--text-body);
-  color: var(--text);
   display: flex;
-  gap: var(--space-2);
+  gap: var(--space-3);
+  align-items: flex-start;
 }
 
 .obrigado__bullet::before {
   content: '✓';
-  color: var(--dark);
+  font-family: var(--font-body);
+  font-size: var(--text-small);
   font-weight: 600;
+  color: var(--dark);
   flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.obrigado__bullet--no-check::before {
+  content: none;
+}
+
+.obrigado__bullet-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.obrigado__bullet-label {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: 0.02em;
+  display: block;
+}
+
+.obrigado__bullet-desc {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--text);
+  line-height: var(--lh-body);
+  display: block;
+}
+
+.obrigado__bullet-solo {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--text);
+  line-height: var(--lh-body);
+}
+
+.obrigado__product-bridge {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--text);
+  line-height: var(--lh-body);
+  padding-top: var(--space-2);
 }
 
 /* ── Preço ── */
@@ -127,23 +177,26 @@
 
 .obrigado__price-original {
   font-family: var(--font-body);
-  font-size: var(--text-small);
-  color: var(--muted);
+  font-size: var(--text-body);
+  font-weight: 500;
+  color: var(--text);
   text-decoration: line-through;
+  opacity: 0.5;
 }
 
 .obrigado__price-current {
   font-family: var(--font-display);
-  font-size: var(--text-h2);
+  font-size: clamp(36px, 6vw, 52px);
   font-weight: 500;
   color: var(--dark);
+  line-height: 1;
 }
 
 .obrigado__price-note {
   font-family: var(--font-body);
-  font-size: var(--text-small);
-  color: var(--muted);
-  line-height: var(--lh-small);
+  font-size: var(--text-body);
+  color: var(--text);
+  line-height: var(--lh-body);
 }
 
 /* ── CTAs ── */

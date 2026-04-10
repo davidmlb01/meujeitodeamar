@@ -4,11 +4,11 @@ import { Button } from '../components'
 import './Obrigado.css'
 
 const UPSELL_BULLETS = [
-  'Leitura completa do Coração Ansioso',
-  'Leitura completa do Coração Distante',
-  'Leitura completa do Coração Seguro',
-  'Leitura completa do Coração Confuso',
-  'Inclui a seção de como cada jeito se relaciona com o seu',
+  { label: 'Coração Ansioso', desc: 'Por que monitora tudo e como isso deixa de parecer drama quando você entende a origem' },
+  { label: 'Coração Distante', desc: 'Por que some exatamente quando você mais precisa e o que está acontecendo por dentro' },
+  { label: 'Coração Seguro', desc: 'Como pensa o amor de um jeito que parece simples e que pode te ensinar algo real' },
+  { label: 'Coração Confuso', desc: 'Por que parece contraditório quando na verdade está com medo' },
+  { label: null, desc: 'Cada leitura inclui como esse jeito de amar se relaciona com os outros três' },
 ]
 
 function openUpsellCheckout() {
@@ -32,39 +32,50 @@ export default function Obrigado() {
             Pedido confirmado. Sua leitura está a caminho.
           </h1>
           <p className="obrigado__confirm-sub">
-            Verifique sua caixa de entrada agora. O email com a sua leitura foi enviado para você.
+            Seu email com a leitura chega em até 2 minutos.
           </p>
         </div>
 
         {/* Upsell */}
         {!declined && (
           <div className="obrigado__upsell">
-            <p className="obrigado__upsell-hook">Aguarde antes de fechar essa página.</p>
+            <hr className="obrigado__divider" />
             <h2 className="obrigado__upsell-headline">
-              Você acabou de dar um passo que a maioria das pessoas nunca dá.
+              Aguarde um segundo antes de fechar.
             </h2>
             <div className="obrigado__upsell-body">
-              <p>A maioria das pessoas passa anos repetindo os mesmos padrões nos relacionamentos sem nunca entender de onde eles vieram. Você não. Você quis saber.</p>
-              <p>E agora que você sabe o seu jeito de amar, há uma coisa que vai transformar completamente a forma como você entende tudo ao seu redor.</p>
-              <p>Você pode conhecer o seu jeito de amar com perfeição. Mas as pessoas ao seu redor ainda são um mistério.</p>
-              <p>Por que seu parceiro some por dias sem dar satisfação e depois volta como se nada tivesse acontecido? Por que sua mãe sempre consegue te fazer sentir culpado sem dizer uma palavra errada? Por que aquele amigo que você mais gosta é exatamente o mais difícil de manter perto?</p>
-              <p>Cada um deles tem um jeito de amar. E esse jeito explica tudo.</p>
+              <p>Tem uma coisa que faz sentido você saber agora, enquanto isso ainda está fresco.</p>
+              <p>Você acabou de descobrir como você ama. E se for parecido com a maioria das pessoas que passaram por aqui, nas próximas horas você vai começar a pensar nas pessoas ao seu redor com outros olhos.</p>
+              <p>Seu parceiro. Sua mãe. Aquela amiga que você ama mas não entende.</p>
+              <p>E vai perceber que cada um deles também tem um jeito de amar. E que esse jeito explica coisas que você tentou entender por anos sem conseguir.</p>
             </div>
 
             {/* Produto */}
             <div className="obrigado__product">
               <p className="obrigado__product-title">Combo Completo: Os 4 Jeitos de Amar</p>
               <ul className="obrigado__bullets">
-                {UPSELL_BULLETS.map((b) => (
-                  <li key={b} className="obrigado__bullet">{b}</li>
+                {UPSELL_BULLETS.map((b, i) => (
+                  <li key={i} className={`obrigado__bullet${!b.label ? ' obrigado__bullet--no-check' : ''}`}>
+                    <div className="obrigado__bullet-content">
+                      {b.label && <span className="obrigado__bullet-label">{b.label}</span>}
+                      <span className={b.label ? 'obrigado__bullet-desc' : 'obrigado__bullet-solo'}>{b.desc}</span>
+                    </div>
+                  </li>
                 ))}
               </ul>
+
+              <p className="obrigado__product-bridge">
+                Você não vai precisar comprar cada leitura separada. Tudo está aqui, no mesmo formato, pelo mesmo padrão.
+              </p>
 
               <div className="obrigado__price-block">
                 <p className="obrigado__price-original">4 leituras individuais · R$148</p>
                 <p className="obrigado__price-current">R$67</p>
                 <p className="obrigado__price-note">
-                  Pelas quatro leituras completas. Disponível apenas nessa página.
+                  Menos da metade do valor separado. Acesso imediato. Um clique.
+                </p>
+                <p className="obrigado__price-note">
+                  Quando você sair dessa página, o acesso ao combo volta ao preço normal.
                 </p>
               </div>
             </div>
@@ -86,14 +97,12 @@ export default function Obrigado() {
 
         {/* Instrução pós-compra */}
         <div className="obrigado__next">
-          <p className="obrigado__next-title">Enquanto você aguarda o email:</p>
+          <p className="obrigado__next-title">Enquanto aguarda o email:</p>
           <p className="obrigado__next-body">
-            Algumas pessoas nos perguntam o que fazer com a leitura quando ela chegar.
-            A nossa recomendação é simples: leia uma vez sem parar. Não analise. Não julgue. Só leia.
+            Leia uma vez sem parar. Sem analisar. Só leia.
           </p>
           <p className="obrigado__next-body">
-            Muita coisa vai fazer sentido de formas que você não esperava.
-            Depois, releia a seção de pontos cegos. Essa costuma ser a mais incômoda e a mais útil.
+            Depois volte para a seção de pontos cegos. Essa costuma ser a mais incômoda e a mais útil.
           </p>
         </div>
 
