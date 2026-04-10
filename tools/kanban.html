@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kanban — BIG HEAD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #09090b;
+    --surface:  #111113;
+    --surface2: #18181b;
+    --border:   #27272a;
+    --border2:  #3f3f46;
+    --text:     #fafafa;
+    --muted:    #71717a;
+    --muted2:   #52525b;
+    --col-todo:  #f97316;
+    --col-doing: #eab308;
+    --col-done:  #22c55e;
+    --radius:   12px;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ─────────────────────────────────────────────────────────── */
+  .header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 28px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-left { display: flex; align-items: center; gap: 20px; }
+  .header-logo {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .header-logo-mark {
+    width: 28px; height: 28px; border-radius: 7px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 800; color: white; letter-spacing: -1px;
+  }
+  .header-title { font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -0.3px; }
+  .header-sep { width: 1px; height: 18px; background: var(--border2); }
+  .header-date { font-size: 12px; color: var(--muted); font-weight: 400; }
+  .header-right { display: flex; align-items: center; gap: 8px; }
+  .pill {
+    font-size: 11px; font-weight: 600; padding: 3px 9px;
+    border-radius: 20px; border: 1px solid; letter-spacing: 0.1px;
+    font-feature-settings: 'tnum';
+  }
+  .pill-todo  { color: var(--col-todo);  border-color: #f9731630; background: #f9731610; }
+  .pill-doing { color: var(--col-doing); border-color: #eab30830; background: #eab30810; }
+  .pill-done  { color: var(--col-done);  border-color: #22c55e30; background: #22c55e10; }
+
+  /* ── Stats ──────────────────────────────────────────────────────────── */
+  .stats {
+    padding: 16px 28px;
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .stat-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    min-width: 160px;
+    flex-shrink: 0;
+    transition: border-color 0.2s;
+  }
+  .stat-card:hover { border-color: var(--border2); }
+  .stat-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .stat-name {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .stat-pct {
+    font-size: 13px; font-weight: 700;
+    font-feature-settings: 'tnum';
+  }
+  .stat-track {
+    height: 3px; background: var(--border2); border-radius: 2px; overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .stat-fill { height: 100%; border-radius: 2px; transition: width 0.6s cubic-bezier(0.4,0,0.2,1); }
+  .stat-counts { font-size: 11px; color: var(--muted2); font-feature-settings: 'tnum'; }
+
+  /* ── Filters ────────────────────────────────────────────────────────── */
+  .filters {
+    padding: 10px 28px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+  .filters-sep { width: 1px; height: 14px; background: var(--border2); margin: 0 4px; }
+  .filter-btn {
+    font-size: 11px; font-weight: 600; padding: 4px 10px;
+    border-radius: 20px; cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, opacity 0.15s;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--muted);
+    letter-spacing: 0.3px;
+    font-family: inherit;
+  }
+  .filter-btn.active {
+    color: var(--accent, var(--text));
+    border-color: color-mix(in srgb, var(--accent, #fff) 35%, transparent);
+    background: color-mix(in srgb, var(--accent, #fff) 10%, transparent);
+  }
+  .filter-btn:hover { opacity: 0.8; }
+
+  /* ── Board ──────────────────────────────────────────────────────────── */
+  .board {
+    display: flex;
+    gap: 14px;
+    padding: 20px 28px 32px;
+    overflow-x: auto;
+    align-items: flex-start;
+    min-height: calc(100vh - 170px);
+  }
+
+  /* ── Column ─────────────────────────────────────────────────────────── */
+  .column {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    width: 310px;
+    min-width: 310px;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 190px);
+    overflow: hidden;
+  }
+  .column-accent {
+    height: 3px;
+    border-radius: var(--radius) var(--radius) 0 0;
+    flex-shrink: 0;
+  }
+  .column-header {
+    padding: 14px 16px 13px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .column-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .column-count {
+    font-size: 11px; font-weight: 600; padding: 2px 7px;
+    border-radius: 20px;
+    background: var(--bg);
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    font-feature-settings: 'tnum';
+  }
+  .cards {
+    padding: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+  }
+
+  /* ── Card ───────────────────────────────────────────────────────────── */
+  .card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 13px 14px;
+    cursor: grab;
+    transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+    position: relative;
+  }
+  .card:hover {
+    border-color: var(--border2);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+  }
+  .card:active { cursor: grabbing; }
+  .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 9px; }
+  .card-tag {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.6px;
+    text-transform: uppercase; display: flex; align-items: center; gap: 5px;
+    color: var(--muted);
+  }
+  .card-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .card-text {
+    font-size: 13px; font-weight: 500; color: var(--text);
+    line-height: 1.55; letter-spacing: -0.1px;
+  }
+  .card-section {
+    margin-top: 8px;
+    font-size: 10px; font-weight: 500; color: var(--muted2);
+    letter-spacing: 0.4px; text-transform: uppercase;
+  }
+
+  /* ── Done column ────────────────────────────────────────────────────── */
+  .column-done .card {
+    opacity: 0.5;
+    transition: opacity 0.15s, transform 0.15s, box-shadow 0.15s;
+  }
+  .column-done .card:hover { opacity: 0.9; }
+  .column-done .card-text { text-decoration: line-through; text-decoration-color: var(--muted2); }
+
+  /* ── Drag & Drop ────────────────────────────────────────────────────── */
+  .card.dragging { opacity: 0.25; transform: scale(0.97) rotate(1deg); }
+  .cards.drag-over {
+    background: #ffffff05;
+    outline: 1px dashed var(--border2);
+    outline-offset: -6px;
+    border-radius: 8px;
+  }
+
+  /* ── Empty state ────────────────────────────────────────────────────── */
+  .empty-state {
+    padding: 32px 16px;
+    text-align: center;
+    color: var(--muted2);
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    margin: 4px;
+  }
+
+  /* ── Toast ──────────────────────────────────────────────────────────── */
+  #toast {
+    position: fixed; bottom: 20px; right: 20px;
+    background: var(--surface2); border: 1px solid var(--border2);
+    color: var(--text); font-size: 12px; font-weight: 500;
+    padding: 9px 14px; border-radius: 9px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    transform: translateY(60px) scale(0.97); opacity: 0;
+    transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+    z-index: 999; pointer-events: none; font-family: inherit;
+  }
+  #toast.show { transform: translateY(0) scale(1); opacity: 1; }
+  #toast.ok::before { content: '✓  '; color: var(--col-done); }
+  #toast.err { color: #f87171; }
+  #toast.err::before { content: '✗  '; }
+
+  /* ── Scrollbar ──────────────────────────────────────────────────────── */
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+
+  /* ── Animations ─────────────────────────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .card { animation: fadeUp 0.2s ease both; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="header-logo">
+      <div class="header-logo-mark">BH</div>
+      <span class="header-title">BIG HEAD</span>
+    </div>
+    <div class="header-sep"></div>
+    <span class="header-date">10/04/2026, 09:48:01</span>
+  </div>
+  <div class="header-right">
+    <span class="pill pill-todo">24 a fazer</span>
+    <span class="pill pill-doing">4 em andamento</span>
+    <span class="pill pill-done">27 concluidos</span>
+  </div>
+</div>
+
+<div class="stats">
+      <div class="stat-card">
+        <div class="stat-top">
+          <span class="stat-name" style="color:#f97316">MJDA</span>
+          <span class="stat-pct" style="color:#f97316">0%</span>
+        </div>
+        <div class="stat-track">
+          <div class="stat-fill" style="width:0%;background:#f97316"></div>
+        </div>
+        <span class="stat-counts">0 de 14 concluidas · 4 em andamento</span>
+      </div>
+      <div class="stat-card">
+        <div class="stat-top">
+          <span class="stat-name" style="color:#3b82f6">EASYSITES</span>
+          <span class="stat-pct" style="color:#3b82f6">59%</span>
+        </div>
+        <div class="stat-track">
+          <div class="stat-fill" style="width:59%;background:#3b82f6"></div>
+        </div>
+        <span class="stat-counts">13 de 22 concluidas</span>
+      </div>
+      <div class="stat-card">
+        <div class="stat-top">
+          <span class="stat-name" style="color:#22c55e">DESTAKA</span>
+          <span class="stat-pct" style="color:#22c55e">85%</span>
+        </div>
+        <div class="stat-track">
+          <div class="stat-fill" style="width:85%;background:#22c55e"></div>
+        </div>
+        <span class="stat-counts">11 de 13 concluidas</span>
+      </div>
+      <div class="stat-card">
+        <div class="stat-top">
+          <span class="stat-name" style="color:#a855f7">UNLMTD</span>
+          <span class="stat-pct" style="color:#a855f7">50%</span>
+        </div>
+        <div class="stat-track">
+          <div class="stat-fill" style="width:50%;background:#a855f7"></div>
+        </div>
+        <span class="stat-counts">3 de 6 concluidas</span>
+      </div></div>
+
+<div class="filters">
+  <button class="filter-btn active" data-filter="all" style="--accent:#a1a1aa" onclick="toggleAll(this)">Todos</button>
+  <div class="filters-sep"></div>
+  <button class="filter-btn active" data-filter="freud" style="--accent:#f97316" onclick="toggleFilter('freud', this)">MJDA</button><button class="filter-btn active" data-filter="easysite" style="--accent:#3b82f6" onclick="toggleFilter('easysite', this)">EASYSITES</button><button class="filter-btn active" data-filter="destaka" style="--accent:#22c55e" onclick="toggleFilter('destaka', this)">DESTAKA</button><button class="filter-btn active" data-filter="unlmtd" style="--accent:#a855f7" onclick="toggleFilter('unlmtd', this)">UNLMTD</button>
+</div>
+
+<div id="toast"></div>
+
+<div class="board">
+  <div class="column" id="col-todo">
+    <div class="column-accent" style="background:var(--col-todo)"></div>
+    <div class="column-header">
+      <span class="column-title">A fazer</span>
+      <span class="column-count" id="count-todo">24</span>
+    </div>
+    <div class="cards" id="cards-todo">
+      
+    <div class="card"
+         data-project="freud"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/MASTER-BACKUP.md"
+         data-text="Contatar 20 pessoas da rede pessoal → 10 primeiros pagantes"
+         data-status="todo"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#f97316"></span>
+          MJDA
+        </span>
+      </div>
+      <div class="card-text">Contatar 20 pessoas da rede pessoal → 10 primeiros pagantes</div>
+      <div class="card-section">Imediato (seed launch)</div>
+    </div>
+    <div class="card"
+         data-project="freud"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/MASTER-BACKUP.md"
+         data-text="Coletar depoimentos dos primeiros compradores"
+         data-status="todo"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#f97316"></span>
+          MJDA
+        </span>
+      </div>
+      <div class="card-text">Coletar depoimentos dos primeiros compradores</div>
+      <div class="card-section">Imediato (seed launch)</div>
+    </div>
+    <div class="card"
+         data-project="freud"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/MASTER-BACKUP.md"
+         data-text="Substituir depoimentos representativos por depoimentos reais na landing page"
+         data-status="todo"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#f97316"></span>
+          MJDA
+        </span>
+      </div>
+      <div class="card-text">Substituir depoimentos representativos por depoimentos reais na landing page</div>
+      <div class="card-section">Após seed (V1 Beta)</div>
+    </div>
+    <div class="card"
+         data-project="freud"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/MASTER-BACKUP.md"
+         data-text="Configurar analytics (GA4, TikTok Pixel, Clarity)"
+         data-status="todo"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#f97316"></span>
+          MJDA
+        </span>
+      </div>
+      <div class="card-text">Configurar analytics (GA4, TikTok Pixel, Clarity)</div>
+      <div class="card-section">Após seed (V1 Beta)</div>
+    </div>
+    <div class="card"
+         data-project="freud"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/MASTER-BACKUP.md"
+         data-text="Ativar `hormozi-ads` para criar anúncios baseados nos depoimentos"
+         data-status="todo"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#f97316"></span>
+          MJDA
+        </span>
+      </div>
+      <div class="card-text">Ativar `hormozi-ads` para criar anúncios baseados nos depoimentos</div>
+      <div class="card-section">Após seed (V1 Beta)</div>
+    </div>
+    <div class="card"
+         data-project="freud"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/MASTER-BACKUP.md"
+         data-text="Escalar com tráfego pago (TikTok Spark Ads)"
+         data-status="todo"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#f97316"></span>
+          MJDA
+        </span>
+      </div>
+      <div class="card-text">Escalar com tráfego pago (TikTok Spark Ads)</div>
+      <div class="card-section">Após validação V1</div>
+    </div>
+    <div class="card"
+         data-project="freud"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/MASTER-BACKUP.md"
+         data-text="Revisar preço (R$37 → subir quando oferta validada)"
+         data-status="todo"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#f97316"></span>
+          MJDA
+        </span>
+      </div>
+      <div class="card-text">Revisar preço (R$37 → subir quando oferta validada)</div>
+      <div class="card-section">Após validação V1</div>
+    </div>
+    <div class="card"
+         data-project="freud"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/MASTER-BACKUP.md"
+         data-text="Produzir Vídeo-aula &quot;Reescrevendo seu Jeito de Amar&quot; — Upsell 2 ativo"
+         data-status="todo"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#f97316"></span>
+          MJDA
+        </span>
+      </div>
+      <div class="card-text">Produzir Vídeo-aula &quot;Reescrevendo seu Jeito de Amar&quot; — Upsell 2 ativo</div>
+      <div class="card-section">Após validação V1</div>
+    </div>
+    <div class="card"
+         data-project="freud"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/MASTER-BACKUP.md"
+         data-text="Iniciar desenvolvimento do segundo produto da esteira"
+         data-status="todo"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#f97316"></span>
+          MJDA
+        </span>
+      </div>
+      <div class="card-text">Iniciar desenvolvimento do segundo produto da esteira</div>
+      <div class="card-section">V2 — Eneagrama (Mês 2–3)</div>
+    </div>
+    <div class="card"
+         data-project="freud"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/MASTER-BACKUP.md"
+         data-text="Reutilizar estrutura React + Kiwify + design system do V1"
+         data-status="todo"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#f97316"></span>
+          MJDA
+        </span>
+      </div>
+      <div class="card-text">Reutilizar estrutura React + Kiwify + design system do V1</div>
+      <div class="card-section">V2 — Eneagrama (Mês 2–3)</div>
+    </div>
+    <div class="card"
+         data-project="easysite"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/easysite/MASTER-BACKUP.md"
+         data-text="LINK_FORMULARIO: aguardando site no ar (formulario hospedado no site EasySite)"
+         data-status="todo"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#3b82f6"></span>
+          EASYSITES
+        </span>
+      </div>
+      <div class="card-text">LINK_FORMULARIO: aguardando site no ar (formulario hospedado no site EasySite)</div>
+      <div class="card-section">Bot WhatsApp &quot;Leo&quot; — IMPLEMENTADO (2026-04-04)</div>
+    </div>
+    <div class="card"
+         data-project="easysite"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/easysite/MASTER-BACKUP.md"
+         data-text="Enxoval social completo"
+         data-status="todo"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#3b82f6"></span>
+          EASYSITES
+        </span>
+      </div>
+      <div class="card-text">Enxoval social completo</div>
+      <div class="card-section">Fase 1 — Validacao (agora)</div>
+    </div>
+    <div class="card"
+         data-project="easysite"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/easysite/MASTER-BACKUP.md"
+         data-text="Perfil Instagram"
+         data-status="todo"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#3b82f6"></span>
+          EASYSITES
+        </span>
+      </div>
+      <div class="card-text">Perfil Instagram</div>
+      <div class="card-section">Fase 1 — Validacao (agora)</div>
+    </div>
+    <div class="card"
+         data-project="easysite"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/easysite/MASTER-BACKUP.md"
+         data-text="Trafego pago ativo (Meta Ads — ativar 2026-04-08)"
+         data-status="todo"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#3b82f6"></span>
+          EASYSITES
+        </span>
+      </div>
+      <div class="card-text">Trafego pago ativo (Meta Ads — ativar 2026-04-08)</div>
+      <div class="card-section">Fase 2 — Operacao</div>
+    </div>
+    <div class="card"
+         data-project="easysite"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/easysite/MASTER-BACKUP.md"
+         data-text="Prospeccao ativa com planilha (Jornada C)"
+         data-status="todo"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#3b82f6"></span>
+          EASYSITES
+        </span>
+      </div>
+      <div class="card-text">Prospeccao ativa com planilha (Jornada C)</div>
+      <div class="card-section">Fase 2 — Operacao</div>
+    </div>
+    <div class="card"
+         data-project="easysite"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/easysite/MASTER-BACKUP.md"
+         data-text="Primeiras vendas"
+         data-status="todo"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#3b82f6"></span>
+          EASYSITES
+        </span>
+      </div>
+      <div class="card-text">Primeiras vendas</div>
+      <div class="card-section">Fase 2 — Operacao</div>
+    </div>
+    <div class="card"
+         data-project="easysite"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/easysite/MASTER-BACKUP.md"
+         data-text="Automacao completa"
+         data-status="todo"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#3b82f6"></span>
+          EASYSITES
+        </span>
+      </div>
+      <div class="card-text">Automacao completa</div>
+      <div class="card-section">Fase 3 — Escala (se validar)</div>
+    </div>
+    <div class="card"
+         data-project="easysite"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/easysite/MASTER-BACKUP.md"
+         data-text="Equipe de entrega"
+         data-status="todo"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#3b82f6"></span>
+          EASYSITES
+        </span>
+      </div>
+      <div class="card-text">Equipe de entrega</div>
+      <div class="card-section">Fase 3 — Escala (se validar)</div>
+    </div>
+    <div class="card"
+         data-project="easysite"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/easysite/MASTER-BACKUP.md"
+         data-text="Novos nichos"
+         data-status="todo"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#3b82f6"></span>
+          EASYSITES
+        </span>
+      </div>
+      <div class="card-text">Novos nichos</div>
+      <div class="card-section">Fase 3 — Escala (se validar)</div>
+    </div>
+    <div class="card"
+         data-project="destaka"
+         data-file="/Users/davidlevy/Desktop/PJ/GMM/docs/MASTER-BACKUP.md"
+         data-text="Google Cloud project + OAuth configurado (amanhã)"
+         data-status="todo"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#22c55e"></span>
+          DESTAKA
+        </span>
+      </div>
+      <div class="card-text">Google Cloud project + OAuth configurado (amanhã)</div>
+      <div class="card-section">3. Estado Atual</div>
+    </div>
+    <div class="card"
+         data-project="destaka"
+         data-file="/Users/davidlevy/Desktop/PJ/GMM/docs/MASTER-BACKUP.md"
+         data-text="Stripe: 3 produtos + price IDs + webhook"
+         data-status="todo"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#22c55e"></span>
+          DESTAKA
+        </span>
+      </div>
+      <div class="card-text">Stripe: 3 produtos + price IDs + webhook</div>
+      <div class="card-section">3. Estado Atual</div>
+    </div>
+    <div class="card"
+         data-project="unlmtd"
+         data-file=""
+         data-text="Execução do brandbook em Figma"
+         data-status="todo"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#a855f7"></span>
+          UNLMTD
+        </span>
+      </div>
+      <div class="card-text">Execução do brandbook em Figma</div>
+      <div class="card-section">Geral</div>
+    </div>
+    <div class="card"
+         data-project="unlmtd"
+         data-file=""
+         data-text="Licenciar fontes Canela Display + Neue Haas Grotesk"
+         data-status="todo"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#a855f7"></span>
+          UNLMTD
+        </span>
+      </div>
+      <div class="card-text">Licenciar fontes Canela Display + Neue Haas Grotesk</div>
+      <div class="card-section">Geral</div>
+    </div>
+    <div class="card"
+         data-project="unlmtd"
+         data-file=""
+         data-text="Definir arquitetura de produto UNLMTD"
+         data-status="todo"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#a855f7"></span>
+          UNLMTD
+        </span>
+      </div>
+      <div class="card-text">Definir arquitetura de produto UNLMTD</div>
+      <div class="card-section">Geral</div>
+    </div>
+    </div>
+  </div>
+
+  <div class="column column-doing" id="col-doing">
+    <div class="column-accent" style="background:var(--col-doing)"></div>
+    <div class="column-header">
+      <span class="column-title">Em andamento</span>
+      <span class="column-count" id="count-doing">4</span>
+    </div>
+    <div class="cards" id="cards-doing">
+      
+    <div class="card"
+         data-project="freud"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/MASTER-BACKUP.md"
+         data-text="Subir PDFs nos 4 produtos principais no Kiwify"
+         data-status="doing"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#f97316"></span>
+          MJDA
+        </span>
+      </div>
+      <div class="card-text">Subir PDFs nos 4 produtos principais no Kiwify</div>
+      <div class="card-section">Imediato (seed launch)</div>
+    </div>
+    <div class="card"
+         data-project="freud"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/MASTER-BACKUP.md"
+         data-text="Configurar order bumps (OB1 + OB2) em cada um dos 4 produtos"
+         data-status="doing"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#f97316"></span>
+          MJDA
+        </span>
+      </div>
+      <div class="card-text">Configurar order bumps (OB1 + OB2) em cada um dos 4 produtos</div>
+      <div class="card-section">Imediato (seed launch)</div>
+    </div>
+    <div class="card"
+         data-project="freud"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/MASTER-BACKUP.md"
+         data-text="Configurar upsell pós-compra (Combo Completo) em cada produto"
+         data-status="doing"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#f97316"></span>
+          MJDA
+        </span>
+      </div>
+      <div class="card-text">Configurar upsell pós-compra (Combo Completo) em cada produto</div>
+      <div class="card-section">Imediato (seed launch)</div>
+    </div>
+    <div class="card"
+         data-project="freud"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/MASTER-BACKUP.md"
+         data-text="Desativar produtos de bundle desnecessários no Kiwify"
+         data-status="doing"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#f97316"></span>
+          MJDA
+        </span>
+      </div>
+      <div class="card-text">Desativar produtos de bundle desnecessários no Kiwify</div>
+      <div class="card-section">Imediato (seed launch)</div>
+    </div>
+    </div>
+  </div>
+
+  <div class="column column-done" id="col-done">
+    <div class="column-accent" style="background:var(--col-done)"></div>
+    <div class="column-header">
+      <span class="column-title">Concluido</span>
+      <span class="column-count" id="count-done">27</span>
+    </div>
+    <div class="cards" id="cards-done">
+      
+    <div class="card"
+         data-project="easysite"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/easysite/MASTER-BACKUP.md"
+         data-text="CHAVE_PIX: 46.353159/0001-90"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#3b82f6"></span>
+          EASYSITES
+        </span>
+      </div>
+      <div class="card-text">CHAVE_PIX: 46.353159/0001-90</div>
+      <div class="card-section">Bot WhatsApp &quot;Leo&quot; — IMPLEMENTADO (2026-04-04)</div>
+    </div>
+    <div class="card"
+         data-project="easysite"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/easysite/MASTER-BACKUP.md"
+         data-text="PORTFOLIOS: 5 sites (Lucas Ferraz, PetShop Aumigao, Carla Alvarez, Contabilidade Pedroso, Studio Bella)"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#3b82f6"></span>
+          EASYSITES
+        </span>
+      </div>
+      <div class="card-text">PORTFOLIOS: 5 sites (Lucas Ferraz, PetShop Aumigao, Carla Alvarez, Contabilidade Pedroso, Studio Bella)</div>
+      <div class="card-section">Bot WhatsApp &quot;Leo&quot; — IMPLEMENTADO (2026-04-04)</div>
+    </div>
+    <div class="card"
+         data-project="easysite"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/easysite/MASTER-BACKUP.md"
+         data-text="DEPOIMENTOS: 5 depoimentos inseridos (ficcionais, substituir por reais com o tempo)"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#3b82f6"></span>
+          EASYSITES
+        </span>
+      </div>
+      <div class="card-text">DEPOIMENTOS: 5 depoimentos inseridos (ficcionais, substituir por reais com o tempo)</div>
+      <div class="card-section">Bot WhatsApp &quot;Leo&quot; — IMPLEMENTADO (2026-04-04)</div>
+    </div>
+    <div class="card"
+         data-project="easysite"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/easysite/MASTER-BACKUP.md"
+         data-text="NOME_RESPONSAVEL: bot = Leo, escalacao = &quot;nosso especialista&quot; (generico)"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#3b82f6"></span>
+          EASYSITES
+        </span>
+      </div>
+      <div class="card-text">NOME_RESPONSAVEL: bot = Leo, escalacao = &quot;nosso especialista&quot; (generico)</div>
+      <div class="card-section">Bot WhatsApp &quot;Leo&quot; — IMPLEMENTADO (2026-04-04)</div>
+    </div>
+    <div class="card"
+         data-project="easysite"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/easysite/MASTER-BACKUP.md"
+         data-text="Squads de branding e copy"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#3b82f6"></span>
+          EASYSITES
+        </span>
+      </div>
+      <div class="card-text">Squads de branding e copy</div>
+      <div class="card-section">Fase 1 — Validacao (agora)</div>
+    </div>
+    <div class="card"
+         data-project="easysite"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/easysite/MASTER-BACKUP.md"
+         data-text="Brandbook"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#3b82f6"></span>
+          EASYSITES
+        </span>
+      </div>
+      <div class="card-text">Brandbook</div>
+      <div class="card-section">Fase 1 — Validacao (agora)</div>
+    </div>
+    <div class="card"
+         data-project="easysite"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/easysite/MASTER-BACKUP.md"
+         data-text="Bot WhatsApp (codigo pronto)"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#3b82f6"></span>
+          EASYSITES
+        </span>
+      </div>
+      <div class="card-text">Bot WhatsApp (codigo pronto)</div>
+      <div class="card-section">Fase 1 — Validacao (agora)</div>
+    </div>
+    <div class="card"
+         data-project="easysite"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/easysite/MASTER-BACKUP.md"
+         data-text="Deploy Evolution API na VPS"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#3b82f6"></span>
+          EASYSITES
+        </span>
+      </div>
+      <div class="card-text">Deploy Evolution API na VPS</div>
+      <div class="card-section">Fase 1 — Validacao (agora)</div>
+    </div>
+    <div class="card"
+         data-project="easysite"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/easysite/MASTER-BACKUP.md"
+         data-text="Configurar WhatsApp Business (numero +5511943451866)"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#3b82f6"></span>
+          EASYSITES
+        </span>
+      </div>
+      <div class="card-text">Configurar WhatsApp Business (numero +5511943451866)</div>
+      <div class="card-section">Fase 1 — Validacao (agora)</div>
+    </div>
+    <div class="card"
+         data-project="easysite"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/easysite/MASTER-BACKUP.md"
+         data-text="Escanear QR code (2026-04-07)"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#3b82f6"></span>
+          EASYSITES
+        </span>
+      </div>
+      <div class="card-text">Escanear QR code (2026-04-07)</div>
+      <div class="card-section">Fase 1 — Validacao (agora)</div>
+    </div>
+    <div class="card"
+         data-project="easysite"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/easysite/MASTER-BACKUP.md"
+         data-text="Deploy bot Leo (Python/FastAPI) na VPS com PM2"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#3b82f6"></span>
+          EASYSITES
+        </span>
+      </div>
+      <div class="card-text">Deploy bot Leo (Python/FastAPI) na VPS com PM2</div>
+      <div class="card-section">Fase 1 — Validacao (agora)</div>
+    </div>
+    <div class="card"
+         data-project="easysite"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/easysite/MASTER-BACKUP.md"
+         data-text="Site easysite.site no ar"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#3b82f6"></span>
+          EASYSITES
+        </span>
+      </div>
+      <div class="card-text">Site easysite.site no ar</div>
+      <div class="card-section">Fase 1 — Validacao (agora)</div>
+    </div>
+    <div class="card"
+         data-project="easysite"
+         data-file="/Users/davidlevy/Desktop/PJ/BIG HEAD/docs/easysite/MASTER-BACKUP.md"
+         data-text="Formulario de briefing configurado"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#3b82f6"></span>
+          EASYSITES
+        </span>
+      </div>
+      <div class="card-text">Formulario de briefing configurado</div>
+      <div class="card-section">Fase 1 — Validacao (agora)</div>
+    </div>
+    <div class="card"
+         data-project="destaka"
+         data-file="/Users/davidlevy/Desktop/PJ/GMM/docs/MASTER-BACKUP.md"
+         data-text="PRD completo (`docs/prd/gmm-prd.md`)"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#22c55e"></span>
+          DESTAKA
+        </span>
+      </div>
+      <div class="card-text">PRD completo (`docs/prd/gmm-prd.md`)</div>
+      <div class="card-section">3. Estado Atual</div>
+    </div>
+    <div class="card"
+         data-project="destaka"
+         data-file="/Users/davidlevy/Desktop/PJ/GMM/docs/MASTER-BACKUP.md"
+         data-text="Arquitetura técnica completa (`docs/architecture/gmm-architecture.md`)"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#22c55e"></span>
+          DESTAKA
+        </span>
+      </div>
+      <div class="card-text">Arquitetura técnica completa (`docs/architecture/gmm-architecture.md`)</div>
+      <div class="card-section">3. Estado Atual</div>
+    </div>
+    <div class="card"
+         data-project="destaka"
+         data-file="/Users/davidlevy/Desktop/PJ/GMM/docs/MASTER-BACKUP.md"
+         data-text="Requisitos de servidor documentados (`docs/guides/server-requirements.md`)"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#22c55e"></span>
+          DESTAKA
+        </span>
+      </div>
+      <div class="card-text">Requisitos de servidor documentados (`docs/guides/server-requirements.md`)</div>
+      <div class="card-section">3. Estado Atual</div>
+    </div>
+    <div class="card"
+         data-project="destaka"
+         data-file="/Users/davidlevy/Desktop/PJ/GMM/docs/MASTER-BACKUP.md"
+         data-text="Epic 1 (Core Platform) — 7 stories planejadas"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#22c55e"></span>
+          DESTAKA
+        </span>
+      </div>
+      <div class="card-text">Epic 1 (Core Platform) — 7 stories planejadas</div>
+      <div class="card-section">3. Estado Atual</div>
+    </div>
+    <div class="card"
+         data-project="destaka"
+         data-file="/Users/davidlevy/Desktop/PJ/GMM/docs/MASTER-BACKUP.md"
+         data-text="Epic 2 (Monetização) — 3 stories planejadas"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#22c55e"></span>
+          DESTAKA
+        </span>
+      </div>
+      <div class="card-text">Epic 2 (Monetização) — 3 stories planejadas</div>
+      <div class="card-section">3. Estado Atual</div>
+    </div>
+    <div class="card"
+         data-project="destaka"
+         data-file="/Users/davidlevy/Desktop/PJ/GMM/docs/MASTER-BACKUP.md"
+         data-text="Repositório git inicializado"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#22c55e"></span>
+          DESTAKA
+        </span>
+      </div>
+      <div class="card-text">Repositório git inicializado</div>
+      <div class="card-section">3. Estado Atual</div>
+    </div>
+    <div class="card"
+         data-project="destaka"
+         data-file="/Users/davidlevy/Desktop/PJ/GMM/docs/MASTER-BACKUP.md"
+         data-text="Projeto Next.js criado (packages/web/)"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#22c55e"></span>
+          DESTAKA
+        </span>
+      </div>
+      <div class="card-text">Projeto Next.js criado (packages/web/)</div>
+      <div class="card-section">3. Estado Atual</div>
+    </div>
+    <div class="card"
+         data-project="destaka"
+         data-file="/Users/davidlevy/Desktop/PJ/GMM/docs/MASTER-BACKUP.md"
+         data-text="Banco de dados Supabase criado (sa-east-1, São Paulo)"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#22c55e"></span>
+          DESTAKA
+        </span>
+      </div>
+      <div class="card-text">Banco de dados Supabase criado (sa-east-1, São Paulo)</div>
+      <div class="card-section">3. Estado Atual</div>
+    </div>
+    <div class="card"
+         data-project="destaka"
+         data-file="/Users/davidlevy/Desktop/PJ/GMM/docs/MASTER-BACKUP.md"
+         data-text="Migração SQL executada (8 tabelas + RLS)"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#22c55e"></span>
+          DESTAKA
+        </span>
+      </div>
+      <div class="card-text">Migração SQL executada (8 tabelas + RLS)</div>
+      <div class="card-section">3. Estado Atual</div>
+    </div>
+    <div class="card"
+         data-project="destaka"
+         data-file="/Users/davidlevy/Desktop/PJ/GMM/docs/MASTER-BACKUP.md"
+         data-text="Upstash Redis criado (sa-east-1)"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#22c55e"></span>
+          DESTAKA
+        </span>
+      </div>
+      <div class="card-text">Upstash Redis criado (sa-east-1)</div>
+      <div class="card-section">3. Estado Atual</div>
+    </div>
+    <div class="card"
+         data-project="destaka"
+         data-file="/Users/davidlevy/Desktop/PJ/GMM/docs/MASTER-BACKUP.md"
+         data-text=".env.local preenchido: NextAuth, Anthropic, Resend, Supabase, Upstash"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#22c55e"></span>
+          DESTAKA
+        </span>
+      </div>
+      <div class="card-text">.env.local preenchido: NextAuth, Anthropic, Resend, Supabase, Upstash</div>
+      <div class="card-section">3. Estado Atual</div>
+    </div>
+    <div class="card"
+         data-project="unlmtd"
+         data-file=""
+         data-text="Brandbook HTML completo (specs prontas)"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#a855f7"></span>
+          UNLMTD
+        </span>
+      </div>
+      <div class="card-text">Brandbook HTML completo (specs prontas)</div>
+      <div class="card-section">Geral</div>
+    </div>
+    <div class="card"
+         data-project="unlmtd"
+         data-file=""
+         data-text="Paleta secundária aprovada (Terra + Ouro + Grafite)"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#a855f7"></span>
+          UNLMTD
+        </span>
+      </div>
+      <div class="card-text">Paleta secundária aprovada (Terra + Ouro + Grafite)</div>
+      <div class="card-section">Geral</div>
+    </div>
+    <div class="card"
+         data-project="unlmtd"
+         data-file=""
+         data-text="Fontes confirmadas por David"
+         data-status="done"
+         draggable="true"
+         ondragstart="onDragStart(event)">
+      <div class="card-header">
+        <span class="card-tag">
+          <span class="card-dot" style="background:#a855f7"></span>
+          UNLMTD
+        </span>
+      </div>
+      <div class="card-text">Fontes confirmadas por David</div>
+      <div class="card-section">Geral</div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const API = 'http://localhost:3777/update-task';
+  const COL_STATUS = { 'cards-todo': 'todo', 'cards-doing': 'doing', 'cards-done': 'done' };
+  let dragged = null;
+  let toastTimer = null;
+
+  // ── Drag & Drop ──────────────────────────────────────────────────────────
+  function onDragStart(e) {
+    dragged = e.currentTarget;
+    setTimeout(() => dragged.classList.add('dragging'), 0);
+    e.dataTransfer.effectAllowed = 'move';
+  }
+
+  document.addEventListener('dragend', () => {
+    if (dragged) { dragged.classList.remove('dragging'); dragged = null; }
+    document.querySelectorAll('.cards').forEach(c => c.classList.remove('drag-over'));
+  });
+
+  // drop zones
+  document.querySelectorAll('.cards').forEach(zone => {
+    zone.addEventListener('dragover', e => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      document.querySelectorAll('.cards').forEach(c => c.classList.remove('drag-over'));
+      zone.classList.add('drag-over');
+    });
+    zone.addEventListener('dragleave', e => {
+      if (!zone.contains(e.relatedTarget)) zone.classList.remove('drag-over');
+    });
+    zone.addEventListener('drop', e => {
+      e.preventDefault();
+      zone.classList.remove('drag-over');
+      if (!dragged || dragged.parentElement === zone) return;
+
+      const newStatus = COL_STATUS[zone.id];
+      if (!newStatus) return;
+
+      const file = dragged.dataset.file;
+      const text = dragged.dataset.text;
+      const oldStatus = dragged.dataset.status;
+
+      // move o card visualmente imediatamente
+      zone.prepend(dragged);
+      dragged.dataset.status = newStatus;
+
+      // remove empty-state se existia
+      zone.querySelectorAll('.empty-state').forEach(el => el.remove());
+
+      updateCounts();
+
+      // persiste no arquivo via servidor
+      if (file) {
+        fetch(API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ file, text, newStatus }),
+        })
+          .then(r => r.json())
+          .then(data => {
+            if (data.ok) {
+              showToast('ok', 'Salvo no MASTER-BACKUP');
+            } else {
+              showToast('err', data.error || 'Erro ao salvar');
+              // reverte visualmente
+              const oldZone = document.getElementById('cards-' + oldStatus);
+              if (oldZone) { oldZone.prepend(dragged); dragged.dataset.status = oldStatus; }
+              updateCounts();
+            }
+          })
+          .catch(() => showToast('err', 'Servidor offline — rode kanban-server.cjs para salvar'));
+      } else {
+        showToast('ok', 'Movido (projeto sem arquivo direto)');
+      }
+    });
+  });
+
+  function showToast(type, msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'show ' + type;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { t.className = ''; }, 3000);
+  }
+
+  function updateCounts() {
+    document.getElementById('count-todo').textContent =
+      document.querySelectorAll('#cards-todo .card:not(.hidden)').length;
+    document.getElementById('count-doing').textContent =
+      document.querySelectorAll('#cards-doing .card:not(.hidden)').length;
+    document.getElementById('count-done').textContent =
+      document.querySelectorAll('#cards-done .card:not(.hidden)').length;
+  }
+
+  // ── Filtros ───────────────────────────────────────────────────────────────
+  const activeFilters = new Set(['all', 'freud', 'easysite', 'destaka', 'unlmtd']);
+
+  function toggleFilter(projectId, btn) {
+    // desativa "Todos" se estava ativo
+    const allBtn = document.querySelector('[data-filter="all"]');
+    if (activeFilters.has('all')) {
+      activeFilters.delete('all');
+      allBtn.classList.remove('active');
+    }
+
+    if (activeFilters.has(projectId)) {
+      activeFilters.delete(projectId);
+      btn.classList.remove('active');
+    } else {
+      activeFilters.add(projectId);
+      btn.classList.add('active');
+    }
+
+    // se nada ativo, ativa tudo
+    if (activeFilters.size === 0) {
+      activeFilters.add('all');
+      allBtn.classList.add('active');
+      document.querySelector('[data-filter="freud"]').classList.add('active');
+      document.querySelector('[data-filter="easysite"]').classList.add('active');
+      document.querySelector('[data-filter="destaka"]').classList.add('active');
+      document.querySelector('[data-filter="unlmtd"]').classList.add('active');
+      activeFilters.add('freud');
+      activeFilters.add('easysite');
+      activeFilters.add('destaka');
+      activeFilters.add('unlmtd');
+    }
+
+    applyFilters();
+  }
+
+  function toggleAll(btn) {
+    const allActive = activeFilters.has('all');
+    activeFilters.clear();
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+
+    if (!allActive) {
+      activeFilters.add('all');
+      btn.classList.add('active');
+      activeFilters.add('freud');
+      activeFilters.add('easysite');
+      activeFilters.add('destaka');
+      activeFilters.add('unlmtd');
+      document.querySelectorAll('.filter-btn:not([data-filter="all"])').forEach(b => b.classList.add('active'));
+    }
+
+    applyFilters();
+  }
+
+  function applyFilters() {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      const proj = card.dataset.project;
+      if (activeFilters.has('all') || activeFilters.has(proj)) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    updateCounts();
+  }
+</script>
+
+</body>
+</html>
