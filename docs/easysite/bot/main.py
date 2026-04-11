@@ -67,6 +67,13 @@ def extract_name(data: dict) -> str:
         return ""
 
 
+def extract_message_id(data: dict) -> str:
+    try:
+        return data["data"]["key"].get("id", "") or ""
+    except (KeyError, TypeError):
+        return ""
+
+
 def is_from_me(data: dict) -> bool:
     try:
         return data["data"]["key"].get("fromMe", False)
@@ -183,10 +190,14 @@ async def webhook(request: Request):
     if is_from_me(data):
         return {"status": "ignored_self"}
 
-    phone = extract_phone(data)
     jid = extract_jid(data)
+    if jid.endswith("@g.us"):
+        return {"status": "ignored_group"}
+
+    phone = extract_phone(data)
     message = extract_message(data)
     name = extract_name(data)
+    message_id = extract_message_id(data)
 
     if not phone or not message:
         return {"status": "empty_message"}
@@ -234,6 +245,6 @@ async def webhook(request: Request):
     update_last_bot_message(lead["id"])
 
     # Enviar via WhatsApp (usa JID completo para suportar @lid e @s.whatsapp.net)
-    send_message(jid or phone, reply, push_name=name)
+    send_message(jid or phone, reply, push_name=name, message_id=message_id)
 
     return {"status": "ok"}
