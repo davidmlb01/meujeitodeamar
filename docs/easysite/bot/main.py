@@ -234,6 +234,6 @@ async def webhook(request: Request):
     update_last_bot_message(lead["id"])
 
     # Enviar via WhatsApp (usa JID completo para suportar @lid e @s.whatsapp.net)
-    send_message(jid or phone, reply)
+    send_message(jid or phone, reply, push_name=name)
 
     return {"status": "ok"}
