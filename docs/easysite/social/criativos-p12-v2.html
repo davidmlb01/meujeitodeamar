@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasySite — Criativos P12 v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Instrument+Serif:ital,wght@0,400;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'Instrument Sans', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+  --white: #FAFAF9;
+  --black: #080503;
+  --dim: rgba(250,250,249,0.45);
+  --dimmer: rgba(250,250,249,0.2);
+}
+
+html, body {
+  background: #111009;
+  color: #FAFAF9;
+  font-family: var(--sans);
+  min-height: 100vh;
+}
+
+.page-layout { display: flex; min-height: 100vh; }
+
+/* SIDEBAR */
+.sidebar {
+  width: 220px; flex-shrink: 0;
+  background: #0A0908;
+  border-right: 1px solid rgba(255,255,255,0.07);
+  position: sticky; top: 0; height: 100vh;
+  overflow-y: auto; padding: 24px 0;
+}
+.sidebar-brand {
+  font-family: var(--serif); font-size: 18px;
+  color: rgba(255,255,255,0.7);
+  padding: 0 20px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  margin-bottom: 20px;
+}
+.sidebar-brand span {
+  display: block; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.25); margin-top: 4px;
+}
+.sidebar nav { display: flex; flex-direction: column; gap: 2px; padding: 0 12px; }
+.sidebar nav a {
+  display: block; padding: 8px 10px; border-radius: 6px;
+  color: rgba(255,255,255,0.45); text-decoration: none;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em;
+  transition: background 0.15s, color 0.15s;
+}
+.sidebar nav a:hover { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.9); }
+.nav-label {
+  padding: 4px 10px; font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.2); margin-top: 8px;
+}
+
+/* MAIN */
+.main { flex: 1; padding: 48px 40px; }
+.main-header { margin-bottom: 56px; }
+.main-header h1 {
+  font-family: var(--serif); font-size: 36px; font-weight: 400;
+  color: rgba(255,255,255,0.85); margin-bottom: 8px;
+}
+.main-header p {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: rgba(255,255,255,0.3);
+}
+
+.criativo-section { margin-bottom: 80px; scroll-margin-top: 32px; }
+.criativo-header {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 20px; padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.criativo-title {
+  font-family: var(--mono); font-size: 13px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(255,255,255,0.5);
+}
+.criativo-title strong { color: rgba(255,255,255,0.85); font-size: 15px; }
+
+.btn-download {
+  background: #FAFAF9; color: #080503; border: none;
+  padding: 6px 16px; border-radius: 6px;
+  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.06em; cursor: pointer; transition: opacity 0.15s;
+}
+.btn-download:hover { opacity: 0.75; }
+
+/* META ADS COPY BLOCK */
+.ads-copy {
+  margin-top: 28px;
+  background: #0D0B09;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  max-width: 720px;
+}
+.ads-copy-header {
+  padding: 10px 20px;
+  background: rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+.ads-copy-field {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.ads-copy-field:last-child { border-bottom: none; }
+.ads-copy-label {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  flex-shrink: 0; width: 120px; padding-top: 2px;
+}
+.ads-copy-text {
+  font-family: var(--sans); font-size: 14px;
+  color: rgba(255,255,255,0.85); line-height: 1.55;
+  flex: 1;
+  user-select: all;
+  cursor: text;
+}
+.ads-copy-text:hover { color: #fff; }
+.ads-copy-btn {
+  background: rgba(255,255,255,0.07); border: none;
+  color: rgba(255,255,255,0.4); padding: 4px 10px;
+  border-radius: 4px; font-family: var(--mono); font-size: 10px;
+  cursor: pointer; flex-shrink: 0; transition: all 0.15s;
+  letter-spacing: 0.04em;
+}
+.ads-copy-btn:hover { background: rgba(255,255,255,0.14); color: #fff; }
+
+/* PREVIEW SCALED */
+.preview-wrapper {
+  width: 432px; height: 540px;
+  overflow: hidden; position: relative;
+  border-radius: 8px; box-shadow: 0 8px 48px rgba(0,0,0,0.7);
+}
+.preview-scale {
+  transform: scale(0.4); transform-origin: top left;
+  position: absolute; top: 0; left: 0;
+  width: 1080px; height: 1350px;
+}
+
+/* ============================================================
+   FRAME BASE — 1080 x 1350
+   ============================================================ */
+.frame {
+  width: 1080px;
+  height: 1350px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ══════════════════════════════════════════════════════
+   CTA PILL — padrão em todos os cards
+   ══════════════════════════════════════════════════════ */
+.cta-pill-dark {
+  display: inline-block;
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 22px 44px;
+  border-radius: 100px;
+  white-space: nowrap;
+  line-height: 1;
+}
+.cta-pill-light {
+  display: inline-block;
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 22px 44px;
+  border-radius: 100px;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* ══════════════════════════════════════════════════════
+   P12-A — COMPARAÇÃO DE PREÇO (stacked, não split)
+   ══════════════════════════════════════════════════════ */
+.p12a {
+  background: #080503;
+  display: flex;
+  flex-direction: column;
+  padding: 72px 96px;
+}
+.p12a .logo {
+  font-family: var(--serif); font-size: 36px;
+  color: rgba(255,255,255,0.3); margin-bottom: 72px;
+}
+.p12a .agencia-block {
+  display: flex; align-items: center; gap: 40px; margin-bottom: 24px;
+}
+.p12a .agencia-label {
+  font-family: var(--mono); font-size: 26px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(255,255,255,0.35);
+  flex-shrink: 0;
+}
+.p12a .agencia-price {
+  font-family: var(--serif); font-size: 96px; line-height: 1;
+  color: rgba(255,255,255,0.2);
+  text-decoration: line-through;
+  text-decoration-color: rgba(220,60,60,0.7);
+  text-decoration-thickness: 5px;
+}
+.p12a .separator {
+  width: 100%; height: 1px;
+  background: rgba(255,255,255,0.1);
+  margin: 32px 0;
+}
+.p12a .easysite-block {
+  display: flex; align-items: center; gap: 40px; margin-bottom: 32px;
+}
+.p12a .easysite-label {
+  font-family: var(--mono); font-size: 26px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(255,255,255,0.55);
+  flex-shrink: 0;
+}
+.p12a .easysite-price {
+  font-family: var(--serif); font-size: 160px; line-height: 1;
+  color: var(--white);
+}
+.p12a .detail-row {
+  display: flex; gap: 48px; margin-bottom: auto;
+}
+.p12a .detail-item {
+  display: flex; flex-direction: column; gap: 6px;
+}
+.p12a .detail-value {
+  font-family: var(--mono); font-size: 32px; font-weight: 700;
+  color: var(--white);
+}
+.p12a .detail-label {
+  font-family: var(--sans); font-size: 24px;
+  color: rgba(255,255,255,0.45);
+}
+.p12a .bottom {
+  padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 48px;
+}
+.p12a .tagline {
+  font-family: var(--serif); font-size: 44px; font-weight: 400;
+  color: rgba(255,255,255,0.7); line-height: 1.3;
+}
+
+/* ══════════════════════════════════════════════════════
+   P12-B — VELOCIDADE (compacto)
+   ══════════════════════════════════════════════════════ */
+.p12b {
+  background: var(--white);
+  display: flex; flex-direction: column;
+  padding: 72px 96px;
+}
+.p12b .logo {
+  font-family: var(--serif); font-size: 36px;
+  color: rgba(8,5,3,0.3); margin-bottom: 64px;
+}
+.p12b .comparison {
+  display: flex; align-items: flex-end; gap: 48px;
+  margin-bottom: 56px;
+}
+.p12b .col-bad {
+  display: flex; flex-direction: column; gap: 8px;
+  opacity: 0.4;
+}
+.p12b .col-good {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.p12b .col-label {
+  font-family: var(--mono); font-size: 22px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(8,5,3,0.6);
+}
+.p12b .num-bad {
+  font-family: var(--serif); font-size: 180px; line-height: 1;
+  color: rgba(8,5,3,0.5);
+  text-decoration: line-through;
+  text-decoration-color: rgba(200,50,50,0.5);
+  text-decoration-thickness: 5px;
+}
+.p12b .suf-bad {
+  font-family: var(--sans); font-size: 36px; font-weight: 600;
+  color: rgba(8,5,3,0.4);
+}
+.p12b .vs {
+  font-family: var(--mono); font-size: 32px;
+  color: rgba(8,5,3,0.2); letter-spacing: 0.06em;
+  padding-bottom: 24px;
+  flex-shrink: 0;
+}
+.p12b .num-good {
+  font-family: var(--serif); font-size: 180px; line-height: 1;
+  color: var(--black);
+}
+.p12b .suf-good {
+  font-family: var(--sans); font-size: 36px; font-weight: 700;
+  color: var(--black);
+}
+.p12b .headline {
+  font-family: var(--serif); font-size: 64px; font-weight: 400;
+  color: var(--black); line-height: 1.15; margin-bottom: auto;
+}
+.p12b .bottom {
+  padding-top: 40px; border-top: 2px solid var(--black);
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 48px;
+}
+.p12b .price-tag {
+  font-family: var(--mono); font-size: 30px; font-weight: 700;
+  color: var(--black); line-height: 1.4;
+}
+
+/* ══════════════════════════════════════════════════════
+   P12-C — FOMO
+   ══════════════════════════════════════════════════════ */
+.p12c {
+  background: #0D0B09;
+  display: flex; flex-direction: column;
+  padding: 72px 96px;
+}
+.p12c .logo {
+  font-family: var(--serif); font-size: 36px;
+  color: rgba(255,255,255,0.3); margin-bottom: 56px;
+}
+.p12c .headline {
+  font-family: var(--serif); font-size: 88px; font-weight: 400;
+  color: var(--white); line-height: 1.1; margin-bottom: 56px;
+}
+.p12c .headline em { color: rgba(255,255,255,0.5); font-style: italic; }
+.p12c .search-bar {
+  background: rgba(255,255,255,0.07);
+  border: 2px solid rgba(255,255,255,0.15);
+  border-radius: 14px; padding: 32px 44px;
+  display: flex; align-items: center; gap: 24px;
+  margin-bottom: 24px;
+}
+.p12c .search-icon { font-size: 40px; }
+.p12c .search-text {
+  font-family: var(--sans); font-size: 38px;
+  color: rgba(255,255,255,0.6);
+}
+.p12c .search-text strong { color: var(--white); font-weight: 700; }
+.p12c .result {
+  border-radius: 14px; padding: 32px 44px; margin-bottom: 16px;
+}
+.p12c .result-win {
+  background: rgba(255,255,255,0.07);
+  border-left: 5px solid rgba(100,220,130,0.7);
+}
+.p12c .result-lose {
+  background: rgba(220,60,60,0.08);
+  border-left: 5px solid rgba(220,80,80,0.7);
+}
+.p12c .r-status {
+  font-family: var(--mono); font-size: 20px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.p12c .r-status-green { color: rgba(100,220,130,0.9); }
+.p12c .r-status-red { color: rgba(220,80,80,0.7); }
+.p12c .r-name {
+  font-family: var(--sans); font-size: 32px; font-weight: 700;
+  color: var(--white); margin-bottom: 6px;
+}
+.p12c .r-url {
+  font-family: var(--mono); font-size: 22px;
+  color: rgba(255,255,255,0.65);
+}
+.p12c .bottom {
+  margin-top: auto; padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.p12c .price-block {
+  display: flex; flex-direction: column; gap: 4px;
+}
+.p12c .price-line {
+  font-family: var(--sans); font-size: 36px; font-weight: 700;
+  color: var(--white);
+}
+
+/* ══════════════════════════════════════════════════════
+   P12-D — NICHO SALÃO
+   ══════════════════════════════════════════════════════ */
+.p12d {
+  background: #080503;
+  display: flex; flex-direction: column;
+  padding: 72px 96px;
+}
+.p12d .logo {
+  font-family: var(--serif); font-size: 36px;
+  color: rgba(255,255,255,0.3); margin-bottom: 48px;
+}
+.p12d .tag {
+  display: inline-flex; align-self: flex-start;
+  font-family: var(--mono); font-size: 22px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(255,255,255,0.5);
+  border: 1.5px solid rgba(255,255,255,0.2);
+  padding: 12px 24px; border-radius: 40px; margin-bottom: 40px;
+}
+.p12d .headline {
+  font-family: var(--serif); font-size: 110px; font-weight: 400;
+  color: var(--white); line-height: 1.0; margin-bottom: 36px;
+}
+.p12d .subline {
+  font-family: var(--sans); font-size: 38px; font-weight: 400;
+  color: rgba(255,255,255,0.55); line-height: 1.4; margin-bottom: 56px;
+}
+.p12d .subline strong { color: var(--white); font-weight: 700; }
+.p12d .stats {
+  display: flex; gap: 0; flex: 1; align-items: flex-end; margin-bottom: 56px;
+}
+.p12d .stat {
+  flex: 1;
+  padding-right: 48px; margin-right: 48px;
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+.p12d .stat:last-child { border-right: none; padding-right: 0; margin-right: 0; }
+.p12d .stat-num {
+  font-family: var(--serif); font-size: 88px; line-height: 1;
+  color: var(--white); margin-bottom: 10px;
+}
+.p12d .stat-lbl {
+  font-family: var(--mono); font-size: 22px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: rgba(255,255,255,0.45);
+}
+.p12d .bottom {
+  padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.12);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.p12d .guar {
+  font-family: var(--sans); font-size: 28px;
+  color: rgba(255,255,255,0.45); line-height: 1.4;
+}
+
+/* ══════════════════════════════════════════════════════
+   P12-E — GARANTIA (risco zero)
+   ══════════════════════════════════════════════════════ */
+.p12e {
+  background: var(--white);
+  display: flex; flex-direction: column;
+  align-items: center; text-align: center;
+  padding: 72px 96px;
+}
+.p12e .logo {
+  font-family: var(--serif); font-size: 36px;
+  color: rgba(8,5,3,0.3); align-self: flex-start; margin-bottom: 64px;
+}
+.p12e .seal {
+  width: 420px; height: 420px; border-radius: 50%;
+  border: 6px solid var(--black);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 4px;
+  position: relative; margin-bottom: 56px; flex-shrink: 0;
+}
+.p12e .seal::before {
+  content: ''; position: absolute; inset: 14px;
+  border-radius: 50%; border: 2px solid rgba(8,5,3,0.12);
+}
+.p12e .seal-sup {
+  font-family: var(--mono); font-size: 20px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: rgba(8,5,3,0.4);
+}
+.p12e .seal-num {
+  font-family: var(--serif); font-size: 100px; line-height: 1;
+  color: var(--black);
+}
+.p12e .seal-sub {
+  font-family: var(--mono); font-size: 20px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(8,5,3,0.4);
+}
+.p12e .headline {
+  font-family: var(--serif); font-size: 76px; font-weight: 400;
+  color: var(--black); line-height: 1.15; margin-bottom: 28px;
+}
+.p12e .subline {
+  font-family: var(--sans); font-size: 34px;
+  color: rgba(8,5,3,0.55); line-height: 1.4;
+  max-width: 780px; margin-bottom: auto;
+}
+.p12e .subline strong { color: var(--black); font-weight: 700; }
+.p12e .bottom {
+  width: 100%; padding-top: 40px;
+  border-top: 2px solid var(--black);
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 48px;
+}
+.p12e .price {
+  font-family: var(--mono); font-size: 34px; font-weight: 700;
+  color: var(--black); line-height: 1.4;
+}
+
+/* ══════════════════════════════════════════════════════
+   P12-F — PROVA SOCIAL
+   ══════════════════════════════════════════════════════ */
+.p12f {
+  background: #080503;
+  display: flex; flex-direction: column;
+  padding: 72px 96px;
+}
+.p12f .logo {
+  font-family: var(--serif); font-size: 36px;
+  color: rgba(255,255,255,0.3); margin-bottom: 48px;
+}
+.p12f .headline {
+  font-family: var(--serif); font-size: 72px; font-weight: 400;
+  color: var(--white); line-height: 1.1; margin-bottom: 12px;
+}
+.p12f .subheadline {
+  font-family: var(--serif); font-size: 56px;
+  font-style: italic; color: rgba(255,255,255,0.4);
+  line-height: 1.1; margin-bottom: 48px;
+}
+.p12f .grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 16px; flex: 1; margin-bottom: 48px;
+}
+.p12f .grid-item {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px; padding: 32px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.p12f .grid-item.empty {
+  background: rgba(220,60,60,0.1);
+  border: 2px dashed rgba(220,80,80,0.45);
+}
+.p12f .g-icon { font-size: 44px; line-height: 1; }
+.p12f .g-name {
+  font-family: var(--sans); font-size: 28px; font-weight: 700;
+  color: var(--white); line-height: 1.2;
+}
+.p12f .g-check {
+  font-family: var(--mono); font-size: 20px; letter-spacing: 0.06em;
+  text-transform: uppercase; margin-top: auto;
+}
+.p12f .g-check-yes { color: rgba(100,220,130,0.9); }
+.p12f .g-check-no { color: rgba(220,80,80,0.75); }
+.p12f .bottom {
+  padding-top: 36px; border-top: 1px solid rgba(255,255,255,0.12);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.p12f .question {
+  font-family: var(--serif); font-size: 44px;
+  color: var(--white); font-style: italic; line-height: 1.2;
+}
+
+</style>
+</head>
+<body>
+
+<div class="page-layout">
+
+<aside class="sidebar">
+  <div class="sidebar-brand">EasySite <span>P12 · v2</span></div>
+  <nav>
+    <div class="nav-label">6 variações</div>
+    <a href="#p12a">P12-A — Preço</a>
+    <a href="#p12b">P12-B — Velocidade</a>
+    <a href="#p12c">P12-C — FOMO</a>
+    <a href="#p12d">P12-D — Salão</a>
+    <a href="#p12e">P12-E — Garantia</a>
+    <a href="#p12f">P12-F — Prova Social</a>
+  </nav>
+</aside>
+
+<main class="main">
+  <div class="main-header">
+    <h1>Criativos P12 — v2</h1>
+    <p>EasySite · Meta Ads · Instagram 4:5 · 1080 × 1350px</p>
+  </div>
+
+  <!-- P12-A -->
+  <section class="criativo-section" id="p12a">
+    <div class="criativo-header">
+      <div class="criativo-title">P12-A · <strong>Âncora de Preço</strong></div>
+      <button class="btn-download" onclick="downloadCard('frame-p12a','P12-A-preco')">Baixar PNG</button>
+    </div>
+    <div class="preview-wrapper">
+      <div class="preview-scale">
+        <div class="frame p12a" id="frame-p12a">
+          <div class="logo">EasySite</div>
+
+          <div style="font-family:var(--mono);font-size:22px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:32px;">Site profissional — quanto custa?</div>
+
+          <div class="agencia-block">
+            <div class="agencia-label">Agência</div>
+            <div class="agencia-price">R$3.000+</div>
+          </div>
+
+          <div class="separator"></div>
+
+          <div class="easysite-block">
+            <div class="easysite-label">EasySite</div>
+            <div class="easysite-price">R$397</div>
+          </div>
+
+          <div class="detail-row">
+            <div class="detail-item">
+              <div class="detail-value">24h</div>
+              <div class="detail-label">entrega</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-value">100%</div>
+              <div class="detail-label">garantia</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-value">zero</div>
+              <div class="detail-label">risco</div>
+            </div>
+          </div>
+
+          <div class="bottom">
+            <div class="tagline">Site profissional.<br>Sem pagar oito vezes mais.</div>
+            <div class="cta-pill-dark">Clique e receba sua proposta em 2 minutos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <div class="ads-copy">
+      <div class="ads-copy-header">Meta Ads — P12-A · Âncora de Preço</div>
+      <div class="ads-copy-field">
+        <div class="ads-copy-label">Texto primário</div>
+        <div class="ads-copy-text" id="copy-a-primary">Agência cobra R$3.000 ou mais para fazer um site. A EasySite entrega o mesmo resultado em 24 horas por R$397. Site profissional, com garantia total. Se não gostar, devolvemos tudo.</div>
+        <button class="ads-copy-btn" onclick="copyField('copy-a-primary', this)">copiar</button>
+      </div>
+      <div class="ads-copy-field">
+        <div class="ads-copy-label">Título</div>
+        <div class="ads-copy-text" id="copy-a-title">Site profissional por R$397</div>
+        <button class="ads-copy-btn" onclick="copyField('copy-a-title', this)">copiar</button>
+      </div>
+      <div class="ads-copy-field">
+        <div class="ads-copy-label">Descrição</div>
+        <div class="ads-copy-text" id="copy-a-desc">Entrega em 24h. Garantia total ou reembolso.</div>
+        <button class="ads-copy-btn" onclick="copyField('copy-a-desc', this)">copiar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- P12-B -->
+  <section class="criativo-section" id="p12b">
+    <div class="criativo-header">
+      <div class="criativo-title">P12-B · <strong>Âncora de Velocidade</strong></div>
+      <button class="btn-download" onclick="downloadCard('frame-p12b','P12-B-velocidade')">Baixar PNG</button>
+    </div>
+    <div class="preview-wrapper">
+      <div class="preview-scale">
+        <div class="frame p12b" id="frame-p12b">
+          <div class="logo">EasySite</div>
+
+          <div class="comparison">
+            <div class="col-bad">
+              <div class="col-label">Agência</div>
+              <div class="num-bad">90</div>
+              <div class="suf-bad">dias</div>
+            </div>
+            <div class="vs">vs</div>
+            <div class="col-good">
+              <div class="col-label">EasySite</div>
+              <div class="num-good">24</div>
+              <div class="suf-good">horas</div>
+            </div>
+          </div>
+
+          <div class="headline">Site profissional.<br>No ar amanhã.</div>
+
+          <div class="bottom">
+            <div class="price-tag">R$397<br>Garantia total</div>
+            <div class="cta-pill-light">Clique e receba sua proposta em 2 minutos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <div class="ads-copy">
+      <div class="ads-copy-header">Meta Ads — P12-B · Âncora de Velocidade</div>
+      <div class="ads-copy-field">
+        <div class="ads-copy-label">Texto primário</div>
+        <div class="ads-copy-text" id="copy-b-primary">Uma agência leva 90 dias para entregar um site. A EasySite entrega em 24 horas. Site profissional, no ar amanhã, por R$397. Com garantia total.</div>
+        <button class="ads-copy-btn" onclick="copyField('copy-b-primary', this)">copiar</button>
+      </div>
+      <div class="ads-copy-field">
+        <div class="ads-copy-label">Título</div>
+        <div class="ads-copy-text" id="copy-b-title">Site profissional em 24 horas</div>
+        <button class="ads-copy-btn" onclick="copyField('copy-b-title', this)">copiar</button>
+      </div>
+      <div class="ads-copy-field">
+        <div class="ads-copy-label">Descrição</div>
+        <div class="ads-copy-text" id="copy-b-desc">R$397. No ar amanhã. Garantia total.</div>
+        <button class="ads-copy-btn" onclick="copyField('copy-b-desc', this)">copiar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- P12-C -->
+  <section class="criativo-section" id="p12c">
+    <div class="criativo-header">
+      <div class="criativo-title">P12-C · <strong>FOMO — Concorrente no Google</strong></div>
+      <button class="btn-download" onclick="downloadCard('frame-p12c','P12-C-fomo')">Baixar PNG</button>
+    </div>
+    <div class="preview-wrapper">
+      <div class="preview-scale">
+        <div class="frame p12c" id="frame-p12c">
+          <div class="logo">EasySite</div>
+
+          <div class="headline">Sem site,<br>você não aparece<br><em>no Google.</em></div>
+
+          <div class="search-bar">
+            <div class="search-icon">🔍</div>
+            <div class="search-text"><strong>eletricista</strong> perto de mim</div>
+          </div>
+
+          <div class="result result-win">
+            <div class="r-status r-status-green">✓ aparece</div>
+            <div class="r-name">Seu concorrente</div>
+            <div class="r-url">www.concorrente.com.br</div>
+          </div>
+          <div class="result result-lose">
+            <div class="r-status r-status-red">✗ não encontrado</div>
+            <div class="r-name">Seu negócio</div>
+            <div class="r-url">sem site</div>
+          </div>
+
+          <div class="bottom">
+            <div class="price-block">
+              <div class="price-line">Site profissional por R$397</div>
+              <div class="price-line" style="font-size:28px;font-weight:400;color:rgba(255,255,255,0.6);">No ar em 24h. Garantia total.</div>
+            </div>
+            <div class="cta-pill-dark">Clique e receba sua proposta em 2 minutos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <div class="ads-copy">
+      <div class="ads-copy-header">Meta Ads — P12-C · FOMO</div>
+      <div class="ads-copy-field">
+        <div class="ads-copy-label">Texto primário</div>
+        <div class="ads-copy-text" id="copy-c-primary">Quando alguém busca pelo seu segmento no Google, seu concorrente aparece. Você não. É porque ele tem site e você não. A EasySite resolve isso em 24 horas por R$397. Com garantia total.</div>
+        <button class="ads-copy-btn" onclick="copyField('copy-c-primary', this)">copiar</button>
+      </div>
+      <div class="ads-copy-field">
+        <div class="ads-copy-label">Título</div>
+        <div class="ads-copy-text" id="copy-c-title">Tenha site. Apareça no Google.</div>
+        <button class="ads-copy-btn" onclick="copyField('copy-c-title', this)">copiar</button>
+      </div>
+      <div class="ads-copy-field">
+        <div class="ads-copy-label">Descrição</div>
+        <div class="ads-copy-text" id="copy-c-desc">R$397. Site no ar em 24h. Garantia total.</div>
+        <button class="ads-copy-btn" onclick="copyField('copy-c-desc', this)">copiar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- P12-D -->
+  <section class="criativo-section" id="p12d">
+    <div class="criativo-header">
+      <div class="criativo-title">P12-D · <strong>Nicho — Salão de Beleza</strong></div>
+      <button class="btn-download" onclick="downloadCard('frame-p12d','P12-D-salao')">Baixar PNG</button>
+    </div>
+    <div class="preview-wrapper">
+      <div class="preview-scale">
+        <div class="frame p12d" id="frame-p12d">
+          <div class="logo">EasySite</div>
+          <div class="tag">Para salões de beleza</div>
+          <div class="headline">Site pro<br>seu salão<br>em 24h.</div>
+          <div class="subline">Apareça no Google quando alguém buscar salão na sua cidade. <strong>Por R$397.</strong></div>
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-num">24h</div>
+              <div class="stat-lbl">Entrega</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">R$397</div>
+              <div class="stat-lbl">Valor único</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">100%</div>
+              <div class="stat-lbl">Garantia</div>
+            </div>
+          </div>
+          <div class="bottom">
+            <div class="guar">Não gostou?<br>Devolvemos tudo.</div>
+            <div class="cta-pill-dark">Clique e receba sua proposta em 2 minutos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <div class="ads-copy">
+      <div class="ads-copy-header">Meta Ads — P12-D · Nicho Salão</div>
+      <div class="ads-copy-field">
+        <div class="ads-copy-label">Texto primário</div>
+        <div class="ads-copy-text" id="copy-d-primary">Dona de salão: quando alguém busca "salão de beleza" na sua cidade, você aparece no Google? Com a EasySite, seu salão tem site profissional em 24 horas por R$397. Apareça antes da concorrência.</div>
+        <button class="ads-copy-btn" onclick="copyField('copy-d-primary', this)">copiar</button>
+      </div>
+      <div class="ads-copy-field">
+        <div class="ads-copy-label">Título</div>
+        <div class="ads-copy-text" id="copy-d-title">Site pro seu salão em 24h</div>
+        <button class="ads-copy-btn" onclick="copyField('copy-d-title', this)">copiar</button>
+      </div>
+      <div class="ads-copy-field">
+        <div class="ads-copy-label">Descrição</div>
+        <div class="ads-copy-text" id="copy-d-desc">R$397. Apareça no Google. Garantia total.</div>
+        <button class="ads-copy-btn" onclick="copyField('copy-d-desc', this)">copiar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- P12-E -->
+  <section class="criativo-section" id="p12e">
+    <div class="criativo-header">
+      <div class="criativo-title">P12-E · <strong>Risco Zero — Garantia Total</strong></div>
+      <button class="btn-download" onclick="downloadCard('frame-p12e','P12-E-garantia')">Baixar PNG</button>
+    </div>
+    <div class="preview-wrapper">
+      <div class="preview-scale">
+        <div class="frame p12e" id="frame-p12e">
+          <div class="logo">EasySite</div>
+          <div class="seal">
+            <div class="seal-sup">Garantia</div>
+            <div class="seal-num">100%</div>
+            <div class="seal-sub">ou dinheiro de volta</div>
+          </div>
+          <div class="headline">Não gostou<br>do seu site?<br>A gente refaz.</div>
+          <div class="subline">Fazemos seu site profissional em 24h. Se não aprovar, <strong>devolvemos 100%</strong>. Sem burocracia.</div>
+          <div class="bottom">
+            <div class="price">R$397<br>24 horas</div>
+            <div class="cta-pill-light">Clique e receba sua proposta em 2 minutos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <div class="ads-copy">
+      <div class="ads-copy-header">Meta Ads — P12-E · Risco Zero</div>
+      <div class="ads-copy-field">
+        <div class="ads-copy-label">Texto primário</div>
+        <div class="ads-copy-text" id="copy-e-primary">Sem risco: a EasySite faz seu site profissional em 24 horas por R$397. Não gostou? A gente refaz. Se ainda assim não aprovar, devolvemos 100% do valor. Sem burocracia, sem enrolação.</div>
+        <button class="ads-copy-btn" onclick="copyField('copy-e-primary', this)">copiar</button>
+      </div>
+      <div class="ads-copy-field">
+        <div class="ads-copy-label">Título</div>
+        <div class="ads-copy-text" id="copy-e-title">Site profissional com garantia total</div>
+        <button class="ads-copy-btn" onclick="copyField('copy-e-title', this)">copiar</button>
+      </div>
+      <div class="ads-copy-field">
+        <div class="ads-copy-label">Descrição</div>
+        <div class="ads-copy-text" id="copy-e-desc">R$397. 24h. Não gostou, devolvemos tudo.</div>
+        <button class="ads-copy-btn" onclick="copyField('copy-e-desc', this)">copiar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- P12-F -->
+  <section class="criativo-section" id="p12f">
+    <div class="criativo-header">
+      <div class="criativo-title">P12-F · <strong>Prova Social — Negócios no Google</strong></div>
+      <button class="btn-download" onclick="downloadCard('frame-p12f','P12-F-prova-social')">Baixar PNG</button>
+    </div>
+    <div class="preview-wrapper">
+      <div class="preview-scale">
+        <div class="frame p12f" id="frame-p12f">
+          <div class="logo">EasySite</div>
+          <div class="headline">Salões, eletricistas,</div>
+          <div class="subheadline">restaurantes, consultores.</div>
+          <div style="font-family:var(--sans);font-size:32px;font-weight:600;color:var(--white);margin-bottom:32px;line-height:1.3;">Todos têm site.<br>Todos aparecem no Google.</div>
+          <div class="grid">
+            <div class="grid-item">
+              <div class="g-icon">💇</div>
+              <div class="g-name">Salão de Beleza</div>
+              <div class="g-check g-check-yes">✓ no Google</div>
+            </div>
+            <div class="grid-item">
+              <div class="g-icon">⚡</div>
+              <div class="g-name">Eletricista</div>
+              <div class="g-check g-check-yes">✓ no Google</div>
+            </div>
+            <div class="grid-item">
+              <div class="g-icon">🍽️</div>
+              <div class="g-name">Restaurante</div>
+              <div class="g-check g-check-yes">✓ no Google</div>
+            </div>
+            <div class="grid-item">
+              <div class="g-icon">🏗️</div>
+              <div class="g-name">Pedreiro</div>
+              <div class="g-check g-check-yes">✓ no Google</div>
+            </div>
+            <div class="grid-item">
+              <div class="g-icon">💆</div>
+              <div class="g-name">Esteticista</div>
+              <div class="g-check g-check-yes">✓ no Google</div>
+            </div>
+            <div class="grid-item empty">
+              <div class="g-icon">❓</div>
+              <div class="g-name">Seu negócio</div>
+              <div class="g-check g-check-no">✗ sem site</div>
+            </div>
+          </div>
+          <div class="bottom">
+            <div class="question" style="font-size:32px;">Site profissional por R$397.<br>No ar em 24h. Garantia total.</div>
+            <div class="cta-pill-dark">Clique e receba sua proposta em 2 minutos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <div class="ads-copy">
+      <div class="ads-copy-header">Meta Ads — P12-F · Prova Social</div>
+      <div class="ads-copy-field">
+        <div class="ads-copy-label">Texto primário</div>
+        <div class="ads-copy-text" id="copy-f-primary">Salões, eletricistas, restaurantes, pedreiros e esteticistas já têm site e aparecem no Google. Seu negócio ainda não? A EasySite faz seu site profissional em 24 horas por R$397. Garantia total.</div>
+        <button class="ads-copy-btn" onclick="copyField('copy-f-primary', this)">copiar</button>
+      </div>
+      <div class="ads-copy-field">
+        <div class="ads-copy-label">Título</div>
+        <div class="ads-copy-text" id="copy-f-title">Seu negócio no Google por R$397</div>
+        <button class="ads-copy-btn" onclick="copyField('copy-f-title', this)">copiar</button>
+      </div>
+      <div class="ads-copy-field">
+        <div class="ads-copy-label">Descrição</div>
+        <div class="ads-copy-text" id="copy-f-desc">Site em 24h. Garantia total.</div>
+        <button class="ads-copy-btn" onclick="copyField('copy-f-desc', this)">copiar</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+</div>
+
+<script>
+function copyField(id, btn) {
+  const el = document.getElementById(id);
+  navigator.clipboard.writeText(el.innerText).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = 'copiado!';
+    btn.style.color = 'rgba(100,220,130,0.9)';
+    setTimeout(() => { btn.textContent = orig; btn.style.color = ''; }, 1800);
+  });
+}
+
+async function downloadCard(frameId, filename) {
+  const frame = document.getElementById(frameId);
+  if (!frame) return;
+  const btn = event.target;
+  btn.textContent = 'Gerando...';
+  try {
+    const { default: html2canvas } = await import('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.esm.js');
+    const canvas = await html2canvas(frame, {
+      width: 1080, height: 1350, scale: 1,
+      useCORS: true, allowTaint: true,
+      backgroundColor: null, logging: false,
+    });
+    const link = document.createElement('a');
+    link.download = `easysite-${filename}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+    btn.textContent = 'Baixar PNG';
+  } catch(e) {
+    btn.textContent = 'Erro — tente novamente';
+  }
+}
+</script>
+</body>
+</html>

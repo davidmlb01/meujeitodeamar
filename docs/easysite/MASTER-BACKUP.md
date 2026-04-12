@@ -111,7 +111,7 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 
 ---
 
-## Estado Atual (2026-04-09) — AGUARDANDO META ADS
+## Estado Atual (2026-04-12) — META ADS ATIVO, BOT V2 PRONTO
 
 | Item | Status |
 |------|--------|
@@ -124,6 +124,7 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 | Bot WhatsApp Leo | DEPLOYADO E ONLINE (PM2, VPS) |
 | Bot Leo — Hormozi 3A | Concluido (secao 16 deployada 2026-04-09) |
 | Bot Leo — logo/fotos | Concluido (instrucao no system prompt: +55 11 98918-8188) |
+| Bot Leo — system-prompt v2.0 | PRONTO (2026-04-12) — aguardando deploy na VPS |
 | Evolution API VPS | Rodando em 77.37.69.60:8080, instancia easysite |
 | QR code escaneado | Concluido (2026-04-07) |
 | Webhook configurado | Concluido (http://77.37.69.60:5000/webhook) |
@@ -132,9 +133,10 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 | Formulario briefing | Concluido (https://www.easysite.site/form) |
 | LINK_FORMULARIO no .env | Concluido |
 | Posts Instagram HTML | Concluido (docs/easysite/social/posts-instagram.html — 12 posts) |
-| Copy Meta Ads | Concluido (5 anuncios, texto primario + titulo + descricao) |
+| Copy Meta Ads | Concluido (5 anuncios + P12 v2: 6 variacoes com copy integrado) |
 | Estrategia de campanha | Concluido (Pedro Sobral: CBO R$50/dia, 3 conjuntos, criativos P02/P06/P12) |
 | Meta Ads | ATIVO — Campanha rodando desde 2026-04-10, 3 criativos no ar |
+| Criativos P12 v2 | Concluido (2026-04-12) — 6 variacoes anguladas, copy Meta Ads integrado |
 
 ---
 
@@ -166,6 +168,10 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 - **2026-04-09:** 12 posts Instagram gerados em HTML (docs/easysite/social/posts-instagram.html) com safe zones, legendas e hashtags. Depoimentos reais: Renata Purcino (Icarai, Niteroi) e Marcelo Azevedo (Marica)
 - **2026-04-09:** Estrategia Meta Ads estruturada por Pedro Sobral (traffic-masters squad). Copy de 5 anuncios prontos. Bloqueio: David nao tem conta no Facebook — passo zero antes de criar BM
 - **2026-04-10:** Meta Ads ativado do zero. Conta Facebook criada (Irineu Figueiredo), BM EasySite, Pagina EasySite, conta de anuncios, Instagram @seueasysite vinculado via Central de Contas, WhatsApp +5511943451866 conectado. Campanha CBO R$50/dia no ar com 3 criativos: P02 (C1 Dor Primaria — Ativo), P06 (C6 Antes e Depois — Em analise), P12 (C8 Ancora de Preco — Em processamento). Destino manual: so WhatsApp. Pixel nao instalado (pendente).
+- **2026-04-12:** Auditoria completa das conversas do bot (SQLite lido da VPS). Diagnostico: 0 conversoes porque bot abria com perguntas de qualificacao em vez de pitch do produto. Lead espanhol recebeu resposta em portugues. Mensagem padrao Meta Ads nao era reconhecida como lead quente.
+- **2026-04-12:** System-prompt v2.0 reescrito (docs/easysite/bot/system-prompt.md). Mudancas principais: abertura com pitch de 3 mensagens antes de qualquer pergunta, reconhecimento da mensagem padrao Meta Ads como gatilho de lead quente, deteccao de idioma do cliente, abandono do loop de qualificacao quando cliente fala com entusiasmo por 2+ mensagens. Aguardando deploy na VPS (scp + pm2 restart).
+- **2026-04-12:** 6 criativos P12 v2 desenvolvidos (docs/easysite/social/criativos-p12-v2.html). Angulos: preco, velocidade, FOMO, nicho salao, garantia, prova social. Copy Meta Ads integrado em cada card com botao copiar. CTA padrao: "Clique e receba sua proposta em 2 minutos".
+- **2026-04-12:** Padrao de entrega de conteudo definido: todo criativo ou post always-on entregue em HTML com preview + bloco copy copiavel (texto primario, titulo, descricao). Vale para todos os projetos.
 
 ---
 
@@ -218,4 +224,4 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 
 ---
 
-*Ultima atualizacao: 2026-04-06*
+*Ultima atualizacao: 2026-04-12*
