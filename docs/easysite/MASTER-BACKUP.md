@@ -197,6 +197,41 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 
 ---
 
+## Kanban
+
+### A Fazer
+- [ ] Subir criativos P12 v2 no Meta Ads (6 variacoes — docs/easysite/social/criativos-p12-v2.html)
+- [ ] Instalar Pixel Meta no easysite.site (ID 994555712901106, via Vercel head)
+- [ ] Prospeccao ativa com planilha Google Maps (Jornada C)
+- [ ] Substituir depoimentos ficcionais por reais no system-prompt (acumular com clientes)
+- [ ] Primeiras vendas confirmadas
+- [ ] Enxoval social completo (posts Instagram restantes)
+
+### Em Andamento
+- [~] Campanha Meta Ads rodando (CBO R$50/dia — P02, P06, P12)
+- [~] Atendimento manual @lid (David responde copiando sugestao do Leo)
+- [~] Monitoramento metricas: CPM, CTR, custo por mensagem, taxa fechamento Leo
+
+### Concluido
+- [x] Brandbook + identidade visual
+- [x] 12 posts Instagram HTML (docs/easysite/social/posts-instagram.html)
+- [x] 10 criativos anuncios v6 (docs/easysite/social/criativos-wpp-v6.html)
+- [x] Copy Meta Ads (5 anuncios — texto primario, titulo, descricao)
+- [x] Criativos P12 v2 desenvolvidos (6 variacoes com copy Meta integrado — 2026-04-12)
+- [x] Bot Leo deployado na VPS (PM2, /root/easysite-bot)
+- [x] System-prompt v2.0 deployado na VPS (2026-04-12)
+- [x] Evolution API rodando (77.37.69.60:8080, instancia easysite)
+- [x] WhatsApp +5511943451866 conectado (QR escaneado 2026-04-07)
+- [x] Site easysite.site no ar (https://www.easysite.site)
+- [x] Formulario de briefing (https://www.easysite.site/form)
+- [x] Pixel Meta instalado e validado (ID 994555712901106 — 2026-04-11)
+- [x] Fix @lid: notificacao com resposta do Leo pronta para copiar (2026-04-11)
+- [x] Formulario webhook corrigido (WEBHOOK_URL no Vercel — 2026-04-11)
+- [x] Senha VPS trocada (2026-04-12)
+- [x] Meta Ads ativo desde 2026-04-10 (conta Facebook, BM, pagina, conta de anuncios)
+
+---
+
 ## Roadmap
 
 ### Fase 1 — Validacao (agora)
