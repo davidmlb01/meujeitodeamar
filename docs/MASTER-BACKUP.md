@@ -347,6 +347,10 @@ Todos os textos estão em `docs/copy/`:
 - [x] Página resultado redesenhada: headline burgundy 42-64px, cards desfocados, bridge copy por estilo
 - [x] Checkout headers criados: 4 imagens 2000x590px para Kiwify, com download PNG (2026-04-10)
 - [x] Subir imagens de topo no Kiwify (4 produtos) (2026-04-10)
+- [x] Links UTM rastreados criados (TikTok/Instagram/YouTube) + Dashboard Looker Studio (2026-04-14)
+- [~] Criar TikTok (perfil + link na bio: bit.ly/meujeito_deamar)
+- [~] Criar Instagram (perfil + link na bio: bit.ly/meujeito_ig)
+- [~] Criar YouTube (canal + link na descrição: bit.ly/meujeito_yt)
 - [ ] Contatar 20 pessoas da rede pessoal → 10 primeiros pagantes
 - [ ] Coletar depoimentos dos primeiros compradores
 
