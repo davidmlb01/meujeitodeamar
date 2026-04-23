@@ -1,6 +1,6 @@
 # MASTER BACKUP — Projeto Freud
-**Última atualização:** 2026-04-10
-**Status:** V1 (meujeitodeamar.com.br) lançado — Analytics ativos (GA4 + Clarity), resultado redesenhado, fluxo corrigido, seed launch pendente
+**Última atualização:** 2026-04-14
+**Status:** V1 lançado — Links UTM rastreados (TikTok/Instagram/YouTube) + Dashboard Looker Studio ativos. Plataformas sociais em criação.
 
 ---
 
