@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freud — Criativos Estáticos V2</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #F5F0EB; padding: 40px 20px; font-family: 'Jost', sans-serif; }
+  h1 { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: #4B1D3F; text-align: center; margin-bottom: 8px; }
+  .subtitle { text-align: center; color: #7A6A60; font-size: 14px; margin-bottom: 48px; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(520px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; }
+
+  .card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(75,29,63,0.10); }
+  .card-header { background: #4B1D3F; padding: 14px 20px; display: flex; align-items: center; gap: 10px; }
+  .card-num { background: rgba(255,255,255,0.15); color: #fff; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+  .card-angle { color: #E8D9C1; font-size: 12px; }
+  .card-body { padding: 20px; }
+
+  canvas { display: block; width: 480px; height: 480px; border-radius: 8px; margin: 0 auto; }
+
+  .btn-row { display: flex; justify-content: center; margin-top: 16px; }
+  .dl-btn { background: #4B1D3F; color: #E8D9C1; border: none; padding: 10px 28px; border-radius: 8px; font-family: 'Jost', sans-serif; font-size: 13px; cursor: pointer; letter-spacing: 0.5px; transition: opacity 0.2s; }
+  .dl-btn:hover { opacity: 0.85; }
+</style>
+</head>
+<body>
+
+<h1>Criativos Estáticos — Feed Instagram</h1>
+<p class="subtitle">Projeto Freud — meujeitodeamar.com.br — 1080x1080px — V2</p>
+
+<div class="grid">
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">01</span>
+      <span class="card-angle">Pain Agitate — Fundo Burgundy</span>
+    </div>
+    <div class="card-body">
+      <canvas id="c1" width="1080" height="1080"></canvas>
+      <div class="btn-row"><button class="dl-btn" onclick="download('c1','freud-criativo-01')">Baixar PNG</button></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">02</span>
+      <span class="card-angle">Curiosity Gap — Testemunho Editorial Nude</span>
+    </div>
+    <div class="card-body">
+      <canvas id="c2" width="1080" height="1080"></canvas>
+      <div class="btn-row"><button class="dl-btn" onclick="download('c2','freud-criativo-02')">Baixar PNG</button></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">03</span>
+      <span class="card-angle">Pattern Interrupt — Fundo Escuro</span>
+    </div>
+    <div class="card-body">
+      <canvas id="c3" width="1080" height="1080"></canvas>
+      <div class="btn-row"><button class="dl-btn" onclick="download('c3','freud-criativo-03')">Baixar PNG</button></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">04</span>
+      <span class="card-angle">Cena Específica — Mensagem sem resposta</span>
+    </div>
+    <div class="card-body">
+      <canvas id="c4" width="1080" height="1080"></canvas>
+      <div class="btn-row"><button class="dl-btn" onclick="download('c4','freud-criativo-04')">Baixar PNG</button></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">05</span>
+      <span class="card-angle">Contrarian — Split</span>
+    </div>
+    <div class="card-body">
+      <canvas id="c5" width="1080" height="1080"></canvas>
+      <div class="btn-row"><button class="dl-btn" onclick="download('c5','freud-criativo-05')">Baixar PNG</button></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">06</span>
+      <span class="card-angle">Story — Quote Editorial</span>
+    </div>
+    <div class="card-body">
+      <canvas id="c6" width="1080" height="1080"></canvas>
+      <div class="btn-row"><button class="dl-btn" onclick="download('c6','freud-criativo-06')">Baixar PNG</button></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const BURGUNDY = '#4B1D3F';
+const NUDE = '#E8D9C1';
+const OFFBLACK = '#1B1B11';
+const MUTED = '#7A6A60';
+const CREAM = '#FAF7F4';
+const URL_SITE = 'meujeitodeamar.com.br';
+
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  ctx.textAlign = 'left';
+  const words = text.split(' ');
+  let line = '';
+  const lines = [];
+  for (let n = 0; n < words.length; n++) {
+    const test = line + words[n] + ' ';
+    if (ctx.measureText(test).width > maxWidth && n > 0) {
+      lines.push(line.trim());
+      line = words[n] + ' ';
+    } else {
+      line = test;
+    }
+  }
+  lines.push(line.trim());
+  lines.forEach((l, i) => ctx.fillText(l, x, y + i * lineHeight));
+  return y + (lines.length - 1) * lineHeight;
+}
+
+function wrapCenter(ctx, text, cx, y, maxWidth, lineHeight) {
+  ctx.textAlign = 'center';
+  const words = text.split(' ');
+  let line = '';
+  const lines = [];
+  for (let n = 0; n < words.length; n++) {
+    const test = line + words[n] + ' ';
+    if (ctx.measureText(test).width > maxWidth && n > 0) {
+      lines.push(line.trim());
+      line = words[n] + ' ';
+    } else {
+      line = test;
+    }
+  }
+  lines.push(line.trim());
+  lines.forEach((l, i) => ctx.fillText(l, cx, y + i * lineHeight));
+  return y + (lines.length - 1) * lineHeight;
+}
+
+// CTA padrao: faixa inferior com "FAÇA O TESTE" + URL
+function drawCTA(ctx, S, bgColor, labelColor, urlColor) {
+  const ph = 110;
+  const py = S - ph;
+
+  // fundo semi-transparente ou sólido
+  ctx.fillStyle = bgColor || 'rgba(0,0,0,0.18)';
+  ctx.fillRect(0, py, S, ph);
+
+  // label pequeno
+  ctx.font = '600 22px Jost, sans-serif';
+  ctx.fillStyle = labelColor || NUDE;
+  ctx.textAlign = 'center';
+  ctx.letterSpacing = '3px';
+  ctx.fillText('FAÇA O TESTE GRATUITO', S / 2, py + 36);
+  ctx.letterSpacing = '0px';
+
+  // URL
+  ctx.font = '400 34px Jost, sans-serif';
+  ctx.fillStyle = urlColor || NUDE;
+  ctx.textAlign = 'center';
+  ctx.fillText(URL_SITE, S / 2, py + 80);
+}
+
+// CTA alternativo para fundos claros
+function drawCTALight(ctx, S) {
+  const ph = 110;
+  const py = S - ph;
+
+  ctx.fillStyle = 'rgba(75,29,63,0.08)';
+  ctx.fillRect(0, py, S, ph);
+
+  ctx.fillStyle = 'rgba(75,29,63,0.4)';
+  ctx.fillRect(0, py, S, 1);
+
+  ctx.font = '600 22px Jost, sans-serif';
+  ctx.fillStyle = BURGUNDY;
+  ctx.textAlign = 'center';
+  ctx.fillText('FAÇA O TESTE GRATUITO', S / 2, py + 36);
+
+  ctx.font = '400 34px Jost, sans-serif';
+  ctx.fillStyle = BURGUNDY;
+  ctx.textAlign = 'center';
+  ctx.fillText(URL_SITE, S / 2, py + 80);
+}
+
+function download(id, name) {
+  const canvas = document.getElementById(id);
+  const a = document.createElement('a');
+  a.download = name + '.png';
+  a.href = canvas.toDataURL('image/png');
+  a.click();
+}
+
+document.fonts.ready.then(() => {
+
+  // --- CRIATIVO 01: Pain Agitate — Fundo Burgundy ---
+  // Copy: dor com especificidade. Não é genérico. É visceral.
+  (function() {
+    const c = document.getElementById('c1');
+    const ctx = c.getContext('2d');
+    const S = 1080;
+
+    ctx.fillStyle = BURGUNDY;
+    ctx.fillRect(0, 0, S, S);
+
+    // Linha topo
+    ctx.fillStyle = NUDE;
+    ctx.fillRect(80, 80, 200, 3);
+
+    // Número decorativo fundo
+    ctx.font = '300 320px Cormorant Garamond, serif';
+    ctx.fillStyle = 'rgba(232,217,193,0.05)';
+    ctx.textAlign = 'right';
+    ctx.fillText('01', S - 40, S - 130);
+
+    // Texto principal
+    const text = 'Você sabe que repete os mesmos padrões. O que você ainda não entende é de onde eles vêm.';
+    ctx.font = '300 70px Cormorant Garamond, serif';
+    ctx.fillStyle = NUDE;
+    wrapText(ctx, text, 80, 200, 920, 92);
+
+    drawCTA(ctx, S, 'rgba(0,0,0,0.25)', NUDE, NUDE);
+  })();
+
+  // --- CRIATIVO 02: Testemunho — Editorial Nude ---
+  // Copy: testemunho específico. Afastamento emocional é a dor mais comum no distante.
+  (function() {
+    const c = document.getElementById('c2');
+    const ctx = c.getContext('2d');
+    const S = 1080;
+
+    ctx.fillStyle = NUDE;
+    ctx.fillRect(0, 0, S, S);
+
+    // Aspas decorativas
+    ctx.font = '300 400px Cormorant Garamond, serif';
+    ctx.fillStyle = 'rgba(75,29,63,0.07)';
+    ctx.textAlign = 'left';
+    ctx.fillText('\u201C', 40, 380);
+
+    // Texto em itálico
+    const text = 'Fiz um teste de 5 minutos e entendi por que eu sempre me afasto quando o relacionamento fica sério.';
+    ctx.font = 'italic 300 62px Cormorant Garamond, serif';
+    ctx.fillStyle = BURGUNDY;
+    wrapText(ctx, text, 100, 240, 880, 82);
+
+    // Linha lateral
+    ctx.fillStyle = BURGUNDY;
+    ctx.fillRect(80, 220, 3, 480);
+
+    // Atribuição
+    ctx.font = '300 28px Jost, sans-serif';
+    ctx.fillStyle = MUTED;
+    ctx.textAlign = 'left';
+    ctx.fillText('Faça o seu:', 100, S - 140);
+
+    ctx.font = '500 32px Jost, sans-serif';
+    ctx.fillStyle = BURGUNDY;
+    ctx.textAlign = 'left';
+    ctx.fillText(URL_SITE, 100, S - 96);
+  })();
+
+  // --- CRIATIVO 03: Pattern Interrupt — Fundo Escuro ---
+  // Copy elevado: "aprendeu a amar" implica que pode mudar. Mais poderoso.
+  (function() {
+    const c = document.getElementById('c3');
+    const ctx = c.getContext('2d');
+    const S = 1080;
+
+    ctx.fillStyle = OFFBLACK;
+    ctx.fillRect(0, 0, S, S);
+
+    // Linha decorativa topo
+    ctx.fillStyle = BURGUNDY;
+    ctx.fillRect(80, 80, 120, 3);
+
+    // Escalada de tamanho — cria ritmo visual
+    ctx.font = '300 46px Cormorant Garamond, serif';
+    ctx.fillStyle = MUTED;
+    ctx.textAlign = 'left';
+    ctx.fillText('O problema não é você.', 80, 300);
+
+    ctx.font = '300 54px Cormorant Garamond, serif';
+    ctx.fillStyle = 'rgba(232,217,193,0.55)';
+    ctx.fillText('Não é o outro.', 80, 390);
+
+    ctx.font = '400 86px Cormorant Garamond, serif';
+    ctx.fillStyle = NUDE;
+    ctx.fillText('É o jeito como', 80, 530);
+    ctx.fillText('você aprendeu', 80, 630);
+    ctx.fillText('a amar.', 80, 730);
+
+    // Detalhe burgundy
+    ctx.fillStyle = BURGUNDY;
+    ctx.fillRect(80, 762, 300, 3);
+
+    drawCTA(ctx, S, 'rgba(255,255,255,0.06)', NUDE, NUDE);
+  })();
+
+  // --- CRIATIVO 04: Cena Específica — Mensagem sem resposta ---
+  // Copy: cena específica + CTA contextual que faz sentido com a narrativa
+  (function() {
+    const c = document.getElementById('c4');
+    const ctx = c.getContext('2d');
+    const S = 1080;
+
+    ctx.fillStyle = CREAM;
+    ctx.fillRect(0, 0, S, S);
+
+    // Barra superior burgundy (simula header de chat)
+    ctx.fillStyle = BURGUNDY;
+    ctx.fillRect(0, 0, S, 120);
+
+    ctx.font = '400 30px Jost, sans-serif';
+    ctx.fillStyle = NUDE;
+    ctx.textAlign = 'center';
+    ctx.fillText('Você — 2h sem resposta', S / 2, 72);
+
+    // Bubble de mensagem enviada
+    const bx = 280, by = 172, bw = 700, bh = 120;
+    ctx.fillStyle = '#DCF8C6';
+    ctx.beginPath();
+    ctx.roundRect(bx, by, bw, bh, 18);
+    ctx.fill();
+
+    ctx.font = '400 34px Jost, sans-serif';
+    ctx.fillStyle = '#333';
+    ctx.textAlign = 'left';
+    ctx.fillText('Oi, tudo bem?', bx + 28, by + 52);
+    ctx.font = '300 24px Jost, sans-serif';
+    ctx.fillStyle = '#888';
+    ctx.fillText('Enviada às 14:03  ✓', bx + 28, by + 88);
+
+    // Texto principal — cena + interpretação
+    const main = 'Ele não respondeu em 2 horas. Você já está reescrevendo tudo na cabeça, imaginando o que disse de errado.';
+    ctx.font = '300 54px Cormorant Garamond, serif';
+    ctx.fillStyle = OFFBLACK;
+    wrapText(ctx, main, 80, 370, 920, 72);
+
+    // Sub-texto contextual: agora "tem um nome" faz sentido porque o CTA diz onde descobrir
+    ctx.font = 'italic 400 38px Cormorant Garamond, serif';
+    ctx.fillStyle = BURGUNDY;
+    ctx.textAlign = 'left';
+    ctx.fillText('Existe um nome para o seu jeito de amar.', 80, 820);
+
+    drawCTALight(ctx, S);
+  })();
+
+  // --- CRIATIVO 05: Contrarian — Split ---
+  // Copy: mais específico. O problema não é comunicação, é que você não se conhece ainda.
+  (function() {
+    const c = document.getElementById('c5');
+    const ctx = c.getContext('2d');
+    const S = 1080;
+
+    ctx.fillStyle = BURGUNDY;
+    ctx.fillRect(0, 0, S, S / 2);
+    ctx.fillStyle = NUDE;
+    ctx.fillRect(0, S / 2, S, S / 2);
+
+    // Linha divisória
+    ctx.fillStyle = OFFBLACK;
+    ctx.fillRect(0, S / 2 - 2, S, 4);
+
+    // Topo — provocação
+    ctx.font = '300 64px Cormorant Garamond, serif';
+    ctx.fillStyle = NUDE;
+    wrapText(ctx, 'Para de tentar se comunicar melhor no seu relacionamento.', 80, 130, 920, 82);
+
+    // Baixo — reframe
+    ctx.font = 'italic 400 60px Cormorant Garamond, serif';
+    ctx.fillStyle = BURGUNDY;
+    wrapText(ctx, 'O problema não é a comunicação.', 80, 590, 920, 78);
+
+    ctx.font = '300 38px Jost, sans-serif';
+    ctx.fillStyle = OFFBLACK;
+    wrapText(ctx, 'Você ainda não entende o seu jeito de amar.', 80, 758, 920, 54);
+
+    // CTA no rodapé da metade nude
+    ctx.font = '600 20px Jost, sans-serif';
+    ctx.fillStyle = MUTED;
+    ctx.textAlign = 'center';
+    ctx.fillText('FAÇA O TESTE GRATUITO', S / 2, 936);
+
+    ctx.font = '500 30px Jost, sans-serif';
+    ctx.fillStyle = BURGUNDY;
+    ctx.textAlign = 'center';
+    ctx.fillText(URL_SITE, S / 2, 980);
+  })();
+
+  // --- CRIATIVO 06: Story — Quote Editorial ---
+  // Copy elevado: específico, visceral, shareável. "medo de depender" > "relacionamentos terminavam"
+  (function() {
+    const c = document.getElementById('c6');
+    const ctx = c.getContext('2d');
+    const S = 1080;
+
+    ctx.fillStyle = '#FBF8F4';
+    ctx.fillRect(0, 0, S, S);
+
+    // Bordas laterais burgundy
+    ctx.fillStyle = BURGUNDY;
+    ctx.fillRect(0, 0, 8, S);
+    ctx.fillRect(S - 8, 0, 8, S);
+
+    // Aspas abertura
+    ctx.font = '300 300px Cormorant Garamond, serif';
+    ctx.fillStyle = 'rgba(75,29,63,0.08)';
+    ctx.textAlign = 'left';
+    ctx.fillText('\u201C', 50, 320);
+
+    // Texto — mais específico e visceral
+    const text = 'Fiz um teste e percebi que eu não tinha medo de me relacionar. Tinha medo de depender de alguém.';
+    ctx.font = 'italic 300 64px Cormorant Garamond, serif';
+    ctx.fillStyle = OFFBLACK;
+    wrapText(ctx, text, 90, 290, 900, 86);
+
+    // Aspas fechamento
+    ctx.font = '300 200px Cormorant Garamond, serif';
+    ctx.fillStyle = 'rgba(75,29,63,0.08)';
+    ctx.textAlign = 'right';
+    ctx.fillText('\u201D', S - 50, 860);
+
+    // CTA
+    ctx.fillStyle = BURGUNDY;
+    ctx.fillRect(90, S - 170, 160, 2);
+
+    ctx.font = '600 20px Jost, sans-serif';
+    ctx.fillStyle = MUTED;
+    ctx.textAlign = 'left';
+    ctx.fillText('FAÇA O TESTE GRATUITO', 90, S - 126);
+
+    ctx.font = '500 32px Jost, sans-serif';
+    ctx.fillStyle = BURGUNDY;
+    ctx.textAlign = 'left';
+    ctx.fillText(URL_SITE, 90, S - 76);
+  })();
+
+});
+</script>
+</body>
+</html>

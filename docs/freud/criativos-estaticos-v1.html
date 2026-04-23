@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freud — Criativos Estáticos V1</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #F5F0EB; padding: 40px 20px; font-family: 'Jost', sans-serif; }
+  h1 { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: #4B1D3F; text-align: center; margin-bottom: 8px; }
+  .subtitle { text-align: center; color: #7A6A60; font-size: 14px; margin-bottom: 48px; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(520px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; }
+
+  .card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(75,29,63,0.10); }
+  .card-header { background: #4B1D3F; padding: 14px 20px; display: flex; align-items: center; gap: 10px; }
+  .card-num { background: rgba(255,255,255,0.15); color: #fff; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+  .card-angle { color: #E8D9C1; font-size: 12px; }
+  .card-body { padding: 20px; }
+
+  canvas { display: block; width: 480px; height: 480px; border-radius: 8px; margin: 0 auto; }
+
+  .btn-row { display: flex; justify-content: center; margin-top: 16px; }
+  .dl-btn { background: #4B1D3F; color: #E8D9C1; border: none; padding: 10px 28px; border-radius: 8px; font-family: 'Jost', sans-serif; font-size: 13px; cursor: pointer; letter-spacing: 0.5px; transition: opacity 0.2s; }
+  .dl-btn:hover { opacity: 0.85; }
+</style>
+</head>
+<body>
+
+<h1>Criativos Estáticos — Feed Instagram</h1>
+<p class="subtitle">Projeto Freud — meujeitodeamar.com.br — 1080x1080px — V1</p>
+
+<div class="grid">
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">01</span>
+      <span class="card-angle">Pain Agitate — Fundo Burgundy</span>
+    </div>
+    <div class="card-body">
+      <canvas id="c1" width="1080" height="1080"></canvas>
+      <div class="btn-row"><button class="dl-btn" onclick="download('c1','freud-criativo-01')">Baixar PNG</button></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">02</span>
+      <span class="card-angle">Curiosity Gap — Editorial Nude</span>
+    </div>
+    <div class="card-body">
+      <canvas id="c2" width="1080" height="1080"></canvas>
+      <div class="btn-row"><button class="dl-btn" onclick="download('c2','freud-criativo-02')">Baixar PNG</button></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">03</span>
+      <span class="card-angle">Pattern Interrupt — Fundo Escuro</span>
+    </div>
+    <div class="card-body">
+      <canvas id="c3" width="1080" height="1080"></canvas>
+      <div class="btn-row"><button class="dl-btn" onclick="download('c3','freud-criativo-03')">Baixar PNG</button></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">04</span>
+      <span class="card-angle">Cena Específica — Mensagem</span>
+    </div>
+    <div class="card-body">
+      <canvas id="c4" width="1080" height="1080"></canvas>
+      <div class="btn-row"><button class="dl-btn" onclick="download('c4','freud-criativo-04')">Baixar PNG</button></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">05</span>
+      <span class="card-angle">Contrarian — Split</span>
+    </div>
+    <div class="card-body">
+      <canvas id="c5" width="1080" height="1080"></canvas>
+      <div class="btn-row"><button class="dl-btn" onclick="download('c5','freud-criativo-05')">Baixar PNG</button></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">06</span>
+      <span class="card-angle">Story — Quote Editorial</span>
+    </div>
+    <div class="card-body">
+      <canvas id="c6" width="1080" height="1080"></canvas>
+      <div class="btn-row"><button class="dl-btn" onclick="download('c6','freud-criativo-06')">Baixar PNG</button></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const BURGUNDY = '#4B1D3F';
+const NUDE = '#E8D9C1';
+const OFFBLACK = '#1B1B11';
+const MUTED = '#7A6A60';
+const CREAM = '#FAF7F4';
+
+function wrapText(ctx, text, x, y, maxWidth, lineHeight, align) {
+  ctx.textAlign = align || 'left';
+  const words = text.split(' ');
+  let line = '';
+  let finalY = y;
+  const lines = [];
+  for (let n = 0; n < words.length; n++) {
+    const test = line + words[n] + ' ';
+    if (ctx.measureText(test).width > maxWidth && n > 0) {
+      lines.push(line.trim());
+      line = words[n] + ' ';
+    } else {
+      line = test;
+    }
+  }
+  lines.push(line.trim());
+  lines.forEach((l, i) => {
+    ctx.fillText(l, x, y + i * lineHeight);
+    finalY = y + i * lineHeight;
+  });
+  return finalY;
+}
+
+function textHeight(ctx, text, maxWidth, lineHeight) {
+  const words = text.split(' ');
+  let line = '';
+  let count = 1;
+  for (let n = 0; n < words.length; n++) {
+    const test = line + words[n] + ' ';
+    if (ctx.measureText(test).width > maxWidth && n > 0) {
+      count++;
+      line = words[n] + ' ';
+    } else {
+      line = test;
+    }
+  }
+  return count * lineHeight;
+}
+
+function drawURL(ctx, x, y) {
+  ctx.font = '300 28px Jost, sans-serif';
+  ctx.fillStyle = MUTED;
+  ctx.textAlign = 'center';
+  ctx.fillText('meujeitodeamar.com.br', x, y);
+}
+
+function download(id, name) {
+  const canvas = document.getElementById(id);
+  const a = document.createElement('a');
+  a.download = name + '.png';
+  a.href = canvas.toDataURL('image/png');
+  a.click();
+}
+
+document.fonts.ready.then(() => {
+
+  // --- CRIATIVO 1: Pain Agitate — Fundo Burgundy ---
+  (function() {
+    const c = document.getElementById('c1');
+    const ctx = c.getContext('2d');
+    const S = 1080;
+
+    ctx.fillStyle = BURGUNDY;
+    ctx.fillRect(0, 0, S, S);
+
+    // Linha topo
+    ctx.fillStyle = NUDE;
+    ctx.fillRect(80, 80, 200, 3);
+
+    // Número decorativo fundo
+    ctx.font = '300 320px Cormorant Garamond, serif';
+    ctx.fillStyle = 'rgba(232,217,193,0.05)';
+    ctx.textAlign = 'right';
+    ctx.fillText('01', S - 40, S - 60);
+
+    // Texto principal
+    const text = 'Você repete os mesmos padrões em todo relacionamento e não entende por quê?';
+    ctx.font = '300 68px Cormorant Garamond, serif';
+    ctx.fillStyle = NUDE;
+    wrapText(ctx, text, 80, 200, 920, 88, 'left');
+
+    // Linha inferior
+    ctx.fillStyle = 'rgba(232,217,193,0.3)';
+    ctx.fillRect(80, S - 130, S - 160, 1);
+
+    drawURL(ctx, S / 2, S - 80);
+  })();
+
+  // --- CRIATIVO 2: Curiosity Gap — Editorial Nude ---
+  (function() {
+    const c = document.getElementById('c2');
+    const ctx = c.getContext('2d');
+    const S = 1080;
+
+    ctx.fillStyle = NUDE;
+    ctx.fillRect(0, 0, S, S);
+
+    // Aspas decorativas
+    ctx.font = '300 400px Cormorant Garamond, serif';
+    ctx.fillStyle = 'rgba(75,29,63,0.07)';
+    ctx.textAlign = 'left';
+    ctx.fillText('\u201C', 40, 380);
+
+    // Texto principal em itálico
+    const text = 'Fiz um teste de 5 minutos e entendi por que eu sempre me afasto quando o relacionamento fica sério.';
+    ctx.font = 'italic 300 62px Cormorant Garamond, serif';
+    ctx.fillStyle = BURGUNDY;
+    wrapText(ctx, text, 90, 260, 900, 82, 'left');
+
+    // Linha lateral esquerda
+    ctx.fillStyle = BURGUNDY;
+    ctx.fillRect(80, 240, 3, 460);
+
+    // URL
+    ctx.font = '300 28px Jost, sans-serif';
+    ctx.fillStyle = MUTED;
+    ctx.textAlign = 'center';
+    ctx.fillText('meujeitodeamar.com.br', S / 2, S - 80);
+  })();
+
+  // --- CRIATIVO 3: Pattern Interrupt — Fundo Escuro ---
+  (function() {
+    const c = document.getElementById('c3');
+    const ctx = c.getContext('2d');
+    const S = 1080;
+
+    ctx.fillStyle = OFFBLACK;
+    ctx.fillRect(0, 0, S, S);
+
+    // Linha decorativa topo
+    ctx.fillStyle = BURGUNDY;
+    ctx.fillRect(80, 80, 120, 3);
+
+    // Linha 1 — pequena
+    ctx.font = '300 44px Cormorant Garamond, serif';
+    ctx.fillStyle = MUTED;
+    ctx.textAlign = 'left';
+    ctx.fillText('O problema não é você.', 80, 300);
+
+    // Linha 2 — média
+    ctx.font = '300 52px Cormorant Garamond, serif';
+    ctx.fillStyle = 'rgba(232,217,193,0.6)';
+    ctx.fillText('Não é o outro.', 80, 400);
+
+    // Linha 3 — grande, destaque
+    ctx.font = '400 82px Cormorant Garamond, serif';
+    ctx.fillStyle = NUDE;
+    ctx.fillText('É o seu', 80, 540);
+    ctx.fillText('jeito de amar.', 80, 640);
+
+    // Detalhe burgundy
+    ctx.fillStyle = BURGUNDY;
+    ctx.fillRect(80, 680, 320, 3);
+
+    drawURL(ctx, S / 2, S - 80);
+  })();
+
+  // --- CRIATIVO 4: Cena Específica — WhatsApp ---
+  (function() {
+    const c = document.getElementById('c4');
+    const ctx = c.getContext('2d');
+    const S = 1080;
+
+    ctx.fillStyle = CREAM;
+    ctx.fillRect(0, 0, S, S);
+
+    // Barra superior burgundy
+    ctx.fillStyle = BURGUNDY;
+    ctx.fillRect(0, 0, S, 140);
+
+    // Ícone simbolico
+    ctx.font = '300 36px Jost, sans-serif';
+    ctx.fillStyle = NUDE;
+    ctx.textAlign = 'center';
+    ctx.fillText('2h sem resposta', S / 2, 88);
+
+    // Bubble de mensagem
+    ctx.fillStyle = '#E2F0D9';
+    ctx.beginPath();
+    const bx = 80, by = 200, bw = 640, bh = 140;
+    ctx.roundRect(bx, by, bw, bh, 20);
+    ctx.fill();
+
+    ctx.font = '400 34px Jost, sans-serif';
+    ctx.fillStyle = '#333';
+    ctx.textAlign = 'left';
+    ctx.fillText('Oi, tudo bem?', bx + 30, by + 58);
+    ctx.font = '300 26px Jost, sans-serif';
+    ctx.fillStyle = '#888';
+    ctx.fillText('Enviada às 14:03', bx + 30, by + 100);
+
+    // Texto principal
+    const text = 'Você manda mensagem, ele demora para responder, e você já está construindo o pior cenário na cabeça.';
+    ctx.font = '300 56px Cormorant Garamond, serif';
+    ctx.fillStyle = OFFBLACK;
+    wrapText(ctx, text, 80, 440, 920, 74, 'left');
+
+    // Sub
+    ctx.font = 'italic 300 40px Cormorant Garamond, serif';
+    ctx.fillStyle = BURGUNDY;
+    ctx.textAlign = 'left';
+    ctx.fillText('Isso tem um nome. Descubra o seu.', 80, 870);
+
+    // Linha
+    ctx.fillStyle = 'rgba(75,29,63,0.2)';
+    ctx.fillRect(80, S - 130, S - 160, 1);
+    drawURL(ctx, S / 2, S - 80);
+  })();
+
+  // --- CRIATIVO 5: Contrarian — Split ---
+  (function() {
+    const c = document.getElementById('c5');
+    const ctx = c.getContext('2d');
+    const S = 1080;
+
+    // Split background
+    ctx.fillStyle = BURGUNDY;
+    ctx.fillRect(0, 0, S, S / 2);
+    ctx.fillStyle = NUDE;
+    ctx.fillRect(0, S / 2, S, S / 2);
+
+    // Linha divisória
+    ctx.fillStyle = OFFBLACK;
+    ctx.fillRect(0, S / 2 - 2, S, 4);
+
+    // Texto topo (burgundy)
+    ctx.font = '300 64px Cormorant Garamond, serif';
+    ctx.fillStyle = NUDE;
+    wrapText(ctx, 'Para de tentar se comunicar melhor no seu relacionamento.', 80, 160, 920, 82, 'left');
+
+    // Texto baixo (nude)
+    ctx.font = 'italic 400 64px Cormorant Garamond, serif';
+    ctx.fillStyle = BURGUNDY;
+    wrapText(ctx, 'Não vai resolver.', 80, 640, 920, 82, 'left');
+
+    ctx.font = '300 36px Jost, sans-serif';
+    ctx.fillStyle = MUTED;
+    wrapText(ctx, 'Entenda o seu jeito de amar.', 80, 780, 920, 52, 'left');
+
+    // URL
+    ctx.font = '300 28px Jost, sans-serif';
+    ctx.fillStyle = MUTED;
+    ctx.textAlign = 'center';
+    ctx.fillText('meujeitodeamar.com.br', S / 2, S - 60);
+  })();
+
+  // --- CRIATIVO 6: Story — Quote Editorial ---
+  (function() {
+    const c = document.getElementById('c6');
+    const ctx = c.getContext('2d');
+    const S = 1080;
+
+    ctx.fillStyle = '#FBF8F4';
+    ctx.fillRect(0, 0, S, S);
+
+    // Bordas laterais burgundy
+    ctx.fillStyle = BURGUNDY;
+    ctx.fillRect(0, 0, 8, S);
+    ctx.fillRect(S - 8, 0, 8, S);
+
+    // Aspas grandes
+    ctx.font = '300 300px Cormorant Garamond, serif';
+    ctx.fillStyle = 'rgba(75,29,63,0.08)';
+    ctx.textAlign = 'left';
+    ctx.fillText('\u201C', 50, 320);
+
+    // Texto principal
+    const text = 'Fiz um quiz e entendi por que todos os meus relacionamentos terminavam do mesmo jeito.';
+    ctx.font = 'italic 300 62px Cormorant Garamond, serif';
+    ctx.fillStyle = OFFBLACK;
+    wrapText(ctx, text, 90, 300, 900, 82, 'left');
+
+    // Fechamento aspas
+    ctx.font = '300 200px Cormorant Garamond, serif';
+    ctx.fillStyle = 'rgba(75,29,63,0.08)';
+    ctx.textAlign = 'right';
+    ctx.fillText('\u201D', S - 50, 880);
+
+    // Linha
+    ctx.fillStyle = BURGUNDY;
+    ctx.fillRect(90, S - 160, 160, 2);
+
+    // URL
+    ctx.font = '400 30px Jost, sans-serif';
+    ctx.fillStyle = BURGUNDY;
+    ctx.textAlign = 'left';
+    ctx.fillText('meujeitodeamar.com.br', 90, S - 100);
+  })();
+
+});
+</script>
+</body>
+</html>

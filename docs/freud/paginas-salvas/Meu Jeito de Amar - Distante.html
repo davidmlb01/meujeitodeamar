@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<!-- saved from url=(0075)file:///Users/davidlevy/Desktop/PJ/BIG%20HEAD/docs/design/leituras-pdf.html -->
+<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leituras Completas — Meu Jeito de Amar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <link href="./Meu Jeito de Amar - Distante_files/css2" rel="stylesheet">
+  <style>
+    :root {
+      --bg:      #E8D9C1;
+      --bg-warm: #DFD0B7;
+      --dark:    #4B1D3F;
+      --text:    #1B1B11;
+      --muted:   #7A6A60;
+      --subtle:  #D4C5AE;
+      --white:   #F5EEE4;
+      --ansioso: #D8A7B1;
+      --distante:#C4909C;
+      --seguro:  #BF8A96;
+      --confuso: #D4B5B0;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Jost', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #ccc; font-family: var(--font-body); color: var(--text); }
+
+    /* ── Página A4 ── */
+    /* Tela: min-height (sem corte, sem espaço vazio) */
+    .pdf-page {
+      width: 210mm;
+      min-height: 297mm;
+      background: var(--bg);
+      position: relative;
+      margin: 24px auto;
+    }
+
+    /* ── Capa ── */
+    .pg-cover {
+      height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 60px 56px;
+    }
+    .cover__ornament { width: 48px; height: 1px; background: var(--dark); margin: 0 auto 32px; }
+    .cover__site     { font-family: var(--font-body); font-size: 11px; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-bottom: 48px; }
+    .cover__eyebrow  { font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+    .cover__title    { font-family: var(--font-display); font-size: 60px; font-weight: 400; line-height: 1.1; color: var(--text); margin-bottom: 8px; }
+    .cover__title em { font-style: italic; color: var(--dark); }
+    .cover__subtitle { font-family: var(--font-display); font-size: 23px; font-weight: 300; font-style: italic; color: var(--muted); margin-bottom: 48px; }
+    .cover__divider  { width: 32px; height: 1px; background: var(--dark); margin: 0 auto 48px; }
+    .cover__intro    { font-family: var(--font-body); font-size: 15px; line-height: 1.7; color: var(--muted); max-width: 320px; }
+
+    /* ── Área de conteúdo ── */
+    .pg-body      { padding: 48px 60px 40px; }
+    .pg-body--last { padding-bottom: 60px; } /* espaço para o footer absoluto */
+
+    /* Header */
+    .content__header  { margin-bottom: 40px; padding-bottom: 28px; border-bottom: 1px solid var(--subtle); }
+    .content__eyebrow { font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .content__title   { font-family: var(--font-display); font-size: 46px; font-weight: 400; line-height: 1.15; color: var(--text); margin-bottom: 6px; }
+    .content__title em { font-style: italic; }
+    .content__tagline { font-family: var(--font-display); font-size: 19px; font-style: italic; color: var(--muted); }
+
+    /* Abertura */
+    .opening       { margin-bottom: 32px; }
+    .opening p     { font-family: var(--font-body); font-size: 14px; line-height: 1.75; color: var(--text); }
+    .opening p + p { margin-top: 12px; }
+
+    /* Seções */
+    .section       { margin-bottom: 32px; }
+
+    .section__title { font-family: var(--font-display); font-size: 24px; font-weight: 500; color: var(--dark); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--subtle); }
+    .section__body  { font-family: var(--font-body); font-size: 13px; line-height: 1.75; color: var(--text); }
+    .section__body p + p { margin-top: 10px; }
+
+    /* Pontos cegos */
+    .blindspot            { margin-bottom: 14px; }
+    .blindspot:last-child { margin-bottom: 0; }
+    .blindspot__label     { font-family: var(--font-body); font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+    .blindspot__text      { font-family: var(--font-body); font-size: 13px; line-height: 1.6; color: var(--muted); }
+
+    /* Relacionamentos */
+    .relation             { display: flex; gap: 14px; margin-bottom: 10px; padding: 10px 14px; background: var(--bg-warm); border-radius: 6px; }
+    .relation:last-child  { margin-bottom: 0; }
+    .relation__label      { font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--dark); white-space: nowrap; min-width: 175px; padding-top: 2px; }
+    .relation__text       { font-family: var(--font-body); font-size: 13px; line-height: 1.55; color: var(--muted); }
+
+    /* Transformação */
+    .practice             { margin-bottom: 16px; }
+    .practice:last-child  { margin-bottom: 0; }
+    .practice__label      { font-family: var(--font-body); font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .practice__text       { font-family: var(--font-body); font-size: 13px; line-height: 1.65; color: var(--muted); }
+
+    /* Encerramento */
+    .closing       { margin-top: 28px; padding: 24px 28px; background: var(--dark); border-radius: 8px; }
+    .closing p     { font-family: var(--font-display); font-size: 19px; font-style: italic; line-height: 1.55; color: var(--white); }
+    .closing p + p { margin-top: 10px; }
+
+    /* Footer — absoluto no fundo da última página */
+    .pg-footer    { position: absolute; bottom: 5px; left: 60px; right: 60px; display: flex; justify-content: space-between; align-items: center; padding-bottom: 6px; }
+    .footer__site { font-family: var(--font-body); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--subtle); }
+    .footer__line { flex: 1; height: 1px; background: var(--subtle); margin: 0 16px; }
+
+    /* Barra de cor */
+    .pg-accent { position: absolute; bottom: 0; left: 0; right: 0; height: 5px; }
+
+    /* ── Print ── */
+    @page { size: A4; margin: 0; }
+
+    @media print {
+      #export-panel, #export-panel + div { display: none !important; }
+      html, body { width: 210mm; background: transparent; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      /* Print: altura fixa + sem overflow = páginas A4 perfeitas */
+      .pdf-page {
+        height: 297mm;
+        overflow: hidden;
+        margin: 0;
+        break-after: page;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Painel de exportação -->
+<div id="export-panel" style="position:fixed;top:0;left:0;right:0;z-index:999;background:#4B1D3F;padding:12px 24px;display:flex;align-items:center;gap:12px;font-family:&#39;Jost&#39;,sans-serif;font-size:13px;color:#F5EEE4;">
+  <span style="font-weight:600;margin-right:4px;">Exportar:</span>
+  <button onclick="filtrar(&#39;ansioso&#39;)" style="background:#D8A7B1;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;">Ansioso</button>
+  <button onclick="filtrar(&#39;distante&#39;)" style="background:#C4909C;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;">Distante</button>
+  <button onclick="filtrar(&#39;seguro&#39;)" style="background:#BF8A96;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;">Seguro</button>
+  <button onclick="filtrar(&#39;confuso&#39;)" style="background:#D4B5B0;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;">Confuso</button>
+  <button onclick="filtrar(null)" style="background:#7A6A60;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:12px;color:#F5EEE4;font-weight:600;">Ver todos</button>
+  <span style="margin-left:8px;color:#D4C5AE;">→ Clique num estilo, depois Cmd+P</span>
+</div>
+<div style="height:52px;"></div>
+
+
+<!-- ════════════════ CAPA ════════════════ -->
+<div class="pdf-page">
+  <div class="pg-cover">
+    <div class="cover__ornament"></div>
+    <p class="cover__site">meujeitodeamar.com.br</p>
+    <p class="cover__eyebrow">Sua leitura completa</p>
+    <h1 class="cover__title">O seu jeito<br>de <em>amar.</em></h1>
+    <p class="cover__subtitle">Uma leitura sobre quem você é<br>nos seus relacionamentos.</p>
+    <div class="cover__divider"></div>
+    <p class="cover__intro">Esse documento contém a sua leitura completa. Leia uma vez sem parar. Não analise. Não julgue. Depois volte à seção de pontos cegos — essa costuma ser a mais incômoda e a mais útil.</p>
+  </div>
+</div>
+
+
+<!-- ════════════════ ANSIOSO ════════════════ -->
+
+<!-- PG 1 — Origem e Funcionamento -->
+<div class="pdf-page" data-estilo="ansioso" style="display: none;">
+  <div class="pg-body">
+    <div class="content__header">
+      <p class="content__eyebrow">Seu Jeito de Amar</p>
+      <h2 class="content__title">O Coração <em>Ansioso</em></h2>
+      <p class="content__tagline">Você ama de verdade. E sente de verdade.</p>
+    </div>
+    <div class="opening">
+      <p>Você é o tipo de pessoa que quer entender. Que não se contenta com "é meu jeito mesmo." Que sente profundamente e quer saber o que fazer com tudo isso que sente.</p>
+      <p>Essa leitura foi escrita para você. Não para te diagnosticar. Não para te encaixar numa caixa. Mas para te mostrar algo que talvez você já intuía mas nunca tinha conseguido nomear com clareza.</p>
+    </div>
+    <div class="section">
+      <h3 class="section__title">De onde veio o seu jeito de amar</h3>
+      <div class="section__body">
+        <p>Nos primeiros anos da sua vida, as pessoas que cuidavam de você eram, de alguma forma, imprevisíveis. Não necessariamente ruins. Muitas vezes eram pessoas que te amavam de verdade. Mas o amor que chegava até você não tinha uma cadência certa.</p>
+        <p>O seu sistema nervoso, que ainda estava aprendendo como o mundo funciona, tirou uma conclusão lógica: <strong>o amor é algo que pode sumir. Então preciso ficar de olho.</strong></p>
+        <p>Hoje ele aparece como hipervigilância emocional. Uma mensagem que demorou mais. Um tom de voz ligeiramente diferente. Uma resposta mais curta. Para a maioria, essas coisas passam. Para você, elas disparam um alarme — não porque você seja dramático, mas porque o seu sistema nervoso foi treinado para monitorar exatamente isso.</p>
+      </div>
+    </div>
+    <div class="section" style="margin-bottom:0;">
+      <h3 class="section__title">Como você funciona nos relacionamentos</h3>
+      <div class="section__body">
+        <p>Quando você se apaixona, você se apaixona de verdade. Você está presente, atento, dedicado. Você lembra dos detalhes. Você cuida de formas que muitas pessoas nunca receberam de ninguém.</p>
+        <p>O problema aparece quando você começa a sentir que o outro pode estar se afastando. O alarme dispara. Mais mensagens. Mais perguntas. Ou às vezes conflito — porque briga ainda é conexão, e conexão é o que você precisa para sentir que está tudo bem.</p>
+        <p>O ciclo: você sente distância → tenta se aproximar → o outro recua → você sente mais distância ainda. Esse ciclo não é culpa sua. É o seu jeito de amar tentando proteger o que é mais importante para você: a conexão.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PG 2 — Pontos Cegos + Relações -->
+<div class="pdf-page" data-estilo="ansioso" style="display: none;">
+  <div class="pg-body">
+    <div class="section">
+      <h3 class="section__title">Seus pontos cegos</h3>
+      <div class="blindspot">
+        <p class="blindspot__label">Você testa sem saber que está testando.</p>
+        <p class="blindspot__text">Às vezes você diz que está bem quando não está, esperando que o outro perceba. Esses testes existem porque você precisa de provas de que o amor está lá. Mas para o outro, eles aparecem como mensagens contraditórias.</p>
+      </div>
+      <div class="blindspot">
+        <p class="blindspot__label">Você interpreta silêncio como rejeição.</p>
+        <p class="blindspot__text">Na sua história, silêncio muitas vezes antecedia perda. O problema é que nem todo silêncio significa o que você acha que significa.</p>
+      </div>
+      <div class="blindspot">
+        <p class="blindspot__label">Você coloca as necessidades do outro antes das suas.</p>
+        <p class="blindspot__text">E depois ressente quando elas não são correspondidas da mesma forma. Você dá o que gostaria de receber. Mas nem todo mundo sabe dar dessa forma.</p>
+      </div>
+      <div class="blindspot">
+        <p class="blindspot__label">Você confunde intensidade com amor.</p>
+        <p class="blindspot__text">Relacionamentos tranquilos às vezes parecem sem sentimento. A calmaria pode ser interpretada como falta de interesse — e isso pode te levar a sabotar exatamente as relações com potencial real.</p>
+      </div>
+    </div>
+    <div class="section" style="margin-bottom:0;">
+      <h3 class="section__title">Como você se relaciona com cada jeito de amar</h3>
+      <div class="relation">
+        <span class="relation__label">❤ Coração Seguro</span>
+        <p class="relation__text">A combinação com mais potencial. O Coração Seguro te dá a consistência que você sempre precisou. Com o tempo, você aprende que o amor pode ser estável sem precisar lutar por ele.</p>
+      </div>
+      <div class="relation">
+        <span class="relation__label">❤ Outro Ansioso</span>
+        <p class="relation__text">Intenso e bonito nos primeiros meses. Mas quando os dois entram em modo de alarme ao mesmo tempo, o relacionamento pode se tornar exaustivo — os dois precisando, sem que nenhum consiga oferecer estabilidade.</p>
+      </div>
+      <div class="relation">
+        <span class="relation__label">❤ Coração Distante</span>
+        <p class="relation__text">O par mais comum e o mais doloroso. Você sente a distância e tenta se aproximar. Ele sente a aproximação e recua. Um ciclo que vai drenar os dois sem consciência do que está acontecendo.</p>
+      </div>
+      <div class="relation">
+        <span class="relation__label">❤ Coração Confuso</span>
+        <p class="relation__text">A imprevisibilidade reativa os seus alarmes constantemente. Você nunca sabe o que esperar, mantendo o seu sistema nervoso em estado de alerta permanente.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PG 3 — Transformação + Encerramento -->
+<div class="pdf-page" data-estilo="ansioso" style="display: none;">
+  <div class="pg-body pg-body--last">
+    <div class="section">
+      <h3 class="section__title">O caminho de transformação</h3>
+      <div class="practice">
+        <p class="practice__label">Antes de agir no alarme, pergunte.</p>
+        <p class="practice__text">Isso é algo que está acontecendo agora, ou é algo que parece com o que acontecia antes? Muitas vezes a resposta é a segunda opção.</p>
+      </div>
+      <div class="practice">
+        <p class="practice__label">Aprenda a comunicar o que precisa de forma direta.</p>
+        <p class="practice__text">Em vez de testar, pratique dizer: "Preciso de um pouco mais de presença hoje." Parece simples. É revolucionário.</p>
+      </div>
+      <div class="practice">
+        <p class="practice__label">Construa uma base de segurança em você mesmo.</p>
+        <p class="practice__text">Quando a sua sensação de estar bem não depende exclusivamente do comportamento do outro, o alarme começa a disparar com menos frequência.</p>
+      </div>
+    </div>
+    <div class="closing">
+      <p>O seu jeito de amar é intenso porque o amor é intenso para você. Isso não é um problema a ser corrigido. É uma qualidade a ser direcionada para os lugares e pessoas que sabem receber o que você tem a oferecer.</p>
+      <p>Você não é demais. Você é exatamente o suficiente.</p>
+    </div>
+  </div>
+  <div class="pg-footer">
+    <span class="footer__site">meujeitodeamar.com.br</span>
+    <div class="footer__line"></div>
+    <span class="footer__site">Coração Ansioso</span>
+  </div>
+  <div class="pg-accent" style="background:var(--ansioso);"></div>
+</div>
+
+
+<!-- ════════════════ DISTANTE ════════════════ -->
+
+<!-- PG 1 -->
+<div class="pdf-page" data-estilo="distante" style="">
+  <div class="pg-body">
+    <div class="content__header">
+      <p class="content__eyebrow">Seu Jeito de Amar</p>
+      <h2 class="content__title">O Coração <em>Distante</em></h2>
+      <p class="content__tagline">Você não é frio. Você é cauteloso.</p>
+    </div>
+    <div class="opening">
+      <p>Só o fato de você ter feito esse teste já diz algo importante. Porque pessoas com o seu jeito de amar costumam achar que não precisam desse tipo de coisa. Que já se conhecem bem o suficiente. Que sentimentos são território que preferem manter organizado e sob controle.</p>
+      <p>Mas você está aqui. E isso significa que alguma parte de você quer entender.</p>
+    </div>
+    <div class="section">
+      <h3 class="section__title">De onde veio o seu jeito de amar</h3>
+      <div class="section__body">
+        <p>Nos primeiros anos da sua vida, você aprendeu que precisar de alguém era arriscado. Talvez as pessoas que cuidavam de você estivessem presentes fisicamente mas ausentes emocionalmente. Talvez você tenha aprendido que era melhor resolver as coisas sozinho do que esperar por alguém.</p>
+        <p>Essa foi uma estratégia de sobrevivência brilhante para uma criança. O problema é que você cresceu. Mas a estratégia ficou.</p>
+        <p>O seu sistema nervoso aprendeu que intimidade é perigosa. Então você criou um jeito de estar no mundo que minimiza esse risco: mantenha o controle, não dependa demais, preserve o espaço interno. <strong>Isso não é frieza. É proteção.</strong></p>
+      </div>
+    </div>
+    <div class="section" style="margin-bottom:0;">
+      <h3 class="section__title">Como você funciona nos relacionamentos</h3>
+      <div class="section__body">
+        <p>Você valoriza independência, tanto a sua quanto a do outro. Você funciona bem. Você é confiável. Você não cria drama. Em muitos contextos, as pessoas te admiram exatamente por isso.</p>
+        <p>Mas quando um relacionamento começa a se aprofundar, algo muda. Quanto mais alguém se aproxima, mais você sente um impulso de criar distância. Não porque você não goste da pessoa. Mas porque proximidade demais ativa aquele sistema antigo de alarme.</p>
+        <p>Para você, se afastar é apenas respirar. Você nem sempre percebe que está fazendo. Para o outro, especialmente se ele tem o Coração Ansioso, isso parece rejeição.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PG 2 — Pontos Cegos + Relações -->
+<div class="pdf-page" data-estilo="distante" style="">
+  <div class="pg-body">
+    <div class="section">
+      <h3 class="section__title">Seus pontos cegos</h3>
+      <div class="blindspot">
+        <p class="blindspot__label">Você desconecta sem avisar.</p>
+        <p class="blindspot__text">Para você é óbvio que vai voltar. Para o outro, é uma mensagem de abandono. Um simples "preciso de um tempo para mim, mas estou bem com você" muda tudo.</p>
+      </div>
+      <div class="blindspot">
+        <p class="blindspot__label">Você intelectualiza o que sente.</p>
+        <p class="blindspot__text">Quando surge uma conversa emocional difícil, você tende a analisar em vez de sentir. Isso é eficiente em muitos contextos. Mas nos relacionamentos, as pessoas precisam que você esteja presente emocionalmente, não só cognitivamente.</p>
+      </div>
+      <div class="blindspot">
+        <p class="blindspot__label">Você valoriza autonomia a ponto de sabotar conexão.</p>
+        <p class="blindspot__text">Às vezes mantém o outro a uma distância segura. Não porque você não queira o relacionamento. Mas porque comprometimento parece uma ameaça à sua liberdade — mesmo quando a liberdade que você protege é de algo que você na verdade deseja.</p>
+      </div>
+      <div class="blindspot">
+        <p class="blindspot__label">Você pode ser difícil de ler.</p>
+        <p class="blindspot__text">As pessoas ao seu redor muitas vezes não sabem como você está se sentindo em relação a elas. Você acha que está sendo claro. Elas acham que você é um mistério.</p>
+      </div>
+    </div>
+    <div class="section" style="margin-bottom:0;">
+      <h3 class="section__title">Como você se relaciona com cada jeito de amar</h3>
+      <div class="relation">
+        <span class="relation__label">❤ Coração Seguro</span>
+        <p class="relation__text">A melhor combinação para você. O Coração Seguro não entra em pânico quando você precisa de espaço. Vai esperar sem sumir. Com o tempo, você aprende que é seguro se aproximar.</p>
+      </div>
+      <div class="relation">
+        <span class="relation__label">❤ Coração Ansioso</span>
+        <p class="relation__text">A atração é frequente e a dinâmica é difícil. Quanto mais ele se aproxima, mais você recua. Para funcionar, os dois precisam entender o que está acontecendo e criar uma linguagem comum.</p>
+      </div>
+      <div class="relation">
+        <span class="relation__label">❤ Outro Distante</span>
+        <p class="relation__text">Pode ser confortável porque nenhum dos dois pressiona o outro. Mas o risco é que o relacionamento fique na superfície para sempre. Dois Corações Distantes podem coexistir sem nunca realmente se encontrar.</p>
+      </div>
+      <div class="relation">
+        <span class="relation__label">❤ Coração Confuso</span>
+        <p class="relation__text">A imprevisibilidade reforça a sua desconfiança na intimidade. Quando o outro ora quer muito perto, ora quer distância, você tende a se afastar completamente por não saber o que esperar.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PG 3 — Transformação + Encerramento -->
+<div class="pdf-page" data-estilo="distante" style="">
+  <div class="pg-body pg-body--last">
+    <div class="section">
+      <h3 class="section__title">O caminho de transformação</h3>
+      <div class="practice">
+        <p class="practice__label">Pratique nomear o que está acontecendo internamente.</p>
+        <p class="practice__text">Quando sentir o impulso de se afastar, diga para o outro o que está acontecendo. "Estou precisando de um pouco de espaço hoje" é suficiente e transforma a experiência do outro completamente.</p>
+      </div>
+      <div class="practice">
+        <p class="practice__label">Experimente ficar desconfortável por um pouco mais de tempo.</p>
+        <p class="practice__text">Quando surgir o impulso de sumir numa conversa emocional, tente ficar mais trinta segundos. A tolerância à intimidade se constrói em pequenas doses.</p>
+      </div>
+      <div class="practice">
+        <p class="practice__label">Observe o que acontece depois que você se permite estar perto.</p>
+        <p class="practice__text">Muitas vezes você vai descobrir que o mundo não acabou. Que estar próximo não significa perder quem você é.</p>
+      </div>
+    </div>
+    <div class="closing">
+      <p>Você tem muito a oferecer. Calma, profundidade, presença quando escolhe estar presente. A questão é aprender a escolher estar presente com mais frequência, para as pessoas que merecem.</p>
+      <p>Você não é frio. Você é cauteloso. E há uma diferença enorme entre os dois.</p>
+    </div>
+  </div>
+  <div class="pg-footer">
+    <span class="footer__site">meujeitodeamar.com.br</span>
+    <div class="footer__line"></div>
+    <span class="footer__site">Coração Distante</span>
+  </div>
+  <div class="pg-accent" style="background:var(--distante);"></div>
+</div>
+
+
+<!-- ════════════════ SEGURO ════════════════ -->
+
+<!-- PG 1 -->
+<div class="pdf-page" data-estilo="seguro" style="display: none;">
+  <div class="pg-body">
+    <div class="content__header">
+      <p class="content__eyebrow">Seu Jeito de Amar</p>
+      <h2 class="content__title">O Coração <em>Seguro</em></h2>
+      <p class="content__tagline">Você é a âncora. E também precisa ser ancorado.</p>
+    </div>
+    <div class="opening">
+      <p>Pessoas com o Coração Seguro tendem a buscar autoconhecimento não por desespero, mas por genuína curiosidade sobre si mesmas e sobre como se relacionam melhor.</p>
+      <p>Você está aqui porque quer entender. E entendimento é exatamente o que vamos oferecer.</p>
+    </div>
+    <div class="section">
+      <h3 class="section__title">De onde veio o seu jeito de amar</h3>
+      <div class="section__body">
+        <p>Nos primeiros anos da sua vida, você recebeu algo que muitas pessoas nunca tiveram: consistência. As pessoas que cuidavam de você estavam lá quando você precisava — não de forma perfeita, mas suficientemente previsível para que o seu sistema nervoso aprendesse uma verdade fundamental:</p>
+        <p><strong>O amor existe. E ele fica.</strong></p>
+        <p>Você aprendeu que pode se aproximar sem perigo. Que pode precisar de alguém sem ser abandonado. Que conflito não significa o fim do relacionamento. Esse aprendizado é a fundação do seu jeito de amar — e é mais valioso do que você imagina.</p>
+      </div>
+    </div>
+    <div class="section" style="margin-bottom:0;">
+      <h3 class="section__title">Como você funciona nos relacionamentos</h3>
+      <div class="section__body">
+        <p>Você consegue estar próximo sem se perder. Você oferece presença real sem sufocamento. Você consegue dar espaço sem interpretar isso como rejeição. Quando há conflito, você tende a buscar resolução em vez de escalada ou fuga.</p>
+        <p>Isso faz de você uma âncora nos relacionamentos. As pessoas ao seu lado, especialmente as que têm jornadas emocionais mais turbulentas, frequentemente se sentem mais estáveis quando estão com você.</p>
+        <p>Mas "seguro" não significa sem padrões. E é aí que vale olhar com atenção.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PG 2 — Pontos Cegos + Relações -->
+<div class="pdf-page" data-estilo="seguro" style="display: none;">
+  <div class="pg-body">
+    <div class="section">
+      <h3 class="section__title">Seus pontos cegos</h3>
+      <div class="blindspot">
+        <p class="blindspot__label">Você pode subestimar o quanto os outros estão lutando.</p>
+        <p class="blindspot__text">Como a sua experiência interna é relativamente estável, às vezes é difícil entender a profundidade da turbulência que outras pessoas sentem. Cuidado com comentários como "mas não é tão grave assim."</p>
+      </div>
+      <div class="blindspot">
+        <p class="blindspot__label">Você pode confundir estabilidade com ausência de profundidade.</p>
+        <p class="blindspot__text">Às vezes a segurança emocional pode parecer para os outros como falta de intensidade ou interesse. Demonstrar o quanto você se importa, de formas que o outro consegue receber, é uma habilidade importante.</p>
+      </div>
+      <div class="blindspot">
+        <p class="blindspot__label">Você pode atrair pessoas que precisam de cura.</p>
+        <p class="blindspot__text">O seu jeito de ser é reconfortante para quem vive em turbulência. Isso pode te colocar repetidamente no papel de âncora emocional de pessoas que ainda estão aprendendo a se estabilizar.</p>
+      </div>
+      <div class="blindspot">
+        <p class="blindspot__label">Você também tem necessidades.</p>
+        <p class="blindspot__text">Às vezes a sua estabilidade faz com que as pessoas assumam que você não precisa de cuidado. Aprender a nomear as suas necessidades tão claramente quanto você nomeia as dos outros é o seu trabalho central.</p>
+      </div>
+    </div>
+    <div class="section" style="margin-bottom:0;">
+      <h3 class="section__title">Como você se relaciona com cada jeito de amar</h3>
+      <div class="relation">
+        <span class="relation__label">❤ Outro Seguro</span>
+        <p class="relation__text">A combinação mais tranquila e frequentemente a mais sustentável. Dois Corações Seguros tendem a construir relacionamentos com pouco drama, muita presença e profundidade real.</p>
+      </div>
+      <div class="relation">
+        <span class="relation__label">❤ Coração Ansioso</span>
+        <p class="relation__text">Você pode ser o maior presente que alguém com o Coração Ansioso já recebeu. A sua consistência é o antídoto exato para o que ele mais precisou. O desafio é manter paciência quando ele testa essa consistência sem perceber.</p>
+      </div>
+      <div class="relation">
+        <span class="relation__label">❤ Coração Distante</span>
+        <p class="relation__text">Você tem a capacidade única de criar um ambiente seguro o suficiente para que o Coração Distante aprenda a se aproximar — não porque você persiste, mas porque você está lá de forma estável e sem ameaça.</p>
+      </div>
+      <div class="relation">
+        <span class="relation__label">❤ Coração Confuso</span>
+        <p class="relation__text">Esse é o relacionamento que vai exigir mais de você. A imprevisibilidade pode, com o tempo, desgastar até a base mais sólida. A sua estabilidade ajuda muito. Mas você também precisa de reciprocidade.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PG 3 — Transformação + Encerramento -->
+<div class="pdf-page" data-estilo="seguro" style="display: none;">
+  <div class="pg-body pg-body--last">
+    <div class="section">
+      <h3 class="section__title">O caminho de aprofundamento</h3>
+      <div class="practice">
+        <p class="practice__label">Pratique nomear as suas necessidades antes de acumularem.</p>
+        <p class="practice__text">Você tende a estar bem por muito tempo e então perceber que está sobrecarregado. Comunicar o que precisa no momento em que surge é o exercício central para você.</p>
+      </div>
+      <div class="practice">
+        <p class="practice__label">Aprenda a linguagem emocional dos outros jeitos de amar.</p>
+        <p class="practice__text">Entender como o Coração Ansioso precisa de reasseguramento, ou como o Coração Distante precisa de espaço sem pressão, te torna um parceiro melhor e alguém capaz de construir relacionamentos verdadeiramente profundos.</p>
+      </div>
+      <div class="practice">
+        <p class="practice__label">Busque reciprocidade.</p>
+        <p class="practice__text">O fato de você ser estável não significa que você deve ser sempre quem cuida. Você merece alguém que também seja uma âncora para você nos momentos em que você precisar.</p>
+      </div>
+    </div>
+    <div class="closing">
+      <p>A estabilidade que você oferece ao mundo é mais valiosa do que você imagina. Não a desperdice em lugares que não sabem recebê-la.</p>
+    </div>
+  </div>
+  <div class="pg-footer">
+    <span class="footer__site">meujeitodeamar.com.br</span>
+    <div class="footer__line"></div>
+    <span class="footer__site">Coração Seguro</span>
+  </div>
+  <div class="pg-accent" style="background:var(--seguro);"></div>
+</div>
+
+
+<!-- ════════════════ CONFUSO ════════════════ -->
+
+<!-- PG 1 -->
+<div class="pdf-page" data-estilo="confuso" style="display: none;">
+  <div class="pg-body">
+    <div class="content__header">
+      <p class="content__eyebrow">Seu Jeito de Amar</p>
+      <h2 class="content__title">O Coração <em>Confuso</em></h2>
+      <p class="content__tagline">Você não está quebrado. Você está carregando algo pesado.</p>
+    </div>
+    <div class="opening">
+      <p>Talvez você não saiba exatamente o que esperar dessa leitura. Porque pessoas com o seu jeito de amar frequentemente não sabem exatamente o que esperar de nada.</p>
+      <p>E tudo bem. Essa leitura foi escrita para você com cuidado. Porque o seu jeito de amar é o mais complexo de entender, o mais difícil de viver, e o que mais precisa de luz.</p>
+    </div>
+    <div class="section">
+      <h3 class="section__title">De onde veio o seu jeito de amar</h3>
+      <div class="section__body">
+        <p>O que aconteceu com você nos primeiros anos de vida foi mais complicado do que nos outros perfis. As pessoas que deveriam ser a sua fonte de segurança, ao mesmo tempo, eram também uma fonte de medo ou confusão.</p>
+        <p>O seu sistema nervoso ficou preso entre dois impulsos opostos: buscar proximidade e fugir dela ao mesmo tempo. Esse conflito interno não foi resolvido. Ele foi carregado.</p>
+        <p>Hoje ele aparece como uma oscilação que você mesmo não consegue explicar completamente. Às vezes você quer muito perto. Às vezes você precisa de distância urgente. E você pode mudar de um estado para o outro de formas que confundem você e as pessoas ao seu redor.</p>
+      </div>
+    </div>
+    <div class="section" style="margin-bottom:0;">
+      <h3 class="section__title">Como você funciona nos relacionamentos</h3>
+      <div class="section__body">
+        <p>Quando você se conecta com alguém, você se conecta de verdade. Você sente muito. Você dá muito. Você está completamente presente.</p>
+        <p>Mas em algum momento, algo muda. Uma palavra dita de forma errada. Uma sensação de que as coisas estão ficando sérias demais. Um gatilho que você mesmo não consegue identificar com clareza.</p>
+        <p>O ciclo mais comum: conexão intensa → medo da conexão → afastamento → culpa → reconexão intensa. Isso não é instabilidade de caráter. É o reflexo de uma história que criou dois sistemas em conflito dentro de você.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PG 2 — Pontos Cegos + Relações -->
+<div class="pdf-page" data-estilo="confuso" style="display: none;">
+  <div class="pg-body">
+    <div class="section">
+      <h3 class="section__title">Seus pontos cegos</h3>
+      <div class="blindspot">
+        <p class="blindspot__label">Você pode ser difícil de acompanhar.</p>
+        <p class="blindspot__text">As pessoas ao seu redor nunca têm certeza do que esperar. Você pode ser muito caloroso num dia e muito distante no outro. Entender seus próprios gatilhos é o primeiro passo para comunicar melhor o que está acontecendo.</p>
+      </div>
+      <div class="blindspot">
+        <p class="blindspot__label">Você interpreta situações neutras como ameaçadoras.</p>
+        <p class="blindspot__text">O seu sistema nervoso foi calibrado num ambiente onde as ameaças eram reais e imprevisíveis. Uma crítica pequena pode parecer um ataque. Uma mudança de planos pode parecer abandono.</p>
+      </div>
+      <div class="blindspot">
+        <p class="blindspot__label">Você pode sabotar o que está funcionando.</p>
+        <p class="blindspot__text">Quando as coisas vão bem por muito tempo, uma parte de você fica desconfiada. "Bom demais" não combina com o que você aprendeu que o amor parece. Então você pode criar um conflito justamente quando o relacionamento estava encontrando ritmo.</p>
+      </div>
+      <div class="blindspot">
+        <p class="blindspot__label">Você carrega muita culpa.</p>
+        <p class="blindspot__text">Pelas oscilações, pelo afastamento, pelas reações que você mesmo acha exageradas. Essa culpa é pesada e não te ajuda a mudar. Entender de onde veio o padrão é muito mais útil do que se julgar por tê-lo.</p>
+      </div>
+    </div>
+    <div class="section" style="margin-bottom:0;">
+      <h3 class="section__title">Como você se relaciona com cada jeito de amar</h3>
+      <div class="relation">
+        <span class="relation__label">❤ Coração Seguro</span>
+        <p class="relation__text">A combinação com mais potencial de cura para você. O Coração Seguro oferece o que você mais precisou: previsibilidade. Com o tempo, você pode começar a aprender que intimidade não é necessariamente perigosa.</p>
+      </div>
+      <div class="relation">
+        <span class="relation__label">❤ Coração Ansioso</span>
+        <p class="relation__text">A intensidade pode criar uma conexão muito poderosa no início. Mas quando os dois entram em modo de alarme ao mesmo tempo, o relacionamento pode se tornar muito turbulento sem trabalho consciente dos dois lados.</p>
+      </div>
+      <div class="relation">
+        <span class="relation__label">❤ Coração Distante</span>
+        <p class="relation__text">A imprevisibilidade do Coração Distante reativa constantemente o seu estado de alerta. Você nunca sabe se ele está dentro ou fora, o que alimenta exatamente o ciclo de confusão que você está tentando superar.</p>
+      </div>
+      <div class="relation">
+        <span class="relation__label">❤ Outro Confuso</span>
+        <p class="relation__text">Pode haver muita compreensão mútua. Mas dois Corações Confusos sem consciência do que está acontecendo podem criar um relacionamento de muita intensidade e pouca estabilidade.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PG 3 — Transformação + Encerramento -->
+<div class="pdf-page" data-estilo="confuso" style="display: none;">
+  <div class="pg-body pg-body--last">
+    <div class="section">
+      <h3 class="section__title">O caminho de transformação</h3>
+      <div class="practice">
+        <p class="practice__label">Comece a mapear seus gatilhos.</p>
+        <p class="practice__text">Quando você oscilar, tente observar: o que aconteceu antes dessa mudança? Que sensação surgiu no corpo? Com o tempo, você começa a ver padrões onde antes só havia caos.</p>
+      </div>
+      <div class="practice">
+        <p class="practice__label">Aprenda a nomear o estado em que você está para as pessoas próximas.</p>
+        <p class="practice__text">Você não precisa explicar tudo. Mas um simples "estou num momento difícil agora, não é sobre você" pode salvar um relacionamento de um mal-entendido que levaria semanas para resolver.</p>
+      </div>
+      <div class="practice">
+        <p class="practice__label">Considere apoio profissional.</p>
+        <p class="practice__text">Isso não é fraqueza. É reconhecer que o que você carrega é real e merece atenção de alguém treinado para ajudar.</p>
+      </div>
+      <div class="practice">
+        <p class="practice__label">Busque estabilidade em pequenas doses.</p>
+        <p class="practice__text">Não tente mudar tudo de uma vez. Cada vez que você conseguir ficar num estado de conexão um pouco mais do que antes, você está reconectando algo dentro de você.</p>
+      </div>
+    </div>
+    <div class="closing">
+      <p>Você não está quebrado. Você está carregando algo pesado que não era seu para carregar desde o início. E reconhecer isso é o começo de tudo.</p>
+      <p>Você sobreviveu a coisas que teriam quebrado muita gente. Agora é hora de fazer mais do que sobreviver.</p>
+    </div>
+  </div>
+  <div class="pg-footer">
+    <span class="footer__site">meujeitodeamar.com.br</span>
+    <div class="footer__line"></div>
+    <span class="footer__site">Coração Confuso</span>
+  </div>
+  <div class="pg-accent" style="background:var(--confuso);"></div>
+</div>
+
+
+<script>
+  function filtrar(estilo) {
+    document.querySelectorAll('.pdf-page[data-estilo]').forEach(function(page) {
+      page.style.display = (!estilo || page.dataset.estilo === estilo) ? '' : 'none'
+    })
+  }
+</script>
+
+
+</body></html>

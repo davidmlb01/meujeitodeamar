@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freud — Criativos Estáticos V3 (07–12)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #F5F0EB; padding: 40px 20px; font-family: 'Jost', sans-serif; }
+  h1 { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: #4B1D3F; text-align: center; margin-bottom: 8px; }
+  .subtitle { text-align: center; color: #7A6A60; font-size: 14px; margin-bottom: 48px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(520px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; }
+  .card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(75,29,63,0.10); }
+  .card-header { background: #4B1D3F; padding: 14px 20px; display: flex; align-items: center; gap: 10px; }
+  .card-num { background: rgba(255,255,255,0.15); color: #fff; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+  .card-angle { color: #E8D9C1; font-size: 12px; }
+  .card-body { padding: 20px; }
+  canvas { display: block; width: 480px; height: 480px; border-radius: 8px; margin: 0 auto; }
+  .btn-row { display: flex; justify-content: center; margin-top: 16px; }
+  .dl-btn { background: #4B1D3F; color: #E8D9C1; border: none; padding: 10px 28px; border-radius: 8px; font-family: 'Jost', sans-serif; font-size: 13px; cursor: pointer; letter-spacing: 0.5px; transition: opacity 0.2s; }
+  .dl-btn:hover { opacity: 0.85; }
+</style>
+</head>
+<body>
+
+<h1>Criativos Estáticos — Feed Instagram</h1>
+<p class="subtitle">Projeto Freud — meujeitodeamar.com.br — 1080x1080px — Opções 07 a 12</p>
+
+<div class="grid">
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">07</span>
+      <span class="card-angle">Lista — 3 sinais (Burgundy)</span>
+    </div>
+    <div class="card-body">
+      <canvas id="c7" width="1080" height="1080"></canvas>
+      <div class="btn-row"><button class="dl-btn" onclick="dl('c7','freud-criativo-07')">Baixar PNG</button></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">08</span>
+      <span class="card-angle">Pergunta Espelho — Nude / Tipografia pura</span>
+    </div>
+    <div class="card-body">
+      <canvas id="c8" width="1080" height="1080"></canvas>
+      <div class="btn-row"><button class="dl-btn" onclick="dl('c8','freud-criativo-08')">Baixar PNG</button></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">09</span>
+      <span class="card-angle">Statement Bold — Escuro / Reframe</span>
+    </div>
+    <div class="card-body">
+      <canvas id="c9" width="1080" height="1080"></canvas>
+      <div class="btn-row"><button class="dl-btn" onclick="dl('c9','freud-criativo-09')">Baixar PNG</button></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">10</span>
+      <span class="card-angle">Cena Noturna — Antes de dormir (Cream)</span>
+    </div>
+    <div class="card-body">
+      <canvas id="c10" width="1080" height="1080"></canvas>
+      <div class="btn-row"><button class="dl-btn" onclick="dl('c10','freud-criativo-10')">Baixar PNG</button></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">11</span>
+      <span class="card-angle">Dualidade — O que você faz vs O que sente (Split)</span>
+    </div>
+    <div class="card-body">
+      <canvas id="c11" width="1080" height="1080"></canvas>
+      <div class="btn-row"><button class="dl-btn" onclick="dl('c11','freud-criativo-11')">Baixar PNG</button></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">12</span>
+      <span class="card-angle">Manifesto — Burgundy / Editorial longo</span>
+    </div>
+    <div class="card-body">
+      <canvas id="c12" width="1080" height="1080"></canvas>
+      <div class="btn-row"><button class="dl-btn" onclick="dl('c12','freud-criativo-12')">Baixar PNG</button></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const BURGUNDY = '#4B1D3F';
+const NUDE     = '#E8D9C1';
+const OFFBLACK = '#1B1B11';
+const MUTED    = '#7A6A60';
+const CREAM    = '#FAF7F4';
+const URL_SITE = 'meujeitodeamar.com.br';
+
+function wrap(ctx, text, x, y, maxW, lh) {
+  const words = text.split(' ');
+  let line = '', lines = [];
+  for (let n = 0; n < words.length; n++) {
+    const t = line + words[n] + ' ';
+    if (ctx.measureText(t).width > maxW && n > 0) { lines.push(line.trim()); line = words[n] + ' '; }
+    else line = t;
+  }
+  lines.push(line.trim());
+  lines.forEach((l, i) => ctx.fillText(l, x, y + i * lh));
+  return y + (lines.length - 1) * lh;
+}
+
+function ctaDark(ctx, S) {
+  ctx.fillStyle = 'rgba(0,0,0,0.22)';
+  ctx.fillRect(0, S - 110, S, 110);
+  ctx.font = '600 20px Jost, sans-serif';
+  ctx.fillStyle = 'rgba(232,217,193,0.7)';
+  ctx.textAlign = 'center';
+  ctx.fillText('FAÇA O TESTE GRATUITO', S / 2, S - 70);
+  ctx.font = '500 34px Jost, sans-serif';
+  ctx.fillStyle = NUDE;
+  ctx.textAlign = 'center';
+  ctx.fillText(URL_SITE, S / 2, S - 26);
+}
+
+function ctaLight(ctx, S) {
+  ctx.fillStyle = 'rgba(75,29,63,0.07)';
+  ctx.fillRect(0, S - 110, S, 110);
+  ctx.fillStyle = 'rgba(75,29,63,0.2)';
+  ctx.fillRect(0, S - 110, S, 1);
+  ctx.font = '600 20px Jost, sans-serif';
+  ctx.fillStyle = MUTED;
+  ctx.textAlign = 'center';
+  ctx.fillText('FAÇA O TESTE GRATUITO', S / 2, S - 70);
+  ctx.font = '500 34px Jost, sans-serif';
+  ctx.fillStyle = BURGUNDY;
+  ctx.textAlign = 'center';
+  ctx.fillText(URL_SITE, S / 2, S - 26);
+}
+
+function dl(id, name) {
+  const a = document.createElement('a');
+  a.download = name + '.png';
+  a.href = document.getElementById(id).toDataURL('image/png');
+  a.click();
+}
+
+document.fonts.ready.then(() => {
+
+  // --- 07: Lista — 3 sinais que você ainda não se conhece ---
+  (function() {
+    const c = document.getElementById('c7');
+    const ctx = c.getContext('2d');
+    const S = 1080;
+
+    ctx.fillStyle = BURGUNDY;
+    ctx.fillRect(0, 0, S, S);
+
+    // Linha topo
+    ctx.fillStyle = NUDE;
+    ctx.fillRect(80, 80, 200, 3);
+
+    // Título
+    ctx.font = '300 42px Jost, sans-serif';
+    ctx.fillStyle = 'rgba(232,217,193,0.6)';
+    ctx.textAlign = 'left';
+    ctx.fillText('3 sinais de que você ainda não', 80, 170);
+    ctx.font = '300 42px Jost, sans-serif';
+    ctx.fillStyle = NUDE;
+    ctx.fillText('entende o seu jeito de amar:', 80, 224);
+
+    // Linha separadora
+    ctx.fillStyle = 'rgba(232,217,193,0.2)';
+    ctx.fillRect(80, 258, S - 160, 1);
+
+    // Items da lista
+    const items = [
+      'Você explica seus sentimentos melhor\npor mensagem do que pessoalmente.',
+      'Você fica bem sozinha, mas fica\nansiosa quando o relacionamento fica sério.',
+      'Você sabe quando está sabotando.\nMas não consegue parar.',
+    ];
+
+    const bullets = ['01', '02', '03'];
+    const ys = [320, 530, 720];
+
+    items.forEach((item, i) => {
+      // Número
+      ctx.font = '300 28px Cormorant Garamond, serif';
+      ctx.fillStyle = 'rgba(232,217,193,0.35)';
+      ctx.textAlign = 'left';
+      ctx.fillText(bullets[i], 80, ys[i] + 50);
+
+      // Texto do item
+      const lines = item.split('\n');
+      ctx.font = '300 48px Cormorant Garamond, serif';
+      ctx.fillStyle = NUDE;
+      lines.forEach((l, j) => ctx.fillText(l, 136, ys[i] + j * 62));
+
+      // Linha divisória
+      if (i < 2) {
+        ctx.fillStyle = 'rgba(232,217,193,0.12)';
+        ctx.fillRect(80, ys[i] + 152, S - 160, 1);
+      }
+    });
+
+    ctaDark(ctx, S);
+  })();
+
+  // --- 08: Pergunta Espelho — tipografia pura nude ---
+  (function() {
+    const c = document.getElementById('c8');
+    const ctx = c.getContext('2d');
+    const S = 1080;
+
+    ctx.fillStyle = '#F0E6D4';
+    ctx.fillRect(0, 0, S, S);
+
+    // Borda topo burgundy fina
+    ctx.fillStyle = BURGUNDY;
+    ctx.fillRect(0, 0, S, 6);
+
+    // Número decorativo
+    ctx.font = '300 400px Cormorant Garamond, serif';
+    ctx.fillStyle = 'rgba(75,29,63,0.06)';
+    ctx.textAlign = 'right';
+    ctx.fillText('08', S + 40, S - 20);
+
+    // Pequeno label
+    ctx.font = '400 22px Jost, sans-serif';
+    ctx.fillStyle = MUTED;
+    ctx.textAlign = 'left';
+    ctx.fillText('Você já viveu isso?', 80, 160);
+
+    // Pergunta principal — grande, simples, direta
+    const pergunta = 'Você já terminou um relacionamento que era bom, sem conseguir explicar por quê?';
+    ctx.font = '300 76px Cormorant Garamond, serif';
+    ctx.fillStyle = BURGUNDY;
+    wrap(ctx, pergunta, 80, 240, 920, 96);
+
+    // Linha separadora
+    ctx.fillStyle = 'rgba(75,29,63,0.25)';
+    ctx.fillRect(80, S - 150, 280, 2);
+
+    // Sub: a resposta está no teste
+    ctx.font = 'italic 300 38px Cormorant Garamond, serif';
+    ctx.fillStyle = MUTED;
+    ctx.textAlign = 'left';
+    ctx.fillText('O seu jeito de amar tem uma explicação.', 80, S - 100);
+
+    ctaLight(ctx, S);
+  })();
+
+  // --- 09: Statement Bold — Reframe (escuro) ---
+  (function() {
+    const c = document.getElementById('c9');
+    const ctx = c.getContext('2d');
+    const S = 1080;
+
+    ctx.fillStyle = '#130D12';
+    ctx.fillRect(0, 0, S, S);
+
+    // Detalhe lateral burgundy
+    ctx.fillStyle = BURGUNDY;
+    ctx.fillRect(0, 0, 6, S);
+
+    // Linha topo
+    ctx.fillStyle = BURGUNDY;
+    ctx.fillRect(80, 80, 140, 3);
+
+    // Linha 1 — desconstrução
+    ctx.font = '300 50px Cormorant Garamond, serif';
+    ctx.fillStyle = MUTED;
+    ctx.textAlign = 'left';
+    ctx.fillText('Você não é difícil de amar.', 80, 240);
+
+    // Espaço
+    // Linha 2 — a virada
+    ctx.font = '300 52px Cormorant Garamond, serif';
+    ctx.fillStyle = 'rgba(232,217,193,0.5)';
+    ctx.fillText('Você nunca entendeu', 80, 360);
+    ctx.fillText('o seu próprio jeito.', 80, 428);
+
+    // Linha 3 — grande
+    ctx.font = '400 96px Cormorant Garamond, serif';
+    ctx.fillStyle = NUDE;
+    ctx.fillText('Isso tem', 80, 590);
+    ctx.fillText('solução.', 80, 698);
+
+    // Detalhe
+    ctx.fillStyle = BURGUNDY;
+    ctx.fillRect(80, 730, 320, 3);
+
+    ctaDark(ctx, S);
+  })();
+
+  // --- 10: Cena Noturna — Antes de dormir ---
+  (function() {
+    const c = document.getElementById('c10');
+    const ctx = c.getContext('2d');
+    const S = 1080;
+
+    // Fundo gradiente escuro tipo noite
+    const grad = ctx.createLinearGradient(0, 0, 0, S);
+    grad.addColorStop(0, '#1A1218');
+    grad.addColorStop(1, '#2A1F27');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, S, S);
+
+    // Horário estilo relógio
+    ctx.font = '300 120px Jost, sans-serif';
+    ctx.fillStyle = 'rgba(232,217,193,0.12)';
+    ctx.textAlign = 'center';
+    ctx.fillText('23:47', S / 2, 200);
+
+    // Linha decorativa
+    ctx.fillStyle = BURGUNDY;
+    ctx.fillRect(S / 2 - 60, 220, 120, 2);
+
+    // Texto principal
+    const main = 'Antes de dormir, você revive a conversa inteira. Procura o ponto onde tudo saiu errado.';
+    ctx.font = '300 60px Cormorant Garamond, serif';
+    ctx.fillStyle = NUDE;
+    wrap(ctx, main, 80, 310, 920, 80);
+
+    // Sub
+    ctx.font = 'italic 300 42px Cormorant Garamond, serif';
+    ctx.fillStyle = 'rgba(232,217,193,0.55)';
+    ctx.textAlign = 'left';
+    wrap(ctx, 'O seu jeito de amar explica esse padrão.', 80, 730, 920, 60);
+
+    ctaDark(ctx, S);
+  })();
+
+  // --- 11: Dualidade — O que você faz vs O que você sente ---
+  (function() {
+    const c = document.getElementById('c11');
+    const ctx = c.getContext('2d');
+    const S = 1080;
+
+    // Fundo escuro
+    ctx.fillStyle = OFFBLACK;
+    ctx.fillRect(0, 0, S, S);
+
+    // Coluna esquerda — label
+    ctx.fillStyle = 'rgba(232,217,193,0.06)';
+    ctx.fillRect(0, 0, S / 2 - 2, S);
+
+    // Linha divisória central
+    ctx.fillStyle = BURGUNDY;
+    ctx.fillRect(S / 2 - 2, 80, 4, S - 190);
+
+    // Labels colunas
+    ctx.font = '500 22px Jost, sans-serif';
+    ctx.fillStyle = MUTED;
+    ctx.textAlign = 'center';
+    ctx.fillText('O QUE VOCÊ FAZ', S / 4, 130);
+    ctx.fillText('O QUE VOCÊ SENTE', (3 * S) / 4, 130);
+
+    // Linha sob os labels
+    ctx.fillStyle = 'rgba(232,217,193,0.1)';
+    ctx.fillRect(40, 148, S - 80, 1);
+
+    // Pares — comportamento vs sentimento
+    const pares = [
+      ['Some.\nNão responde.', 'Quer estar perto,\nmas trava.'],
+      ['Coloca distância\nquando aproxima.', 'Sente saudade de\nalguém que afastou.'],
+      ['Diz que está bem\nquando não está.', 'Quer que a pessoa\nperceba sozinha.'],
+    ];
+
+    const startY = 220;
+    const rowH = 240;
+
+    pares.forEach((par, i) => {
+      const y = startY + i * rowH;
+
+      // Linha separadora entre pares
+      if (i > 0) {
+        ctx.fillStyle = 'rgba(232,217,193,0.07)';
+        ctx.fillRect(40, y - 20, S - 80, 1);
+      }
+
+      // Esquerda (comportamento)
+      ctx.font = 'italic 300 44px Cormorant Garamond, serif';
+      ctx.fillStyle = 'rgba(232,217,193,0.5)';
+      ctx.textAlign = 'center';
+      par[0].split('\n').forEach((l, j) => ctx.fillText(l, S / 4, y + j * 56));
+
+      // Direita (sentimento)
+      ctx.font = '300 44px Cormorant Garamond, serif';
+      ctx.fillStyle = NUDE;
+      ctx.textAlign = 'center';
+      par[1].split('\n').forEach((l, j) => ctx.fillText(l, (3 * S) / 4, y + j * 56));
+    });
+
+    ctaDark(ctx, S);
+  })();
+
+  // --- 12: Manifesto — Burgundy editorial ---
+  (function() {
+    const c = document.getElementById('c12');
+    const ctx = c.getContext('2d');
+    const S = 1080;
+
+    ctx.fillStyle = BURGUNDY;
+    ctx.fillRect(0, 0, S, S);
+
+    // Bordas nude finas
+    ctx.fillStyle = 'rgba(232,217,193,0.15)';
+    ctx.fillRect(40, 40, S - 80, 2);
+    ctx.fillRect(40, S - 42, S - 80, 2);
+    ctx.fillRect(40, 40, 2, S - 80);
+    ctx.fillRect(S - 42, 40, 2, S - 80);
+
+    // Detalhe topo
+    ctx.fillStyle = NUDE;
+    ctx.fillRect(80, 80, 180, 3);
+
+    // Texto — manifesto em 3 tempos
+    ctx.font = '300 54px Cormorant Garamond, serif';
+    ctx.fillStyle = 'rgba(232,217,193,0.55)';
+    ctx.textAlign = 'left';
+    wrap(ctx, 'Relacionamento bom não é relacionamento sem conflito.', 80, 200, 920, 72);
+
+    ctx.font = '300 54px Cormorant Garamond, serif';
+    ctx.fillStyle = 'rgba(232,217,193,0.75)';
+    wrap(ctx, 'É relacionamento onde cada um entende o próprio jeito de amar.', 80, 410, 920, 72);
+
+    // Linha separadora
+    ctx.fillStyle = 'rgba(232,217,193,0.2)';
+    ctx.fillRect(80, 600, S - 160, 1);
+
+    // Conclusão — grande
+    ctx.font = 'italic 400 72px Cormorant Garamond, serif';
+    ctx.fillStyle = NUDE;
+    wrap(ctx, 'Você já parou para entender o seu?', 80, 660, 920, 90);
+
+    ctaDark(ctx, S);
+  })();
+
+});
+</script>
+</body>
+</html>

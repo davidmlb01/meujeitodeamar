@@ -1,5 +1,5 @@
 # MASTER BACKUP — Projeto Freud
-**Última atualização:** 2026-04-14
+**Última atualização:** 2026-04-23
 **Status:** V1 lançado — Links UTM rastreados (TikTok/Instagram/YouTube) + Dashboard Looker Studio ativos. Plataformas sociais em criação.
 
 ---
@@ -348,6 +348,8 @@ Todos os textos estão em `docs/copy/`:
 - [x] Checkout headers criados: 4 imagens 2000x590px para Kiwify, com download PNG (2026-04-10)
 - [x] Subir imagens de topo no Kiwify (4 produtos) (2026-04-10)
 - [x] Links UTM rastreados criados (TikTok/Instagram/YouTube) + Dashboard Looker Studio (2026-04-14)
+- [x] 6 criativos em vídeo (roteiro + legenda + hashtags) — framework Hormozi — TikTok/Instagram (2026-04-23)
+- [x] 6 criativos estáticos 1080x1080 — Instagram feed — com download PNG (2026-04-23)
 - [~] Criar TikTok (perfil + link na bio: bit.ly/meujeito_deamar)
 - [~] Criar Instagram (perfil + link na bio: bit.ly/meujeito_ig)
 - [~] Criar YouTube (canal + link na descrição: bit.ly/meujeito_yt)
