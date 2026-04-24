@@ -361,13 +361,14 @@ Todos os textos estão em `docs/copy/`:
 - [~] Criar YouTube (canal + link na descrição: bit.ly/meujeito_yt)
 
 ### Instagram — Conteúdo inicial
-- [ ] Configurar bio definitiva + link (https://bit.ly/meujeito_ig)
+- [x] Configurar bio definitiva + link (https://bit.ly/meujeito_ig) (2026-04-24)
 - [ ] Criar highlights covers (Ansioso, Distante, Seguro, Confuso, Depoimentos)
 - [ ] Postar post de apresentação da página
 - [ ] Postar primeiros 3 reels (orgânico antes de qualquer ad)
 - [ ] Criar 9 posts para fechar o grid inicial
 
 ### Facebook — Configuração
+- [x] Adicionar botão "Saiba mais" → meujeitodeamar.com.br (2026-04-24)
 - [ ] Postar post de apresentação da página
 
 ### Rastreamento e Pixel
