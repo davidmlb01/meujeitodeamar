@@ -352,9 +352,39 @@ Todos os textos estão em `docs/copy/`:
 - [x] 6 criativos estáticos 1080x1080 — Instagram feed — com download PNG (2026-04-23)
 - [x] Criativos estáticos V2: copy corrigido (sem "quiz", CTAs reais, copy elevado) — docs/freud/criativos-estaticos-v2.html (2026-04-23)
 - [x] Criativos estáticos V3: 6 novos criativos (07-12) — Lista, Pergunta, Statement, Cena Noturna, Dualidade, Manifesto — docs/freud/criativos-estaticos-v3.html (2026-04-23)
+- [x] Criar Instagram `@meu_jeito_de__amar` — email: meujeito015@gmail.com (2026-04-23)
+- [x] Criar página Facebook Meu Jeito de Amar com foto de perfil + capa (2026-04-23)
+- [x] Vincular Instagram ao Meta Business Suite (2026-04-23)
+- [x] Criar portfólio empresarial Meu Jeito de Amar no Meta (2026-04-23)
+- [x] Criar conta de anúncios MJDA com pagamento configurado (2026-04-23)
 - [~] Criar TikTok (perfil + link na bio: bit.ly/meujeito_deamar)
-- [~] Criar Instagram (perfil + link na bio: bit.ly/meujeito_ig)
 - [~] Criar YouTube (canal + link na descrição: bit.ly/meujeito_yt)
+
+### Instagram — Conteúdo inicial
+- [ ] Configurar bio definitiva + link (https://bit.ly/meujeito_ig)
+- [ ] Criar highlights covers (Ansioso, Distante, Seguro, Confuso, Depoimentos)
+- [ ] Postar post de apresentação da página
+- [ ] Postar primeiros 3 reels (orgânico antes de qualquer ad)
+- [ ] Criar 9 posts para fechar o grid inicial
+
+### Facebook — Configuração
+- [ ] Postar post de apresentação da página
+
+### Rastreamento e Pixel
+- [ ] Verificar domínio `meujeitodeamar.com.br` no Meta Business Suite
+- [ ] Criar Pixel no Meta (Fontes de dados → Pixels → Adicionar)
+- [ ] Instalar código do Pixel no `index.html` do site
+- [ ] Configurar evento de conversão no Pixel (ViewContent na /resultado, Purchase no Kiwify)
+- [ ] Testar Pixel com Meta Pixel Helper (extensão Chrome)
+
+### Conta de anúncios MJDA
+- [ ] Estruturar colunas personalizadas (CTR, CPM, CPC, Resultado, Custo por resultado, Valor gasto)
+- [ ] Vincular página Facebook + Instagram à conta MJDA
+- [ ] Criar público personalizado: visitantes do site (últimos 30 dias)
+- [ ] Criar público personalizado: engajamento Instagram (últimos 30 dias)
+- [ ] Criar público lookalike 1% Brasil baseado nos visitantes
+
+### Seed launch
 - [ ] Contatar 20 pessoas da rede pessoal → 10 primeiros pagantes
 - [ ] Coletar depoimentos dos primeiros compradores
 
