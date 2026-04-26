@@ -19,6 +19,10 @@ export default function Resultado() {
   useEffect(() => {
     if (!VALID_ESTILOS.includes(estilo)) {
       navigate('/', { replace: true })
+      return
+    }
+    if (window.fbq) {
+      window.fbq('track', 'ViewContent', { content_name: `resultado_${estilo}` })
     }
   }, [estilo, navigate])
 
@@ -90,7 +94,11 @@ export default function Resultado() {
         <div className="resultado__cta-section">
           <p className="resultado__price">R$37</p>
           <div className="resultado__cta-wrap">
-            <a href={KIWIFY_URLS[estilo] || KIWIFY_URLS.fallback} tabIndex={-1}>
+            <a
+              href={KIWIFY_URLS[estilo] || KIWIFY_URLS.fallback}
+              tabIndex={-1}
+              onClick={() => window.fbq && window.fbq('track', 'InitiateCheckout', { content_name: `checkout_${estilo}`, value: 37, currency: 'BRL' })}
+            >
               <Button>Desbloquear minha leitura completa</Button>
             </a>
           </div>
