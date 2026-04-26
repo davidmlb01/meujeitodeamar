@@ -372,7 +372,7 @@ Todos os textos estão em `docs/copy/`:
 - [ ] Postar post de apresentação da página
 
 ### Rastreamento e Pixel
-- [ ] Verificar domínio `meujeitodeamar.com.br` no Meta Business Suite
+- [x] Verificar domínio `www.meujeitodeamar.com.br` no Meta Business Suite (2026-04-26)
 - [x] Criar Pixel no Meta — Pixel MJA ID: 1636955567513577 (2026-04-26)
 - [x] Instalar código do Pixel no `index.html` do site (2026-04-26)
 - [x] Testar Pixel com Meta Pixel Helper — Active, 1 event (2026-04-26)
