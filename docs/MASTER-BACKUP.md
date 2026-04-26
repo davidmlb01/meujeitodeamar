@@ -373,10 +373,10 @@ Todos os textos estão em `docs/copy/`:
 
 ### Rastreamento e Pixel
 - [ ] Verificar domínio `meujeitodeamar.com.br` no Meta Business Suite
-- [ ] Criar Pixel no Meta (Fontes de dados → Pixels → Adicionar)
-- [ ] Instalar código do Pixel no `index.html` do site
+- [x] Criar Pixel no Meta — Pixel MJA ID: 1636955567513577 (2026-04-26)
+- [x] Instalar código do Pixel no `index.html` do site (2026-04-26)
+- [x] Testar Pixel com Meta Pixel Helper — Active, 1 event (2026-04-26)
 - [ ] Configurar evento de conversão no Pixel (ViewContent na /resultado, Purchase no Kiwify)
-- [ ] Testar Pixel com Meta Pixel Helper (extensão Chrome)
 
 ### Conta de anúncios MJDA
 - [ ] Estruturar colunas personalizadas (CTR, CPM, CPC, Resultado, Custo por resultado, Valor gasto)
