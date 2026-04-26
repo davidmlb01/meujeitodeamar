@@ -96,6 +96,8 @@ export default function Resultado() {
           <div className="resultado__cta-wrap">
             <a
               href={KIWIFY_URLS[estilo] || KIWIFY_URLS.fallback}
+              target="_blank"
+              rel="noopener noreferrer"
               tabIndex={-1}
               onClick={() => window.fbq && window.fbq('track', 'InitiateCheckout', { content_name: `checkout_${estilo}`, value: 37, currency: 'BRL' })}
             >
