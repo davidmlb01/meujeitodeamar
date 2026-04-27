@@ -52,8 +52,18 @@ export default function Resultado() {
       {/* ── Seção inferior: bridge + bloqueado + CTA ── */}
       <div className="resultado__inner">
 
-        {/* Bridge */}
-        <p className="resultado__bridge">{result.bridge}</p>
+        {/* Bridge — lead destacado + corpo */}
+        {(() => {
+          const parts = result.bridge.split('\n\n')
+          const lead = parts[0]
+          const body = parts.slice(1).join('\n\n')
+          return (
+            <>
+              <p className="resultado__bridge-lead">{lead}</p>
+              {body && <p className="resultado__bridge">{body}</p>}
+            </>
+          )
+        })()}
 
         <hr className="resultado__divider" />
 

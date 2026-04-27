@@ -1,6 +1,30 @@
+/* ── Animação de entrada ── */
+@keyframes resultado-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .resultado {
   min-height: 100vh;
   background: var(--bg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .resultado__intro {
+    animation: resultado-reveal 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .resultado__headline {
+    animation: resultado-reveal 600ms 80ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .resultado__inner:first-child .resultado__body {
+    animation: resultado-reveal 600ms 180ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
 }
 
 .resultado__inner {
@@ -47,17 +71,23 @@
   border: none;
 }
 
-/* ── Bridge — apresentação do produto ── */
+/* ── Bridge — parágrafo de abertura (lead) ── */
+.resultado__bridge-lead {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 3.5vw, 24px);
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--dark);
+  font-style: italic;
+}
+
+/* ── Bridge — corpo ── */
 .resultado__bridge {
   font-family: var(--font-body);
   font-size: var(--text-body);
   line-height: 1.75;
   color: var(--text);
   white-space: pre-line;
-}
-
-.resultado__bridge::first-line {
-  font-weight: 600;
 }
 
 /* ── Locked section ── */
@@ -115,7 +145,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  filter: blur(3.5px);
+  filter: blur(5px);
   user-select: none;
   pointer-events: none;
 }
@@ -203,7 +233,7 @@
   line-height: var(--lh-body);
   color: var(--muted);
   font-style: italic;
-  border-left: 2px solid var(--subtle);
+  border-left: 3px solid var(--subtle);
   padding-left: var(--space-4);
 }
 
@@ -211,8 +241,8 @@
 .resultado__aha {
   width: 100%;
   background: var(--dark);
-  padding: var(--space-10) var(--space-6);
-  margin: var(--space-4) 0;
+  padding: 56px var(--space-6);
+  margin: 0;
 }
 
 .resultado__aha-inner {
@@ -240,6 +270,20 @@
   color: #fff;
   font-style: italic;
   margin: 0;
+  position: relative;
+  padding-left: var(--space-6);
+}
+
+.resultado__aha-quote::before {
+  content: '"';
+  position: absolute;
+  left: 0;
+  top: -0.15em;
+  font-family: var(--font-display);
+  font-size: 2.2em;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.2);
+  font-style: normal;
 }
 
 /* ── Blurred hint text inside locked cards ── */
@@ -263,22 +307,21 @@
 
 /* ── CTA box container ── */
 .resultado__cta-box {
-  background: var(--bg-warm);
-  border-radius: var(--radius-card);
-  padding: var(--space-8) var(--space-6);
+  border-top: 2px solid var(--dark);
+  padding-top: var(--space-8);
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
-  border: 1px solid var(--subtle);
 }
 
 /* ── Price ── */
 .resultado__price {
   font-family: var(--font-display);
-  font-size: 32px;
+  font-size: clamp(40px, 8vw, 52px);
   font-weight: 400;
-  color: var(--text);
+  color: var(--dark);
   text-align: center;
+  letter-spacing: -0.01em;
 }
 
 /* ── Redirect bridge ── */
