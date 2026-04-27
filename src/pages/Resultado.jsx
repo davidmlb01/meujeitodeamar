@@ -67,27 +67,6 @@ export default function Resultado() {
 
         <hr className="resultado__divider" />
 
-        {/* Locked section */}
-        <div className="resultado__locked">
-          <p className="resultado__locked-intro">{result.lockedIntro}</p>
-          {result.lockedDesc ? <p className="resultado__locked-desc">{result.lockedDesc}</p> : null}
-
-          <ul className="resultado__topics" aria-label="Conteúdo bloqueado">
-            {result.lockedTopics.map((topic, i) => (
-              <li key={topic} className="resultado__topic-card">
-                <div className="resultado__topic-card__header">
-                  <Badge variant="locked" />
-                  <span>{topic}</span>
-                </div>
-                <div className="resultado__topic-card__lines" aria-hidden="true">
-                  <p className="resultado__topic-card__hint">{result.lockedHints[i]}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <hr className="resultado__divider" />
 
         {/* Value stack */}
         <div className="resultado__value-stack-section">

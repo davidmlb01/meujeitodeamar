@@ -20,7 +20,13 @@ Não o que você faz. Por que você faz. A origem exata. O momento em que esse p
 
 E, mais importante: o que muda quando você finalmente entende.`,
     ahaQuote: 'Entender de onde vem esse padrão muda o que você faz quando o silêncio chega.',
-    bridge: 'Escrevi uma leitura completa sobre o coração ansioso.\n\nNão sobre ansiedade em geral. Sobre o sistema nervoso que aprendeu que o amor pode sumir sem aviso, e o que acontece dentro de você quando o silêncio dura mais do que o normal. A origem exata. O mecanismo. E o que muda quando você para de se culpar por vigiar e começa a entender por que vigila.',
+    bridge: `Nomear o que você tem não é o mesmo que entender de onde ele veio.
+
+Você acabou de reconhecer o padrão. Agora vem a parte que a maioria nunca chega: entender por que ele existe.
+
+Por que o alarme dispara quando o silêncio dura dez minutos a mais. Por que você promete que não vai mandar mensagem e manda assim mesmo. Por que a raiva depois de mandar é maior do que o alívio de ter mandado.
+
+A leitura responde a isso. Não em teoria. Em você, onde esse padrão começou, e o que muda quando você entende o que o criou.`,
     lockedIntro: 'O que está dentro:',
     lockedDesc: '',
     lockedTopics: [
@@ -65,7 +71,13 @@ Sua leitura explica por que, quando alguém tenta demonstrar mais carinho e se a
 
 E o que fazer com isso.`,
     ahaQuote: 'E entender de onde veio muda o que você faz quando alguém tenta chegar.',
-    bridge: 'Escrevi uma leitura completa sobre o coração distante.\n\nNão sobre distância emocional em geral. Sobre o espaço que você criou para sobreviver e que agora está custando conexão. Por que o alarme dispara quando alguém chega mais perto do que você está pronta para receber. A origem exata desse reflexo. E o que muda quando você entende o mecanismo em vez de lutar contra ele.',
+    bridge: `Reconhecer a distância não é o mesmo que entender o que ela está protegendo.
+
+Você acabou de nomear algo que vinham chamando de fria, fechada, difícil. Agora vem a parte mais importante: entender por que esse espaço existe.
+
+Por que algo dentro de você se fecha quando alguém tenta chegar mais perto. Por que você some sem avisar e acha óbvio que vai voltar. Por que cuidado em excesso parece sufocamento mesmo quando você sabe que não deveria.
+
+A leitura responde a isso. Não em teoria. Em você, onde esse reflexo começou, e o que muda quando você entende o que ele está guardando.`,
     lockedIntro: 'O que está dentro:',
     lockedDesc: '',
     lockedTopics: [
@@ -106,7 +118,13 @@ Seguro não é perfeito. Seguro tem pontos cegos. E os seus são específicos pa
 
 Sua leitura vai te mostrar exatamente quais são. Como o seu jeito de amar funciona nos relacionamentos com cada um dos outros perfis. E onde está o seu trabalho real, porque todo mundo tem um, independente de onde começou.`,
     ahaQuote: 'E ver onde estão seus pontos cegos muda como você ama de agora em diante.',
-    bridge: 'Escrevi uma leitura completa sobre o coração seguro.\n\nNão sobre estabilidade em geral. Sobre os pontos cegos específicos de quem ama bem e ainda assim pode se perder no processo. Por que pessoas como você costumam ser tratadas como se não precisassem de cuidado. E onde está o seu trabalho real, porque seguro não é o ponto de chegada. É o ponto de partida.',
+    bridge: `Amar bem não é o mesmo que enxergar o que você não vê.
+
+Você acabou de confirmar algo que, no fundo, já sabia sobre você. Mas seguro não é o ponto de chegada. É o ponto de partida.
+
+Por que pessoas estáveis costumam ser tratadas como se não precisassem de cuidado. Por que você segura situações que deveriam ser divididas. Por que, mesmo com uma base sólida, alguns padrões ainda se repetem.
+
+A leitura responde a isso. Não em teoria. Em você, onde estão os seus pontos cegos, e o que muda quando você finalmente os vê.`,
     lockedIntro: 'O que está dentro:',
     lockedDesc: '',
     lockedTopics: [
@@ -149,15 +167,13 @@ Sua leitura explica de onde veio esse conflito. Como ele funciona. E o que fazer
 
 Você não está quebrada. Você está carregando algo que não era seu para carregar desde o início. E entender isso muda tudo.`,
     ahaQuote: 'E entender de onde veio muda o que você faz naquele segundo.',
-    bridge: `Você acabou de nomear algo que carregava há anos sem palavras.
+    bridge: `Nomear o conflito não é o mesmo que entender o que o criou.
 
-Mas nomear é só o primeiro passo.
+Você acabou de dar nome a algo que vinha vivendo no escuro. Agora vem a parte que muda tudo: entender por que os dois sistemas existem.
 
-A maioria das pessoas descobre o seu jeito de amar, sente o alívio do reconhecimento, e continua fazendo exatamente o que sempre fez. Porque saber o que é não é o mesmo que saber o que fazer naquele segundo específico quando os dois sistemas disparam juntos.
+Por que em um dia você quer tanto perto que assusta e no outro a mesma pessoa parece sufocar. Por que os relacionamentos ficam intensos muito rápido e difíceis logo depois. Por que você afasta, volta, afasta de novo, sem conseguir explicar o que mudou.
 
-Existe uma leitura criada especificamente para o coração confuso. Não sobre padrões em geral. Sobre os dois sistemas que vivem dentro de você, a origem exata de cada um, e o que acontece no segundo entre o gatilho e a reação.
-
-Ela não vai te consertar. Vai te mostrar o mecanismo. E quando você entende o que dispara o ciclo, você para de ser surpreendida por ele.`,
+A leitura responde a isso. Não em teoria. Em você, onde cada sistema começou, e o que muda quando você entende o que acontece naquele segundo entre o gatilho e a reação.`,
     lockedIntro: 'O que está dentro:',
     lockedDesc: '',
     lockedTopics: [
