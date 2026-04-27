@@ -91,7 +91,7 @@ export default function Resultado() {
 
         {/* Value stack */}
         <div className="resultado__value-stack-section">
-          <p className="resultado__value-stack-title">O que está na sua leitura completa:</p>
+          <p className="resultado__value-stack-title">O que você vai entender pela primeira vez:</p>
           <ul className="resultado__value-stack">
             {result.valueStack.map((item, i) => (
               <li key={i} className="resultado__value-item">{item}</li>
@@ -110,6 +110,9 @@ export default function Resultado() {
           <p className="resultado__price-anchor">{result.priceAnchor}</p>
           <div className="resultado__cta-section">
             <p className="resultado__price">R$37</p>
+            <p className="resultado__guarantee">
+              Garantia de 7 dias. Se não fizer sentido, devolvemos tudo, sem perguntas.
+            </p>
             <div className="resultado__cta-wrap">
               <a
                 href={KIWIFY_URLS[estilo] || KIWIFY_URLS.fallback}
@@ -123,9 +126,6 @@ export default function Resultado() {
             </div>
             <p className="resultado__redirect">
               Você será redirecionado para o checkout seguro. Entrega por email em menos de 5 minutos.
-            </p>
-            <p className="resultado__guarantee">
-              Garantia de 7 dias. Se não fizer sentido, devolvemos tudo, sem perguntas.
             </p>
           </div>
         </div>

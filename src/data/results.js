@@ -19,7 +19,7 @@ E é exatamente isso que está na sua leitura.
 Não o que você faz. Por que você faz. A origem exata. O momento em que esse padrão se formou. Como ele funciona dentro de você especificamente, não em geral.
 
 E, mais importante: o que muda quando você finalmente entende.`,
-    ahaQuote: 'E entender de onde veio muda o que você faz quando o silêncio chega.',
+    ahaQuote: 'Entender de onde vem esse padrão muda o que você faz quando o silêncio chega.',
     bridge: 'Escrevi uma leitura completa sobre o coração ansioso.\n\nNão sobre ansiedade em geral. Sobre o sistema nervoso que aprendeu que o amor pode sumir sem aviso, e o que acontece dentro de você quando o silêncio dura mais do que o normal. A origem exata. O mecanismo. E o que muda quando você para de se culpar por vigiar e começa a entender por que vigila.',
     lockedIntro: 'O que está dentro:',
     lockedDesc: '',
