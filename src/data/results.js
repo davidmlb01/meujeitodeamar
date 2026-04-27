@@ -20,7 +20,7 @@ Não o que você faz. Por que você faz. A origem exata. O momento em que esse p
 
 E, mais importante: o que muda quando você finalmente entende.`,
     ahaQuote: 'Entender de onde vem esse padrão muda o que você faz quando o silêncio chega.',
-    bridge: `Nomear o que você tem não é o mesmo que entender de onde ele veio.
+    bridge: `Reconhecer o padrão não é o mesmo que entender de onde ele veio.
 
 Você acabou de reconhecer o padrão. Agora vem a parte que a maioria nunca chega: entender por que ele existe.
 
@@ -167,7 +167,7 @@ Sua leitura explica de onde veio esse conflito. Como ele funciona. E o que fazer
 
 Você não está quebrada. Você está carregando algo que não era seu para carregar desde o início. E entender isso muda tudo.`,
     ahaQuote: 'E entender de onde veio muda o que você faz naquele segundo.',
-    bridge: `Nomear o conflito não é o mesmo que entender o que o criou.
+    bridge: `Dar nome à oscilação não é o mesmo que entender o que a criou.
 
 Você acabou de dar nome a algo que vinha vivendo no escuro. Agora vem a parte que muda tudo: entender por que os dois sistemas existem.
 
