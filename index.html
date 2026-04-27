@@ -26,7 +26,13 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '1636955567513577');
     fbq('track', 'PageView');
-    </script>
+    if (window.location.pathname === '/resultado') {
+      fbq('track', 'ViewContent', {
+        content_name: 'Pagina de Oferta',
+        content_category: 'Quiz Resultado'
+      });
+    }
+</script>
     <!-- End Meta Pixel Code -->
   </head>
   <body>
