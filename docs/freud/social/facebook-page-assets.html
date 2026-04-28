@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Facebook Page Assets — Meu Jeito de Amar</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #F5F0EB;
+    font-family: 'Jost', sans-serif;
+    padding: 48px 40px;
+    color: #1B1B11;
+  }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: #4B1D3F;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    font-size: 13px;
+    color: #7A6A60;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+
+  .section {
+    margin-bottom: 56px;
+  }
+  .section-title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #7A6A60;
+    margin-bottom: 16px;
+  }
+  .section-desc {
+    font-size: 12px;
+    color: #7A6A60;
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+
+  /* ===================== PERFIL ===================== */
+  #canvas-perfil {
+    display: block;
+    border-radius: 50%;
+    box-shadow: 0 4px 24px rgba(75,29,63,0.18);
+  }
+
+  /* ===================== CAPA ===================== */
+  #canvas-capa {
+    display: block;
+    box-shadow: 0 4px 24px rgba(75,29,63,0.18);
+    border-radius: 6px;
+  }
+
+  /* ===================== BOTÕES ===================== */
+  .btn-download {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 10px 24px;
+    background: #4B1D3F;
+    color: #E8D9C1;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-download:hover { background: #6B2D5F; }
+  .btn-download + .btn-download { margin-left: 12px; }
+</style>
+</head>
+<body>
+
+<h1>Meu Jeito de Amar</h1>
+<p class="subtitle">Assets para página do Facebook — Perfil + Capa</p>
+
+<!-- =================== PERFIL =================== -->
+<div class="section">
+  <div class="section-title">Foto de Perfil</div>
+  <div class="section-desc">400×400px — exibida como círculo no Facebook (mínimo 180px)</div>
+  <canvas id="canvas-perfil" width="400" height="400" style="width:200px;height:200px;"></canvas>
+  <br>
+  <button class="btn-download" onclick="downloadCanvas('canvas-perfil','perfil-meu-jeito-de-amar.png')">
+    Baixar PNG
+  </button>
+</div>
+
+<!-- =================== CAPA =================== -->
+<div class="section">
+  <div class="section-title">Foto de Capa</div>
+  <div class="section-desc">851×315px — banner da página do Facebook</div>
+  <canvas id="canvas-capa" width="851" height="315" style="max-width:100%;height:auto;"></canvas>
+  <br>
+  <button class="btn-download" onclick="downloadCanvas('canvas-capa','capa-meu-jeito-de-amar.png')">
+    Baixar PNG
+  </button>
+</div>
+
+<script>
+// ============================================================
+// DESIGN SYSTEM
+// ============================================================
+const BURGUNDY  = '#4B1D3F';
+const NUDE      = '#E8D9C1';
+const OFFBLACK  = '#1B1B11';
+const MUTED     = '#7A6A60';
+const SOFT_ROSE = '#D8A7B1';
+
+// ============================================================
+// UTILS
+// ============================================================
+function loadFonts() {
+  return document.fonts.ready;
+}
+
+function downloadCanvas(id, filename) {
+  const canvas = document.getElementById(id);
+  const link = document.createElement('a');
+  link.download = filename;
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+
+// ============================================================
+// PERFIL — 170×170
+// Fundo burgundy escuro, monograma "MJA" em Cormorant itálico
+// ============================================================
+function drawPerfil() {
+  const canvas = document.getElementById('canvas-perfil');
+  const ctx = canvas.getContext('2d');
+  const W = 400, H = 400;
+
+  // Fundo
+  ctx.fillStyle = BURGUNDY;
+  ctx.fillRect(0, 0, W, H);
+
+  // Textura sutil — gradiente radial
+  const grad = ctx.createRadialGradient(W/2, H/2, 0, W/2, H/2, W/2);
+  grad.addColorStop(0, 'rgba(232,217,193,0.08)');
+  grad.addColorStop(1, 'rgba(0,0,0,0.18)');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
+
+  // Linha circular decorativa
+  ctx.beginPath();
+  ctx.arc(W/2, H/2, 165, 0, Math.PI * 2);
+  ctx.strokeStyle = 'rgba(232,217,193,0.22)';
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  // Monograma "MJA"
+  ctx.fillStyle = NUDE;
+  ctx.font = 'italic 500 108px "Cormorant Garamond", serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('MJA', W/2, H/2 - 10);
+
+  // Tagline
+  ctx.fillStyle = 'rgba(232,217,193,0.60)';
+  ctx.font = '300 22px "Jost", sans-serif';
+  ctx.fillText('MEU JEITO DE AMAR', W/2, H/2 + 66);
+}
+
+// ============================================================
+// CAPA — 851×315
+// Fundo nude claro, texto central elegante, detalhe rose
+// ============================================================
+function drawCapa() {
+  const canvas = document.getElementById('canvas-capa');
+  const ctx = canvas.getContext('2d');
+  const W = 851, H = 315;
+
+  // Fundo nude
+  ctx.fillStyle = NUDE;
+  ctx.fillRect(0, 0, W, H);
+
+  // Gradiente lateral esquerdo
+  const gradLeft = ctx.createLinearGradient(0, 0, 320, 0);
+  gradLeft.addColorStop(0, 'rgba(75,29,63,0.10)');
+  gradLeft.addColorStop(1, 'rgba(75,29,63,0)');
+  ctx.fillStyle = gradLeft;
+  ctx.fillRect(0, 0, W, H);
+
+  // Gradiente lateral direito
+  const gradRight = ctx.createLinearGradient(W, 0, W-200, 0);
+  gradRight.addColorStop(0, 'rgba(75,29,63,0.07)');
+  gradRight.addColorStop(1, 'rgba(75,29,63,0)');
+  ctx.fillStyle = gradRight;
+  ctx.fillRect(0, 0, W, H);
+
+  // Linha decorativa superior
+  ctx.beginPath();
+  ctx.moveTo(80, 52);
+  ctx.lineTo(W - 80, 52);
+  ctx.strokeStyle = 'rgba(75,29,63,0.18)';
+  ctx.lineWidth = 0.6;
+  ctx.stroke();
+
+  // Linha decorativa inferior
+  ctx.beginPath();
+  ctx.moveTo(80, H - 52);
+  ctx.lineTo(W - 80, H - 52);
+  ctx.strokeStyle = 'rgba(75,29,63,0.18)';
+  ctx.lineWidth = 0.6;
+  ctx.stroke();
+
+  // Ponto decorativo rose esquerdo
+  ctx.beginPath();
+  ctx.arc(80, H/2, 3, 0, Math.PI * 2);
+  ctx.fillStyle = SOFT_ROSE;
+  ctx.fill();
+
+  // Ponto decorativo rose direito
+  ctx.beginPath();
+  ctx.arc(W - 80, H/2, 3, 0, Math.PI * 2);
+  ctx.fillStyle = SOFT_ROSE;
+  ctx.fill();
+
+  // Título principal
+  ctx.fillStyle = BURGUNDY;
+  ctx.font = 'italic 500 68px "Cormorant Garamond", serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('Meu Jeito de Amar', W/2, H/2 - 18);
+
+  // Subtítulo
+  ctx.fillStyle = MUTED;
+  ctx.font = '300 15px "Jost", sans-serif';
+  ctx.fillText('Descubra o seu padrão de amar. Faça o teste. 100% gratuito.', W/2, H/2 + 28);
+
+  // URL discreta
+  ctx.fillStyle = 'rgba(122,106,96,0.55)';
+  ctx.font = '300 11px "Jost", sans-serif';
+  ctx.fillText('meujeitodeamar.com.br', W/2, H/2 + 54);
+}
+
+// ============================================================
+// RENDER após fontes carregadas
+// ============================================================
+loadFonts().then(() => {
+  drawPerfil();
+  drawCapa();
+});
+</script>
+</body>
+</html>
