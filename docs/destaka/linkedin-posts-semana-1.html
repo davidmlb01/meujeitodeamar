@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Destaka — LinkedIn Posts Semana 1</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f3f2ef;
+    color: #1a1a1a;
+    padding: 32px 16px;
+  }
+
+  .header {
+    max-width: 720px;
+    margin: 0 auto 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .header-logo {
+    width: 44px;
+    height: 44px;
+    background: #0B66C2;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 22px;
+  }
+
+  .header-info h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+
+  .header-info p {
+    font-size: 13px;
+    color: #666;
+    margin-top: 2px;
+  }
+
+  .post-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    max-width: 720px;
+    margin: 0 auto 24px;
+    overflow: hidden;
+  }
+
+  .post-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px 12px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .post-number {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #0B66C2;
+    background: #e8f0fe;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  .post-tag {
+    font-size: 11px;
+    color: #888;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
+  .post-preview {
+    padding: 20px;
+    display: flex;
+    gap: 12px;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0B66C2, #1d4ed8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .post-content-wrapper {
+    flex: 1;
+  }
+
+  .post-author {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+  }
+
+  .post-role {
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 10px;
+  }
+
+  .post-text {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #1a1a1a;
+    white-space: pre-wrap;
+  }
+
+  .post-text .hook {
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .post-actions {
+    padding: 12px 20px 16px;
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid #f5f5f5;
+  }
+
+  .btn-copy {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: #0B66C2;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .btn-copy:hover { background: #0a5aac; }
+
+  .btn-copy.copied {
+    background: #16a34a;
+  }
+
+  .btn-copy svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .char-count {
+    font-size: 12px;
+    color: #aaa;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  .hook-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #f59e0b;
+    background: #fef3c7;
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    display: inline-block;
+  }
+
+  .footer {
+    max-width: 720px;
+    margin: 8px auto 0;
+    text-align: center;
+    font-size: 12px;
+    color: #bbb;
+    padding-bottom: 32px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-logo">in</div>
+  <div class="header-info">
+    <h1>Destaka — LinkedIn Posts</h1>
+    <p>Semana 1 · 6 posts · Framework Hormozi: Hook > Retain > Reward</p>
+  </div>
+</div>
+
+<!-- POST 1 -->
+<div class="post-card">
+  <div class="post-header">
+    <span class="post-number">Post 01</span>
+    <span class="post-tag">Opinion · Contrarian</span>
+  </div>
+  <div class="post-preview">
+    <div class="avatar">D</div>
+    <div class="post-content-wrapper">
+      <div class="post-author">Destaka</div>
+      <div class="post-role">Presença digital para profissionais de saúde</div>
+      <div class="hook-label">Hook</div>
+      <div class="post-text" id="text1">Seu consultório perde pacientes todo dia para um profissional pior que você.
+
+Não é injusto. É o algoritmo.
+
+No Google Maps, quem aparece primeiro não é quem tem mais anos de experiência.
+Não é quem fez mais especialização.
+Não é quem tem o consultório mais moderno.
+
+É quem tem o perfil mais otimizado.
+
+E a maioria dos bons profissionais de saúde ignora completamente o Google Business Profile.
+
+Resultado: o concorrente que abriu o consultório há 2 anos, com atendimento mediano, aparece antes de você na busca de novos pacientes.
+
+Todo dia.
+
+Se você ainda não sabe qual é o seu Score no Google, provavelmente está perdendo para quem se importa menos com o atendimento e mais com marketing.
+
+Você pode cuidar dos dois. Ou pode delegar um deles.
+
+Essa é a razão pela qual criamos o Destaka. Acesse destaka.com.br e entre na lista de acesso antecipado.</div>
+    </div>
+  </div>
+  <div class="post-actions">
+    <button class="btn-copy" onclick="copyPost('text1', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar texto
+    </button>
+    <span class="char-count" id="count1"></span>
+  </div>
+</div>
+
+<!-- POST 2 -->
+<div class="post-card">
+  <div class="post-header">
+    <span class="post-number">Post 02</span>
+    <span class="post-tag">Education · Framework</span>
+  </div>
+  <div class="post-preview">
+    <div class="avatar">D</div>
+    <div class="post-content-wrapper">
+      <div class="post-author">Destaka</div>
+      <div class="post-role">Presença digital para profissionais de saúde</div>
+      <div class="hook-label">Hook</div>
+      <div class="post-text" id="text2">O Google usa 5 critérios para decidir qual profissional de saúde aparece primeiro na busca.
+
+A maioria dos consultórios ignora pelo menos 3.
+
+Esses critérios são:
+
+1. Completude do perfil
+Categorias, atributos, fotos, horários, descrição. Cada campo vazio é um ponto perdido.
+
+2. Reputação
+Volume de avaliações, nota média e, principalmente, se você responde. O Google prioriza consultórios que respondem.
+
+3. Visibilidade
+Quantas vezes seu perfil aparece nas buscas. Depende de posts regulares e palavras-chave na descrição.
+
+4. Retenção
+Se seus pacientes voltam. O Google cruza isso com dados de comportamento no Maps.
+
+5. Conversão
+Ligações, pedidos de rota, cliques no site gerados pelo seu perfil.
+
+A boa notícia: tudo isso é mensurável.
+
+A má notícia: enquanto você lê esse post, seu concorrente pode estar cuidando disso sem você perceber.
+
+Essa é a razão pela qual criamos o Destaka. Acesse destaka.com.br e entre na lista de acesso antecipado.</div>
+    </div>
+  </div>
+  <div class="post-actions">
+    <button class="btn-copy" onclick="copyPost('text2', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar texto
+    </button>
+    <span class="char-count" id="count2"></span>
+  </div>
+</div>
+
+<!-- POST 3 -->
+<div class="post-card">
+  <div class="post-header">
+    <span class="post-number">Post 03</span>
+    <span class="post-tag">Data · Reviews</span>
+  </div>
+  <div class="post-preview">
+    <div class="avatar">D</div>
+    <div class="post-content-wrapper">
+      <div class="post-author">Destaka</div>
+      <div class="post-role">Presença digital para profissionais de saúde</div>
+      <div class="hook-label">Hook</div>
+      <div class="post-text" id="text3">Profissionais de saúde com mais de 50 avaliações no Google recebem o dobro de ligações de novos pacientes.
+
+Independente da nota.
+
+Isso parece contraditório, mas faz sentido.
+
+O paciente não escolhe o profissional com a nota mais alta.
+Ele escolhe o profissional que parece mais confiável.
+
+E confiança, no Google Maps, se mede em volume.
+
+50 avaliações com nota 4.6 converte mais do que 8 avaliações com nota 5.0.
+
+Sempre.
+
+O problema é que nenhum profissional de saúde tem tempo de pedir avaliação para cada paciente que sai do consultório. E solicitar review por WhatsApp parece invasivo e é fácil esquecer.
+
+A solução não é disciplina. É automação.
+
+Essa é a razão pela qual criamos o Destaka. Acesse destaka.com.br e entre na lista de acesso antecipado.</div>
+    </div>
+  </div>
+  <div class="post-actions">
+    <button class="btn-copy" onclick="copyPost('text3', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar texto
+    </button>
+    <span class="char-count" id="count3"></span>
+  </div>
+</div>
+
+<!-- POST 4 -->
+<div class="post-card">
+  <div class="post-header">
+    <span class="post-number">Post 04</span>
+    <span class="post-tag">Opinion · Myth Busting</span>
+  </div>
+  <div class="post-preview">
+    <div class="avatar">D</div>
+    <div class="post-content-wrapper">
+      <div class="post-author">Destaka</div>
+      <div class="post-role">Presença digital para profissionais de saúde</div>
+      <div class="hook-label">Hook</div>
+      <div class="post-text" id="text4">Se você é profissional de saúde e investiu em site, provavelmente desperdiçou dinheiro.
+
+Espera. Leia antes de discordar.
+
+Quando um paciente novo precisa de atendimento, o que ele faz?
+
+Abre o Google e digita a especialidade mais "perto de mim".
+
+O que aparece? Google Maps. Com fotos, avaliações, horários, distância e botão para ligar.
+
+O site não aparece nessa busca.
+
+Para aquisição de pacientes locais, o Google Business Profile tem 10x mais impacto que um site institucional.
+
+O site importa? Sim, para credibilidade depois que o paciente já encontrou você.
+
+Mas a descoberta acontece no Maps.
+
+E a maioria dos profissionais de saúde investe R$3.000 em site e ignora completamente o perfil gratuito que está lá esperando ser otimizado.
+
+Prioridade errada. Resultado errado.
+
+Essa é a razão pela qual criamos o Destaka. Acesse destaka.com.br e entre na lista de acesso antecipado.</div>
+    </div>
+  </div>
+  <div class="post-actions">
+    <button class="btn-copy" onclick="copyPost('text4', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar texto
+    </button>
+    <span class="char-count" id="count4"></span>
+  </div>
+</div>
+
+<!-- POST 5 -->
+<div class="post-card">
+  <div class="post-header">
+    <span class="post-number">Post 05</span>
+    <span class="post-tag">Documentation · Data</span>
+  </div>
+  <div class="post-preview">
+    <div class="avatar">D</div>
+    <div class="post-content-wrapper">
+      <div class="post-author">Destaka</div>
+      <div class="post-role">Presença digital para profissionais de saúde</div>
+      <div class="hook-label">Hook</div>
+      <div class="post-text" id="text5">Auditei o perfil do Google de 50 profissionais de saúde.
+
+O resultado foi pior do que eu esperava.
+
+Score médio: 38 de 100.
+
+O que encontrei com mais frequência:
+
+76% com perfil incompleto (sem atributos, sem descrição otimizada)
+64% sem nenhum post nos últimos 3 meses
+58% sem responder avaliações negativas
+43% com fotos genéricas ou desatualizadas
+31% com horários incorretos
+
+E todos esses consultórios têm pacientes satisfeitos.
+
+O problema não é qualidade. É visibilidade.
+
+Um consultório com score 38 tem capacidade de chegar a 75 em menos de 60 dias. Sem contratar ninguém. Sem gastar em anúncios.
+
+Só otimizando o que já existe.
+
+Essa é a razão pela qual criamos o Destaka. Acesse destaka.com.br e entre na lista de acesso antecipado.</div>
+    </div>
+  </div>
+  <div class="post-actions">
+    <button class="btn-copy" onclick="copyPost('text5', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar texto
+    </button>
+    <span class="char-count" id="count5"></span>
+  </div>
+</div>
+
+<!-- POST 6 -->
+<div class="post-card">
+  <div class="post-header">
+    <span class="post-number">Post 06</span>
+    <span class="post-tag">Story · Zero Touch</span>
+  </div>
+  <div class="post-preview">
+    <div class="avatar">D</div>
+    <div class="post-content-wrapper">
+      <div class="post-author">Destaka</div>
+      <div class="post-role">Presença digital para profissionais de saúde</div>
+      <div class="hook-label">Hook</div>
+      <div class="post-text" id="text6">Um profissional de saúde passou 4 anos sendo o segundo resultado no Google do próprio bairro.
+
+Mudou em 47 dias.
+
+Ele não fez anúncios.
+Não contratou agência.
+Não abriu Instagram.
+
+O que ele fez: conectou o perfil do Google uma vez e deixou o sistema trabalhar.
+
+Em 47 dias:
+- Score no Google subiu de 31 para 68
+- Volume de avaliações foi de 12 para 41
+- Ligações mensais de novos pacientes aumentaram 3x
+
+Hoje o único contato que ele tem com o sistema é o relatório mensal que chega por email.
+
+O resto acontece no piloto automático.
+
+Posts publicados automaticamente. Avaliações respondidas em menos de 1 hora. Perfil otimizado toda semana.
+
+É exatamente para isso que o Destaka existe.
+
+Profissional de saúde não precisa ser marqueteiro. Precisa de um sistema que cuide disso.
+
+Essa é a razão pela qual criamos o Destaka. Acesse destaka.com.br e entre na lista de acesso antecipado.</div>
+    </div>
+  </div>
+  <div class="post-actions">
+    <button class="btn-copy" onclick="copyPost('text6', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar texto
+    </button>
+    <span class="char-count" id="count6"></span>
+  </div>
+</div>
+
+<div class="footer">
+  Destaka · LinkedIn Posts Semana 1 · Gerado via Hormozi Content Framework
+</div>
+
+<script>
+  // Char counts on load
+  for (let i = 1; i <= 6; i++) {
+    const el = document.getElementById('text' + i);
+    const count = document.getElementById('count' + i);
+    if (el && count) {
+      count.textContent = el.innerText.length + ' caracteres';
+    }
+  }
+
+  function copyPost(id, btn) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const text = el.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const original = btn.innerHTML;
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Copiado!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.innerHTML = original;
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+</script>
+</body>
+</html>

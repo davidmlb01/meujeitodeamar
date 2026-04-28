@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Destaka: LinkedIn Posts Semana 2</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f3f2ef;
+    color: #1a1a1a;
+    padding: 32px 16px;
+  }
+
+  .header {
+    max-width: 720px;
+    margin: 0 auto 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .header-logo {
+    width: 44px;
+    height: 44px;
+    background: #0B66C2;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  .header-info h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+
+  .header-info p {
+    font-size: 13px;
+    color: #666;
+    margin-top: 2px;
+  }
+
+  .day-label {
+    max-width: 720px;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .day-label span {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #0B66C2;
+    background: #e8f0fe;
+    padding: 5px 14px;
+    border-radius: 20px;
+  }
+
+  .day-label hr {
+    flex: 1;
+    border: none;
+    border-top: 1px solid #ddd;
+  }
+
+  .post-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    max-width: 720px;
+    margin: 0 auto 24px;
+    overflow: hidden;
+  }
+
+  .post-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px 12px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .post-number {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #0B66C2;
+    background: #e8f0fe;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  .post-tag {
+    font-size: 11px;
+    color: #888;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
+  .post-preview {
+    padding: 20px;
+    display: flex;
+    gap: 12px;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0B66C2, #1d4ed8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .post-content-wrapper {
+    flex: 1;
+  }
+
+  .post-author {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+  }
+
+  .post-role {
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 10px;
+  }
+
+  .hook-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #f59e0b;
+    background: #fef3c7;
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    display: inline-block;
+  }
+
+  .post-text {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #1a1a1a;
+    white-space: pre-wrap;
+  }
+
+  .post-actions {
+    padding: 12px 20px 16px;
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid #f5f5f5;
+    align-items: center;
+  }
+
+  .btn-copy {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: #0B66C2;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .btn-copy:hover { background: #0a5aac; }
+
+  .btn-copy.copied { background: #16a34a; }
+
+  .btn-copy svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .char-count {
+    font-size: 12px;
+    color: #aaa;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  .footer {
+    max-width: 720px;
+    margin: 8px auto 0;
+    text-align: center;
+    font-size: 12px;
+    color: #bbb;
+    padding-bottom: 32px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-logo">in</div>
+  <div class="header-info">
+    <h1>Destaka: LinkedIn Posts</h1>
+    <p>Semana 2 · 18 posts · 6 dias · 3 por dia · Fase de teste: sem preço, sem promessa</p>
+  </div>
+</div>
+
+<!-- DIA 1 -->
+<div class="day-label"><span>Dia 1</span><hr></div>
+
+<div class="post-card">
+  <div class="post-header">
+    <span class="post-number">Post 01</span>
+    <span class="post-tag">Opinion · Provocação</span>
+  </div>
+  <div class="post-preview">
+    <div class="avatar">D</div>
+    <div class="post-content-wrapper">
+      <div class="post-author">Destaka</div>
+      <div class="post-role">Presença digital para profissionais de saúde</div>
+      <div class="hook-label">Hook</div>
+      <div class="post-text" id="text1">20 anos de carreira. 3 especializações. O profissional que abriu o consultório há 2 anos aparece antes de você no Google.
+
+Isso acontece todos os dias.
+
+E não é injusto. É o algoritmo.
+
+No Google Maps, quem aparece primeiro não é quem tem mais tempo de formação. Não é quem tem o melhor currículo. Não é quem tem o consultório mais bem equipado.
+
+É quem tem o perfil mais otimizado.
+
+E a ironia é difícil de engolir: profissionais com décadas de experiência, excelência reconhecida por colegas e pacientes fidelizados, ficam invisíveis para quem ainda não os conhece.
+
+Enquanto isso, o colega que abriu há pouco tempo, com perfil completo e atualizado no Google, aparece primeiro na busca do próximo paciente.
+
+Você merece ser encontrado por quem precisa de você.
+
+Acesse destaka.com.br e entre na lista de acesso antecipado.
+
+#presencadigital #googlemeunegocio #profissionaisdesaude #consultorio #medico #dentista #fisioterapia #marketingdesaude</div>
+    </div>
+  </div>
+  <div class="post-actions">
+    <button class="btn-copy" onclick="copyPost('text1', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar texto
+    </button>
+    <span class="char-count" id="count1"></span>
+  </div>
+</div>
+
+<div class="post-card">
+  <div class="post-header">
+    <span class="post-number">Post 02</span>
+    <span class="post-tag">Educação · Algoritmo</span>
+  </div>
+  <div class="post-preview">
+    <div class="avatar">D</div>
+    <div class="post-content-wrapper">
+      <div class="post-author">Destaka</div>
+      <div class="post-role">Presença digital para profissionais de saúde</div>
+      <div class="hook-label">Hook</div>
+      <div class="post-text" id="text2">Quando alguém digita fisioterapeuta perto de mim, o Google toma uma decisão em milissegundos.
+
+Você não participa dessa decisão.
+
+Ela já foi tomada bem antes, com base no que está (ou não está) no seu perfil.
+
+O Google analisa:
+Seu perfil está completo?
+Você tem avaliações e responde a elas?
+Você publica com regularidade?
+As pessoas clicam no seu nome quando ele aparece?
+
+Cada um desses pontos pesa na hora de definir quem aparece no topo do mapa.
+
+O problema é que a maioria dos profissionais de saúde nunca configurou o perfil direito. E o Google não avisa quando você está perdendo posição.
+
+Você simplesmente some.
+
+Se quiser entender melhor como o seu perfil está hoje, acesse destaka.com.br.
+
+#googlemeunegocio #seolocalBrasil #profissionaisdesaude #fisioterapia #psicologia #medicina #presencadigital</div>
+    </div>
+  </div>
+  <div class="post-actions">
+    <button class="btn-copy" onclick="copyPost('text2', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar texto
+    </button>
+    <span class="char-count" id="count2"></span>
+  </div>
+</div>
+
+<div class="post-card">
+  <div class="post-header">
+    <span class="post-number">Post 03</span>
+    <span class="post-tag">Identidade · Paradoxo</span>
+  </div>
+  <div class="post-preview">
+    <div class="avatar">D</div>
+    <div class="post-content-wrapper">
+      <div class="post-author">Destaka</div>
+      <div class="post-role">Presença digital para profissionais de saúde</div>
+      <div class="hook-label">Hook</div>
+      <div class="post-text" id="text3">Existe um paradoxo no consultório moderno.
+
+Quanto mais dedicado você é ao paciente, menos tempo sobra para aparecer.
+
+O profissional que passa o dia inteiro na cadeira, na sala de atendimento, no leito, chega em casa sem energia para pensar em Google, em perfil, em postagem.
+
+E justamente ele, que deveria ser o mais visível, fica invisível.
+
+Enquanto isso, quem dedica tempo ao marketing aparece mais. Não porque atende melhor. Porque o sistema premia presença, não excelência.
+
+Isso não é culpa sua.
+
+É um problema que precisa de solução. E estamos trabalhando nela.
+
+destaka.com.br
+
+#profissionaisdesaude #consultorio #presencadigital #medico #dentista #nutricionista #marketingdesaude #googlemeunegocio</div>
+    </div>
+  </div>
+  <div class="post-actions">
+    <button class="btn-copy" onclick="copyPost('text3', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar texto
+    </button>
+    <span class="char-count" id="count3"></span>
+  </div>
+</div>
+
+<!-- DIA 2 -->
+<div class="day-label"><span>Dia 2</span><hr></div>
+
+<div class="post-card">
+  <div class="post-header">
+    <span class="post-number">Post 04</span>
+    <span class="post-tag">Opinion · Provocação</span>
+  </div>
+  <div class="post-preview">
+    <div class="avatar">D</div>
+    <div class="post-content-wrapper">
+      <div class="post-author">Destaka</div>
+      <div class="post-role">Presença digital para profissionais de saúde</div>
+      <div class="hook-label">Hook</div>
+      <div class="post-text" id="text4">Você investiu no consultório certo.
+No equipamento certo.
+Na especialização certa.
+
+O Google não valoriza nada disso automaticamente.
+
+Esse é um dos desconfortos que mais aparece quando a gente conversa com profissionais de saúde.
+
+A sensação de que o esforço de anos, as certificações na parede, o cuidado com cada detalhe do atendimento, não aparecem em lugar nenhum quando alguém pesquisa no Google.
+
+E não aparecem mesmo.
+
+O Google não lê diplomas. Ele lê dados. Frequência de atualização, volume de avaliações, completude do perfil, interação com o público.
+
+Isso não significa que excelência não importa. Importa demais, dentro do consultório.
+
+Mas para ser encontrado antes de entrar no consultório, é preciso de outra coisa.
+
+Estamos construindo isso. Acesse destaka.com.br.
+
+#presencadigital #googlemeunegocio #profissionaisdesaude #medico #dentista #psicologia #seolocalBrasil</div>
+    </div>
+  </div>
+  <div class="post-actions">
+    <button class="btn-copy" onclick="copyPost('text4', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar texto
+    </button>
+    <span class="char-count" id="count4"></span>
+  </div>
+</div>
+
+<div class="post-card">
+  <div class="post-header">
+    <span class="post-number">Post 05</span>
+    <span class="post-tag">Educação · GMB</span>
+  </div>
+  <div class="post-preview">
+    <div class="avatar">D</div>
+    <div class="post-content-wrapper">
+      <div class="post-author">Destaka</div>
+      <div class="post-role">Presença digital para profissionais de saúde</div>
+      <div class="hook-label">Hook</div>
+      <div class="post-text" id="text5">A maioria dos profissionais de saúde trata o Google Meu Negócio como um cadastro.
+
+Preenche o básico, coloca o endereço e esquece.
+
+O Google não trata assim.
+
+Para o Google, o perfil do seu consultório é a vitrine principal. É ele que aparece antes do seu site. Antes das redes sociais. Antes de qualquer outra coisa.
+
+Quando alguém pesquisa um especialista perto de casa, vê o Google Maps. Vê o painel com suas fotos, suas avaliações, seu horário, sua descrição.
+
+É lá que a decisão de ligar (ou não ligar) começa.
+
+Um perfil bem configurado não garante que você vai aparecer em primeiro. Mas um perfil mal configurado praticamente garante que você não vai aparecer.
+
+E a diferença entre os dois exige menos do que parece.
+
+Se quiser saber como o seu está, acesse destaka.com.br.
+
+#googlemeunegocio #presencadigital #profissionaisdesaude #consultorio #seolocalBrasil #medico #fisioterapia</div>
+    </div>
+  </div>
+  <div class="post-actions">
+    <button class="btn-copy" onclick="copyPost('text5', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar texto
+    </button>
+    <span class="char-count" id="count5"></span>
+  </div>
+</div>
+
+<div class="post-card">
+  <div class="post-header">
+    <span class="post-number">Post 06</span>
+    <span class="post-tag">Opinion · Provocação</span>
+  </div>
+  <div class="post-preview">
+    <div class="avatar">D</div>
+    <div class="post-content-wrapper">
+      <div class="post-author">Destaka</div>
+      <div class="post-role">Presença digital para profissionais de saúde</div>
+      <div class="hook-label">Hook</div>
+      <div class="post-text" id="text6">A diferença entre um consultório cheio e um vazio raramente é a qualidade do atendimento.
+
+Quase sempre é o que aparece no Google Maps.
+
+Dois profissionais. Mesma especialidade. Mesmo bairro. Atendimento equivalente.
+
+Um com agenda cheia. O outro esperando o telefone tocar.
+
+A diferença está no perfil. No número de avaliações. Em como o nome aparece, ou não aparece, quando alguém pesquisa.
+
+Isso não é teoria. É o que acontece todo dia com consultórios em todo o Brasil.
+
+E o mais difícil de aceitar: o profissional com a agenda vazia muitas vezes é tecnicamente melhor.
+
+Simplesmente não é encontrado.
+
+Acesse destaka.com.br e cadastre-se para acesso antecipado.
+
+#presencadigital #googlemeunegocio #consultorio #profissionaisdesaude #medico #dentista #nutricionista #marketingdesaude</div>
+    </div>
+  </div>
+  <div class="post-actions">
+    <button class="btn-copy" onclick="copyPost('text6', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar texto
+    </button>
+    <span class="char-count" id="count6"></span>
+  </div>
+</div>
+
+<!-- DIA 3 -->
+<div class="day-label"><span>Dia 3</span><hr></div>
+
+<div class="post-card">
+  <div class="post-header">
+    <span class="post-number">Post 07</span>
+    <span class="post-tag">Educação · Framework</span>
+  </div>
+  <div class="post-preview">
+    <div class="avatar">D</div>
+    <div class="post-content-wrapper">
+      <div class="post-author">Destaka</div>
+      <div class="post-role">Presença digital para profissionais de saúde</div>
+      <div class="hook-label">Hook</div>
+      <div class="post-text" id="text7">O Google usa 3 critérios para decidir qual profissional de saúde aparece no mapa quando alguém faz uma busca local.
+
+Relevância, distância e proeminência.
+
+Relevância é o quanto o seu perfil corresponde ao que a pessoa está buscando. Se alguém procura endocrinologista perto de mim e você não tem essa palavra em nenhum lugar do perfil, o Google não te associa.
+
+Distância é simples. Mas não é só a localização física. É a proximidade em relação ao ponto de busca da pessoa.
+
+Proeminência é o mais complexo. É o quanto o Google entende que você é reconhecido e ativo. Avaliações, respostas, atualizações, frequência de posts. Tudo conta.
+
+A maioria dos profissionais não falha nos três. Falha em um. E um critério fraco derruba o perfil inteiro no ranking.
+
+Acesse destaka.com.br para entrar na lista de acesso antecipado.
+
+#googlemeunegocio #seolocalBrasil #presencadigital #profissionaisdesaude #consultorio #medico #dentista</div>
+    </div>
+  </div>
+  <div class="post-actions">
+    <button class="btn-copy" onclick="copyPost('text7', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar texto
+    </button>
+    <span class="char-count" id="count7"></span>
+  </div>
+</div>
+
+<div class="post-card">
+  <div class="post-header">
+    <span class="post-number">Post 08</span>
+    <span class="post-tag">Dor · Amplo</span>
+  </div>
+  <div class="post-preview">
+    <div class="avatar">D</div>
+    <div class="post-content-wrapper">
+      <div class="post-author">Destaka</div>
+      <div class="post-role">Presença digital para profissionais de saúde</div>
+      <div class="hook-label">Hook</div>
+      <div class="post-text" id="text8">O que um fisioterapeuta, um psicólogo e um dentista têm em comum?
+
+Os três somem do Google por motivos quase idênticos.
+
+Perfil incompleto.
+Avaliações sem resposta.
+Nenhuma atualização nos últimos meses.
+Fotos do consultório de 5 anos atrás.
+
+Não importa a especialidade. O problema se repete.
+
+E faz sentido. Nenhum profissional de saúde foi formado para pensar em algoritmo. A faculdade ensina a cuidar de pessoas. Não a otimizar presença digital.
+
+O problema não é falta de vontade. É falta de tempo e de ferramenta certa.
+
+Estamos trabalhando para mudar isso. Se quiser fazer parte, cadastre-se em destaka.com.br.
+
+#profissionaisdesaude #fisioterapia #psicologia #dentista #googlemeunegocio #presencadigital #consultorio</div>
+    </div>
+  </div>
+  <div class="post-actions">
+    <button class="btn-copy" onclick="copyPost('text8', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar texto
+    </button>
+    <span class="char-count" id="count8"></span>
+  </div>
+</div>
+
+<div class="post-card">
+  <div class="post-header">
+    <span class="post-number">Post 09</span>
+    <span class="post-tag">Opinion · Reputação</span>
+  </div>
+  <div class="post-preview">
+    <div class="avatar">D</div>
+    <div class="post-content-wrapper">
+      <div class="post-author">Destaka</div>
+      <div class="post-role">Presença digital para profissionais de saúde</div>
+      <div class="hook-label">Hook</div>
+      <div class="post-text" id="text9">Um review 1 estrela não destrói a reputação de um consultório.
+
+Não responder nenhum review sim.
+
+Sabe por quê?
+
+Quando alguém lê as avaliações do seu consultório e vê que você nunca respondeu nada, uma coisa fica clara: ou você não se importa, ou você nem sabe que esse espaço existe.
+
+Nenhuma das duas impressões é boa.
+
+Por outro lado, quando um profissional responde com cuidado, agradece elogios, lida com crítica com equilíbrio, a percepção muda completamente.
+
+Passa confiança. Passa presença. Passa que tem alguém real do outro lado.
+
+E tem mais: o Google prioriza consultórios que interagem. Responder avaliações é um dos sinais que o algoritmo usa para definir ranqueamento.
+
+Você responde as suas?
+
+destaka.com.br
+
+#googlemeunegocio #reputacaodigital #profissionaisdesaude #consultorio #presencadigital #medico #dentista</div>
+    </div>
+  </div>
+  <div class="post-actions">
+    <button class="btn-copy" onclick="copyPost('text9', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar texto
+    </button>
+    <span class="char-count" id="count9"></span>
+  </div>
+</div>
+
+<!-- DIA 4 -->
+<div class="day-label"><span>Dia 4</span><hr></div>
+
+<div class="post-card">
+  <div class="post-header">
+    <span class="post-number">Post 10</span>
+    <span class="post-tag">Educação · Fotos</span>
+  </div>
+  <div class="post-preview">
+    <div class="avatar">D</div>
+    <div class="post-content-wrapper">
+      <div class="post-author">Destaka</div>
+      <div class="post-role">Presença digital para profissionais de saúde</div>
+      <div class="hook-label">Hook</div>
+      <div class="post-text" id="text10">O Google analisa as fotos do seu perfil.
+
+Quantidade, qualidade e frequência de atualização.
+
+A maioria dos consultórios ignora isso completamente.
+
+O que o algoritmo enxerga quando o perfil tem poucas fotos, antigas e sem atualização: um negócio inativo. Um lugar que talvez nem funcione mais.
+
+O que enxerga quando o perfil tem fotos do ambiente, da equipe, dos equipamentos, atualizadas regularmente: um negócio vivo, em funcionamento, que merece aparecer.
+
+Não precisa de fotógrafo profissional toda semana. Mas precisa de consistência.
+
+Uma foto nova por mês já manda um sinal diferente para o Google.
+
+Pequeno detalhe. Grande diferença no longo prazo.
+
+Se quiser entender como o seu perfil está sendo lido hoje, acesse destaka.com.br.
+
+#googlemeunegocio #presencadigital #profissionaisdesaude #consultorio #seolocalBrasil #medico #nutricionista</div>
+    </div>
+  </div>
+  <div class="post-actions">
+    <button class="btn-copy" onclick="copyPost('text10', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar texto
+    </button>
+    <span class="char-count" id="count10"></span>
+  </div>
+</div>
+
+<div class="post-card">
+  <div class="post-header">
+    <span class="post-number">Post 11</span>
+    <span class="post-tag">Identidade · Manifesto</span>
+  </div>
+  <div class="post-preview">
+    <div class="avatar">D</div>
+    <div class="post-content-wrapper">
+      <div class="post-author">Destaka</div>
+      <div class="post-role">Presença digital para profissionais de saúde</div>
+      <div class="hook-label">Hook</div>
+      <div class="post-text" id="text11">O Destaka não foi criado para profissionais de saúde que amam marketing.
+
+Foi criado para os que querem apenas cuidar de pacientes.
+
+Para quem passa o dia atendendo e chega em casa sem energia para pensar em Google, em postagem, em perfil digital.
+
+Para quem sabe que precisa aparecer online, mas não faz ideia por onde começar. E honestamente não quer ter que saber.
+
+Para quem investiu anos na formação e quer que o trabalho fale por si, dentro do consultório, com cada paciente.
+
+Existe uma ironia no mercado de saúde hoje. Os que mais deveriam ser encontrados muitas vezes são os que menos aparecem.
+
+Não porque não são bons. Porque não têm tempo para ser o próprio marqueteiro.
+
+Isso vai mudar.
+
+Acesse destaka.com.br e entre na lista de acesso antecipado.
+
+#profissionaisdesaude #presencadigital #consultorio #medico #dentista #fisioterapia #psicologia #marketingdesaude</div>
+    </div>
+  </div>
+  <div class="post-actions">
+    <button class="btn-copy" onclick="copyPost('text11', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar texto
+    </button>
+    <span class="char-count" id="count11"></span>
+  </div>
+</div>
+
+<div class="post-card">
+  <div class="post-header">
+    <span class="post-number">Post 12</span>
+    <span class="post-tag">Engajamento · Pergunta</span>
+  </div>
+  <div class="post-preview">
+    <div class="avatar">D</div>
+    <div class="post-content-wrapper">
+      <div class="post-author">Destaka</div>
+      <div class="post-role">Presença digital para profissionais de saúde</div>
+      <div class="hook-label">Hook</div>
+      <div class="post-text" id="text12">Quantos pacientes novos você recebeu esse mês que chegaram pelo Google?
+
+Se não sabe a resposta, esse post é para você.
+
+A maioria dos profissionais de saúde não tem esse número. E faz sentido: ninguém costuma perguntar na hora do agendamento como a pessoa chegou até ali.
+
+Mas esse dado importa.
+
+Se a maioria vem por indicação: ótimo. Mas você está dependendo de quem já te conhece para crescer.
+
+Se vem pelo Google: você tem algo funcionando. Que pode melhorar.
+
+Se não vem de lugar nenhum novo: aí está o ponto de partida.
+
+O primeiro passo para resolver qualquer coisa é entender o que está acontecendo.
+
+Acesse destaka.com.br e deixe seu contato para acesso antecipado.
+
+#profissionaisdesaude #googlemeunegocio #presencadigital #consultorio #medico #dentista #dados #marketingdesaude</div>
+    </div>
+  </div>
+  <div class="post-actions">
+    <button class="btn-copy" onclick="copyPost('text12', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar texto
+    </button>
+    <span class="char-count" id="count12"></span>
+  </div>
+</div>
+
+<!-- DIA 5 -->
+<div class="day-label"><span>Dia 5</span><hr></div>
+
+<div class="post-card">
+  <div class="post-header">
+    <span class="post-number">Post 13</span>
+    <span class="post-tag">Educação · SEO</span>
+  </div>
+  <div class="post-preview">
+    <div class="avatar">D</div>
+    <div class="post-content-wrapper">
+      <div class="post-author">Destaka</div>
+      <div class="post-role">Presença digital para profissionais de saúde</div>
+      <div class="hook-label">Hook</div>
+      <div class="post-text" id="text13">Poucas pessoas sabem que o Google lê a descrição do perfil do consultório como um texto de SEO.
+
+Cada palavra conta.
+
+A descrição do seu Google Meu Negócio não é só para o paciente ler. É para o algoritmo entender o que você faz, onde faz e para quem.
+
+Se você atende crianças, essa palavra precisa estar lá.
+Se você é especialista em algo específico, o Google precisa saber.
+Se atende em mais de um bairro, isso pode ser mencionado com naturalidade.
+
+Muitos perfis têm descrições genéricas, copiadas da apresentação do site, que não dizem nada de relevante para o algoritmo.
+
+Isso não é culpa do profissional. É que ninguém explica como funciona.
+
+O campo de descrição é uma das ferramentas mais subutilizadas do Google Meu Negócio.
+
+Quer entender melhor? Acesse destaka.com.br.
+
+#googlemeunegocio #seolocalBrasil #profissionaisdesaude #presencadigital #consultorio #medico #dentista</div>
+    </div>
+  </div>
+  <div class="post-actions">
+    <button class="btn-copy" onclick="copyPost('text13', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar texto
+    </button>
+    <span class="char-count" id="count13"></span>
+  </div>
+</div>
+
+<div class="post-card">
+  <div class="post-header">
+    <span class="post-number">Post 14</span>
+    <span class="post-tag">Narrativa · Caso Real</span>
+  </div>
+  <div class="post-preview">
+    <div class="avatar">D</div>
+    <div class="post-content-wrapper">
+      <div class="post-author">Destaka</div>
+      <div class="post-role">Presença digital para profissionais de saúde</div>
+      <div class="hook-label">Hook</div>
+      <div class="post-text" id="text14">Um psicólogo se mudou de bairro.
+
+Atendimento igual. Reputação igual. Avaliações positivas, agenda que estava cheia no consultório anterior.
+
+Pacientes novos caíram bastante nos primeiros meses.
+
+A conclusão que veio naturalmente: o bairro novo não tem demanda. Ou: preciso de mais tempo para construir reputação aqui.
+
+Mas o problema não era o bairro.
+
+Era o Google.
+
+O perfil não estava atualizado com o endereço novo. Parte das avaliações ficou associada ao local antigo. A localização no mapa estava errada por semanas.
+
+O Google Maps continuava direcionando pacientes para onde ele não estava mais.
+
+Parece simples de resolver. E é. Mas você só resolve quando sabe que o problema existe.
+
+Esse é um dos casos que deu origem ao Destaka. Cadastre-se em destaka.com.br.
+
+#psicologia #profissionaisdesaude #googlemeunegocio #presencadigital #consultorio #seolocalBrasil</div>
+    </div>
+  </div>
+  <div class="post-actions">
+    <button class="btn-copy" onclick="copyPost('text14', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar texto
+    </button>
+    <span class="char-count" id="count14"></span>
+  </div>
+</div>
+
+<div class="post-card">
+  <div class="post-header">
+    <span class="post-number">Post 15</span>
+    <span class="post-tag">Opinion · Provocação</span>
+  </div>
+  <div class="post-preview">
+    <div class="avatar">D</div>
+    <div class="post-content-wrapper">
+      <div class="post-author">Destaka</div>
+      <div class="post-role">Presença digital para profissionais de saúde</div>
+      <div class="hook-label">Hook</div>
+      <div class="post-text" id="text15">Em 2026, quando alguém busca um especialista local, vê o Google Maps antes do site.
+
+A maioria ainda investe só no site.
+
+Não é que site não importa. Importa. Mas na jornada de quem está buscando um profissional de saúde perto de casa, o Google Maps aparece primeiro.
+
+É ali que a pessoa decide se vai clicar, se vai ligar, se vai saber mais sobre você.
+
+Se o seu perfil no Google estiver incompleto, com avaliações antigas sem resposta, com fotos desatualizadas, ela vai continuar rolando a tela e vai encontrar outro.
+
+Mesmo que o seu site seja lindo.
+
+O investimento mais urgente hoje, para quem quer ser encontrado localmente, é o perfil no Google.
+
+Não é o mais glamouroso. Mas é o que funciona.
+
+destaka.com.br para acesso antecipado.
+
+#googlemeunegocio #seolocalBrasil #presencadigital #profissionaisdesaude #medico #dentista #consultorio</div>
+    </div>
+  </div>
+  <div class="post-actions">
+    <button class="btn-copy" onclick="copyPost('text15', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar texto
+    </button>
+    <span class="char-count" id="count15"></span>
+  </div>
+</div>
+
+<!-- DIA 6 -->
+<div class="day-label"><span>Dia 6</span><hr></div>
+
+<div class="post-card">
+  <div class="post-header">
+    <span class="post-number">Post 16</span>
+    <span class="post-tag">Educação · Feature GMB</span>
+  </div>
+  <div class="post-preview">
+    <div class="avatar">D</div>
+    <div class="post-content-wrapper">
+      <div class="post-author">Destaka</div>
+      <div class="post-role">Presença digital para profissionais de saúde</div>
+      <div class="hook-label">Hook</div>
+      <div class="post-text" id="text16">Existe um campo no Google Meu Negócio que a maioria dos consultórios ignora.
+
+O campo de Perguntas e Respostas.
+
+O que é mais curioso: qualquer pessoa pode adicionar perguntas no seu perfil. E qualquer pessoa pode responder.
+
+Se você não responde, alguém pode responder por você. Com informações erradas.
+
+Mas além do risco, existe a oportunidade.
+
+Quando você mesmo preenche esse espaço com as perguntas mais comuns do seu tipo de paciente, você ajuda o Google a entender o que você faz. E ajuda o paciente a chegar com expectativa alinhada.
+
+Atende plano de saúde? Qual a especialidade? Quanto tempo dura a consulta?
+
+Perguntas simples. Mas que fazem diferença na hora da busca.
+
+É um detalhe pequeno. Mas profissionais que dominam o Google Meu Negócio usam tudo que ele oferece.
+
+Cadastre-se em destaka.com.br.
+
+#googlemeunegocio #presencadigital #profissionaisdesaude #consultorio #seolocalBrasil #medico #dentista</div>
+    </div>
+  </div>
+  <div class="post-actions">
+    <button class="btn-copy" onclick="copyPost('text16', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar texto
+    </button>
+    <span class="char-count" id="count16"></span>
+  </div>
+</div>
+
+<div class="post-card">
+  <div class="post-header">
+    <span class="post-number">Post 17</span>
+    <span class="post-tag">Teaser · Produto</span>
+  </div>
+  <div class="post-preview">
+    <div class="avatar">D</div>
+    <div class="post-content-wrapper">
+      <div class="post-author">Destaka</div>
+      <div class="post-role">Presença digital para profissionais de saúde</div>
+      <div class="hook-label">Hook</div>
+      <div class="post-text" id="text17">Estamos construindo algo.
+
+Não podemos falar tudo ainda.
+
+Mas posso dizer de onde veio.
+
+Começou com uma pergunta que ouvimos de vários profissionais de saúde:
+
+"Eu sei que preciso aparecer melhor no Google. Mas não tenho tempo para aprender, não tenho dinheiro para pagar uma agência e não quero mais uma coisa para gerenciar."
+
+Essa frase, em variações diferentes, apareceu tantas vezes que ficou impossível ignorar.
+
+O mercado oferece duas opções: fazer você mesmo, sem saber como, ou pagar caro para terceirizar, sem garantia de resultado.
+
+Existia espaço para uma terceira.
+
+É isso que estamos construindo.
+
+Se você é profissional de saúde e quer fazer parte desde o início, cadastre-se em destaka.com.br. Acesso antecipado gratuito.
+
+#destaka #presencadigital #profissionaisdesaude #googlemeunegocio #consultorio #medico #dentista #startup</div>
+    </div>
+  </div>
+  <div class="post-actions">
+    <button class="btn-copy" onclick="copyPost('text17', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar texto
+    </button>
+    <span class="char-count" id="count17"></span>
+  </div>
+</div>
+
+<div class="post-card">
+  <div class="post-header">
+    <span class="post-number">Post 18</span>
+    <span class="post-tag">Manifesto · Identidade</span>
+  </div>
+  <div class="post-preview">
+    <div class="avatar">D</div>
+    <div class="post-content-wrapper">
+      <div class="post-author">Destaka</div>
+      <div class="post-role">Presença digital para profissionais de saúde</div>
+      <div class="hook-label">Hook</div>
+      <div class="post-text" id="text18">Você passou anos estudando para cuidar de pessoas.
+
+Não para gerenciar perfil no Google.
+
+A formação em saúde é longa, exigente, cara. Exige dedicação que poucas profissões exigem.
+
+E depois de tudo isso, chegar no consultório e ainda ter que pensar em marketing digital, em algoritmo, em como aparecer no Google Maps, parece injusto.
+
+Porque é.
+
+A presença digital não devia ser mais um peso.
+
+Não devia ser mais uma tarefa no fim de um dia que já foi longo.
+
+Não devia ser algo que você aprende no YouTube às 23h porque sente que está ficando para trás.
+
+Você escolheu uma profissão que existe para fazer o bem.
+
+Sua energia deveria ir toda para isso.
+
+É por isso que o Destaka existe.
+
+destaka.com.br
+
+#profissionaisdesaude #medico #dentista #fisioterapia #psicologia #nutricionista #consultorio #presencadigital #marketingdesaude</div>
+    </div>
+  </div>
+  <div class="post-actions">
+    <button class="btn-copy" onclick="copyPost('text18', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar texto
+    </button>
+    <span class="char-count" id="count18"></span>
+  </div>
+</div>
+
+<div class="footer">Destaka · linkedin-posts-semana-2.html · 18 posts · 6 dias · 3 por dia</div>
+
+<script>
+  function copyPost(id, btn) {
+    const text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.classList.add('copied');
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Copiado!';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copiar texto';
+      }, 2000);
+    });
+  }
+
+  function updateCharCounts() {
+    for (let i = 1; i <= 18; i++) {
+      const el = document.getElementById('text' + i);
+      const count = document.getElementById('count' + i);
+      if (el && count) {
+        const len = el.innerText.length;
+        const pct = Math.round((len / 3000) * 100);
+        count.textContent = len + ' / 3000 chars (' + pct + '%)';
+        count.style.color = len > 2800 ? '#ef4444' : len > 2400 ? '#f59e0b' : '#aaa';
+      }
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', updateCharCounts);
+</script>
+</body>
+</html>
