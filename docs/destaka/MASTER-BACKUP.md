@@ -205,4 +205,34 @@ Stories 01-08, 10-11 todas implementadas em `destaka-remote`. Story 09 (NAP Cita
 
 ---
 
-*Backup atualizado em sessão de 2026-04-12 (sessão 3): EPIC-001 MVP completo, Stories 03+11 implementadas, deploy em producao*
+## Decisões Tomadas em 2026-04-27 (sessão 8 — UI Polish)
+
+### 21. UI Polish completo executado no destaka-remote
+
+Dois commits de polish no repo `destaka-remote` (main, `da8ed6e` e `57dacb7`):
+
+**Round 1 — Código e consistência:**
+- `globals.css`: sistema de 40+ CSS custom properties (--bg-base, --card-subtle, --border-accent, --text-tertiary, --modal-bg, --success, --warning, --error, etc). Fonte corrigida de Arial para var(--font-body). Focus ring acessível. Scrollbar customizado. prefers-reduced-motion.
+- `DashboardLayout`: `<a>` → `<Link>` Next.js (prefetch). Hover states na nav sidebar.
+- `MobileNav`: active state corrigido de hardcoded (sempre Dashboard) para `usePathname()` dinâmico. NAV_ITEMS exportado do DashboardLayout para evitar duplicação.
+- `CompetitorsContent`: reescrito inteiro de inline `style={}` para Tailwind + tokens. Skeleton de loading consistente. Botão Atualizar no sistema amber.
+- `PostsContent`: cor azul `#60A5FA` de "Agendado" substituída por `var(--accent-bright)`.
+- `ReviewsContent`: modal bg `#0D2B1A` substituído por `var(--modal-bg)`.
+- `ChecklistContent`: gradiente ciano `#22D3EE` substituído por `var(--success)`.
+
+**Round 2 — Design visual:**
+- `ScoreGauge`: glow dinâmico (drop-shadow + SVG filter) na cor do score. Label com text-shadow. Gauge é o herói do produto.
+- `DashboardContent`: componente `SectionTitle` (uppercase + tracking + linha divisória) substitui labels body-text `opacity:0.7`.
+- Sidebar active item: left-border 2px âmbar (mais claro que só mudar cor de fundo).
+- `ScoreCard`: glow box-shadow na progress bar proporcional à cor do score.
+- `MetricCard`: ícone em container, ambient glow, valor 30px, hierarquia número > rótulo.
+- `OptimizationWizard` e `ScoreChart tooltip`: cores one-off → tokens do sistema.
+- `plan/page`: `#34D399` → `var(--success)` em toda a página.
+- Dashboard e Reviews: subtítulos adicionados para consistência com demais páginas.
+
+### 22. .impeccable.md do Destaka tem 10 inconsistências priorizadas (P0/P1/P2)
+Arquivo em `/Users/davidlevy/Desktop/PJ/destaka-remote/.impeccable.md`. As P0 foram todas resolvidas nesta sessão. P1 resolvidas parcialmente (hover states, WCAG, spinner). P2 pendentes (CSS variables globais já feitas, max-width ainda inconsistente entre páginas).
+
+---
+
+*Backup atualizado em sessão de 2026-04-27 (sessão 8): UI polish completo, sistema de tokens CSS, glow no ScoreGauge, SectionTitle, sidebar indicator, 16 arquivos modificados em 2 commits*
