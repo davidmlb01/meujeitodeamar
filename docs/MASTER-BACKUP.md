@@ -1,6 +1,6 @@
 # MASTER BACKUP — Projeto Freud
-**Última atualização:** 2026-04-23
-**Status:** V1 lançado — 12 criativos estáticos feed Instagram prontos (V2 corrigido + V3 novos ângulos). 6 roteiros TikTok/Reels. Plataformas sociais em criação.
+**Última atualização:** 2026-04-27
+**Status:** V1 lançado — Pixel Meta ativo + públicos criados. Página /resultado redesenhada com Hormozi framework (AHA break, bridges por estilo, value stack, CTA com garantia). Seed launch pendente.
 
 ---
 
@@ -310,6 +310,55 @@ Arquivo: `docs/design/leituras-pdf.html`
 
 ---
 
+## 11C. SESSAO 2026-04-27 — RESULTADO REDESIGN COMPLETO (HORMOZI)
+
+### Pagina /resultado — Redesign total
+
+Estrutura anterior: hero + cards desfocados + CTA simples.
+Estrutura nova (definitiva):
+
+```
+1. Seção superior: label "Seu resultado está pronto." + headline (42-64px) + body (multi-parágrafo)
+2. AHA break (full-width burgundy): label "O que isso significa" + blockquote display italic
+3. Seção inferior:
+   - Bridge: lead (display italic) + 3 parágrafos separados (perguntas + produto + promessa)
+   - Divider
+   - Value stack: "O que você vai entender pela primeira vez:" + 5 bullets + meta + credencial
+   - Divider
+   - CTA box: price anchor (italic) + R$37 (display) + garantia + botão + redirect
+```
+
+### Locked cards removidos
+Cards desfocados com conteúdo "bloqueado" foram removidos. Eram redundantes com o value stack e não convertiam. Value stack cobre toda a curiosidade necessária.
+
+### Bridges — Hormozi framework (4 estilos)
+Cada bridge segue o padrão:
+- Para 1: reconhecer o que descobriu (sem frase de abertura "Você acabou de...")
+- Parágrafo 2: 3 perguntas específicas do estilo terminadas com "?"
+- Parágrafo 3: nome do produto + o que vai mostrar (especificidade)
+
+### Credencial (copy definitivo)
+"A Leitura Completa [readingName] é o resultado de uma pesquisa científica séria e profunda sobre como os seres humanos aprendem a amar. Esse estudo já ajudou dezenas de milhares de pessoas a reconhecer padrões que repetiam há anos sem conseguir explicar."
+
+### Regras de copy — DEFINITIVAS (risco legal e qualidade)
+- NUNCA "apego" ou "teoria do apego" — sempre "jeito de amar"
+- NUNCA "análise escrita" — sempre "leitura"
+- NUNCA mencionar terapia, terapeuta, sessão, psicólogo — risco de processo
+- NUNCA travessão (—) — regra global
+- CTA: "Desbloquear a Leitura [readingName]" (dinâmico por estilo)
+
+### Bug fixes e polish (2026-04-27)
+- Bug gramática: credencial usava `result.label` ("O Coração Ansioso") → corrigido para `result.readingName` ("do Coração Ansioso")
+- Dead import `Badge` removido do Resultado.jsx
+- Bridge renderiza cada parágrafo como `<p>` separado (perguntas isoladas visualmente)
+- 78 linhas de CSS morto removidas (estilos de locked cards já removidos)
+
+### Commits desta sessão
+- `feat(resultado): hormozi redesign — AHA break, bridge copy, value stack, CTA`
+- `polish(resultado): fix grammar bug, remove dead code, improve bridge rendering`
+
+---
+
 ## 12. ANALYTICS (PENDENTE)
 
 Variáveis a preencher no `.env.local` quando tiver as contas:
@@ -357,6 +406,9 @@ Todos os textos estão em `docs/copy/`:
 - [x] Vincular Instagram ao Meta Business Suite (2026-04-23)
 - [x] Criar portfólio empresarial Meu Jeito de Amar no Meta (2026-04-23)
 - [x] Criar conta de anúncios MJDA com pagamento configurado (2026-04-23)
+- [x] Pixel Meta instalado + 3 eventos ativos (PageView, ViewContent, InitiateCheckout) (2026-04-26)
+- [x] Públicos Meta criados: Visitantes 180d, ViewContent 180d, Engajamento IG 365d, Lookalike 1% BR (2026-04-26)
+- [x] Página /resultado redesenhada — Hormozi framework completo (AHA break, bridges, value stack, CTA) (2026-04-27)
 - [~] Criar TikTok (perfil + link na bio: bit.ly/meujeito_deamar)
 - [~] Criar YouTube (canal + link na descrição: bit.ly/meujeito_yt)
 
@@ -372,18 +424,19 @@ Todos os textos estão em `docs/copy/`:
 - [ ] Postar post de apresentação da página
 
 ### Rastreamento e Pixel
-- [ ] Verificar domínio `meujeitodeamar.com.br` no Meta Business Suite
-- [ ] Criar Pixel no Meta (Fontes de dados → Pixels → Adicionar)
-- [ ] Instalar código do Pixel no `index.html` do site
-- [ ] Configurar evento de conversão no Pixel (ViewContent na /resultado, Purchase no Kiwify)
-- [ ] Testar Pixel com Meta Pixel Helper (extensão Chrome)
+- [x] Verificar domínio `meujeitodeamar.com.br` no Meta Business Suite (2026-04-26)
+- [x] Criar Pixel no Meta — ID: 1636955567513577 (2026-04-26)
+- [x] Instalar código do Pixel no `index.html` do site (2026-04-26)
+- [x] Configurar eventos: PageView + ViewContent (/resultado) + InitiateCheckout (botão compra) (2026-04-26)
+- [x] Purchase configurado no Kiwify para todos os produtos (pix + boleto) (2026-04-26)
 
 ### Conta de anúncios MJDA
 - [ ] Estruturar colunas personalizadas (CTR, CPM, CPC, Resultado, Custo por resultado, Valor gasto)
 - [ ] Vincular página Facebook + Instagram à conta MJDA
-- [ ] Criar público personalizado: visitantes do site (últimos 30 dias)
-- [ ] Criar público personalizado: engajamento Instagram (últimos 30 dias)
-- [ ] Criar público lookalike 1% Brasil baseado nos visitantes
+- [x] Criar público personalizado: visitantes do site — 180d (2026-04-26)
+- [x] Criar público personalizado: ViewContent — 180d (2026-04-26)
+- [x] Criar público engajamento Instagram — 365d (2026-04-26)
+- [x] Criar público lookalike 1% Brasil baseado nos visitantes (2026-04-26)
 
 ### Seed launch
 - [ ] Contatar 20 pessoas da rede pessoal → 10 primeiros pagantes
