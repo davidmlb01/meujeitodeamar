@@ -24,7 +24,7 @@ Por que o seu alarme interno dispara quando o silêncio dura dez minutos a mais?
 Por que você promete que não vai mandar mensagem e manda assim mesmo?
 Por que a raiva depois de mandar é maior do que o alívio de ter mandado?
 
-E a resposta é a Leitura Completa do Coração Ansioso. Ela não vai te dizer o que você já sabe. Vai te mostrar o que você nunca viu com clareza: a origem exata do seu jeito de amar, o que acontece dentro de você no segundo em que o seu alarme dispara, e o que muda quando você entende como isso foi criado.`,
+E a resposta é a Leitura Completa do Coração Ansioso. Vai te mostrar o que você nunca viu com clareza: a origem exata do seu jeito de amar, o que acontece dentro de você no segundo em que o seu alarme dispara, e o que muda quando você entende como isso foi criado.`,
     lockedIntro: 'O que está dentro:',
     lockedDesc: '',
     lockedTopics: [
@@ -40,12 +40,13 @@ E a resposta é a Leitura Completa do Coração Ansioso. Ela não vai te dizer o
       'Não é sobre controlar a ansiedade. É sobre entender o mecanismo que a cria.',
     ],
     priceAnchor: 'Você provavelmente já perdeu noites com isso. Já se culpou mais vezes do que deveria. E entender o que está na raiz do seu jeito de amar muda a forma como você vive todos os seus relacionamentos.',
+    readingName: 'do Coração Ansioso',
     valueStack: [
       'A origem exata do seu padrão: de onde veio, quando se formou, por que faz todo o sentido dado o que você viveu',
+      'O caminho de transformação específico para o coração ansioso',
       'Os seus pontos cegos: o que você faz que afasta exatamente quem você não quer perder',
       'Como o seu sistema nervoso responde ao silêncio, à distância e à falta de sinal',
       'Como o seu jeito de amar se relaciona com cada um dos outros três perfis',
-      'O caminho de transformação específico para o coração ansioso',
     ],
   },
   distante: {
@@ -75,7 +76,7 @@ Por que algo dentro de você se fecha quando alguém tenta chegar mais perto?
 Por que você some sem avisar e acha óbvio que vai voltar?
 Por que cuidado em excesso parece sufocamento mesmo quando você sabe que não deveria?
 
-E a resposta é a Leitura Completa do Coração Distante. Ela não vai te dizer o que você já sabe. Vai te mostrar o que você nunca viu com clareza: a origem exata do seu jeito de amar, o que acontece dentro de você no segundo em que alguém tenta chegar perto, e o que muda quando você entende o que esse reflexo está protegendo.`,
+E a resposta é a Leitura Completa do Coração Distante. Vai te mostrar o que você nunca viu com clareza: a origem exata do seu jeito de amar, o que acontece dentro de você no segundo em que alguém tenta chegar perto, e o que muda quando você entende o que esse reflexo está protegendo.`,
     lockedIntro: 'O que está dentro:',
     lockedDesc: '',
     lockedTopics: [
@@ -91,11 +92,12 @@ E a resposta é a Leitura Completa do Coração Distante. Ela não vai te dizer 
       'Não é sobre forçar proximidade. É sobre entender o que o alarme está protegendo.',
     ],
     priceAnchor: 'Você provavelmente já perdeu noites com isso. Já se culpou mais vezes do que deveria. E entender o que está na raiz do seu jeito de amar muda a forma como você vive todos os seus relacionamentos.',
+    readingName: 'do Coração Distante',
     valueStack: [
       'A origem do seu padrão: por que gestos de carinho e aproximação ativam um alerta, não conforto',
+      'O que fazer com o sinal de alerta antes de agir por ele',
       'Os seus pontos cegos: o que parece neutro para você e parece rejeição para quem te ama',
       'Por que você some sem avisar e como isso é vivido por quem fica esperando',
-      'O que fazer com o sinal de alerta antes de agir por ele',
       'Como o seu jeito de amar se relaciona com cada um dos outros três perfis',
     ],
   },
@@ -122,7 +124,7 @@ Por que pessoas estáveis costumam ser tratadas como se não precisassem de cuid
 Por que você segura situações que deveriam ser divididas?
 Por que, mesmo com uma base sólida, alguns padrões ainda se repetem?
 
-E a resposta é a Leitura Completa do Coração Seguro. Ela não vai te dizer o que você já sabe. Vai te mostrar o que você nunca viu com clareza: os pontos cegos específicos de quem ama bem, onde está o seu trabalho real, e o que muda quando você finalmente os vê.`,
+E a resposta é a Leitura Completa do Coração Seguro. Vai te mostrar o que você nunca viu com clareza: os pontos cegos específicos de quem ama bem, onde está o seu trabalho real, e o que muda quando você finalmente os vê.`,
     lockedIntro: 'O que está dentro:',
     lockedDesc: '',
     lockedTopics: [
@@ -138,12 +140,13 @@ E a resposta é a Leitura Completa do Coração Seguro. Ela não vai te dizer o 
       'Todo mundo tem um trabalho real nos relacionamentos. O seu não é óbvio, mas está lá.',
     ],
     priceAnchor: 'Você provavelmente já perdeu noites com isso. Já se culpou mais vezes do que deveria. E entender o que está na raiz do seu jeito de amar muda a forma como você vive todos os seus relacionamentos.',
+    readingName: 'do Coração Seguro',
     valueStack: [
       'Os pontos cegos de quem ama de forma estável: o que você não vê justamente porque as coisas funcionam bem',
+      'Onde está o seu trabalho real, porque todo mundo tem um',
       'Por que pessoas como você costumam ser tratadas como se não precisassem de cuidado, e como mudar essa dinâmica',
       'O que significa crescer a partir de uma base segura, não só mantê-la',
       'Como o seu jeito de amar se relaciona com cada um dos outros três perfis',
-      'Onde está o seu trabalho real, porque todo mundo tem um',
     ],
   },
   desorganizado: {
@@ -171,7 +174,7 @@ Por que em um dia você quer tanto perto que assusta e no outro a mesma pessoa p
 Por que os relacionamentos ficam intensos muito rápido e difíceis logo depois?
 Por que você afasta, volta, afasta de novo, sem conseguir explicar o que mudou?
 
-E a resposta é a Leitura Completa do Coração Confuso. Ela não vai te dizer o que você já sabe. Vai te mostrar o que você nunca viu com clareza: a origem de cada sistema dentro de você, o que acontece naquele segundo entre o gatilho e a reação, e o que muda quando você entende o que os criou.`,
+E a resposta é a Leitura Completa do Coração Confuso. Vai te mostrar o que você nunca viu com clareza: a origem de cada sistema dentro de você, o que acontece naquele segundo entre o gatilho e a reação, e o que muda quando você entende o que os criou.`,
     lockedIntro: 'O que está dentro:',
     lockedDesc: '',
     lockedTopics: [
@@ -187,11 +190,12 @@ E a resposta é a Leitura Completa do Coração Confuso. Ela não vai te dizer o
       'Sair do padrão não começa por força de vontade. Começa por entender o mecanismo que o criou.',
     ],
     priceAnchor: 'Você provavelmente já perdeu noites com isso. Já se culpou mais vezes do que deveria. E entender o que está na raiz do seu jeito de amar muda a forma como você vive todos os seus relacionamentos.',
+    readingName: 'do Coração Confuso',
     valueStack: [
       'Os dois sistemas em conflito dentro de você: de onde cada um veio e por que disputam',
       'O que acontece no segundo entre o gatilho e a reação, e o que fazer naquele segundo específico',
-      'Por que os relacionamentos ficam intensos rápido e difíceis logo depois',
       'Como sair do ciclo de se afastar e voltar sem entender o que mudou',
+      'Por que os relacionamentos ficam intensos rápido e difíceis logo depois',
       'Como o seu jeito de amar se relaciona com cada um dos outros três perfis',
     ],
   },

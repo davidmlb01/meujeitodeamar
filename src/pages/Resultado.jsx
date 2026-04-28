@@ -100,7 +100,7 @@ export default function Resultado() {
                 tabIndex={-1}
                 onClick={() => window.fbq && window.fbq('track', 'InitiateCheckout', { content_name: `checkout_${estilo}`, value: 37, currency: 'BRL' })}
               >
-                <Button>Desbloquear minha leitura completa</Button>
+                <Button>Desbloquear a Leitura {result.readingName}</Button>
               </a>
             </div>
             <p className="resultado__redirect">
