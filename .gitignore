@@ -28,3 +28,15 @@ Thumbs.db
 .claude/settings.local.json
 .aiox/install-log.txt
 .vercel
+
+# Claude local
+.claude/*.local.md
+
+# Projetos — arquivos locais nao versionados
+BOT TENDÊNCIAS/
+EASYSITE/POSTS/
+
+# agente_tiktok — runtime e dependencias
+agente_tiktok/runs/
+agente_tiktok/.venv/
+agente_tiktok/.envx
