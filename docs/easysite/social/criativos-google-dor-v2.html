@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasySite — Criativos Google Dor v2 (Branco)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Instrument+Serif:ital,wght@0,400;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'Instrument Sans', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+  --white: #FAFAF9;
+  --black: #080503;
+  --ink2: rgba(8,5,3,0.55);
+  --ink3: rgba(8,5,3,0.25);
+  --ink4: rgba(8,5,3,0.10);
+  --red: #C0392B;
+  --green: #1E8C58;
+  --red-bg: rgba(192,57,43,0.07);
+  --green-bg: rgba(30,140,88,0.08);
+}
+
+html, body {
+  background: #E8E6E1;
+  color: var(--black);
+  font-family: var(--sans);
+  min-height: 100vh;
+}
+
+.page-layout { display: flex; min-height: 100vh; }
+
+/* SIDEBAR */
+.sidebar {
+  width: 220px; flex-shrink: 0;
+  background: #DEDAD4;
+  border-right: 1px solid rgba(8,5,3,0.1);
+  position: sticky; top: 0; height: 100vh;
+  overflow-y: auto; padding: 24px 0;
+}
+.sidebar-brand {
+  font-family: var(--serif); font-size: 18px;
+  color: rgba(8,5,3,0.6);
+  padding: 0 20px 24px;
+  border-bottom: 1px solid rgba(8,5,3,0.08);
+  margin-bottom: 20px;
+}
+.sidebar-brand span {
+  display: block; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(8,5,3,0.3); margin-top: 4px;
+}
+.sidebar nav { display: flex; flex-direction: column; gap: 2px; padding: 0 12px; }
+.sidebar nav a {
+  display: block; padding: 8px 10px; border-radius: 6px;
+  color: rgba(8,5,3,0.4); text-decoration: none;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em;
+  transition: background 0.15s, color 0.15s;
+}
+.sidebar nav a:hover { background: rgba(8,5,3,0.06); color: var(--black); }
+.nav-label {
+  padding: 4px 10px; font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(8,5,3,0.2); margin-top: 8px;
+}
+
+/* MAIN */
+.main { flex: 1; padding: 48px 40px; }
+.main-header { margin-bottom: 56px; }
+.main-header h1 {
+  font-family: var(--serif); font-size: 36px; font-weight: 400;
+  color: rgba(8,5,3,0.8); margin-bottom: 8px;
+}
+.main-header p {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: rgba(8,5,3,0.35);
+}
+
+.criativo-section { margin-bottom: 80px; scroll-margin-top: 32px; }
+.criativo-header {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 20px; padding-bottom: 12px;
+  border-bottom: 1px solid rgba(8,5,3,0.1);
+}
+.criativo-title {
+  font-family: var(--mono); font-size: 13px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(8,5,3,0.4);
+}
+.criativo-title strong { color: var(--black); font-size: 15px; }
+.criativo-angle {
+  font-family: var(--sans); font-size: 13px;
+  color: rgba(8,5,3,0.35); font-style: italic; margin-top: 4px;
+}
+
+.btn-download {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--black); color: var(--white);
+  border: none; padding: 8px 18px; border-radius: 8px;
+  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  cursor: pointer; transition: opacity 0.15s; flex-shrink: 0;
+}
+.btn-download:hover { opacity: 0.75; }
+.btn-download.loading { opacity: 0.5; pointer-events: none; }
+.btn-download svg { width: 13px; height: 13px; }
+
+.criativo-body { display: flex; gap: 40px; align-items: flex-start; }
+
+/* META ADS COPY BLOCK */
+.ads-copy {
+  flex: 1;
+  background: #F0EDE7;
+  border: 1px solid rgba(8,5,3,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.ads-copy-header {
+  padding: 10px 20px;
+  background: rgba(8,5,3,0.04);
+  border-bottom: 1px solid rgba(8,5,3,0.08);
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(8,5,3,0.35);
+}
+.ads-copy-field {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(8,5,3,0.06);
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.ads-copy-field:last-child { border-bottom: none; }
+.ads-copy-label {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(8,5,3,0.3);
+  flex-shrink: 0; width: 120px; padding-top: 2px;
+}
+.ads-copy-text {
+  font-family: var(--sans); font-size: 14px;
+  color: rgba(8,5,3,0.8); line-height: 1.55;
+  flex: 1; user-select: all; cursor: text;
+}
+.ads-copy-text:hover { color: var(--black); }
+.ads-copy-btn {
+  background: rgba(8,5,3,0.06); border: none;
+  color: rgba(8,5,3,0.4); padding: 4px 10px;
+  border-radius: 4px; font-family: var(--mono); font-size: 10px;
+  cursor: pointer; flex-shrink: 0; transition: all 0.15s;
+  letter-spacing: 0.04em;
+}
+.ads-copy-btn:hover { background: rgba(8,5,3,0.12); color: var(--black); }
+.ads-copy-btn.copied { background: rgba(30,140,88,0.12); color: var(--green); }
+
+/* PREVIEW */
+.preview-wrapper {
+  width: 432px; height: 540px;
+  overflow: hidden; position: relative;
+  border-radius: 8px;
+  box-shadow: 0 4px 24px rgba(8,5,3,0.15), 0 1px 4px rgba(8,5,3,0.08);
+  flex-shrink: 0;
+}
+.preview-scale {
+  transform: scale(0.4); transform-origin: top left;
+  position: absolute; top: 0; left: 0;
+  width: 1080px; height: 1350px;
+}
+.frame {
+  width: 1080px; height: 1350px;
+  position: relative; overflow: hidden;
+}
+
+/* SHARED */
+.cta-pill {
+  display: inline-block;
+  background: var(--black); color: var(--white);
+  font-family: var(--mono); font-size: 20px; font-weight: 700;
+  letter-spacing: 0.03em; text-transform: uppercase;
+  padding: 22px 44px; border-radius: 100px;
+  white-space: nowrap; line-height: 1;
+}
+
+/* ============================================================
+   G01 — INVISIBILIDADE NO GOOGLE
+   ============================================================ */
+.g01 {
+  background: var(--white);
+  display: flex; flex-direction: column;
+  padding: 72px 88px;
+}
+.g01 .logo {
+  font-family: var(--serif); font-size: 32px;
+  color: var(--ink3); margin-bottom: 56px;
+}
+.g01 .pretitle {
+  font-family: var(--mono); font-size: 20px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink2); margin-bottom: 20px;
+}
+.g01 .search-bar {
+  display: flex; align-items: center; gap: 16px;
+  background: #F0EDE8;
+  border: 1.5px solid rgba(8,5,3,0.12);
+  border-radius: 48px; padding: 20px 32px;
+  margin-bottom: 36px;
+}
+.g01 .search-icon {
+  width: 32px; height: 32px; flex-shrink: 0;
+  color: var(--ink3);
+}
+.g01 .search-text {
+  font-family: var(--sans); font-size: 26px;
+  color: var(--ink2);
+}
+.g01 .search-text em {
+  color: var(--black); font-style: normal; font-weight: 600;
+}
+.g01 .results-list { display: flex; flex-direction: column; gap: 0; margin-bottom: 32px; }
+.g01 .result-item {
+  display: flex; align-items: center; gap: 20px;
+  padding: 22px 0;
+  border-bottom: 1px solid rgba(8,5,3,0.08);
+}
+.g01 .result-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--green); flex-shrink: 0;
+}
+.g01 .result-dot.empty {
+  background: transparent;
+  border: 2px dashed rgba(8,5,3,0.2);
+}
+.g01 .result-name {
+  font-family: var(--sans); font-size: 24px;
+  color: var(--ink2); flex: 1;
+}
+.g01 .result-name.you { color: rgba(8,5,3,0.45); font-style: italic; }
+.g01 .result-tag {
+  font-family: var(--mono); font-size: 15px;
+  padding: 6px 14px; border-radius: 100px;
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.g01 .result-tag.has-site {
+  background: var(--green-bg); color: var(--green);
+}
+.g01 .result-tag.no-site {
+  background: var(--red-bg); color: var(--red);
+  border: 1px dashed rgba(192,57,43,0.25);
+}
+.g01 .headline {
+  font-family: var(--serif); font-size: 64px; line-height: 1.15;
+  color: var(--black); margin-top: auto; margin-bottom: 40px;
+}
+.g01 .headline em { color: var(--ink3); font-style: normal; }
+.g01 .bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 32px; border-top: 1px solid var(--ink4);
+}
+.g01 .tagline {
+  font-family: var(--sans); font-size: 28px; font-weight: 600;
+  color: var(--black); letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+/* ============================================================
+   G02 — CONCORRENTE ROUBANDO CLIENTES
+   ============================================================ */
+.g02 {
+  background: var(--white);
+  display: flex; flex-direction: column;
+  padding: 72px 88px;
+}
+.g02 .logo {
+  font-family: var(--serif); font-size: 32px;
+  color: var(--ink3); margin-bottom: 52px;
+}
+.g02 .headline {
+  font-family: var(--serif); font-size: 72px; line-height: 1.1;
+  color: var(--black); margin-bottom: 16px;
+}
+.g02 .headline em { color: var(--red); font-style: normal; }
+.g02 .subhead {
+  font-family: var(--sans); font-size: 28px; line-height: 1.4;
+  color: var(--ink2); margin-bottom: 48px;
+}
+.g02 .comparison { display: flex; gap: 20px; }
+.g02 .side {
+  flex: 1; border-radius: 16px; padding: 36px 32px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.g02 .side.competitor {
+  background: var(--black);
+}
+.g02 .side.you {
+  background: rgba(8,5,3,0.04);
+  border: 2px dashed rgba(8,5,3,0.12);
+}
+.g02 .side-label {
+  font-family: var(--mono); font-size: 16px; letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.g02 .side.competitor .side-label { color: rgba(255,255,255,0.4); }
+.g02 .side.you .side-label { color: var(--ink3); }
+.g02 .side-badge {
+  font-family: var(--mono); font-size: 17px; font-weight: 700;
+  padding: 10px 18px; border-radius: 100px;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  display: inline-block; width: fit-content;
+}
+.g02 .side.competitor .side-badge {
+  background: rgba(30,140,88,0.25); color: #1E8C58;
+}
+.g02 .side.you .side-badge {
+  background: var(--red-bg); color: var(--red);
+  border: 1px solid rgba(192,57,43,0.2);
+}
+.g02 .side-big {
+  font-family: var(--serif); font-size: 80px; line-height: 1; margin-top: auto;
+}
+.g02 .side.competitor .side-big { color: var(--white); }
+.g02 .side.you .side-big { color: rgba(8,5,3,0.1); }
+.g02 .note {
+  font-family: var(--mono); font-size: 16px;
+  color: var(--ink3); letter-spacing: 0.06em;
+  text-transform: uppercase; text-align: center;
+  margin-top: 8px;
+}
+.g02 .bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 40px; padding-top: 28px;
+  border-top: 1px solid var(--ink4);
+}
+.g02 .bottom-text {
+  font-family: var(--sans); font-size: 26px;
+  color: var(--ink2); line-height: 1.4; max-width: 480px;
+}
+.g02 .bottom-text strong { color: var(--black); }
+
+/* ============================================================
+   G03 — AGENCIA VS EASYSITE
+   ============================================================ */
+.g03 {
+  background: var(--white);
+  display: flex; flex-direction: column;
+  padding: 72px 88px;
+}
+.g03 .logo {
+  font-family: var(--serif); font-size: 32px;
+  color: var(--ink3); margin-bottom: 48px;
+}
+.g03 .eyebrow {
+  font-family: var(--sans); font-size: 30px; font-weight: 700;
+  color: var(--black); margin-bottom: 28px;
+  line-height: 1.2;
+}
+.g03 .table { width: 100%; border-collapse: collapse; }
+.g03 .table th {
+  font-family: var(--mono); font-size: 19px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 18px 24px;
+  border-bottom: 2px solid var(--ink4);
+  text-align: left;
+}
+.g03 .table th.col-label { width: 120px; color: transparent; }
+.g03 .table th.col-agency { color: var(--ink3); width: 42%; }
+.g03 .table th.col-easy {
+  color: var(--black); width: 42%;
+  background: rgba(8,5,3,0.04);
+  border-left: 1.5px solid rgba(8,5,3,0.1);
+  border-radius: 8px 8px 0 0;
+}
+.g03 .table td {
+  padding: 24px 24px;
+  border-bottom: 1px solid var(--ink4);
+  vertical-align: middle;
+}
+.g03 .table td.label-cell {
+  font-family: var(--mono); font-size: 16px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink3);
+}
+.g03 .table td.agency-cell {
+  font-family: var(--serif); font-size: 44px;
+  color: var(--ink3);
+  text-decoration: line-through;
+  text-decoration-color: rgba(192,57,43,0.4);
+  text-decoration-thickness: 3px;
+}
+.g03 .table td.easy-cell {
+  font-family: var(--serif); font-size: 48px;
+  color: var(--black);
+  background: rgba(8,5,3,0.04);
+  border-left: 1.5px solid rgba(8,5,3,0.1);
+}
+.g03 .table td.easy-cell.highlight { color: var(--green); }
+.g03 .table tr:last-child td { border-bottom: none; }
+.g03 .bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 40px; padding-top: 32px;
+  border-top: 1px solid var(--ink4);
+}
+.g03 .bottom-claim {
+  font-family: var(--serif); font-size: 54px;
+  color: var(--ink2); line-height: 1.2; max-width: 520px;
+}
+.g03 .bottom-claim strong { color: var(--black); }
+
+/* ============================================================
+   G04 — CLIENTES PERDIDOS TODA HORA
+   ============================================================ */
+.g04 {
+  background: var(--white);
+  display: flex; flex-direction: column;
+  padding: 72px 88px;
+}
+.g04 .logo {
+  font-family: var(--serif); font-size: 32px;
+  color: var(--ink3); margin-bottom: 56px;
+}
+.g04 .stat-label {
+  font-family: var(--mono); font-size: 20px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink2); margin-bottom: 14px;
+}
+.g04 .stat-query {
+  font-family: var(--sans); font-size: 28px;
+  color: var(--ink2); margin-bottom: 28px;
+}
+.g04 .stat-query em {
+  color: var(--black); font-style: normal; font-weight: 600;
+  background: rgba(8,5,3,0.05);
+  padding: 4px 14px; border-radius: 8px;
+}
+.g04 .big-number {
+  font-family: var(--serif); font-size: 220px; line-height: 0.85;
+  color: var(--red); margin-bottom: 16px;
+}
+.g04 .big-label {
+  font-family: var(--mono); font-size: 26px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink2); margin-bottom: 8px;
+}
+.g04 .big-sublabel {
+  font-family: var(--sans); font-size: 24px;
+  color: var(--ink3);
+}
+.g04 .reason {
+  font-family: var(--serif); font-size: 52px; line-height: 1.2;
+  color: var(--black); margin-top: auto; margin-bottom: 44px;
+}
+.g04 .reason em { color: var(--ink3); font-style: normal; }
+.g04 .bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 28px; border-top: 1px solid var(--ink4);
+}
+.g04 .price-tag {
+  font-family: var(--mono); font-size: 20px;
+  color: var(--ink2); letter-spacing: 0.04em;
+  text-transform: uppercase; line-height: 1.5;
+}
+.g04 .price-tag strong { color: var(--black); font-size: 26px; }
+
+/* ============================================================
+   G05 — E SO UM SITE
+   ============================================================ */
+.g05 {
+  background: var(--white);
+  display: flex; flex-direction: column;
+  padding: 72px 88px;
+}
+.g05 .logo {
+  font-family: var(--serif); font-size: 32px;
+  color: var(--ink3); margin-bottom: 60px;
+}
+.g05 .eyebrow {
+  font-family: var(--mono); font-size: 20px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink2); margin-bottom: 20px;
+}
+.g05 .big-claim {
+  font-family: var(--serif); font-size: 118px; line-height: 1.0;
+  color: var(--black);
+}
+.g05 .big-claim em { font-style: italic; color: var(--ink3); }
+.g05 .divider {
+  width: 80px; height: 4px; background: var(--black);
+  margin: 44px 0; border-radius: 2px;
+}
+.g05 .what-you-get {
+  display: flex; flex-direction: column; gap: 20px; margin-bottom: auto;
+}
+.g05 .get-item { display: flex; align-items: baseline; gap: 20px; }
+.g05 .get-number {
+  font-family: var(--mono); font-size: 18px; font-weight: 700;
+  color: var(--ink3); width: 32px; flex-shrink: 0;
+}
+.g05 .get-text {
+  font-family: var(--sans); font-size: 30px;
+  color: var(--ink2); line-height: 1.3;
+}
+.g05 .get-text strong { color: var(--black); }
+.g05 .bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 44px; padding-top: 28px;
+  border-top: 1px solid var(--ink4);
+}
+.g05 .price-block { display: flex; flex-direction: column; }
+.g05 .price-main {
+  font-family: var(--serif); font-size: 72px; line-height: 1;
+  color: var(--black);
+}
+.g05 .price-sub {
+  font-family: var(--mono); font-size: 18px;
+  color: var(--ink2); letter-spacing: 0.06em;
+  text-transform: uppercase; margin-top: 6px;
+}
+
+/* ============================================================
+   G06 — O CLIENTE PESQUISA ANTES DE LIGAR
+   ============================================================ */
+.g06 {
+  background: var(--white);
+  display: flex; flex-direction: column;
+  padding: 72px 88px;
+}
+.g06 .logo {
+  font-family: var(--serif); font-size: 32px;
+  color: var(--ink3); margin-bottom: 48px;
+}
+.g06 .headline {
+  font-family: var(--serif); font-size: 78px; line-height: 1.1;
+  color: var(--black); margin-bottom: 16px;
+}
+.g06 .headline em { color: var(--ink3); font-style: normal; }
+.g06 .subhead {
+  font-family: var(--sans); font-size: 27px;
+  color: var(--ink2); line-height: 1.45; margin-bottom: 44px;
+}
+.g06 .journey {
+  display: flex; flex-direction: column;
+  border: 1.5px solid var(--ink4);
+  border-radius: 16px; overflow: hidden;
+}
+.g06 .journey-step {
+  display: flex; align-items: center; gap: 24px;
+  padding: 26px 30px;
+  border-bottom: 1px solid var(--ink4);
+}
+.g06 .journey-step:last-child { border-bottom: none; }
+.g06 .journey-step.active { background: rgba(8,5,3,0.03); }
+.g06 .journey-step.blocked {
+  background: var(--red-bg);
+  border-left: 3px solid rgba(192,57,43,0.3);
+}
+.g06 .step-num {
+  font-family: var(--mono); font-size: 14px; font-weight: 700;
+  color: var(--ink3); width: 32px; flex-shrink: 0;
+}
+.g06 .step-action {
+  font-family: var(--sans); font-size: 26px;
+  color: var(--ink2); flex: 1; line-height: 1.3;
+}
+.g06 .step-action strong { color: var(--black); }
+.g06 .step-badge {
+  font-family: var(--mono); font-size: 14px;
+  padding: 6px 14px; border-radius: 100px;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  white-space: nowrap;
+}
+.g06 .step-badge.ok { background: var(--green-bg); color: var(--green); }
+.g06 .step-badge.stop { background: var(--red-bg); color: var(--red); border: 1px solid rgba(192,57,43,0.2); }
+.g06 .call-out {
+  margin-top: 28px;
+  padding: 28px 32px;
+  background: var(--red-bg);
+  border: 1.5px solid rgba(192,57,43,0.15);
+  border-radius: 12px;
+}
+.g06 .call-out-text {
+  font-family: var(--serif); font-size: 44px; line-height: 1.2;
+  color: var(--black);
+}
+.g06 .call-out-text em { color: var(--red); font-style: normal; }
+.g06 .bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 36px; padding-top: 28px;
+  border-top: 1px solid var(--ink4);
+}
+.g06 .bottom-sub {
+  font-family: var(--mono); font-size: 20px;
+  letter-spacing: 0.06em; color: var(--ink2);
+  text-transform: uppercase;
+}
+
+</style>
+</head>
+<body>
+<div class="page-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      EasySite
+      <span>Google Dor v2 · Branco</span>
+    </div>
+    <nav>
+      <div class="nav-label">Criativos</div>
+      <a href="#g01">G01 Invisibilidade</a>
+      <a href="#g02">G02 Concorrente</a>
+      <a href="#g03">G03 Agencia vs Nos</a>
+      <a href="#g04">G04 Clientes Perdidos</a>
+      <a href="#g05">G05 So um Site</a>
+      <a href="#g06">G06 Pesquisa Antes</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="main-header">
+      <h1>EasySite — Google Dor v2</h1>
+      <p>6 criativos · versao branca · invisibilidade + concorrente + ancora de preco · 1080 x 1350</p>
+    </div>
+
+    <!-- G01 -->
+    <section class="criativo-section" id="g01">
+      <div class="criativo-header">
+        <div>
+          <div class="criativo-title"><strong>G01</strong> Invisibilidade no Google</div>
+          <div class="criativo-angle">Alguém busca seu ramo. Seu concorrente aparece. Você não.</div>
+        </div>
+        <button class="btn-download" onclick="downloadFrame('frame-g01', 'easysite-g01-invisibilidade')">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v8M5 7l3 3 3-3M2 12h12"/></svg>
+          Download PNG
+        </button>
+      </div>
+      <div class="criativo-body">
+        <div class="preview-wrapper">
+          <div class="preview-scale">
+            <div class="frame g01" id="frame-g01">
+              <div class="logo">EasySite</div>
+              <div class="pretitle">Alguém pesquisou agora:</div>
+              <div class="search-bar">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+                <div class="search-text"><em>salão de beleza</em> na sua cidade</div>
+              </div>
+              <div class="results-list">
+                <div class="result-item">
+                  <div class="result-dot"></div>
+                  <div class="result-name">Studio Márcia Fernandes</div>
+                  <div class="result-tag has-site">site</div>
+                </div>
+                <div class="result-item">
+                  <div class="result-dot"></div>
+                  <div class="result-name">Bella Donna Hair</div>
+                  <div class="result-tag has-site">site</div>
+                </div>
+                <div class="result-item">
+                  <div class="result-dot"></div>
+                  <div class="result-name">Salão Top Style</div>
+                  <div class="result-tag has-site">site</div>
+                </div>
+                <div class="result-item">
+                  <div class="result-dot empty"></div>
+                  <div class="result-name you">Seu negócio não apareceu</div>
+                  <div class="result-tag no-site">sem site</div>
+                </div>
+              </div>
+              <div class="headline">
+                Sem site,<br>você não existe<br><em>no Google.</em>
+              </div>
+              <div class="bottom">
+                <div class="tagline">Seu Site Por R$ 397<br>Pronto em 24h</div>
+                <div class="cta-pill">Quero meu site</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ads-copy">
+          <div class="ads-copy-header">Copy Meta Ads — G01</div>
+          <div class="ads-copy-field">
+            <div class="ads-copy-label">Texto Primario</div>
+            <div class="ads-copy-text" id="g01-primary">Alguem pesquisou "salao de beleza em Campinas" agora mesmo. Seu concorrente apareceu no Google. Voce nao apareceu. Esse cliente foi embora sem te conhecer, sem ligar, sem contratar. E isso acontece todos os dias enquanto voce nao tiver site.</div>
+            <button class="ads-copy-btn" onclick="copyText('g01-primary', this)">Copiar</button>
+          </div>
+          <div class="ads-copy-field">
+            <div class="ads-copy-label">Titulo</div>
+            <div class="ads-copy-text" id="g01-title">Voce aparece quando pesquisam seu negocio?</div>
+            <button class="ads-copy-btn" onclick="copyText('g01-title', this)">Copiar</button>
+          </div>
+          <div class="ads-copy-field">
+            <div class="ads-copy-label">Descricao</div>
+            <div class="ads-copy-text" id="g01-desc">Site profissional por R$397. No ar em 24h. Sem burocracia.</div>
+            <button class="ads-copy-btn" onclick="copyText('g01-desc', this)">Copiar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- G02 -->
+    <section class="criativo-section" id="g02">
+      <div class="criativo-header">
+        <div>
+          <div class="criativo-title"><strong>G02</strong> Concorrente Roubando Clientes</div>
+          <div class="criativo-angle">Seu concorrente tem site. Você não. O cliente escolhe um dos dois.</div>
+        </div>
+        <button class="btn-download" onclick="downloadFrame('frame-g02', 'easysite-g02-concorrente')">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v8M5 7l3 3 3-3M2 12h12"/></svg>
+          Download PNG
+        </button>
+      </div>
+      <div class="criativo-body">
+        <div class="preview-wrapper">
+          <div class="preview-scale">
+            <div class="frame g02" id="frame-g02">
+              <div class="logo">EasySite</div>
+              <div class="headline">
+                Seu<br>concorrente<br><em>está ficando</em><br>com seus<br>clientes.
+              </div>
+              <div class="subhead">Toda busca no Google é uma escolha entre você e ele.</div>
+              <div class="comparison">
+                <div class="side competitor">
+                  <div class="side-label">Concorrente</div>
+                  <div class="side-badge">TEM SITE</div>
+                  <div class="side-big" style="color:rgba(255,255,255,0.9)">✓</div>
+                </div>
+                <div class="side you">
+                  <div class="side-label">Seu negócio</div>
+                  <div class="side-badge">SEM SITE</div>
+                  <div class="side-big">✗</div>
+                </div>
+              </div>
+              <div class="note" style="margin-top:16px;">O cliente vai para quem aparece no Google</div>
+              <div class="bottom">
+                <div class="bottom-text">Um <strong>site muda isso.</strong><br>R$397. Pronto em 24h.</div>
+                <div class="cta-pill">Quero meu site</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ads-copy">
+          <div class="ads-copy-header">Copy Meta Ads — G02</div>
+          <div class="ads-copy-field">
+            <div class="ads-copy-label">Texto Primario</div>
+            <div class="ads-copy-text" id="g02-primary">Seu concorrente tem site. Voce nao. Quando o cliente pesquisa seu ramo no Google, ele so acha um dos dois. E vai para quem aparece. Cada dia sem site e mais um cliente que vai embora para o concorrente sem voce nem saber.</div>
+            <button class="ads-copy-btn" onclick="copyText('g02-primary', this)">Copiar</button>
+          </div>
+          <div class="ads-copy-field">
+            <div class="ads-copy-label">Titulo</div>
+            <div class="ads-copy-text" id="g02-title">Seu concorrente esta ganhando seus clientes</div>
+            <button class="ads-copy-btn" onclick="copyText('g02-title', this)">Copiar</button>
+          </div>
+          <div class="ads-copy-field">
+            <div class="ads-copy-label">Descricao</div>
+            <div class="ads-copy-text" id="g02-desc">Tenha um site profissional por R$397. Pronto em 24h. Apareca no Google antes do seu concorrente.</div>
+            <button class="ads-copy-btn" onclick="copyText('g02-desc', this)">Copiar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- G03 -->
+    <section class="criativo-section" id="g03">
+      <div class="criativo-header">
+        <div>
+          <div class="criativo-title"><strong>G03</strong> Agência vs EasySite</div>
+          <div class="criativo-angle">R$3.000 e 2 meses contra R$397 e 24 horas. Mesmo resultado.</div>
+        </div>
+        <button class="btn-download" onclick="downloadFrame('frame-g03', 'easysite-g03-agencia-vs')">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v8M5 7l3 3 3-3M2 12h12"/></svg>
+          Download PNG
+        </button>
+      </div>
+      <div class="criativo-body">
+        <div class="preview-wrapper">
+          <div class="preview-scale">
+            <div class="frame g03" id="frame-g03">
+              <div class="logo">EasySite</div>
+              <div class="eyebrow">Você não precisa pagar caro por um site</div>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="col-label"></th>
+                    <th class="col-agency">Agência<br>Tradicional</th>
+                    <th class="col-easy">EasySite</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="label-cell">Preço</td>
+                    <td class="agency-cell">R$ 3.000</td>
+                    <td class="easy-cell highlight">R$ 397</td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell">Prazo</td>
+                    <td class="agency-cell" style="font-size:36px">2 meses</td>
+                    <td class="easy-cell highlight" style="font-size:42px">24 horas</td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell">Reuniões</td>
+                    <td class="agency-cell" style="font-size:34px; text-decoration:none; color:var(--ink3)">5 ou mais</td>
+                    <td class="easy-cell" style="font-size:38px; color:var(--black)">Nenhuma</td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell">Resultado</td>
+                    <td class="agency-cell" style="font-size:32px; text-decoration:none; color:var(--ink3)">Site no Google</td>
+                    <td class="easy-cell" style="font-size:36px; color:var(--black)">Site no Google</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="bottom">
+                <div class="bottom-claim">Mesmo resultado.<br><strong>Preço e prazo diferentes.</strong></div>
+                <div class="cta-pill">Quero meu site</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ads-copy">
+          <div class="ads-copy-header">Copy Meta Ads — G03</div>
+          <div class="ads-copy-field">
+            <div class="ads-copy-label">Texto Primario</div>
+            <div class="ads-copy-text" id="g03-primary">Agencia tradicional cobra R$3.000 e demora 2 meses para entregar um site. A EasySite cobra R$397 e entrega em 24 horas. O resultado e o mesmo: seu negocio no Google. O preco e o prazo sao completamente diferentes.</div>
+            <button class="ads-copy-btn" onclick="copyText('g03-primary', this)">Copiar</button>
+          </div>
+          <div class="ads-copy-field">
+            <div class="ads-copy-label">Titulo</div>
+            <div class="ads-copy-text" id="g03-title">R$3.000 ou R$397. Voce decide.</div>
+            <button class="ads-copy-btn" onclick="copyText('g03-title', this)">Copiar</button>
+          </div>
+          <div class="ads-copy-field">
+            <div class="ads-copy-label">Descricao</div>
+            <div class="ads-copy-text" id="g03-desc">Site profissional em 24h por R$397. Sem reunioes, sem espera. Mesmo resultado de uma agencia por 8 vezes menos.</div>
+            <button class="ads-copy-btn" onclick="copyText('g03-desc', this)">Copiar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- G04 -->
+    <section class="criativo-section" id="g04">
+      <div class="criativo-header">
+        <div>
+          <div class="criativo-title"><strong>G04</strong> Clientes Perdidos Toda Hora</div>
+          <div class="criativo-angle">Você perde clientes todos os dias sem saber. A causa é a falta de site.</div>
+        </div>
+        <button class="btn-download" onclick="downloadFrame('frame-g04', 'easysite-g04-clientes-perdidos')">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v8M5 7l3 3 3-3M2 12h12"/></svg>
+          Download PNG
+        </button>
+      </div>
+      <div class="criativo-body">
+        <div class="preview-wrapper">
+          <div class="preview-scale">
+            <div class="frame g04" id="frame-g04">
+              <div class="logo">EasySite</div>
+              <div class="stat-label">Pesquisas feitas agora:</div>
+              <div class="stat-query"><em>barbearia na sua cidade</em></div>
+              <div class="big-number">0</div>
+              <div class="big-label">resultados com seu negócio</div>
+              <div class="big-sublabel">Porque você não tem site.</div>
+              <div class="reason">
+                Esses clientes foram<br>para o <em>seu concorrente.</em>
+              </div>
+              <div class="bottom">
+                <div class="price-tag">
+                  Um site resolve isso.<br>
+                  <strong>R$397</strong> · pronto em 24h.
+                </div>
+                <div class="cta-pill">Quero meu site</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ads-copy">
+          <div class="ads-copy-header">Copy Meta Ads — G04</div>
+          <div class="ads-copy-field">
+            <div class="ads-copy-label">Texto Primario</div>
+            <div class="ads-copy-text" id="g04-primary">Enquanto voce nao tem site, pessoas pesquisam seu ramo no Google todos os dias. Voce nao aparece. Eles vao para o concorrente. Voce nunca fica sabendo. Isso acontece de manha, de tarde e de noite. Um site profissional resolve isso por R$397, pronto em 24 horas.</div>
+            <button class="ads-copy-btn" onclick="copyText('g04-primary', this)">Copiar</button>
+          </div>
+          <div class="ads-copy-field">
+            <div class="ads-copy-label">Titulo</div>
+            <div class="ads-copy-text" id="g04-title">Voce perde clientes todo dia sem saber</div>
+            <button class="ads-copy-btn" onclick="copyText('g04-title', this)">Copiar</button>
+          </div>
+          <div class="ads-copy-field">
+            <div class="ads-copy-label">Descricao</div>
+            <div class="ads-copy-text" id="g04-desc">Um site coloca voce no Google. R$397. No ar em 24h. Sem complicacao.</div>
+            <button class="ads-copy-btn" onclick="copyText('g04-desc', this)">Copiar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- G05 -->
+    <section class="criativo-section" id="g05">
+      <div class="criativo-header">
+        <div>
+          <div class="criativo-title"><strong>G05</strong> É Só Um Site</div>
+          <div class="criativo-angle">Direto ao ponto. O que vendemos é um site. R$397. 24 horas.</div>
+        </div>
+        <button class="btn-download" onclick="downloadFrame('frame-g05', 'easysite-g05-so-um-site')">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v8M5 7l3 3 3-3M2 12h12"/></svg>
+          Download PNG
+        </button>
+      </div>
+      <div class="criativo-body">
+        <div class="preview-wrapper">
+          <div class="preview-scale">
+            <div class="frame g05" id="frame-g05">
+              <div class="logo">EasySite</div>
+              <div class="eyebrow">Não é tecnologia complicada.</div>
+              <div class="big-claim">É só<br>um<br><em>site.</em></div>
+              <div class="divider"></div>
+              <div class="what-you-get">
+                <div class="get-item">
+                  <div class="get-number">01</div>
+                  <div class="get-text">Você <strong>aparece no Google</strong> quando alguém busca seu ramo</div>
+                </div>
+                <div class="get-item">
+                  <div class="get-number">02</div>
+                  <div class="get-text">O cliente te <strong>acha, liga</strong> e contrata</div>
+                </div>
+                <div class="get-item">
+                  <div class="get-number">03</div>
+                  <div class="get-text">Pronto em <strong>24 horas.</strong> Sem reunião.</div>
+                </div>
+              </div>
+              <div class="bottom">
+                <div class="price-block">
+                  <div class="price-main">R$ 397</div>
+                  <div class="price-sub">Pronto em 24 horas</div>
+                </div>
+                <div class="cta-pill">Quero meu site</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ads-copy">
+          <div class="ads-copy-header">Copy Meta Ads — G05</div>
+          <div class="ads-copy-field">
+            <div class="ads-copy-label">Texto Primario</div>
+            <div class="ads-copy-text" id="g05-primary">Nao e tecnologia complicada. Nao sao meses de projeto. E so um site. Seu negocio no Google, encontrado por quem busca seu ramo na sua cidade, funcionando 24 horas por dia. A EasySite entrega isso em 24 horas por R$397.</div>
+            <button class="ads-copy-btn" onclick="copyText('g05-primary', this)">Copiar</button>
+          </div>
+          <div class="ads-copy-field">
+            <div class="ads-copy-label">Titulo</div>
+            <div class="ads-copy-text" id="g05-title">E so um site. R$397. Em 24 horas.</div>
+            <button class="ads-copy-btn" onclick="copyText('g05-title', this)">Copiar</button>
+          </div>
+          <div class="ads-copy-field">
+            <div class="ads-copy-label">Descricao</div>
+            <div class="ads-copy-text" id="g05-desc">Seu negocio no Google. Sem burocracia, sem reuniao, sem espera. R$397 e pronto em 24h.</div>
+            <button class="ads-copy-btn" onclick="copyText('g05-desc', this)">Copiar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- G06 -->
+    <section class="criativo-section" id="g06">
+      <div class="criativo-header">
+        <div>
+          <div class="criativo-title"><strong>G06</strong> O Cliente Pesquisa Antes de Ligar</div>
+          <div class="criativo-angle">Sem site, você não chega ao passo 2. O cliente nunca liga.</div>
+        </div>
+        <button class="btn-download" onclick="downloadFrame('frame-g06', 'easysite-g06-pesquisa-antes')">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v8M5 7l3 3 3-3M2 12h12"/></svg>
+          Download PNG
+        </button>
+      </div>
+      <div class="criativo-body">
+        <div class="preview-wrapper">
+          <div class="preview-scale">
+            <div class="frame g06" id="frame-g06">
+              <div class="logo">EasySite</div>
+              <div class="headline">
+                O cliente<br>pesquisa<br><em>antes</em><br>de ligar.
+              </div>
+              <div class="subhead">Esse é o caminho de todo cliente novo. Você está no passo 2?</div>
+              <div class="journey">
+                <div class="journey-step active">
+                  <div class="step-num">01</div>
+                  <div class="step-action">Cliente pesquisa <strong>"[seu ramo] perto de mim"</strong> no Google</div>
+                  <div class="step-badge ok">acontece</div>
+                </div>
+                <div class="journey-step blocked">
+                  <div class="step-num">02</div>
+                  <div class="step-action"><strong>Encontra o site</strong> e decide se confia</div>
+                  <div class="step-badge stop">sem site = para aqui</div>
+                </div>
+                <div class="journey-step" style="opacity:0.3">
+                  <div class="step-num">03</div>
+                  <div class="step-action">Liga ou manda mensagem</div>
+                </div>
+                <div class="journey-step" style="opacity:0.3">
+                  <div class="step-num">04</div>
+                  <div class="step-action">Contrata</div>
+                </div>
+              </div>
+              <div class="call-out">
+                <div class="call-out-text">
+                  Sem site, você não existe<br>para esse <em>cliente.</em>
+                </div>
+              </div>
+              <div class="bottom">
+                <div class="bottom-sub">R$397 · site no ar em 24h</div>
+                <div class="cta-pill">Quero meu site</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ads-copy">
+          <div class="ads-copy-header">Copy Meta Ads — G06</div>
+          <div class="ads-copy-field">
+            <div class="ads-copy-label">Texto Primario</div>
+            <div class="ads-copy-text" id="g06-primary">Antes de contratar qualquer negocio, o cliente pesquisa no Google. Entra no site. Ve os servicos. Decide se confia. Se voce nao tem site, voce nao chega nem na segunda etapa. O cliente vai para o concorrente que aparece. Simples assim.</div>
+            <button class="ads-copy-btn" onclick="copyText('g06-primary', this)">Copiar</button>
+          </div>
+          <div class="ads-copy-field">
+            <div class="ads-copy-label">Titulo</div>
+            <div class="ads-copy-text" id="g06-title">Sem site, o cliente nem te considera</div>
+            <button class="ads-copy-btn" onclick="copyText('g06-title', this)">Copiar</button>
+          </div>
+          <div class="ads-copy-field">
+            <div class="ads-copy-label">Descricao</div>
+            <div class="ads-copy-text" id="g06-desc">Apareca no Google. Site profissional por R$397. No ar em 24 horas. Sem reuniao.</div>
+            <button class="ads-copy-btn" onclick="copyText('g06-desc', this)">Copiar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+function copyText(id, btn) {
+  const el = document.getElementById(id);
+  navigator.clipboard.writeText(el.innerText).then(() => {
+    btn.textContent = 'Copiado!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+async function downloadFrame(frameId, filename) {
+  const btn = event.currentTarget;
+  const origText = btn.innerHTML;
+  btn.innerHTML = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v8M5 7l3 3 3-3M2 12h12"/></svg> Gerando...';
+  btn.classList.add('loading');
+
+  const frameEl = document.getElementById(frameId);
+
+  // Temporarily expose full frame for capture
+  const wrapper = frameEl.closest('.preview-wrapper');
+  const scaleEl = frameEl.closest('.preview-scale');
+
+  const wrapperW = wrapper.style.width;
+  const wrapperH = wrapper.style.height;
+  const wrapperOv = wrapper.style.overflow;
+
+  wrapper.style.width = '1080px';
+  wrapper.style.height = '1350px';
+  wrapper.style.overflow = 'visible';
+  scaleEl.style.transform = 'none';
+  scaleEl.style.position = 'relative';
+
+  try {
+    const canvas = await html2canvas(frameEl, {
+      width: 1080,
+      height: 1350,
+      scale: 2,           // 2x para 2160x2700 (alta resolucao)
+      useCORS: true,
+      allowTaint: true,
+      logging: false,
+      backgroundColor: null,
+    });
+
+    const link = document.createElement('a');
+    link.download = filename + '.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+
+    btn.innerHTML = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg> Baixado!';
+    setTimeout(() => { btn.innerHTML = origText; btn.classList.remove('loading'); }, 2500);
+  } catch(e) {
+    btn.innerHTML = origText;
+    btn.classList.remove('loading');
+    alert('Erro ao gerar PNG. Tente recarregar a página.');
+    console.error(e);
+  } finally {
+    wrapper.style.width = wrapperW || '432px';
+    wrapper.style.height = wrapperH || '540px';
+    wrapper.style.overflow = wrapperOv || 'hidden';
+    scaleEl.style.transform = 'scale(0.4)';
+    scaleEl.style.position = 'absolute';
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>EasySite — Assets para Download</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Instrument Sans', sans-serif;
+      background: #FAFAF9;
+      color: #080503;
+      padding: 48px 32px;
+    }
+    h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      color: #5E534A;
+      font-size: 14px;
+      margin-bottom: 48px;
+    }
+    .section {
+      margin-bottom: 56px;
+    }
+    .section-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #5E534A;
+      margin-bottom: 20px;
+    }
+    .asset-grid {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .asset-card {
+      border: 1px solid #DAD7D0;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .asset-preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .asset-meta {
+      padding: 16px 20px;
+      border-top: 1px solid #DAD7D0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .asset-label {
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .asset-spec {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #5E534A;
+      margin-top: 2px;
+    }
+    .btn-download {
+      background: #080503;
+      color: #FAFAF9;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.15s;
+    }
+    .btn-download:hover { opacity: 0.8; }
+    .btn-download.light {
+      background: #FAFAF9;
+      color: #080503;
+      border: 1px solid #DAD7D0;
+    }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+
+<h1>EasySite — Assets</h1>
+<p class="subtitle">Logo e capa do Facebook prontos para download em PNG.</p>
+
+<!-- LOGOS -->
+<div class="section">
+  <div class="section-title">Logo — Wordmark</div>
+  <div class="asset-grid">
+
+    <!-- Logo fundo claro -->
+    <div class="asset-card">
+      <div class="asset-preview" style="background:#FAFAF9; padding: 40px 60px;">
+        <canvas id="logo-light" width="320" height="100"></canvas>
+      </div>
+      <div class="asset-meta">
+        <div>
+          <div class="asset-label">Logo — Fundo Claro</div>
+          <div class="asset-spec">320 × 100 px · PNG</div>
+        </div>
+        <button class="btn-download" onclick="downloadCanvas('logo-light', 'easysite-logo-claro.png')">Download</button>
+      </div>
+    </div>
+
+    <!-- Logo fundo escuro -->
+    <div class="asset-card">
+      <div class="asset-preview" style="background:#080503; padding: 40px 60px;">
+        <canvas id="logo-dark" width="320" height="100"></canvas>
+      </div>
+      <div class="asset-meta" style="background:#080503; border-color:#1a1410;">
+        <div>
+          <div class="asset-label" style="color:#FAFAF9;">Logo — Fundo Escuro</div>
+          <div class="asset-spec">320 × 100 px · PNG</div>
+        </div>
+        <button class="btn-download light" onclick="downloadCanvas('logo-dark', 'easysite-logo-escuro.png')">Download</button>
+      </div>
+    </div>
+
+    <!-- Logo quadrado (para foto de perfil) -->
+    <div class="asset-card">
+      <div class="asset-preview" style="background:#080503; padding: 20px;">
+        <canvas id="logo-profile" width="200" height="200"></canvas>
+      </div>
+      <div class="asset-meta" style="background:#080503; border-color:#1a1410;">
+        <div>
+          <div class="asset-label" style="color:#FAFAF9;">Foto de Perfil</div>
+          <div class="asset-spec">200 × 200 px · PNG</div>
+        </div>
+        <button class="btn-download light" onclick="downloadCanvas('logo-profile', 'easysite-perfil.png')">Download</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CAPA FACEBOOK -->
+<div class="section">
+  <div class="section-title">Capa do Facebook</div>
+  <div class="asset-card" style="max-width: 860px;">
+    <div class="asset-preview" style="padding: 0;">
+      <canvas id="fb-cover" width="820" height="312"></canvas>
+    </div>
+    <div class="asset-meta">
+      <div>
+        <div class="asset-label">Capa Facebook</div>
+        <div class="asset-spec">820 × 312 px · PNG</div>
+      </div>
+      <button class="btn-download" onclick="downloadCanvas('fb-cover', 'easysite-capa-facebook.png')">Download</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Aguarda fontes carregarem
+document.fonts.ready.then(() => {
+  drawLogoLight();
+  drawLogoDark();
+  drawLogoProfile();
+  drawFbCover();
+});
+
+/* ─── LOGO FUNDO CLARO ─── */
+function drawLogoLight() {
+  const c = document.getElementById('logo-light');
+  const ctx = c.getContext('2d');
+  ctx.clearRect(0, 0, c.width, c.height);
+  ctx.fillStyle = '#FAFAF9';
+  ctx.fillRect(0, 0, c.width, c.height);
+  ctx.fillStyle = '#080503';
+  ctx.font = '600 56px "Instrument Serif"';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('EasySite', c.width / 2, c.height / 2);
+}
+
+/* ─── LOGO FUNDO ESCURO ─── */
+function drawLogoDark() {
+  const c = document.getElementById('logo-dark');
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = '#080503';
+  ctx.fillRect(0, 0, c.width, c.height);
+  ctx.fillStyle = '#FAFAF9';
+  ctx.font = '600 56px "Instrument Serif"';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('EasySite', c.width / 2, c.height / 2);
+}
+
+/* ─── FOTO DE PERFIL QUADRADA ─── */
+function drawLogoProfile() {
+  const c = document.getElementById('logo-profile');
+  const ctx = c.getContext('2d');
+  const w = c.width, h = c.height;
+
+  // Fundo escuro
+  ctx.fillStyle = '#080503';
+  ctx.fillRect(0, 0, w, h);
+
+  // "E" grande como mark
+  ctx.fillStyle = '#FAFAF9';
+  ctx.font = 'bold 110px "Instrument Serif"';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('E', w / 2, h / 2 + 4);
+
+  // Tagline abaixo
+  ctx.fillStyle = 'rgba(250,250,249,0.45)';
+  ctx.font = '400 13px "Instrument Sans"';
+  ctx.fillText('EasySite', w / 2, h / 2 + 68);
+}
+
+/* ─── CAPA FACEBOOK 820×312 ─── */
+function drawFbCover() {
+  const c = document.getElementById('fb-cover');
+  const ctx = c.getContext('2d');
+  const w = c.width, h = c.height;
+
+  // Fundo escuro
+  ctx.fillStyle = '#080503';
+  ctx.fillRect(0, 0, w, h);
+
+  // Grid sutil de pontos
+  ctx.fillStyle = 'rgba(250,250,249,0.04)';
+  for (let x = 0; x <= w; x += 32) {
+    for (let y = 0; y <= h; y += 32) {
+      ctx.beginPath();
+      ctx.arc(x, y, 1.5, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  // Linha decorativa esquerda
+  ctx.strokeStyle = 'rgba(250,250,249,0.12)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(60, 40);
+  ctx.lineTo(60, h - 40);
+  ctx.stroke();
+
+  // Logo principal
+  ctx.fillStyle = '#FAFAF9';
+  ctx.font = '500 72px "Instrument Serif"';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('EasySite', 92, h / 2 - 14);
+
+  // Tagline
+  ctx.fillStyle = 'rgba(250,250,249,0.55)';
+  ctx.font = '400 18px "Instrument Sans"';
+  ctx.fillText('Sites profissionais em menos de 24 horas', 92, h / 2 + 34);
+
+  // Destaque direito
+  ctx.fillStyle = 'rgba(250,250,249,0.06)';
+  ctx.beginPath();
+  ctx.arc(w - 80, h / 2, 120, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.fillStyle = 'rgba(250,250,249,0.04)';
+  ctx.beginPath();
+  ctx.arc(w - 80, h / 2, 80, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Detalhe: R$397
+  ctx.fillStyle = 'rgba(250,250,249,0.5)';
+  ctx.font = '400 11px "Instrument Sans"';
+  ctx.textAlign = 'center';
+  ctx.fillText('a partir de', w - 80, h / 2 - 26);
+
+  ctx.fillStyle = '#FAFAF9';
+  ctx.font = 'bold 28px "Instrument Serif"';
+  ctx.fillText('R$ 397', w - 80, h / 2 + 4);
+
+  ctx.fillStyle = 'rgba(250,250,249,0.5)';
+  ctx.font = '400 12px "Instrument Sans"';
+  ctx.fillText('site completo', w - 80, h / 2 + 26);
+
+  // Badge URL
+  ctx.fillStyle = 'rgba(250,250,249,0.08)';
+  const badgeW = 180, badgeH = 30, badgeX = 92, badgeY = h - 54;
+  roundRect(ctx, badgeX, badgeY, badgeW, badgeH, 6);
+  ctx.fill();
+  ctx.fillStyle = 'rgba(250,250,249,0.5)';
+  ctx.font = '400 12px "JetBrains Mono"';
+  ctx.textAlign = 'left';
+  ctx.fillText('easysite.site', badgeX + 12, badgeY + badgeH / 2 + 1);
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+/* ─── DOWNLOAD ─── */
+function downloadCanvas(id, filename) {
+  const canvas = document.getElementById(id);
+  // Renderiza em 2x para alta resolução
+  const scale = 2;
+  const offscreen = document.createElement('canvas');
+  offscreen.width = canvas.width * scale;
+  offscreen.height = canvas.height * scale;
+  const ctx2 = offscreen.getContext('2d');
+  ctx2.scale(scale, scale);
+  ctx2.drawImage(canvas, 0, 0);
+
+  const link = document.createElement('a');
+  link.download = filename;
+  link.href = offscreen.toDataURL('image/png');
+  link.click();
+}
+</script>
+</body>
+</html>

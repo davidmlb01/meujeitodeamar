@@ -1,7 +1,7 @@
 # Scripts WhatsApp — EasySite
 
-> Versão 0.1 — Rascunho inicial. A refinar com Copy Squad.
-> Última atualização: 2026-04-02
+> Versão 2.0 — Abordagem Nova: curiosidade primeiro, pitch só após resposta.
+> Última atualização: 2026-04-17
 
 ---
 
@@ -9,144 +9,174 @@
 
 ### Trigger: Lead manda mensagem após ver anúncio
 
-**Mensagem 1 — Boas-vindas automática**
+**Mensagem 1 — Boas-vindas automática (Bot Leo)**
 ```
 Oi! Tudo certo? 😊
 
 Vi que você tem interesse em ter um site profissional.
-
-Eu sou da EasySite e a gente cria sites completos em menos de 24 horas por R$397.
 
 Me conta: qual é o seu negócio?
 ```
 
 **Mensagem 2 — Após o lead responder o tipo de negócio**
 ```
-[Nome do negócio], que ótimo!
+[Nome do negócio], que legal!
 
-Negócios como o seu têm muito a ganhar com um site profissional. Muita gente pesquisa no Google antes de ir a um lugar, e quem não tem site perde esses clientes para o concorrente.
+Muita gente pesquisa no Google antes de contratar ou visitar um lugar. Quem não tem site perde esses clientes para o concorrente.
 
-A EasySite resolve isso em 24 horas por R$397. Sem complicação, sem precisar entender de tecnologia.
+A EasySite entrega o site pronto em 24 horas por R$397. Sem complicação.
 
-Quer ver como funciona? São só 3 passos simples 👇
+Quer ver como funciona?
 ```
 
 **Mensagem 3 — O processo**
 ```
-Como funciona:
+É bem simples:
 
-1. Você me manda as informações do seu negócio (nome, serviços, contato)
-2. A gente cria o site para você
-3. Em até 24 horas, seu site está no ar
+1. Você manda as informações do negócio (nome, serviços, contato)
+2. A gente monta o site
+3. Em até 24 horas o site está no ar
 
-Só isso. Sem reuniões, sem burocracia.
+Sem reuniões, sem burocracia.
 
-Quer começar hoje? O investimento é R$397 no total.
+Quer começar hoje? R$397 no total.
 ```
 
-**Mensagem 4 — Resposta à objeção "é caro"**
+**Mensagem 4 — Objeção: está caro**
 ```
-Entendo a preocupação.
+Faz sentido querer entender antes.
 
-Pensa assim: R$397 é menos que um mês de aluguel de um ponto físico. E o site fica lá 24 horas por dia, todos os dias, mostrando seu negócio para quem pesquisa no Google.
+Pensa assim: R$397 é menos que um mês de impulsionamento no Instagram. E o site fica lá 24 horas por dia, aparecendo no Google pra quem procura seu serviço.
 
-Além disso, se você não ficar 100% satisfeito, a gente devolve o dinheiro.
+Se não ficar satisfeito, a gente devolve o dinheiro.
 
-Quer dar uma olhada em sites que já entregamos?
+Quer ver exemplos de sites que entregamos?
 ```
 
-**Mensagem 5 — CTA final**
+**Mensagem 5 — Objeção: já tenho Instagram**
 ```
-Para começar, é simples:
+Instagram é ótimo pra quem já te segue.
 
-Preencha esse formulário rápido com as informações do seu negócio e em até 24 horas você recebe o link do seu site novo.
+O problema é que quem pesquisa "eletricista em Campinas" no Google não vai achar seu Instagram, não vai achar seu WhatsApp. Vai achar quem tem site.
+
+É esse cliente novo que você está perdendo hoje.
+```
+
+**Mensagem 6 — Objeção: não sei mexer**
+```
+Você não precisa mexer em nada.
+
+A gente entrega o site pronto, no ar, sem você precisar instalar, configurar ou entender de tecnologia.
+
+Se quiser mudar alguma coisa depois, é só mandar mensagem aqui.
+```
+
+**Mensagem 7 — Objeção: deixa para depois**
+```
+Claro, sem pressa.
+
+Só deixa eu te mandar o link do site para você ver como fica: easysite.site
+
+Se quiser avançar qualquer hora, é só chamar aqui.
+```
+
+**Mensagem 8 — CTA final**
+```
+Para começar é só preencher esse formulário rápido com as informações do negócio:
 
 [LINK DO FORMULÁRIO]
 
-Qualquer dúvida, pode me chamar aqui mesmo!
+Em até 24 horas você recebe o link do site novo. Qualquer dúvida, chama aqui!
 ```
 
 ---
 
 ## 2. Fluxo Outbound (Prospecção ativa via planilha)
 
-### Trigger: Bot identifica empresa sem site via Google Maps
+### Trigger: Bot envia mensagem para empresa sem site (via Google Maps)
 
-**Mensagem 1 — Abertura (personalizada por nicho)**
+> Regra de ouro: msg 1 tem 2 linhas no máximo. Nenhum pitch. Só curiosidade ou pergunta sobre a situação deles.
 
-**Variação A — Salão/Barbearia:**
+**Variação 1 — Concorrência:**
 ```
-Oi! Tudo bem?
+Oi {nome}! Vi o {nome} no Google Maps.
 
-Vi o [Nome do Salão] no Google Maps e não encontrei um site de vocês.
-
-Meu nome é [Nome] e trabalho com a EasySite — criamos sites profissionais para salões e barbearias em menos de 24 horas por R$397.
-
-Muita gente pesquisa no Google antes de marcar horário. Sem site, esses clientes vão para o concorrente.
-
-Posso te mostrar como funciona?
+Pesquisei "{ramo} em Campinas" agora e seus concorrentes aparecem com site. Voces tem?
 ```
 
-**Variação B — Restaurante/Lanchonete:**
+**Variação 2 — Investigação:**
 ```
-Oi! Tudo bem?
+Oi {nome}, tudo bem? Encontrei o {nome} no Google Maps.
 
-Vi o [Nome do Restaurante] no Google Maps. Vocês têm um site?
-
-Trabalho com a EasySite — criamos sites profissionais para restaurantes em menos de 24 horas por R$397.
-
-Um site com cardápio, endereço e horário de funcionamento faz muita diferença para quem pesquisa online antes de sair de casa.
-
-Posso te contar mais?
+So nao achei o site de voces. Ainda nao tem ou mudou o endereco?
 ```
 
-**Variação C — Prestador de Serviço:**
+**Variação 3 — Elogio + pergunta:**
 ```
-Oi! Tudo bem?
+Oi {nome}! {nome} tem boas avaliacoes no Maps.
 
-Vi o [Nome da Empresa] no Google Maps e queria te contar sobre algo que pode trazer mais clientes para você.
-
-A EasySite cria sites profissionais para prestadores de serviço em menos de 24 horas por R$397.
-
-Cliente que pesquisa "encanador/eletricista/pintor perto de mim" no Google quer entrar em um site, ver o trabalho, e ligar. Sem site, você não aparece.
-
-Quer saber mais?
+Uma pergunta rapida: quando alguem busca "{ramo} em Campinas", como voces costumam aparecer?
 ```
 
-**Mensagem 2 — Follow-up (se não responder em 24h)**
+**Variação 4 — Canal de trabalho:**
 ```
-Oi [Nome]! Passando para ver se recebeu minha mensagem de ontem.
+Oi {nome}! Vi o {nome} aqui em Campinas.
 
-Se quiser, posso mostrar exemplos de sites que criamos para negócios parecidos com o seu — sem compromisso.
-
-É uma coisa rápida que pode trazer bastante resultado.
+Voces tem site ou trabalham so pelo WhatsApp e Instagram?
 ```
 
-**Mensagem 3 — Follow-up final (se não responder em 48h)**
+---
+
+### Após resposta positiva (lead demonstra interesse ou confirma que não tem site)
+
+**Msg 2 — Apresentação (curta)**
 ```
-Oi [Nome]! Última mensagem, prometo 😄
+A EasySite cria sites para negócios como o seu em menos de 24 horas por R$397.
 
-Se um dia precisar de site para o [Nome do Negócio], estaremos aqui.
+É simples: você manda as informações, a gente monta e coloca no ar. Sem reunião, sem burocracia.
 
-R$397, pronto em 24h, sem complicação.
+Quer ver exemplos?
+```
 
-Bons negócios!
+**Msg 3 — Prova social + CTA**
+```
+Aqui está o site com alguns exemplos de entregas: easysite.site
+
+Se quiser avançar, é so me mandar as infos do negócio e a gente começa hoje.
+```
+
+---
+
+### Sequência de follow-up (se não responder)
+
+**Follow-up 1 (24h depois):**
+```
+Oi {nome}! Só passando para ver se chegou minha mensagem de ontem.
+
+Se quiser, posso mandar exemplos de sites que criamos para negócios parecidos. Sem compromisso.
+```
+
+**Follow-up 2 (48h depois, última mensagem):**
+```
+Oi {nome}! Ultima mensagem, prometo 😄
+
+Se um dia precisar de site para o {nome}, estaremos aqui.
+
+R$397, pronto em 24h, sem complicação. Bons negócios!
 ```
 
 ---
 
 ## 3. Respostas Rápidas para Objeções Comuns
 
-> [A completar com Copy Squad]
-
 | Objeção | Resposta |
 |---------|----------|
-| "Não preciso de site" | [TBD] |
-| "Tenho Instagram" | [TBD] |
-| "Está caro" | [TBD] |
-| "Deixa para depois" | [TBD] |
-| "Não sei mexer" | [TBD] |
-| "Já tentei e não deu resultado" | [TBD] |
+| "Não preciso de site" | "Faz sentido se seus clientes já te acham fácil. A questão é: quem pesquisa no Google hoje consegue te encontrar? Porque esse cliente novo está indo para o concorrente." |
+| "Tenho Instagram" | "Instagram é ótimo para quem já te segue. O site resolve o cliente que pesquisa no Google e ainda não te conhece." |
+| "Está caro" | "R$397 é menos que um mês de impulsionamento. E o site fica no ar 24h por dia, aparecendo pra quem procura seu serviço. Se não ficar satisfeito, devolvemos." |
+| "Deixa para depois" | "Claro, sem pressa. Manda o link do seu negócio no Maps que eu te mando um exemplo de como ficaria. Zero compromisso." |
+| "Não sei mexer" | "Você não mexe em nada. A gente entrega o site no ar. Se quiser alterar alguma coisa depois, é so mandar mensagem aqui." |
+| "Já tentei e não deu resultado" | "O que tentou antes? Site ou anúncio? Porque o problema costuma ser um, não o outro. Me conta o que aconteceu." |
 
 ---
 
@@ -154,33 +184,44 @@ Bons negócios!
 
 **Confirmação de pagamento:**
 ```
-Pagamento confirmado! Obrigado, [Nome] 🎉
+Pagamento confirmado! Obrigado, {nome} 🎉
 
-Agora vou precisar de algumas informações para criar o seu site. Pode me mandar:
+Agora preciso de algumas informações para criar o site. Me manda:
 
 1. Nome completo do negócio
 2. Endereço ou cidade
-3. Telefone de contato (pode ser este mesmo WhatsApp)
-4. Serviços que vocês oferecem (pode ser uma lista rápida)
+3. Telefone de contato (pode ser este WhatsApp)
+4. Serviços que oferecem (lista rápida)
 5. Horário de funcionamento
-6. Uma foto do espaço ou do logo (se tiver)
+6. Uma foto do espaço ou logo (se tiver)
 
 Assim que receber tudo, começo imediatamente e te mando o site em até 24 horas!
 ```
 
 **Entrega do site:**
 ```
-Pronto, [Nome]! 🎉
+Pronto, {nome}! 🎉
 
 Aqui está o seu site: [LINK]
 
-Dê uma olhada e me diz o que achou. Se quiser ajustar alguma coisa, é só falar!
+Dá uma olhada e me diz o que achou. Se quiser ajustar alguma coisa, é so falar!
 
-Se ficou satisfeito, adoraria se você pudesse me mandar uma mensagem dizendo o que achou — ajuda muito novos clientes a confiarem no serviço.
-
-Obrigado por escolher a EasySite!
+Se ficou satisfeito, me manda uma mensagem dizendo o que achou. Ajuda muito outros clientes a confiarem no serviço. Obrigado por escolher a EasySite!
 ```
 
 ---
 
-*Scripts provisórios a serem refinados com o Copy Squad.*
+## 5. Configuração Z-API (Prospecção Automática)
+
+> Para implementar quando Z-API estiver ativo.
+
+- **Limite diário:** 25 mensagens outbound por número
+- **Variação:** usar as 4 variações de msg 1 em rotação aleatória
+- **Horário recomendado:** 9h às 17h (dias úteis)
+- **Intervalo mínimo entre mensagens:** 3 a 5 minutos (evitar bloqueio)
+- **Follow-up automático:** aguardar 24h, enviar follow-up 1. Aguardar mais 24h, enviar follow-up 2 (final)
+- **Stop automático:** se lead responder qualquer coisa, parar sequência e notificar operador
+
+---
+
+*Versão 2.0 aprovada. Scripts prontos para uso imediato e integração Z-API.*

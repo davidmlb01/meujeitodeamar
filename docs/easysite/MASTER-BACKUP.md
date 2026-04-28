@@ -101,9 +101,37 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 - Subir site EasySite, pegar link do formulario de briefing, inserir no system-prompt.md
 - Seguir README.md (10 passos) para deploy do bot
 
-### Script Google Maps
-- Script existente (criado com Claude) — levanta empresas sem site e salva em planilha
-- Para integrar com Jornada C: exportar para Sheets e chamar `POST /api/lead/prospecting/batch`
+### Script Google Maps — PROCESSO COMPLETO
+
+**Script:** `/Users/davidlevy/Desktop/prospector.py`
+**API Key:** `AIzaSyDb28Wt-fMIGQHtT0q7FJSWGJpEyQ5adJU` (Google Places API)
+
+**Como rodar:**
+```bash
+cd ~/Desktop
+GOOGLE_PLACES_API_KEY=AIzaSyDb28Wt-fMIGQHtT0q7FJSWGJpEyQ5adJU python3 prospector.py
+```
+Output: `leads_sem_site_YYYYMMDD_HHMM.xlsx` no Desktop.
+
+**Configuracao atual (Campinas, SP — 2026-04-21):**
+- 18 nichos: salao, barbearia, petshop, academia, idiomas, estetica, mecanica, advocacia, psicologo, nutricionista, fisioterapeuta, floricultura, pintor, eletricista, encanador, escola musica, chaveiro, fotografo
+- Removidos: restaurante, lanchonete, padaria
+- Max 20 resultados por nicho
+- Filtra: so retorna negocios SEM website cadastrado
+
+**Planilhas geradas:**
+| Data | Cidade | Leads | Arquivo |
+|------|--------|-------|---------|
+| 2026-04-13 | Sorocaba, SP | 40 | leads_sorocaba_20260413_1612.xlsx |
+| 2026-04-21 | Campinas, SP | 54 | leads_sem_site_20260421_1322.xlsx |
+
+**Mensagens (4 variacoes, sem pitch, 2 linhas max):**
+1. Concorrencia: "seus concorrentes aparecem com site. Voces tem?"
+2. Investigacao: "So nao achei o site de voces. Ainda nao tem?"
+3. Elogio: "tem boas avaliacoes no Maps. Como voces costumam aparecer?"
+4. Canal: "Voces tem site ou trabalham so pelo WhatsApp e Instagram?"
+
+**Para integrar com bot Leo:** `POST /api/lead/prospecting/batch` na VPS 77.37.69.60:5000
 
 ### Instagram
 - Perfil a criar
@@ -111,7 +139,48 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 
 ---
 
-## Estado Atual (2026-04-12) — META ADS ATIVO, BOT V2 PRONTO
+## Estado Atual (2026-04-21) — AUDITORIA + 54 LEADS CAMPINAS + SCRIPTS V2.0
+
+### Sessao 2026-04-21
+
+**Auditoria campanha Meta Ads (7 dias):**
+- Gasto total: R$350 | Conversas: 66 | Conversoes: 0
+- Causa raiz 1: @lid — Evolution API nao responde leads de anuncio
+- Causa raiz 2: bot v1.0 rodou 5 dias com fluxo errado antes do v2.0
+- Custo por conversa: R$5,30 (saudavel). Problema: conversao, nao trafego.
+- Decisao: campanha pausada no feriado. Retomar: pausar P02, focar em P12v2-A.
+
+**Landing page auditada (Hormozi framework):**
+- Score antes: 3/10. Score apos fixes: 8/10.
+- Todas as secoes corrigidas no ar (Vercel).
+- Pendente: remover 2 travessoes da landing + validar depoimento Carla Mendes.
+
+**Prospecao ativa — problema diagnosticado:**
+- 50 contatos enviados, 0 respostas.
+- Causa: msg 1 tinha pitch imediato + apresentacao pessoal (5+ linhas).
+- Solucao: scripts reescritos para 2 linhas max, curiosidade, sem pitch.
+
+**Scripts WhatsApp v2.0:**
+- `docs/easysite/copy/whatsapp-scripts.md` — reescrito completo.
+- Inbound: bot Leo, fluxo compacto, objecoes completas.
+- Outbound: 4 variacoes curiosidade, follow-up 1 (24h) e 2 (48h, final).
+- Config Z-API documentada (25 msgs/dia, 3-5 min intervalo, stop se responder).
+
+**Prospecao Campinas — 54 leads gerados:**
+- Script: `/Users/davidlevy/Desktop/prospector.py`
+- Arquivo: `leads_sem_site_20260421_1322.xlsx` (Desktop)
+- 52 com link WhatsApp pre-preenchido, 2 sem telefone.
+- Nichos removidos: restaurante, lanchonete, padaria.
+- Nichos adicionados: pintor, eletricista, encanador, escola de musica, chaveiro, fotografo.
+- 18 nichos, 20 resultados/nicho, Campinas SP.
+
+**Z-API (decisao):**
+- Solucao definitiva para @lid e prospecao ativa automatica.
+- Implementar quando fechar proximo cliente ou tiver budget.
+
+---
+
+## Estado Anterior (2026-04-12) — META ADS ATIVO, BOT V2 PRONTO
 
 | Item | Status |
 |------|--------|
@@ -200,26 +269,35 @@ Anúncio Instagram / Google Maps → WhatsApp Bot → Venda R$397 → Entrega si
 ## Kanban
 
 ### A Fazer
-- [ ] Subir criativos P12 v2 no Meta Ads (6 variacoes — docs/easysite/social/criativos-p12-v2.html)
+- [ ] Retomar campanha Meta Ads (pausada no feriado) — pausar P02, focar P12v2-A
 - [ ] Instalar Pixel Meta no easysite.site (ID 994555712901106, via Vercel head)
-- [ ] Prospeccao ativa com planilha Google Maps (Jornada C)
+- [ ] Prospecao Campinas: enviar 25 msgs/dia com planilha leads_sem_site_20260421_1322.xlsx
+- [ ] Remover 2 travessoes da landing page ("Garantia de 100%" e "advocacia")
+- [ ] Validar depoimento Carla Mendes (Clinica Estetica CM) — pode ser ficticio
+- [ ] Implementar Z-API (substitui Evolution API — resolve @lid e habilita prospecao automatica)
 - [ ] Substituir depoimentos ficcionais por reais no system-prompt (acumular com clientes)
-- [ ] Primeiras vendas confirmadas
-- [ ] Enxoval social completo (posts Instagram restantes)
 
 ### Em Andamento
-- [~] Campanha Meta Ads rodando (CBO R$50/dia — P02, P06, P12)
+- [~] Campanha Meta Ads pausada (feriado) — retomar com P12v2-A prioritario
 - [~] Atendimento manual @lid (David responde copiando sugestao do Leo)
-- [~] Monitoramento metricas: CPM, CTR, custo por mensagem, taxa fechamento Leo
+- [~] Prospecao ativa Campinas (54 leads — envio manual 25/dia)
 
 ### Concluido
+- [x] Scripts WhatsApp v2.0 reescritos (docs/easysite/copy/whatsapp-scripts.md — 2026-04-21)
+- [x] 54 leads Campinas gerados (leads_sem_site_20260421_1322.xlsx — 2026-04-21)
+- [x] Auditoria completa campanha Meta Ads (7 dias, R$350, 66 conversas, 0 conversoes — 2026-04-21)
+- [x] Landing page auditada e corrigida Hormozi (3/10 para 8/10 — 2026-04-21)
+- [x] Criativos P12 v2 subidos no Meta Ads (6 variacoes — 2026-04-13)
+- [x] P06 pausado (zero entrega em 7 dias — 2026-04-13)
+- [x] System-prompt v2.0 deployado na VPS (2026-04-13)
+- [x] Planilha Sorocaba gerada (40 leads — 2026-04-13)
+- [x] Analise campanha Meta Ads: P02 17 conversas R$5,59 / P12 7 conversas R$4,70 / CTR P12 2,31%
 - [x] Brandbook + identidade visual
 - [x] 12 posts Instagram HTML (docs/easysite/social/posts-instagram.html)
 - [x] 10 criativos anuncios v6 (docs/easysite/social/criativos-wpp-v6.html)
 - [x] Copy Meta Ads (5 anuncios — texto primario, titulo, descricao)
 - [x] Criativos P12 v2 desenvolvidos (6 variacoes com copy Meta integrado — 2026-04-12)
 - [x] Bot Leo deployado na VPS (PM2, /root/easysite-bot)
-- [x] System-prompt v2.0 deployado na VPS (2026-04-12)
 - [x] Evolution API rodando (77.37.69.60:8080, instancia easysite)
 - [x] WhatsApp +5511943451866 conectado (QR escaneado 2026-04-07)
 - [x] Site easysite.site no ar (https://www.easysite.site)

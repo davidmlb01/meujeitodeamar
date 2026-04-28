@@ -968,23 +968,43 @@ function copyField(id, btn) {
 }
 
 async function downloadCard(frameId, filename) {
-  const frame = document.getElementById(frameId);
-  if (!frame) return;
+  const wrapper = document.getElementById(frameId);
+  if (!wrapper) return;
   const btn = event.target;
   btn.textContent = 'Gerando...';
   try {
+    // Pega o .frame real dentro do preview-scale (sem a transformação)
+    const frame = wrapper.querySelector('.frame') || wrapper;
+
+    // Tira temporariamente do fluxo com tamanho real para captura
+    const clone = frame.cloneNode(true);
+    clone.style.cssText = `
+      position: fixed; top: -9999px; left: -9999px;
+      width: 1080px; height: 1350px;
+      transform: none; transform-origin: unset;
+      overflow: visible; z-index: -1;
+    `;
+    document.body.appendChild(clone);
+
+    // Aguarda fontes carregarem
+    await document.fonts.ready;
+
     const { default: html2canvas } = await import('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.esm.js');
-    const canvas = await html2canvas(frame, {
-      width: 1080, height: 1350, scale: 1,
+    const canvas = await html2canvas(clone, {
+      width: 1080, height: 1350, scale: 2,
       useCORS: true, allowTaint: true,
-      backgroundColor: null, logging: false,
+      backgroundColor: '#080503', logging: false,
+      windowWidth: 1080, windowHeight: 1350,
     });
+    document.body.removeChild(clone);
+
     const link = document.createElement('a');
     link.download = `easysite-${filename}.png`;
     link.href = canvas.toDataURL('image/png');
     link.click();
     btn.textContent = 'Baixar PNG';
   } catch(e) {
+    console.error(e);
     btn.textContent = 'Erro — tente novamente';
   }
 }
