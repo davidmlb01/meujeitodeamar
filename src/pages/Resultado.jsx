@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
-import { Button, Badge } from '../components'
+import { Button } from '../components'
 import { RESULTS, VALID_ESTILOS } from '../data/results'
 import './Resultado.css'
 
@@ -56,11 +56,13 @@ export default function Resultado() {
         {(() => {
           const parts = result.bridge.split('\n\n')
           const lead = parts[0]
-          const body = parts.slice(1).join('\n\n')
+          const bodyParts = parts.slice(1)
           return (
             <>
               <p className="resultado__bridge-lead">{lead}</p>
-              {body && <p className="resultado__bridge">{body}</p>}
+              {bodyParts.map((para, i) => (
+                <p key={i} className="resultado__bridge">{para}</p>
+              ))}
             </>
           )
         })()}
@@ -78,7 +80,7 @@ export default function Resultado() {
           </ul>
           <p className="resultado__meta">15 minutos de leitura · Linguagem humana, sem jargão clínico</p>
           <p className="resultado__science">
-            A Leitura Completa {result.label} é o resultado de uma pesquisa científica séria e profunda sobre como os seres humanos aprendem a amar. Esse estudo já ajudou dezenas de milhares de pessoas a reconhecer padrões que repetiam há anos sem conseguir explicar.
+            A Leitura Completa {result.readingName} é o resultado de uma pesquisa científica séria e profunda sobre como os seres humanos aprendem a amar. Esse estudo já ajudou dezenas de milhares de pessoas a reconhecer padrões que repetiam há anos sem conseguir explicar.
           </p>
         </div>
 
