@@ -18,9 +18,7 @@ Não o que você faz. Por que você faz. A origem exata. O momento em que esse p
 
 E o que muda quando você finalmente entende.`,
     ahaQuote: 'Entender de onde vem esse padrão muda o que você faz quando o silêncio chega.',
-    bridge: `Mais importante do que reconhecer o padrão é entender de onde ele veio.
-
-Você acabou de descobrir algo que vinha sentindo há anos. Agora vem a parte que a maioria nunca chega: entender exatamente por que isso acontece.
+    bridge: `Você acabou de descobrir algo que vinha sentindo há anos. Agora vem a parte que a maioria nunca chega: entender exatamente por que isso acontece.
 
 Por que o seu alarme interno dispara quando o silêncio dura dez minutos a mais?
 Por que você promete que não vai mandar mensagem e manda assim mesmo?
@@ -71,9 +69,7 @@ Quando alguém tenta demonstrar mais carinho e se aproximar, algo dentro de voc�
 
 E entender essa origem muda o que você faz naquele segundo.`,
     ahaQuote: 'E entender de onde veio muda o que você faz quando alguém tenta chegar.',
-    bridge: `Reconhecer a distância não é o mesmo que entender o que ela está protegendo.
-
-Você acabou de nomear algo que vinham chamando de fria, fechada, difícil. Agora vem a parte mais importante: entender exatamente por que esse espaço existe.
+    bridge: `Você acabou de nomear algo que vinham chamando de fria, fechada, difícil. Agora vem a parte mais importante: entender exatamente por que esse espaço existe.
 
 Por que algo dentro de você se fecha quando alguém tenta chegar mais perto?
 Por que você some sem avisar e acha óbvio que vai voltar?
@@ -120,9 +116,7 @@ Seguro não é perfeito. Seguro tem pontos cegos. E os seus são específicos pa
 
 Saber quais são esses pontos cegos é a diferença entre amar bem e amar melhor.`,
     ahaQuote: 'E ver onde estão seus pontos cegos muda como você ama de agora em diante.',
-    bridge: `Amar bem não é o mesmo que enxergar o que você não vê.
-
-Você acabou de confirmar algo que, no fundo, já sabia sobre você. Mas seguro não é o ponto de chegada. É o ponto de partida.
+    bridge: `Você acabou de confirmar algo que, no fundo, já sabia sobre você. Mas seguro não é o ponto de chegada. É o ponto de partida.
 
 Por que pessoas estáveis costumam ser tratadas como se não precisassem de cuidado?
 Por que você segura situações que deveriam ser divididas?
@@ -171,9 +165,7 @@ Você não está quebrada. Você está carregando algo que não era seu para car
 
 De onde veio esse conflito. Como ele funciona. E o que fazer naquele segundo, antes de reagir do jeito antigo.`,
     ahaQuote: 'E entender de onde veio muda o que você faz naquele segundo.',
-    bridge: `Dar nome à oscilação não é o mesmo que entender o que a criou.
-
-Você acabou de dar nome a algo que vinha vivendo no escuro. Agora vem a parte que muda tudo: entender exatamente por que os dois sistemas existem.
+    bridge: `Você acabou de dar nome a algo que vinha vivendo no escuro. Agora vem a parte que muda tudo: entender exatamente por que os dois sistemas existem.
 
 Por que em um dia você quer tanto perto que assusta e no outro a mesma pessoa parece sufocar?
 Por que os relacionamentos ficam intensos muito rápido e difíceis logo depois?
