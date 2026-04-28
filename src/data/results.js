@@ -14,19 +14,19 @@ Depois fica com raiva de si mesma por ter mandado.
 
 Não é ansiedade. Não é insegurança. É um sistema nervoso que aprendeu, muito cedo, que o amor pode sumir sem aviso. Então ele vigia. O tempo todo. Não porque você seja dramática, mas porque esse aprendizado faz todo o sentido quando você entende de onde ele veio.
 
-E é exatamente isso que está na sua leitura.
-
 Não o que você faz. Por que você faz. A origem exata. O momento em que esse padrão se formou. Como ele funciona dentro de você especificamente, não em geral.
 
-E, mais importante: o que muda quando você finalmente entende.`,
+E o que muda quando você finalmente entende.`,
     ahaQuote: 'Entender de onde vem esse padrão muda o que você faz quando o silêncio chega.',
-    bridge: `Reconhecer o padrão não é o mesmo que entender de onde ele veio.
+    bridge: `Mais importante do que reconhecer o padrão é entender de onde ele veio.
 
-Você acabou de reconhecer o padrão. Agora vem a parte que a maioria nunca chega: entender por que ele existe.
+Você acabou de descobrir algo que vinha sentindo há anos. Agora vem a parte que a maioria nunca chega: entender exatamente por que isso acontece.
 
-Por que o alarme dispara quando o silêncio dura dez minutos a mais. Por que você promete que não vai mandar mensagem e manda assim mesmo. Por que a raiva depois de mandar é maior do que o alívio de ter mandado.
+Por que o seu alarme interno dispara quando o silêncio dura dez minutos a mais?
+Por que você promete que não vai mandar mensagem e manda assim mesmo?
+Por que a raiva depois de mandar é maior do que o alívio de ter mandado?
 
-A leitura responde a isso. Não em teoria. Em você, onde esse padrão começou, e o que muda quando você entende o que o criou.`,
+E a resposta é a Leitura Completa do Coração Ansioso. Ela não vai te dizer o que você já sabe. Vai te mostrar o que você nunca viu com clareza: a origem exata do seu jeito de amar, o que acontece dentro de você no segundo em que o seu alarme dispara, e o que muda quando você entende como isso foi criado.`,
     lockedIntro: 'O que está dentro:',
     lockedDesc: '',
     lockedTopics: [
@@ -41,7 +41,7 @@ A leitura responde a isso. Não em teoria. Em você, onde esse padrão começou,
       'Existe um padrão preciso no que você faz quando sente o distanciamento. E ele funciona ao contrário do que você quer.',
       'Não é sobre controlar a ansiedade. É sobre entender o mecanismo que a cria.',
     ],
-    priceAnchor: 'Você provavelmente já perdeu noites tentando entender por que age assim. Entender o mecanismo custa menos do que uma sessão de terapia e leva 15 minutos.',
+    priceAnchor: 'Você provavelmente já perdeu noites com isso. Já se culpou mais vezes do que deveria. E entender o que está na raiz do seu jeito de amar muda a forma como você vive todos os seus relacionamentos.',
     valueStack: [
       'A origem exata do seu padrão: de onde veio, quando se formou, por que faz todo o sentido dado o que você viveu',
       'Os seus pontos cegos: o que você faz que afasta exatamente quem você não quer perder',
@@ -67,17 +67,19 @@ Quando você some por alguns dias sem explicação, para você é óbvio que vai
 
 Esse gap, entre o que você quer dizer e o que o outro entende, está na raiz de quase todo conflito que você já teve num relacionamento.
 
-Sua leitura explica por que, quando alguém tenta demonstrar mais carinho e se aproximar, algo dentro de você se fecha. Não de forma vaga. De forma precisa, com a origem exata, e com o que acontece no seu interior naquele momento em que alguém chega mais perto do que você está pronta para receber.
+Quando alguém tenta demonstrar mais carinho e se aproximar, algo dentro de você se fecha. Não de forma vaga. De forma precisa, com uma origem exata.
 
-E o que fazer com isso.`,
+E entender essa origem muda o que você faz naquele segundo.`,
     ahaQuote: 'E entender de onde veio muda o que você faz quando alguém tenta chegar.',
     bridge: `Reconhecer a distância não é o mesmo que entender o que ela está protegendo.
 
-Você acabou de nomear algo que vinham chamando de fria, fechada, difícil. Agora vem a parte mais importante: entender por que esse espaço existe.
+Você acabou de nomear algo que vinham chamando de fria, fechada, difícil. Agora vem a parte mais importante: entender exatamente por que esse espaço existe.
 
-Por que algo dentro de você se fecha quando alguém tenta chegar mais perto. Por que você some sem avisar e acha óbvio que vai voltar. Por que cuidado em excesso parece sufocamento mesmo quando você sabe que não deveria.
+Por que algo dentro de você se fecha quando alguém tenta chegar mais perto?
+Por que você some sem avisar e acha óbvio que vai voltar?
+Por que cuidado em excesso parece sufocamento mesmo quando você sabe que não deveria?
 
-A leitura responde a isso. Não em teoria. Em você, onde esse reflexo começou, e o que muda quando você entende o que ele está guardando.`,
+E a resposta é a Leitura Completa do Coração Distante. Ela não vai te dizer o que você já sabe. Vai te mostrar o que você nunca viu com clareza: a origem exata do seu jeito de amar, o que acontece dentro de você no segundo em que alguém tenta chegar perto, e o que muda quando você entende o que esse reflexo está protegendo.`,
     lockedIntro: 'O que está dentro:',
     lockedDesc: '',
     lockedTopics: [
@@ -92,7 +94,7 @@ A leitura responde a isso. Não em teoria. Em você, onde esse reflexo começou,
       'Para você é óbvio que vai voltar. Para quem fica, não é. Entender esse gap muda a dinâmica.',
       'Não é sobre forçar proximidade. É sobre entender o que o alarme está protegendo.',
     ],
-    priceAnchor: 'Você provavelmente já perdeu conexões importantes sem entender por que a distância era necessária. Entender o mecanismo custa menos do que uma sessão de terapia e leva 15 minutos.',
+    priceAnchor: 'Você provavelmente já perdeu noites com isso. Já se culpou mais vezes do que deveria. E entender o que está na raiz do seu jeito de amar muda a forma como você vive todos os seus relacionamentos.',
     valueStack: [
       'A origem do seu padrão: por que gestos de carinho e aproximação ativam um alerta, não conforto',
       'Os seus pontos cegos: o que parece neutro para você e parece rejeição para quem te ama',
@@ -116,15 +118,17 @@ Porque pessoas como você, que amam de uma forma estável, costumam ser tratadas
 
 Seguro não é perfeito. Seguro tem pontos cegos. E os seus são específicos para quem tem a sua base.
 
-Sua leitura vai te mostrar exatamente quais são. Como o seu jeito de amar funciona nos relacionamentos com cada um dos outros perfis. E onde está o seu trabalho real, porque todo mundo tem um, independente de onde começou.`,
+Saber quais são esses pontos cegos é a diferença entre amar bem e amar melhor.`,
     ahaQuote: 'E ver onde estão seus pontos cegos muda como você ama de agora em diante.',
     bridge: `Amar bem não é o mesmo que enxergar o que você não vê.
 
 Você acabou de confirmar algo que, no fundo, já sabia sobre você. Mas seguro não é o ponto de chegada. É o ponto de partida.
 
-Por que pessoas estáveis costumam ser tratadas como se não precisassem de cuidado. Por que você segura situações que deveriam ser divididas. Por que, mesmo com uma base sólida, alguns padrões ainda se repetem.
+Por que pessoas estáveis costumam ser tratadas como se não precisassem de cuidado?
+Por que você segura situações que deveriam ser divididas?
+Por que, mesmo com uma base sólida, alguns padrões ainda se repetem?
 
-A leitura responde a isso. Não em teoria. Em você, onde estão os seus pontos cegos, e o que muda quando você finalmente os vê.`,
+E a resposta é a Leitura Completa do Coração Seguro. Ela não vai te dizer o que você já sabe. Vai te mostrar o que você nunca viu com clareza: os pontos cegos específicos de quem ama bem, onde está o seu trabalho real, e o que muda quando você finalmente os vê.`,
     lockedIntro: 'O que está dentro:',
     lockedDesc: '',
     lockedTopics: [
@@ -139,7 +143,7 @@ A leitura responde a isso. Não em teoria. Em você, onde estão os seus pontos 
       'Seguro é o ponto de partida, não o de chegada. Saber para onde ir a partir daqui é o próximo passo.',
       'Todo mundo tem um trabalho real nos relacionamentos. O seu não é óbvio, mas está lá.',
     ],
-    priceAnchor: 'Às vezes o maior trabalho é enxergar o que você não vê. Entender os seus pontos cegos custa menos do que uma sessão de terapia e leva 15 minutos.',
+    priceAnchor: 'Você provavelmente já perdeu noites com isso. Já se culpou mais vezes do que deveria. E entender o que está na raiz do seu jeito de amar muda a forma como você vive todos os seus relacionamentos.',
     valueStack: [
       'Os pontos cegos de quem ama de forma estável: o que você não vê justamente porque as coisas funcionam bem',
       'Por que pessoas como você costumam ser tratadas como se não precisassem de cuidado, e como mudar essa dinâmica',
@@ -163,17 +167,19 @@ O que ninguém te disse é que isso tem uma origem muito específica. Não é in
 
 Quando os dois disparam juntos, você oscila. Não porque escolhe. Porque não sabe ainda o que fazer naquele segundo específico entre o gatilho e a reação.
 
-Sua leitura explica de onde veio esse conflito. Como ele funciona. E o que fazer naquele segundo, antes de reagir do jeito antigo.
+Você não está quebrada. Você está carregando algo que não era seu para carregar desde o início.
 
-Você não está quebrada. Você está carregando algo que não era seu para carregar desde o início. E entender isso muda tudo.`,
+De onde veio esse conflito. Como ele funciona. E o que fazer naquele segundo, antes de reagir do jeito antigo.`,
     ahaQuote: 'E entender de onde veio muda o que você faz naquele segundo.',
     bridge: `Dar nome à oscilação não é o mesmo que entender o que a criou.
 
-Você acabou de dar nome a algo que vinha vivendo no escuro. Agora vem a parte que muda tudo: entender por que os dois sistemas existem.
+Você acabou de dar nome a algo que vinha vivendo no escuro. Agora vem a parte que muda tudo: entender exatamente por que os dois sistemas existem.
 
-Por que em um dia você quer tanto perto que assusta e no outro a mesma pessoa parece sufocar. Por que os relacionamentos ficam intensos muito rápido e difíceis logo depois. Por que você afasta, volta, afasta de novo, sem conseguir explicar o que mudou.
+Por que em um dia você quer tanto perto que assusta e no outro a mesma pessoa parece sufocar?
+Por que os relacionamentos ficam intensos muito rápido e difíceis logo depois?
+Por que você afasta, volta, afasta de novo, sem conseguir explicar o que mudou?
 
-A leitura responde a isso. Não em teoria. Em você, onde cada sistema começou, e o que muda quando você entende o que acontece naquele segundo entre o gatilho e a reação.`,
+E a resposta é a Leitura Completa do Coração Confuso. Ela não vai te dizer o que você já sabe. Vai te mostrar o que você nunca viu com clareza: a origem de cada sistema dentro de você, o que acontece naquele segundo entre o gatilho e a reação, e o que muda quando você entende o que os criou.`,
     lockedIntro: 'O que está dentro:',
     lockedDesc: '',
     lockedTopics: [
@@ -188,7 +194,7 @@ A leitura responde a isso. Não em teoria. Em você, onde cada sistema começou,
       'O ciclo tem uma lógica precisa. Entendê-la é diferente de vivê-la no escuro.',
       'Sair do padrão não começa por força de vontade. Começa por entender o mecanismo que o criou.',
     ],
-    priceAnchor: 'Você provavelmente já perdeu relacionamentos tentando entender esse padrão sozinha. Entender o mecanismo custa menos do que uma sessão de terapia e leva 15 minutos.',
+    priceAnchor: 'Você provavelmente já perdeu noites com isso. Já se culpou mais vezes do que deveria. E entender o que está na raiz do seu jeito de amar muda a forma como você vive todos os seus relacionamentos.',
     valueStack: [
       'Os dois sistemas em conflito dentro de você: de onde cada um veio e por que disputam',
       'O que acontece no segundo entre o gatilho e a reação, e o que fazer naquele segundo específico',

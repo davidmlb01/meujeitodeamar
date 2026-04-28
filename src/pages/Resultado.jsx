@@ -78,7 +78,7 @@ export default function Resultado() {
           </ul>
           <p className="resultado__meta">15 minutos de leitura · Linguagem humana, sem jargão clínico</p>
           <p className="resultado__science">
-            Um teste com base científica. Não um teste de revista. Já ajudou milhares de pessoas a entender padrões que repetiam há anos sem saber por quê.
+            A Leitura Completa {result.label} é o resultado de uma pesquisa científica séria e profunda sobre como os seres humanos aprendem a amar. Esse estudo já ajudou dezenas de milhares de pessoas a reconhecer padrões que repetiam há anos sem conseguir explicar.
           </p>
         </div>
 
@@ -104,7 +104,7 @@ export default function Resultado() {
               </a>
             </div>
             <p className="resultado__redirect">
-              Você será redirecionado para o checkout seguro. Entrega por email em menos de 5 minutos.
+              Entregue por email em menos de 5 minutos. Acesso imediato, leitura hoje.
             </p>
           </div>
         </div>
