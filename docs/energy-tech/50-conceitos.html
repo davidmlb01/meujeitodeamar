@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>50 Caminhos Conceituais — Campanha Energisa Inovação 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --orange: #FF5500;
+    --orange-light: #FF7A33;
+    --dark: #0D0D14;
+    --card-bg: #111118;
+    --border: #1e1e28;
+    --text: #e8e8f0;
+    --muted: #666680;
+    --white: #ffffff;
+  }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #0a0a12 0%, #14101e 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 60px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255,85,0,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .header-meta {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+
+  .header-sub {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 600px;
+  }
+
+  .header-credits {
+    margin-top: 24px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .credit-badge {
+    background: rgba(255,85,0,0.1);
+    border: 1px solid rgba(255,85,0,0.2);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 12px;
+    color: var(--orange-light);
+    font-weight: 500;
+  }
+
+  /* NAV FILTERS */
+  .nav-bar {
+    background: #0d0d16;
+    border-bottom: 1px solid var(--border);
+    padding: 0 60px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-btn {
+    padding: 16px 20px;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+  }
+
+  .nav-btn:hover, .nav-btn.active {
+    color: var(--orange);
+    border-bottom-color: var(--orange);
+  }
+
+  /* MAIN */
+  .main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 60px 80px;
+  }
+
+  /* CLUSTER */
+  .cluster {
+    margin-bottom: 64px;
+  }
+
+  .cluster-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cluster-number {
+    width: 36px;
+    height: 36px;
+    background: var(--orange);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .cluster-title {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 600;
+  }
+
+  .cluster-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin-left: auto;
+    font-style: italic;
+  }
+
+  /* CONCEPT GRID */
+  .concepts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 16px;
+  }
+
+  /* CONCEPT CARD */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    position: relative;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .card:hover {
+    border-color: rgba(255,85,0,0.3);
+    transform: translateY(-2px);
+  }
+
+  .card-number {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 11px;
+    color: var(--border);
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  .card-author {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 8px;
+    font-weight: 600;
+    opacity: 0.8;
+  }
+
+  .card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 10px;
+    line-height: 1.2;
+    padding-right: 32px;
+  }
+
+  .card-tagline {
+    font-size: 14px;
+    color: #aaa8c0;
+    font-style: italic;
+    margin-bottom: 14px;
+    line-height: 1.5;
+    border-left: 2px solid var(--orange);
+    padding-left: 12px;
+  }
+
+  .card-idea {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  .card-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .copy-btn-small {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 5px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+  }
+
+  .copy-btn-small:hover { color: var(--orange); border-color: var(--orange); }
+  .copy-btn-small.copied { color: #4CAF50; border-color: #4CAF50; }
+
+  .tag-label {
+    background: rgba(255,85,0,0.08);
+    border: 1px solid rgba(255,85,0,0.15);
+    color: rgba(255,85,0,0.6);
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+
+  /* HIGHLIGHT card */
+  .card.highlight {
+    border-color: rgba(255,85,0,0.4);
+    background: linear-gradient(135deg, #141020 0%, #111118 100%);
+  }
+
+  .card.highlight .card-name {
+    color: #FF8855;
+  }
+
+  /* TOP PICKS BAR */
+  .top-picks {
+    background: rgba(255,85,0,0.05);
+    border: 1px solid rgba(255,85,0,0.15);
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin-bottom: 48px;
+  }
+
+  .top-picks h3 {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+
+  .picks-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .pick-chip {
+    background: rgba(255,85,0,0.1);
+    border: 1px solid rgba(255,85,0,0.25);
+    border-radius: 4px;
+    padding: 7px 14px;
+    font-size: 12px;
+    color: var(--orange-light);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .pick-chip:hover {
+    background: rgba(255,85,0,0.2);
+  }
+
+  /* EXPORT */
+  .export-bar {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    display: flex;
+    gap: 10px;
+    z-index: 200;
+  }
+
+  .btn-export {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  }
+
+  .btn-export-primary {
+    background: var(--orange);
+    color: white;
+  }
+
+  .btn-export-primary:hover { background: var(--orange-light); }
+
+  .btn-export-secondary {
+    background: #1a1a24;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+
+  .btn-export-secondary:hover { border-color: var(--orange); color: var(--orange); }
+
+  /* PRINT */
+  @media print {
+    .nav-bar, .export-bar, .card-actions { display: none !important; }
+    body { background: white; color: #111; }
+    .header { background: #f5f5f5; border-bottom: 2px solid #FF5500; }
+    .header h1 { color: #111; }
+    .card { border: 1px solid #ddd; break-inside: avoid; }
+    .card-name { color: #111; }
+    .card-tagline { border-color: #FF5500; color: #555; }
+    .card-idea { color: #777; }
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-meta">Brivia × Grupo Energisa — Campanha Inovação 2026</div>
+  <h1>50 Caminhos Conceituais</h1>
+  <div class="header-sub">Squad de copy completo. Cada caminho é uma possibilidade real de campanha, com conceito e tagline desenvolvidos a partir do briefing e das frases do Daniel.</div>
+  <div class="header-credits">
+    <span class="credit-badge">David Ogilvy</span>
+    <span class="credit-badge">Copy Chief</span>
+    <span class="credit-badge">Redatora 2</span>
+    <span class="credit-badge">Redatora 3</span>
+    <span class="credit-badge">Redator 4</span>
+  </div>
+</div>
+
+<div class="nav-bar">
+  <button class="nav-btn active" onclick="filterCluster('all')">Todos (50)</button>
+  <button class="nav-btn" onclick="filterCluster('metamorfose')">Metamorfose</button>
+  <button class="nav-btn" onclick="filterCluster('materia-prima')">Materia-Prima</button>
+  <button class="nav-btn" onclick="filterCluster('futuro')">Futuro</button>
+  <button class="nav-btn" onclick="filterCluster('humano')">Humano + Tech</button>
+  <button class="nav-btn" onclick="filterCluster('provocativo')">Provocativo</button>
+  <button class="nav-btn" onclick="filterCluster('fisica')">Fisica e Natureza</button>
+</div>
+
+<div class="main">
+
+  <!-- TOP PICKS -->
+  <div class="top-picks">
+    <h3>Destaques do Squad — Top 10 para discutir primeiro</h3>
+    <div class="picks-list">
+      <span class="pick-chip" onclick="scrollToCard(1)">#01 Em Metamorfose. Sempre.</span>
+      <span class="pick-chip" onclick="scrollToCard(11)">#11 Materia-Prima do Futuro</span>
+      <span class="pick-chip" onclick="scrollToCard(13)">#13 Sem Energia, Nada</span>
+      <span class="pick-chip" onclick="scrollToCard(21)">#21 O Futuro Tem Um Endereco</span>
+      <span class="pick-chip" onclick="scrollToCard(30)">#30 Depois de 121 Anos</span>
+      <span class="pick-chip" onclick="scrollToCard(31)">#31 Duas Energias</span>
+      <span class="pick-chip" onclick="scrollToCard(39)">#39 E Se a Energia Fosse Inteligente?</span>
+      <span class="pick-chip" onclick="scrollToCard(41)">#41 Chega de Reativo</span>
+      <span class="pick-chip" onclick="scrollToCard(45)">#45 121 Anos. So Agora Fica Interessante.</span>
+      <span class="pick-chip" onclick="scrollToCard(50)">#50 Potencia Instalada</span>
+    </div>
+  </div>
+
+  <!-- CLUSTER 1 -->
+  <div class="cluster" data-cluster="metamorfose">
+    <div class="cluster-header">
+      <div class="cluster-number">1</div>
+      <div class="cluster-title">Metamorfose e Transformacao</div>
+      <div class="cluster-desc">10 conceitos — David Ogilvy + Copy Chief</div>
+    </div>
+    <div class="concepts-grid">
+
+      <div class="card highlight" id="card-1">
+        <span class="card-number">#01</span>
+        <div class="card-author">David Ogilvy</div>
+        <div class="card-name">Em Metamorfose. Sempre.</div>
+        <div class="card-tagline">"Em metamorfose. Sempre."</div>
+        <div class="card-idea">A Energisa nao chegou a 121 anos sendo a mesma empresa. A transformacao e o metodo, nao o destino. Cada projeto de inovacao e mais um passo de uma metamorfose que nunca para. Usa "Metamorfose Ambulante" como manifesto da marca: preferimos ser a metamorfose ambulante do que ter opiniao formada sobre onde o setor deve parar.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(1, this)">Copiar tagline</button>
+          <span class="tag-label">HEADLINE</span>
+          <span class="tag-label">TRILHA</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-2">
+        <span class="card-number">#02</span>
+        <div class="card-author">Copy Chief</div>
+        <div class="card-name">Mutacao Energetica</div>
+        <div class="card-tagline">"O setor muda. A Energisa lidera a mudanca."</div>
+        <div class="card-idea">Quando o setor precisa mudar, alguem precisa ser a mudanca. A Energisa nao segue tendencias: ela as cria no setor energetico brasileiro. Mutacao como acao intencional, nao como reacao ao mercado.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(2, this)">Copiar tagline</button>
+          <span class="tag-label">B2B</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-3">
+        <span class="card-number">#03</span>
+        <div class="card-author">Redatora 2</div>
+        <div class="card-name">Nova Fase</div>
+        <div class="card-tagline">"121 anos. Uma nova fase comeca."</div>
+        <div class="card-idea">Como a energia que muda de estado (solido, liquido, gasoso), a Energisa sempre soube mudar de fase sem perder a essencia. Fisica como metafora: a substancia permanece, o estado evolui.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(3, this)">Copiar tagline</button>
+          <span class="tag-label">LEGADO</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-4">
+        <span class="card-number">#04</span>
+        <div class="card-author">Redatora 3</div>
+        <div class="card-name">Reconfigurando</div>
+        <div class="card-tagline">"Reconfigurando o que energia pode ser."</div>
+        <div class="card-idea">A rede eletrica se reconfigura em tempo real com GridVortex, BESS e DSO. Assim como a Energisa reconfigura o que uma distribuidora pode ser. Conceito tech com musculo institucional.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(4, this)">Copiar tagline</button>
+          <span class="tag-label">TECH</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-5">
+        <span class="card-number">#05</span>
+        <div class="card-author">Redator 4</div>
+        <div class="card-name">Transmissao Evolutiva</div>
+        <div class="card-tagline">"De geracao em geracao, evoluindo o setor."</div>
+        <div class="card-idea">Transmissao e o coracao da distribuidora. E a Energisa transmite algo alem de energia: transmite o modelo de inovacao que vai transformar o setor brasileiro. Duplo sentido tecnico e narrativo.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(5, this)">Copiar tagline</button>
+          <span class="tag-label">DUPLO SENTIDO</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-6">
+        <span class="card-number">#06</span>
+        <div class="card-author">Copy Chief</div>
+        <div class="card-name">Liga Nova</div>
+        <div class="card-tagline">"Novos componentes. Maior condutividade."</div>
+        <div class="card-idea">Na metalurgia, quando se combinam os elementos certos, obtem-se um material com propriedades superiores. A Energisa combina tecnologia, dados e energia para criar algo que o setor nunca viu. Conceito tecnico com elegancia.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(6, this)">Copiar tagline</button>
+          <span class="tag-label">METAFORA</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-7">
+        <span class="card-number">#07</span>
+        <div class="card-author">David Ogilvy</div>
+        <div class="card-name">Impulso</div>
+        <div class="card-tagline">"A energia que impulsiona a inovacao."</div>
+        <div class="card-idea">Todo avanco tecnologico precisa de impulso. E o impulso mais fundamental e a energia eletrica. A Energisa nao apenas distribui energia: ela e o impulso por tras de toda inovacao. Simples. Direto. Verdadeiro.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(7, this)">Copiar tagline</button>
+          <span class="tag-label">SIMPLES</span>
+          <span class="tag-label">OGILVY</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-8">
+        <span class="card-number">#08</span>
+        <div class="card-author">Redatora 2</div>
+        <div class="card-name">Condutores</div>
+        <div class="card-tagline">"Condutores do futuro energetico do Brasil."</div>
+        <div class="card-idea">Na fisica, um condutor permite que a corrente flua sem resistencia. A Energisa e o condutor que permite que a inovacao flua pelo setor energetico. Conceito de lideranca sem arrogancia.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(8, this)">Copiar tagline</button>
+          <span class="tag-label">FISICA</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-9">
+        <span class="card-number">#09</span>
+        <div class="card-author">Redator 4</div>
+        <div class="card-name">Aceleracao</div>
+        <div class="card-tagline">"O setor esta se movendo. A Energisa esta acelerando."</div>
+        <div class="card-idea">Movimento nao e suficiente. E a aceleracao que transforma. Com IA, drones, redes inteligentes e novos modelos, a Energisa nao acompanha o setor: ela o acelera. Conceito dinamico para publico executivo.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(9, this)">Copiar tagline</button>
+          <span class="tag-label">DINAMICO</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-10">
+        <span class="card-number">#10</span>
+        <div class="card-author">Redatora 3</div>
+        <div class="card-name">Deriva Controlada</div>
+        <div class="card-tagline">"Inovar e saber onde voce quer chegar e nao ter medo do caminho."</div>
+        <div class="card-idea">Os maiores projetos tecnologicos do setor nao seguiram o manual. Abriram novos caminhos. A Energisa inova com direcao clara e coragem de percorrer rotas nao testadas. Conceito mais filosofico para investidores.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(10, this)">Copiar tagline</button>
+          <span class="tag-label">FILOSOFICO</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CLUSTER 2 -->
+  <div class="cluster" data-cluster="materia-prima">
+    <div class="cluster-header">
+      <div class="cluster-number">2</div>
+      <div class="cluster-title">Energia como Materia-Prima da Inovacao</div>
+      <div class="cluster-desc">10 conceitos — David Ogilvy + Redatores</div>
+    </div>
+    <div class="concepts-grid">
+
+      <div class="card highlight" id="card-11">
+        <span class="card-number">#11</span>
+        <div class="card-author">David Ogilvy</div>
+        <div class="card-name">Materia-Prima do Futuro</div>
+        <div class="card-tagline">"Sem energia, nao existe futuro. Com a nossa, ele chega mais rapido."</div>
+        <div class="card-idea">Dados precisam de energia. IA precisa de energia. A cidade inteligente precisa de energia. A Energisa e a materia-prima de tudo que esta sendo construido agora. Conceito que expande a percepcao da empresa de distribuidora para infraestrutura critica da inovacao.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(11, this)">Copiar tagline</button>
+          <span class="tag-label">ESTRATEGICO</span>
+          <span class="tag-label">OGILVY</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-12">
+        <span class="card-number">#12</span>
+        <div class="card-author">Copy Chief</div>
+        <div class="card-name">O Primeiro Insumo</div>
+        <div class="card-tagline">"Toda inovacao comeca aqui."</div>
+        <div class="card-idea">Antes do codigo, antes do hardware, antes do algoritmo: a energia. A Energisa esta no comeco de toda cadeia de inovacao. Tagline minimalista com poder de manifesto. Funciona sozinha.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(12, this)">Copiar tagline</button>
+          <span class="tag-label">MINIMALISTA</span>
+        </div>
+      </div>
+
+      <div class="card highlight" id="card-13">
+        <span class="card-number">#13</span>
+        <div class="card-author">David Ogilvy</div>
+        <div class="card-name">Sem Energia, Nada</div>
+        <div class="card-tagline">"A inovacao nao existe sem energia. E nos existimos ha 121 anos para isso."</div>
+        <div class="card-idea">Conceito provocativo e direto ao ponto. Remove o romanticismo sobre inovacao e coloca o dedo na ferida: sem energia eletrica confiavel e inteligente, nada funciona. O approach mais Ogilvy do conjunto: beneficio real, sem floreio.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(13, this)">Copiar tagline</button>
+          <span class="tag-label">PROVOCATIVO</span>
+          <span class="tag-label">OGILVY</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-14">
+        <span class="card-number">#14</span>
+        <div class="card-author">Redatora 2</div>
+        <div class="card-name">Possibilidade Basica</div>
+        <div class="card-tagline">"Energia: a possibilidade mais basica e mais poderosa."</div>
+        <div class="card-idea">Possibilidades basicas criam possibilidades infinitas. A energia eletrica e a possibilidade mais fundamental que existe. E a Energisa tem desenvolvido essa possibilidade ha 121 anos. Conceito filosofico com profundidade.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(14, this)">Copiar tagline</button>
+          <span class="tag-label">FILOSOFICO</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-15">
+        <span class="card-number">#15</span>
+        <div class="card-author">Redatora 3</div>
+        <div class="card-name">Quando a Luz Acende</div>
+        <div class="card-tagline">"Quando a luz acende, tudo comeca."</div>
+        <div class="card-idea">Existe um momento antes de toda grande ideia: quando a luz acende. Nao metaforicamente. Literalmente. A energia eletrica que permite que o mundo pense, crie e inove. Conecta o ato fisico de ligar a luz ao ato simbolico de uma ideia surgir.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(15, this)">Copiar tagline</button>
+          <span class="tag-label">POETICO</span>
+          <span class="tag-label">VISUAL</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-16">
+        <span class="card-number">#16</span>
+        <div class="card-author">Redator 4</div>
+        <div class="card-name">Combustivel do Seculo</div>
+        <div class="card-tagline">"A eletricidade e o combustivel do seculo. Nos sabemos como produzi-la de forma mais inteligente."</div>
+        <div class="card-idea">Petroleo foi o combustivel do seculo XX. A eletricidade e o combustivel do seculo XXI. E produzir eletricidade de forma inteligente, resiliente e sustentavel e o que a Energisa esta construindo. Conceito historico com visao de futuro.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(16, this)">Copiar tagline</button>
+          <span class="tag-label">HISTORICO</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-17">
+        <span class="card-number">#17</span>
+        <div class="card-author">Copy Chief</div>
+        <div class="card-name">Substrato</div>
+        <div class="card-tagline">"A inovacao tem um substrato. Chama-se energia."</div>
+        <div class="card-idea">Na biologia, o substrato e o que alimenta o organismo. Na economia digital, o substrato e a energia eletrica. Sem ela, nenhum servidor, nenhum dado, nenhuma IA funciona. Conceito tecnico-cientifico para audiencias sofisticadas.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(17, this)">Copiar tagline</button>
+          <span class="tag-label">CIENTIFICO</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-18">
+        <span class="card-number">#18</span>
+        <div class="card-author">Redatora 2</div>
+        <div class="card-name">Energia Inteligente para Um Mundo Inteligente</div>
+        <div class="card-tagline">"O mundo esta ficando mais inteligente. A energia que o alimenta tambem."</div>
+        <div class="card-idea">Casas inteligentes, cidades inteligentes, fabricas inteligentes. Tudo isso precisa de uma rede eletrica igualmente inteligente. Energize+, GridVortex, DSO: a Energisa e a inteligencia da rede. Conceito espelho: mundo smart precisa de energia smart.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(18, this)">Copiar tagline</button>
+          <span class="tag-label">ECOSSISTEMA</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-19">
+        <span class="card-number">#19</span>
+        <div class="card-author">Redator 4</div>
+        <div class="card-name">Antes do Dado</div>
+        <div class="card-tagline">"Antes do dado, a energia. Antes de tudo, a Energisa."</div>
+        <div class="card-idea">Muito se fala em data-driven. Mas dados dependem de infraestrutura. E infraestrutura depende de energia. A Energisa esta no comeco de toda cadeia de valor digital. Conceito que reposiciona a empresa para o mundo tech sem abandonar o setor energetico.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(19, this)">Copiar tagline</button>
+          <span class="tag-label">TECH</span>
+          <span class="tag-label">B2B</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-20">
+        <span class="card-number">#20</span>
+        <div class="card-author">Redatora 3</div>
+        <div class="card-name">O Elemento Comum</div>
+        <div class="card-tagline">"O que conecta toda inovacao? A energia que a alimenta."</div>
+        <div class="card-idea">IA, veiculos eletricos, smart cities, 5G, data centers. Setores completamente diferentes. Um elemento comum: todos precisam de energia eletrica inteligente e confiavel. A Energisa e esse elemento. Conceito de plataforma, perfeito para investidores.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(20, this)">Copiar tagline</button>
+          <span class="tag-label">INVESTIDORES</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CLUSTER 3 -->
+  <div class="cluster" data-cluster="futuro">
+    <div class="cluster-header">
+      <div class="cluster-number">3</div>
+      <div class="cluster-title">Futuro e Visao de Longo Prazo</div>
+      <div class="cluster-desc">10 conceitos — David Ogilvy + Copy Chief</div>
+    </div>
+    <div class="concepts-grid">
+
+      <div class="card highlight" id="card-21">
+        <span class="card-number">#21</span>
+        <div class="card-author">David Ogilvy</div>
+        <div class="card-name">O Futuro Tem Um Endereco</div>
+        <div class="card-tagline">"O futuro da energia tem um endereco. Energisa."</div>
+        <div class="card-idea">Quando se fala em futuro energetico no Brasil, existe uma empresa que ja esta construindo esse futuro, projeto a projeto, cidade a cidade, rede por rede. Nao e uma promessa. E um fato verificavel. Conceito Ogilvy: concreto, sem abstracionismo.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(21, this)">Copiar tagline</button>
+          <span class="tag-label">CONCRETO</span>
+          <span class="tag-label">OGILVY</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-22">
+        <span class="card-number">#22</span>
+        <div class="card-author">Copy Chief</div>
+        <div class="card-name">Quando o Futuro Chegar</div>
+        <div class="card-tagline">"Quando o futuro chegar, ja estaremos la."</div>
+        <div class="card-idea">Nao e possivel reagir ao futuro. E preciso antecipa-lo. Isso e o que a Energisa faz: constroi o futuro antes que ele chegue. GridVortex, BESS, Energize+: nao sao projetos de pesquisa. Sao o amanha sendo construido hoje.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(22, this)">Copiar tagline</button>
+          <span class="tag-label">ANTECIPACAO</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-23">
+        <span class="card-number">#23</span>
+        <div class="card-author">Redatora 2</div>
+        <div class="card-name">Construindo o Amanha</div>
+        <div class="card-tagline">"Nao esperamos o amanha. Construimos ele hoje."</div>
+        <div class="card-idea">Conceito simples e direto. A inovacao nao e um destino. E uma construcao cotidiana. E a Energisa esta construindo, projeto a projeto. Funciona bem como tagline de filme com cenas dos projetos reais.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(23, this)">Copiar tagline</button>
+          <span class="tag-label">SIMPLES</span>
+          <span class="tag-label">FILME</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-24">
+        <span class="card-number">#24</span>
+        <div class="card-author">Redatora 3</div>
+        <div class="card-name">Proxima Geracao</div>
+        <div class="card-tagline">"A energia da proxima geracao esta sendo feita agora."</div>
+        <div class="card-idea">Cada geracao herdou uma rede eletrica. A proxima geracao vai herdar uma rede inteligente, resiliente, sustentavel e digitalizada. A Energisa esta construindo essa heranca. Conceito emotivo com alcance intergeracional.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(24, this)">Copiar tagline</button>
+          <span class="tag-label">EMOTIVO</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-25">
+        <span class="card-number">#25</span>
+        <div class="card-author">Redator 4</div>
+        <div class="card-name">Antecipacao</div>
+        <div class="card-tagline">"Inovar e antecipar o que o mundo vai precisar."</div>
+        <div class="card-idea">O setor energetico opera em ciclos longos. As decisoes tomadas hoje moldam a infraestrutura das proximas decadas. A Energisa pensa nessa escala de tempo. Conceito que posiciona a empresa como pensadora estrategica de longo prazo.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(25, this)">Copiar tagline</button>
+          <span class="tag-label">ESTRATEGICO</span>
+          <span class="tag-label">INVESTIDORES</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-26">
+        <span class="card-number">#26</span>
+        <div class="card-author">Copy Chief</div>
+        <div class="card-name">Horizonte Estendido</div>
+        <div class="card-tagline">"Vemos mais longe porque estamos ha mais tempo nesse setor."</div>
+        <div class="card-idea">121 anos de operacao dao uma perspectiva que nenhuma startup energetica tem. A Energisa conhece os ciclos, os desafios estruturais, as oportunidades que so aparecem para quem tem paciencia historica. Conceito que usa o legado como vantagem competitiva.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(26, this)">Copiar tagline</button>
+          <span class="tag-label">LEGADO</span>
+          <span class="tag-label">DIFERENCIAL</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-27">
+        <span class="card-number">#27</span>
+        <div class="card-author">Redatora 2</div>
+        <div class="card-name">A Proxima Rede</div>
+        <div class="card-tagline">"Estamos construindo a proxima versao da rede eletrica brasileira."</div>
+        <div class="card-idea">A rede eletrica do Brasil foi construida ao longo de decadas. A proxima versao: inteligente, automatizada, resiliente e distribuida. DSO, Sisdrones, VERA, GridScale. Esta sendo construida agora. Pela Energisa. Conceito produto para investidores e formadores de opiniao.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(27, this)">Copiar tagline</button>
+          <span class="tag-label">INFRAESTRUTURA</span>
+          <span class="tag-label">INVESTIDORES</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-28">
+        <span class="card-number">#28</span>
+        <div class="card-author">Redator 4</div>
+        <div class="card-name">Sinais do Futuro</div>
+        <div class="card-tagline">"Ja existem sinais do futuro energetico. Nos os estamos construindo."</div>
+        <div class="card-idea">GridVortex, BESS, Sisdrones, Energize+. Nao sao projetos piloto. Sao os primeiros sinais de um novo setor energetico, sendo construido projeto a projeto, distribuidora a distribuidora. Conceito que da visibilidade aos projetos especificos.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(28, this)">Copiar tagline</button>
+          <span class="tag-label">PROJETOS</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-29">
+        <span class="card-number">#29</span>
+        <div class="card-author">Redatora 3</div>
+        <div class="card-name">Nova Matriz</div>
+        <div class="card-tagline">"A nova matriz energetica do Brasil esta sendo escrita aqui."</div>
+        <div class="card-idea">A matriz energetica de um pais define seu futuro economico. A Energisa esta contribuindo para escrever a proxima pagina dessa matriz: mais inteligente, mais eficiente, mais resiliente. Conceito politico-institucional de alto impacto para formadores de opiniao.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(29, this)">Copiar tagline</button>
+          <span class="tag-label">POLITICO</span>
+          <span class="tag-label">INSTITUCIONAL</span>
+        </div>
+      </div>
+
+      <div class="card highlight" id="card-30">
+        <span class="card-number">#30</span>
+        <div class="card-author">David Ogilvy</div>
+        <div class="card-name">Depois de 121 Anos</div>
+        <div class="card-tagline">"Depois de 121 anos transformando o Brasil com energia, o trabalho mais importante ainda esta por vir."</div>
+        <div class="card-idea">Retrospectiva que vira prospectiva. O legado nao e um ponto de chegada: e o combustivel para o proximo salto. Ogilvy puro: usa o fato historico como prova de capacidade e vira o jogo para o futuro. Perfeito para abertura de filme.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(30, this)">Copiar tagline</button>
+          <span class="tag-label">ABERTURA DE FILME</span>
+          <span class="tag-label">OGILVY</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CLUSTER 4 -->
+  <div class="cluster" data-cluster="humano">
+    <div class="cluster-header">
+      <div class="cluster-number">4</div>
+      <div class="cluster-title">Humano e Tecnologia</div>
+      <div class="cluster-desc">8 conceitos — Redatoras 2 e 3</div>
+    </div>
+    <div class="concepts-grid">
+
+      <div class="card highlight" id="card-31">
+        <span class="card-number">#31</span>
+        <div class="card-author">Copy Chief</div>
+        <div class="card-name">Duas Energias</div>
+        <div class="card-tagline">"A energia eletrica e a das pessoas. As duas nunca pararam."</div>
+        <div class="card-idea">Frase do proprio Daniel no briefing, desenvolvida como conceito. Duas energias: a eletrica (infraestrutura) e a humana (inovacao, vontade, proposito). O mais humano dos 50 conceitos. Alto potencial emocional para filme com pessoas reais da Energisa.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(31, this)">Copiar tagline</button>
+          <span class="tag-label">BRIEFING DANIEL</span>
+          <span class="tag-label">EMOCIONAL</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-32">
+        <span class="card-number">#32</span>
+        <div class="card-author">Redatora 2</div>
+        <div class="card-name">Quem Energiza</div>
+        <div class="card-tagline">"A energia que move o Brasil tem nome e sobrenome."</div>
+        <div class="card-idea">Por tras de cada projeto de inovacao existe uma equipe. Conceito centrado nas pessoas que constroem o futuro energetico dentro da Energisa. Sisdrones, VERA, Energize+: nao sao so tecnologia, sao os engenheiros, cientistas e tecnicos por tras delas.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(32, this)">Copiar tagline</button>
+          <span class="tag-label">PESSOAS</span>
+          <span class="tag-label">ENDOMARKETING</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-33">
+        <span class="card-number">#33</span>
+        <div class="card-author">Redatora 3</div>
+        <div class="card-name">Em Campo</div>
+        <div class="card-tagline">"A inovacao da Energisa nao acontece em laboratorio. Acontece em campo."</div>
+        <div class="card-idea">Sisdrones, VERA, GridVortex. A inovacao da Energisa e aplicada, operacional, real. Nao e pesquisa abstrata. E tecnologia que funciona no mundo real, testada em condicoes reais do setor brasileiro. Conceito diferenciador contra "inovacao de vitrine".</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(33, this)">Copiar tagline</button>
+          <span class="tag-label">DIFERENCIADOR</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-34">
+        <span class="card-number">#34</span>
+        <div class="card-author">Redatora 2</div>
+        <div class="card-name">Maos que Ligam o Futuro</div>
+        <div class="card-tagline">"As maos que constroem o futuro energetico do Brasil."</div>
+        <div class="card-idea">Emotivo e humano. Os tecnicos, engenheiros, pesquisadores da Energisa como protagonistas da inovacao. Conceito visual forte para filme: maos humanas operando tecnologia de ponta. Conexao entre o fisico e o digital.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(34, this)">Copiar tagline</button>
+          <span class="tag-label">VISUAL</span>
+          <span class="tag-label">EMOTIVO</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-35">
+        <span class="card-number">#35</span>
+        <div class="card-author">Redator 4</div>
+        <div class="card-name">Inteligencia Aplicada</div>
+        <div class="card-tagline">"Inteligencia artificial a servico da inteligencia humana."</div>
+        <div class="card-idea">A IA da Energisa (Energize+, Sparta, VERA, SDR) nao substitui pessoas. Amplifica a capacidade humana de resolver problemas complexos. Conceito que responde ao medo de desumanizacao tecnologica com uma proposta humanista da IA.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(35, this)">Copiar tagline</button>
+          <span class="tag-label">IA</span>
+          <span class="tag-label">HUMANISTA</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-36">
+        <span class="card-number">#36</span>
+        <div class="card-author">Copy Chief</div>
+        <div class="card-name">A Equacao</div>
+        <div class="card-tagline">"Energia + inteligencia = o setor que o Brasil precisa."</div>
+        <div class="card-idea">Conceito matematico simples. A soma de energia com inteligencia (tecnologica e humana) produz um setor energetico superior. Essa e a equacao da Energisa. Funciona bem em formatos curtos e anuncios digitais.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(36, this)">Copiar tagline</button>
+          <span class="tag-label">MATEMATICO</span>
+          <span class="tag-label">DIGITAL</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-37">
+        <span class="card-number">#37</span>
+        <div class="card-author">Redatora 3</div>
+        <div class="card-name">Proposito Eletrico</div>
+        <div class="card-tagline">"121 anos movidos por proposito. E pela energia que ele gera."</div>
+        <div class="card-idea">Proposito gera energia. Energia gera proposito. Uma empresa que durou 121 anos nao sobrevive so por ser grande. Sobrevive porque tem um motivo para existir. Conceito ESG-compativel com profundidade de marca.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(37, this)">Copiar tagline</button>
+          <span class="tag-label">ESG</span>
+          <span class="tag-label">MARCA</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-38">
+        <span class="card-number">#38</span>
+        <div class="card-author">Redatora 2</div>
+        <div class="card-name">Quando a Cidade Dorme</div>
+        <div class="card-tagline">"Quando a cidade dorme, a Energisa esta trabalhando no seu futuro."</div>
+        <div class="card-idea">A infraestrutura energetica e invisivel quando funciona. Drones de inspecao, algoritmos de manutencao preditiva, sistemas de controle: trabalham 24h para que tudo funcione quando a cidade acorda. Conceito que valoriza o trabalho invisivel da inovacao operacional.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(38, this)">Copiar tagline</button>
+          <span class="tag-label">OPERACIONAL</span>
+          <span class="tag-label">NOTURNO</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CLUSTER 5 -->
+  <div class="cluster" data-cluster="provocativo">
+    <div class="cluster-header">
+      <div class="cluster-number">5</div>
+      <div class="cluster-title">Provocativo e Challenger</div>
+      <div class="cluster-desc">7 conceitos — David Ogilvy + Redator 4</div>
+    </div>
+    <div class="concepts-grid">
+
+      <div class="card" id="card-39">
+        <span class="card-number">#39</span>
+        <div class="card-author">Redatora 3</div>
+        <div class="card-name">E Se a Energia Fosse Inteligente?</div>
+        <div class="card-tagline">"E se a energia soubesse exatamente onde ser usada, quando, como e por quem?"</div>
+        <div class="card-idea">Pergunta que abre o universo dos projetos: GridVortex, BESS, DSO, Energize+. A energia do futuro nao e apenas potencia. E inteligencia. Conceito que converte projetos complexos em possibilidades compreens iveis para qualquer executivo.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(39, this)">Copiar tagline</button>
+          <span class="tag-label">PERGUNTA</span>
+          <span class="tag-label">PROJETOS</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-40">
+        <span class="card-number">#40</span>
+        <div class="card-author">Redator 4</div>
+        <div class="card-name">O Setor Atrasou</div>
+        <div class="card-tagline">"O setor energetico ficou para tras. A Energisa nao vai deixar o Brasil ficar."</div>
+        <div class="card-idea">Provocativo e honesto. Reconhece que o setor tem gaps historicos e posiciona a Energisa como a forca de transformacao que vai corrigir esse atraso. Alto risco criativo, alto impacto para formadores de opiniao. Validar aceite do cliente antes de seguir.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(40, this)">Copiar tagline</button>
+          <span class="tag-label">ALTO RISCO</span>
+          <span class="tag-label">ALTO IMPACTO</span>
+        </div>
+      </div>
+
+      <div class="card highlight" id="card-41">
+        <span class="card-number">#41</span>
+        <div class="card-author">David Ogilvy</div>
+        <div class="card-name">Chega de Reativo</div>
+        <div class="card-tagline">"Energia reativa desperdiça potencia. Inovacao reativa desperdiça oportunidade."</div>
+        <div class="card-idea">Jargao tecnico do setor energetico (energia reativa vs. ativa) reapropriado como metafora de gestao e inovacao. A Energisa e proativa: nao espera problemas, antecipa solucoes. Um dos conceitos mais inteligentes do conjunto. Ogilvy adoraria esse duplo sentido.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(41, this)">Copiar tagline</button>
+          <span class="tag-label">DUPLO SENTIDO</span>
+          <span class="tag-label">TECNICO</span>
+          <span class="tag-label">OGILVY</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-42">
+        <span class="card-number">#42</span>
+        <div class="card-author">Copy Chief</div>
+        <div class="card-name">Impacto ou Presenca?</div>
+        <div class="card-tagline">"Qualquer empresa tem presenca. Poucas tem impacto real."</div>
+        <div class="card-idea">Diferencia a Energisa de empresas que apenas existem no setor. O impacto se mede em projetos concretos, tecnologia aplicada, transformacao real. Conceito que convida o publico B2B a medir as empresas por resultados, nao por tamanho.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(42, this)">Copiar tagline</button>
+          <span class="tag-label">B2B</span>
+          <span class="tag-label">EXECUTIVOS</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-43">
+        <span class="card-number">#43</span>
+        <div class="card-author">Redatora 2</div>
+        <div class="card-name">Nao e Sobre Inovar</div>
+        <div class="card-tagline">"Nao e sobre inovar por inovar. E sobre resolver o que precisa ser resolvido."</div>
+        <div class="card-idea">Contrarian take. Em tempos de inovacao por moda, a Energisa inova com proposito claro: eficiencia operacional, resiliencia climatica, democratizacao da energia. Conceito que diferencia inovacao real de inovacao de marketing.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(43, this)">Copiar tagline</button>
+          <span class="tag-label">CONTRARIAN</span>
+          <span class="tag-label">ESG</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-44">
+        <span class="card-number">#44</span>
+        <div class="card-author">Redator 4</div>
+        <div class="card-name">Desconectados</div>
+        <div class="card-tagline">"Desconectar nao e opcao. Para nenhum de nos."</div>
+        <div class="card-idea">Usa a dependencia total da sociedade moderna pela energia eletrica como argumento para a missao da Energisa. Nenhuma empresa, nenhum governo, nenhuma pessoa pode se desconectar. A Energisa garante que isso nunca aconteca. Conceito de missao critica.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(44, this)">Copiar tagline</button>
+          <span class="tag-label">MISSAO</span>
+        </div>
+      </div>
+
+      <div class="card highlight" id="card-45">
+        <span class="card-number">#45</span>
+        <div class="card-author">David Ogilvy</div>
+        <div class="card-name">121 Anos. So Agora a Coisa Fica Interessante.</div>
+        <div class="card-tagline">"121 anos. E a melhor parte ainda esta por vir."</div>
+        <div class="card-idea">Playful, confiante, disruptivo para uma empresa tradicional. O legado e real, mas o que esta sendo construido agora supera tudo que veio antes. Alto contraste com o tom esperado de uma empresa centenaria. O tipo de headline que Ogilvy escreveria para o Rolls-Royce: provocador, verdadeiro, inesquecivel.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(45, this)">Copiar tagline</button>
+          <span class="tag-label">DISRUPTIVO</span>
+          <span class="tag-label">OGILVY</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CLUSTER 6 -->
+  <div class="cluster" data-cluster="fisica">
+    <div class="cluster-header">
+      <div class="cluster-number">6</div>
+      <div class="cluster-title">Metaforas Fisicas e Naturais</div>
+      <div class="cluster-desc">5 conceitos — Copy Chief + Redatoras</div>
+    </div>
+    <div class="concepts-grid">
+
+      <div class="card" id="card-46">
+        <span class="card-number">#46</span>
+        <div class="card-author">Copy Chief</div>
+        <div class="card-name">Corrente Continua</div>
+        <div class="card-tagline">"A inovacao da Energisa: uma corrente continua que nao para."</div>
+        <div class="card-idea">Corrente continua (DC) como metafora. A inovacao nao e pulsada, nao para, nao oscila. Flui de forma constante e direcionada. 15 projetos ativos, 5 frentes simultaneas: corrente continua de inovacao aplicada. Conceito que usa o vocabulario tecnico do setor.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(46, this)">Copiar tagline</button>
+          <span class="tag-label">TECNICO</span>
+          <span class="tag-label">SETOR</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-47">
+        <span class="card-number">#47</span>
+        <div class="card-author">Redatora 3</div>
+        <div class="card-name">Alta Tensao</div>
+        <div class="card-tagline">"Inovar exige alta tensao. A Energisa opera nessa frequencia ha 121 anos."</div>
+        <div class="card-idea">Alta tensao como metafora de ambicao, escala e risco calculado. Nao e para qualquer empresa. A Energisa opera na frequencia mais alta de inovacao do setor energetico brasileiro. Conceito bold para executivos e investidores de perfil agressivo.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(47, this)">Copiar tagline</button>
+          <span class="tag-label">BOLD</span>
+          <span class="tag-label">EXECUTIVOS</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-48">
+        <span class="card-number">#48</span>
+        <div class="card-author">Redatora 2</div>
+        <div class="card-name">Campo Magnetico</div>
+        <div class="card-tagline">"Onde ha energia inteligente, a inovacao se organiza ao redor."</div>
+        <div class="card-idea">Conceito de campo magnetico: a Energisa como centro gravitacional que organiza um ecossistema de inovacao ao seu redor. Projetos, parceiros, tecnologias: tudo orbita em torno da energia inteligente. Conceito de plataforma e ecossistema.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(48, this)">Copiar tagline</button>
+          <span class="tag-label">ECOSSISTEMA</span>
+          <span class="tag-label">PLATAFORMA</span>
+        </div>
+      </div>
+
+      <div class="card" id="card-49">
+        <span class="card-number">#49</span>
+        <div class="card-author">Redator 4</div>
+        <div class="card-name">Frequencia</div>
+        <div class="card-tagline">"O Brasil precisa de uma frequencia diferente. Nos estamos ajustando o dial."</div>
+        <div class="card-idea">Frequencia como metafora de sintonia entre necessidade do pais e capacidade da Energisa. Ajustar a frequencia e o trabalho da inovacao: calibrar a rede para as demandas de um pais que esta mudando. Conceito tecnologico com ressonancia nacional.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(49, this)">Copiar tagline</button>
+          <span class="tag-label">NACIONAL</span>
+        </div>
+      </div>
+
+      <div class="card highlight" id="card-50">
+        <span class="card-number">#50</span>
+        <div class="card-author">Copy Chief + David Ogilvy</div>
+        <div class="card-name">Potencia Instalada</div>
+        <div class="card-tagline">"Construindo a potencia instalada da inovacao energetica do Brasil."</div>
+        <div class="card-idea">"Potencia instalada" e um termo tecnico do setor (MW instalados de geracao). Recontextualizado: a Energisa esta instalando potencia de inovacao no pais. Conceito que fala fluente o idioma do setor enquanto expande seu significado. Ogilvy puro: aproveitar o jargao do publico para criar significado novo. O conceito mais elegante do conjunto.</div>
+        <div class="card-actions">
+          <button class="copy-btn-small" onclick="copyCard(50, this)">Copiar tagline</button>
+          <span class="tag-label">JARGAO DO SETOR</span>
+          <span class="tag-label">ELEGANTE</span>
+          <span class="tag-label">OGILVY</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<!-- EXPORT BAR -->
+<div class="export-bar">
+  <button class="btn-export btn-export-secondary" onclick="window.print()">Imprimir / PDF</button>
+  <button class="btn-export btn-export-primary" onclick="copyAllTaglines()">Copiar Todas as Taglines</button>
+</div>
+
+<script>
+// Filter by cluster
+function filterCluster(cluster) {
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+
+  document.querySelectorAll('.cluster').forEach(c => {
+    if (cluster === 'all' || c.dataset.cluster === cluster) {
+      c.style.display = 'block';
+    } else {
+      c.style.display = 'none';
+    }
+  });
+}
+
+// Copy individual tagline
+const taglines = {
+  1: "Em metamorfose. Sempre.",
+  2: "O setor muda. A Energisa lidera a mudanca.",
+  3: "121 anos. Uma nova fase comeca.",
+  4: "Reconfigurando o que energia pode ser.",
+  5: "De geracao em geracao, evoluindo o setor.",
+  6: "Novos componentes. Maior condutividade.",
+  7: "A energia que impulsiona a inovacao.",
+  8: "Condutores do futuro energetico do Brasil.",
+  9: "O setor esta se movendo. A Energisa esta acelerando.",
+  10: "Inovar e saber onde voce quer chegar e nao ter medo do caminho.",
+  11: "Sem energia, nao existe futuro. Com a nossa, ele chega mais rapido.",
+  12: "Toda inovacao comeca aqui.",
+  13: "A inovacao nao existe sem energia. E nos existimos ha 121 anos para isso.",
+  14: "Energia: a possibilidade mais basica e mais poderosa.",
+  15: "Quando a luz acende, tudo comeca.",
+  16: "A eletricidade e o combustivel do seculo. Nos sabemos como produzi-la de forma mais inteligente.",
+  17: "A inovacao tem um substrato. Chama-se energia.",
+  18: "O mundo esta ficando mais inteligente. A energia que o alimenta tambem.",
+  19: "Antes do dado, a energia. Antes de tudo, a Energisa.",
+  20: "O que conecta toda inovacao? A energia que a alimenta.",
+  21: "O futuro da energia tem um endereco. Energisa.",
+  22: "Quando o futuro chegar, ja estaremos la.",
+  23: "Nao esperamos o amanha. Construimos ele hoje.",
+  24: "A energia da proxima geracao esta sendo feita agora.",
+  25: "Inovar e antecipar o que o mundo vai precisar.",
+  26: "Vemos mais longe porque estamos ha mais tempo nesse setor.",
+  27: "Estamos construindo a proxima versao da rede eletrica brasileira.",
+  28: "Ja existem sinais do futuro energetico. Nos os estamos construindo.",
+  29: "A nova matriz energetica do Brasil esta sendo escrita aqui.",
+  30: "Depois de 121 anos transformando o Brasil com energia, o trabalho mais importante ainda esta por vir.",
+  31: "A energia eletrica e a das pessoas. As duas nunca pararam.",
+  32: "A energia que move o Brasil tem nome e sobrenome.",
+  33: "A inovacao da Energisa nao acontece em laboratorio. Acontece em campo.",
+  34: "As maos que constroem o futuro energetico do Brasil.",
+  35: "Inteligencia artificial a servico da inteligencia humana.",
+  36: "Energia + inteligencia = o setor que o Brasil precisa.",
+  37: "121 anos movidos por proposito. E pela energia que ele gera.",
+  38: "Quando a cidade dorme, a Energisa esta trabalhando no seu futuro.",
+  39: "E se a energia soubesse exatamente onde ser usada, quando, como e por quem?",
+  40: "O setor energetico ficou para tras. A Energisa nao vai deixar o Brasil ficar.",
+  41: "Energia reativa desperdiça potencia. Inovacao reativa desperdiça oportunidade.",
+  42: "Qualquer empresa tem presenca. Poucas tem impacto real.",
+  43: "Nao e sobre inovar por inovar. E sobre resolver o que precisa ser resolvido.",
+  44: "Desconectar nao e opcao. Para nenhum de nos.",
+  45: "121 anos. E a melhor parte ainda esta por vir.",
+  46: "A inovacao da Energisa: uma corrente continua que nao para.",
+  47: "Inovar exige alta tensao. A Energisa opera nessa frequencia ha 121 anos.",
+  48: "Onde ha energia inteligente, a inovacao se organiza ao redor.",
+  49: "O Brasil precisa de uma frequencia diferente. Nos estamos ajustando o dial.",
+  50: "Construindo a potencia instalada da inovacao energetica do Brasil."
+};
+
+function copyCard(num, btn) {
+  navigator.clipboard.writeText(taglines[num]).then(() => {
+    btn.textContent = 'Copiado';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copiar tagline';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+function scrollToCard(num) {
+  const card = document.getElementById('card-' + num);
+  if (card) {
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    card.style.boxShadow = '0 0 0 2px #FF5500';
+    setTimeout(() => { card.style.boxShadow = ''; }, 2000);
+  }
+}
+
+function copyAllTaglines() {
+  const all = Object.entries(taglines).map(([n, t]) => `#${n.padStart(2,'0')} ${t}`).join('\n');
+  navigator.clipboard.writeText(all).then(() => {
+    const btn = event.target;
+    btn.textContent = 'Copiadas!';
+    setTimeout(() => { btn.textContent = 'Copiar Todas as Taglines'; }, 2500);
+  });
+}
+</script>
+</body>
+</html>

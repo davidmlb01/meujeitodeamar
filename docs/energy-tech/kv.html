@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KV — Em Metamorfose. Sempre. | Grupo Energisa</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0a14;
+    font-family: 'Georgia', serif;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+
+  h1 {
+    font-family: 'Arial Narrow', 'Arial', sans-serif;
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #FF5500;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  .kv-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+  }
+
+  canvas#kvCanvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  /* KV overlay - rendered on canvas, but also keeping DOM version for reference */
+  .kv-static {
+    display: none;
+  }
+
+  .controls {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 3px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: 'Arial Narrow', 'Arial', sans-serif;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary {
+    background: #FF5500;
+    color: #fff;
+  }
+
+  .btn-primary:hover { background: #FF7733; }
+
+  .btn-outline {
+    background: transparent;
+    color: #FF5500;
+    border: 1px solid #FF5500;
+  }
+
+  .btn-outline:hover { background: rgba(255,85,0,0.1); }
+
+  .copy-section {
+    width: 100%;
+    max-width: 900px;
+    margin-top: 48px;
+    border-top: 1px solid #222;
+    padding-top: 40px;
+  }
+
+  .copy-section h2 {
+    font-family: 'Arial Narrow', 'Arial', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 32px;
+  }
+
+  .copy-block {
+    background: #111;
+    border: 1px solid #1e1e1e;
+    border-radius: 4px;
+    padding: 24px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .copy-block-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #FF5500;
+    margin-bottom: 12px;
+    font-family: 'Arial Narrow', 'Arial', sans-serif;
+  }
+
+  .copy-block-text {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #e0e0e0;
+    font-family: 'Georgia', serif;
+  }
+
+  .copy-block-text.large {
+    font-size: 28px;
+    line-height: 1.3;
+    font-weight: bold;
+    letter-spacing: -0.5px;
+  }
+
+  .copy-block-text.small {
+    font-size: 13px;
+    color: #999;
+    font-family: 'Arial', sans-serif;
+    font-style: italic;
+  }
+
+  .copy-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    color: #666;
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding: 6px 14px;
+    border-radius: 2px;
+    cursor: pointer;
+    font-family: 'Arial', sans-serif;
+    transition: all 0.2s;
+  }
+
+  .copy-btn:hover { color: #FF5500; border-color: #FF5500; }
+  .copy-btn.copied { color: #4CAF50; border-color: #4CAF50; }
+
+  .footer {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid #1a1a1a;
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: gap;
+  }
+
+  .footer-logo {
+    font-family: 'Arial Narrow', 'Arial', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #333;
+  }
+
+  .footer-date {
+    font-size: 11px;
+    color: #333;
+    font-family: 'Arial', sans-serif;
+  }
+</style>
+</head>
+<body>
+
+<h1>Key Visual — Campanha Energisa Inovação 2026</h1>
+
+<div class="kv-wrapper">
+  <canvas id="kvCanvas" width="1800" height="1013"></canvas>
+</div>
+
+<div class="controls">
+  <button class="btn btn-primary" onclick="downloadKV('png')">Baixar KV — PNG</button>
+  <button class="btn btn-outline" onclick="downloadKV('jpg')">Baixar KV — JPG</button>
+  <button class="btn btn-outline" onclick="toggleAnimation()">Pausar / Animar</button>
+</div>
+
+<!-- Copy Blocks -->
+<div class="copy-section">
+  <h2>Copy — Blocos de Texto</h2>
+
+  <div class="copy-block">
+    <div class="copy-block-label">Tagline Principal</div>
+    <div class="copy-block-text large" id="copy1">Em Metamorfose. Sempre.</div>
+    <button class="copy-btn" onclick="copyText('copy1', this)">Copiar</button>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-label">Endline Institucional</div>
+    <div class="copy-block-text" id="copy2">A tecnologia que ilumina o futuro.</div>
+    <button class="copy-btn" onclick="copyText('copy2', this)">Copiar</button>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-label">Headline para mídia digital (LinkedIn / Valor Econômico)</div>
+    <div class="copy-block-text" id="copy3">Há 121 anos, a Energisa escolheu não ter uma opinião formada sobre onde o setor deveria parar. E nunca parou de se transformar desde então.</div>
+    <button class="copy-btn" onclick="copyText('copy3', this)">Copiar</button>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-label">Descrição para post social (LinkedIn)</div>
+    <div class="copy-block-text" id="copy4">121 anos de energia. Mais de um século de metamorfose contínua. A Energisa não chegou até aqui sendo a mesma empresa. Chegou se reinventando, projeto a projeto, tecnologia a tecnologia, futuro a futuro. Solar. Eólica. Inteligente. Em metamorfose. Sempre. #EnergisaInova #MetamorfoseEnergia #FuturoEnergético</div>
+    <button class="copy-btn" onclick="copyText('copy4', this)">Copiar</button>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-label">Subtítulo para KV / Anúncio impresso</div>
+    <div class="copy-block-text small" id="copy5">Grupo Energisa — 121 anos transformando o setor energético do Brasil. A tecnologia que ilumina o futuro.</div>
+    <button class="copy-btn" onclick="copyText('copy5', this)">Copiar</button>
+  </div>
+</div>
+
+<div class="footer">
+  <span class="footer-logo">Brivia × Grupo Energisa | Campanha Inovação 2026</span>
+  <span class="footer-date">KV v1.0 | 2026-04-25</span>
+</div>
+
+<script>
+const canvas = document.getElementById('kvCanvas');
+const ctx = canvas.getContext('2d');
+const W = canvas.width;
+const H = canvas.height;
+
+let animating = true;
+let frame = 0;
+let particles = [];
+let morphPhase = 0;
+
+// Particle system
+class Particle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = W * 0.5 + (Math.random() - 0.5) * W * 0.6;
+    this.y = H * 0.5 + (Math.random() - 0.5) * H * 0.6;
+    this.size = Math.random() * 3 + 0.5;
+    this.speedX = (Math.random() - 0.5) * 1.2;
+    this.speedY = (Math.random() - 0.5) * 1.2;
+    this.life = Math.random();
+    this.maxLife = Math.random() * 0.8 + 0.2;
+    this.type = Math.random() > 0.7 ? 'energy' : 'spark';
+    this.hue = Math.random() > 0.5 ? 20 : Math.random() * 40;
+    this.target = { x: W * 0.5, y: H * 0.5 };
+    this.pull = Math.random() * 0.003;
+  }
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    // Subtle pull toward center
+    this.speedX += (this.target.x - this.x) * this.pull * 0.02;
+    this.speedY += (this.target.y - this.y) * this.pull * 0.02;
+    this.life += 0.005;
+    if (this.life > this.maxLife) this.reset();
+  }
+  draw() {
+    const alpha = Math.sin((this.life / this.maxLife) * Math.PI) * 0.9;
+    if (this.type === 'energy') {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = `hsla(${this.hue}, 100%, 65%, ${alpha})`;
+      ctx.fill();
+    } else {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size * 0.5, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.6})`;
+      ctx.fill();
+    }
+  }
+}
+
+// Init particles
+for (let i = 0; i < 280; i++) {
+  const p = new Particle();
+  p.life = Math.random() * p.maxLife;
+  particles.push(p);
+}
+
+// Lightning bolt path (simplified)
+function drawLightning(x1, y1, x2, y2, alpha, width) {
+  const dx = x2 - x1, dy = y2 - y1;
+  const segments = 8;
+  let pts = [{x: x1, y: y1}];
+  for (let i = 1; i < segments; i++) {
+    const t = i / segments;
+    pts.push({
+      x: x1 + dx * t + (Math.random() - 0.5) * 60,
+      y: y1 + dy * t + (Math.random() - 0.5) * 40
+    });
+  }
+  pts.push({x: x2, y: y2});
+
+  ctx.beginPath();
+  ctx.moveTo(pts[0].x, pts[0].y);
+  for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y);
+  ctx.strokeStyle = `rgba(255, 180, 0, ${alpha})`;
+  ctx.lineWidth = width;
+  ctx.shadowBlur = 15;
+  ctx.shadowColor = '#FF5500';
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+}
+
+function drawFrame() {
+  frame++;
+  morphPhase = (frame * 0.003) % (Math.PI * 2);
+
+  // Background gradient
+  const bgGrad = ctx.createRadialGradient(W*0.5, H*0.5, 0, W*0.5, H*0.5, W*0.6);
+  bgGrad.addColorStop(0, '#120a1e');
+  bgGrad.addColorStop(0.5, '#0a0a18');
+  bgGrad.addColorStop(1, '#060610');
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, W, H);
+
+  // Ambient energy glow (center)
+  const glowIntensity = 0.12 + Math.sin(morphPhase) * 0.04;
+  const cGlow = ctx.createRadialGradient(W*0.5, H*0.5, 0, W*0.5, H*0.5, H*0.5);
+  cGlow.addColorStop(0, `rgba(255, 85, 0, ${glowIntensity})`);
+  cGlow.addColorStop(0.4, `rgba(255, 140, 0, ${glowIntensity * 0.3})`);
+  cGlow.addColorStop(1, 'transparent');
+  ctx.fillStyle = cGlow;
+  ctx.fillRect(0, 0, W, H);
+
+  // Horizontal energy lines (subtle grid)
+  for (let i = 0; i < 8; i++) {
+    const y = (H / 8) * i;
+    const alpha = 0.04 + Math.sin(morphPhase + i) * 0.02;
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(W, y);
+    ctx.strokeStyle = `rgba(255, 85, 0, ${alpha})`;
+    ctx.lineWidth = 0.5;
+    ctx.stroke();
+  }
+
+  // Particles
+  particles.forEach(p => { p.update(); p.draw(); });
+
+  // Central morphing core — the energy source
+  const coreRadius = 80 + Math.sin(morphPhase * 1.7) * 20;
+  const coreGlow = ctx.createRadialGradient(W*0.5, H*0.44, 0, W*0.5, H*0.44, coreRadius * 2.5);
+  coreGlow.addColorStop(0, 'rgba(255, 200, 100, 0.95)');
+  coreGlow.addColorStop(0.15, 'rgba(255, 120, 0, 0.8)');
+  coreGlow.addColorStop(0.4, 'rgba(255, 60, 0, 0.3)');
+  coreGlow.addColorStop(1, 'transparent');
+  ctx.fillStyle = coreGlow;
+  ctx.beginPath();
+  ctx.arc(W*0.5, H*0.44, coreRadius * 2.5, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Core center bright point
+  ctx.beginPath();
+  ctx.arc(W*0.5, H*0.44, coreRadius * 0.35, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(255, 240, 200, 0.98)';
+  ctx.fill();
+
+  // Lightning bolts from core (intermittent)
+  if (frame % 8 < 3) {
+    const angle1 = morphPhase;
+    const angle2 = morphPhase + Math.PI * 0.7;
+    const len = 160 + Math.sin(morphPhase * 3) * 40;
+    drawLightning(
+      W*0.5, H*0.44,
+      W*0.5 + Math.cos(angle1) * len, H*0.44 + Math.sin(angle1) * len * 0.6,
+      0.5 + Math.sin(frame * 0.3) * 0.3, 1.5
+    );
+  }
+  if (frame % 12 < 4) {
+    const angle3 = morphPhase + Math.PI * 1.4;
+    const len2 = 120 + Math.sin(morphPhase * 2) * 50;
+    drawLightning(
+      W*0.5, H*0.44,
+      W*0.5 + Math.cos(angle3) * len2, H*0.44 + Math.sin(angle3) * len2 * 0.7,
+      0.4, 1
+    );
+  }
+
+  // Orbiting energy rings
+  for (let r = 0; r < 3; r++) {
+    const ringRadius = 130 + r * 80 + Math.sin(morphPhase * (1 + r * 0.3)) * 15;
+    const ringAlpha = 0.15 - r * 0.03;
+    ctx.beginPath();
+    ctx.arc(W*0.5, H*0.44, ringRadius, 0, Math.PI * 2);
+    ctx.strokeStyle = `rgba(255, 100, 0, ${ringAlpha})`;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // Energy dot on ring
+    const dotAngle = morphPhase * (1.5 - r * 0.2);
+    const dotX = W*0.5 + Math.cos(dotAngle) * ringRadius;
+    const dotY = H*0.44 + Math.sin(dotAngle) * ringRadius;
+    ctx.beginPath();
+    ctx.arc(dotX, dotY, 4 - r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255, 200, 80, ${0.8 - r * 0.2})`;
+    ctx.fill();
+  }
+
+  // ---- TYPOGRAPHY ----
+  ctx.textAlign = 'center';
+  ctx.shadowBlur = 0;
+
+  // Year badge
+  ctx.font = '600 22px "Arial Narrow", Arial, sans-serif';
+  ctx.letterSpacing = '8px';
+  ctx.fillStyle = 'rgba(255, 85, 0, 0.7)';
+  ctx.fillText('GRUPO ENERGISA  ·  121 ANOS', W * 0.5, H * 0.72);
+
+  // Main tagline — EM METAMORFOSE
+  ctx.shadowBlur = 30;
+  ctx.shadowColor = 'rgba(255, 85, 0, 0.4)';
+  ctx.font = 'bold 110px "Arial Narrow", Arial, sans-serif';
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillText('EM METAMORFOSE.', W * 0.5, H * 0.81);
+
+  // SEMPRE — in orange
+  ctx.fillStyle = '#FF5500';
+  ctx.font = 'bold 110px "Arial Narrow", Arial, sans-serif';
+  ctx.fillText('SEMPRE.', W * 0.5, H * 0.91);
+
+  ctx.shadowBlur = 0;
+
+  // Endline
+  ctx.font = '300 28px Georgia, serif';
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
+  ctx.fillText('A tecnologia que ilumina o futuro.', W * 0.5, H * 0.965);
+
+  // Bottom left — Brivia credit
+  ctx.textAlign = 'left';
+  ctx.font = '400 18px "Arial Narrow", Arial, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.15)';
+  ctx.fillText('BRIVIA × GRUPO ENERGISA  |  CAMPANHA INOVAÇÃO 2026', 60, H - 40);
+
+  // Bottom right — version
+  ctx.textAlign = 'right';
+  ctx.fillText('KV V1.0', W - 60, H - 40);
+
+  if (animating) requestAnimationFrame(drawFrame);
+}
+
+drawFrame();
+
+// Controls
+function toggleAnimation() {
+  animating = !animating;
+  if (animating) drawFrame();
+}
+
+function downloadKV(format) {
+  // Pause animation briefly to capture clean frame
+  const wasAnimating = animating;
+  animating = false;
+  drawFrame(); // Draw one clean frame
+
+  setTimeout(() => {
+    const link = document.createElement('a');
+    link.download = `energisa-kv-metamorfose.${format}`;
+
+    if (format === 'jpg') {
+      // Create white background for JPG
+      const offscreen = document.createElement('canvas');
+      offscreen.width = W;
+      offscreen.height = H;
+      const octx = offscreen.getContext('2d');
+      octx.fillStyle = '#000';
+      octx.fillRect(0, 0, W, H);
+      octx.drawImage(canvas, 0, 0);
+      link.href = offscreen.toDataURL('image/jpeg', 0.95);
+    } else {
+      link.href = canvas.toDataURL('image/png');
+    }
+
+    link.click();
+    animating = wasAnimating;
+    if (animating) drawFrame();
+  }, 100);
+}
+
+// Copy text function
+function copyText(id, btn) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = 'Copiado';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = orig;
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+</body>
+</html>
