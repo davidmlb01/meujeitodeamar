@@ -22,7 +22,11 @@ export default function Resultado() {
       return
     }
     if (window.fbq) {
-      window.fbq('track', 'ViewContent', { content_name: `resultado_${estilo}` })
+      window.fbq('track', 'ViewContent', {
+        content_name: `resultado_${estilo}`,
+        currency: 'BRL',
+        value: 37.00,
+      })
     }
   }, [estilo, navigate])
 

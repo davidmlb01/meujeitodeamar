@@ -46,7 +46,12 @@ export default function QuizB() {
     }
   }, [screen, currentIndex, answers])
 
-  const handleStart = () => setScreen('question')
+  const handleStart = () => {
+    if (window.fbq) {
+      window.fbq('trackCustom', 'quiz_start')
+    }
+    setScreen('question')
+  }
 
   const handleAnswer = useCallback((optionId) => {
     if (selecting) return
@@ -64,6 +69,9 @@ export default function QuizB() {
         // Navega após delay da tela de transição
         setTimeout(() => {
           const estilo = calcularEstilo(newAnswers)
+          if (window.fbq) {
+            window.fbq('trackCustom', 'quiz_complete')
+          }
           navigate(`/resultado/${estilo}`)
         }, TRANSITION.delay)
       } else {
