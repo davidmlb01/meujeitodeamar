@@ -174,7 +174,7 @@ async def health():
 @app.post("/webhook")
 async def webhook(request: Request):
     if WEBHOOK_SECRET:
-        token = request.headers.get("x-webhook-token", "")
+        token = request.headers.get("x-webhook-token", "") or request.query_params.get("token", "")
         if token != WEBHOOK_SECRET:
             raise HTTPException(status_code=403, detail="Forbidden")
 
