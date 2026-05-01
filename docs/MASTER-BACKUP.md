@@ -409,6 +409,13 @@ Todos os textos estão em `docs/copy/`:
 - [x] Pixel Meta instalado + 3 eventos ativos (PageView, ViewContent, InitiateCheckout) (2026-04-26)
 - [x] Públicos Meta criados: Visitantes 180d, ViewContent 180d, Engajamento IG 365d, Lookalike 1% BR (2026-04-26)
 - [x] Página /resultado redesenhada — Hormozi framework completo (AHA break, bridges, value stack, CTA) (2026-04-27)
+- [x] Auditoria RADAR completa — diagnóstico funil + 3 problemas identificados (budget, pixel, /resultado) (2026-05-01)
+- [x] Pixel corrigido: ViewContent com value:37 + currency:BRL, quiz_start e quiz_complete adicionados (2026-05-01)
+- [x] Sequência completa de pixel confirmada com Pixel Helper em produção (2026-05-01)
+- [x] Pixel Kiwify verificado nos 4 produtos — ID 1636955567513577 correto em todos (2026-05-01)
+- [x] 56 anúncios pausados — 3 ativos: [ADS2] Cópia, [ADS1] Cópia, [ADS2] Cópia Cópia (2026-05-01)
+- [x] Grand Slam Offer /resultado — Hormozi Offers: estrutura completa, garantia proprietária, value stack (2026-05-01)
+- [x] Copy /resultado estilo Ansioso — Hormozi Copy: 7 seções prontas para implementar (2026-05-01)
 - [~] Criar TikTok (perfil + link na bio: bit.ly/meujeito_deamar)
 - [~] Criar YouTube (canal + link na descrição: bit.ly/meujeito_yt)
 
@@ -429,6 +436,9 @@ Todos os textos estão em `docs/copy/`:
 - [x] Instalar código do Pixel no `index.html` do site (2026-04-26)
 - [x] Configurar eventos: PageView + ViewContent (/resultado) + InitiateCheckout (botão compra) (2026-04-26)
 - [x] Purchase configurado no Kiwify para todos os produtos (pix + boleto) (2026-04-26)
+- [x] ViewContent corrigido: agora passa value:37 e currency:BRL (2026-05-01)
+- [x] quiz_start e quiz_complete adicionados ao QuizB.jsx (2026-05-01)
+- [x] Anomalia InitiateCheckout > ViewContent resolvida (2026-05-01)
 
 ### Conta de anúncios MJDA
 - [ ] Estruturar colunas personalizadas (CTR, CPM, CPC, Resultado, Custo por resultado, Valor gasto)
@@ -437,6 +447,13 @@ Todos os textos estão em `docs/copy/`:
 - [x] Criar público personalizado: ViewContent — 180d (2026-04-26)
 - [x] Criar público engajamento Instagram — 365d (2026-04-26)
 - [x] Criar público lookalike 1% Brasil baseado nos visitantes (2026-04-26)
+
+### Tráfego pago — próximos passos (pós auditoria 2026-05-01)
+- [ ] Criar Campanha 1 no Meta: Objetivo Vendas, CBO R$100/dia, Conjunto A Broad 18-45 + Conjunto B Interesses relacionamentos, 3 anúncios por conjunto
+- [ ] Criar Campanha 2 (só após semana 1 com ROAS > 2.0): Lookalike 1% + 2-5% compradores Kiwify
+- [ ] Implementar nova estrutura da /resultado (8 blocos Hormozi — copy Ansioso pronto, aguardando os outros 3 estilos)
+- [ ] Gerar copy da /resultado para estilos Distante, Seguro e Confuso
+- [ ] Coletar 2-3 depoimentos reais para prova social na /resultado
 
 ### Seed launch
 - [ ] Contatar 20 pessoas da rede pessoal → 10 primeiros pagantes
