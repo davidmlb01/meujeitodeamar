@@ -241,6 +241,8 @@ Output: `leads_sem_site_YYYYMMDD_HHMM.xlsx` no Desktop.
 - **2026-04-12:** System-prompt v2.0 reescrito (docs/easysite/bot/system-prompt.md). Mudancas principais: abertura com pitch de 3 mensagens antes de qualquer pergunta, reconhecimento da mensagem padrao Meta Ads como gatilho de lead quente, deteccao de idioma do cliente, abandono do loop de qualificacao quando cliente fala com entusiasmo por 2+ mensagens. Aguardando deploy na VPS (scp + pm2 restart).
 - **2026-04-12:** 6 criativos P12 v2 desenvolvidos (docs/easysite/social/criativos-p12-v2.html). Angulos: preco, velocidade, FOMO, nicho salao, garantia, prova social. Copy Meta Ads integrado em cada card com botao copiar. CTA padrao: "Clique e receba sua proposta em 2 minutos".
 - **2026-04-12:** Padrao de entrega de conteudo definido: todo criativo ou post always-on entregue em HTML com preview + bloco copy copiavel (texto primario, titulo, descricao). Vale para todos os projetos.
+- **2026-05-01:** Auditoria de segurança completa (repositorio estava publico). Acoes executadas: chave OpenAI revogada e substituida, token Telegram revogado e substituido, numero DAVID_PHONE removido do codigo (era fallback hardcoded), webhook autenticado via header x-webhook-token (WEBHOOK_SECRET), endpoints /api/lead/* autenticados via header x-api-key (LEADS_API_KEY), bloco DEBUG que logava mensagens de clientes removido do main.py, hook Stop auto-push desabilitado no .claude/settings.json. Secrets gerados e adicionados no .env da VPS. Bot reiniciado com --update-env e confirmado online.
+- **2026-05-01:** Pendente: configurar header x-webhook-token na Evolution API (painel 77.37.69.60:8080) para webhooks continuarem funcionando com nova autenticacao. Verificar RLS tabela leads no Supabase Destaka.
 
 ---
 

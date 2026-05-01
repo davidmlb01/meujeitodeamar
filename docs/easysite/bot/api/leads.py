@@ -1,8 +1,20 @@
 import logging
+import os
 from typing import Optional
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends, HTTPException, Security
+from fastapi.security.api_key import APIKeyHeader
 from pydantic import BaseModel
+
+LEADS_API_KEY = os.getenv("LEADS_API_KEY")
+api_key_header = APIKeyHeader(name="x-api-key", auto_error=False)
+
+
+def require_api_key(key: str = Security(api_key_header)):
+    if not LEADS_API_KEY:
+        return
+    if key != LEADS_API_KEY:
+        raise HTTPException(status_code=403, detail="Forbidden")
 
 from db.queries import create_lead_external, save_message, update_last_bot_message
 from claude_client import get_response
@@ -37,7 +49,7 @@ def _trigger_initial_message(lead: dict):
 
 
 @router.post("/landing")
-async def create_landing_lead(payload: LandingPageLead):
+async def create_landing_lead(payload: LandingPageLead, _=Depends(require_api_key)):
     lead = create_lead_external(
         phone=payload.phone,
         name=payload.name,
@@ -49,7 +61,7 @@ async def create_landing_lead(payload: LandingPageLead):
 
 
 @router.post("/prospecting")
-async def create_prospecting_lead(payload: ProspectingLead):
+async def create_prospecting_lead(payload: ProspectingLead, _=Depends(require_api_key)):
     lead = create_lead_external(
         phone=payload.phone,
         name="",
@@ -63,7 +75,7 @@ async def create_prospecting_lead(payload: ProspectingLead):
 
 
 @router.post("/prospecting/batch")
-async def create_prospecting_batch(payload: list[ProspectingLead]):
+async def create_prospecting_batch(payload: list[ProspectingLead], _=Depends(require_api_key)):
     results = []
     for item in payload:
         lead = create_lead_external(

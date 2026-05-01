@@ -3,7 +3,7 @@ import logging
 from contextlib import asynccontextmanager
 from datetime import datetime
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, HTTPException
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -27,6 +27,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 DAVID_PHONE = os.getenv("DAVID_PHONE", "")
+WEBHOOK_SECRET = os.getenv("WEBHOOK_SECRET")
 STATUSES_NO_REPLY = {"pix_pending", "closed_lost", "pix_confirmed"}
 
 
@@ -172,6 +173,11 @@ async def health():
 
 @app.post("/webhook")
 async def webhook(request: Request):
+    if WEBHOOK_SECRET:
+        token = request.headers.get("x-webhook-token", "")
+        if token != WEBHOOK_SECRET:
+            raise HTTPException(status_code=403, detail="Forbidden")
+
     try:
         data = await request.json()
     except Exception:
@@ -179,13 +185,6 @@ async def webhook(request: Request):
 
     if data.get("event") != "messages.upsert":
         return {"status": "ignored_event"}
-
-    # DEBUG temporário: loga payload completo para diagnóstico @lid
-    try:
-        import json as _json
-        logger.info(f"[DEBUG] payload: {_json.dumps(data.get('data', {}), ensure_ascii=False)[:500]}")
-    except Exception:
-        pass
 
     if is_from_me(data):
         return {"status": "ignored_self"}

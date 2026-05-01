@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 EVOLUTION_API_URL = os.getenv("EVOLUTION_API_URL", "http://localhost:8080")
 EVOLUTION_API_KEY = os.getenv("EVOLUTION_API_KEY", "")
 EVOLUTION_INSTANCE = os.getenv("EVOLUTION_INSTANCE", "easysite")
-DAVID_PHONE = os.getenv("DAVID_PHONE", "5511989188188")
+DAVID_PHONE = os.getenv("DAVID_PHONE")
 
 
 def _send_raw(number: str, text: str) -> None:
