@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resultado Confuso · meujeitodeamar.com.br</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:ital,wght@0,200;0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #E8D9C1;
+      --bg-warm:  #DFD0B7;
+      --dark:     #4B1D3F;
+      --cta:      #4B1D3F;
+      --text:     #1B1B11;
+      --muted:    #A89080;
+      --subtle:   #D4C5AE;
+      --sand:     #D4B5B0;
+      --white:    #F5EEE4;
+
+      --estilo:       #D4B5B0;
+      --estilo-light: #F2E8E6;
+      --estilo-dark:  #4B1D3F;
+
+      --font-display: 'Cormorant Garamond', serif;
+      --font-body:    'Jost', sans-serif;
+
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-full: 100px;
+
+      --shadow-sm: 0 1px 3px rgba(34,26,16,0.08);
+      --shadow-md: 0 4px 16px rgba(34,26,16,0.10);
+      --shadow-lg: 0 12px 40px rgba(34,26,16,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .carrying { position: fixed; inset: 0; background: var(--dark); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; animation: carrying-out 600ms 4s ease-out forwards; }
+    @keyframes carrying-out { to { opacity: 0; pointer-events: none; } }
+    .carrying__label { font-family: var(--font-body); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+    .carrying__headline { font-family: var(--font-display); font-size: clamp(28px, 5vw, 44px); font-weight: 300; font-style: italic; color: var(--bg); text-align: center; line-height: 1.2; max-width: 480px; padding: 0 24px; }
+    .carrying__bar { width: 200px; height: 2px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+    .carrying__fill { height: 100%; width: 0; background: var(--sand); border-radius: 2px; animation: carrying-fill 3.5s ease-out forwards; }
+    @keyframes carrying-fill { to { width: 100%; } }
+    .carrying__social { display: flex; flex-direction: column; align-items: center; gap: 12px; animation: fade-in 800ms 1.5s both; }
+    .carrying__social-count { font-family: var(--font-display); font-size: 20px; font-weight: 500; color: var(--sand); }
+    .carrying__social-text { font-size: 12px; color: rgba(255,255,255,0.35); letter-spacing: 0.05em; }
+    @keyframes fade-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    .reveal { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 80px 24px 60px; max-width: 680px; margin: 0 auto; animation: fade-in 800ms 4.2s both; }
+    .reveal__headline { font-family: var(--font-display); font-size: clamp(38px, 8vw, 60px); font-weight: 400; line-height: 1.08; color: var(--dark); margin-bottom: 32px; }
+    .reveal__headline em { font-style: italic; color: var(--estilo); }
+    .reveal__body { font-family: var(--font-body); font-size: 17px; line-height: 1.75; color: var(--text); font-weight: 300; max-width: 560px; }
+    .reveal__body p { margin-bottom: 20px; }
+    .reveal__body p:last-child { margin-bottom: 0; }
+    .reveal__scroll-hint { margin-top: 60px; display: flex; flex-direction: column; align-items: center; gap: 8px; animation: bounce 2s infinite; }
+    .reveal__scroll-text { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+    .reveal__scroll-arrow { font-size: 20px; color: var(--muted); }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+
+    .gap-section { background: var(--dark); padding: 80px 24px; }
+    .gap-section__inner { max-width: 680px; margin: 0 auto; }
+    .gap-section__headline { font-family: var(--font-display); font-size: clamp(28px, 5vw, 40px); font-weight: 300; font-style: italic; color: var(--bg); line-height: 1.25; margin-bottom: 40px; }
+    .gap-section__questions { display: flex; flex-direction: column; gap: 20px; margin-bottom: 48px; }
+    .gap-section__question { font-family: var(--font-body); font-size: 16px; line-height: 1.65; color: rgba(255,255,255,0.75); font-weight: 300; padding-left: 20px; border-left: 2px solid rgba(255,255,255,0.15); }
+    .gap-section__answer { font-family: var(--font-display); font-size: clamp(20px, 3.5vw, 26px); font-weight: 400; color: var(--sand); line-height: 1.45; }
+
+    .product-reveal { padding: 80px 24px; background: var(--bg); }
+    .product-reveal__inner { max-width: 600px; margin: 0 auto; text-align: center; }
+    .product-reveal__name { font-family: var(--font-display); font-size: clamp(28px, 5vw, 42px); font-weight: 400; color: var(--dark); line-height: 1.15; margin-bottom: 32px; }
+    .product-reveal__name em { font-style: italic; color: var(--estilo); }
+    .product-reveal__desc { font-family: var(--font-body); font-size: 16px; line-height: 1.8; color: var(--text); font-weight: 300; text-align: left; max-width: 540px; margin: 0 auto; }
+    .product-reveal__desc p { margin-bottom: 20px; }
+    .product-reveal__desc p:last-child { margin-bottom: 0; }
+
+    .locked-section { padding: 80px 24px; background: var(--bg-warm); }
+    .locked-section__inner { max-width: 680px; margin: 0 auto; }
+    .locked-section__title { font-family: var(--font-display); font-size: clamp(24px, 4vw, 36px); font-weight: 400; font-style: italic; color: var(--dark); margin-bottom: 12px; }
+    .locked-section__sub { font-size: 14px; color: var(--muted); margin-bottom: 40px; }
+    .locked-cards { display: flex; flex-direction: column; gap: 16px; }
+    .locked-card { background: var(--white); border: 1px solid var(--subtle); border-radius: var(--radius-lg); padding: 28px; display: flex; gap: 20px; align-items: flex-start; position: relative; overflow: hidden; }
+    .locked-card--blurred .locked-card__content { filter: blur(4px); user-select: none; }
+    .locked-card--blurred::after { content: '🔒'; position: absolute; top: 50%; right: 28px; transform: translateY(-50%); font-size: 20px; opacity: 0.4; }
+    .locked-card__number { font-family: var(--font-display); font-size: 32px; font-weight: 300; font-style: italic; color: var(--dark); opacity: 0.25; flex-shrink: 0; width: 32px; line-height: 1; }
+    .locked-card__topic { font-family: var(--font-body); font-size: 15px; font-weight: 400; color: var(--dark); margin-bottom: 6px; }
+    .locked-card__hint { font-family: var(--font-body); font-size: 13px; line-height: 1.6; color: var(--muted); font-weight: 300; }
+
+    .social-proof { padding: 64px 24px; background: var(--bg); }
+    .social-proof__inner { max-width: 680px; margin: 0 auto; }
+    .social-proof__label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-align: center; margin-bottom: 32px; }
+    .social-proof__cards { display: flex; flex-direction: column; gap: 16px; }
+    .social-proof__card { background: var(--white); border: 1px solid var(--subtle); border-radius: var(--radius-lg); padding: 28px; }
+    .social-proof__quote { font-family: var(--font-display); font-size: 20px; font-weight: 400; font-style: italic; color: var(--dark); line-height: 1.5; margin-bottom: 16px; }
+    .social-proof__meta { display: flex; align-items: center; gap: 12px; }
+    .social-proof__avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--sand); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 16px; font-weight: 500; color: var(--dark); }
+    .social-proof__name { font-size: 13px; font-weight: 400; color: var(--text); }
+    .social-proof__type { font-size: 11px; color: var(--muted); letter-spacing: 0.05em; }
+
+    .offer-section { background: var(--dark); padding: 80px 24px 60px; }
+    .offer-section__inner { max-width: 600px; margin: 0 auto; }
+    .offer-section__headline { font-family: var(--font-display); font-size: clamp(28px, 5vw, 40px); font-weight: 300; color: var(--bg); text-align: center; line-height: 1.2; margin-bottom: 48px; }
+    .offer-section__headline em { font-style: italic; color: var(--sand); }
+    .offer-total { text-align: center; margin-bottom: 40px; padding: 32px 0; border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .offer-total__old { font-family: var(--font-body); font-size: 14px; color: rgba(255,255,255,0.5); text-decoration: line-through; margin-bottom: 8px; }
+    .offer-total__new { font-family: var(--font-display); font-size: clamp(48px, 10vw, 64px); font-weight: 500; color: var(--bg); line-height: 1; margin-bottom: 8px; }
+    .offer-total__sub { font-size: 13px; color: rgba(255,255,255,0.65); font-weight: 300; }
+    .offer-cta { display: flex; flex-direction: column; align-items: center; gap: 20px; margin-bottom: 32px; }
+    .offer-cta__button { display: block; width: 100%; padding: 20px 32px; background: var(--bg); color: var(--dark); border: none; border-radius: var(--radius-full); font-family: var(--font-body); font-size: 16px; font-weight: 400; letter-spacing: 0.03em; cursor: pointer; text-align: center; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 4px 24px rgba(232,217,193,0.25); }
+    .offer-cta__button:hover { transform: translateY(-1px); box-shadow: 0 8px 32px rgba(232,217,193,0.35); }
+    .offer-cta__urgency { font-family: var(--font-display); font-size: 15px; font-style: italic; color: rgba(255,255,255,0.7); text-align: center; line-height: 1.6; max-width: 400px; }
+    .guarantee { display: flex; gap: 16px; align-items: flex-start; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-md); padding: 24px; margin-bottom: 32px; }
+    .guarantee__icon { font-size: 28px; flex-shrink: 0; }
+    .guarantee__title { font-family: var(--font-display); font-size: 18px; font-weight: 500; color: var(--bg); }
+    .guarantee__text { font-size: 13px; color: rgba(255,255,255,0.65); font-weight: 300; line-height: 1.6; }
+    .science-badge { text-align: center; padding: 24px; border-top: 1px solid rgba(255,255,255,0.06); }
+    .science-badge__text { font-size: 12px; color: rgba(255,255,255,0.55); font-weight: 300; line-height: 1.7; max-width: 480px; margin: 0 auto; }
+
+    .faq-section { padding: 64px 24px; background: var(--bg); }
+    .faq-section__inner { max-width: 600px; margin: 0 auto; }
+    .faq-section__title { font-family: var(--font-display); font-size: 28px; font-weight: 400; font-style: italic; color: var(--dark); text-align: center; margin-bottom: 32px; }
+    .faq-items { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { background: var(--white); border: 1px solid var(--subtle); border-radius: var(--radius-md); overflow: hidden; }
+    .faq-item__question { padding: 20px 24px; font-size: 15px; font-weight: 400; color: var(--dark); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    .faq-item__question::after { content: '+'; font-size: 20px; color: var(--muted); flex-shrink: 0; }
+    .faq-item__answer { padding: 0 24px 20px; font-size: 14px; line-height: 1.7; color: var(--muted); font-weight: 300; }
+
+    .final-cta { padding: 64px 24px 80px; background: var(--bg-warm); text-align: center; }
+    .final-cta__inner { max-width: 480px; margin: 0 auto; }
+    .final-cta__headline { font-family: var(--font-display); font-size: clamp(24px, 4vw, 32px); font-weight: 300; font-style: italic; color: var(--dark); line-height: 1.3; margin-bottom: 24px; }
+    .final-cta__button { display: inline-block; padding: 18px 40px; background: var(--cta); color: var(--bg); border: none; border-radius: var(--radius-full); font-family: var(--font-body); font-size: 15px; font-weight: 400; letter-spacing: 0.03em; cursor: pointer; text-decoration: none; margin-bottom: 16px; }
+    .final-cta__meta { font-size: 12px; color: var(--muted); font-weight: 300; }
+
+    @media (max-width: 600px) {
+      .reveal { padding: 60px 20px 40px; }
+      .gap-section, .locked-section, .social-proof, .offer-section, .faq-section, .final-cta { padding-left: 20px; padding-right: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="carrying" id="carrying">
+  <div class="carrying__label">Analisando suas respostas</div>
+  <div class="carrying__headline">Cada resposta conta uma parte da sua história.</div>
+  <div class="carrying__bar"><div class="carrying__fill"></div></div>
+  <div class="carrying__social">
+    <div class="carrying__social-count">127.482</div>
+    <div class="carrying__social-text">pessoas já descobriram o seu jeito de amar</div>
+  </div>
+</div>
+
+<section class="reveal">
+  <h1 class="reveal__headline">
+    Seu jeito de amar<br>é <em style="font-size: 1.15em; display: inline-block; margin-top: 4px;">Confuso.</em>
+  </h1>
+
+  <div class="reveal__body">
+    <p>E isso explica quase tudo que já deu errado nos seus relacionamentos.</p>
+    <p>Você não é "complicada" ou "instável", muito menos "alguém que não sabe o que quer". Muito antes do seu primeiro relacionamento, você aprendeu que amor e medo podem ser a mesma coisa.</p>
+  </div>
+
+  <div class="reveal__behaviors" style="margin-top: 40px; border-left: 2px solid var(--sand); padding-left: 24px; display: flex; flex-direction: column; gap: 12px;">
+    <p style="font-family: var(--font-body); font-size: 15px; line-height: 1.7; color: var(--text); font-weight: 300;">Você quer intimidade. Mas quando o outro se aproxima de verdade, algo dentro de você quer fugir.</p>
+    <p style="font-family: var(--font-body); font-size: 15px; line-height: 1.7; color: var(--text); font-weight: 300;">Você sabota coisas boas. Não porque não quer. Porque uma parte sua não acredita que pode dar certo.</p>
+    <p style="font-family: var(--font-body); font-size: 15px; line-height: 1.7; color: var(--text); font-weight: 300;">A intensidade te atrai. Mas quando o outro corresponde com a mesma intensidade, vira pânico.</p>
+  </div>
+
+  <div class="reveal__scroll-hint">
+    <span class="reveal__scroll-text" style="font-size: 13px; font-weight: 400; color: var(--dark); opacity: 0.6;">Seu resultado vai muito além de um nome</span>
+    <span class="reveal__scroll-arrow">↓</span>
+  </div>
+</section>
+
+<section class="gap-section">
+  <div class="gap-section__inner">
+    <h2 class="gap-section__headline">É hora de conhecer a parte onde a maioria nunca chega.</h2>
+
+    <div class="gap-section__questions">
+      <p class="gap-section__question">Por que você deseja a pessoa com tudo, mas quando ela está ali de verdade, o impulso é sabotar?</p>
+      <p class="gap-section__question">Por que a intensidade te faz sentir viva e ao mesmo tempo te paralisa de medo?</p>
+      <p class="gap-section__question">Por que você já destruiu algo bom e só percebeu depois que era bom?</p>
+    </div>
+
+    <p class="gap-section__answer">Essas respostas existem. E elas estão todas no seu Mapa.</p>
+  </div>
+</section>
+
+<section class="product-reveal">
+  <div class="product-reveal__inner">
+    <h2 class="product-reveal__name" style="font-size: clamp(32px, 6vw, 48px); margin-bottom: 40px;">O Mapa do<br><em style="font-size: 1.2em; letter-spacing: -0.01em;">Coração Confuso</em></h2>
+
+    <div class="product-reveal__desc">
+      <p>Cada uma dessas perguntas tem uma resposta clara. E todas elas estão aqui.</p>
+      <p>Você vai entender de onde veio o seu padrão. Por que ele oscila. E o que acontece por dentro toda vez que querer e ter medo aparecem ao mesmo tempo.</p>
+      <p>Não é autoajuda. Não são dicas genéricas. É a sua história, explicada pela ciência dos vínculos afetivos. Baseado em uma das pesquisas mais importantes da psicologia sobre como os seres humanos aprendem a amar.</p>
+    </div>
+
+    <p style="font-size: 12px; color: var(--muted); text-align: center; margin-top: 32px; letter-spacing: 0.05em;">15 páginas · 15 minutos de leitura · Entrega imediata</p>
+  </div>
+</section>
+
+<section class="locked-section">
+  <div class="locked-section__inner">
+    <h2 class="locked-section__title">O que está dentro do seu Mapa</h2>
+    <p class="locked-section__sub" style="font-size: 15px; color: var(--text); opacity: 0.6; font-weight: 300;">Linguagem humana, sem jargão clínico.</p>
+
+    <div class="locked-cards">
+      <div class="locked-card">
+        <span class="locked-card__number">1</span>
+        <div class="locked-card__content">
+          <p class="locked-card__topic">A origem exata do seu padrão</p>
+          <p class="locked-card__hint">De onde veio. Quando se formou. Por que faz todo o sentido dado o que você viveu.</p>
+        </div>
+      </div>
+
+      <div class="locked-card">
+        <span class="locked-card__number">2</span>
+        <div class="locked-card__content">
+          <p class="locked-card__topic">O que acontece no segundo em que querer e ter medo colidem</p>
+          <p class="locked-card__hint">A pessoa se aproxima, tudo dentro de você quer e foge ao mesmo tempo. Esse mecanismo tem nome.</p>
+        </div>
+      </div>
+
+      <div class="locked-card locked-card--blurred">
+        <span class="locked-card__number">3</span>
+        <div class="locked-card__content">
+          <p class="locked-card__topic">Seus pontos cegos nos relacionamentos</p>
+          <p class="locked-card__hint">O que você faz achando que é proteção, mas é sabotagem. E por que esse ponto é invisível de dentro.</p>
+        </div>
+      </div>
+
+      <div class="locked-card locked-card--blurred">
+        <span class="locked-card__number">4</span>
+        <div class="locked-card__content">
+          <p class="locked-card__topic">O caminho para sair do padrão</p>
+          <p class="locked-card__hint">Não começa por se controlar. Começa por entender o que ativa o curto-circuito.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="social-proof">
+  <div class="social-proof__inner">
+    <p class="social-proof__label">Quem já leu</p>
+
+    <div class="social-proof__cards">
+      <div class="social-proof__card">
+        <p class="social-proof__quote">"Eu achava que era instável. Agora sei que meu corpo aprendeu a querer e ter medo ao mesmo tempo."</p>
+        <div class="social-proof__meta">
+          <div class="social-proof__avatar">A</div>
+          <div>
+            <p class="social-proof__name">Ana, 28</p>
+            <p class="social-proof__type">Coração Confuso</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="social-proof__card">
+        <p class="social-proof__quote">"15 minutos de leitura e eu finalmente entendi por que saboto tudo que é bom."</p>
+        <div class="social-proof__meta">
+          <div class="social-proof__avatar">J</div>
+          <div>
+            <p class="social-proof__name">Jéssica, 24</p>
+            <p class="social-proof__type">Coração Confuso</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="social-proof__card">
+        <p class="social-proof__quote">"Mostrei pro meu parceiro. Ele parou de levar pro pessoal quando eu travo."</p>
+        <div class="social-proof__meta">
+          <div class="social-proof__avatar">M</div>
+          <div>
+            <p class="social-proof__name">Mariana, 31</p>
+            <p class="social-proof__type">Coração Confuso</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="social-proof__card">
+        <p class="social-proof__quote">"Não sumiu o medo. Mas agora eu reconheço quando ele aparece. E isso já mudou as minhas reações."</p>
+        <div class="social-proof__meta">
+          <div class="social-proof__avatar">C</div>
+          <div>
+            <p class="social-proof__name">Camila, 26</p>
+            <p class="social-proof__type">Coração Confuso</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="offer-section">
+  <div class="offer-section__inner">
+    <h2 class="offer-section__headline">Você já sabe o nome.<br>Agora entenda <em>o motivo.</em></h2>
+
+    <div class="offer-total">
+      <p class="offer-total__old">De R$147</p>
+      <p class="offer-total__new">R$37</p>
+      <p class="offer-total__sub">Mapa do Coração Confuso · Entrega imediata</p>
+    </div>
+
+    <div class="guarantee">
+      <span class="guarantee__icon">🛡</span>
+      <div class="guarantee__content">
+        <span class="guarantee__title">Garantia da Honestidade Afetiva</span>
+        <span class="guarantee__text">Se o Mapa não fizer sentido para você, devolvemos tudo em 7 dias. Sem perguntas, sem burocracia. Você não está arriscando nada.</span>
+      </div>
+    </div>
+
+    <div class="offer-cta">
+      <a href="#" class="offer-cta__button">Quero o meu Mapa por R$37</a>
+      <p class="offer-cta__urgency">Você já tem o nome. O Mapa mostra tudo que está por trás dele.</p>
+    </div>
+
+    <div class="science-badge">
+      <p class="science-badge__text">Baseado em uma das pesquisas mais citadas da psicologia sobre como os seres humanos formam vínculos. Mais de 40 anos de estudos replicados em dezenas de países.</p>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section">
+  <div class="faq-section__inner">
+    <h2 class="faq-section__title">Perguntas frequentes</h2>
+
+    <div class="faq-items">
+      <div class="faq-item">
+        <div class="faq-item__question">Isso é confiável? Em que se baseia?</div>
+        <div class="faq-item__answer">O Mapa é baseado em um dos estudos mais respeitados da psicologia sobre como os seres humanos formam vínculos. Não é autoajuda. Não é horóscopo. É ciência traduzida para linguagem humana.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-item__question">Como eu recebo o Mapa?</div>
+        <div class="faq-item__answer">Entrega imediata por email. Em menos de 5 minutos você recebe o seu Mapa completo em PDF. Acesso permanente, leia quantas vezes quiser.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-item__question">E se eu não gostar?</div>
+        <div class="faq-item__answer">Garantia de 7 dias. Se o Mapa não fizer sentido para você, devolvemos 100% do valor. Sem perguntas.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="final-cta__inner">
+    <h2 class="final-cta__headline">Você não é complicada. Só nunca te explicaram o que acontece por dentro.</h2>
+    <a href="#" class="final-cta__button">Desbloquear o Mapa do Coração Confuso</a>
+    <p class="final-cta__meta">R$37 · Entrega imediata · Garantia de 7 dias</p>
+  </div>
+</section>
+
+</body>
+</html>
