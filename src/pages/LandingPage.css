@@ -57,6 +57,15 @@
   color: var(--muted);
 }
 
+.landing__social-proof {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: 500;
+  color: var(--dark);
+  opacity: 0.6;
+  margin-top: var(--space-3);
+}
+
 .landing__science {
   font-family: var(--font-body);
   font-size: var(--text-small);
@@ -64,6 +73,33 @@
   color: var(--muted);
   font-style: italic;
   margin-top: var(--space-2);
+}
+
+/* ── Animações de entrada ── */
+@keyframes landing-reveal {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .landing__headline {
+    animation: landing-reveal 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .landing__sub {
+    animation: landing-reveal 600ms 100ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .landing__cta {
+    animation: landing-reveal 600ms 200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .landing__under {
+    animation: landing-reveal 500ms 300ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .landing__social-proof {
+    animation: landing-reveal 500ms 350ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .landing__science {
+    animation: landing-reveal 500ms 400ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
 }
 
 /* ── Steps ── */
@@ -99,7 +135,7 @@
   align-items: flex-start;
   padding: 12px 14px;
   background: var(--bg-warm);
-  border-radius: var(--radius);
+  border-radius: var(--radius-card);
   border: 1px solid var(--subtle);
 }
 

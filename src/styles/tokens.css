@@ -29,6 +29,7 @@
   /* ── Border radius ── */
   --radius-pill:  100px;
   --radius-card:  12px;
+  --radius-lg:    20px;
   --radius-input: 8px;
 
   /* ── Touch targets (acessibilidade) ── */
