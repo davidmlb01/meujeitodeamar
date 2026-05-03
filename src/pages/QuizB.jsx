@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ProgressBar, AnswerCard } from '../components'
-import { QUESTIONS, TRANSITION } from '../data/questions'
+import { QUESTIONS } from '../data/questions'
 import { calcularEstilo } from '../data/scoring'
 import './QuizB.css'
 
@@ -34,17 +34,14 @@ export default function QuizB() {
   const navigate = useNavigate()
   const saved = loadState()
 
-  const [screen, setScreen] = useState(saved?.started ? 'question' : 'question')
   const [currentIndex, setCurrentIndex] = useState(saved?.currentIndex ?? 0)
   const [answers, setAnswers] = useState(saved?.answers ?? [])
   const [selecting, setSelecting] = useState(false) // bloqueia duplo clique
 
   // Salva estado sempre que muda
   useEffect(() => {
-    if (screen === 'question') {
-      saveState({ started: true, currentIndex, answers })
-    }
-  }, [screen, currentIndex, answers])
+    saveState({ started: true, currentIndex, answers })
+  }, [currentIndex, answers])
 
   // quiz_start no mount (sem tela de intro)
   useEffect(() => {
@@ -63,17 +60,14 @@ export default function QuizB() {
     setTimeout(() => {
       if (newAnswers.length === QUESTIONS.length) {
         setAnswers(newAnswers)
-        setScreen('transition')
         clearState()
 
-        // Navega após delay da tela de transição
-        setTimeout(() => {
-          const estilo = calcularEstilo(newAnswers)
-          if (window.fbq) {
-            window.fbq('trackCustom', 'quiz_complete')
-          }
-          navigate(`/resultado/${estilo}`)
-        }, TRANSITION.delay)
+        // Navega direto (carrying screen fica no Resultado)
+        const estilo = calcularEstilo(newAnswers)
+        if (window.fbq) {
+          window.fbq('trackCustom', 'quiz_complete')
+        }
+        navigate(`/resultado/${estilo}`)
       } else {
         setAnswers(newAnswers)
         setCurrentIndex(currentIndex + 1)
@@ -84,24 +78,6 @@ export default function QuizB() {
 
   const question = QUESTIONS[currentIndex]
   const progress = Math.round((currentIndex / QUESTIONS.length) * 100)
-
-  if (screen === 'transition') {
-    return (
-      <div className="quiz">
-        <div className="quiz__body">
-          <div className="quiz__transition">
-            <h1 className="quiz__transition-title">{TRANSITION.title}</h1>
-            <p className="quiz__transition-body">{TRANSITION.body}</p>
-            <div className="quiz__transition-dots" aria-hidden="true">
-              <span className="quiz__transition-dot" />
-              <span className="quiz__transition-dot" />
-              <span className="quiz__transition-dot" />
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
 
   return (
     <div className="quiz">
