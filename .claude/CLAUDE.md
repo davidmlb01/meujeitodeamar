@@ -420,4 +420,90 @@ Se erro encontrado: retorna ao executor com lista específica de problemas. Davi
 - O MASTER-BACKUP.md do projeto é o espelho desse arquivo de memória
 
 ---
+
+## Protocolo de Memoria Obsidian (Sistema Hibrido L1+L2)
+
+**Vault (L2, fonte de verdade):**
+`/Users/davidlevy/Library/Mobile Documents/iCloud~md~obsidian/Documents/Joker's Mind/`
+
+**Cache rapido (L1):**
+`~/.claude/projects/-Users-davidlevy-Desktop-PJ-BIG-HEAD/memory/`
+
+**Regra fundamental:** L2 prevalece em caso de divergencia. iCloud = backup automatico.
+
+### Estrutura do vault
+
+```
+Joker's Mind/
+├── _templates/        (tpl-project, tpl-feedback, tpl-user, tpl-reference)
+├── _bases/            (all-memories.base, active-projects.base, feedback-index.base)
+├── projects/          (freud/, easysite/, gmm/, destaka/, mulambada/, energy-tech/, unlmtd/)
+├── feedback/          (todas as regras permanentes)
+├── user/
+├── reference/
+└── MEMORY-INDEX.md    (indice master com wikilinks)
+```
+
+### Ao CRIAR uma nova memoria
+
+1. Escrever arquivo no vault (L2): `{VAULT}/{tipo}/{nome}.md` com frontmatter padrao
+2. Se e uma nota de projeto, adicionar wikilink na MOC do projeto
+3. Adicionar entrada no `MEMORY-INDEX.md` do vault
+4. Criar espelho simplificado em L1 (`~/.claude/.../memory/`)
+5. Atualizar `MEMORY.md` (L1)
+
+### Ao ATUALIZAR uma memoria existente
+
+1. Editar arquivo no vault (L2), atualizar campo `updated:` no frontmatter
+2. Atualizar espelho em L1 se existir
+
+### Ao INICIAR uma sessao
+
+1. Ler `MEMORY.md` (L1) para indice rapido
+2. Para contexto profundo de projeto especifico: ler MOC do vault (L2) diretamente
+
+### Ao ENCERRAR uma sessao
+
+1. Atualizar `updated:` em todas as notas tocadas no vault (L2)
+2. Sincronizar `MEMORY-INDEX.md` (L2) e `MEMORY.md` (L1)
+
+### Frontmatter padrao por tipo
+
+**Projeto:**
+```yaml
+---
+type: project
+status: active
+created: "YYYY-MM-DD"
+updated: "YYYY-MM-DD"
+tags: [project]
+url: ""
+stack: []
+---
+```
+
+**Feedback:**
+```yaml
+---
+type: feedback
+severity: high
+created: "YYYY-MM-DD"
+updated: "YYYY-MM-DD"
+tags: [feedback]
+applies_to: all
+---
+```
+
+**Reference:**
+```yaml
+---
+type: reference
+created: "YYYY-MM-DD"
+updated: "YYYY-MM-DD"
+tags: [reference]
+category: ""
+---
+```
+
+---
 *Synkra AIOX Claude Code Configuration v2.0*

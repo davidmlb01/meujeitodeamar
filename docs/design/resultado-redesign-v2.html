@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resultado Redesign v2 — meujeitodeamar.com.br</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:ital,wght@0,200;0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #E8D9C1;
+      --bg-warm:  #DFD0B7;
+      --dark:     #4B1D3F;
+      --cta:      #4B1D3F;
+      --text:     #1B1B11;
+      --muted:    #A89080;
+      --subtle:   #D4C5AE;
+      --sand:     #D8A7B1;
+      --white:    #F5EEE4;
+
+      --ansioso:       #D8A7B1;
+      --ansioso-light: #F5E8EC;
+      --ansioso-dark:  #4B1D3F;
+
+      --font-display: 'Cormorant Garamond', serif;
+      --font-body:    'Jost', sans-serif;
+
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-full: 100px;
+
+      --shadow-sm: 0 1px 3px rgba(34,26,16,0.08);
+      --shadow-md: 0 4px 16px rgba(34,26,16,0.10);
+      --shadow-lg: 0 12px 40px rgba(34,26,16,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ══════════════════════════════════════
+       SEÇÃO 0: CARRYING SCREEN
+       ══════════════════════════════════════ */
+    .carrying {
+      position: fixed;
+      inset: 0;
+      background: var(--dark);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      animation: carrying-out 600ms 4s ease-out forwards;
+    }
+
+    @keyframes carrying-out {
+      to { opacity: 0; pointer-events: none; }
+    }
+
+    .carrying__label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .carrying__headline {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--bg);
+      text-align: center;
+      line-height: 1.2;
+      max-width: 480px;
+      padding: 0 24px;
+    }
+
+    .carrying__bar {
+      width: 200px;
+      height: 2px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .carrying__fill {
+      height: 100%;
+      width: 0;
+      background: var(--sand);
+      border-radius: 2px;
+      animation: carrying-fill 3.5s ease-out forwards;
+    }
+
+    @keyframes carrying-fill {
+      to { width: 100%; }
+    }
+
+    .carrying__social {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      animation: fade-in 800ms 1.5s both;
+    }
+
+    .carrying__social-count {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--sand);
+    }
+
+    .carrying__social-text {
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.05em;
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ══════════════════════════════════════
+       SEÇÃO 1: REVEAL PARCIAL (hero)
+       ══════════════════════════════════════ */
+    .reveal {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 24px 60px;
+      max-width: 680px;
+      margin: 0 auto;
+      animation: fade-in 800ms 4.2s both;
+    }
+
+    .reveal__eyebrow {
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .reveal__headline {
+      font-family: var(--font-display);
+      font-size: clamp(38px, 8vw, 60px);
+      font-weight: 400;
+      line-height: 1.08;
+      color: var(--dark);
+      margin-bottom: 32px;
+    }
+
+    .reveal__headline em {
+      font-style: italic;
+      color: var(--ansioso);
+    }
+
+    .reveal__body {
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--text);
+      font-weight: 300;
+      max-width: 560px;
+    }
+
+    .reveal__body p {
+      margin-bottom: 20px;
+    }
+
+    .reveal__body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .reveal__behaviors {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .reveal__behavior {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 20px 24px;
+      background: var(--white);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--subtle);
+    }
+
+    .reveal__behavior-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .reveal__behavior-text {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text);
+      font-weight: 300;
+    }
+
+    .reveal__scroll-hint {
+      margin-top: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: bounce 2s infinite;
+    }
+
+    .reveal__scroll-text {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .reveal__scroll-arrow {
+      font-size: 20px;
+      color: var(--muted);
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+
+    /* ══════════════════════════════════════
+       SEÇÃO 2: LACUNA ABERTA (open loop)
+       Fundo dark — transição forte
+       ══════════════════════════════════════ */
+    .gap-section {
+      background: var(--dark);
+      padding: 80px 24px;
+    }
+
+    .gap-section__inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .gap-section__eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 24px;
+    }
+
+    .gap-section__headline {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--bg);
+      line-height: 1.25;
+      margin-bottom: 40px;
+    }
+
+    .gap-section__questions {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+
+    .gap-section__question {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.75);
+      font-weight: 300;
+      padding-left: 20px;
+      border-left: 2px solid rgba(255,255,255,0.15);
+    }
+
+    .gap-section__answer {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 3.5vw, 26px);
+      font-weight: 400;
+      color: var(--sand);
+      line-height: 1.45;
+    }
+
+    /* ══════════════════════════════════════
+       SEÇÃO 2B: PRODUCT REVEAL
+       Apresenta o que é a Leitura Completa
+       ══════════════════════════════════════ */
+    .product-reveal {
+      padding: 80px 24px;
+      background: var(--bg);
+    }
+
+    .product-reveal__inner {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .product-reveal__eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .product-reveal__name {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 400;
+      color: var(--dark);
+      line-height: 1.15;
+      margin-bottom: 32px;
+    }
+
+    .product-reveal__name em {
+      font-style: italic;
+      color: var(--ansioso);
+    }
+
+    .product-reveal__desc {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--text);
+      font-weight: 300;
+      text-align: left;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    .product-reveal__desc p {
+      margin-bottom: 20px;
+    }
+
+    .product-reveal__desc p:last-child {
+      margin-bottom: 0;
+    }
+
+    .product-reveal__specs {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid var(--subtle);
+    }
+
+    .product-reveal__spec {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .product-reveal__spec-value {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--dark);
+    }
+
+    .product-reveal__spec-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ══════════════════════════════════════
+       SEÇÃO 3: BLOCOS BLOQUEADOS (locked)
+       ══════════════════════════════════════ */
+    .locked-section {
+      padding: 80px 24px;
+      background: var(--bg-warm);
+    }
+
+    .locked-section__inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .locked-section__title {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+
+    .locked-section__sub {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+
+    .locked-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .locked-card {
+      background: var(--white);
+      border: 1px solid var(--subtle);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .locked-card--blurred {
+      position: relative;
+    }
+
+    .locked-card--blurred .locked-card__content {
+      filter: blur(4px);
+      user-select: none;
+    }
+
+    .locked-card--blurred::after {
+      content: '🔒';
+      position: absolute;
+      top: 50%;
+      right: 28px;
+      transform: translateY(-50%);
+      font-size: 20px;
+      opacity: 0.4;
+    }
+
+    .locked-card__number {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--dark);
+      opacity: 0.25;
+      flex-shrink: 0;
+      width: 32px;
+      line-height: 1;
+    }
+
+    .locked-card__content {
+      flex: 1;
+    }
+
+    .locked-card__topic {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+
+    .locked-card__hint {
+      font-family: var(--font-body);
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    /* ══════════════════════════════════════
+       SEÇÃO 4: PROVA SOCIAL
+       ══════════════════════════════════════ */
+    .social-proof {
+      padding: 64px 24px;
+      background: var(--bg);
+    }
+
+    .social-proof__inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .social-proof__label {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .social-proof__cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .social-proof__card {
+      background: var(--white);
+      border: 1px solid var(--subtle);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+    }
+
+    .social-proof__quote {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--dark);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .social-proof__meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .social-proof__avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--sand);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--dark);
+    }
+
+    .social-proof__name {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text);
+    }
+
+    .social-proof__type {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ══════════════════════════════════════
+       SEÇÃO 5: VALUE STACK + CTA
+       Background escuro para contraste
+       ══════════════════════════════════════ */
+    .offer-section {
+      background: var(--dark);
+      padding: 80px 24px 60px;
+    }
+
+    .offer-section__inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .offer-section__label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .offer-section__headline {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 300;
+      color: var(--bg);
+      text-align: center;
+      line-height: 1.2;
+      margin-bottom: 48px;
+    }
+
+    .offer-section__headline em {
+      font-style: italic;
+      color: var(--sand);
+    }
+
+    /* Value stack cards */
+    .value-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .value-item {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .value-item--main {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .value-item__left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .value-item__name {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .value-item__desc {
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      font-weight: 300;
+    }
+
+    .value-item__price {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+    }
+
+    .value-item__price-old {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: rgba(255,255,255,0.3);
+      text-decoration: line-through;
+    }
+
+    .value-item__price-new {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--sand);
+    }
+
+    .value-item__included {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sand);
+      opacity: 0.7;
+    }
+
+    /* Total */
+    .offer-total {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 32px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .offer-total__old {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      text-decoration: line-through;
+      margin-bottom: 8px;
+    }
+
+    .offer-total__new {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 10vw, 64px);
+      font-weight: 500;
+      color: var(--bg);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .offer-total__sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      font-weight: 300;
+    }
+
+    /* CTA */
+    .offer-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    .offer-cta__button {
+      display: block;
+      width: 100%;
+      padding: 20px 32px;
+      background: var(--bg);
+      color: var(--dark);
+      border: none;
+      border-radius: var(--radius-full);
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 24px rgba(232,217,193,0.25);
+    }
+
+    .offer-cta__button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 32px rgba(232,217,193,0.35);
+    }
+
+    .offer-cta__urgency {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-style: italic;
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      line-height: 1.6;
+      max-width: 400px;
+    }
+
+    /* Garantia */
+    .guarantee {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin-bottom: 32px;
+    }
+
+    .guarantee__icon {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .guarantee__content {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .guarantee__title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--bg);
+    }
+
+    .guarantee__text {
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    /* Credencial */
+    .science-badge {
+      text-align: center;
+      padding: 24px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .science-badge__text {
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ══════════════════════════════════════
+       SEÇÃO 6: FAQ
+       ══════════════════════════════════════ */
+    .faq-section {
+      padding: 64px 24px;
+      background: var(--bg);
+    }
+
+    .faq-section__inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .faq-section__title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--dark);
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .faq-items {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-item {
+      background: var(--white);
+      border: 1px solid var(--subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .faq-item__question {
+      padding: 20px 24px;
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--dark);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-item__question::after {
+      content: '+';
+      font-size: 20px;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .faq-item__answer {
+      padding: 0 24px 20px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    /* ══════════════════════════════════════
+       SEÇÃO 7: CTA FINAL (repetição)
+       ══════════════════════════════════════ */
+    .final-cta {
+      padding: 64px 24px 80px;
+      background: var(--bg-warm);
+      text-align: center;
+    }
+
+    .final-cta__inner {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .final-cta__headline {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 4vw, 32px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--dark);
+      line-height: 1.3;
+      margin-bottom: 24px;
+    }
+
+    .final-cta__button {
+      display: inline-block;
+      padding: 18px 40px;
+      background: var(--cta);
+      color: var(--bg);
+      border: none;
+      border-radius: var(--radius-full);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      text-decoration: none;
+      margin-bottom: 16px;
+    }
+
+    .final-cta__meta {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    /* ══════════════════════════════════════
+       DESIGN NOTES (remover em produção)
+       ══════════════════════════════════════ */
+    .design-notes {
+      background: #1B1B11;
+      padding: 48px 24px;
+      max-width: 100%;
+    }
+
+    .design-notes__inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .design-notes__title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--sand);
+      margin-bottom: 24px;
+    }
+
+    .design-notes__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 600px) {
+      .design-notes__grid { grid-template-columns: 1fr; }
+    }
+
+    .design-notes__card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+
+    .design-notes__card-label {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 8px;
+    }
+
+    .design-notes__card-text {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .reveal { padding: 60px 20px 40px; }
+      .gap-section, .locked-section, .social-proof, .offer-section, .faq-section, .final-cta { padding-left: 20px; padding-right: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     CARRYING SCREEN (3.5s → auto-fade)
+     ══════════════════════════════════════ -->
+<div class="carrying" id="carrying">
+  <div class="carrying__label">Analisando suas respostas</div>
+  <div class="carrying__headline">Cada resposta conta uma parte da sua história.</div>
+  <div class="carrying__bar"><div class="carrying__fill"></div></div>
+  <div class="carrying__social">
+    <div class="carrying__social-count">127.482</div>
+    <div class="carrying__social-text">pessoas já descobriram o seu jeito de amar</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SEÇÃO 1: REVEAL PARCIAL
+     Mostra: nome do estilo + 2 comportamentos
+     NÃO mostra: corpo completo, resposta completa
+     ══════════════════════════════════════ -->
+<section class="reveal">
+  <div class="reveal__eyebrow">Seu resultado está pronto</div>
+  <h1 class="reveal__headline">
+    Seu jeito de amar<br>é <em>Ansioso.</em>
+  </h1>
+
+  <div class="reveal__body">
+    <p>E isso explica quase tudo que já deu errado nos seus relacionamentos.</p>
+    <p>O problema não é você ser "dramática" ou "carente". O problema é que o seu sistema nervoso aprendeu, muito antes do seu primeiro relacionamento, que amor e ansiedade andam juntos.</p>
+  </div>
+
+  <div class="reveal__behaviors" style="margin-top: 40px; border-left: 2px solid var(--sand); padding-left: 24px; display: flex; flex-direction: column; gap: 12px;">
+    <p style="font-family: var(--font-body); font-size: 15px; line-height: 1.7; color: var(--text); font-weight: 300;">Você checa o celular mais vezes do que gostaria quando a resposta demora.</p>
+    <p style="font-family: var(--font-body); font-size: 15px; line-height: 1.7; color: var(--text); font-weight: 300;">Promete para si mesma que não vai mandar mensagem. E manda assim mesmo.</p>
+    <p style="font-family: var(--font-body); font-size: 15px; line-height: 1.7; color: var(--text); font-weight: 300;">Depois fica com raiva de si mesma por ter mandado.</p>
+  </div>
+
+  <div class="reveal__scroll-hint">
+    <span class="reveal__scroll-text">O resultado vai muito além do nome</span>
+    <span class="reveal__scroll-arrow">↓</span>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SEÇÃO 2: LACUNA ABERTA (dark)
+     Perguntas que abrem o loop emocional
+     ══════════════════════════════════════ -->
+<section class="gap-section">
+  <div class="gap-section__inner">
+    <div class="gap-section__eyebrow">O que o quiz não mostra</div>
+    <h2 class="gap-section__headline">Essa é a parte que a maioria nunca chega.</h2>
+
+    <div class="gap-section__questions">
+      <p class="gap-section__question">Por que o seu alarme interno dispara quando o silêncio dura dez minutos a mais?</p>
+      <p class="gap-section__question">Por que você promete que não vai mandar mensagem e manda assim mesmo?</p>
+      <p class="gap-section__question">Por que a raiva depois de mandar é maior do que o alívio de ter mandado?</p>
+    </div>
+
+    <p class="gap-section__answer">Essas respostas existem. E elas estão reunidas em um único lugar.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SEÇÃO 2B: PRODUCT REVEAL
+     Apresenta a Leitura Completa como produto
+     A pessoa precisa ENTENDER o que é antes de ver
+     o que está dentro ou quanto custa
+     ══════════════════════════════════════ -->
+<section class="product-reveal">
+  <div class="product-reveal__inner">
+    <p class="product-reveal__eyebrow">Apresentando</p>
+    <h2 class="product-reveal__name">O Mapa do<br><em>Coração Ansioso</em></h2>
+
+    <div class="product-reveal__desc">
+      <p>Cada uma dessas perguntas tem uma resposta. E elas estão todas no mesmo lugar.</p>
+      <p>O Mapa do Coração Ansioso mostra de onde veio o seu padrão, como ele funciona dentro de você, e por que você repete as mesmas coisas mesmo quando sabe que não deveria.</p>
+      <p>Não é autoajuda. Não é um PDF com dicas genéricas. É a sua história explicada por quem estudou como os seres humanos aprendem a amar.</p>
+    </div>
+
+    <p style="font-size: 12px; color: var(--muted); text-align: center; margin-top: 32px; letter-spacing: 0.05em;">15 páginas · 15 minutos de leitura · Entrega imediata por email</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SEÇÃO 3: BLOCOS BLOQUEADOS
+     2 visíveis + 2 com blur
+     ══════════════════════════════════════ -->
+<section class="locked-section">
+  <div class="locked-section__inner">
+    <h2 class="locked-section__title">O que está dentro do seu Mapa</h2>
+    <p class="locked-section__sub">Linguagem humana, sem jargão clínico.</p>
+
+    <div class="locked-cards">
+      <div class="locked-card">
+        <span class="locked-card__number">1</span>
+        <div class="locked-card__content">
+          <p class="locked-card__topic">A origem exata do seu padrão</p>
+          <p class="locked-card__hint">De onde veio. Quando se formou. Por que faz todo o sentido dado o que você viveu.</p>
+        </div>
+      </div>
+
+      <div class="locked-card">
+        <span class="locked-card__number">2</span>
+        <div class="locked-card__content">
+          <p class="locked-card__topic">O que acontece no segundo em que o alarme dispara</p>
+          <p class="locked-card__hint">O silêncio chega, o corpo reage, e você faz exatamente o que prometeu que não ia fazer. Esse mecanismo tem nome.</p>
+        </div>
+      </div>
+
+      <div class="locked-card locked-card--blurred">
+        <span class="locked-card__number">3</span>
+        <div class="locked-card__content">
+          <p class="locked-card__topic">Seus pontos cegos nos relacionamentos</p>
+          <p class="locked-card__hint">O que você faz achando que vai aproximar, mas afasta. E por que você não consegue ver sozinha.</p>
+        </div>
+      </div>
+
+      <div class="locked-card locked-card--blurred">
+        <span class="locked-card__number">4</span>
+        <div class="locked-card__content">
+          <p class="locked-card__topic">O caminho para sair do padrão</p>
+          <p class="locked-card__hint">Não começa por força de vontade. Começa por ver o que cria a reação.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SEÇÃO 4: PROVA SOCIAL
+     ══════════════════════════════════════ -->
+<section class="social-proof">
+  <div class="social-proof__inner">
+    <p class="social-proof__label">Quem já leu</p>
+
+    <div class="social-proof__cards">
+      <div class="social-proof__card">
+        <p class="social-proof__quote">"Eu achava que era carente. Pela primeira vez alguém me explicou de onde vem isso. Chorei lendo, mas de alívio."</p>
+        <div class="social-proof__meta">
+          <div class="social-proof__avatar">C</div>
+          <div>
+            <p class="social-proof__name">Camila, 28</p>
+            <p class="social-proof__type">Coração Ansioso</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="social-proof__card">
+        <p class="social-proof__quote">"Li em 12 minutos. Entendi coisas sobre mim que 2 anos tentando explicar não tinham dado conta com essa clareza."</p>
+        <div class="social-proof__meta">
+          <div class="social-proof__avatar">M</div>
+          <div>
+            <p class="social-proof__name">Marina, 34</p>
+            <p class="social-proof__type">Coração Ansioso</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="social-proof__card">
+        <p class="social-proof__quote">"Mandei para o meu namorado. Ele leu e disse: 'agora eu entendo por que você fica assim'. Foi a primeira vez que ele entendeu sem eu precisar brigar."</p>
+        <div class="social-proof__meta">
+          <div class="social-proof__avatar">J</div>
+          <div>
+            <p class="social-proof__name">Juliana, 31</p>
+            <p class="social-proof__type">Coração Ansioso</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="social-proof__card">
+        <p class="social-proof__quote">"Achei que ia ser mais um teste de internet. Quando li a parte sobre a origem do padrão, parei no meio porque precisei respirar. Era exatamente a minha história."</p>
+        <div class="social-proof__meta">
+          <div class="social-proof__avatar">B</div>
+          <div>
+            <p class="social-proof__name">Beatriz, 26</p>
+            <p class="social-proof__type">Coração Ansioso</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SEÇÃO 5: VALUE STACK + CTA (dark)
+     ══════════════════════════════════════ -->
+<section class="offer-section">
+  <div class="offer-section__inner">
+    <p class="offer-section__label">O seu Mapa</p>
+    <h2 class="offer-section__headline">Você já sabe o nome.<br>Agora entenda <em>o motivo.</em></h2>
+
+    <div class="offer-total">
+      <p class="offer-total__old">R$147</p>
+      <p class="offer-total__new">R$37</p>
+      <p class="offer-total__sub">Mapa do Coração Ansioso · Entrega imediata por email</p>
+    </div>
+
+    <div class="guarantee">
+      <span class="guarantee__icon">🛡</span>
+      <div class="guarantee__content">
+        <span class="guarantee__title">Garantia da Honestidade Afetiva</span>
+        <span class="guarantee__text">Se o Mapa não fizer sentido para você, devolvemos tudo em 7 dias. Sem perguntas, sem burocracia. Você não está arriscando nada.</span>
+      </div>
+    </div>
+
+    <div class="offer-cta">
+      <a href="#" class="offer-cta__button">Quero o meu Mapa por R$37</a>
+      <p class="offer-cta__urgency">Você já sabe o resultado. Agora você pode entender o motivo, ou continuar sem saber.</p>
+    </div>
+
+    <div class="science-badge">
+      <p class="science-badge__text">O Mapa do Coração Ansioso é baseado em uma pesquisa científica séria e profunda sobre como os seres humanos aprendem a amar. Esse estudo já ajudou dezenas de milhares de pessoas a reconhecer padrões que repetiam há anos sem conseguir explicar.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SEÇÃO 6: FAQ
+     ══════════════════════════════════════ -->
+<section class="faq-section">
+  <div class="faq-section__inner">
+    <h2 class="faq-section__title">Perguntas frequentes</h2>
+
+    <div class="faq-items">
+      <div class="faq-item">
+        <div class="faq-item__question">Isso é confiável? Em que se baseia?</div>
+        <div class="faq-item__answer">O Mapa é baseado em um dos estudos mais respeitados da psicologia sobre como os seres humanos formam vínculos. Não é autoajuda. Não é horóscopo. É ciência traduzida para linguagem humana.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-item__question">Como eu recebo o Mapa?</div>
+        <div class="faq-item__answer">Entrega imediata por email. Em menos de 5 minutos você recebe o seu Mapa completo em PDF. Acesso permanente, leia quantas vezes quiser.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-item__question">E se eu não gostar?</div>
+        <div class="faq-item__answer">Garantia de 7 dias. Se o Mapa não fizer sentido para você, devolvemos 100% do valor. Sem perguntas.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SEÇÃO 7: CTA FINAL
+     ══════════════════════════════════════ -->
+<section class="final-cta">
+  <div class="final-cta__inner">
+    <h2 class="final-cta__headline">Você já sabe o nome. Agora entenda o motivo.</h2>
+    <a href="#" class="final-cta__button">Desbloquear o Mapa do Coração Ansioso</a>
+    <p class="final-cta__meta">R$37 · Entrega imediata · Garantia de 7 dias</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     NOTAS DE DESIGN (remover em produção)
+     ══════════════════════════════════════ -->
+<section class="design-notes">
+  <div class="design-notes__inner">
+    <h3 class="design-notes__title">Notas de Design (não vai para produção)</h3>
+    <div class="design-notes__grid">
+      <div class="design-notes__card">
+        <div class="design-notes__card-label">Mudanca #1</div>
+        <div class="design-notes__card-text">Carrying screen de 3.5s com barra de progresso + social proof (127k pessoas). Cria antecipacao e prova social antes de ver o resultado.</div>
+      </div>
+      <div class="design-notes__card">
+        <div class="design-notes__card-label">Mudanca #2</div>
+        <div class="design-notes__card-text">Reveal parcial: so o nome + 3 comportamentos. O corpo longo de 200 palavras foi removido. Nao fecha o loop emocional.</div>
+      </div>
+      <div class="design-notes__card">
+        <div class="design-notes__card-label">Mudanca #3</div>
+        <div class="design-notes__card-text">Transicao forte: nude → burgundy dark na secao de perguntas. Marca visualmente "aqui comeca a oferta". Referencia: Noom, Hims.</div>
+      </div>
+      <div class="design-notes__card">
+        <div class="design-notes__card-label">Mudanca #3B (NOVA)</div>
+        <div class="design-notes__card-text">PRODUCT REVEAL: secao dedicada a apresentar o que e a Leitura Completa ANTES de mostrar o conteudo ou o preco. A pessoa nao sabia o que era. Agora sabe: 15 paginas, escrito para o padrao dela, ciencia em linguagem humana. Referencia: Hims ("seu plano"), Noom ("seu programa").</div>
+      </div>
+      <div class="design-notes__card">
+        <div class="design-notes__card-label">Mudanca #4</div>
+        <div class="design-notes__card-text">Blocos bloqueados com blur: 2 visiveis + 2 borrados com cadeado. Mostra o que ela perde se nao comprar. Referencia: 16Personalities.</div>
+      </div>
+      <div class="design-notes__card">
+        <div class="design-notes__card-label">Mudanca #5</div>
+        <div class="design-notes__card-text">Value stack visual com precos riscados e ancoragem (R$261 → R$37). OBs como items do stack, nao upsell generico. Referencia: Hormozi.</div>
+      </div>
+      <div class="design-notes__card">
+        <div class="design-notes__card-label">Mudanca #6</div>
+        <div class="design-notes__card-text">Garantia proprietaria ("Honestidade Afetiva") com icone + caixa. Posicionada ANTES do botao (Hormozi). FAQ apos o CTA.</div>
+      </div>
+      <div class="design-notes__card">
+        <div class="design-notes__card-label">Mudanca #7</div>
+        <div class="design-notes__card-text">CTA repetido: botao principal no value stack dark + CTA final em secao separada. Dois pontos de conversao.</div>
+      </div>
+      <div class="design-notes__card">
+        <div class="design-notes__card-label">Mudanca #8</div>
+        <div class="design-notes__card-text">Prova social com depoimentos tipados (mesmo estilo da usuaria). Placeholder ate ter depoimentos reais. Referencia: Attachment Project.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
