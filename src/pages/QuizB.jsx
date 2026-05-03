@@ -7,6 +7,12 @@ import './QuizB.css'
 
 const STORAGE_KEY = 'mjda_quiz_state'
 
+const BLOCK_MESSAGES = {
+  5: 'Boa. As próximas perguntas vão entrar um pouco mais fundo.',
+  10: 'Você está na metade. A maioria das pessoas para aqui. Você não parou.',
+  15: 'Quase lá. As últimas perguntas são as que mais revelam.',
+}
+
 function loadState() {
   try {
     const saved = localStorage.getItem(STORAGE_KEY)
@@ -36,7 +42,8 @@ export default function QuizB() {
 
   const [currentIndex, setCurrentIndex] = useState(saved?.currentIndex ?? 0)
   const [answers, setAnswers] = useState(saved?.answers ?? [])
-  const [selecting, setSelecting] = useState(false) // bloqueia duplo clique
+  const [selecting, setSelecting] = useState(false)
+  const [blockMsg, setBlockMsg] = useState(null)
 
   // Salva estado sempre que muda
   useEffect(() => {
@@ -69,10 +76,23 @@ export default function QuizB() {
         }
         navigate(`/resultado/${estilo}`)
       } else {
-        setAnswers(newAnswers)
-        setCurrentIndex(currentIndex + 1)
-        setSelecting(false)
-        window.scrollTo({ top: 0, behavior: 'instant' })
+        const nextIndex = currentIndex + 1
+        const msg = BLOCK_MESSAGES[nextIndex]
+        if (msg) {
+          setAnswers(newAnswers)
+          setBlockMsg(msg)
+          window.scrollTo({ top: 0, behavior: 'instant' })
+          setTimeout(() => {
+            setBlockMsg(null)
+            setCurrentIndex(nextIndex)
+            setSelecting(false)
+          }, 2500)
+        } else {
+          setAnswers(newAnswers)
+          setCurrentIndex(nextIndex)
+          setSelecting(false)
+          window.scrollTo({ top: 0, behavior: 'instant' })
+        }
       }
     }, 250)
   }, [answers, currentIndex, selecting, navigate])
@@ -92,7 +112,12 @@ export default function QuizB() {
       </header>
 
       <div className="quiz__body">
-        <div className="quiz__question" key={currentIndex}>
+        {blockMsg && (
+          <div className="quiz__block-msg" key={`block-${currentIndex}`}>
+            <p className="quiz__block-msg-text">{blockMsg}</p>
+          </div>
+        )}
+        {!blockMsg && <div className="quiz__question" key={currentIndex}>
           {currentIndex === 0 && (
             <p className="quiz__context">Escolha a opção que descreve como você realmente age, não como acha que deveria.</p>
           )}
@@ -108,7 +133,7 @@ export default function QuizB() {
               />
             ))}
           </div>
-        </div>
+        </div>}
       </div>
     </div>
   )

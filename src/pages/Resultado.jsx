@@ -47,9 +47,9 @@ const DownloadIcon = () => (
 
 const STYLE_COLORS = {
   ansioso: '#D8A7B1',
-  distante: '#C4909C',
-  seguro: '#BF8A96',
-  desorganizado: '#D4B5B0',
+  distante: '#A8A0B8',
+  seguro: '#8BAA91',
+  desorganizado: '#C9A87C',
 }
 
 function generateResultCard(styleName, accentColor) {
@@ -147,7 +147,7 @@ export default function Resultado() {
     return () => clearTimeout(timer)
   }, [estilo, navigate])
 
-  /* Sticky CTA: aparece após gap-section, some ao chegar na offer */
+  /* Sticky CTA: aparece após gap-section, some na offer, reaparece depois */
   useEffect(() => {
     if (!showPage) return
     const observer = new IntersectionObserver(
@@ -161,6 +161,9 @@ export default function Resultado() {
           if (entry.target === offerRef.current) {
             if (entry.isIntersecting) {
               setShowSticky(false)
+            } else if (entry.boundingClientRect.top < 0) {
+              // offer saiu por cima: reaparece o sticky
+              setShowSticky(true)
             }
           }
         })
@@ -202,7 +205,11 @@ export default function Resultado() {
 
       {/* ── CARRYING SCREEN ── */}
       <div className={`carrying ${showPage ? 'carrying--done' : ''}`}>
-        <span className="carrying__label">Analisando suas respostas</span>
+        <div className="carrying__steps">
+          <span className="carrying__step carrying__step--1">Analisando suas respostas</span>
+          <span className="carrying__step carrying__step--2">Mapeando o seu padrão de vinculação</span>
+          <span className="carrying__step carrying__step--3">Identificando pontos cegos</span>
+        </div>
         <span className="carrying__headline">Cada resposta conta uma parte da sua história.</span>
         <div className="carrying__bar"><div className="carrying__fill" /></div>
         <div className="carrying__social">
@@ -280,12 +287,12 @@ export default function Resultado() {
         </div>
       </section>
 
-      {/* ── SEÇÃO 4: PROVA SOCIAL ── */}
+      {/* ── SEÇÃO 4: PROVA SOCIAL (2 depoimentos pré-offer) ── */}
       <section className="social-proof">
         <div className="social-proof__inner">
           <p className="social-proof__label">Quem já leu</p>
           <div className="social-proof__cards">
-            {r.testimonials.map((t, i) => (
+            {r.testimonials.slice(0, 2).map((t, i) => (
               <div key={i} className="social-proof__card">
                 <p className="social-proof__quote">"{t.quote}"</p>
                 <div className="social-proof__meta">
@@ -338,6 +345,44 @@ export default function Resultado() {
           </div>
         </div>
       </section>
+
+      {/* ── SEÇÃO 5B: DINÂMICAS ENTRE ESTILOS (pós-offer) ── */}
+      <section className="dynamics-section">
+        <div className="dynamics-section__inner">
+          <h2 className="dynamics-section__title">Como o Coração {r.styleName} se relaciona com os outros</h2>
+          <div className="dynamics-cards">
+            {r.dynamics.map((d, i) => (
+              <div key={i} className="dynamics-card">
+                <p className="dynamics-card__style">Com o Coração {d.style}</p>
+                <p className="dynamics-card__preview">{d.preview}</p>
+                <p className="dynamics-card__locked">A dinâmica completa está no seu Mapa.</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── SEÇÃO 5C: PROVA SOCIAL EXTRA (pós-offer) ── */}
+      {r.testimonials.length > 2 && (
+        <section className="social-proof">
+          <div className="social-proof__inner">
+            <div className="social-proof__cards">
+              {r.testimonials.slice(2).map((t, i) => (
+                <div key={i} className="social-proof__card">
+                  <p className="social-proof__quote">"{t.quote}"</p>
+                  <div className="social-proof__meta">
+                    <div className="social-proof__avatar">{t.initial}</div>
+                    <div>
+                      <p className="social-proof__name">{t.name}</p>
+                      <p className="social-proof__type">Coração {r.styleName}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── SEÇÃO 6: FAQ (accordion) ── */}
       <section className="faq-section">
