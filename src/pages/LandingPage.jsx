@@ -8,10 +8,10 @@ const STEPS = [
 ]
 
 const TESTIMONIALS = [
-  'Eu reli um trecho três vezes. Cada vez ficava mais quieta. Não porque era difícil de ler. Porque estava descrevendo coisas que eu faço há anos sem nunca ter dado nome.',
-  'Fiz esperando um resultado genérico. Quando chegou, fiquei procurando a parte que não combinava comigo. Não encontrei.',
-  'Eu me reconheci num comportamento que sempre achei que era personalidade. Não é personalidade. É um padrão. E padrão tem origem. Isso muda o que você faz com ele.',
-  'Não esperava que vinte perguntas pudessem mostrar algo que anos de conversa com amigos não tinham mostrado. Mas a parte dos pontos cegos foi exatamente isso: o que eu faço sem perceber e que afeta todo mundo ao meu redor.',
+  { text: 'Eu reli um trecho três vezes. Cada vez ficava mais quieta. Não porque era difícil de ler. Porque estava descrevendo coisas que eu faço há anos sem nunca ter dado nome.', name: 'Camila, 28' },
+  { text: 'Fiz esperando um resultado genérico. Quando chegou, fiquei procurando a parte que não combinava comigo. Não encontrei.', name: 'Marina, 25' },
+  { text: 'Eu me reconheci num comportamento que sempre achei que era personalidade. Não é personalidade. É um padrão. E padrão tem origem. Isso muda o que você faz com ele.', name: 'Juliana, 31' },
+  { text: 'Não esperava que vinte perguntas pudessem mostrar algo que anos de conversa com amigos não tinham mostrado. Mas a parte dos pontos cegos foi exatamente isso: o que eu faço sem perceber e que afeta todo mundo ao meu redor.', name: 'Beatriz, 27' },
 ]
 
 export default function LandingPage() {
@@ -71,9 +71,10 @@ export default function LandingPage() {
         <div className="landing__testimonials-inner">
           <p className="landing__testimonials-label">O que dizem</p>
           <div className="testimonials-grid">
-            {TESTIMONIALS.map((text, i) => (
+            {TESTIMONIALS.map((t, i) => (
               <blockquote key={i} className="testimonial">
-                <p className="testimonial__text">{text}</p>
+                <p className="testimonial__text">{t.text}</p>
+                <cite className="testimonial__name">{t.name}</cite>
               </blockquote>
             ))}
           </div>

@@ -31,7 +31,7 @@ export const RESULTS = {
       { quote: "Mandei para o meu namorado. Ele leu e disse: 'agora eu entendo por que você fica assim'. Foi a primeira vez que ele entendeu sem eu precisar brigar.", name: 'Juliana, 31', initial: 'J' },
       { quote: 'Achei que ia ser mais um teste de internet. Quando li a parte sobre a origem do padrão, parei no meio porque precisei respirar. Era exatamente a minha história.', name: 'Beatriz, 26', initial: 'B' },
     ],
-    urgencyText: 'Você já tem o nome. O Mapa mostra tudo que está por trás dele.',
+    urgencyText: 'O alarme não vai parar sozinho. Mas entender de onde ele vem muda tudo.',
     ctaFinalHeadline: 'Você já sabe o que sente. Agora entenda por quê.',
   },
   distante: {
@@ -66,7 +66,7 @@ export const RESULTS = {
       { quote: 'Meu namorado leu comigo. Pela primeira vez ele entendeu que não é falta de amor.', name: 'Fernanda, 31', initial: 'F' },
       { quote: 'Não mudei da noite pro dia, mas parei de me culpar. E isso mudou tudo.', name: 'Beatriz, 26', initial: 'B' },
     ],
-    urgencyText: 'Você já tem o nome. O Mapa mostra tudo que está por trás dele.',
+    urgencyText: 'Você não precisa se abrir mais. Precisa entender o que fecha.',
     ctaFinalHeadline: 'Você não precisa se forçar a sentir diferente. Precisa entender por que sente assim.',
   },
   seguro: {
@@ -101,7 +101,7 @@ export const RESULTS = {
       { quote: 'Mandei pro meu marido. Ele finalmente entendeu que clareza não é frieza.', name: 'Renata, 31', initial: 'R' },
       { quote: 'Parei de me culpar por esperar reciprocidade. Agora sei o que é negociável e o que não é.', name: 'Patrícia, 26', initial: 'P' },
     ],
-    urgencyText: 'Você já tem o nome. O Mapa mostra tudo que está por trás dele.',
+    urgencyText: 'Você não precisa de conserto. Precisa de clareza sobre a sua força.',
     ctaFinalHeadline: 'Seu jeito de amar não é o problema. Mas entender ele muda tudo.',
   },
   desorganizado: {
@@ -136,7 +136,7 @@ export const RESULTS = {
       { quote: 'Mostrei pro meu parceiro. Ele parou de levar pro pessoal quando eu travo.', name: 'Mariana, 31', initial: 'M' },
       { quote: 'Não sumiu o medo. Mas agora eu reconheço quando ele aparece. E isso já mudou as minhas reações.', name: 'Camila, 26', initial: 'C' },
     ],
-    urgencyText: 'Você já tem o nome. O Mapa mostra tudo que está por trás dele.',
+    urgencyText: 'Você pode continuar tentando se decifrar sozinha. Ou pode ler o que já está pronto.',
     ctaFinalHeadline: 'Você não é complicada. Só nunca te explicaram o que acontece por dentro.',
   },
 }

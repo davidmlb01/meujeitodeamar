@@ -18,6 +18,12 @@
 
 .answer-card:hover:not(.answer-card--disabled) {
   background: var(--bg-warm);
+  border-color: var(--muted);
+}
+
+.answer-card:active:not(.answer-card--disabled) {
+  transform: scale(0.97);
+  border-color: var(--dark);
 }
 
 .answer-card--selected {

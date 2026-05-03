@@ -72,6 +72,7 @@ export default function QuizB() {
         setAnswers(newAnswers)
         setCurrentIndex(currentIndex + 1)
         setSelecting(false)
+        window.scrollTo({ top: 0, behavior: 'instant' })
       }
     }, 250)
   }, [answers, currentIndex, selecting, navigate])
