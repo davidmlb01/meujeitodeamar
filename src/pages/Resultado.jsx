@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef, useCallback } from 'react'
 import { RESULTS, VALID_ESTILOS } from '../data/results'
 import './Resultado.css'
 
@@ -11,10 +11,29 @@ const KIWIFY_URLS = {
   fallback:      'https://pay.kiwify.com.br/sEkZDxX',
 }
 
+/* SVG Icons (inline, monocromaticos) */
+const ShieldIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    <path d="M9 12l2 2 4-4"/>
+  </svg>
+)
+
+const LockIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.4 }}>
+    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+    <path d="M7 11V7a5 5 0 0110 0v4"/>
+  </svg>
+)
+
 export default function Resultado() {
   const { estilo } = useParams()
   const navigate = useNavigate()
   const [showPage, setShowPage] = useState(false)
+  const [openFaq, setOpenFaq] = useState(null)
+  const [showSticky, setShowSticky] = useState(false)
+  const gapRef = useRef(null)
+  const offerRef = useRef(null)
 
   useEffect(() => {
     if (!VALID_ESTILOS.includes(estilo)) {
@@ -32,6 +51,35 @@ export default function Resultado() {
     return () => clearTimeout(timer)
   }, [estilo, navigate])
 
+  /* Sticky CTA: aparece após gap-section, some ao chegar na offer */
+  useEffect(() => {
+    if (!showPage) return
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.target === gapRef.current) {
+            if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+              setShowSticky(true)
+            }
+          }
+          if (entry.target === offerRef.current) {
+            if (entry.isIntersecting) {
+              setShowSticky(false)
+            }
+          }
+        })
+      },
+      { threshold: 0 }
+    )
+    if (gapRef.current) observer.observe(gapRef.current)
+    if (offerRef.current) observer.observe(offerRef.current)
+    return () => observer.disconnect()
+  }, [showPage])
+
+  const toggleFaq = useCallback((i) => {
+    setOpenFaq((prev) => (prev === i ? null : i))
+  }, [])
+
   const r = RESULTS[estilo]
   if (!r) return null
 
@@ -46,6 +94,12 @@ export default function Resultado() {
       })
     }
   }
+
+  const faqItems = [
+    { q: 'Isso é confiável? Em que se baseia?', a: 'O Mapa é baseado em um dos estudos mais respeitados da psicologia sobre como os seres humanos formam vínculos. Não é autoajuda. Não é horóscopo. É ciência traduzida para linguagem humana.' },
+    { q: 'Como eu recebo o Mapa?', a: 'Entrega imediata por email. Em menos de 5 minutos você recebe o seu Mapa completo em PDF. Acesso permanente, leia quantas vezes quiser.' },
+    { q: 'E se eu não gostar?', a: 'Garantia de 7 dias. Se o Mapa não fizer sentido para você, devolvemos 100% do valor. Sem perguntas.' },
+  ]
 
   return (
     <div className="resultado-v2" style={{ '--accent': r.colorToken }}>
@@ -85,7 +139,7 @@ export default function Resultado() {
       </section>
 
       {/* ── SEÇÃO 2: LACUNA ABERTA ── */}
-      <section className="gap-section">
+      <section className="gap-section" ref={gapRef}>
         <div className="gap-section__inner">
           <h2 className="gap-section__headline">É hora de conhecer a parte onde a maioria nunca chega.</h2>
           <div className="gap-section__questions">
@@ -123,6 +177,7 @@ export default function Resultado() {
                   <p className="locked-card__topic">{card.topic}</p>
                   <p className="locked-card__hint">{card.hint}</p>
                 </div>
+                {card.blurred && <span className="locked-card__lock"><LockIcon /></span>}
               </div>
             ))}
           </div>
@@ -151,7 +206,7 @@ export default function Resultado() {
       </section>
 
       {/* ── SEÇÃO 5: OFFER + CTA ── */}
-      <section className="offer-section">
+      <section className="offer-section" ref={offerRef}>
         <div className="offer-section__inner">
           <h2 className="offer-section__headline">Você já sabe o nome.<br />Agora entenda <em>o motivo.</em></h2>
 
@@ -162,7 +217,7 @@ export default function Resultado() {
           </div>
 
           <div className="guarantee">
-            <span className="guarantee__icon">🛡</span>
+            <span className="guarantee__icon"><ShieldIcon /></span>
             <div className="guarantee__content">
               <span className="guarantee__title">Garantia da Honestidade Afetiva</span>
               <span className="guarantee__text">Se o Mapa não fizer sentido para você, devolvemos tudo em 7 dias. Sem perguntas, sem burocracia. Você não está arriscando nada.</span>
@@ -188,23 +243,22 @@ export default function Resultado() {
         </div>
       </section>
 
-      {/* ── SEÇÃO 6: FAQ ── */}
+      {/* ── SEÇÃO 6: FAQ (accordion) ── */}
       <section className="faq-section">
         <div className="faq-section__inner">
           <h2 className="faq-section__title">Perguntas frequentes</h2>
           <div className="faq-items">
-            <div className="faq-item">
-              <div className="faq-item__question">Isso é confiável? Em que se baseia?</div>
-              <div className="faq-item__answer">O Mapa é baseado em um dos estudos mais respeitados da psicologia sobre como os seres humanos formam vínculos. Não é autoajuda. Não é horóscopo. É ciência traduzida para linguagem humana.</div>
-            </div>
-            <div className="faq-item">
-              <div className="faq-item__question">Como eu recebo o Mapa?</div>
-              <div className="faq-item__answer">Entrega imediata por email. Em menos de 5 minutos você recebe o seu Mapa completo em PDF. Acesso permanente, leia quantas vezes quiser.</div>
-            </div>
-            <div className="faq-item">
-              <div className="faq-item__question">E se eu não gostar?</div>
-              <div className="faq-item__answer">Garantia de 7 dias. Se o Mapa não fizer sentido para você, devolvemos 100% do valor. Sem perguntas.</div>
-            </div>
+            {faqItems.map((item, i) => (
+              <div key={i} className={`faq-item ${openFaq === i ? 'faq-item--open' : ''}`}>
+                <button className="faq-item__question" onClick={() => toggleFaq(i)} aria-expanded={openFaq === i}>
+                  <span>{item.q}</span>
+                  <span className="faq-item__toggle">{openFaq === i ? '−' : '+'}</span>
+                </button>
+                {openFaq === i && (
+                  <div className="faq-item__answer">{item.a}</div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -217,7 +271,7 @@ export default function Resultado() {
             href={checkoutUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="final-cta__button"
+            className="offer-cta__button offer-cta__button--inverted"
             onClick={handleCheckout}
           >
             Desbloquear o Mapa {r.readingName}
@@ -225,6 +279,19 @@ export default function Resultado() {
           <p className="final-cta__meta">R$37 · Entrega imediata · Garantia de 7 dias</p>
         </div>
       </section>
+
+      {/* ── STICKY CTA (mobile) ── */}
+      <div className={`sticky-cta ${showSticky ? 'sticky-cta--visible' : ''}`}>
+        <a
+          href={checkoutUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="sticky-cta__button"
+          onClick={handleCheckout}
+        >
+          Quero o meu Mapa por R$37
+        </a>
+      </div>
 
     </div>
   )
