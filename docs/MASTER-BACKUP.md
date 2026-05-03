@@ -1,6 +1,6 @@
 # MASTER BACKUP — Projeto Freud
-**Última atualização:** 2026-04-27
-**Status:** V1 lançado — Pixel Meta ativo + públicos criados. Página /resultado redesenhada com Hormozi framework (AHA break, bridges por estilo, value stack, CTA com garantia). Seed launch pendente.
+**Última atualização:** 2026-05-03
+**Status:** V1 lançado. Redesign completo /resultado (4 estilos, carrying screen, lacuna, blocos blur, FAQ accordion, CTA sticky mobile). Produto renomeado: "Mapa do Coração". Funil auditado por CMO + Design Lead: nota 8.5/10, aprovado para Meta Ads R$100/dia. Pendente: og:image, renomear Kiwify, seed launch.
 
 ---
 
