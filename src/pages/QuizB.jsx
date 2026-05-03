@@ -79,7 +79,7 @@ export default function QuizB() {
         setCurrentIndex(currentIndex + 1)
         setSelecting(false)
       }
-    }, 400)
+    }, 250)
   }, [answers, currentIndex, selecting, navigate])
 
   const question = QUESTIONS[currentIndex]

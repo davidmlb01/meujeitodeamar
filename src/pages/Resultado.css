@@ -59,7 +59,7 @@
   width: 0;
   background: var(--accent);
   border-radius: 2px;
-  animation: carrying-fill 3.5s ease-out forwards;
+  animation: carrying-fill 2.2s ease-out forwards;
 }
 
 @keyframes carrying-fill {

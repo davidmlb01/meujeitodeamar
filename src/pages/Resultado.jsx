@@ -28,7 +28,7 @@ export default function Resultado() {
         value: 37.00,
       })
     }
-    const timer = setTimeout(() => setShowPage(true), 4000)
+    const timer = setTimeout(() => setShowPage(true), 2500)
     return () => clearTimeout(timer)
   }, [estilo, navigate])
 

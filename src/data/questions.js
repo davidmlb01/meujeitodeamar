@@ -10,7 +10,7 @@ export const INTRO = {
 export const TRANSITION = {
   title: 'Seu resultado está sendo calculado.',
   body: 'Você respondeu 20 perguntas.\n\nA maioria das pessoas nunca para para pensar assim sobre si mesma.\n\nO que vem a seguir vai fazer sentido.',
-  delay: 4000,
+  delay: 2500,
 }
 
 export const QUESTIONS = [
