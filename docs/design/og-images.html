@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>OG Images Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; padding: 40px; background: #1B1B11; display: flex; flex-direction: column; gap: 40px; align-items: center; font-family: 'Jost', sans-serif; }
+    h2 { color: #E8D9C1; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; margin: 0; }
+    .og-card {
+      width: 1200px; height: 630px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center;
+    }
+    .og-card--default { background: #4B1D3F; }
+    .og-card--ansioso { background: #4B1D3F; }
+    .og-card--distante { background: #4B1D3F; }
+    .og-card--seguro { background: #4B1D3F; }
+    .og-card--confuso { background: #4B1D3F; }
+
+    .og-card__circle {
+      position: absolute; width: 500px; height: 500px; border-radius: 50%; opacity: 0.08; top: 50%; left: 65%; transform: translate(-50%, -50%);
+    }
+    .og-card--default .og-card__circle { background: #D8A7B1; }
+    .og-card--ansioso .og-card__circle { background: #D8A7B1; }
+    .og-card--distante .og-card__circle { background: #C4909C; }
+    .og-card--seguro .og-card__circle { background: #BF8A96; }
+    .og-card--confuso .og-card__circle { background: #D4B5B0; }
+
+    .og-card__content {
+      position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; padding: 0 80px;
+    }
+    .og-card__label {
+      font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.35);
+    }
+    .og-card__headline {
+      font-family: 'Cormorant Garamond', serif; font-size: 64px; font-weight: 400; font-style: italic; line-height: 1.1; color: #E8D9C1; letter-spacing: -0.02em;
+    }
+    .og-card__headline em { color: #D8A7B1; }
+    .og-card--distante .og-card__headline em { color: #C4909C; }
+    .og-card--seguro .og-card__headline em { color: #BF8A96; }
+    .og-card--confuso .og-card__headline em { color: #D4B5B0; }
+
+    .og-card__sub {
+      font-family: 'Jost', sans-serif; font-size: 18px; color: rgba(255,255,255,0.5); font-weight: 300; max-width: 500px; line-height: 1.6;
+    }
+    .og-card__divider {
+      width: 60px; height: 1px; background: rgba(255,255,255,0.15); margin: 8px 0;
+    }
+    .og-card__url {
+      font-family: 'Jost', sans-serif; font-size: 15px; font-weight: 500; color: #E8D9C1; opacity: 0.7; letter-spacing: 0.05em;
+    }
+
+    canvas { display: none; }
+    .download-row { display: flex; gap: 16px; }
+    .download-btn {
+      padding: 10px 24px; background: #E8D9C1; color: #4B1D3F; border: none; border-radius: 100px;
+      font-family: 'Jost', sans-serif; font-size: 14px; cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h2>OG Image Default (1200x630)</h2>
+<div class="og-card og-card--default" id="og-default">
+  <div class="og-card__circle"></div>
+  <div class="og-card__content">
+    <span class="og-card__label">Teste gratuito</span>
+    <span class="og-card__headline">Descubra o seu<br>jeito de <em>amar.</em></span>
+    <span class="og-card__sub">20 perguntas. Resultado imediato. Base cientifica.</span>
+    <div class="og-card__divider"></div>
+    <span class="og-card__url">meujeitodeamar.com.br</span>
+  </div>
+</div>
+<div class="download-row">
+  <button class="download-btn" onclick="downloadCard('og-default', 'og-default')">Download PNG</button>
+</div>
+
+<h2>Ansioso</h2>
+<div class="og-card og-card--ansioso" id="og-ansioso">
+  <div class="og-card__circle"></div>
+  <div class="og-card__content">
+    <span class="og-card__label">Meu jeito de amar</span>
+    <span class="og-card__headline">Coracao<br><em>Ansioso.</em></span>
+    <span class="og-card__sub">Descubra o seu jeito de amar</span>
+    <div class="og-card__divider"></div>
+    <span class="og-card__url">meujeitodeamar.com.br</span>
+  </div>
+</div>
+<div class="download-row">
+  <button class="download-btn" onclick="downloadCard('og-ansioso', 'og-ansioso')">Download PNG</button>
+</div>
+
+<h2>Distante</h2>
+<div class="og-card og-card--distante" id="og-distante">
+  <div class="og-card__circle"></div>
+  <div class="og-card__content">
+    <span class="og-card__label">Meu jeito de amar</span>
+    <span class="og-card__headline">Coracao<br><em>Distante.</em></span>
+    <span class="og-card__sub">Descubra o seu jeito de amar</span>
+    <div class="og-card__divider"></div>
+    <span class="og-card__url">meujeitodeamar.com.br</span>
+  </div>
+</div>
+<div class="download-row">
+  <button class="download-btn" onclick="downloadCard('og-distante', 'og-distante')">Download PNG</button>
+</div>
+
+<h2>Seguro</h2>
+<div class="og-card og-card--seguro" id="og-seguro">
+  <div class="og-card__circle"></div>
+  <div class="og-card__content">
+    <span class="og-card__label">Meu jeito de amar</span>
+    <span class="og-card__headline">Coracao<br><em>Seguro.</em></span>
+    <span class="og-card__sub">Descubra o seu jeito de amar</span>
+    <div class="og-card__divider"></div>
+    <span class="og-card__url">meujeitodeamar.com.br</span>
+  </div>
+</div>
+<div class="download-row">
+  <button class="download-btn" onclick="downloadCard('og-seguro', 'og-seguro')">Download PNG</button>
+</div>
+
+<h2>Confuso</h2>
+<div class="og-card og-card--confuso" id="og-confuso">
+  <div class="og-card__circle"></div>
+  <div class="og-card__content">
+    <span class="og-card__label">Meu jeito de amar</span>
+    <span class="og-card__headline">Coracao<br><em>Confuso.</em></span>
+    <span class="og-card__sub">Descubra o seu jeito de amar</span>
+    <div class="og-card__divider"></div>
+    <span class="og-card__url">meujeitodeamar.com.br</span>
+  </div>
+</div>
+<div class="download-row">
+  <button class="download-btn" onclick="downloadCard('og-confuso', 'og-confuso')">Download PNG</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+async function downloadCard(elementId, filename) {
+  const el = document.getElementById(elementId);
+  const canvas = await html2canvas(el, { scale: 1, useCORS: true, backgroundColor: null });
+  const a = document.createElement('a');
+  a.href = canvas.toDataURL('image/png');
+  a.download = filename + '.png';
+  a.click();
+}
+</script>
+</body>
+</html>

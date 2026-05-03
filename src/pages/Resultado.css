@@ -189,6 +189,162 @@
   50% { transform: translateY(6px); }
 }
 
+/* ── RESULT CARD + SHARE ── */
+.result-card-section {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.result-card {
+  width: 280px;
+  height: 280px;
+  background: var(--dark);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.result-card::before {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+}
+
+.result-card__headline {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--bg);
+  line-height: 1.25;
+  text-align: center;
+  position: relative;
+}
+
+.result-card__headline em {
+  font-style: italic;
+  color: var(--accent);
+  font-size: 1.3em;
+  display: block;
+  margin-top: 4px;
+}
+
+.result-card__cta {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
+  position: relative;
+  margin-top: 16px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.result-card__hook {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 400;
+  font-style: italic;
+  color: rgba(255,255,255,0.6);
+  position: relative;
+  margin-top: 8px;
+}
+
+.result-card__cta strong {
+  color: var(--bg);
+  font-weight: 500;
+}
+
+.share-section {
+  padding: 64px 24px;
+  background: var(--bg);
+  border-top: 1px solid var(--subtle);
+}
+
+.share-section__inner {
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.share-section__label {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--dark);
+  text-align: center;
+}
+
+.share-section__hint {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.5;
+}
+
+.share-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.share-bar__btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1px solid var(--subtle);
+  border-radius: 100px;
+  background: var(--white);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.share-bar__btn:hover {
+  background: var(--bg-warm);
+  border-color: var(--muted);
+}
+
+.share-bar__btn:active {
+  transform: scale(0.97);
+}
+
+.share-bar__btn--whatsapp {
+  background: #25D366;
+  color: #fff;
+  border-color: #25D366;
+}
+
+.share-bar__btn--whatsapp:hover {
+  background: #20BD5A;
+  border-color: #20BD5A;
+}
+
 /* ── SEÇÃO 2: LACUNA ABERTA ── */
 .gap-section {
   background: var(--dark);

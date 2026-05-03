@@ -26,6 +26,102 @@ const LockIcon = () => (
   </svg>
 )
 
+const ShareIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+  </svg>
+)
+
+const WhatsAppIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+)
+
+const DownloadIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+  </svg>
+)
+
+const STYLE_COLORS = {
+  ansioso: '#D8A7B1',
+  distante: '#C4909C',
+  seguro: '#BF8A96',
+  desorganizado: '#D4B5B0',
+}
+
+function generateResultCard(styleName, accentColor) {
+  const canvas = document.createElement('canvas')
+  canvas.width = 1080
+  canvas.height = 1080
+  const ctx = canvas.getContext('2d')
+
+  // Background
+  ctx.fillStyle = '#4B1D3F'
+  ctx.fillRect(0, 0, 1080, 1080)
+
+  // Accent circle (decorative)
+  ctx.beginPath()
+  ctx.arc(540, 420, 200, 0, Math.PI * 2)
+  ctx.fillStyle = accentColor
+  ctx.globalAlpha = 0.12
+  ctx.fill()
+  ctx.globalAlpha = 1
+
+  ctx.textAlign = 'center'
+
+  // "Meu jeito de amar é"
+  ctx.font = '400 36px "Cormorant Garamond", serif'
+  ctx.fillStyle = '#E8D9C1'
+  ctx.fillText('Meu jeito de amar é', 540, 380)
+
+  // Style name (grande, destaque)
+  ctx.font = 'italic 96px "Cormorant Garamond", serif'
+  ctx.fillStyle = accentColor
+  ctx.fillText(styleName + '.', 540, 490)
+
+  // "E o seu?"
+  ctx.font = 'italic 32px "Cormorant Garamond", serif'
+  ctx.fillStyle = 'rgba(255,255,255,0.5)'
+  ctx.fillText('E o seu?', 540, 560)
+
+  // Divider
+  ctx.strokeStyle = 'rgba(255,255,255,0.1)'
+  ctx.lineWidth = 1
+  ctx.beginPath()
+  ctx.moveTo(440, 610)
+  ctx.lineTo(640, 610)
+  ctx.stroke()
+
+  // CTA
+  ctx.font = '300 20px Jost, sans-serif'
+  ctx.fillStyle = 'rgba(255,255,255,0.45)'
+  ctx.fillText('Descubra em', 540, 660)
+
+  // URL
+  ctx.font = '500 22px Jost, sans-serif'
+  ctx.fillStyle = '#E8D9C1'
+  ctx.fillText('meujeitodeamar.com.br', 540, 695)
+
+  return canvas.toDataURL('image/png')
+}
+
+function CopyLinkButton({ estilo }) {
+  const [copied, setCopied] = useState(false)
+  const handleCopy = () => {
+    navigator.clipboard.writeText(`https://www.meujeitodeamar.com.br?utm_source=share&utm_medium=link&utm_campaign=resultado_${estilo}`)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+  return (
+    <button className="share-bar__btn share-bar__btn--copy" onClick={handleCopy}>
+      <ShareIcon /> {copied ? 'Link copiado!' : 'Copiar link'}
+    </button>
+  )
+}
+
 export default function Resultado() {
   const { estilo } = useParams()
   const navigate = useNavigate()
@@ -277,6 +373,48 @@ export default function Resultado() {
             Desbloquear o Mapa {r.readingName}
           </a>
           <p className="final-cta__meta">R$37 · Entrega imediata · Garantia de 7 dias</p>
+        </div>
+      </section>
+
+      {/* ── SEÇÃO 8: SHARE ── */}
+      <section className="share-section">
+        <div className="share-section__inner">
+          <div className="result-card">
+            <span className="result-card__headline">Meu jeito de amar é <em>{r.styleName}.</em></span>
+            <span className="result-card__hook">E o seu?</span>
+            <span className="result-card__cta">Descubra em <strong>meujeitodeamar.com.br</strong></span>
+          </div>
+
+          <p className="share-section__label">Mande para alguém que precisa ler isso</p>
+
+          <div className="share-bar">
+            <button
+              className="share-bar__btn share-bar__btn--whatsapp"
+              onClick={() => {
+                const text = `menina fiz um teste sobre o meu jeito de amar e fiquei tipo 😳\nfaz o teu e me conta: https://www.meujeitodeamar.com.br?utm_source=share&utm_medium=whatsapp&utm_campaign=resultado_${estilo}`
+                window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank')
+              }}
+            >
+              <WhatsAppIcon /> Mandar pra alguém
+            </button>
+
+            <button
+              className="share-bar__btn share-bar__btn--download"
+              onClick={() => {
+                const dataUrl = generateResultCard(r.styleName, STYLE_COLORS[estilo] || '#D8A7B1')
+                const a = document.createElement('a')
+                a.href = dataUrl
+                a.download = `meu-jeito-de-amar-${r.styleName.toLowerCase()}.png`
+                a.click()
+              }}
+            >
+              <DownloadIcon /> Postar nos Stories
+            </button>
+
+            <CopyLinkButton estilo={estilo} />
+          </div>
+
+          <p className="share-section__hint">A imagem salva direto no seu celular. É só abrir o Instagram e postar.</p>
         </div>
       </section>
 
