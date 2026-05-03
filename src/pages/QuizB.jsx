@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Button, ProgressBar, AnswerCard } from '../components'
-import { QUESTIONS, INTRO, TRANSITION } from '../data/questions'
+import { ProgressBar, AnswerCard } from '../components'
+import { QUESTIONS, TRANSITION } from '../data/questions'
 import { calcularEstilo } from '../data/scoring'
 import './QuizB.css'
 
@@ -34,7 +34,7 @@ export default function QuizB() {
   const navigate = useNavigate()
   const saved = loadState()
 
-  const [screen, setScreen] = useState(saved?.started ? 'question' : 'intro')
+  const [screen, setScreen] = useState(saved?.started ? 'question' : 'question')
   const [currentIndex, setCurrentIndex] = useState(saved?.currentIndex ?? 0)
   const [answers, setAnswers] = useState(saved?.answers ?? [])
   const [selecting, setSelecting] = useState(false) // bloqueia duplo clique
@@ -46,12 +46,12 @@ export default function QuizB() {
     }
   }, [screen, currentIndex, answers])
 
-  const handleStart = () => {
-    if (window.fbq) {
+  // quiz_start no mount (sem tela de intro)
+  useEffect(() => {
+    if (window.fbq && !saved?.started) {
       window.fbq('trackCustom', 'quiz_start')
     }
-    setScreen('question')
-  }
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleAnswer = useCallback((optionId) => {
     if (selecting) return
@@ -85,20 +85,6 @@ export default function QuizB() {
   const question = QUESTIONS[currentIndex]
   const progress = Math.round((currentIndex / QUESTIONS.length) * 100)
 
-  if (screen === 'intro') {
-    return (
-      <div className="quiz">
-        <div className="quiz__body">
-          <div className="quiz__intro">
-            <h1 className="quiz__intro-title">{INTRO.title}</h1>
-            <p className="quiz__intro-body">{INTRO.body}</p>
-            <Button onClick={handleStart}>{INTRO.cta}</Button>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
   if (screen === 'transition') {
     return (
       <div className="quiz">
@@ -130,6 +116,9 @@ export default function QuizB() {
 
       <div className="quiz__body">
         <div className="quiz__question" key={currentIndex}>
+          {currentIndex === 0 && (
+            <p className="quiz__context">Escolha a opção que descreve como você realmente age, não como acha que deveria.</p>
+          )}
           <h2 className="quiz__question-text">{question.text}</h2>
           <div className="quiz__options" role="group" aria-label="Opções de resposta">
             {question.options.map((opt) => (
