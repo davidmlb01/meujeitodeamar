@@ -51,6 +51,30 @@ function CountdownTimer({ minutes }) {
 
 export default function Obrigado() {
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    if (params.toString()) {
+      const allParams = Object.fromEntries(params)
+      console.log('[MJDA] Kiwify redirect params:', JSON.stringify(allParams, null, 2))
+      console.log('[MJDA] Full URL:', window.location.href)
+
+      if (window.fbq) {
+        const value = parseFloat(allParams.sale_amount || allParams.order_value || allParams.product_price || '0')
+        const obValue = parseFloat(allParams.order_bump_value || allParams.ob_value || allParams.bump_value || '0')
+
+        if (obValue > 0) {
+          window.fbq('track', 'Purchase', {
+            content_name: 'order_bump',
+            content_type: 'product',
+            value: obValue,
+            currency: 'BRL',
+          })
+          console.log('[MJDA] Purchase event fired for OB:', obValue)
+        }
+      }
+    }
+  }, [])
+
+  useEffect(() => {
     const script = document.createElement('script')
     script.src = 'https://snippets.kiwify.com/upsell/upsell.min.js'
     script.async = true
