@@ -1,6 +1,6 @@
 # MASTER BACKUP — Projeto Freud
-**Última atualização:** 2026-05-03
-**Status:** V1 lançado. Funil ~10/10 após 4 fases de polish (loop viral, jornada emocional, conversão, polish final). 17 commits nesta sessão. Share WhatsApp/Stories, OG images, exit intent, timer upsell, micro-feedback quiz, dinâmicas entre estilos, meta tags dinâmicas. Produto renomeado: "Mapa do Coração". Pronto para Meta Ads R$100/dia. Pendente: renomear Kiwify/PDFs, seed launch, lead capture.
+**Última atualização:** 2026-05-04
+**Status:** PRIMEIRA VENDA em 04/05/2026. Aline Dantas comprou Mapa do Coração Confuso (R$31,55) + OB Guia de Relacionamentos (R$24,84) = R$56,39 via Pix. Meta Ads rodando 2 campanhas CBO (ADS1 R$10/dia, ADS2 R$12/dia). ADS1 gerou a venda: CPC R$1,29, CTR 2,53%, ROAS 12,28. Param sniffer deployado na /obrigado para capturar dados de OB nas proximas vendas. Pendente: ajustar colunas BM (duplicatas removidas), renomear Kiwify/PDFs "Leitura" para "Mapa", seed launch, lead capture.
 
 ---
 
