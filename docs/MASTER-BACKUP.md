@@ -1,6 +1,6 @@
 # MASTER BACKUP — Projeto Freud
 **Última atualização:** 2026-05-04
-**Status:** PRIMEIRA VENDA em 04/05/2026. Aline Dantas: Mapa Confuso R$31,55 + OB Guia R$24,84 = R$56,39. Meta Ads 2 CBOs rodando (ADS1 R$10/dia, ADS2 R$12/dia). ADS1 ROAS 12,28. Param sniffer OB deployado na /obrigado. Criativos V2 finalizados (6 roteiros UGC desabafo+dica, copy aprovado por David). Auditoria colunas BM entregue (22 colunas limpas). Pendente: reorganizar colunas BM, renomear Kiwify/PDFs "Leitura" para "Mapa", seed launch, lead capture.
+**Status:** PRIMEIRA VENDA em 04/05/2026. Aline Dantas: Mapa Confuso R$31,55 + OB Guia R$24,84 = R$56,39. Meta Ads: 6 novos anúncios UGC subidos em 04/05, começam a rodar 05/05 de manhã (copy V2 desabafo+dica + ads copy completo). Param sniffer OB deployado na /obrigado. Auditoria colunas BM entregue (22 colunas limpas). Pendente: reorganizar colunas BM, renomear Kiwify/PDFs "Leitura" para "Mapa", seed launch, lead capture.
 
 ---
 
