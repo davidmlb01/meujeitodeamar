@@ -512,6 +512,18 @@
   align-items: flex-start;
   position: relative;
   overflow: hidden;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: card-reveal 500ms ease-out forwards;
+}
+
+.locked-card:nth-child(1) { animation-delay: 0ms; }
+.locked-card:nth-child(2) { animation-delay: 100ms; }
+.locked-card:nth-child(3) { animation-delay: 200ms; }
+.locked-card:nth-child(4) { animation-delay: 300ms; }
+
+@keyframes card-reveal {
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .locked-card--blurred .locked-card__content {
@@ -1019,6 +1031,84 @@
   .sticky-cta {
     display: none;
   }
+}
+
+/* ── EXIT INTENT OVERLAY ── */
+.exit-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(27,27,17,0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: fade-in 300ms ease-out;
+}
+
+.exit-overlay__card {
+  background: var(--bg);
+  border-radius: 20px;
+  padding: 48px 32px;
+  max-width: 420px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.exit-overlay__headline {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 4vw, 28px);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--dark);
+  line-height: 1.3;
+}
+
+.exit-overlay__sub {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.65;
+  opacity: 0.7;
+}
+
+.exit-overlay__cta {
+  display: block;
+  width: 100%;
+  padding: 18px 32px;
+  background: var(--cta);
+  color: var(--bg);
+  border: none;
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.exit-overlay__cta:hover {
+  opacity: 0.9;
+}
+
+.exit-overlay__close {
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* ── RESPONSIVE ── */

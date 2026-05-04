@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { useEffect, useState, useRef, useCallback } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { RESULTS, VALID_ESTILOS } from '../data/results'
 import './Resultado.css'
 
@@ -128,9 +129,11 @@ export default function Resultado() {
   const [showPage, setShowPage] = useState(false)
   const [openFaq, setOpenFaq] = useState(null)
   const [showSticky, setShowSticky] = useState(false)
+  const [showExit, setShowExit] = useState(false)
   const gapRef = useRef(null)
   const offerRef = useRef(null)
   const scrollTracked = useRef({})
+  const exitShown = useRef(false)
 
   useEffect(() => {
     if (!VALID_ESTILOS.includes(estilo)) {
@@ -174,6 +177,20 @@ export default function Resultado() {
     if (gapRef.current) observer.observe(gapRef.current)
     if (offerRef.current) observer.observe(offerRef.current)
     return () => observer.disconnect()
+  }, [showPage])
+
+  /* Exit intent (desktop: mouseleave top, mobile: 30s inatividade) */
+  useEffect(() => {
+    if (!showPage) return
+    const handleMouseLeave = (e) => {
+      if (e.clientY < 10 && !exitShown.current && !sessionStorage.getItem('mjda_exit_shown')) {
+        exitShown.current = true
+        sessionStorage.setItem('mjda_exit_shown', '1')
+        setShowExit(true)
+      }
+    }
+    document.addEventListener('mouseleave', handleMouseLeave)
+    return () => document.removeEventListener('mouseleave', handleMouseLeave)
   }, [showPage])
 
   /* Scroll depth pixel events */
@@ -225,6 +242,13 @@ export default function Resultado() {
 
   return (
     <div className="resultado-v2" style={{ '--accent': r.colorToken }}>
+
+      <Helmet>
+        <title>Coração {r.styleName} | Meu Jeito de Amar</title>
+        <meta property="og:title" content={`Meu jeito de amar é ${r.styleName}`} />
+        <meta property="og:description" content="Descubra o seu jeito de amar. Teste gratuito com resultado imediato." />
+        <meta property="og:image" content={`https://www.meujeitodeamar.com.br/og-${estilo === 'desorganizado' ? 'confuso' : estilo}.png`} />
+      </Helmet>
 
       {/* ── CARRYING SCREEN ── */}
       <div className={`carrying ${showPage ? 'carrying--done' : ''}`}>
@@ -485,6 +509,28 @@ export default function Resultado() {
           <p className="share-section__hint">A imagem salva direto no seu celular. É só abrir o Instagram e postar.</p>
         </div>
       </section>
+
+      {/* ── EXIT INTENT OVERLAY ── */}
+      {showExit && (
+        <div className="exit-overlay" onClick={() => setShowExit(false)}>
+          <div className="exit-overlay__card" onClick={(e) => e.stopPropagation()}>
+            <p className="exit-overlay__headline">Sua leitura vai ficar disponível por tempo limitado.</p>
+            <p className="exit-overlay__sub">O Mapa {r.readingName} foi gerado a partir das suas respostas. Se você sair agora, pode não encontrar esse preço de novo.</p>
+            <a
+              href={checkoutUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="exit-overlay__cta"
+              onClick={(e) => { handleCheckout(); setShowExit(false); }}
+            >
+              Quero o meu Mapa por R$37
+            </a>
+            <button className="exit-overlay__close" onClick={() => setShowExit(false)}>
+              Não, obrigada
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* ── STICKY CTA (mobile) ── */}
       <div className={`sticky-cta ${showSticky ? 'sticky-cta--visible' : ''}`}>

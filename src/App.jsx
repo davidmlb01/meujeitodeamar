@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HelmetProvider } from 'react-helmet-async'
 import { Analytics } from './components'
 import LandingPage from './pages/LandingPage'
 import QuizB from './pages/QuizB'
@@ -9,6 +10,7 @@ import Termos from './pages/Termos'
 
 export default function App() {
   return (
+    <HelmetProvider>
     <BrowserRouter>
       <Analytics />
       <Routes>
@@ -20,5 +22,6 @@ export default function App() {
         <Route path="/termos" element={<Termos />} />
       </Routes>
     </BrowserRouter>
+    </HelmetProvider>
   )
 }

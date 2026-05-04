@@ -29,7 +29,7 @@ export default function LandingPage() {
           </p>
           <div className="landing__cta">
             <Link to="/quiz/b" tabIndex={-1}>
-              <Button>Clique e descubra o seu jeito de amar</Button>
+              <Button>Descobrir o meu jeito de amar</Button>
             </Link>
           </div>
           <p className="landing__under">20 perguntas · Resultado imediato · 100% gratuito</p>
@@ -74,13 +74,16 @@ export default function LandingPage() {
             {TESTIMONIALS.map((t, i) => (
               <blockquote key={i} className="testimonial">
                 <p className="testimonial__text">{t.text}</p>
-                <cite className="testimonial__name">{t.name}</cite>
+                <div className="testimonial__meta">
+                  <span className="testimonial__avatar">{t.name.charAt(0)}</span>
+                  <cite className="testimonial__name">{t.name}</cite>
+                </div>
               </blockquote>
             ))}
           </div>
           <div className="landing__testimonials-cta">
             <Link to="/quiz/b" tabIndex={-1}>
-              <Button>Clique e descubra o seu jeito de amar</Button>
+              <Button>Descobrir o meu jeito de amar</Button>
             </Link>
             <p className="landing__under">20 perguntas · Resultado imediato · 100% gratuito</p>
           </div>
