@@ -2,22 +2,9 @@
 
 You are working with Synkra AIOX, an AI-Orchestrated System for Full Stack Development.
 
-<!-- AIOX-MANAGED-START: core-framework -->
-## Core Framework Understanding
+## Constitution (Inegociavel)
 
-Synkra AIOX is a meta-framework that orchestrates AI agents to handle complex development workflows. Always recognize and work within this architecture.
-<!-- AIOX-MANAGED-END: core-framework -->
-
-<!-- AIOX-MANAGED-START: constitution -->
-## Constitution
-
-O AIOX possui uma **Constitution formal** com princípios inegociáveis e gates automáticos.
-
-**Documento completo:** `.aiox-core/constitution.md`
-
-**Princípios fundamentais:**
-
-| Artigo | Princípio | Severidade |
+| Artigo | Principio | Severidade |
 |--------|-----------|------------|
 | I | CLI First | NON-NEGOTIABLE |
 | II | Agent Authority | NON-NEGOTIABLE |
@@ -26,484 +13,111 @@ O AIOX possui uma **Constitution formal** com princípios inegociáveis e gates 
 | V | Quality First | MUST |
 | VI | Absolute Imports | SHOULD |
 
-**Gates automáticos bloqueiam violações.** Consulte a Constitution para detalhes completos.
-<!-- AIOX-MANAGED-END: constitution -->
+Documento completo: `.aiox-core/constitution.md`
 
-<!-- AIOX-MANAGED-START: sistema-de-agentes -->
 ## Sistema de Agentes
 
-### Ativação de Agentes
-Use `@agent-name` ou `/AIOX:agents:agent-name`:
+Ativar com `@agent-name` ou `/AIOX:agents:agent-name`. Comandos: prefixo `*`.
 
-| Agente | Persona | Escopo Principal |
-|--------|---------|------------------|
-| `@dev` | Dex | Implementação de código |
+| Agente | Persona | Escopo |
+|--------|---------|--------|
+| `@dev` | Dex | Implementacao de codigo |
 | `@qa` | Quinn | Testes e qualidade |
-| `@architect` | Aria | Arquitetura e design técnico |
+| `@architect` | Aria | Arquitetura e design tecnico |
 | `@pm` | Morgan | Product Management |
 | `@po` | Pax | Product Owner, stories/epics |
 | `@sm` | River | Scrum Master |
-| `@analyst` | Alex | Pesquisa e análise |
+| `@analyst` | Alex | Pesquisa e analise |
 | `@data-engineer` | Dara | Database design |
 | `@ux-design-expert` | Uma | UX/UI design |
 | `@devops` | Gage | CI/CD, git push (EXCLUSIVO) |
 
-### Comandos de Agentes
-Use prefixo `*` para comandos:
-- `*help` - Mostrar comandos disponíveis
-- `*create-story` - Criar story de desenvolvimento
-- `*task {name}` - Executar task específica
-- `*exit` - Sair do modo agente
-<!-- AIOX-MANAGED-END: sistema-de-agentes -->
-
-<!-- AIOX-MANAGED-START: agent-system -->
-## Agent System
-
-### Agent Activation
-- Agents are activated with @agent-name syntax: @dev, @qa, @architect, @pm, @po, @sm, @analyst
-- The master agent is activated with @aiox-master
-- Agent commands use the * prefix: *help, *create-story, *task, *exit
-
-### Agent Context
-When an agent is active:
-- Follow that agent's specific persona and expertise
-- Use the agent's designated workflow patterns
-- Maintain the agent's perspective throughout the interaction
-<!-- AIOX-MANAGED-END: agent-system -->
-
-## Development Methodology
-
-### Story-Driven Development
-1. **Work from stories** - All development starts with a story in `docs/stories/`
-2. **Update progress** - Mark checkboxes as tasks complete: [ ] → [x]
-3. **Track changes** - Maintain the File List section in the story
-4. **Follow criteria** - Implement exactly what the acceptance criteria specify
-
-### Code Standards
-- Write clean, self-documenting code
-- Follow existing patterns in the codebase
-- Include comprehensive error handling
-- Add unit tests for all new functionality
-- Use TypeScript/JavaScript best practices
-
-### Testing Requirements
-- Run all tests before marking tasks complete
-- Ensure linting passes: `npm run lint`
-- Verify type checking: `npm run typecheck`
-- Add tests for new features
-- Test edge cases and error scenarios
-
-<!-- AIOX-MANAGED-START: framework-structure -->
-## AIOX Framework Structure
-
-```
-aiox-core/
-├── agents/         # Agent persona definitions (YAML/Markdown)
-├── tasks/          # Executable task workflows
-├── workflows/      # Multi-step workflow definitions
-├── templates/      # Document and code templates
-├── checklists/     # Validation and review checklists
-└── rules/          # Framework rules and patterns
-
-docs/
-├── stories/        # Development stories (numbered)
-├── prd/            # Product requirement documents
-├── architecture/   # System architecture documentation
-└── guides/         # User and developer guides
-```
-<!-- AIOX-MANAGED-END: framework-structure -->
-
-<!-- AIOX-MANAGED-START: framework-boundary -->
-## Framework vs Project Boundary
-
-O AIOX usa um modelo de 4 camadas (L1-L4) para separar artefatos do framework e do projeto. Deny rules em `.claude/settings.json` reforçam isso deterministicamente.
-
-| Camada | Mutabilidade | Paths | Notas |
-|--------|-------------|-------|-------|
-| **L1** Framework Core | NEVER modify | `.aiox-core/core/`, `.aiox-core/constitution.md`, `bin/aiox.js`, `bin/aiox-init.js` | Protegido por deny rules |
-| **L2** Framework Templates | NEVER modify | `.aiox-core/development/tasks/`, `.aiox-core/development/templates/`, `.aiox-core/development/checklists/`, `.aiox-core/development/workflows/`, `.aiox-core/infrastructure/` | Extend-only |
-| **L3** Project Config | Mutable (exceptions) | `.aiox-core/data/`, `agents/*/MEMORY.md`, `core-config.yaml` | Allow rules permitem |
-| **L4** Project Runtime | ALWAYS modify | `docs/stories/`, `packages/`, `squads/`, `tests/` | Trabalho do projeto |
-
-**Toggle:** `core-config.yaml` → `boundary.frameworkProtection: true/false` controla se deny rules são ativas (default: true para projetos, false para contribuidores do framework).
-
-> **Referência formal:** `.claude/settings.json` (deny/allow rules), `.claude/rules/agent-authority.md`
-<!-- AIOX-MANAGED-END: framework-boundary -->
-
-<!-- AIOX-MANAGED-START: rules-system -->
-## Rules System
-
-O AIOX carrega regras contextuais de `.claude/rules/` automaticamente. Regras com frontmatter `paths:` só carregam quando arquivos correspondentes são editados.
-
-| Rule File | Description |
-|-----------|-------------|
-| `agent-authority.md` | Agent delegation matrix and exclusive operations |
-| `agent-handoff.md` | Agent switch compaction protocol for context optimization |
-| `agent-memory-imports.md` | Agent memory lifecycle and CLAUDE.md ownership |
-| `coderabbit-integration.md` | Automated code review integration rules |
-| `ids-principles.md` | Incremental Development System principles |
-| `mcp-usage.md` | MCP server usage rules and tool selection priority |
-| `story-lifecycle.md` | Story status transitions and quality gates |
-| `workflow-execution.md` | 4 primary workflows (SDC, QA Loop, Spec Pipeline, Brownfield) |
-
-> **Diretório:** `.claude/rules/` — rules são carregadas automaticamente pelo Claude Code quando relevantes.
-<!-- AIOX-MANAGED-END: rules-system -->
-
-<!-- AIOX-MANAGED-START: code-intelligence -->
-## Code Intelligence
-
-O AIOX possui um sistema de code intelligence opcional que enriquece operações com dados de análise de código.
-
-| Status | Descrição | Comportamento |
-|--------|-----------|---------------|
-| **Configured** | Provider ativo e funcional | Enrichment completo disponível |
-| **Fallback** | Provider indisponível | Sistema opera normalmente sem enrichment — graceful degradation |
-| **Disabled** | Nenhum provider configurado | Funcionalidade de code-intel ignorada silenciosamente |
-
-**Graceful Fallback:** Code intelligence é sempre opcional. `isCodeIntelAvailable()` verifica disponibilidade antes de qualquer operação. Se indisponível, o sistema retorna o resultado base sem modificação — nunca falha.
-
-**Diagnóstico:** `aiox doctor` inclui check de code-intel provider status.
-
-> **Referência:** `.aiox-core/core/code-intel/` — provider interface, enricher, client
-<!-- AIOX-MANAGED-END: code-intelligence -->
-
-<!-- AIOX-MANAGED-START: graph-dashboard -->
-## Graph Dashboard
-
-O CLI `aiox graph` visualiza dependências, estatísticas de entidades e status de providers.
-
-### Comandos
-
-```bash
-aiox graph --deps                        # Dependency tree (ASCII)
-aiox graph --deps --format=json          # Output como JSON
-aiox graph --deps --format=html          # Interactive HTML (abre browser)
-aiox graph --deps --format=mermaid       # Mermaid diagram
-aiox graph --deps --format=dot           # DOT format (Graphviz)
-aiox graph --deps --watch                # Live mode com auto-refresh
-aiox graph --deps --watch --interval=10  # Refresh a cada 10 segundos
-aiox graph --stats                       # Entity stats e cache metrics
-```
-
-**Formatos de saída:** ascii (default), json, dot, mermaid, html
-
-> **Referência:** `.aiox-core/core/graph-dashboard/` — CLI, renderers, data sources
-<!-- AIOX-MANAGED-END: graph-dashboard -->
-
-## Workflow Execution
-
-### Task Execution Pattern
-1. Read the complete task/workflow definition
-2. Understand all elicitation points
-3. Execute steps sequentially
-4. Handle errors gracefully
-5. Provide clear feedback
-
-### Interactive Workflows
-- Workflows with `elicit: true` require user input
-- Present options clearly
-- Validate user responses
-- Provide helpful defaults
-
-## Best Practices
-
-### When implementing features:
-- Check existing patterns first
-- Reuse components and utilities
-- Follow naming conventions
-- Keep functions focused and testable
-- Document complex logic
-
-### When working with agents:
-- Respect agent boundaries
-- Use appropriate agent for each task
-- Follow agent communication patterns
-- Maintain agent context
-
-### When handling errors:
-```javascript
-try {
-  // Operation
-} catch (error) {
-  console.error(`Error in ${operation}:`, error);
-  // Provide helpful error message
-  throw new Error(`Failed to ${operation}: ${error.message}`);
-}
-```
-
-## Git & GitHub Integration
-
-### Commit Conventions
-- Use conventional commits: `feat:`, `fix:`, `docs:`, `chore:`, etc.
-- Reference story ID: `feat: implement IDE detection [Story 2.1]`
-- Keep commits atomic and focused
-
-### GitHub CLI Usage
-- Ensure authenticated: `gh auth status`
-- Use for PR creation: `gh pr create`
-- Check org access: `gh api user/memberships`
-
-<!-- AIOX-MANAGED-START: aiox-patterns -->
-## AIOX-Specific Patterns
-
-### Working with Templates
-```javascript
-const template = await loadTemplate('template-name');
-const rendered = await renderTemplate(template, context);
-```
-
-### Agent Command Handling
-```javascript
-if (command.startsWith('*')) {
-  const agentCommand = command.substring(1);
-  await executeAgentCommand(agentCommand, args);
-}
-```
-
-### Story Updates
-```javascript
-// Update story progress
-const story = await loadStory(storyId);
-story.updateTask(taskId, { status: 'completed' });
-await story.save();
-```
-<!-- AIOX-MANAGED-END: aiox-patterns -->
-
-## Environment Setup
-
-### Required Tools
-- Node.js 18+
-- GitHub CLI
-- Git
-- Your preferred package manager (npm/yarn/pnpm)
-
-### Configuration Files
-- `.aiox/config.yaml` - Framework configuration
-- `.env` - Environment variables
-- `aiox.config.js` - Project-specific settings
-
-<!-- AIOX-MANAGED-START: common-commands -->
-## Common Commands
-
-### AIOX Master Commands
-- `*help` - Show available commands
-- `*create-story` - Create new story
-- `*task {name}` - Execute specific task
-- `*workflow {name}` - Run workflow
-
-### Development Commands
-- `npm run dev` - Start development
-- `npm test` - Run tests
-- `npm run lint` - Check code style
-- `npm run build` - Build project
-<!-- AIOX-MANAGED-END: common-commands -->
-
-## Debugging
-
-### Enable Debug Mode
-```bash
-export AIOX_DEBUG=true
-```
-
-### View Agent Logs
-```bash
-tail -f .aiox/logs/agent.log
-```
-
-### Trace Workflow Execution
-```bash
-npm run trace -- workflow-name
-```
-
-## Claude Code Specific Configuration
-
-### Performance Optimization
-- Prefer batched tool calls when possible for better performance
-- Use parallel execution for independent operations
-- Cache frequently accessed data in memory during sessions
-
-### Tool Usage Guidelines
-- Always use the Grep tool for searching, never `grep` or `rg` in bash
-- Use the Task tool for complex multi-step operations
-- Batch file reads/writes when processing multiple files
-- Prefer editing existing files over creating new ones
-
-### Session Management
-- Track story progress throughout the session
-- Update checkboxes immediately after completing tasks
-- Maintain context of the current story being worked on
-- Save important state before long-running operations
-
-### Error Recovery
-- Always provide recovery suggestions for failures
-- Include error context in messages to user
-- Suggest rollback procedures when appropriate
-- Document any manual fixes required
-
-### Testing Strategy
-- Run tests incrementally during development
-- Always verify lint and typecheck before marking complete
-- Test edge cases for each new feature
-- Document test scenarios in story files
-
-### Documentation
-- Update relevant docs when changing functionality
-- Include code examples in documentation
-- Keep README synchronized with actual behavior
-- Document breaking changes prominently
-
----
-
-## Projeto Freud — Referência Estratégica
-
-O Projeto Freud é uma plataforma de testes psicológicos de baixo ticket. O **meujeitodeamar.com.br** é o V1 de uma esteira de 6 produtos planejados.
-
-**Contexto completo (leia no início de qualquer sessão relacionada):**
-- `docs/MASTER-BACKUP.md` — backup estratégico completo: decisões, roadmap, código, infraestrutura, Kiwify, DNS, copy
-- `docs/prd/freud-meujeitodeamar-prd.md` — PRD oficial com requisitos, monetização e projeções
-
----
-
-## Protocolo de Orquestração (OBRIGATÓRIO — Orion)
-
-### Fluxo obrigatório para qualquer tarefa delegada a squad
-
-**NUNCA** designar agente executor diretamente. O fluxo é sempre:
-
-```
-Orion identifica squad → chama Squad Lead → Squad Lead designa o melhor agente → agente executa
-```
-
-Exemplos:
-- Tarefa de design: Orion → UMA (design lead) → UMA designa especialista
-- Tarefa de copy: Orion → copy lead → lead designa especialista
-- Qualquer squad: sempre via líder primeiro
-
-### Quality Gate — NADA chega ao David com erros
-
-Antes de qualquer entrega ao David, auditoria obrigatória:
-
-```
-Agente executa → Auditoria (erros?) → SIM: retorna ao agente para corrigir → NAO: entrega ao David
-```
-
-Erros auditados: copy (travessão, formatação, grafia), lógica, código, coerência com briefing.
-Se erro encontrado: retorna ao executor com lista específica de problemas. David só recebe quando aprovado.
-
----
-
-## Processos de Sessão
-
-### Ao fim de cada sessão importante (OBRIGATÓRIO)
-1. Para **cada projeto tocado** na sessão:
-   - Atualizar o `MASTER-BACKUP.md` do projeto com decisões tomadas, mudanças e estado atual
-   - Atualizar o arquivo de memória correspondente em `~/.claude/projects/.../memory/project_{nome}_complete.md`
-   - Se o projeto não tiver arquivo de memória, criar agora
-2. Fazer commit + push de todos os MASTER-BACKUPs modificados
-3. Sugerir `/save-session` para criar snapshot da sessão no harness
-
-### Ao iniciar trabalho em qualquer projeto
-- Verificar se existe `project_{nome}_complete.md` na memória
-- Se não existir: criar ANTES de qualquer outra ação naquele projeto
-- Consultar a memória existente para ter contexto completo antes de agir
-
-### Durante a sessão (proativo)
-- A cada ~30 minutos de trabalho intenso, sugerir `/save-session` sem esperar o usuário pedir
-- Se a conversa mudar de projeto ou assunto importante, sugerir salvar antes de mudar
-- Usar `/resume-session` no início de sessões para carregar contexto da sessão anterior
-
-### Memória granular por projeto
-- Cada projeto ativo tem seu arquivo dedicado em `~/.claude/projects/.../memory/`
-- Formato: `project_{nome}_complete.md` com contexto estratégico completo (não só status)
-- Conteúdo: visão, decisões-chave, estado atual, roadmap, links para documentos
-- Atualizar ao fim de cada sessão com novas decisões e mudanças
-- O MASTER-BACKUP.md do projeto é o espelho desse arquivo de memória
-
----
-
-## Protocolo de Memoria Obsidian (Sistema Hibrido L1+L2)
-
-**Vault (L2, fonte de verdade):**
+Quando um agente esta ativo: seguir persona, expertise e workflow patterns desse agente.
+
+## Regras Universais (SEMPRE aplicam)
+
+- **NUNCA** usar travessao (—) em nenhum texto
+- **NUNCA** texto sem acentos/cedilhas (PT-BR 100% correto)
+- **NUNCA** dados falsos/mock/estimativas em interface do usuario
+- **Quality gate**: auditoria obrigatoria antes de entregar ao David
+- **YOLO mode**: chamar David so para decisoes que realmente dependem dele
+- **Kanban**: eu movo tarefas nos MASTER-BACKUPs ([ ] > [~] > [x])
+- **Orquestracao**: Orion > Squad Lead > Agente (nunca direto)
+- **Story-Driven**: todo dev comeca com story em `docs/stories/`
+- **Conventional commits**: feat:, fix:, docs:, chore: + referencia story ID
+- **@devops exclusivo**: git push, gh pr create/merge, MCP management
+
+## Protocolo de Contexto (RETRIEVAL)
+
+**Vault (fonte de verdade):**
 `/Users/davidlevy/Library/Mobile Documents/iCloud~md~obsidian/Documents/Joker's Mind/`
 
 **Cache rapido (L1):**
 `~/.claude/projects/-Users-davidlevy-Desktop-PJ-BIG-HEAD/memory/`
 
-**Regra fundamental:** L2 prevalece em caso de divergencia. iCloud = backup automatico.
+### Ao iniciar qualquer tarefa:
+1. Identificar projeto ativo (pela mensagem ou perguntar)
+2. Ler MOC do projeto no vault: `projects/{nome}/MOC.md`
+3. Carregar so o que a tarefa exige (max 2 notas extras do vault)
 
-### Estrutura do vault
+### Ao encerrar sessao:
+1. Atualizar MOC.md dos projetos tocados (campo updated: + decisoes)
+2. Atualizar MASTER-BACKUP.md
+3. Commit + push
+4. /save-session
+
+### Indice de Projetos Ativos
+
+| Projeto | MOC | Status |
+|---------|-----|--------|
+| Freud | projects/freud/MOC.md | V1 live, Meta Ads |
+| EasySite | projects/easysite/MOC.md | Bot v2 ativo |
+| Destaka | projects/destaka/MOC.md | MVP producao |
+| GMM | projects/gmm/MOC.md | Pausado (virou Destaka) |
+| Mulambada | projects/mulambada/MOC.md | Kickoff completo |
+| Energy Tech | projects/energy-tech/MOC.md | 1a entrega 30/04 |
+| UNLMTD | projects/unlmtd/MOC.md | Brandbook pronto |
+
+### Protocolos detalhados (ler sob demanda do vault):
+- `reference/aiox-protocols.md` — agents, authority, squads
+- `reference/aiox-workflows.md` — SDC, QA Loop, Spec Pipeline, Brownfield
+- `reference/kickoff-flow.md` — 11 etapas canonicas
+- `reference/session-protocol.md` — save, resume, memory update
+
+## Framework Structure
 
 ```
-Joker's Mind/
-├── _templates/        (tpl-project, tpl-feedback, tpl-user, tpl-reference)
-├── _bases/            (all-memories.base, active-projects.base, feedback-index.base)
-├── projects/          (freud/, easysite/, gmm/, destaka/, mulambada/, energy-tech/, unlmtd/)
-├── feedback/          (todas as regras permanentes)
-├── user/
-├── reference/
-└── MEMORY-INDEX.md    (indice master com wikilinks)
+.aiox-core/
+├── agents/         # Agent personas (YAML/Markdown)
+├── tasks/          # Executable task workflows
+├── workflows/      # Multi-step workflow definitions
+├── templates/      # Document and code templates
+├── checklists/     # Validation and review checklists
+└── rules/          # Framework rules and patterns
 ```
 
-### Ao CRIAR uma nova memoria
+## Framework Boundary (4 camadas)
 
-1. Escrever arquivo no vault (L2): `{VAULT}/{tipo}/{nome}.md` com frontmatter padrao
-2. Se e uma nota de projeto, adicionar wikilink na MOC do projeto
-3. Adicionar entrada no `MEMORY-INDEX.md` do vault
-4. Criar espelho simplificado em L1 (`~/.claude/.../memory/`)
-5. Atualizar `MEMORY.md` (L1)
+| Camada | Mutabilidade | Paths |
+|--------|-------------|-------|
+| L1 Core | NEVER | `.aiox-core/core/`, `.aiox-core/constitution.md`, `bin/` |
+| L2 Templates | NEVER | `.aiox-core/development/tasks/templates/checklists/workflows/` |
+| L3 Config | Mutable | `.aiox-core/data/`, `core-config.yaml` |
+| L4 Runtime | ALWAYS | `docs/stories/`, `packages/`, `squads/`, `tests/` |
 
-### Ao ATUALIZAR uma memoria existente
+## Code Standards (resumo)
 
-1. Editar arquivo no vault (L2), atualizar campo `updated:` no frontmatter
-2. Atualizar espelho em L1 se existir
+- Clean, self-documenting code. Follow existing patterns.
+- Comprehensive error handling. Unit tests for new functionality.
+- Lint (`npm run lint`) + typecheck (`npm run typecheck`) antes de marcar complete.
+- Prefer editing existing files over creating new ones.
+- Native Claude Code tools > MCP servers (Read, Write, Grep, Glob, Bash).
 
-### Ao INICIAR uma sessao
+## Memoria Obsidian (escrita dupla)
 
-1. Ler `MEMORY.md` (L1) para indice rapido
-2. Para contexto profundo de projeto especifico: ler MOC do vault (L2) diretamente
-
-### Ao ENCERRAR uma sessao
-
-1. Atualizar `updated:` em todas as notas tocadas no vault (L2)
-2. Sincronizar `MEMORY-INDEX.md` (L2) e `MEMORY.md` (L1)
-
-### Frontmatter padrao por tipo
-
-**Projeto:**
-```yaml
----
-type: project
-status: active
-created: "YYYY-MM-DD"
-updated: "YYYY-MM-DD"
-tags: [project]
-url: ""
-stack: []
----
-```
-
-**Feedback:**
-```yaml
----
-type: feedback
-severity: high
-created: "YYYY-MM-DD"
-updated: "YYYY-MM-DD"
-tags: [feedback]
-applies_to: all
----
-```
-
-**Reference:**
-```yaml
----
-type: reference
-created: "YYYY-MM-DD"
-updated: "YYYY-MM-DD"
-tags: [reference]
-category: ""
----
-```
+Ao CRIAR memoria: vault (L2) primeiro, depois espelho em L1.
+Ao ATUALIZAR: editar vault, atualizar espelho.
+L2 prevalece em caso de divergencia.
 
 ---
-*Synkra AIOX Claude Code Configuration v2.0*
+*Synkra AIOX v3.0 — Context Retrieval Architecture*
