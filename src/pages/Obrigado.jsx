@@ -1,14 +1,53 @@
-import { useEffect } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import './Obrigado.css'
+
+const KIWIFY_UPSELL_ID = 'JpX6Dn7'
+const TIMER_MINUTES = 10
 
 const UPSELL_BULLETS = [
   { label: 'Coração Ansioso', desc: 'Por que monitora tudo e como isso deixa de parecer drama quando você entende a origem' },
   { label: 'Coração Distante', desc: 'Por que some exatamente quando você mais precisa e o que está acontecendo por dentro' },
   { label: 'Coração Seguro', desc: 'Como pensa o amor de um jeito que parece simples e que pode te ensinar algo real' },
   { label: 'Coração Confuso', desc: 'Por que parece contraditório quando na verdade está com medo' },
-  { label: null, desc: 'Cada leitura inclui como esse jeito de amar se relaciona com os outros três' },
+  { label: null, desc: 'Cada mapa inclui como esse jeito de amar se relaciona com os outros três' },
 ]
+
+const CheckIcon = () => (
+  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10" />
+    <path d="M9 12l2 2 4-4" />
+  </svg>
+)
+
+function CountdownTimer({ minutes }) {
+  const [remaining, setRemaining] = useState(minutes * 60)
+  const intervalRef = useRef(null)
+
+  useEffect(() => {
+    intervalRef.current = setInterval(() => {
+      setRemaining((prev) => {
+        if (prev <= 1) {
+          clearInterval(intervalRef.current)
+          return 0
+        }
+        return prev - 1
+      })
+    }, 1000)
+    return () => clearInterval(intervalRef.current)
+  }, [])
+
+  const mins = Math.floor(remaining / 60)
+  const secs = remaining % 60
+  const display = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`
+
+  return (
+    <div className="countdown">
+      <span className="countdown__time">{display}</span>
+      <span className="countdown__label">Essa oferta expira quando o tempo acabar</span>
+    </div>
+  )
+}
 
 export default function Obrigado() {
   useEffect(() => {
@@ -25,35 +64,41 @@ export default function Obrigado() {
     <div className="obrigado">
       <div className="obrigado__inner">
 
-        {/* Confirmação */}
+        {/* S1: Confirmação — fundo nude */}
         <div className="obrigado__confirm">
-          <span className="obrigado__confirm-icon">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/></svg>
-          </span>
+          <span className="obrigado__confirm-icon"><CheckIcon /></span>
           <h1 className="obrigado__confirm-title">
-            Pedido confirmado. Sua leitura está a caminho.
+            Seu Mapa está a caminho.
           </h1>
           <p className="obrigado__confirm-sub">
-            Seu email com a leitura chega em até 2 minutos.
+            Enviamos para o email cadastrado na Kiwify. Chega em até 2 minutos.
+          </p>
+          <p className="obrigado__confirm-spam">
+            Não encontrou? Verifique a pasta de spam ou promoções.
           </p>
         </div>
 
-        {/* Upsell */}
+        {/* S2-S4: Upsell (bridge dark → produto nude → preço+timer+CTA dark) */}
         <div className="obrigado__upsell">
-          <hr className="obrigado__divider" />
-          <h2 className="obrigado__upsell-headline">
-            Aguarde um segundo antes de fechar.
-          </h2>
-          <div className="obrigado__upsell-body">
-            <p>Tem uma coisa que faz sentido você saber agora, enquanto isso ainda está fresco.</p>
-            <p>Você acabou de descobrir como você ama. E se for parecido com a maioria das pessoas que passaram por aqui, nas próximas horas você vai começar a pensar nas pessoas ao seu redor com outros olhos.</p>
-            <p>Seu parceiro. Sua mãe. Aquela amiga que você ama mas não entende.</p>
-            <p>E vai perceber que cada um deles também tem um jeito de amar. E que esse jeito explica coisas que você tentou entender por anos sem conseguir.</p>
+
+          {/* S2: Bridge — fundo DARK */}
+          <div className="obrigado__upsell-bridge">
+            <h2 className="obrigado__upsell-headline">
+              Você acabou de entender como você ama.<br />
+              <em>E as pessoas que você ama?</em>
+            </h2>
           </div>
 
-          {/* Produto */}
+          <div className="obrigado__upsell-body">
+            <p>Nas próximas horas você vai começar a pensar nas pessoas ao seu redor com outros olhos.</p>
+            <p>Seu parceiro. Sua mãe. Aquela amiga que você ama mas não entende.</p>
+            <p>Cada um deles também tem um jeito de amar. E esse jeito explica coisas que você tentou entender por anos.</p>
+          </div>
+
+          {/* S3: Produto — fundo nude */}
           <div className="obrigado__product">
-            <p className="obrigado__product-title">Combo Completo: Os 4 Jeitos de Amar</p>
+            <p className="obrigado__product-lead">Todos esses jeitos de amar estão mapeados. E você pode ter acesso a todos agora.</p>
+            <p className="obrigado__product-title">Combo Completo: Os 4 Mapas do Coração</p>
             <ul className="obrigado__bullets">
               {UPSELL_BULLETS.map((b, i) => (
                 <li key={i} className={`obrigado__bullet${!b.label ? ' obrigado__bullet--no-check' : ''}`}>
@@ -64,37 +109,32 @@ export default function Obrigado() {
                 </li>
               ))}
             </ul>
-
-            <p className="obrigado__product-bridge">
-              Você não vai precisar comprar cada leitura separada. Tudo está aqui, no mesmo formato, pelo mesmo padrão.
-            </p>
-
-            <div className="obrigado__price-block">
-              <p className="obrigado__price-original">4 leituras individuais · R$148</p>
-              <p className="obrigado__price-current">R$67</p>
-              <p className="obrigado__price-note">
-                Menos da metade do valor separado. Acesso imediato. Um clique.
-              </p>
-              <p className="obrigado__price-note">
-                Quando você sair dessa página, o acesso ao combo volta ao preço normal.
-              </p>
-            </div>
           </div>
 
-          {/* CTAs — Kiwify nativo */}
+          {/* S4: Preço + Timer + CTA — fundo DARK */}
+          <div className="obrigado__price-block">
+            <p className="obrigado__price-original">4 mapas individuais · R$148</p>
+            <p className="obrigado__price-current">R$67</p>
+            <p className="obrigado__price-note">
+              Menos da metade. Acesso imediato. Um clique.
+            </p>
+          </div>
+
+          <CountdownTimer minutes={TIMER_MINUTES} />
+
           <div className="obrigado__ctas">
-            <div id="kiwify-upsell-JpX6Dn7" data-upsell-url="" data-downsell-url="">
-              <button id="kiwify-upsell-trigger-JpX6Dn7" className="obrigado__upsell-btn">
+            <div id={`kiwify-upsell-${KIWIFY_UPSELL_ID}`} data-upsell-url="" data-downsell-url="">
+              <button id={`kiwify-upsell-trigger-${KIWIFY_UPSELL_ID}`} className="obrigado__upsell-btn">
                 SIM, quero o Combo Completo por R$67
               </button>
-              <div id="kiwify-upsell-cancel-trigger-JpX6Dn7" className="obrigado__decline">
+              <div id={`kiwify-upsell-cancel-trigger-${KIWIFY_UPSELL_ID}`} className="obrigado__decline">
                 Não, prefiro ficar só com o meu jeito de amar por enquanto.
               </div>
             </div>
           </div>
         </div>
 
-        {/* Instrução pós-compra */}
+        {/* S5: Instrução pós-compra — fundo warm */}
         <div className="obrigado__next">
           <p className="obrigado__next-title">Enquanto aguarda o email:</p>
           <p className="obrigado__next-body">
@@ -105,7 +145,7 @@ export default function Obrigado() {
           </p>
         </div>
 
-        {/* Footer */}
+        {/* S6: Footer — fundo nude */}
         <div className="obrigado__footer">
           <p className="obrigado__footer-site">meujeitodeamar.com.br</p>
           <div className="obrigado__footer-links">

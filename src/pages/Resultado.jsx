@@ -130,6 +130,7 @@ export default function Resultado() {
   const [showSticky, setShowSticky] = useState(false)
   const gapRef = useRef(null)
   const offerRef = useRef(null)
+  const scrollTracked = useRef({})
 
   useEffect(() => {
     if (!VALID_ESTILOS.includes(estilo)) {
@@ -175,6 +176,25 @@ export default function Resultado() {
     return () => observer.disconnect()
   }, [showPage])
 
+  /* Scroll depth pixel events */
+  useEffect(() => {
+    if (!showPage || !window.fbq) return
+    const sections = document.querySelectorAll('[data-scroll-track]')
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const name = entry.target.dataset.scrollTrack
+          if (!scrollTracked.current[name]) {
+            scrollTracked.current[name] = true
+            window.fbq('trackCustom', `scroll_${name}`)
+          }
+        }
+      })
+    }, { threshold: 0.3 })
+    sections.forEach((el) => obs.observe(el))
+    return () => obs.disconnect()
+  }, [showPage])
+
   const toggleFaq = useCallback((i) => {
     setOpenFaq((prev) => (prev === i ? null : i))
   }, [])
@@ -198,6 +218,9 @@ export default function Resultado() {
     { q: 'Isso é confiável? Em que se baseia?', a: 'O Mapa é baseado em um dos estudos mais respeitados da psicologia sobre como os seres humanos formam vínculos. Não é autoajuda. Não é horóscopo. É ciência traduzida para linguagem humana.' },
     { q: 'Como eu recebo o Mapa?', a: 'Entrega imediata por email. Em menos de 5 minutos você recebe o seu Mapa completo em PDF. Acesso permanente, leia quantas vezes quiser.' },
     { q: 'E se eu não gostar?', a: 'Garantia de 7 dias. Se o Mapa não fizer sentido para você, devolvemos 100% do valor. Sem perguntas.' },
+    { q: 'Isso não é tipo um teste de revista?', a: 'Não. Testes de revista dão respostas genéricas para todo mundo. O Mapa é construído a partir das suas respostas específicas e baseado em uma pesquisa com mais de 40 anos de estudos replicados.' },
+    { q: 'Funciona se eu estiver solteira?', a: 'Sim. O seu jeito de amar não depende de estar num relacionamento. Ele aparece em tudo: com amigos, família, e até na forma como você lida consigo mesma.' },
+    { q: 'Posso compartilhar com alguém?', a: 'Sim. Muitas pessoas mandam para o parceiro ou para amigas. O Mapa ajuda os dois lados a se entenderem melhor.' },
   ]
 
   return (
@@ -242,7 +265,7 @@ export default function Resultado() {
       </section>
 
       {/* ── SEÇÃO 2: LACUNA ABERTA ── */}
-      <section className="gap-section" ref={gapRef}>
+      <section className="gap-section" ref={gapRef} data-scroll-track="lacuna">
         <div className="gap-section__inner">
           <h2 className="gap-section__headline">É hora de conhecer a parte onde a maioria nunca chega.</h2>
           <div className="gap-section__questions">
@@ -268,7 +291,7 @@ export default function Resultado() {
       </section>
 
       {/* ── SEÇÃO 3: BLOCOS BLOQUEADOS ── */}
-      <section className="locked-section">
+      <section className="locked-section" data-scroll-track="blocos">
         <div className="locked-section__inner">
           <h2 className="locked-section__title">O que está dentro do seu Mapa</h2>
           <p className="locked-section__sub">Linguagem humana, sem jargão clínico.</p>
@@ -288,7 +311,7 @@ export default function Resultado() {
       </section>
 
       {/* ── SEÇÃO 4: PROVA SOCIAL (2 depoimentos pré-offer) ── */}
-      <section className="social-proof">
+      <section className="social-proof" data-scroll-track="social">
         <div className="social-proof__inner">
           <p className="social-proof__label">Quem já leu</p>
           <div className="social-proof__cards">
@@ -309,7 +332,7 @@ export default function Resultado() {
       </section>
 
       {/* ── SEÇÃO 5: OFFER + CTA ── */}
-      <section className="offer-section" ref={offerRef}>
+      <section className="offer-section" ref={offerRef} data-scroll-track="offer">
         <div className="offer-section__inner">
           <h2 className="offer-section__headline">Você já sabe o nome.<br />Agora entenda <em>o motivo.</em></h2>
 

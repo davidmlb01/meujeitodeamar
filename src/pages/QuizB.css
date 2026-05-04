@@ -11,13 +11,37 @@
   border-bottom: 1px solid var(--subtle);
 }
 
+.quiz__header-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: var(--space-3);
+}
+
+.quiz__back {
+  position: absolute;
+  left: 0;
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 4px 0;
+  transition: color 0.15s ease;
+}
+
+.quiz__back:hover {
+  color: var(--text);
+}
+
 .quiz__site-name {
   font-family: var(--font-display);
   font-size: var(--text-h3);
   font-weight: 400;
   color: var(--text);
   text-align: center;
-  margin-bottom: var(--space-3);
 }
 
 /* ── Body ── */

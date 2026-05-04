@@ -103,7 +103,22 @@ export default function QuizB() {
   return (
     <div className="quiz">
       <header className="quiz__header">
-        <p className="quiz__site-name">meujeitodeamar</p>
+        <div className="quiz__header-top">
+          {currentIndex > 0 && !blockMsg && (
+            <button
+              className="quiz__back"
+              onClick={() => {
+                setAnswers(answers.slice(0, -1))
+                setCurrentIndex(currentIndex - 1)
+                window.scrollTo({ top: 0, behavior: 'instant' })
+              }}
+              aria-label="Voltar"
+            >
+              ← Voltar
+            </button>
+          )}
+          <p className="quiz__site-name">meujeitodeamar</p>
+        </div>
         <ProgressBar
           value={progress}
           current={currentIndex + 1}
