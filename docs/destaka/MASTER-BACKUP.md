@@ -233,6 +233,40 @@ Dois commits de polish no repo `destaka-remote` (main, `da8ed6e` e `57dacb7`):
 ### 22. .impeccable.md do Destaka tem 10 inconsistências priorizadas (P0/P1/P2)
 Arquivo em `/Users/davidlevy/Desktop/PJ/destaka-remote/.impeccable.md`. As P0 foram todas resolvidas nesta sessão. P1 resolvidas parcialmente (hover states, WCAG, spinner). P2 pendentes (CSS variables globais já feitas, max-width ainda inconsistente entre páginas).
 
+## Estrategia de Aquisicao: Parceria com Escritorios Contabeis (2026-05-05)
+
+### Conceito
+Canal B2B2C via escritorios de contabilidade especializados em profissionais de saude. Trust transfer: recomendacao do contador vale mais que qualquer anuncio.
+
+### Unit Economics
+| Metrica | Valor |
+|---------|-------|
+| Ticket mensal | R$197 |
+| CAC parceiro | R$300 (2x R$150 nos meses 1 e 2) |
+| Receita mes 1 | R$197 - R$150 = +R$47 |
+| Receita mes 2 | R$197 - R$150 = +R$47 |
+| Receita mes 3+ | R$197 liquido |
+| Payback completo | 1.5 meses |
+| LTV 12 meses | R$2.364 |
+| LTV:CAC | 7.9x |
+
+### Modelo Bilateral (Ganha-Ganha)
+- Escritorio indica medico para Destaka: parceiro ganha R$300 (2x R$150)
+- Destaka indica medico sem contador para escritorio: parceiro ganha cliente mensal (LTV R$10k+)
+- Pergunta no onboarding: "Tem contador especializado em profissionais de saude?"
+- Se nao tem: indica parceiro contabil. Se tem: potencial novo parceiro.
+
+### Cenarios de Remuneracao
+- **Lancamento:** R$300 (2x R$150) + indicacao reciproca
+- **Hibrido:** R$150 por indicacao + contragolpe de leads
+- **Troca pura:** R$0, se volume reciproco for bom
+
+### Proximos Passos
+- [ ] Mapear 5-10 escritorios especializados em saude (SP, BH, RJ, Campinas)
+- [ ] Pitch de 1 pagina: ganha-ganha bilateral
+- [ ] Kit parceiro: link rastreavel, material de apoio, WhatsApp direto
+- [ ] Meta: 3 escritorios parceiros, 5 clientes nos primeiros 60 dias
+
 ---
 
-*Backup atualizado em sessão de 2026-04-27 (sessão 8): UI polish completo, sistema de tokens CSS, glow no ScoreGauge, SectionTitle, sidebar indicator, 16 arquivos modificados em 2 commits*
+*Backup atualizado em sessao 16 (2026-05-05): estrategia B2B2C via escritorios contabeis especializados em saude, modelo bilateral ganha-ganha*
