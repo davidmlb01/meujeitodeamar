@@ -334,28 +334,7 @@ export default function Resultado() {
         </div>
       </section>
 
-      {/* ── SEÇÃO 4: PROVA SOCIAL (2 depoimentos pré-offer) ── */}
-      <section className="social-proof" data-scroll-track="social">
-        <div className="social-proof__inner">
-          <p className="social-proof__label">Quem já leu</p>
-          <div className="social-proof__cards">
-            {r.testimonials.slice(0, 2).map((t, i) => (
-              <div key={i} className="social-proof__card">
-                <p className="social-proof__quote">"{t.quote}"</p>
-                <div className="social-proof__meta">
-                  <div className="social-proof__avatar">{t.initial}</div>
-                  <div>
-                    <p className="social-proof__name">{t.name}</p>
-                    <p className="social-proof__type">Coração {r.styleName}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── SEÇÃO 5: OFFER + CTA ── */}
+      {/* ── SEÇÃO 4: OFFER + CTA (logo após blocos bloqueados = pico de desejo) ── */}
       <section className="offer-section" ref={offerRef} data-scroll-track="offer">
         <div className="offer-section__inner">
           <h2 className="offer-section__headline">Você já sabe o nome.<br />Agora entenda <em>o motivo.</em></h2>
@@ -389,6 +368,27 @@ export default function Resultado() {
 
           <div className="science-badge">
             <p className="science-badge__text">Baseado em uma das pesquisas mais citadas da psicologia sobre como os seres humanos formam vínculos. Mais de 40 anos de estudos replicados em dezenas de países.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SEÇÃO 5: PROVA SOCIAL (pós-offer, rede de segurança para quem não comprou) ── */}
+      <section className="social-proof" data-scroll-track="social">
+        <div className="social-proof__inner">
+          <p className="social-proof__label">Quem já leu</p>
+          <div className="social-proof__cards">
+            {r.testimonials.slice(0, 2).map((t, i) => (
+              <div key={i} className="social-proof__card">
+                <p className="social-proof__quote">"{t.quote}"</p>
+                <div className="social-proof__meta">
+                  <div className="social-proof__avatar">{t.initial}</div>
+                  <div>
+                    <p className="social-proof__name">{t.name}</p>
+                    <p className="social-proof__type">Coração {r.styleName}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
