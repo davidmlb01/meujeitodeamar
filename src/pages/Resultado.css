@@ -660,7 +660,7 @@
 
 /* ── SEÇÃO 4B: DINÂMICAS ENTRE ESTILOS ── */
 .dynamics-section {
-  padding: 64px 24px;
+  padding: 24px 24px 64px;
   background: var(--dark);
 }
 
