@@ -10,7 +10,7 @@
   --sand:     #D8A7B1;   /* Rose Smoke — tipologias, destaques suaves */
   --white:    #F5EEE4;   /* Off White — texto sobre fundo escuro */
 
-  /* ── Tipologias (diferenciadas) ── */
+  /* ── Tipologias (cores distintas por estilo) ── */
   --ansioso:  #D8A7B1;
   --distante: #A8A0B8;
   --seguro:   #8BAA91;
@@ -29,7 +29,6 @@
   /* ── Border radius ── */
   --radius-pill:  100px;
   --radius-card:  12px;
-  --radius-lg:    20px;
   --radius-input: 8px;
 
   /* ── Touch targets (acessibilidade) ── */
@@ -55,15 +54,6 @@
   --lh-body:  1.6;
   --lh-small: 1.5;
   --lh-tight: 1;
-
-  /* ── Sombras ── */
-  --shadow-sm: 0 1px 3px rgba(34,26,16,0.06);
-  --shadow-md: 0 4px 16px rgba(34,26,16,0.08);
-  --shadow-lg: 0 12px 40px rgba(34,26,16,0.12);
-
-  /* ── Z-index ── */
-  --z-sticky: 100;
-  --z-overlay: 9999;
 
   /* ── Transições ── */
   --transition-fast:   150ms ease-out;
