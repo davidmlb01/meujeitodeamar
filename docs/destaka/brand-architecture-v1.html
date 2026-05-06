@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destaka — Arquitetura de Marca v1</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #e5e5e5;
+            padding: 40px 20px;
+            line-height: 1.7;
+        }
+        .container { max-width: 760px; margin: 0 auto; }
+        h1 { font-size: 32px; color: #fff; margin-bottom: 4px; }
+        h2 { font-size: 22px; color: #fff; margin: 48px 0 16px; padding-bottom: 8px; border-bottom: 1px solid #222; }
+        h3 { font-size: 16px; color: #4ade80; margin: 28px 0 12px; }
+        .subtitle { color: #888; margin-bottom: 48px; font-size: 14px; }
+        p { margin-bottom: 16px; color: #ccc; }
+        strong { color: #fff; }
+        .badge {
+            display: inline-block;
+            background: rgba(74, 222, 128, 0.1);
+            color: #4ade80;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        /* Decision boxes */
+        .decision-box {
+            background: #161616;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+        .decision-box.approved {
+            border-left: 3px solid #4ade80;
+        }
+        .decision-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #4ade80;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        /* Naming table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th {
+            text-align: left;
+            padding: 12px 16px;
+            background: #161616;
+            color: #888;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #1a1a1a;
+            font-size: 14px;
+        }
+        tr:hover td { background: #111; }
+
+        /* Color swatches */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .color-card {
+            background: #161616;
+            border: 1px solid #222;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .color-swatch {
+            height: 80px;
+            display: flex;
+            align-items: flex-end;
+            padding: 8px 12px;
+        }
+        .color-info {
+            padding: 12px;
+        }
+        .color-name { font-size: 13px; font-weight: 600; color: #fff; }
+        .color-hex { font-size: 12px; color: #666; margin-top: 2px; }
+        .color-vertical { font-size: 11px; color: #888; margin-top: 4px; }
+
+        /* Manifesto */
+        .manifesto {
+            background: #0f0f0f;
+            border: 1px solid #1a1a1a;
+            border-radius: 12px;
+            padding: 32px;
+            margin: 24px 0;
+            font-size: 15px;
+            line-height: 1.9;
+            color: #d4d4d4;
+        }
+        .manifesto p { margin-bottom: 20px; }
+        .manifesto .signature {
+            margin-top: 32px;
+            padding-top: 20px;
+            border-top: 1px solid #222;
+            color: #888;
+            font-size: 13px;
+        }
+
+        /* Voice principles */
+        .voice-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .voice-card {
+            background: #161616;
+            border: 1px solid #222;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .voice-do { border-top: 3px solid #4ade80; }
+        .voice-dont { border-top: 3px solid #ef4444; }
+        .voice-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+        .voice-do .voice-label { color: #4ade80; }
+        .voice-dont .voice-label { color: #ef4444; }
+        .voice-card ul { list-style: none; font-size: 13px; color: #aaa; }
+        .voice-card li { margin-bottom: 8px; padding-left: 16px; position: relative; }
+        .voice-do li::before { content: "✓"; position: absolute; left: 0; color: #4ade80; }
+        .voice-dont li::before { content: "✗"; position: absolute; left: 0; color: #ef4444; }
+
+        /* Structure diagram */
+        .structure {
+            background: #161616;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 28px;
+            margin: 20px 0;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 13px;
+            line-height: 2;
+            color: #888;
+            white-space: pre;
+            overflow-x: auto;
+        }
+        .structure .highlight { color: #4ade80; }
+        .structure .dim { color: #444; }
+        .structure .accent { color: #fbbf24; }
+
+        /* Approval section */
+        .approval-box {
+            background: #0f1a0f;
+            border: 1px solid #1a3a1a;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        .approval-box h3 { color: #4ade80; margin-bottom: 12px; }
+        .approval-box p { color: #888; font-size: 13px; }
+
+        .tagline-options {
+            margin: 20px 0;
+        }
+        .tagline-option {
+            background: #161616;
+            border: 1px solid #222;
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .tagline-option.recommended {
+            border-color: #4ade80;
+            background: #0f1a0f;
+        }
+        .tagline-number {
+            font-size: 12px;
+            font-weight: 700;
+            color: #666;
+            min-width: 24px;
+        }
+        .tagline-text {
+            font-size: 16px;
+            color: #fff;
+            font-weight: 500;
+        }
+        .tagline-note {
+            font-size: 12px;
+            color: #888;
+            margin-top: 4px;
+        }
+        .rec-badge {
+            font-size: 10px;
+            background: rgba(74, 222, 128, 0.15);
+            color: #4ade80;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="badge">DOCUMENTO DE DECISAO — V1</span>
+        <h1>Destaka — Arquitetura de Marca</h1>
+        <p class="subtitle">Naming, posicionamento e voz institucional para plataforma multi-vertical<br>Maio 2026 | Decisao do Conselho</p>
+
+        <!-- MODELO -->
+        <h2>1. Modelo: Branded House Funcional</h2>
+
+        <div class="decision-box approved">
+            <div class="decision-label">Decisao aprovada pelo conselho</div>
+            <p style="margin:0"><strong>Uma marca-mae forte + nome funcional por vertical.</strong><br>
+            Cada vertical herda a autoridade do Destaka e adiciona clareza imediata sobre o publico que atende. Sem nomes criativos, sem sub-brands independentes.</p>
+        </div>
+
+        <p>Justificativa: profissional liberal de bairro precisa entender em 2 segundos o que e. "Destaka Pet" e autoexplicativo. "Vetra" nao e. Clareza > criatividade em SaaS B2B local.</p>
+
+        <!-- NAMING -->
+        <h2>2. Naming Oficial</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nivel</th>
+                    <th>Nome</th>
+                    <th>Escopo</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Marca-mae</strong></td>
+                    <td><strong>Destaka</strong></td>
+                    <td>Hub institucional, plataforma</td>
+                    <td>Ativo</td>
+                </tr>
+                <tr>
+                    <td>Vertical 1</td>
+                    <td><strong>Destaka Saude</strong></td>
+                    <td>Medico, dentista, fisio, psico, nutri</td>
+                    <td>Ativo (rebrand do produto atual)</td>
+                </tr>
+                <tr>
+                    <td>Vertical 2</td>
+                    <td><strong>Destaka Pet</strong></td>
+                    <td>Veterinario, clinica vet, pet shop</td>
+                    <td>Lancamento mes 2</td>
+                </tr>
+                <tr>
+                    <td>Vertical 3</td>
+                    <td><strong>Destaka Juridico</strong></td>
+                    <td>Advogado consumidor final (trabalhista, familia, previdenciario)</td>
+                    <td>Exploracao mes 5-6</td>
+                </tr>
+                <tr>
+                    <td>Vertical 4</td>
+                    <td><strong>Destaka Contabil</strong></td>
+                    <td>Escritorio contabil pequeno (1-5 funcionarios)</td>
+                    <td>Ano 2</td>
+                </tr>
+                <tr>
+                    <td>Vertical 5</td>
+                    <td><strong>Destaka Imoveis</strong></td>
+                    <td>Corretor de imoveis, imobiliaria pequena</td>
+                    <td>Ano 2</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p><strong>Regra de naming:</strong> sempre "Destaka" + substantivo funcional em portugues. Nunca ingles (Health, Legal), nunca sigla, nunca nome fantasia.</p>
+
+        <!-- POSICIONAMENTO -->
+        <h2>3. Posicionamento Institucional</h2>
+
+        <h3>Tagline operacional (hero do site, materiais)</h3>
+        <div class="tagline-options">
+            <div class="tagline-option recommended">
+                <span class="tagline-number">✓</span>
+                <div>
+                    <div class="tagline-text">Encontrado. Escolhido. Lembrado.</div>
+                    <div class="tagline-note">APROVADO por David em 05/05/2026 <span class="rec-badge">FINAL</span></div>
+                </div>
+            </div>
+        </div>
+
+        <h3>Manifesto de categoria (LinkedIn, palestras, imprensa)</h3>
+        <div class="decision-box approved">
+            <div class="decision-label">Posicionamento de categoria</div>
+            <p style="margin:0">"O Brasil tem 7 milhoes de profissionais liberais. A maioria e invisivel no Google. Destaka existe para que competencia profissional e visibilidade digital deixem de ser coisas separadas."</p>
+        </div>
+
+        <!-- MANIFESTO -->
+        <h2>4. Manifesto Fundador (Secao "Por que existimos")</h2>
+
+        <div class="manifesto">
+            <p>Tem um dentista no seu bairro que e provavelmente o melhor da cidade. Voce nao sabe disso. O Google tambem nao.</p>
+
+            <p>Ele atende ha 15 anos, tem pacientes que trazem os filhos e os netos. Mas o perfil dele no Google tem uma foto de 2019, horario errado e zero avaliacoes recentes. Quando alguem pesquisa "dentista perto de mim", ele nao aparece. O concorrente que abriu ha 6 meses, sim.</p>
+
+            <p>Isso nao e justo. Mas e assim que funciona.</p>
+
+            <p>O profissional liberal brasileiro construiu carreira cuidando de pessoas. Nao estudou marketing. Nao deveria precisar estudar. O consultorio, o escritorio, a clinica deveriam ser encontrados pela competencia real que entregam, nao pela competencia em algoritmo que nao tem.</p>
+
+            <p>Destaka nasceu dessa premissa simples: presenca digital nao pode depender de voce virar marqueteiro. Precisa funcionar como infraestrutura. Silenciosa, confiavel, no piloto automatico.</p>
+
+            <p>Nos construimos software que entende como cada tipo de profissional liberal e buscado, escolhido e lembrado pelo cliente local. Medico, veterinario, advogado, contador, corretor. Cada um com sua logica, sua sazonalidade, sua dor especifica. Uma plataforma, varios mundos.</p>
+
+            <p>O objetivo e um so: que o melhor profissional do bairro seja tambem o mais visivel. Sem ele precisar parar de fazer o que faz de melhor.</p>
+
+            <div class="signature">
+                David Levy, fundador<br>
+                Destaka, maio 2026
+            </div>
+        </div>
+
+        <!-- VOZ -->
+        <h2>5. Voz Institucional</h2>
+
+        <p><strong>Tom:</strong> Senior, clinico, preciso. Entre coluna de jornal serio e conversa de almoco com gente experiente. Nem Nubank simpatico, nem SAP corporativo.</p>
+
+        <div class="voice-grid">
+            <div class="voice-card voice-do">
+                <div class="voice-label">Assim</div>
+                <ul>
+                    <li>Frase curta. Dado preciso.</li>
+                    <li>Profissional tratado como adulto</li>
+                    <li>Ironia leve, autoridade seria</li>
+                    <li>"73% dos perfis estao incompletos."</li>
+                    <li>"O melhor medico do bairro. Invisivel no Google."</li>
+                    <li>Defesa do pequeno sem populismo</li>
+                </ul>
+            </div>
+            <div class="voice-card voice-dont">
+                <div class="voice-label">Nunca</div>
+                <ul>
+                    <li>"Vamos juntos descomplicar sua jornada"</li>
+                    <li>"Democratizar a presenca digital"</li>
+                    <li>"Solucao inovadora e disruptiva"</li>
+                    <li>Emojis em comunicacao institucional</li>
+                    <li>Diminutivos ("testezinho", "rapidinho")</li>
+                    <li>Promessas de resultado numerico</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>Principios de redacao</h3>
+        <div class="decision-box">
+            <p style="margin:0; font-size: 14px;">
+                <strong>1. Dado antes de opiniao.</strong> Sempre abrir com fato verificavel.<br><br>
+                <strong>2. Adulto falando com adulto.</strong> Nao infantilizar. Sao profissionais com 10-30 anos de carreira.<br><br>
+                <strong>3. Ironia velada > entusiasmo vazio.</strong> Tom Verissimo: "A clinica do bairro tem o melhor medico da regiao. Mas o Google nao sabe disso."<br><br>
+                <strong>4. Sem travessao. Sem jargao de startup.</strong> Regra absoluta em todo texto.<br><br>
+                <strong>5. Curto.</strong> Se da pra dizer em 1 frase, nao use 3.
+            </p>
+        </div>
+
+        <!-- CORES -->
+        <h2>6. Sistema de Cores por Vertical</h2>
+
+        <p>Cada vertical herda o dark premium da marca-mae e adiciona uma cor secundaria propria para diferenciar visualmente.</p>
+
+        <div class="color-grid">
+            <div class="color-card">
+                <div class="color-swatch" style="background: #0F2A1F; border-bottom: 3px solid #4ade80;"></div>
+                <div class="color-info">
+                    <div class="color-name">Marca-mae</div>
+                    <div class="color-hex">#0F2A1F</div>
+                    <div class="color-vertical">Verde-escuro profundo, crescimento, proprietario</div>
+                </div>
+            </div>
+            <div class="color-card">
+                <div class="color-swatch" style="background: linear-gradient(135deg, #0EA5E9, #0284C7);"></div>
+                <div class="color-info">
+                    <div class="color-name">Destaka Saude</div>
+                    <div class="color-hex">#0EA5E9</div>
+                    <div class="color-vertical">Clinico, confianca, saude</div>
+                </div>
+            </div>
+            <div class="color-card">
+                <div class="color-swatch" style="background: linear-gradient(135deg, #22C55E, #16A34A);"></div>
+                <div class="color-info">
+                    <div class="color-name">Destaka Pet</div>
+                    <div class="color-hex">#22C55E</div>
+                    <div class="color-vertical">Vida, natureza, cuidado animal</div>
+                </div>
+            </div>
+            <div class="color-card">
+                <div class="color-swatch" style="background: linear-gradient(135deg, #1E3A5F, #1E293B);"></div>
+                <div class="color-info">
+                    <div class="color-name">Destaka Juridico</div>
+                    <div class="color-hex">#1E3A5F</div>
+                    <div class="color-vertical">Sobriedade, tradicao, confianca</div>
+                </div>
+            </div>
+            <div class="color-card">
+                <div class="color-swatch" style="background: linear-gradient(135deg, #7C3AED, #6D28D9);"></div>
+                <div class="color-info">
+                    <div class="color-name">Destaka Contabil</div>
+                    <div class="color-hex">#7C3AED</div>
+                    <div class="color-vertical">Precisao, sofisticacao</div>
+                </div>
+            </div>
+            <div class="color-card">
+                <div class="color-swatch" style="background: linear-gradient(135deg, #D97706, #B45309);"></div>
+                <div class="color-info">
+                    <div class="color-name">Destaka Imoveis</div>
+                    <div class="color-hex">#D97706</div>
+                    <div class="color-vertical">Terra, solidez, crescimento</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ESTRUTURA URL -->
+        <h2>7. Estrutura de URLs</h2>
+
+        <div class="structure"><span class="highlight">destaka.com.br</span>             <span class="dim">→</span> Hub institucional (marca-mae)
+<span class="highlight">destaka.com.br/saude</span>       <span class="dim">→</span> Produto Saude (rebrand do atual)
+<span class="highlight">destaka.com.br/pet</span>         <span class="dim">→</span> Produto Pet (lancamento mes 2)
+<span class="highlight">destaka.com.br/juridico</span>    <span class="dim">→</span> Produto Juridico (mes 5-6)
+<span class="highlight">destaka.com.br/contabil</span>    <span class="dim">→</span> Futuro
+<span class="highlight">destaka.com.br/imoveis</span>     <span class="dim">→</span> Futuro
+
+<span class="accent">app.destaka.com.br</span>        <span class="dim">→</span> Dashboard unificado (login unico)
+<span class="accent">app.destaka.com.br/saude</span>  <span class="dim">→</span> Area logada Saude
+<span class="accent">app.destaka.com.br/pet</span>    <span class="dim">→</span> Area logada Pet</div>
+
+        <p><strong>Decisao tecnica:</strong> subpasta (nao subdominio) para manter autoridade SEO consolidada no dominio principal. Cada vertical e uma rota do Next.js, nao um deploy separado.</p>
+
+        <!-- SITE HUB -->
+        <h2>8. Estrutura do Site Hub (destaka.com.br)</h2>
+
+        <div class="decision-box">
+            <p style="margin:0; font-size: 14px;">
+                <strong>Secao 1 — Hero:</strong> Tagline + 1 paragrafo de 30 palavras + CTA "Encontre seu vertical"<br><br>
+                <strong>Secao 2 — Os verticais:</strong> Cards visuais (Saude, Pet, Juridico + "Em breve" nos demais)<br><br>
+                <strong>Secao 3 — Por que existimos:</strong> Manifesto fundador (texto acima)<br><br>
+                <strong>Secao 4 — Como pensamos:</strong> Conteudo institucional, dados, artigos<br><br>
+                <strong>Secao 5 — Sobre / Contato / Imprensa:</strong> Bio David, contato comercial, kit imprensa
+            </p>
+        </div>
+
+        <!-- REGRAS DE APLICACAO -->
+        <h2>9. Regras de Aplicacao</h2>
+
+        <div class="decision-box">
+            <p style="margin:0; font-size: 14px;">
+                <strong>Logo:</strong> "Destaka" (wordmark) + nome do vertical em peso lighter. Nunca separar. Nunca abreviar.<br><br>
+                <strong>Tipografia:</strong> Inter (sans-serif, variavel) em todos os verticais. Pesos: 400 (body), 500 (labels), 600 (headings), 700 (hero).<br><br>
+                <strong>Icones:</strong> SVG monocromatico. NUNCA emoji em interface ou navegacao.<br><br>
+                <strong>Dark mode:</strong> padrao em todos os verticais (identidade premium ja construida).<br><br>
+                <strong>Fotografia:</strong> real, sem banco de imagem. Iluminacao natural, sem filtro pesado. Mostrar profissional no ambiente real.<br><br>
+                <strong>Gradientes:</strong> permitido apenas nos swatches de cor de vertical. Nunca em texto, nunca em botoes.<br><br>
+                <strong>Espacamento:</strong> sistema de 4px (4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80).
+            </p>
+        </div>
+
+        <!-- TAGLINES POR VERTICAL -->
+        <h2>10. Taglines por Vertical</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Vertical</th>
+                    <th>Tagline</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Destaka Saude</strong></td>
+                    <td>Presenca digital no piloto automatico pra quem cuida de pessoas.</td>
+                </tr>
+                <tr>
+                    <td><strong>Destaka Pet</strong></td>
+                    <td>Sua clinica cheia. Sem voce precisar parar de atender.</td>
+                </tr>
+                <tr>
+                    <td><strong>Destaka Juridico</strong></td>
+                    <td>O cliente certo te encontra. Voce decide quem atende.</td>
+                </tr>
+                <tr>
+                    <td><strong>Destaka Contabil</strong></td>
+                    <td>Seus clientes bem atendidos. Mesmo quando voce nao esta.</td>
+                </tr>
+                <tr>
+                    <td><strong>Destaka Imoveis</strong></td>
+                    <td>O imovel certo encontra o comprador certo. Voce fecha.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- APROVACAO -->
+        <div class="approval-box" style="background: #0f1a0f; border-color: #4ade80;">
+            <h3>APROVADO — 05/05/2026</h3>
+            <p>Todas as decisoes aprovadas por David.<br><br>
+            ✓ Tagline: "Encontrado. Escolhido. Lembrado."<br>
+            ✓ Manifesto: aprovado<br>
+            ✓ Cor marca-mae: verde-escuro profundo (#0F2A1F)<br>
+            ✓ URLs: subpasta (recomendacao CTO)<br>
+            ✓ Hub minimalista, trafego pago direto no vertical<br><br>
+            Proximo: briefing designer + migracao tecnica.</p>
+        </div>
+
+    </div>
+</body>
+</html>

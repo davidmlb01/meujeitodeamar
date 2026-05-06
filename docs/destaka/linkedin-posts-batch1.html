@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destaka — 15 Posts LinkedIn (Batch 1)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #e5e5e5;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+        .container { max-width: 680px; margin: 0 auto; }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+        .subtitle {
+            color: #888;
+            margin-bottom: 40px;
+            font-size: 14px;
+        }
+        .stats-bar {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 40px;
+            padding: 16px 20px;
+            background: #161616;
+            border-radius: 12px;
+            border: 1px solid #222;
+        }
+        .stat { text-align: center; }
+        .stat-number { font-size: 24px; font-weight: 700; color: #4ade80; }
+        .stat-label { font-size: 12px; color: #888; margin-top: 2px; }
+        .post-card {
+            background: #161616;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 28px;
+            margin-bottom: 24px;
+            position: relative;
+            transition: border-color 0.2s;
+        }
+        .post-card:hover { border-color: #333; }
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .post-number {
+            font-size: 12px;
+            font-weight: 600;
+            color: #4ade80;
+            background: rgba(74, 222, 128, 0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+        .post-pillar {
+            font-size: 11px;
+            color: #888;
+            background: #222;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+        .post-content {
+            white-space: pre-wrap;
+            font-size: 14px;
+            line-height: 1.7;
+            color: #d4d4d4;
+        }
+        .post-content strong {
+            color: #fff;
+            font-weight: 600;
+        }
+        .post-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid #222;
+        }
+        .char-count {
+            font-size: 11px;
+            color: #666;
+        }
+        .copy-btn {
+            background: #222;
+            color: #e5e5e5;
+            border: 1px solid #333;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .copy-btn:hover { background: #333; border-color: #4ade80; color: #4ade80; }
+        .copy-btn.copied { background: rgba(74, 222, 128, 0.1); border-color: #4ade80; color: #4ade80; }
+        .divider {
+            text-align: center;
+            color: #333;
+            margin: 32px 0;
+            font-size: 12px;
+        }
+        .rules-box {
+            background: #1a1a0a;
+            border: 1px solid #333300;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+        .rules-box h3 { color: #fbbf24; font-size: 14px; margin-bottom: 12px; }
+        .rules-box ul { list-style: none; font-size: 13px; color: #aaa; }
+        .rules-box li { margin-bottom: 6px; padding-left: 16px; position: relative; }
+        .rules-box li::before { content: "✓"; position: absolute; left: 0; color: #4ade80; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Destaka — Posts LinkedIn</h1>
+        <p class="subtitle">Batch 1 · 15 posts · Fase de teste · Maio 2026</p>
+
+        <div class="rules-box">
+            <h3>Regras aplicadas</h3>
+            <ul>
+                <li>Zero menção a preço</li>
+                <li>Zero promessa de resultado</li>
+                <li>ICP amplo: profissional de saúde</li>
+                <li>CTA único: destaka.com.br</li>
+                <li>Sem travessão em nenhum texto</li>
+                <li>Acentuação PT-BR 100%</li>
+            </ul>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat">
+                <div class="stat-number">15</div>
+                <div class="stat-label">Posts</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Educacional</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Dados</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Dor</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">2</div>
+                <div class="stat-label">Autoridade</div>
+            </div>
+        </div>
+
+        <!-- Post 1 -->
+        <div class="post-card">
+            <div class="post-header">
+                <span class="post-number">Post 1</span>
+                <span class="post-pillar">Educacional</span>
+            </div>
+            <div class="post-content" id="post-1">A maioria dos consultórios não existe no Google.
+
+Não é exagero. Perfil incompleto, sem foto, sem horário atualizado, zero avaliações recentes.
+
+Para o algoritmo do Google, esse consultório simplesmente não está ali.
+
+E quando o paciente pesquisa "dentista perto de mim" ou "ortopedista [bairro]", quem aparece é o concorrente que preencheu tudo.
+
+Não é sobre investir em marketing.
+É sobre não ser invisível.
+
+O mínimo que seu perfil precisa ter:
+→ Fotos reais do consultório (não stock)
+→ Horário de funcionamento correto
+→ Categoria principal certa
+→ Pelo menos 10 avaliações com resposta
+
+Parece básico. Mas a grande maioria dos perfis de saúde não tem nem isso.
+
+destaka.com.br</div>
+            <div class="post-footer">
+                <span class="char-count"></span>
+                <button class="copy-btn" onclick="copyPost('post-1', this)">Copiar</button>
+            </div>
+        </div>
+
+        <!-- Post 2 -->
+        <div class="post-card">
+            <div class="post-header">
+                <span class="post-number">Post 2</span>
+                <span class="post-pillar">Dor do profissional</span>
+            </div>
+            <div class="post-content" id="post-2">Você não fez 6 anos de faculdade para ficar respondendo review no Google.
+
+Mas ignorar essas avaliações custa pacientes.
+
+Um estudo da BrightLocal mostra que 88% dos consumidores confiam em avaliações online tanto quanto em indicações pessoais.
+
+O problema não é a tarefa em si.
+O problema é que ela compete com consultas, laudos, prontuários e vida pessoal.
+
+A solução não é "aprender marketing digital".
+É tirar isso do seu prato sem perder o controle.
+
+destaka.com.br</div>
+            <div class="post-footer">
+                <span class="char-count"></span>
+                <button class="copy-btn" onclick="copyPost('post-2', this)">Copiar</button>
+            </div>
+        </div>
+
+        <!-- Post 3 -->
+        <div class="post-card">
+            <div class="post-header">
+                <span class="post-number">Post 3</span>
+                <span class="post-pillar">Dados de mercado</span>
+            </div>
+            <div class="post-content" id="post-3">Quase metade dos pacientes escolhe profissional de saúde pelo Google antes de pedir indicação.
+
+A mudança de comportamento é irreversível: o paciente pesquisa, compara avaliações, olha fotos do consultório e decide. Tudo antes de ligar.
+
+Se o seu perfil está desatualizado, com 3 avaliações de 2022, a decisão já foi tomada. A favor do outro.
+
+Presença digital não é diferencial. É pré-requisito.
+
+destaka.com.br</div>
+            <div class="post-footer">
+                <span class="char-count"></span>
+                <button class="copy-btn" onclick="copyPost('post-3', this)">Copiar</button>
+            </div>
+        </div>
+
+        <!-- Post 4 -->
+        <div class="post-card">
+            <div class="post-header">
+                <span class="post-number">Post 4</span>
+                <span class="post-pillar">Educacional</span>
+            </div>
+            <div class="post-content" id="post-4">O Google Perfil de Empresa tem um algoritmo. E ele prioriza 3 coisas:
+
+1. Relevância: seu perfil descreve exatamente o que o paciente buscou?
+2. Distância: você está perto de quem pesquisou?
+3. Destaque: seu perfil tem mais atividade que os concorrentes?
+
+Distância você não controla.
+Relevância e destaque, sim.
+
+Publicar posts semanais, responder avaliações em menos de 24h e manter informações completas são sinais de atividade que o Google recompensa.
+
+Consultórios que fazem isso consistentemente aparecem com muito mais frequência no mapa.
+
+destaka.com.br</div>
+            <div class="post-footer">
+                <span class="char-count"></span>
+                <button class="copy-btn" onclick="copyPost('post-4', this)">Copiar</button>
+            </div>
+        </div>
+
+        <!-- Post 5 -->
+        <div class="post-card">
+            <div class="post-header">
+                <span class="post-number">Post 5</span>
+                <span class="post-pillar">Dor do profissional</span>
+            </div>
+            <div class="post-content" id="post-5">"Preciso de mais pacientes" é o sintoma. Não é o diagnóstico.
+
+Na maioria dos casos, o problema real é:
+→ Pacientes pesquisam, mas não encontram você
+→ Encontram, mas o perfil não transmite confiança
+→ Transmite confiança, mas não tem avaliações recentes
+
+É um funil. E cada etapa quebrada significa agenda vazia.
+
+Antes de pensar em anúncios, verifique: seu perfil no Google está completo?
+
+Um diagnóstico gratuito de 2 minutos já mostra onde estão os gargalos.
+
+destaka.com.br</div>
+            <div class="post-footer">
+                <span class="char-count"></span>
+                <button class="copy-btn" onclick="copyPost('post-5', this)">Copiar</button>
+            </div>
+        </div>
+
+        <!-- Post 6 -->
+        <div class="post-card">
+            <div class="post-header">
+                <span class="post-number">Post 6</span>
+                <span class="post-pillar">Dados de mercado</span>
+            </div>
+            <div class="post-content" id="post-6">Segundo dados do Google, consultórios com mais de 20 avaliações recebem 270% mais cliques que perfis com menos de 5.
+
+O paciente usa avaliações como filtro eliminatório. Abaixo de 4.0 estrelas ou com poucas reviews, o perfil nem é considerado.
+
+A boa notícia: não precisa de centenas. Precisa de consistência.
+
+5 avaliações novas por mês já colocam você acima de 90% dos concorrentes locais.
+
+O segredo é ter um sistema. Não depender de "lembrar de pedir".
+
+destaka.com.br</div>
+            <div class="post-footer">
+                <span class="char-count"></span>
+                <button class="copy-btn" onclick="copyPost('post-6', this)">Copiar</button>
+            </div>
+        </div>
+
+        <!-- Post 7 -->
+        <div class="post-card">
+            <div class="post-header">
+                <span class="post-number">Post 7</span>
+                <span class="post-pillar">Educacional</span>
+            </div>
+            <div class="post-content" id="post-7">Fotos no Google Perfil de Empresa não são decoração. São conversão.
+
+Perfis com mais de 10 fotos recebem o dobro de ligações.
+
+Mas tem um detalhe: fotos de banco de imagem prejudicam mais do que ajudam. O Google identifica e o paciente percebe.
+
+O que funciona:
+→ Fachada real (paciente precisa reconhecer na rua)
+→ Recepção e sala de espera
+→ Equipamentos (transmite modernidade)
+→ Equipe (humaniza)
+
+Tudo com iluminação natural, sem filtro pesado.
+
+Parece simples. Mas é o diferencial entre "mais um consultório" e "é aqui que eu quero ir".
+
+destaka.com.br</div>
+            <div class="post-footer">
+                <span class="char-count"></span>
+                <button class="copy-btn" onclick="copyPost('post-7', this)">Copiar</button>
+            </div>
+        </div>
+
+        <!-- Post 8 -->
+        <div class="post-card">
+            <div class="post-header">
+                <span class="post-number">Post 8</span>
+                <span class="post-pillar">Autoridade/visão</span>
+            </div>
+            <div class="post-content" id="post-8">Profissional de saúde não deveria precisar virar marqueteiro.
+
+Essa é a premissa que guia tudo o que construímos na Destaka.
+
+A presença digital de um consultório precisa funcionar no piloto automático. Com a mesma confiabilidade de um software clínico.
+
+Setup de 15 minutos. Relatório mensal. Zero ruído no meio.
+
+Porque o melhor marketing para quem cuida de pessoas é... continuar cuidando de pessoas.
+
+destaka.com.br</div>
+            <div class="post-footer">
+                <span class="char-count"></span>
+                <button class="copy-btn" onclick="copyPost('post-8', this)">Copiar</button>
+            </div>
+        </div>
+
+        <!-- Post 9 -->
+        <div class="post-card">
+            <div class="post-header">
+                <span class="post-number">Post 9</span>
+                <span class="post-pillar">Educacional</span>
+            </div>
+            <div class="post-content" id="post-9">Responder avaliações no Google não é educação. É estratégia.
+
+O Google confirma: perfis que respondem reviews são priorizados no ranking.
+
+Mas existe um padrão que funciona melhor:
+
+→ Agradecer pelo nome (personaliza)
+→ Reforçar o ponto positivo mencionado (SEO local)
+→ Convidar para retorno (retenção)
+
+Em avaliações negativas:
+→ Nunca discutir
+→ Pedir contato privado
+→ Mostrar resolução
+
+90% dos consultórios não respondem nenhuma avaliação. Só por responder, você já se diferencia.
+
+destaka.com.br</div>
+            <div class="post-footer">
+                <span class="char-count"></span>
+                <button class="copy-btn" onclick="copyPost('post-9', this)">Copiar</button>
+            </div>
+        </div>
+
+        <!-- Post 10 -->
+        <div class="post-card">
+            <div class="post-header">
+                <span class="post-number">Post 10</span>
+                <span class="post-pillar">Dor do profissional</span>
+            </div>
+            <div class="post-content" id="post-10">O paciente que te escolheu pela indicação está diminuindo. O que te escolhe pelo Google está aumentando.
+
+E esse segundo paciente tem um comportamento diferente:
+→ Compara 3 a 5 opções antes de ligar
+→ Lê avaliações com atenção
+→ Olha fotos do consultório
+→ Decide em menos de 2 minutos
+
+Se o seu perfil não foi otimizado para essa jornada, você perde sem nem saber que estava competindo.
+
+A indicação não vai morrer. Mas depender só dela é risco.
+
+destaka.com.br</div>
+            <div class="post-footer">
+                <span class="char-count"></span>
+                <button class="copy-btn" onclick="copyPost('post-10', this)">Copiar</button>
+            </div>
+        </div>
+
+        <!-- Post 11 -->
+        <div class="post-card">
+            <div class="post-header">
+                <span class="post-number">Post 11</span>
+                <span class="post-pillar">Dados de mercado</span>
+            </div>
+            <div class="post-content" id="post-11">"Perto de mim" é a busca que mais cresce no Google desde 2020.
+
+"Dentista perto de mim"
+"Dermatologista perto de mim"
+"Clínica perto de mim"
+
+Quando o paciente digita isso, o Google mostra 3 resultados no mapa. Só 3.
+
+Quem aparece ali recebe a grande maioria dos cliques.
+Quem não aparece, recebe quase zero.
+
+A diferença entre estar no top 3 e não estar? Na maioria dos casos, é um perfil bem cuidado vs um perfil abandonado.
+
+destaka.com.br</div>
+            <div class="post-footer">
+                <span class="char-count"></span>
+                <button class="copy-btn" onclick="copyPost('post-11', this)">Copiar</button>
+            </div>
+        </div>
+
+        <!-- Post 12 -->
+        <div class="post-card">
+            <div class="post-header">
+                <span class="post-number">Post 12</span>
+                <span class="post-pillar">Educacional</span>
+            </div>
+            <div class="post-content" id="post-12">Posts no Google Perfil de Empresa existem. E quase ninguém usa.
+
+O Google permite publicar atualizações semanais direto no seu perfil. Funciona como um mini-blog que aparece na busca.
+
+Benefícios:
+→ Sinal de atividade para o algoritmo
+→ Palavras-chave indexadas (SEO local)
+→ Diferenciação visual na página de resultados
+
+Formatos que funcionam para saúde:
+→ Dica rápida de prevenção
+→ Novidade do consultório
+→ Lembrete sazonal (vacinação, check-up)
+
+1 post por semana. 5 minutos. Impacto acumulativo.
+
+destaka.com.br</div>
+            <div class="post-footer">
+                <span class="char-count"></span>
+                <button class="copy-btn" onclick="copyPost('post-12', this)">Copiar</button>
+            </div>
+        </div>
+
+        <!-- Post 13 -->
+        <div class="post-card">
+            <div class="post-header">
+                <span class="post-number">Post 13</span>
+                <span class="post-pillar">Autoridade/visão</span>
+            </div>
+            <div class="post-content" id="post-13">Construímos a Destaka porque percebemos um padrão:
+
+Profissionais de saúde excelentes, com consultórios vazios.
+Profissionais medianos, com agenda lotada.
+
+A diferença? Presença digital.
+
+Não é justo que a qualidade do atendimento seja irrelevante na hora da escolha. Mas é a realidade enquanto o paciente não te conhece.
+
+Nosso trabalho é garantir que o Google mostre quem você realmente é. Sem você precisar parar de atender para "fazer marketing".
+
+destaka.com.br</div>
+            <div class="post-footer">
+                <span class="char-count"></span>
+                <button class="copy-btn" onclick="copyPost('post-13', this)">Copiar</button>
+            </div>
+        </div>
+
+        <!-- Post 14 -->
+        <div class="post-card">
+            <div class="post-header">
+                <span class="post-number">Post 14</span>
+                <span class="post-pillar">Dados de mercado</span>
+            </div>
+            <div class="post-content" id="post-14">A maioria dos pacientes não passa da primeira página de resultados do Google.
+
+Traduzindo: se seu consultório não aparece nos primeiros resultados para a busca local, ele não existe para a maioria dos pacientes novos.
+
+E aqui está o ponto mais ignorado: o perfil no Google Maps aparece ANTES dos resultados orgânicos.
+
+Ou seja, mesmo que você tenha um site bem posicionado, o perfil do Google Perfil de Empresa ainda é a primeira coisa que o paciente vê.
+
+Ignorar isso é deixar a porta da frente trancada.
+
+destaka.com.br</div>
+            <div class="post-footer">
+                <span class="char-count"></span>
+                <button class="copy-btn" onclick="copyPost('post-14', this)">Copiar</button>
+            </div>
+        </div>
+
+        <!-- Post 15 -->
+        <div class="post-card">
+            <div class="post-header">
+                <span class="post-number">Post 15</span>
+                <span class="post-pillar">Educacional</span>
+            </div>
+            <div class="post-content" id="post-15">A categoria principal do seu perfil no Google pode estar te sabotando.
+
+"Médico" é genérico demais.
+"Clínica médica" também.
+
+O Google usa a categoria para decidir em quais buscas você aparece.
+
+Se você é cardiologista e está cadastrado como "médico", está competindo com clínicos gerais, ortopedistas e todo mundo.
+
+Categorias específicas = buscas específicas = pacientes certos.
+
+Verifique: sua categoria principal reflete sua especialidade exata?
+
+destaka.com.br</div>
+            <div class="post-footer">
+                <span class="char-count"></span>
+                <button class="copy-btn" onclick="copyPost('post-15', this)">Copiar</button>
+            </div>
+        </div>
+
+        <div class="divider">— fim do batch —</div>
+    </div>
+
+    <script>
+        // Count characters for each post
+        document.querySelectorAll('.post-content').forEach(el => {
+            const count = el.textContent.trim().length;
+            const footer = el.closest('.post-card').querySelector('.char-count');
+            footer.textContent = count + ' caracteres';
+        });
+
+        function copyPost(id, btn) {
+            const text = document.getElementById(id).textContent.trim();
+            navigator.clipboard.writeText(text).then(() => {
+                btn.textContent = 'Copiado!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = 'Copiar';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
