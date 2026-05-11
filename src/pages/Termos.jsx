@@ -10,7 +10,7 @@ export default function Termos() {
 
         <div className="legal__header">
           <h1 className="legal__title">Termos de Uso</h1>
-          <p className="legal__updated">Última atualização: março de 2025</p>
+          <p className="legal__updated">Última atualização: maio de 2026</p>
         </div>
 
         <div className="legal__body">
@@ -40,7 +40,7 @@ export default function Termos() {
             <h2 className="legal__section-title">3. Garantia e reembolso</h2>
             <div className="legal__section-body">
               <p>
-                Oferecemos garantia incondicional de 7 dias. Se você não ficar satisfeito com o produto por qualquer motivo, basta enviar um email para nosso suporte dentro de 7 dias corridos após a compra. O reembolso é processado em até 5 dias úteis, sem perguntas e sem burocracia.
+                Oferecemos garantia incondicional de 30 dias. Se você não ficar satisfeito com o produto por qualquer motivo, basta enviar um email para nosso suporte dentro de 30 dias corridos após a compra. O reembolso é processado em até 5 dias úteis, sem perguntas e sem burocracia.
               </p>
             </div>
           </div>

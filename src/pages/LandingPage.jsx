@@ -41,7 +41,7 @@ const HERO_TESTIMONIALS = [
 const FAQ_ITEMS = [
   {
     question: 'Quão preciso é este teste?',
-    answer: 'O teste é baseado na Teoria do Apego de John Bowlby e validado por pesquisa psicológica de 30+ anos. Mais de 10.482 pessoas em 2026 usam para entender seus padrões de relacionamento.',
+    answer: 'O teste é baseado na Teoria do Apego de John Bowlby e validado por pesquisa psicológica de 50+ anos. Não é diagnóstico — é um espelho comportamental que ajuda você a entender seus padrões de relacionamento.',
   },
   {
     question: 'Quanto tempo leva?',
@@ -49,7 +49,7 @@ const FAQ_ITEMS = [
   },
   {
     question: 'E se eu não gostar do meu resultado?',
-    answer: 'Sem problema. Pedido 30 dias de garantia, sem perguntas. Email support@meujeitodeamar.com.br e devolvemos seu dinheiro na hora.',
+    answer: 'Sem problema. Oferecemos garantia de 30 dias, sem perguntas. Contate suporte@meujeitodeamar.com.br e devolvemos 100% do seu dinheiro.',
   },
   {
     question: 'Meus dados são privados?',
@@ -64,16 +64,16 @@ export default function LandingPage() {
       <section className="landing__hero">
         <div className="landing__hero-left">
           <h1 className="landing__headline">
-            Descubra Seu Estilo de Apego{' '}
+            Descubra Seu Jeito de Amar{' '}
             <em>em 2 Minutos</em>
           </h1>
-          <p className="landing__hero-stat">Mais de 10.482 pessoas já descobriram seu padrão de amor</p>
+          <p className="landing__hero-stat">460+ pessoas já descobriram seu padrão em 24h</p>
           <p className="landing__sub">
             Existe uma razão. Ela tem nome.<br />E quando você entende, tudo muda.
           </p>
-          <div className="landing__urgency-badge">
-            🎁 Preço de Lançamento: R$ 37
-            <span className="landing__countdown">(Sobe para R$ 47 em 5 dias)</span>
+          <div className="landing__urgency-badge" role="status" aria-live="polite">
+            🎁 Preço de Lançamento: <strong>R$ 37</strong>
+            <span className="landing__countdown">(Promoção por tempo limitado)</span>
           </div>
           <div className="landing__cta">
             <Link to="/quiz/b" tabIndex={-1}>
@@ -114,10 +114,10 @@ export default function LandingPage() {
       </section>
 
       {/* Hero Testimonials - above fold */}
-      <section className="landing__hero-testimonials">
+      <section className="landing__hero-testimonials" aria-label="Depoimentos de usuários reais">
         <div className="landing__hero-testimonials-inner">
           <h2 className="landing__hero-testimonials-title">O que as pessoas estão dizendo</h2>
-          <div className="hero-testimonials-grid">
+          <div className="hero-testimonials-grid" role="list">
             {HERO_TESTIMONIALS.map((t, i) => (
               <div key={i} className="hero-testimonial-card">
                 <div className="hero-testimonial__rating">⭐⭐⭐⭐⭐</div>
@@ -159,15 +159,15 @@ export default function LandingPage() {
       <section className="landing__faq">
         <div className="landing__faq-inner">
           <h2 className="landing__faq-title">Perguntas Frequentes</h2>
-          <div className="faq-list">
+          <div className="faq-list" role="region" aria-label="Perguntas frequentes com respostas expansíveis">
             {FAQ_ITEMS.map((item, i) => (
               <div key={i} className="faq-item">
-                <details>
-                  <summary>
-                    <span className="faq-icon">+</span>
-                    {item.question}
+                <details className="faq-details">
+                  <summary className="faq-summary">
+                    <span className="faq-icon" aria-hidden="true">+</span>
+                    <span className="faq-question">{item.question}</span>
                   </summary>
-                  <p className="faq-answer">{item.answer}</p>
+                  <div className="faq-answer">{item.answer}</div>
                 </details>
               </div>
             ))}

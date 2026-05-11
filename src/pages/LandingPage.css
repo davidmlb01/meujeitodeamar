@@ -88,7 +88,7 @@
 
 .landing__urgency-badge {
   background: linear-gradient(135deg, #D8A7B1, #C9A87C);
-  color: white;
+  color: #1A1A1A;
   padding: 12px 24px;
   border-radius: 8px;
   font-weight: 600;
@@ -278,22 +278,30 @@
   cursor: pointer;
 }
 
-.faq-item summary {
+.faq-summary {
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  padding: var(--space-4);
+  padding: 12px 16px;
   background: var(--bg-warm);
   list-style: none;
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   color: var(--text);
-  transition: background 150ms ease;
+  transition: background 250ms ease-out;
+  min-height: 48px;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
-.faq-item summary:hover {
+.faq-summary:hover {
   background: var(--bg);
+}
+
+.faq-summary:focus-visible {
+  outline: 2px solid #C9A87C;
+  outline-offset: 2px;
 }
 
 .faq-icon {
@@ -312,12 +320,17 @@
   transform: rotate(45deg);
 }
 
+.faq-question {
+  flex: 1;
+  text-align: left;
+}
+
 .faq-answer {
-  padding: var(--space-4);
+  padding: 12px 16px;
   background: var(--bg);
   font-family: var(--font-body);
-  font-size: 13px;
-  line-height: 1.7;
+  font-size: 14px;
+  line-height: 1.6;
   color: var(--text);
   margin: 0;
 }
