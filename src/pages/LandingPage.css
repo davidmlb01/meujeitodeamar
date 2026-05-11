@@ -75,6 +75,257 @@
   margin-top: var(--space-2);
 }
 
+/* ── FIX 1: Hero Stat + Urgency Badge ── */
+.landing__hero-stat {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--dark);
+  text-align: center;
+  margin-bottom: var(--space-4);
+  opacity: 0.85;
+}
+
+.landing__urgency-badge {
+  background: linear-gradient(135deg, #D8A7B1, #C9A87C);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-align: center;
+  margin: 16px 0;
+  font-size: 14px;
+  margin-bottom: var(--space-4);
+}
+
+.landing__countdown {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 4px;
+  opacity: 0.95;
+}
+
+/* ── FIX 2: Hero Testimonials (above fold) ── */
+.landing__hero-testimonials {
+  background: var(--bg);
+  padding: var(--space-6) var(--space-6) var(--space-8);
+}
+
+.landing__hero-testimonials-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.landing__hero-testimonials-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--text);
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.hero-testimonials-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.hero-testimonial-card {
+  background: var(--bg-warm);
+  padding: var(--space-4) var(--space-4);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--subtle);
+  text-align: center;
+}
+
+.hero-testimonial__rating {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.hero-testimonial__text {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.hero-testimonial__author {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+/* ── FIX 3: Guarantee Section ── */
+.landing__guarantee {
+  background: var(--bg);
+  padding: var(--space-8) var(--space-6);
+  border-top: 1px solid var(--subtle);
+}
+
+.landing__guarantee-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.guarantee-card {
+  background: var(--bg-warm);
+  padding: var(--space-6) var(--space-4);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--subtle);
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.guarantee-icon {
+  font-size: 32px;
+  margin-bottom: var(--space-2);
+}
+
+.guarantee-card h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.guarantee-card p {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.guarantee-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.guarantee-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  background: transparent;
+}
+
+.guarantee-item__icon {
+  font-size: 18px;
+  color: var(--dark);
+  font-weight: 600;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.guarantee-item p {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text);
+  margin: 0;
+}
+
+.guarantee-item strong {
+  font-weight: 600;
+}
+
+/* ── FIX 4: FAQ Section ── */
+.landing__faq {
+  background: var(--bg);
+  padding: var(--space-8) var(--space-6);
+  border-top: 1px solid var(--subtle);
+}
+
+.landing__faq-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.landing__faq-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--text);
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.faq-item {
+  border: 1px solid var(--subtle);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.faq-item details {
+  cursor: pointer;
+}
+
+.faq-item summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--bg-warm);
+  list-style: none;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  transition: background 150ms ease;
+}
+
+.faq-item summary:hover {
+  background: var(--bg);
+}
+
+.faq-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  font-weight: 600;
+  color: var(--muted);
+  flex-shrink: 0;
+  transition: transform 150ms ease;
+}
+
+.faq-item details[open] .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  padding: var(--space-4);
+  background: var(--bg);
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text);
+  margin: 0;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
 /* ── Animações de entrada ── */
 @keyframes landing-reveal {
   from { opacity: 0; transform: translateY(12px); }
@@ -325,8 +576,17 @@
     letter-spacing: -0.02em;
   }
 
+  .landing__hero-stat {
+    font-size: 16px;
+    text-align: left;
+  }
+
   .landing__cta {
     max-width: 360px;
+  }
+
+  .landing__urgency-badge {
+    text-align: left;
   }
 
   /* Steps no desktop ficam na coluna direita */
@@ -339,6 +599,27 @@
     flex-direction: column;
     gap: var(--space-3);
     flex: 0 0 340px;
+  }
+
+  .landing__hero-testimonials-title {
+    font-size: 28px;
+  }
+
+  .hero-testimonials-grid {
+    flex-direction: row;
+    gap: var(--space-6);
+  }
+
+  .hero-testimonial-card {
+    flex: 1;
+  }
+
+  .guarantee-row {
+    flex-direction: row;
+  }
+
+  .guarantee-item {
+    flex: 1;
   }
 
   .landing__testimonials {

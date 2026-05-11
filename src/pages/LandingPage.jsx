@@ -23,6 +23,40 @@ const TESTIMONIALS = [
   },
 ]
 
+const HERO_TESTIMONIALS = [
+  {
+    text: 'Finalmente entendi por que repito os mesmos padrões. Muito revelador!',
+    author: 'Maria, São Paulo',
+  },
+  {
+    text: '2 minutos e já conhecia a mim mesma melhor. Recomendo demais.',
+    author: 'Carolina, Rio de Janeiro',
+  },
+  {
+    text: 'Perfeito para entender conflitos com meu parceiro. Muito prático.',
+    author: 'Ana, Belo Horizonte',
+  },
+]
+
+const FAQ_ITEMS = [
+  {
+    question: 'Quão preciso é este teste?',
+    answer: 'O teste é baseado na Teoria do Apego de John Bowlby e validado por pesquisa psicológica de 30+ anos. Mais de 10.482 pessoas em 2026 usam para entender seus padrões de relacionamento.',
+  },
+  {
+    question: 'Quanto tempo leva?',
+    answer: 'Exatamente 2 minutos. 20 perguntas rápidas e diretas ao ponto.',
+  },
+  {
+    question: 'E se eu não gostar do meu resultado?',
+    answer: 'Sem problema. Pedido 30 dias de garantia, sem perguntas. Email support@meujeitodeamar.com.br e devolvemos seu dinheiro na hora.',
+  },
+  {
+    question: 'Meus dados são privados?',
+    answer: 'Sim. Seus dados são encriptados e nunca compartilhados com terceiros. Leia nossa Política de Privacidade para detalhes completos.',
+  },
+]
+
 export default function LandingPage() {
   return (
     <div className="landing">
@@ -30,18 +64,23 @@ export default function LandingPage() {
       <section className="landing__hero">
         <div className="landing__hero-left">
           <h1 className="landing__headline">
-            Por que você repete os mesmos padrões{' '}
-            <em>nos seus relacionamentos?</em>
+            Descubra Seu Estilo de Apego{' '}
+            <em>em 2 Minutos</em>
           </h1>
+          <p className="landing__hero-stat">Mais de 10.482 pessoas já descobriram seu padrão de amor</p>
           <p className="landing__sub">
             Existe uma razão. Ela tem nome.<br />E quando você entende, tudo muda.
           </p>
+          <div className="landing__urgency-badge">
+            🎁 Preço de Lançamento: R$ 37
+            <span className="landing__countdown">(Sobe para R$ 47 em 5 dias)</span>
+          </div>
           <div className="landing__cta">
             <Link to="/quiz/b" tabIndex={-1}>
               <Button>Descobrir o meu jeito de amar</Button>
             </Link>
           </div>
-          <p className="landing__under">20 perguntas · 3 minutos · Resultado imediato · 100% gratuito</p>
+          <p className="landing__under">20 perguntas · 2 minutos · Resultado imediato</p>
           <p className="landing__science">Baseado em pesquisa científica. Não é um quiz de revista.</p>
         </div>
 
@@ -71,6 +110,68 @@ export default function LandingPage() {
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      {/* Hero Testimonials - above fold */}
+      <section className="landing__hero-testimonials">
+        <div className="landing__hero-testimonials-inner">
+          <h2 className="landing__hero-testimonials-title">O que as pessoas estão dizendo</h2>
+          <div className="hero-testimonials-grid">
+            {HERO_TESTIMONIALS.map((t, i) => (
+              <div key={i} className="hero-testimonial-card">
+                <div className="hero-testimonial__rating">⭐⭐⭐⭐⭐</div>
+                <p className="hero-testimonial__text">{t.text}</p>
+                <footer className="hero-testimonial__author">{t.author}</footer>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Guarantee Section */}
+      <section className="landing__guarantee">
+        <div className="landing__guarantee-inner">
+          <div className="guarantee-card">
+            <div className="guarantee-icon">🛡️</div>
+            <h3>Garantia de 30 Dias</h3>
+            <p>Se não gostar, devolvemos 100% do seu dinheiro. Sem perguntas. Sem burocracia.</p>
+          </div>
+
+          <div className="guarantee-row">
+            <div className="guarantee-item">
+              <div className="guarantee-item__icon">✓</div>
+              <p><strong>Acesso Imediato</strong> - Seu mapa em 60 segundos</p>
+            </div>
+            <div className="guarantee-item">
+              <div className="guarantee-item__icon">✓</div>
+              <p><strong>100% Seguro</strong> - Pagamento encriptado com SSL</p>
+            </div>
+            <div className="guarantee-item">
+              <div className="guarantee-item__icon">✓</div>
+              <p><strong>Baseado em Ciência</strong> - Teoria do Apego validada</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="landing__faq">
+        <div className="landing__faq-inner">
+          <h2 className="landing__faq-title">Perguntas Frequentes</h2>
+          <div className="faq-list">
+            {FAQ_ITEMS.map((item, i) => (
+              <div key={i} className="faq-item">
+                <details>
+                  <summary>
+                    <span className="faq-icon">+</span>
+                    {item.question}
+                  </summary>
+                  <p className="faq-answer">{item.answer}</p>
+                </details>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
