@@ -7,6 +7,7 @@ import Resultado from './pages/Resultado'
 import Obrigado from './pages/Obrigado'
 import Privacidade from './pages/Privacidade'
 import Termos from './pages/Termos'
+import Dashboard from './pages/Dashboard'
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/obrigado" element={<Obrigado />} />
         <Route path="/privacidade" element={<Privacidade />} />
         <Route path="/termos" element={<Termos />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
     </HelmetProvider>
