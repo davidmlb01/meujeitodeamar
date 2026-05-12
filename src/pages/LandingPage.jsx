@@ -4,7 +4,7 @@ import './LandingPage.css'
 
 const STEPS = [
   'Responda 10 perguntas sobre como você lida com seus relacionamentos',
-  'Descubra qual dos 4 jeitos de amar é o seu',
+  'Descubra qual jeito de amar é o seu',
   'Receba seu Mapa pessoal com a origem exata do seu padrão',
 ]
 
