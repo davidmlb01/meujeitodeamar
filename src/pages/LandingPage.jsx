@@ -8,21 +8,6 @@ const STEPS = [
   'Receba seu Mapa pessoal com a origem exata do seu padrão',
 ]
 
-const TESTIMONIALS = [
-  {
-    text: 'Fiz achando que ia ser genérico. Quando li, fiquei procurando a parte que não combinava comigo. Não encontrei.',
-    author: 'M., 29 anos',
-  },
-  {
-    text: 'Eu repetia o mesmo padrão há anos e achava que era personalidade. Não é. É um padrão. E padrão tem origem.',
-    author: 'C., 34 anos',
-  },
-  {
-    text: '10 perguntas me mostraram algo que anos de conversa com amigas não tinham mostrado.',
-    author: 'A., 27 anos',
-  },
-]
-
 const HERO_TESTIMONIALS = [
   {
     text: 'Finalmente entendi por que repito os mesmos padrões. Muito revelador!',
@@ -67,6 +52,7 @@ export default function LandingPage() {
             Existe um padrão no jeito que você ama.{' '}
             <em>Você ainda não sabe qual é.</em>
           </h1>
+          <p className="landing__hero-stat">460+ pessoas já descobriram o seu jeito de amar</p>
           <p className="landing__sub">Descubra em 10 perguntas.</p>
           <div className="landing__cta">
             <Link to="/quiz/b" tabIndex={-1}>
@@ -106,7 +92,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Hero Testimonials - above fold */}
+      {/* Testimonials */}
       <section className="landing__hero-testimonials" aria-label="Depoimentos de usuários reais">
         <div className="landing__hero-testimonials-inner">
           <h2 className="landing__hero-testimonials-title">O que as pessoas estão dizendo</h2>
@@ -168,19 +154,9 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Prova social + Depoimentos */}
+      {/* CTA final */}
       <section className="landing__testimonials">
         <div className="landing__testimonials-inner">
-          <p className="landing__social-proof">460+ pessoas já descobriram o seu jeito de amar</p>
-          <p className="landing__testimonials-label">O que dizem</p>
-          <div className="testimonials-grid">
-            {TESTIMONIALS.map((t, i) => (
-              <blockquote key={i} className="testimonial">
-                <p className="testimonial__text">{t.text}</p>
-                <cite className="testimonial__author">{t.author}</cite>
-              </blockquote>
-            ))}
-          </div>
           <div className="landing__testimonials-cta">
             <Link to="/quiz/b" tabIndex={-1}>
               <Button>Descobrir o meu jeito de amar</Button>
