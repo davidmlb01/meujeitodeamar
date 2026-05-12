@@ -18,7 +18,7 @@ const TESTIMONIALS = [
     author: 'C., 34 anos',
   },
   {
-    text: 'Vinte perguntas me mostraram algo que anos de conversa com amigas não tinham mostrado.',
+    text: '10 perguntas me mostraram algo que anos de conversa com amigas não tinham mostrado.',
     author: 'A., 27 anos',
   },
 ]
@@ -41,11 +41,11 @@ const HERO_TESTIMONIALS = [
 const FAQ_ITEMS = [
   {
     question: 'Quão preciso é este teste?',
-    answer: 'O teste é baseado na Teoria do Apego de John Bowlby e validado por pesquisa psicológica de 50+ anos. Não é diagnóstico — é um espelho comportamental que ajuda você a entender seus padrões de relacionamento.',
+    answer: 'Muito. É baseado em pesquisa científica séria sobre como as pessoas aprendem a amar. Não é diagnóstico clínico e não é um teste de revista.',
   },
   {
     question: 'Quanto tempo leva?',
-    answer: 'Exatamente 2 minutos. 20 perguntas rápidas e diretas ao ponto.',
+    answer: 'Exatamente 2 minutos. 10 perguntas rápidas e diretas ao ponto.',
   },
   {
     question: 'E se eu não gostar do meu resultado?',
@@ -134,15 +134,15 @@ export default function LandingPage() {
           <div className="guarantee-row">
             <div className="guarantee-item">
               <div className="guarantee-item__icon">✓</div>
-              <p><strong>Acesso Imediato</strong> - Seu mapa em 60 segundos</p>
+              <p><strong>Acesso Imediato</strong></p>
             </div>
             <div className="guarantee-item">
               <div className="guarantee-item__icon">✓</div>
-              <p><strong>100% Seguro</strong> - Pagamento encriptado com SSL</p>
+              <p><strong>100% Seguro</strong></p>
             </div>
             <div className="guarantee-item">
               <div className="guarantee-item__icon">✓</div>
-              <p><strong>Baseado em Ciência</strong> - Teoria do Apego validada</p>
+              <p><strong>Baseado em Ciência</strong></p>
             </div>
           </div>
         </div>
@@ -185,7 +185,7 @@ export default function LandingPage() {
             <Link to="/quiz/b" tabIndex={-1}>
               <Button>Descobrir o meu jeito de amar</Button>
             </Link>
-            <p className="landing__under">Gratuito. 3 minutos. Sem cadastro.</p>
+            <p className="landing__under">Gratuito. 2 minutos. Sem cadastro.</p>
           </div>
         </div>
       </section>
