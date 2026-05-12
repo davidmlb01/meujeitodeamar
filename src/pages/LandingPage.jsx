@@ -71,16 +71,12 @@ export default function LandingPage() {
           <p className="landing__sub">
             Existe uma razão. Ela tem nome.<br />E quando você entende, tudo muda.
           </p>
-          <div className="landing__urgency-badge" role="status" aria-live="polite">
-            🎁 Preço de Lançamento: <strong>R$ 37</strong>
-            <span className="landing__countdown">(Promoção por tempo limitado)</span>
-          </div>
           <div className="landing__cta">
             <Link to="/quiz/b" tabIndex={-1}>
               <Button>Descobrir o meu jeito de amar</Button>
             </Link>
           </div>
-          <p className="landing__under">20 perguntas · 2 minutos · Resultado imediato</p>
+          <p className="landing__under">10 perguntas · 2 minutos · Resultado imediato</p>
           <p className="landing__science">Baseado em pesquisa científica. Não é um quiz de revista.</p>
         </div>
 
@@ -178,7 +174,7 @@ export default function LandingPage() {
       {/* Prova social + Depoimentos */}
       <section className="landing__testimonials">
         <div className="landing__testimonials-inner">
-          <p className="landing__social-proof">Mais de 2.000 pessoas já descobriram o seu jeito de amar</p>
+          <p className="landing__social-proof">460+ pessoas já descobriram o seu jeito de amar</p>
           <p className="landing__testimonials-label">O que dizem</p>
           <div className="testimonials-grid">
             {TESTIMONIALS.map((t, i) => (
