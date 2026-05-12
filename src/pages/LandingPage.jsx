@@ -64,13 +64,10 @@ export default function LandingPage() {
       <section className="landing__hero">
         <div className="landing__hero-left">
           <h1 className="landing__headline">
-            Descubra Seu Jeito de Amar{' '}
-            <em>em 2 Minutos</em>
+            Existe um padrão no jeito que você ama.{' '}
+            <em>Você ainda não sabe qual é.</em>
           </h1>
-          <p className="landing__hero-stat">460+ pessoas já descobriram seu padrão em 24h</p>
-          <p className="landing__sub">
-            Existe uma razão. Ela tem nome.<br />E quando você entende, tudo muda.
-          </p>
+          <p className="landing__sub">Descubra em 10 perguntas.</p>
           <div className="landing__cta">
             <Link to="/quiz/b" tabIndex={-1}>
               <Button>Descobrir o meu jeito de amar</Button>
