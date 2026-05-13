@@ -8,9 +8,7 @@ import './QuizB.css'
 const STORAGE_KEY = 'mjda_quiz_state'
 
 const BLOCK_MESSAGES = {
-  5: 'Boa. As próximas perguntas vão entrar um pouco mais fundo.',
-  10: 'Você está na metade. A maioria das pessoas para aqui. Você não parou.',
-  15: 'Quase lá. As últimas perguntas são as que mais revelam.',
+  5: 'Você está na metade. A maioria das pessoas para aqui. Você não parou.',
 }
 
 function loadState() {
