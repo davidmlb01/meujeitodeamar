@@ -234,7 +234,7 @@ export default function Resultado() {
   const faqItems = [
     { q: 'Isso é confiável? Em que se baseia?', a: 'O Mapa é baseado em um dos estudos mais respeitados da psicologia sobre como os seres humanos formam vínculos. Não é autoajuda. Não é horóscopo. É ciência traduzida para linguagem humana.' },
     { q: 'Como eu recebo o Mapa?', a: 'Entrega imediata por email. Em menos de 5 minutos você recebe o seu Mapa completo em PDF. Acesso permanente, leia quantas vezes quiser.' },
-    { q: 'E se eu não gostar?', a: 'Garantia de 7 dias. Se o Mapa não fizer sentido para você, devolvemos 100% do valor. Sem perguntas.' },
+    { q: 'E se eu não gostar?', a: 'Garantia de 30 dias. Se o Mapa não fizer sentido para você, devolvemos 100% do valor. Sem perguntas.' },
     { q: 'Isso não é tipo um teste de revista?', a: 'Não. Testes de revista dão respostas genéricas para todo mundo. O Mapa é construído a partir das suas respostas específicas e baseado em uma pesquisa com mais de 40 anos de estudos replicados.' },
     { q: 'Funciona se eu estiver solteira?', a: 'Sim. O seu jeito de amar não depende de estar num relacionamento. Ele aparece em tudo: com amigos, família, e até na forma como você lida consigo mesma.' },
     { q: 'Posso compartilhar com alguém?', a: 'Sim. Muitas pessoas mandam para o parceiro ou para amigas. O Mapa ajuda os dois lados a se entenderem melhor.' },
@@ -260,7 +260,7 @@ export default function Resultado() {
         <span className="carrying__headline">Cada resposta conta uma parte da sua história.</span>
         <div className="carrying__bar"><div className="carrying__fill" /></div>
         <div className="carrying__social">
-          <span className="carrying__social-count">127.482</span>
+          <span className="carrying__social-count">460+</span>
           <span className="carrying__social-text">pessoas já descobriram o seu jeito de amar</span>
         </div>
       </div>
@@ -349,7 +349,7 @@ export default function Resultado() {
             <span className="guarantee__icon"><ShieldIcon /></span>
             <div className="guarantee__content">
               <span className="guarantee__title">Garantia da Honestidade Afetiva</span>
-              <span className="guarantee__text">Se o Mapa não fizer sentido para você, devolvemos tudo em 7 dias. Sem perguntas, sem burocracia. Você não está arriscando nada.</span>
+              <span className="guarantee__text">Se o Mapa não fizer sentido para você, devolvemos tudo em 30 dias. Sem perguntas, sem burocracia. Você não está arriscando nada.</span>
             </div>
           </div>
 
@@ -464,7 +464,7 @@ export default function Resultado() {
           >
             Desbloquear o Mapa {r.readingName}
           </a>
-          <p className="final-cta__meta">R$37 · Entrega imediata · Garantia de 7 dias</p>
+          <p className="final-cta__meta">R$37 · Entrega imediata · Garantia de 30 dias</p>
         </div>
       </section>
 
