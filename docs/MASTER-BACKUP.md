@@ -666,4 +666,28 @@ Para ativar: `/AIOX:agents:aiox-master` → depois referenciar o squad desejado.
 
 ---
 
-*Backup atualizado por Orion (AIOX Master) em 2026-05-12*
+## 20. SESSÃO 2026-05-13: DADOS PARCIAIS + FIXES /resultado
+
+### Dados parciais 13/05 (meio do dia)
+- LPV: 13 | VC: 6 | **Completion: 46,2%** (voltou ao benchmark, fixes funcionaram)
+- Spend: R$17,01 | Compras: 0 (dia ainda correndo)
+
+### Descoberta: InitiateCheckout já estava implementado
+- Pixel funcionando: 15 eventos registrados nos 30 dias anteriores
+- Estava nos 4 pontos de clique: botão principal, CTA final, exit intent, sticky CTA
+- Não era ausência de pixel — era sinal fraco por audiência errada
+
+### Fixes /resultado (commit d0364bc)
+- Carrying screen: "127.482" (falso) → "460+"
+- FAQ: garantia "7 dias" → "30 dias"
+- Guarantee card: "7 dias" → "30 dias"
+- Final CTA meta: "7 dias" → "30 dias"
+
+### Estado atual do funil (todos os textos alinhados)
+- Landing: 30 dias, 460+, sem preço, 10 perguntas
+- /resultado: 30 dias, 460+, sem Bowlby, InitiateCheckout ativo
+- Quiz: 10 perguntas reais
+
+---
+
+*Backup atualizado por Orion (AIOX Master) em 2026-05-13*
