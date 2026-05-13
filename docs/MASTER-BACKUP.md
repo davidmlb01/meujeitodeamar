@@ -624,4 +624,46 @@ Para ativar: `/AIOX:agents:aiox-master` → depois referenciar o squad desejado.
 
 ---
 
+## 19. SESSÃO 2026-05-12 (noite): EMERGÊNCIA LANDING + QUIZ 10 PERGUNTAS
+
+### Diagnóstico emergência (12/05)
+- Quiz completion caiu de 38% para 12,5% em 1 dia
+- Root cause: badge "R$37" no hero mostrava preço ANTES do quiz
+- Pessoa chegava já sabendo que seria vendida — não fazia o teste
+
+### Fixes deployados (commits cf33e7e → c074ab5)
+
+| Commit | Fix |
+|--------|-----|
+| cf33e7e | Remove badge R$37 do hero |
+| 3075deb | Headline Hormozi: "Existe um padrão no jeito que você ama. Você ainda não sabe qual é." |
+| 0e0d2c7 | Steps: "20 perguntas" → "10 perguntas" |
+| 94fd575 | Steps: "dos 4 jeitos" removido (não spoila) |
+| 38ece68 | Auditoria completa: FAQ Bowlby removido, "2.000 pessoas" removido, "3 min" → "2 min" |
+| cc9e222 | "460+" movido para hero, seção de depoimentos duplicada removida |
+| c074ab5 | Quiz reduzido de 20 para 10 perguntas DE FATO no código |
+
+### Estado atual da landing
+- Headline: "Existe um padrão no jeito que você ama. Você ainda não sabe qual é."
+- Social proof: "460+ pessoas já descobriram o seu jeito de amar" (no hero)
+- Sem preço visível antes do quiz
+- Steps: 10 perguntas, sem spoilar "dos 4 tipos"
+- FAQ: sem mencionar Bowlby ou Teoria do Apego
+- Quiz: 10 perguntas reais (IDs: 1,5,7,9,10,11,13,15,18,19)
+
+### Regras de copy consolidadas (DEFINITIVAS)
+- NUNCA preço antes do quiz (só na /resultado)
+- NUNCA "Teoria do Apego" ou "Bowlby" (só "pesquisa científica")
+- NUNCA "dos 4 jeitos" no hero (não spoila)
+- NUNCA número falso de usuários
+- NUNCA "terminou alguém" (sempre "terminou com alguém")
+- NUNCA "quiz" (sempre "teste" ou "10 perguntas")
+
+### Pendências mantidas
+- [ ] Pausar ADS6 e ADS4 no Meta
+- [ ] Implementar InitiateCheckout no pixel
+- [ ] Seed launch: 5 depoimentos reais
+
+---
+
 *Backup atualizado por Orion (AIOX Master) em 2026-05-12*
