@@ -37,6 +37,7 @@ export const RESULTS = {
       { style: 'Confuso', preview: 'Dois alarmes disparando ao mesmo tempo. Intensidade máxima, previsibilidade zero.' },
     ],
     urgencyText: 'O alarme não vai parar sozinho. Mas entender de onde ele vem muda tudo.',
+    offerHeadline: 'Você pode continuar tentando se controlar. Ou pode entender o que cria o impulso antes que ele vire ação.',
     ctaFinalHeadline: 'Você já sabe o que sente. Agora entenda por quê.',
   },
   distante: {
@@ -77,6 +78,7 @@ export const RESULTS = {
       { style: 'Confuso', preview: 'Os dois precisam de distância, mas por motivos opostos. Uma dança silenciosa.' },
     ],
     urgencyText: 'Você não precisa se abrir mais. Precisa entender o que fecha.',
+    offerHeadline: 'Você pode continuar se forçando a ser mais presente. Ou pode entender o que fecha quando a pessoa que você ama chega perto.',
     ctaFinalHeadline: 'Você não precisa se forçar a sentir diferente. Precisa entender por que sente assim.',
   },
   seguro: {
@@ -117,6 +119,7 @@ export const RESULTS = {
       { style: 'Confuso', preview: 'A montanha-russa dele testa a sua paciência. E o seu desafio real: ajudar sem absorver.' },
     ],
     urgencyText: 'Você não precisa de conserto. Precisa de clareza sobre a sua força.',
+    offerHeadline: 'Você pode continuar carregando o peso emocional do relacionamento. Ou pode entender por que sempre acaba sendo você.',
     ctaFinalHeadline: 'Seu jeito de amar não é o problema. Mas entender ele muda tudo.',
   },
   desorganizado: {
@@ -157,6 +160,7 @@ export const RESULTS = {
       { style: 'Seguro', preview: 'A âncora que você não sabia que precisava. Mas estabilidade pode assustar tanto quanto caos.' },
     ],
     urgencyText: 'Você pode continuar tentando se decifrar sozinha. Ou pode ler o que já está pronto.',
+    offerHeadline: 'Você pode continuar tentando se decifrar. Ou pode ler o que explica por que querer e ter medo aparecem juntos.',
     ctaFinalHeadline: 'Você não é complicada. Só nunca te explicaram o que acontece por dentro.',
   },
 }

@@ -282,6 +282,13 @@ export default function Resultado() {
           ))}
         </div>
 
+        <div className="reveal__bridge">
+          <p className="reveal__bridge-text">Isso tem uma origem. E ela está no seu Mapa.</p>
+          <a href={checkoutUrl} className="reveal__bridge-link" onClick={handleCheckout}>
+            Quero entender o meu padrão →
+          </a>
+        </div>
+
         <div className="reveal__scroll-hint">
           <span className="reveal__scroll-text">Isso aqui é só o rótulo. O que realmente te explica está abaixo.</span>
           <span className="reveal__scroll-arrow">↓</span>
@@ -334,10 +341,28 @@ export default function Resultado() {
         </div>
       </section>
 
-      {/* ── SEÇÃO 4: OFFER + CTA (logo após blocos bloqueados = pico de desejo) ── */}
+      {/* ── PRÉ-OFFER: melhor depoimento no pico de desejo ── */}
+      <section className="pre-offer-proof">
+        <div className="pre-offer-proof__inner">
+          <div className="social-proof__card">
+            <p className="social-proof__quote">"{r.testimonials[0].quote}"</p>
+            <div className="social-proof__meta">
+              <div className="social-proof__avatar">{r.testimonials[0].initial}</div>
+              <div>
+                <p className="social-proof__name">{r.testimonials[0].name}</p>
+                <p className="social-proof__type">Coração {r.styleName}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SEÇÃO 4: OFFER + CTA ── */}
       <section className="offer-section" ref={offerRef} data-scroll-track="offer">
         <div className="offer-section__inner">
-          <h2 className="offer-section__headline">Você já sabe o nome.<br />Agora entenda <em>o motivo.</em></h2>
+          <h2 className="offer-section__headline">{r.offerHeadline}</h2>
+
+          <p className="offer-anchor">Uma sessão com psicólogo para chegar nesse entendimento custa, em média, R$200. O Mapa entrega isso em 15 minutos.</p>
 
           <div className="offer-total">
             <p className="offer-total__new">R$37</p>
@@ -352,7 +377,10 @@ export default function Resultado() {
             </div>
           </div>
 
+          <p className="offer-credibility">Baseado em mais de 40 anos de pesquisa replicada sobre vínculos afetivos. Não é autoajuda. É ciência.</p>
+
           <div className="offer-cta">
+            <p className="offer-cta__urgency">{r.urgencyText}</p>
             <a
               href={checkoutUrl}
               target="_blank"
@@ -362,11 +390,6 @@ export default function Resultado() {
             >
               Quero o meu Mapa por R$37
             </a>
-            <p className="offer-cta__urgency">{r.urgencyText}</p>
-          </div>
-
-          <div className="science-badge">
-            <p className="science-badge__text">Baseado em uma das pesquisas mais citadas da psicologia sobre como os seres humanos formam vínculos. Mais de 40 anos de estudos replicados em dezenas de países.</p>
           </div>
         </div>
       </section>
