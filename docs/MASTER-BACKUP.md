@@ -690,4 +690,49 @@ Para ativar: `/AIOX:agents:aiox-master` → depois referenciar o squad desejado.
 
 ---
 
-*Backup atualizado por Orion (AIOX Master) em 2026-05-13*
+---
+
+## 21. SESSÃO 2026-05-14: ANÁLISE ADS + OTIMIZAÇÃO HORMOZI /resultado
+
+### Decisão ADS2: PAUSADO
+- 6 dias (09/05–14/05): R$189,68 gasto, 2 compras, ROAS 0,33x, CAC R$94,84
+- Funil: 110 cliques → 98 LPV → 25 VC → 4 Init Checkout → 2 compras
+- Gargalo confirmado: VC→Checkout em 16% (precisa 30-40% para ser viável)
+- ADS2 pausado — relançar após /resultado otimizada
+
+### Diagnóstico Hormozi: 6 problemas na /resultado
+1. Pico emocional desperdiçado: sem CTA após os behaviors
+2. Prova social depois da oferta (devia ser antes)
+3. Headline da oferta intelectual, não emocional
+4. Sem âncora de preço legítima após remoção do R$147
+5. urgencyText abaixo do botão (devia ser acima)
+6. Credibilidade científica depois do clique (devia ser antes)
+
+### Fixes deployados (commits d5ba2d3 → 023db53)
+
+| Commit | Fix |
+|--------|-----|
+| d5ba2d3 | productDescP3 personalizado por estilo, exit overlay honesto, remove R$147 |
+| 4b294de | Scroll hint: "Isso aqui é só o rótulo. O que realmente te explica está abaixo." |
+| cee4bae | Otimização Hormozi completa: bridge, pre-offer proof, offerHeadline, âncora tempo, urgência acima botão, credibilidade inline |
+| 023db53 | Remove comparação com psicólogo (risco jurídico) — âncora: "Anos de perguntas. Ou 15 minutos com o Mapa." |
+
+### Estado atual da /resultado (14/05)
+- **Bridge após behaviors:** "Isso tem uma origem. E ela está no seu Mapa." + link suave
+- **Depoimento antes da oferta:** testimonials[0] de cada estilo
+- **offerHeadline por estilo:** dream outcome específico (não feature)
+- **Âncora de tempo:** "Anos de perguntas sem resposta. Ou 15 minutos com o seu Mapa."
+- **urgencyText acima do botão** (não abaixo)
+- **Credibilidade inline** antes do clique
+- **NUNCA psicólogo/terapia** em nenhum copy — risco jurídico
+
+### Regras reforçadas
+- NUNCA comparar com psicólogo, terapia, sessão ou saúde mental em qualquer copy
+- Âncoras permitidas: tempo ("anos de perguntas"), esforço ("tentando entender sozinha")
+
+### Próximas Ações
+- [ ] Relançar ADS2 após validar métricas da /resultado otimizada
+- [ ] Novos criativos (David tem ideias prontas)
+- [ ] Monitorar VC→Checkout nas próximas sessões
+
+*Backup atualizado por Orion (AIOX Master) em 2026-05-14*
