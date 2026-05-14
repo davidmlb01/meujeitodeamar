@@ -283,7 +283,7 @@ export default function Resultado() {
         </div>
 
         <div className="reveal__scroll-hint">
-          <span className="reveal__scroll-text">Seu resultado vai muito além de um nome</span>
+          <span className="reveal__scroll-text">Isso aqui é só o rótulo. O que realmente te explica está abaixo.</span>
           <span className="reveal__scroll-arrow">↓</span>
         </div>
       </section>
