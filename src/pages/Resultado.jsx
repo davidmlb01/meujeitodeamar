@@ -340,7 +340,6 @@ export default function Resultado() {
           <h2 className="offer-section__headline">Você já sabe o nome.<br />Agora entenda <em>o motivo.</em></h2>
 
           <div className="offer-total">
-            <p className="offer-total__old">De R$147</p>
             <p className="offer-total__new">R$37</p>
             <p className="offer-total__sub">Mapa {r.readingName} · Entrega imediata</p>
           </div>
@@ -514,8 +513,8 @@ export default function Resultado() {
       {showExit && (
         <div className="exit-overlay" onClick={() => setShowExit(false)}>
           <div className="exit-overlay__card" onClick={(e) => e.stopPropagation()}>
-            <p className="exit-overlay__headline">Sua leitura vai ficar disponível por tempo limitado.</p>
-            <p className="exit-overlay__sub">O Mapa {r.readingName} foi gerado a partir das suas respostas. Se você sair agora, pode não encontrar esse preço de novo.</p>
+            <p className="exit-overlay__headline">Você já fez a parte mais difícil.</p>
+            <p className="exit-overlay__sub">O Mapa {r.readingName} foi gerado a partir das suas respostas específicas. Tem quem leve anos tentando entender sozinha o que está explicado aqui.</p>
             <a
               href={checkoutUrl}
               target="_blank"

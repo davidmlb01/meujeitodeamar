@@ -18,7 +18,7 @@ export const RESULTS = {
     ],
     productDescP1: 'Cada uma dessas perguntas tem uma resposta clara. E todas elas estão aqui.',
     productDescP2: 'Você vai entender de onde veio o seu padrão. Por que ele se repete. E o que acontece por dentro toda vez que o alarme dispara.',
-    productDescP3: 'Não é autoajuda. Não são dicas genéricas. É a sua história, explicada pela ciência dos vínculos afetivos. Baseado em uma das pesquisas mais importantes da psicologia sobre como os seres humanos aprendem a amar.',
+    productDescP3: 'Não é autoajuda. Não são dicas genéricas. É a sua história de alarme que não para, explicada pela ciência dos vínculos afetivos. Baseado em uma das pesquisas mais importantes da psicologia sobre como os seres humanos aprendem a amar.',
     lockedCards: [
       { topic: 'A origem exata do seu padrão', hint: 'De onde veio. Quando se formou. Por que faz todo o sentido dado o que você viveu.' },
       { topic: 'O que acontece no segundo em que o alarme dispara', hint: 'O silêncio chega, o corpo reage, e você faz exatamente o que prometeu que não ia fazer. Esse mecanismo tem nome.' },
@@ -58,7 +58,7 @@ export const RESULTS = {
     ],
     productDescP1: 'Cada uma dessas perguntas tem uma resposta clara. E todas elas estão aqui.',
     productDescP2: 'Você vai entender de onde veio o seu padrão. Por que ele se repete. E o que acontece por dentro toda vez que a proximidade vira sufocamento.',
-    productDescP3: 'Não é autoajuda. Não são dicas genéricas. É a sua história, explicada pela ciência dos vínculos afetivos. Baseado em uma das pesquisas mais importantes da psicologia sobre como os seres humanos aprendem a amar.',
+    productDescP3: 'Não é autoajuda. Não são dicas genéricas. É a sua história de fechamento que ainda não tem nome, explicada pela ciência dos vínculos afetivos. Baseado em uma das pesquisas mais importantes da psicologia sobre como os seres humanos aprendem a amar.',
     lockedCards: [
       { topic: 'A origem exata do seu padrão', hint: 'De onde veio. Quando se formou. Por que faz todo o sentido dado o que você viveu.' },
       { topic: 'O que acontece no segundo em que a proximidade vira ameaça', hint: 'A pessoa se aproxima, o corpo fecha, e você se afasta antes de sentir. Esse mecanismo tem nome.' },
@@ -98,7 +98,7 @@ export const RESULTS = {
     ],
     productDescP1: 'Cada uma dessas perguntas tem uma resposta clara. E todas elas estão aqui.',
     productDescP2: 'Você vai entender de onde vem a sua força emocional. Como ela funciona a seu favor. E o que acontece quando o outro não opera na mesma frequência.',
-    productDescP3: 'Não é autoajuda. Não são dicas genéricas. É a sua história, explicada pela ciência dos vínculos afetivos. Baseado em uma das pesquisas mais importantes da psicologia sobre como os seres humanos aprendem a amar.',
+    productDescP3: 'Não é autoajuda. Não são dicas genéricas. É a sua história de clareza que o outro nem sempre consegue acompanhar, explicada pela ciência dos vínculos afetivos. Baseado em uma das pesquisas mais importantes da psicologia sobre como os seres humanos aprendem a amar.',
     lockedCards: [
       { topic: 'A origem exata do seu padrão', hint: 'De onde veio. Quando se formou. Por que a sua base emocional funciona diferente da maioria.' },
       { topic: 'O que acontece quando você ama alguém que funciona em outro ritmo', hint: 'Você oferece presença, o outro recua. Você dá espaço, o outro gruda. Essa dinâmica tem explicação.' },
@@ -138,7 +138,7 @@ export const RESULTS = {
     ],
     productDescP1: 'Cada uma dessas perguntas tem uma resposta clara. E todas elas estão aqui.',
     productDescP2: 'Você vai entender de onde veio o seu padrão. Por que ele oscila. E o que acontece por dentro toda vez que querer e ter medo aparecem ao mesmo tempo.',
-    productDescP3: 'Não é autoajuda. Não são dicas genéricas. É a sua história, explicada pela ciência dos vínculos afetivos. Baseado em uma das pesquisas mais importantes da psicologia sobre como os seres humanos aprendem a amar.',
+    productDescP3: 'Não é autoajuda. Não são dicas genéricas. É a sua história de querer e ter medo ao mesmo tempo, explicada pela ciência dos vínculos afetivos. Baseado em uma das pesquisas mais importantes da psicologia sobre como os seres humanos aprendem a amar.',
     lockedCards: [
       { topic: 'A origem exata do seu padrão', hint: 'De onde veio. Quando se formou. Por que faz todo o sentido dado o que você viveu.' },
       { topic: 'O que acontece no segundo em que querer e ter medo colidem', hint: 'A pessoa se aproxima, tudo dentro de você quer e foge ao mesmo tempo. Esse mecanismo tem nome.' },
