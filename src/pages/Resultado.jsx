@@ -282,12 +282,8 @@ export default function Resultado() {
           ))}
         </div>
 
-        <div className="reveal__bridge">
-          <p className="reveal__bridge-text">Isso tem uma origem. E ela está no seu Mapa.</p>
-        </div>
-
         <div className="reveal__scroll-hint">
-          <span className="reveal__scroll-text">Isso aqui é só o rótulo. O que realmente te explica está abaixo.</span>
+          <span className="reveal__scroll-text">Você ainda não sabe a parte que explica tudo.</span>
           <span className="reveal__scroll-arrow">↓</span>
         </div>
       </section>
