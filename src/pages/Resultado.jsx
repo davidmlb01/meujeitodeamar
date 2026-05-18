@@ -366,7 +366,7 @@ export default function Resultado() {
             <span className="guarantee__icon"><ShieldIcon /></span>
             <div className="guarantee__content">
               <span className="guarantee__title">Garantia da Honestidade Afetiva</span>
-              <span className="guarantee__text">Leia o Mapa. Se em 30 dias você não sentir que entendeu algo sobre você que nenhuma conversa tinha explicado antes, devolvo tudo. Sem perguntas. Você fica com o PDF.</span>
+              <span className="guarantee__text">Leia o Mapa. Se em 30 dias você não sentir que entendeu algo sobre você que nenhuma conversa tinha explicado antes, devolvo tudo. Sem perguntas. Você fica com o Mapa.</span>
             </div>
           </div>
 
