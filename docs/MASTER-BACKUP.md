@@ -736,3 +736,61 @@ Para ativar: `/AIOX:agents:aiox-master` → depois referenciar o squad desejado.
 - [ ] Monitorar VC→Checkout nas próximas sessões
 
 *Backup atualizado por Orion (AIOX Master) em 2026-05-14*
+
+---
+
+## 22. SESSÃO 2026-05-15 A 18: ADS PAUSADOS + HORMOZI /resultado COMPLETA
+
+### Dados 15-16/05: VC→Checkout zerado
+
+| Data | Gasto | Alcance | Impressões | Cliques | VC | Init Checkout | Compras |
+|------|-------|---------|-----------|---------|----|----|---------|
+| 15/05 | R$47,69 | 1.245 | 1.541 | 34 | — | 0 | 0 |
+
+- ROAS: 0. VC→Checkout: 0%
+- Links Kiwify testados via curl: todos os 4 retornam HTTP 200 (não é problema técnico)
+- Conclusão: sample size + timing (sem LPV registrado no período)
+
+### Decisão: ADS pausados
+
+David decidiu pausar todos os anúncios para não queimar dinheiro.
+Relançar após validar /resultado com dados limpos.
+
+### Hormozi /resultado — Fase 2 (commits após 023db53)
+
+#### Mudanças deployadas
+
+| Mudança | Detalhe |
+|---------|---------|
+| Bridge CTA removido completamente | CLOSER framework: sem CTA antes de apresentar a dor |
+| Scroll hint redesenhado | "Você ainda não sabe a parte que explica tudo." — italic Cormorant 18px, sem ALL CAPS |
+| offerHeadline por estilo | H2 curto, uma linha, agressivo ("Você vai X. Ou entende hoje por quê.") |
+| offerBody por estilo | Parágrafo Hormozi completo: dor específica + cena + fechar com preço |
+| urgencyText por estilo | Acima do botão, cada estilo com urgência específica |
+| Garantia reescrita | "PDF" substituído por "Mapa" — "Você fica com o Mapa." |
+
+#### offerHeadlines definitivos
+
+| Estilo | offerHeadline |
+|--------|--------------|
+| Ansioso | "Você vai repetir. Ou entende hoje por quê." |
+| Distante | "Você vai sumir de novo. Ou entende hoje por quê." |
+| Seguro | "Você vai se esgotar de novo. Ou entende hoje por quê." |
+| Confuso | "Você vai sabotar de novo. Ou entende hoje por quê." |
+
+#### Garantia definitiva
+"Leia o Mapa. Se em 30 dias você não sentir que entendeu algo sobre você que nenhuma conversa tinha explicado antes, devolvo tudo. Sem perguntas. Você fica com o Mapa."
+
+#### Regra reforçada: CLOSER framework
+- Sem CTA antes de a pessoa entender a dor
+- Bridge = tensão para scrollar, não para comprar
+- Primeiro CTA: depois dos behaviors bloqueados + offerHeadline
+
+### Pendências
+
+- [ ] Depoimentos específicos com nome e foto (precisa de pessoas reais)
+- [ ] Value stack (só implementável quando criar produtos gratuitos novos)
+- [ ] Relançar anúncios após validar /resultado com dados limpos
+- [ ] Novos criativos (David tem ideias prontas)
+
+*Backup atualizado por Orion (AIOX Master) em 2026-05-18*
