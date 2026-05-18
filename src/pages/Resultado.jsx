@@ -284,9 +284,6 @@ export default function Resultado() {
 
         <div className="reveal__bridge">
           <p className="reveal__bridge-text">Isso tem uma origem. E ela está no seu Mapa.</p>
-          <a href={checkoutUrl} className="reveal__bridge-link" onClick={handleCheckout}>
-            Quero entender o meu padrão →
-          </a>
         </div>
 
         <div className="reveal__scroll-hint">
