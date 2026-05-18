@@ -362,7 +362,7 @@ export default function Resultado() {
         <div className="offer-section__inner">
           <h2 className="offer-section__headline">{r.offerHeadline}</h2>
 
-          <p className="offer-anchor">Anos de perguntas sem resposta. Ou 15 minutos com o seu Mapa.</p>
+          {r.offerBody && <p className="offer-body">{r.offerBody}</p>}
 
           <div className="offer-total">
             <p className="offer-total__new">R$37</p>
