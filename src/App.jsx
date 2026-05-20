@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
-import { Analytics } from './components'
+import { Analytics, CookieBanner } from './components'
 import LandingPage from './pages/LandingPage'
 import QuizB from './pages/QuizB'
 import Resultado from './pages/Resultado'
@@ -14,6 +14,7 @@ export default function App() {
     <HelmetProvider>
     <BrowserRouter>
       <Analytics />
+      <CookieBanner />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/quiz/b" element={<QuizB />} />

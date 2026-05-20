@@ -1,4 +1,5 @@
 export { Analytics } from './Analytics/Analytics'
+export { CookieBanner } from './CookieBanner/CookieBanner'
 export { Button } from './Button/Button'
 export { ProgressBar } from './ProgressBar/ProgressBar'
 export { Badge } from './Badge/Badge'
