@@ -794,3 +794,48 @@ Relançar após validar /resultado com dados limpos.
 - [ ] Novos criativos (David tem ideias prontas)
 
 *Backup atualizado por Orion (AIOX Master) em 2026-05-18*
+
+---
+
+## 22. SESSÃO 2026-05-20: QA VISUAL + LGPD + CANONICAL
+
+### QA Visual completo via agent-browser (nova ferramenta)
+
+Primeiro uso do agent-browser (vercel-labs/agent-browser — CLI Rust) integrado ao AIOX.
+
+**Resultado: CONCERNS**
+
+| Check | Resultado |
+|-------|-----------|
+| Load time | PASS (1.65s) |
+| Font >= 16px | PASS |
+| Scroll horizontal | PASS |
+| CTA acima da dobra | PASS |
+| Touch target 44px | PASS |
+| Links internos | PASS (todos 200) |
+| Meta Pixel | PASS |
+| Google Analytics | PASS |
+| LGPD banner | FAIL (ausente) |
+| Canonical | CONCERN (ausente) |
+
+### Fixes aplicados (commit 5a71ea4)
+
+- **LGPD:** `CookieBanner` component criado — banner fixo no bottom, primeira visita. Pixels (Meta, GA4, TikTok, Clarity) agora carregam SOMENTE após consentimento via localStorage + evento `lgpd:accepted`.
+- **Canonical:** `<link rel="canonical" href="https://www.meujeitodeamar.com.br/" />` adicionado ao index.html.
+- **Meta Pixel inline removido** do index.html — carregado dinamicamente via Analytics.jsx após consent.
+
+### Infra AIOX nova (BIG HEAD)
+
+- Instalado: `agent-browser 0.27.0` + Chrome 149
+- Criadas tasks: `browser-research.md` (@analyst) + `browser-qa-visual.md` (@qa)
+- Agentes atualizados: `@analyst` (*browser-research) + `@qa` (*qa-visual)
+
+### Pendências
+
+- [ ] Depoimentos específicos com nome e foto (precisa de pessoas reais)
+- [ ] Value stack (só implementável quando criar produtos gratuitos novos)
+- [ ] Relançar anúncios após validar /resultado com dados limpos
+- [ ] Novos criativos (David tem ideias prontas)
+- [ ] Validar mobile layout com device real (agent-browser não emulou corretamente 375px)
+
+*Backup atualizado por Orion (AIOX Master) em 2026-05-20*
