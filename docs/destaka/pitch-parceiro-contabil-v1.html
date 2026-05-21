@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destaka Saúde | Parceria para Escritórios de Contabilidade</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #091e2f;
+            color: #e2e8f0;
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .logo-mark {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .logo-icon {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-text span {
+            color: #0EA5E9;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(14, 165, 233, 0.12);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            color: #0EA5E9;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 4px 12px;
+            border-radius: 100px;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.75rem, 5vw, 2.25rem);
+            color: #ffffff;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #ffffff;
+            margin-bottom: 16px;
+            margin-top: 40px;
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        .highlight {
+            color: #e2e8f0;
+        }
+
+        .section {
+            margin-top: 40px;
+        }
+
+        .how-it-works {
+            background: rgba(14, 165, 233, 0.06);
+            border: 1px solid rgba(14, 165, 233, 0.15);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 24px;
+        }
+
+        .how-it-works h3 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #0EA5E9;
+            margin-bottom: 12px;
+        }
+
+        .flow-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .flow-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .flow-number {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            background: #0EA5E9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+            margin-top: 2px;
+        }
+
+        .flow-text {
+            font-size: 0.9rem;
+            color: #cbd5e1;
+        }
+
+        .bilateral {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        @media (max-width: 480px) {
+            .bilateral {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .bilateral-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .bilateral-card h4 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #0EA5E9;
+            margin-bottom: 8px;
+        }
+
+        .bilateral-card p {
+            font-size: 0.85rem;
+            margin-bottom: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            font-size: 0.9rem;
+        }
+
+        thead th {
+            text-align: left;
+            padding: 12px 16px;
+            background: rgba(14, 165, 233, 0.1);
+            color: #0EA5E9;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        thead th:first-child {
+            border-radius: 8px 0 0 0;
+        }
+
+        thead th:last-child {
+            border-radius: 0 8px 0 0;
+            text-align: right;
+        }
+
+        tbody td {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #cbd5e1;
+        }
+
+        tbody td:last-child {
+            text-align: right;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .scenarios-table {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-top: 16px;
+        }
+
+        .total-row td {
+            background: rgba(14, 165, 233, 0.08);
+            font-weight: 600;
+            color: #0EA5E9 !important;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 48px;
+            padding: 32px 24px;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(14, 165, 233, 0.03));
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 16px;
+        }
+
+        .cta-section h2 {
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+
+        .cta-section p {
+            margin-bottom: 24px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #0EA5E9;
+            color: #ffffff;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .cta-button:hover {
+            background: #0284c7;
+            transform: translateY(-1px);
+        }
+
+        .cta-button svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .footer p {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .download-btn:hover {
+            border-color: #0EA5E9;
+            color: #0EA5E9;
+        }
+
+        .note {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            font-style: italic;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="pitch-content">
+        <div class="logo">
+            <div class="logo-mark">
+                <div class="logo-icon">
+                    <svg width="32" height="42" viewBox="0 0 120 160" fill="none">
+                        <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#0EA5E9"/>
+                        <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#091e2f"/>
+                        <circle cx="60" cy="56" r="7" fill="#0EA5E9"/>
+                    </svg>
+                </div>
+                <span class="logo-text">Destaka <span>Saúde</span></span>
+            </div>
+        </div>
+
+        <div class="badge">Programa de Parceiros</div>
+
+        <h1>Seus clientes médicos estão invisíveis no Google.</h1>
+
+        <p class="highlight">
+            Quando um paciente busca "dentista perto de mim" ou "cardiologista em Campinas", seus clientes aparecem? Na maioria dos casos, não. E isso custa pacientes todos os dias.
+        </p>
+
+        <p>
+            A Destaka Saúde resolve isso no piloto automático. Otimizamos o Google Business Profile de médicos, dentistas e profissionais de saúde para que apareçam nas primeiras posições das buscas locais. Sem esforço do profissional, sem equipe de marketing, sem complexidade.
+        </p>
+
+        <h2>Parceria bilateral: seu escritório ganha dos dois lados</h2>
+
+        <div class="bilateral">
+            <div class="bilateral-card">
+                <h4>Lado A: Indicação</h4>
+                <p>Você indica um cliente seu para a Destaka. Recebe R$300 por ativação (2x R$150 nos meses 1 e 2).</p>
+            </div>
+            <div class="bilateral-card">
+                <h4>Lado B: Captação</h4>
+                <p>A Destaka atrai médicos que ainda não têm contador. Encaminhamos para seu escritório. Você ganha um cliente recorrente (LTV médio R$10.000+).</p>
+            </div>
+        </div>
+
+        <div class="how-it-works">
+            <h3>Como funciona</h3>
+            <div class="flow-item">
+                <div class="flow-number">1</div>
+                <div class="flow-text">Você nos apresenta aos seus clientes de saúde (um e-mail ou mensagem basta)</div>
+            </div>
+            <div class="flow-item">
+                <div class="flow-number">2</div>
+                <div class="flow-text">Nós cuidamos da venda, onboarding e execução. Zero trabalho para seu time.</div>
+            </div>
+            <div class="flow-item">
+                <div class="flow-number">3</div>
+                <div class="flow-text">A cada ativação, seu escritório recebe a comissão automaticamente.</div>
+            </div>
+            <div class="flow-item">
+                <div class="flow-number">4</div>
+                <div class="flow-text">Médicos sem contador que chegam à Destaka são encaminhados para você.</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Quanto seu escritório pode ganhar</h2>
+            <p>Cenários baseados em indicações por trimestre:</p>
+
+            <div class="scenarios-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Indicações</th>
+                            <th>Receita trimestral</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>5 profissionais</td>
+                            <td>R$ 1.500</td>
+                        </tr>
+                        <tr>
+                            <td>10 profissionais</td>
+                            <td>R$ 3.000</td>
+                        </tr>
+                        <tr>
+                            <td>20 profissionais</td>
+                            <td>R$ 6.000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="note">
+                Valores referentes apenas ao Lado A (comissão por indicação). O Lado B (clientes contábeis encaminhados pela Destaka) gera receita recorrente adicional para seu escritório.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Por que escritórios de saúde são parceiros ideais</h2>
+            <p>
+                Você já é o consultor de confiança desses profissionais. Quando recomenda uma solução, eles ouvem. A Destaka complementa seu serviço sem competir com ele. É uma extensão natural do valor que você já entrega.
+            </p>
+        </div>
+
+        <div class="cta-section">
+            <h2>Vamos conversar?</h2>
+            <p>Sem compromisso. Explico o modelo em 10 minutos.</p>
+            <a href="https://wa.me/5511943451866?text=Ol%C3%A1%20David%2C%20tenho%20interesse%20na%20parceria%20Destaka%20para%20meu%20escrit%C3%B3rio%20de%20contabilidade." class="cta-button">
+                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Falar com David
+            </a>
+        </div>
+
+        <div class="footer">
+            <p>Destaka Saúde | destaka.com.br</p>
+            <button class="download-btn" onclick="downloadPNG()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                Baixar como PNG
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function downloadPNG() {
+            const content = document.getElementById('pitch-content');
+            const canvas = document.createElement('canvas');
+            const scale = 2;
+            const rect = content.getBoundingClientRect();
+
+            canvas.width = rect.width * scale;
+            canvas.height = rect.height * scale;
+
+            const ctx = canvas.getContext('2d');
+            ctx.scale(scale, scale);
+
+            const data = new XMLSerializer().serializeToString(document.documentElement);
+            const blob = new Blob([data], { type: 'image/svg+xml;charset=utf-8' });
+
+            // Use html2canvas approach via foreignObject
+            const svgStr = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="${rect.width}" height="${rect.height}">
+                    <foreignObject width="100%" height="100%">
+                        <div xmlns="http://www.w3.org/1999/xhtml">
+                            ${document.documentElement.outerHTML}
+                        </div>
+                    </foreignObject>
+                </svg>
+            `;
+
+            const svgBlob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(svgBlob);
+            const img = new Image();
+
+            img.onload = function () {
+                ctx.drawImage(img, 0, 0, rect.width, rect.height);
+                URL.revokeObjectURL(url);
+
+                canvas.toBlob(function (pngBlob) {
+                    const link = document.createElement('a');
+                    link.download = 'destaka-pitch-parceiro-contabil.png';
+                    link.href = URL.createObjectURL(pngBlob);
+                    link.click();
+                    URL.revokeObjectURL(link.href);
+                }, 'image/png');
+            };
+
+            img.onerror = function () {
+                // Fallback: simple screenshot via canvas
+                alert('Para exportar como PNG, abra no Chrome e use Ctrl+Shift+P > "Capture full size screenshot"');
+            };
+
+            img.src = url;
+        }
+    </script>
+</body>
+</html>

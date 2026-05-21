@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Destaka | Adaptação Digital da Marca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg-dark:#0a1f16;--bg-dark-alt:#0F2A1F;--bg-light:#f8faf9;--bg-white:#ffffff;
+    --accent:#4ade80;--accent-dim:rgba(74,222,128,.15);
+    --text-primary:#e8f5e9;--text-secondary:#81c784;--text-muted:#4a7c5c;
+    --saude:#0EA5E9;--pet:#22C55E;--juridico:#6B9AC4;
+    --radius-sm:8px;--radius-md:16px;--radius-lg:24px;
+    --font-display:'Outfit',sans-serif;--font-body:'Inter',sans-serif;
+  }
+  html{scroll-behavior:smooth;font-size:16px}
+  body{background:var(--bg-dark);color:var(--text-primary);font-family:var(--font-body);line-height:1.6;overflow-x:hidden}
+
+  /* ── Typography ── */
+  h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;letter-spacing:.5px}
+  h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.1}
+  h2{font-size:clamp(1.5rem,3.5vw,2.25rem);line-height:1.2;margin-bottom:8px}
+  h3{font-size:clamp(1.1rem,2.5vw,1.5rem);line-height:1.3}
+  p{font-size:1rem;color:var(--text-secondary)}
+  .label{font-family:var(--font-display);font-size:.75rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent)}
+
+  /* ── Layout ── */
+  .container{max-width:1120px;margin:0 auto;padding:0 24px}
+  section{padding:80px 0}
+  .section-header{text-align:center;margin-bottom:56px}
+  .section-header p{max-width:560px;margin:16px auto 0}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+
+  @media(max-width:1024px){.grid-3{grid-template-columns:1fr 1fr}}
+  @media(max-width:768px){.grid-2,.grid-3{grid-template-columns:1fr}section{padding:56px 0}}
+  @media(max-width:480px){.container{padding:0 16px}section{padding:40px 0}}
+
+  /* ── Cards ── */
+  .card{background:rgba(15,42,31,.6);border:1px solid rgba(74,222,128,.1);border-radius:var(--radius-md);padding:32px;transition:border-color .3s,transform .3s}
+  .card:hover{border-color:rgba(74,222,128,.25);transform:translateY(-2px)}
+
+  /* ── Divider ── */
+  .divider{width:64px;height:2px;background:var(--accent);margin:24px auto;opacity:.4}
+
+  /* ── Scroll reveal ── */
+  .reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+
+  /* ── Hero ── */
+  #hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 24px;position:relative;overflow:hidden}
+  #hero::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(74,222,128,.08) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+  .hero-badge{display:inline-block;padding:6px 16px;border:1px solid rgba(74,222,128,.25);border-radius:100px;font-size:.8rem;color:var(--accent);margin-bottom:32px;letter-spacing:1px;font-family:var(--font-display);font-weight:600}
+  .hero-subtitle{font-size:clamp(1rem,2vw,1.25rem);color:var(--text-secondary);margin-top:16px;max-width:520px;margin-left:auto;margin-right:auto}
+  .hero-tagline{font-family:var(--font-display);font-size:1.1rem;color:var(--accent);margin-top:24px;font-weight:600;letter-spacing:.5px}
+
+  /* ── Logo showcase ── */
+  .logo-showcase{display:flex;align-items:flex-end;justify-content:center;gap:56px;flex-wrap:wrap;padding:40px 0}
+  .logo-size{display:flex;flex-direction:column;align-items:center;gap:16px}
+  .logo-size .size-label{font-family:var(--font-body);font-size:.75rem;color:var(--text-muted);text-align:center}
+  .logo-size svg{filter:drop-shadow(0 0 24px rgba(74,222,128,.15))}
+
+  /* ── Mockup styles ── */
+  .browser-mockup{background:#1a1a2e;border-radius:var(--radius-md);overflow:hidden;border:1px solid rgba(255,255,255,.06)}
+  .browser-bar{display:flex;align-items:center;gap:8px;padding:10px 16px;background:rgba(0,0,0,.3);border-bottom:1px solid rgba(255,255,255,.06)}
+  .browser-dot{width:10px;height:10px;border-radius:50%}
+  .browser-dot.red{background:#ff5f57}.browser-dot.yellow{background:#ffbd2e}.browser-dot.green{background:#28c840}
+  .browser-tab{display:flex;align-items:center;gap:6px;margin-left:16px;padding:4px 12px;background:rgba(255,255,255,.06);border-radius:6px 6px 0 0;font-size:.75rem;color:#aaa}
+  .browser-body{padding:24px;min-height:120px;display:flex;align-items:center;justify-content:center}
+
+  .app-icon{width:120px;height:120px;border-radius:26.5%;background:var(--bg-dark-alt);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(0,0,0,.4);border:1px solid rgba(74,222,128,.1);margin:0 auto}
+
+  .avatar-circle{width:80px;height:80px;border-radius:50%;background:var(--bg-dark-alt);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.3);border:2px solid rgba(74,222,128,.15)}
+
+  .navbar-mockup{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;background:var(--bg-dark-alt);border-radius:var(--radius-sm);border:1px solid rgba(74,222,128,.08)}
+  .navbar-left{display:flex;align-items:center;gap:6px}
+  .navbar-wordmark{font-family:var(--font-display);font-weight:700;font-size:1.1rem;letter-spacing:.5px;color:var(--text-primary)}
+  .navbar-links{display:flex;gap:24px;font-size:.85rem;color:var(--text-muted)}
+  .navbar-cta{padding:6px 16px;border-radius:6px;font-size:.85rem;font-weight:600;border:none;cursor:pointer;font-family:var(--font-display)}
+
+  .email-header{display:flex;align-items:center;gap:6px;padding:24px 32px;background:var(--bg-dark-alt);border-radius:var(--radius-sm);border:1px solid rgba(74,222,128,.08)}
+  .email-divider{width:1px;height:24px;background:rgba(74,222,128,.2)}
+  .email-tagline{font-size:.85rem;color:var(--text-muted);font-style:italic}
+
+  .social-card{width:100%;max-width:400px;aspect-ratio:1/1;background:linear-gradient(135deg,var(--bg-dark-alt),var(--bg-dark));border-radius:var(--radius-md);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;border:1px solid rgba(74,222,128,.08);position:relative;margin:0 auto}
+  .social-card .watermark{position:absolute;bottom:16px;right:16px;opacity:.15;display:flex;align-items:center;gap:6px;font-family:var(--font-display);font-size:.7rem;color:var(--accent)}
+
+  /* ── Animation section ── */
+  .anim-stage{display:flex;align-items:center;justify-content:center;padding:40px;min-height:280px}
+  .anim-logo{position:relative}
+  .anim-pin{opacity:0;animation:fadeInPin .5s ease forwards}
+  .anim-eye{opacity:0;animation:revealEye .4s ease .5s forwards}
+  .anim-iris{opacity:0;animation:pulseIris .6s ease .9s forwards}
+
+  @keyframes fadeInPin{
+    0%{opacity:0;transform:translateY(-20px) scale(.9)}
+    100%{opacity:1;transform:translateY(0) scale(1)}
+  }
+  @keyframes revealEye{
+    0%{opacity:0;clip-path:inset(0 50% 0 50%)}
+    100%{opacity:1;clip-path:inset(0 0 0 0)}
+  }
+  @keyframes pulseIris{
+    0%{opacity:0;transform:scale(.5)}
+    60%{opacity:1;transform:scale(1.15)}
+    100%{opacity:1;transform:scale(1)}
+  }
+
+  .replay-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;border:1px solid rgba(74,222,128,.3);border-radius:100px;background:transparent;color:var(--accent);font-family:var(--font-display);font-size:.85rem;font-weight:600;cursor:pointer;transition:background .3s}
+  .replay-btn:hover{background:rgba(74,222,128,.1)}
+
+  /* ── Mode toggle ── */
+  .mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  .mode-card{border-radius:var(--radius-md);padding:40px;display:flex;flex-direction:column;align-items:center;gap:24px;border:1px solid rgba(255,255,255,.06)}
+  .mode-dark{background:var(--bg-dark);border-color:rgba(74,222,128,.1)}
+  .mode-light{background:var(--bg-light);border-color:rgba(0,0,0,.08)}
+  .mode-label{font-size:.85rem;font-weight:600;padding:4px 12px;border-radius:100px}
+  .mode-dark .mode-label{background:rgba(74,222,128,.1);color:var(--accent)}
+  .mode-light .mode-label{background:rgba(15,42,31,.08);color:#0F2A1F}
+  .mode-light .mode-specs{color:#4a7c5c}
+  .mode-specs{font-size:.8rem;color:var(--text-muted);text-align:center;line-height:1.8}
+  .mode-specs code{padding:2px 6px;border-radius:4px;font-size:.75rem}
+  .mode-dark .mode-specs code{background:rgba(74,222,128,.1);color:var(--accent)}
+  .mode-light .mode-specs code{background:rgba(15,42,31,.06);color:#0F2A1F}
+
+  @media(max-width:768px){.mode-grid{grid-template-columns:1fr}}
+
+  /* ── Vertical navbars ── */
+  .vertical-demo{display:flex;flex-direction:column;gap:24px}
+  .vertical-tag{font-size:.7rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:100px;display:inline-block;margin-left:4px}
+
+  /* ── Export section ── */
+  .export-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
+  .export-card{background:rgba(15,42,31,.4);border:1px solid rgba(74,222,128,.08);border-radius:var(--radius-md);padding:24px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+  .export-card svg{filter:drop-shadow(0 0 12px rgba(74,222,128,.1))}
+  .export-card h4{font-size:.95rem}
+  .export-card p{font-size:.75rem;color:var(--text-muted)}
+  .download-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 20px;background:var(--accent);color:var(--bg-dark);border:none;border-radius:8px;font-family:var(--font-display);font-weight:600;font-size:.8rem;cursor:pointer;transition:opacity .3s,transform .2s}
+  .download-btn:hover{opacity:.9;transform:translateY(-1px)}
+  .download-btn svg{width:14px;height:14px}
+
+  /* ── Footer ── */
+  footer{padding:40px 0;border-top:1px solid rgba(74,222,128,.06);text-align:center}
+  footer p{font-size:.8rem;color:var(--text-muted)}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════ HERO ════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="container">
+    <span class="hero-badge">Adaptação Digital</span>
+    <h1>Sistema Responsivo<br>da Marca Destaka</h1>
+    <p class="hero-subtitle">Como o logo Pin+Olho se comporta em cada contexto digital: do favicon ao post de rede social.</p>
+    <p class="hero-tagline">Quem te procura, te encontra.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ RESPONSIVE LOGO ════════════════════════════════════ -->
+<section id="responsive-logo">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">01 / Sistema Responsivo</span>
+      <h2>Três faixas de otimização</h2>
+      <p>O logo se adapta ao tamanho disponível. Em telas grandes, todos os 3 elementos aparecem. Em ícones pequenos, a forma simplifica para garantir legibilidade.</p>
+    </div>
+
+    <div class="logo-showcase reveal">
+      <!-- Large 120px+ -->
+      <div class="logo-size">
+        <svg width="120" height="160" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+          <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+        </svg>
+        <span class="size-label">Large (120px+)<br>Logo completo: pin + olho + íris</span>
+      </div>
+
+      <!-- Medium 32-120px -->
+      <div class="logo-size">
+        <svg width="64" height="85" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+          <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+        </svg>
+        <span class="size-label">Medium (32-120px)<br>Logo completo, escala reduzida</span>
+      </div>
+
+      <!-- Small 16-32px -->
+      <div class="logo-size">
+        <svg width="32" height="32" viewBox="0 0 16 16" fill="none">
+          <path d="M8 1C4.7 1 2 3.7 2 7C2 9.5 3.5 11.2 5 13C6 14 7 15 8 16C9 15 10 14 11 13C12.5 11.2 14 9.5 14 7C14 3.7 11.3 1 8 1Z" fill="#4ade80"/>
+          <circle cx="8" cy="7" r="2.5" fill="#0F2A1F"/>
+        </svg>
+        <span class="size-label">Small (16-32px)<br>Pin + círculo, sem olho amendoado</span>
+      </div>
+    </div>
+
+    <div class="card reveal" style="margin-top:40px;text-align:center">
+      <h3 style="margin-bottom:8px">Regra de corte</h3>
+      <p>Abaixo de 32px, o detalhe do olho amendoado desaparece. A íris vira um círculo sólido escuro dentro do pin. Isso garante nitidez em favicons, notificações e thumbnails.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ MOCKUPS DIGITAIS ════════════════════════════════════ -->
+<section id="mockups">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">02 / Mockups Digitais</span>
+      <h2>A marca em contexto real</h2>
+      <p>Cada ponto de contato digital exige uma versão otimizada do logo. Aqui estão os principais cenários de aplicação.</p>
+    </div>
+
+    <!-- Browser Tab -->
+    <div class="card reveal" style="margin-bottom:32px">
+      <h3 style="margin-bottom:16px">Browser Tab com Favicon</h3>
+      <div class="browser-mockup">
+        <div class="browser-bar">
+          <div class="browser-dot red"></div>
+          <div class="browser-dot yellow"></div>
+          <div class="browser-dot green"></div>
+          <div class="browser-tab">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M8 1C4.7 1 2 3.7 2 7C2 9.5 3.5 11.2 5 13C6 14 7 15 8 16C9 15 10 14 11 13C12.5 11.2 14 9.5 14 7C14 3.7 11.3 1 8 1Z" fill="#4ade80"/>
+              <circle cx="8" cy="7" r="2.5" fill="#0F2A1F"/>
+            </svg>
+            Destaka | Presença Digital
+          </div>
+        </div>
+        <div class="browser-body">
+          <p style="color:#555;font-size:.9rem">Conteúdo da página renderizado aqui</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2 reveal">
+      <!-- App Icon -->
+      <div class="card" style="display:flex;flex-direction:column;align-items:center;gap:16px">
+        <h3>App Icon (iOS)</h3>
+        <div class="app-icon">
+          <svg width="56" height="75" viewBox="0 0 120 160" fill="none">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+            <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+          </svg>
+        </div>
+        <p style="font-size:.8rem;text-align:center">Fundo <code style="background:rgba(74,222,128,.1);padding:2px 6px;border-radius:4px;color:var(--accent)">#0F2A1F</code> | Rounded rect 26.5%</p>
+      </div>
+
+      <!-- Avatar Circular -->
+      <div class="card" style="display:flex;flex-direction:column;align-items:center;gap:16px">
+        <h3>Avatar Social</h3>
+        <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;justify-content:center">
+          <div style="text-align:center">
+            <div class="avatar-circle">
+              <svg width="40" height="53" viewBox="0 0 120 160" fill="none">
+                <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+                <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+                <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+              </svg>
+            </div>
+            <p style="font-size:.7rem;margin-top:8px;color:var(--text-muted)">LinkedIn</p>
+          </div>
+          <div style="text-align:center">
+            <div class="avatar-circle" style="border-color:rgba(225,48,108,.3)">
+              <svg width="40" height="53" viewBox="0 0 120 160" fill="none">
+                <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+                <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+                <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+              </svg>
+            </div>
+            <p style="font-size:.7rem;margin-top:8px;color:var(--text-muted)">Instagram</p>
+          </div>
+          <div style="text-align:center">
+            <div class="avatar-circle" style="border-color:rgba(37,211,102,.3)">
+              <svg width="40" height="53" viewBox="0 0 120 160" fill="none">
+                <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+                <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+                <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+              </svg>
+            </div>
+            <p style="font-size:.7rem;margin-top:8px;color:var(--text-muted)">WhatsApp</p>
+          </div>
+        </div>
+        <p style="font-size:.8rem;text-align:center">Mask circular: o pin centralizado, ponta inferior cortada pelo crop</p>
+      </div>
+    </div>
+
+    <!-- Navbar -->
+    <div class="card reveal" style="margin-top:32px">
+      <h3 style="margin-bottom:16px">Navbar de Produto</h3>
+      <div class="navbar-mockup">
+        <div class="navbar-left">
+          <svg width="24" height="32" viewBox="0 0 120 160" fill="none">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+            <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+          </svg>
+          <span class="navbar-wordmark">DESTAKA</span>
+        </div>
+        <div class="navbar-links">
+          <span>Painel</span>
+          <span>Perfil</span>
+          <span>Relatórios</span>
+        </div>
+        <button class="navbar-cta" style="background:var(--accent);color:var(--bg-dark)">Meu Plano</button>
+      </div>
+    </div>
+
+    <!-- Email Header -->
+    <div class="card reveal" style="margin-top:32px">
+      <h3 style="margin-bottom:16px">Email Header (Lockup Horizontal)</h3>
+      <div class="email-header">
+        <svg width="28" height="37" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+          <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+        </svg>
+        <span style="font-family:var(--font-display);font-weight:700;font-size:1.25rem;letter-spacing:.5px">DESTAKA</span>
+        <div class="email-divider"></div>
+        <span class="email-tagline">Quem te procura, te encontra.</span>
+      </div>
+    </div>
+
+    <!-- Social Card -->
+    <div class="card reveal" style="margin-top:32px">
+      <h3 style="margin-bottom:16px">Card de Rede Social</h3>
+      <div class="social-card">
+        <svg width="56" height="75" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+          <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+        </svg>
+        <p style="font-family:var(--font-display);font-size:1.5rem;font-weight:700;color:var(--text-primary);text-align:center;max-width:280px;line-height:1.3">Sua presença digital profissional</p>
+        <p style="font-size:.9rem;color:var(--text-secondary)">destaka.com.br</p>
+        <div class="watermark">
+          <svg width="12" height="16" viewBox="0 0 120 160" fill="none">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="currentColor"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+            <circle cx="60" cy="56" r="7" fill="currentColor"/>
+          </svg>
+          DESTAKA
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ ANIMAÇÃO DE ENTRADA ═════════════════════════════════ -->
+<section id="motion">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">03 / Motion Identity</span>
+      <h2>Animação de entrada</h2>
+      <p>A sequência de revelação: pin aparece primeiro, o olho se revela no centro, depois a íris pulsa sutilmente. Duração total de 1.5 segundo, sem loop.</p>
+    </div>
+
+    <div class="card reveal">
+      <div class="anim-stage" id="animStage">
+        <svg width="120" height="160" viewBox="0 0 120 160" fill="none" class="anim-logo" id="animLogo">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80" class="anim-pin"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F" class="anim-eye"/>
+          <circle cx="60" cy="56" r="7" fill="#4ade80" class="anim-iris"/>
+        </svg>
+      </div>
+      <div style="text-align:center;margin-top:16px">
+        <button class="replay-btn" onclick="replayAnimation()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+          Repetir animação
+        </button>
+      </div>
+
+      <div style="margin-top:32px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:center">
+        <div>
+          <p style="font-family:var(--font-display);font-size:1.5rem;color:var(--accent);font-weight:700">0s - 0.5s</p>
+          <p style="font-size:.8rem">Pin surge de cima com fade</p>
+        </div>
+        <div>
+          <p style="font-family:var(--font-display);font-size:1.5rem;color:var(--accent);font-weight:700">0.5s - 0.9s</p>
+          <p style="font-size:.8rem">Olho se abre (clip-path)</p>
+        </div>
+        <div>
+          <p style="font-family:var(--font-display);font-size:1.5rem;color:var(--accent);font-weight:700">0.9s - 1.5s</p>
+          <p style="font-size:.8rem">Íris pulsa e estabiliza</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ DARK vs LIGHT ═══════════════════════════════════════ -->
+<section id="modes">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">04 / Dark Mode vs Light Mode</span>
+      <h2>Comportamento em dois contextos</h2>
+      <p>O logo mantém a mesma forma nos dois modos. O que muda é a cor de fundo do olho (espaço negativo) e o fundo da interface.</p>
+    </div>
+
+    <div class="mode-grid reveal">
+      <!-- Dark -->
+      <div class="mode-card mode-dark">
+        <span class="mode-label">Dark Mode</span>
+        <svg width="80" height="107" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+          <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+        </svg>
+        <div class="mode-specs">
+          Fundo primário: <code>#0a1f16</code><br>
+          Fundo secundário: <code>#0F2A1F</code><br>
+          Olho (negativo): herda fundo
+        </div>
+      </div>
+
+      <!-- Light -->
+      <div class="mode-card mode-light">
+        <span class="mode-label">Light Mode</span>
+        <svg width="80" height="107" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#0F2A1F"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#f8faf9"/>
+          <circle cx="60" cy="56" r="7" fill="#0F2A1F"/>
+        </svg>
+        <div class="mode-specs">
+          Fundo primário: <code>#f8faf9</code><br>
+          Fundo secundário: <code>#ffffff</code><br>
+          Pin e íris: <code>#0F2A1F</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="card reveal" style="margin-top:32px;text-align:center">
+      <h3 style="margin-bottom:8px">Regra de inversão</h3>
+      <p>No light mode, o pin muda de <code style="background:rgba(74,222,128,.1);padding:2px 6px;border-radius:4px;color:var(--accent)">#4ade80</code> para <code style="background:rgba(74,222,128,.1);padding:2px 6px;border-radius:4px;color:var(--accent)">#0F2A1F</code> (verde-escuro). O olho herda o fundo claro. A íris acompanha a cor do pin. Isso garante contraste em ambos os contextos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ VERTICAIS ═══════════════════════════════════════════ -->
+<section id="verticals">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">05 / Verticais em Contexto</span>
+      <h2>A cor identifica o vertical</h2>
+      <p>O símbolo e o wordmark mantêm a mesma forma. A cor accent muda para sinalizar a vertical ativa dentro do produto.</p>
+    </div>
+
+    <div class="vertical-demo reveal">
+      <!-- Marca-mãe -->
+      <div class="navbar-mockup">
+        <div class="navbar-left">
+          <svg width="24" height="32" viewBox="0 0 120 160" fill="none">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+            <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+          </svg>
+          <span class="navbar-wordmark">DESTAKA</span>
+          <span class="vertical-tag" style="background:rgba(74,222,128,.12);color:#4ade80">Marca-mãe</span>
+        </div>
+        <button class="navbar-cta" style="background:#4ade80;color:var(--bg-dark)">Entrar</button>
+      </div>
+
+      <!-- Saúde -->
+      <div class="navbar-mockup">
+        <div class="navbar-left">
+          <svg width="24" height="32" viewBox="0 0 120 160" fill="none">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#0EA5E9"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+            <circle cx="60" cy="56" r="7" fill="#0EA5E9"/>
+          </svg>
+          <span class="navbar-wordmark">DESTAKA</span>
+          <span class="vertical-tag" style="background:rgba(14,165,233,.12);color:#0EA5E9">Saúde</span>
+        </div>
+        <button class="navbar-cta" style="background:#0EA5E9;color:#fff">Entrar</button>
+      </div>
+
+      <!-- Pet -->
+      <div class="navbar-mockup">
+        <div class="navbar-left">
+          <svg width="24" height="32" viewBox="0 0 120 160" fill="none">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#22C55E"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+            <circle cx="60" cy="56" r="7" fill="#22C55E"/>
+          </svg>
+          <span class="navbar-wordmark">DESTAKA</span>
+          <span class="vertical-tag" style="background:rgba(34,197,94,.12);color:#22C55E">Pet</span>
+        </div>
+        <button class="navbar-cta" style="background:#22C55E;color:#0F2A1F">Entrar</button>
+      </div>
+
+      <!-- Jurídico -->
+      <div class="navbar-mockup">
+        <div class="navbar-left">
+          <svg width="24" height="32" viewBox="0 0 120 160" fill="none">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#6B9AC4"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+            <circle cx="60" cy="56" r="7" fill="#6B9AC4"/>
+          </svg>
+          <span class="navbar-wordmark">DESTAKA</span>
+          <span class="vertical-tag" style="background:rgba(107,154,196,.12);color:#6B9AC4">Jurídico</span>
+        </div>
+        <button class="navbar-cta" style="background:#6B9AC4;color:#0F2A1F">Entrar</button>
+      </div>
+    </div>
+
+    <div class="card reveal" style="margin-top:32px;text-align:center">
+      <h3 style="margin-bottom:8px">Consistência estrutural</h3>
+      <p>A forma do Pin+Olho nunca muda entre verticais. Apenas a cor accent se adapta. Isso cria reconhecimento instantâneo da família Destaka, independente do segmento.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ EXPORTAÇÃO ══════════════════════════════════════════ -->
+<section id="export">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">06 / Exportação de Assets</span>
+      <h2>Download dos SVGs oficiais</h2>
+      <p>Cada versão do logo pronta para uso. Clique no botão para baixar o arquivo SVG correspondente.</p>
+    </div>
+
+    <div class="export-grid reveal">
+      <!-- Logo Dark -->
+      <div class="export-card">
+        <svg width="48" height="64" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+          <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+        </svg>
+        <h4>Logo Dark</h4>
+        <p>Para fundos escuros</p>
+        <button class="download-btn" onclick="downloadSVG('dark')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Baixar SVG
+        </button>
+      </div>
+
+      <!-- Logo Light -->
+      <div class="export-card">
+        <svg width="48" height="64" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#0F2A1F"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#f8faf9"/>
+          <circle cx="60" cy="56" r="7" fill="#0F2A1F"/>
+        </svg>
+        <h4>Logo Light</h4>
+        <p>Para fundos claros</p>
+        <button class="download-btn" onclick="downloadSVG('light')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Baixar SVG
+        </button>
+      </div>
+
+      <!-- Favicon -->
+      <div class="export-card">
+        <svg width="32" height="32" viewBox="0 0 16 16" fill="none">
+          <path d="M8 1C4.7 1 2 3.7 2 7C2 9.5 3.5 11.2 5 13C6 14 7 15 8 16C9 15 10 14 11 13C12.5 11.2 14 9.5 14 7C14 3.7 11.3 1 8 1Z" fill="#4ade80"/>
+          <circle cx="8" cy="7" r="2.5" fill="#0F2A1F"/>
+        </svg>
+        <h4>Favicon</h4>
+        <p>16x16, versão simplificada</p>
+        <button class="download-btn" onclick="downloadSVG('favicon')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Baixar SVG
+        </button>
+      </div>
+
+      <!-- App Icon -->
+      <div class="export-card">
+        <div style="width:48px;height:48px;border-radius:11px;background:#0F2A1F;display:flex;align-items:center;justify-content:center">
+          <svg width="28" height="37" viewBox="0 0 120 160" fill="none">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+            <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+          </svg>
+        </div>
+        <h4>App Icon</h4>
+        <p>Com fundo #0F2A1F</p>
+        <button class="download-btn" onclick="downloadSVG('appicon')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Baixar SVG
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ FOOTER ══════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <p>Destaka | Adaptação Digital v1.0 | Maio 2026</p>
+  </div>
+</footer>
+
+<script>
+// ── Scroll Reveal (IntersectionObserver) ──
+document.addEventListener('DOMContentLoaded', () => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+});
+
+// ── Replay Animation ──
+function replayAnimation() {
+  const logo = document.getElementById('animLogo');
+  const clone = logo.cloneNode(true);
+  logo.parentNode.replaceChild(clone, logo);
+  clone.id = 'animLogo';
+}
+
+// ── SVG Definitions for Download ──
+const svgAssets = {
+  dark: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160" fill="none" width="120" height="160">
+  <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+  <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+  <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+</svg>`,
+
+  light: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160" fill="none" width="120" height="160">
+  <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#0F2A1F"/>
+  <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#f8faf9"/>
+  <circle cx="60" cy="56" r="7" fill="#0F2A1F"/>
+</svg>`,
+
+  favicon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" width="16" height="16">
+  <path d="M8 1C4.7 1 2 3.7 2 7C2 9.5 3.5 11.2 5 13C6 14 7 15 8 16C9 15 10 14 11 13C12.5 11.2 14 9.5 14 7C14 3.7 11.3 1 8 1Z" fill="#4ade80"/>
+  <circle cx="8" cy="7" r="2.5" fill="#0F2A1F"/>
+</svg>`,
+
+  appicon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none" width="512" height="512">
+  <rect width="512" height="512" rx="112" fill="#0F2A1F"/>
+  <g transform="translate(166,80) scale(1.5)">
+    <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+    <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+    <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+  </g>
+</svg>`
+};
+
+const fileNames = {
+  dark: 'destaka-logo-dark.svg',
+  light: 'destaka-logo-light.svg',
+  favicon: 'destaka-favicon.svg',
+  appicon: 'destaka-appicon.svg'
+};
+
+function downloadSVG(type) {
+  const svgContent = svgAssets[type];
+  const blob = new Blob([svgContent], { type: 'image/svg+xml' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = fileNames[type];
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+</script>
+
+</body>
+</html>

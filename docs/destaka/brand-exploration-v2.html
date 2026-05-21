@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destaka — Exploracao de Marca v2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&family=Space+Grotesk:wght@600;700&family=Outfit:wght@600;700;800&family=Sora:wght@600;700;800&family=Urbanist:wght@600;700;800&family=DM+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0F2A1F;
+            color: #e5e5e5;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        h1 { font-size: 28px; color: #fff; margin-bottom: 4px; }
+        h2 { font-size: 20px; color: #fff; margin: 56px 0 20px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .subtitle { color: #888; margin-bottom: 48px; font-size: 14px; }
+        .badge {
+            display: inline-block;
+            background: rgba(74, 222, 128, 0.1);
+            color: #4ade80;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        /* Font comparison cards */
+        .font-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 24px 0;
+        }
+        .font-card {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            transition: border-color 0.2s;
+            position: relative;
+        }
+        .font-card:hover { border-color: rgba(74, 222, 128, 0.3); }
+        .font-card.current::after {
+            content: "ATUAL";
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 10px;
+            background: rgba(255,255,255,0.1);
+            color: #888;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+        .font-name {
+            font-size: 36px;
+            color: #fff;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+        .font-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 8px;
+        }
+        .font-tagline {
+            font-size: 14px;
+            color: #aaa;
+            margin-top: 12px;
+            font-style: italic;
+        }
+
+        /* Mark options */
+        .mark-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 24px 0;
+        }
+        .mark-card {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 28px;
+            text-align: center;
+            transition: border-color 0.2s;
+        }
+        .mark-card:hover { border-color: rgba(74, 222, 128, 0.3); }
+        .mark-symbol {
+            font-size: 48px;
+            margin-bottom: 16px;
+            line-height: 1;
+        }
+        .mark-svg {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 16px;
+        }
+        .mark-name {
+            font-size: 13px;
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .mark-desc {
+            font-size: 11px;
+            color: #888;
+            line-height: 1.4;
+        }
+
+        /* Tagline options */
+        .tagline-list {
+            margin: 24px 0;
+        }
+        .tagline-item {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin: 12px 0;
+            transition: border-color 0.2s;
+        }
+        .tagline-item:hover { border-color: rgba(74, 222, 128, 0.3); }
+        .tagline-text {
+            font-size: 20px;
+            color: #fff;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .tagline-context {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.5;
+        }
+        .tagline-item.previous {
+            opacity: 0.5;
+        }
+        .tagline-item.previous::after {
+            content: "versao anterior";
+            float: right;
+            font-size: 10px;
+            color: #555;
+            margin-top: -30px;
+        }
+
+        /* Full lockup preview */
+        .lockup-section {
+            margin: 40px 0;
+        }
+        .lockup-preview {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .lockup-mark {
+            margin-bottom: 16px;
+        }
+        .lockup-wordmark {
+            font-size: 42px;
+            color: #fff;
+            letter-spacing: -1px;
+            font-weight: 700;
+        }
+        .lockup-vertical {
+            font-size: 42px;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: -1px;
+            font-weight: 400;
+        }
+        .lockup-tagline {
+            font-size: 14px;
+            color: #4ade80;
+            margin-top: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        /* Section notes */
+        .note {
+            background: rgba(251, 191, 36, 0.05);
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            border-radius: 10px;
+            padding: 16px 20px;
+            font-size: 13px;
+            color: #ccc;
+            margin: 20px 0;
+        }
+        .note strong { color: #fbbf24; }
+
+        /* Combo previews */
+        .combo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 24px 0;
+        }
+        .combo-card {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 40px 24px;
+            text-align: center;
+        }
+        .combo-label {
+            font-size: 10px;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+        .combo-mark-area {
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="badge">EXPLORACAO VISUAL — DECISAO PENDENTE</span>
+        <h1>Destaka — Exploracao de Marca v2</h1>
+        <p class="subtitle">Fontes, marks e taglines para escolha. Background ja no verde #0F2A1F aprovado.</p>
+
+        <!-- SECTION 1: FONTS -->
+        <h2>1. Tipografia do Wordmark</h2>
+        <p style="color:#aaa; margin-bottom:20px; font-size:14px;">Como "Destaka" fica em cada fonte. A escolhida vira a identidade principal da marca.</p>
+
+        <div class="font-grid">
+            <div class="font-card current">
+                <div class="font-name" style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;">Destaka</div>
+                <div class="font-label">Plus Jakarta Sans 700</div>
+                <div class="font-tagline">Clean, moderna, muito usada em SaaS</div>
+            </div>
+            <div class="font-card">
+                <div class="font-name" style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;">Destaka</div>
+                <div class="font-label">Space Grotesk 700</div>
+                <div class="font-tagline">Geometrica, tech, distinta</div>
+            </div>
+            <div class="font-card">
+                <div class="font-name" style="font-family: 'Outfit', sans-serif; font-weight: 700;">Destaka</div>
+                <div class="font-label">Outfit 700</div>
+                <div class="font-tagline">Neutra-premium, escala bem</div>
+            </div>
+            <div class="font-card">
+                <div class="font-name" style="font-family: 'Sora', sans-serif; font-weight: 700;">Destaka</div>
+                <div class="font-label">Sora 700</div>
+                <div class="font-tagline">Forte, arredondada, memoravel</div>
+            </div>
+            <div class="font-card">
+                <div class="font-name" style="font-family: 'Manrope', sans-serif; font-weight: 700;">Destaka</div>
+                <div class="font-label">Manrope 700</div>
+                <div class="font-tagline">Suave, premium, funciona pra saude</div>
+            </div>
+            <div class="font-card">
+                <div class="font-name" style="font-family: 'Urbanist', sans-serif; font-weight: 700;">Destaka</div>
+                <div class="font-label">Urbanist 700</div>
+                <div class="font-tagline">Elegante, leve, contemporanea</div>
+            </div>
+            <div class="font-card">
+                <div class="font-name" style="font-family: 'DM Sans', sans-serif; font-weight: 700;">Destaka</div>
+                <div class="font-label">DM Sans 700</div>
+                <div class="font-tagline">Compacta, seria, boa legibilidade</div>
+            </div>
+            <div class="font-card">
+                <div class="font-name" style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; letter-spacing: -1px;">Destaka</div>
+                <div class="font-label">Plus Jakarta Sans 800 (tight)</div>
+                <div class="font-tagline">Mesma fonte, mais bold e apertada</div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: MARKS -->
+        <h2>2. Mark (Icone/Simbolo)</h2>
+        <p style="color:#aaa; margin-bottom:20px; font-size:14px;">O simbolo que acompanha o wordmark. Precisa funcionar em favicon, app icon e ao lado do texto.</p>
+
+        <div class="mark-grid">
+            <div class="mark-card">
+                <div class="mark-svg">
+                    <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="56" height="56" rx="12" fill="#4ade80" fill-opacity="0.15"/>
+                        <path d="M28 14L38 22V34L28 42L18 34V22L28 14Z" stroke="#4ade80" stroke-width="2.5" fill="none"/>
+                        <circle cx="28" cy="28" r="4" fill="#4ade80"/>
+                    </svg>
+                </div>
+                <div class="mark-name">Hexagono + Ponto Central</div>
+                <div class="mark-desc">Conexao, rede, ponto de destaque. Remete a mapa/localizacao.</div>
+            </div>
+            <div class="mark-card">
+                <div class="mark-svg">
+                    <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="56" height="56" rx="12" fill="#4ade80" fill-opacity="0.15"/>
+                        <path d="M28 12C28 12 38 20 38 28C38 36 28 44 28 44C28 44 18 36 18 28C18 20 28 12 28 12Z" stroke="#4ade80" stroke-width="2.5" fill="none"/>
+                        <circle cx="28" cy="26" r="4" fill="#4ade80"/>
+                    </svg>
+                </div>
+                <div class="mark-name">Pin de Mapa Abstrato</div>
+                <div class="mark-desc">Presenca local, "ser encontrado". Diretamente ligado ao GMB.</div>
+            </div>
+            <div class="mark-card">
+                <div class="mark-svg">
+                    <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="56" height="56" rx="12" fill="#4ade80" fill-opacity="0.15"/>
+                        <path d="M20 36L28 16L36 36" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        <path d="M22 32H34" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round"/>
+                        <circle cx="28" cy="16" r="3" fill="#4ade80"/>
+                    </svg>
+                </div>
+                <div class="mark-name">Seta Ascendente + Ponto</div>
+                <div class="mark-desc">Crescimento, destaque, subir no ranking. Conecta com "destakar".</div>
+            </div>
+            <div class="mark-card">
+                <div class="mark-svg">
+                    <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="56" height="56" rx="12" fill="#4ade80" fill-opacity="0.15"/>
+                        <rect x="18" y="18" width="20" height="20" rx="4" stroke="#4ade80" stroke-width="2.5" fill="none"/>
+                        <path d="M24 28L27 31L33 25" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="mark-name">Check Box</div>
+                <div class="mark-desc">Validacao, completude, "perfil aprovado". Simples e funcional.</div>
+            </div>
+            <div class="mark-card">
+                <div class="mark-svg">
+                    <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="56" height="56" rx="12" fill="#4ade80" fill-opacity="0.15"/>
+                        <circle cx="28" cy="28" r="14" stroke="#4ade80" stroke-width="2.5" fill="none"/>
+                        <path d="M28 18V28L34 34" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="mark-name">Relogio / Piloto Automatico</div>
+                <div class="mark-desc">"No piloto automatico". Tempo economizado, automacao.</div>
+            </div>
+            <div class="mark-card">
+                <div class="mark-svg">
+                    <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="56" height="56" rx="12" fill="#4ade80" fill-opacity="0.15"/>
+                        <path d="M22 38V24L28 18L34 24V38" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        <path d="M22 38H34" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round"/>
+                        <circle cx="28" cy="30" r="3" fill="#4ade80"/>
+                    </svg>
+                </div>
+                <div class="mark-name">Edificio/Consultorio + Ponto</div>
+                <div class="mark-desc">Estabelecimento local, porta aberta, profissional no seu espaco.</div>
+            </div>
+            <div class="mark-card">
+                <div class="mark-svg">
+                    <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="56" height="56" rx="12" fill="#4ade80" fill-opacity="0.15"/>
+                        <path d="M18 28C18 28 22 20 28 20C34 20 38 28 38 28C38 28 34 36 28 36C22 36 18 28 18 28Z" stroke="#4ade80" stroke-width="2.5" fill="none"/>
+                        <circle cx="28" cy="28" r="4" fill="#4ade80"/>
+                    </svg>
+                </div>
+                <div class="mark-name">Olho / Visibilidade</div>
+                <div class="mark-desc">"Ser visto". Visibilidade digital, estar no radar do paciente.</div>
+            </div>
+            <div class="mark-card">
+                <div class="mark-svg">
+                    <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="56" height="56" rx="12" fill="#4ade80" fill-opacity="0.15"/>
+                        <path d="M28 16L32 24H38L33 29L35 37L28 33L21 37L23 29L18 24H24L28 16Z" stroke="#4ade80" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
+                    </svg>
+                </div>
+                <div class="mark-name">Estrela / Rating</div>
+                <div class="mark-desc">Avaliacao, destaque, 5 estrelas. Diretamente ligado a reviews.</div>
+            </div>
+            <div class="mark-card">
+                <div class="mark-svg">
+                    <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="56" height="56" rx="12" fill="#4ade80" fill-opacity="0.15"/>
+                        <text x="28" y="36" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="28" font-weight="700" fill="#4ade80">D</text>
+                    </svg>
+                </div>
+                <div class="mark-name">Monograma "D"</div>
+                <div class="mark-desc">Letra D estilizada. Minimalista, escala perfeitamente.</div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: TAGLINES -->
+        <h2>3. Taglines</h2>
+        <p style="color:#aaa; margin-bottom:20px; font-size:14px;">Novas opcoes + a anterior pra comparar. Precisa funcionar em hero, LinkedIn bio, cartao, favicon tooltip.</p>
+
+        <div class="tagline-list">
+            <div class="tagline-item previous">
+                <div class="tagline-text">Encontrado. Escolhido. Lembrado.</div>
+                <div class="tagline-context">Ciclo completo. Clara. Pode soar generica sem contexto.</div>
+            </div>
+            <div class="tagline-item">
+                <div class="tagline-text">Visivel pra quem importa.</div>
+                <div class="tagline-context">Curta, direta, fala de resultado. "Quem importa" = paciente/cliente certo.</div>
+            </div>
+            <div class="tagline-item">
+                <div class="tagline-text">Apareca para quem precisa de voce.</div>
+                <div class="tagline-context">Humana, emocional, conecta profissional com proposito. Ja esta no title do site atual.</div>
+            </div>
+            <div class="tagline-item">
+                <div class="tagline-text">Seu melhor paciente esta te procurando agora.</div>
+                <div class="tagline-context">Urgencia, especificidade. Funciona pra saude, precisa adaptar por vertical.</div>
+            </div>
+            <div class="tagline-item">
+                <div class="tagline-text">Presenca digital. Piloto automatico.</div>
+                <div class="tagline-context">Ultra-direta. Dois conceitos em 4 palavras. Funcional, nao emocional.</div>
+            </div>
+            <div class="tagline-item">
+                <div class="tagline-text">O Google sabe quem voce e.</div>
+                <div class="tagline-context">Provocativa, curiosa. Funciona como hook. Pode soar arrogante isolada.</div>
+            </div>
+            <div class="tagline-item">
+                <div class="tagline-text">Quem te procura, te encontra.</div>
+                <div class="tagline-context">Simples, memoravel, promessa clara. Funciona pra todos os verticais.</div>
+            </div>
+            <div class="tagline-item">
+                <div class="tagline-text">Competencia visivel.</div>
+                <div class="tagline-context">Duas palavras. Conecta qualidade profissional com presenca digital. Forte como marca.</div>
+            </div>
+            <div class="tagline-item">
+                <div class="tagline-text">Destaque-se sem parar de atender.</div>
+                <div class="tagline-context">Jogo de palavras com "Destaka". Fala direto com a dor (nao ter tempo). Funcional.</div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: COMBO PREVIEWS -->
+        <h2>4. Combinacoes (fonte + mark + tagline)</h2>
+        <p style="color:#aaa; margin-bottom:20px; font-size:14px;">Algumas combinacoes pra voce sentir como fica junto. Nao sao finais, so pra direcionar.</p>
+
+        <div class="combo-grid">
+            <div class="combo-card">
+                <div class="combo-label">Combo A: Tech Premium</div>
+                <div class="combo-mark-area">
+                    <svg width="40" height="40" viewBox="0 0 56 56" fill="none"><path d="M28 14L38 22V34L28 42L18 34V22L28 14Z" stroke="#4ade80" stroke-width="2.5" fill="none"/><circle cx="28" cy="28" r="4" fill="#4ade80"/></svg>
+                </div>
+                <div style="font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; color: #fff; letter-spacing: -0.5px;">Destaka</div>
+                <div style="font-size: 12px; color: #4ade80; margin-top: 8px; letter-spacing: 1.5px; text-transform: uppercase;">Competencia visivel</div>
+            </div>
+            <div class="combo-card">
+                <div class="combo-label">Combo B: Humano Local</div>
+                <div class="combo-mark-area">
+                    <svg width="40" height="40" viewBox="0 0 56 56" fill="none"><path d="M28 12C28 12 38 20 38 28C38 36 28 44 28 44C28 44 18 36 18 28C18 20 28 12 28 12Z" stroke="#4ade80" stroke-width="2.5" fill="none"/><circle cx="28" cy="26" r="4" fill="#4ade80"/></svg>
+                </div>
+                <div style="font-family: 'Sora', sans-serif; font-size: 32px; font-weight: 700; color: #fff;">Destaka</div>
+                <div style="font-size: 12px; color: #4ade80; margin-top: 8px; letter-spacing: 1.5px; text-transform: uppercase;">Quem te procura, te encontra</div>
+            </div>
+            <div class="combo-card">
+                <div class="combo-label">Combo C: Autoridade Crescimento</div>
+                <div class="combo-mark-area">
+                    <svg width="40" height="40" viewBox="0 0 56 56" fill="none"><path d="M20 36L28 16L36 36" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M22 32H34" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round"/><circle cx="28" cy="16" r="3" fill="#4ade80"/></svg>
+                </div>
+                <div style="font-family: 'Outfit', sans-serif; font-size: 32px; font-weight: 700; color: #fff;">Destaka</div>
+                <div style="font-size: 12px; color: #4ade80; margin-top: 8px; letter-spacing: 1.5px; text-transform: uppercase;">Visivel pra quem importa</div>
+            </div>
+            <div class="combo-card">
+                <div class="combo-label">Combo D: Minimalista Direto</div>
+                <div class="combo-mark-area">
+                    <svg width="40" height="40" viewBox="0 0 56 56" fill="none"><rect width="56" height="56" rx="12" fill="none"/><text x="28" y="38" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="30" font-weight="700" fill="#4ade80">D</text></svg>
+                </div>
+                <div style="font-family: 'Urbanist', sans-serif; font-size: 32px; font-weight: 700; color: #fff; letter-spacing: -0.5px;">Destaka</div>
+                <div style="font-size: 12px; color: #4ade80; margin-top: 8px; letter-spacing: 1.5px; text-transform: uppercase;">Presenca digital. Piloto automatico.</div>
+            </div>
+            <div class="combo-card">
+                <div class="combo-label">Combo E: Visibilidade</div>
+                <div class="combo-mark-area">
+                    <svg width="40" height="40" viewBox="0 0 56 56" fill="none"><path d="M18 28C18 28 22 20 28 20C34 20 38 28 38 28C38 28 34 36 28 36C22 36 18 28 18 28Z" stroke="#4ade80" stroke-width="2.5" fill="none"/><circle cx="28" cy="28" r="4" fill="#4ade80"/></svg>
+                </div>
+                <div style="font-family: 'Manrope', sans-serif; font-size: 32px; font-weight: 700; color: #fff;">Destaka</div>
+                <div style="font-size: 12px; color: #4ade80; margin-top: 8px; letter-spacing: 1.5px; text-transform: uppercase;">Apareca para quem precisa de voce</div>
+            </div>
+            <div class="combo-card">
+                <div class="combo-label">Combo F: Rating + Wordplay</div>
+                <div class="combo-mark-area">
+                    <svg width="40" height="40" viewBox="0 0 56 56" fill="none"><path d="M28 16L32 24H38L33 29L35 37L28 33L21 37L23 29L18 24H24L28 16Z" stroke="#4ade80" stroke-width="2.5" stroke-linejoin="round" fill="none"/></svg>
+                </div>
+                <div style="font-family: 'DM Sans', sans-serif; font-size: 32px; font-weight: 700; color: #fff;">Destaka</div>
+                <div style="font-size: 12px; color: #4ade80; margin-top: 8px; letter-spacing: 1.5px; text-transform: uppercase;">Destaque-se sem parar de atender</div>
+            </div>
+        </div>
+
+        <div class="note">
+            <strong>Nota:</strong> Esses marks sao conceituais em SVG simples. O designer vai refinar o escolhido em versao final com curvas, proporcoes e variantes (mono, color, negativo). Aqui e pra escolher a direcao, nao o acabamento.
+        </div>
+
+        <!-- SECTION 5: FULL LOCKUP -->
+        <h2>5. Preview: Lockup Completo (maior escala)</h2>
+
+        <div class="lockup-preview">
+            <div class="lockup-mark">
+                <svg width="64" height="64" viewBox="0 0 56 56" fill="none"><path d="M28 12C28 12 38 20 38 28C38 36 28 44 28 44C28 44 18 36 18 28C18 20 28 12 28 12Z" stroke="#4ade80" stroke-width="2" fill="none"/><circle cx="28" cy="26" r="4" fill="#4ade80"/></svg>
+            </div>
+            <div>
+                <span class="lockup-wordmark" style="font-family: 'Sora', sans-serif;">Destaka</span>
+                <span class="lockup-vertical" style="font-family: 'Sora', sans-serif;"> Saude</span>
+            </div>
+            <div class="lockup-tagline">Quem te procura, te encontra</div>
+        </div>
+
+        <div class="lockup-preview" style="background: #fff;">
+            <div class="lockup-mark">
+                <svg width="64" height="64" viewBox="0 0 56 56" fill="none"><path d="M20 36L28 16L36 36" stroke="#0F2A1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M22 32H34" stroke="#0F2A1F" stroke-width="2" stroke-linecap="round"/><circle cx="28" cy="16" r="3" fill="#0F2A1F"/></svg>
+            </div>
+            <div>
+                <span class="lockup-wordmark" style="font-family: 'Outfit', sans-serif; color: #0F2A1F;">Destaka</span>
+                <span class="lockup-vertical" style="font-family: 'Outfit', sans-serif; color: rgba(15,42,31,0.4)"> Pet</span>
+            </div>
+            <div class="lockup-tagline" style="color: #0F2A1F;">Visivel pra quem importa</div>
+        </div>
+
+    </div>
+</body>
+</html>

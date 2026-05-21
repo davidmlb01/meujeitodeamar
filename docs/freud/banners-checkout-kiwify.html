@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freud — Banners Checkout Kiwify (4 Mapas)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Jost:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: #f5f0ea;
+    color: #1B1B11;
+    padding: 40px 20px;
+  }
+
+  .page-header { text-align: center; margin-bottom: 60px; }
+  .page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 400; color: #4B1D3F; margin-bottom: 8px; letter-spacing: 2px; }
+  .page-header p { font-size: 14px; color: #A89080; font-weight: 300; }
+  .banner-section { margin-bottom: 80px; }
+  .banner-section h2 { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 400; margin-bottom: 24px; padding-left: 16px; border-left: 3px solid var(--accent); color: #4B1D3F; }
+  .banner-row { display: flex; flex-direction: column; align-items: center; gap: 24px; margin-bottom: 16px; }
+  .banner-label { font-size: 12px; color: #A89080; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; text-align: center; }
+  canvas { display: block; border-radius: 4px; box-shadow: 0 4px 24px rgba(75, 29, 63, 0.12); }
+  .canvas-desktop { max-width: 100%; height: auto; }
+  .canvas-mobile { max-width: 400px; height: auto; }
+  .download-row { display: flex; gap: 12px; justify-content: center; margin-top: 16px; }
+  .btn-download { padding: 10px 24px; border: 1px solid #4B1D3F; background: transparent; color: #4B1D3F; font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 1px; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+  .btn-download:hover { background: #4B1D3F; color: #E8D9C1; }
+  .specs { text-align: center; margin-top: 8px; font-size: 11px; color: #A89080; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Banners Checkout Kiwify</h1>
+  <p>Meu Jeito de Amar — 4 Mapas do Coração — Desktop (2000x590) + Mobile (400x400)</p>
+</div>
+
+<div id="banners-container"></div>
+
+<script>
+const BANNERS = [
+  {
+    id: 'ansioso',
+    nome: 'Mapa do Coração Ansioso',
+    accent: '#D8A7B1',
+    accentSoft: '#f0d4db',
+    accentDeep: '#c48a96',
+    estilo: 'Ansioso',
+    promessa: 'Descubra por que você ama com tanta intensidade',
+    objecao: 'Pare de repetir padrões e sofrer sem saber por que',
+    preco: 'R$37'
+  },
+  {
+    id: 'distante',
+    nome: 'Mapa do Coração Distante',
+    accent: '#A8A0B8',
+    accentSoft: '#d4d0e0',
+    accentDeep: '#8a80a0',
+    estilo: 'Distante',
+    promessa: 'Entenda por que você precisa de espaço para amar do seu jeito',
+    objecao: 'Sem precisar dar satisfação para ninguém',
+    preco: 'R$37'
+  },
+  {
+    id: 'seguro',
+    nome: 'Mapa do Coração Seguro',
+    accent: '#8BAA91',
+    accentSoft: '#c0d4c4',
+    accentDeep: '#6b8a71',
+    estilo: 'Seguro',
+    promessa: 'Descubra o que faz de você o porto seguro dos seus relacionamentos',
+    objecao: 'Sem precisar ouvir que você é "certinho demais"',
+    preco: 'R$37'
+  },
+  {
+    id: 'confuso',
+    nome: 'Mapa do Coração Confuso',
+    accent: '#C9A87C',
+    accentSoft: '#e4d4b8',
+    accentDeep: '#a9885c',
+    estilo: 'Confuso',
+    promessa: 'Entenda por que seus sentimentos mudam de um dia para o outro',
+    objecao: 'Sem precisar ficar horas pensando sozinho',
+    preco: 'R$37'
+  }
+];
+
+const NUDE = '#E8D9C1';
+const BURGUNDY = '#4B1D3F';
+const BURGUNDY_LIGHT = '#6b3058';
+const OFF_BLACK = '#1B1B11';
+const MUTED = '#A89080';
+const CREAM = '#F5F0EA';
+const WARM_WHITE = '#FAF7F2';
+
+// ============ MAPA COVER (substitui laptop) ============
+
+function drawMapaCover(ctx, x, y, w, h, b) {
+  // Shadow
+  ctx.shadowColor = 'rgba(75, 29, 63, 0.25)';
+  ctx.shadowBlur = 30;
+  ctx.shadowOffsetX = 8;
+  ctx.shadowOffsetY = 12;
+
+  // Cover background with accent gradient
+  const coverGrad = ctx.createLinearGradient(x, y, x, y + h);
+  coverGrad.addColorStop(0, b.accent);
+  coverGrad.addColorStop(0.4, b.accentSoft);
+  coverGrad.addColorStop(1, CREAM);
+  ctx.fillStyle = coverGrad;
+  roundRect(ctx, x, y, w, h, 8);
+  ctx.fill();
+
+  ctx.shadowColor = 'transparent';
+  ctx.shadowBlur = 0;
+  ctx.shadowOffsetX = 0;
+  ctx.shadowOffsetY = 0;
+
+  // Border
+  ctx.strokeStyle = b.accentDeep + '40';
+  ctx.lineWidth = 1.5;
+  roundRect(ctx, x, y, w, h, 8);
+  ctx.stroke();
+
+  // Inner frame (margin effect)
+  const m = w * 0.06;
+  ctx.strokeStyle = BURGUNDY + '20';
+  ctx.lineWidth = 0.5;
+  roundRect(ctx, x + m, y + m, w - m * 2, h - m * 2, 4);
+  ctx.stroke();
+
+  ctx.textAlign = 'center';
+  const cx = x + w / 2;
+
+  // Scale factor
+  const s = w / 280;
+
+  // "meu jeito de amar" (top, italic)
+  ctx.fillStyle = BURGUNDY + '70';
+  ctx.font = 'italic 300 ' + Math.round(14 * s) + 'px "Cormorant Garamond", serif';
+  ctx.fillText('meu jeito de amar', cx, y + 42 * s);
+
+  // Decorative line
+  ctx.fillStyle = BURGUNDY + '25';
+  ctx.fillRect(cx - 30 * s, y + 52 * s, 60 * s, 0.8);
+
+  // "Mapa do" (smaller)
+  ctx.fillStyle = BURGUNDY + '80';
+  ctx.font = '400 ' + Math.round(16 * s) + 'px "Cormorant Garamond", serif';
+  ctx.fillText('Mapa do', cx, y + 78 * s);
+
+  // "Coração" (large, elegant)
+  ctx.fillStyle = BURGUNDY;
+  ctx.font = '600 ' + Math.round(36 * s) + 'px "Cormorant Garamond", serif';
+  ctx.fillText('Coração', cx, y + 118 * s);
+
+  // Heart icon
+  const heartY = y + 155 * s;
+  const hs = 14 * s;
+  ctx.fillStyle = b.accentDeep + '60';
+  ctx.beginPath();
+  ctx.moveTo(cx, heartY + hs * 0.6);
+  ctx.bezierCurveTo(cx - hs * 1.3, heartY - hs * 0.4, cx - hs * 0.6, heartY - hs * 1.3, cx, heartY - hs * 0.3);
+  ctx.bezierCurveTo(cx + hs * 0.6, heartY - hs * 1.3, cx + hs * 1.3, heartY - hs * 0.4, cx, heartY + hs * 0.6);
+  ctx.fill();
+
+  // Estilo name (big, accent deep)
+  ctx.fillStyle = BURGUNDY;
+  ctx.font = '700 ' + Math.round(28 * s) + 'px "Cormorant Garamond", serif';
+  ctx.fillText(b.estilo, cx, y + 205 * s);
+
+  // Decorative bottom line
+  ctx.fillStyle = BURGUNDY + '15';
+  ctx.fillRect(cx - 24 * s, y + 218 * s, 48 * s, 0.8);
+
+  // "seu mapa pessoal" (bottom subtitle)
+  ctx.fillStyle = MUTED;
+  ctx.font = '300 ' + Math.round(10 * s) + 'px "Jost", sans-serif';
+  ctx.fillText('seu mapa pessoal', cx, y + 240 * s);
+}
+
+// ============ SELO GARANTIA (badge horizontal, legivel) ============
+
+function drawSeloGarantia(ctx, cx, cy, size) {
+  // Badge horizontal pill — muito mais legivel que circulo
+  // size controla a escala geral (44 = desktop, 30 = mobile)
+  const s = size / 44; // normalizado para desktop
+  const badgeW = Math.round(200 * s);
+  const badgeH = Math.round(42 * s);
+  const x = cx - badgeW / 2;
+  const y = cy - badgeH / 2;
+
+  // Fundo burgundy
+  ctx.fillStyle = BURGUNDY;
+  roundRect(ctx, x, y, badgeW, badgeH, badgeH / 2);
+  ctx.fill();
+
+  // Inner border
+  ctx.strokeStyle = NUDE + '55';
+  ctx.lineWidth = 1;
+  roundRect(ctx, x + 3 * s, y + 3 * s, badgeW - 6 * s, badgeH - 6 * s, (badgeH - 6 * s) / 2);
+  ctx.stroke();
+
+  // Texto: "Garantia de 30 dias"
+  ctx.textAlign = 'center';
+  ctx.fillStyle = NUDE;
+  ctx.font = '500 ' + Math.round(16 * s) + 'px "Jost", sans-serif';
+  ctx.fillText('Garantia de 30 dias', cx, cy + Math.round(5.5 * s));
+}
+
+// ============ DESKTOP 2000x590 ============
+
+function drawDesktop(ctx, b) {
+  const W = 2000, H = 590;
+  const CTA_H = 54;
+  const ctaY = H - CTA_H;
+  const contentH = H - CTA_H;
+
+  // --- BG ---
+  const bg = ctx.createLinearGradient(0, 0, W, H);
+  bg.addColorStop(0, NUDE);
+  bg.addColorStop(0.5, '#efe2d0');
+  bg.addColorStop(1, CREAM);
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+
+  // Accent wash
+  const wash = ctx.createRadialGradient(W * 0.55, -60, 0, W * 0.55, -60, 500);
+  wash.addColorStop(0, b.accentSoft + '40');
+  wash.addColorStop(1, 'transparent');
+  ctx.fillStyle = wash;
+  ctx.fillRect(0, 0, W, H);
+
+  // Top accent line
+  ctx.fillStyle = b.accent;
+  ctx.fillRect(0, 0, W, 3);
+
+  // --- COL 1: Capa do Mapa + Selo (x: 60-520) ---
+  const coverW = 280;
+  const coverH = 370;
+  const coverX = 120;
+  const coverY = (contentH - coverH) / 2 + 10;
+  drawMapaCover(ctx, coverX, coverY, coverW, coverH, b);
+
+  // Selo garantia (below cover, centered)
+  drawSeloGarantia(ctx, coverX + coverW / 2, coverY + coverH + 50, 44);
+
+  // --- COL 2: Headline + promessa + objecao (x: 520-1480) ---
+  const textCX = 1000;
+  ctx.textAlign = 'center';
+
+  // Headline line 1: "Acesso imediato ao seu"
+  ctx.fillStyle = MUTED;
+  ctx.font = '400 28px "Jost", sans-serif';
+  ctx.fillText('Acesso imediato ao seu', textCX, 80);
+
+  // Headline line 2: nome do mapa (DESTAQUE GRANDE)
+  ctx.fillStyle = BURGUNDY;
+  ctx.font = '700 62px "Cormorant Garamond", serif';
+  ctx.fillText('Mapa do Coração ' + b.estilo, textCX, 155);
+
+  // Decorative line
+  ctx.fillStyle = b.accent;
+  ctx.fillRect(textCX - 120, 178, 240, 2.5);
+
+  // Promessa (pill)
+  const promY = 236;
+  ctx.font = '400 24px "Jost", sans-serif';
+  const promW = Math.min(ctx.measureText(b.promessa).width + 56, 760);
+
+  ctx.fillStyle = WARM_WHITE + 'cc';
+  roundRect(ctx, textCX - promW / 2, promY - 22, promW, 48, 24);
+  ctx.fill();
+  ctx.strokeStyle = b.accent + '50';
+  ctx.lineWidth = 1;
+  roundRect(ctx, textCX - promW / 2, promY - 22, promW, 48, 24);
+  ctx.stroke();
+
+  ctx.fillStyle = OFF_BLACK;
+  ctx.font = '400 24px "Jost", sans-serif';
+  ctx.fillText(b.promessa, textCX, promY + 8);
+
+  // Objecao (pill accent)
+  const objY = 318;
+  ctx.font = '500 20px "Jost", sans-serif';
+  const objW = ctx.measureText(b.objecao).width + 50;
+
+  ctx.fillStyle = b.accentSoft + '90';
+  roundRect(ctx, textCX - objW / 2, objY - 18, objW, 42, 21);
+  ctx.fill();
+
+  ctx.fillStyle = BURGUNDY;
+  ctx.font = '500 20px "Jost", sans-serif';
+  ctx.fillText(b.objecao, textCX, objY + 8);
+
+  // --- COL 3: Preco (x: 1480-2000) ---
+  const precoX = 1740;
+  const precoCardW = 320;
+  const precoCardH = 200;
+  const precoCardY = (contentH - precoCardH) / 2;
+
+  // Card
+  ctx.fillStyle = WARM_WHITE;
+  roundRect(ctx, precoX - precoCardW / 2, precoCardY, precoCardW, precoCardH, 18);
+  ctx.fill();
+  ctx.strokeStyle = b.accent + '60';
+  ctx.lineWidth = 1.5;
+  roundRect(ctx, precoX - precoCardW / 2, precoCardY, precoCardW, precoCardH, 18);
+  ctx.stroke();
+
+  // "Apenas"
+  ctx.textAlign = 'center';
+  ctx.fillStyle = MUTED;
+  ctx.font = '400 22px "Jost", sans-serif';
+  ctx.fillText('Apenas', precoX, precoCardY + 60);
+
+  // Preco GRANDE
+  ctx.fillStyle = BURGUNDY;
+  ctx.font = '700 88px "Cormorant Garamond", serif';
+  ctx.fillText(b.preco, precoX, precoCardY + 150);
+
+  // --- CTA BAR ---
+  ctx.fillStyle = BURGUNDY;
+  ctx.fillRect(0, ctaY, W, CTA_H);
+
+  ctx.textAlign = 'center';
+  ctx.fillStyle = NUDE;
+  ctx.font = '500 20px "Jost", sans-serif';
+  ctx.fillText('Finalize sua compra e receba seu Mapa agora no e-mail', W / 2, ctaY + 34);
+}
+
+// ============ MOBILE 400x400 ============
+
+function drawMobile(ctx, b) {
+  const W = 400, H = 400;
+  const CTA_H = 32;
+  const ctaY = H - CTA_H;
+
+  // BG
+  const bg = ctx.createLinearGradient(0, 0, 0, H);
+  bg.addColorStop(0, NUDE);
+  bg.addColorStop(1, CREAM);
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+
+  const wash = ctx.createRadialGradient(W / 2, -30, 0, W / 2, -30, 250);
+  wash.addColorStop(0, b.accentSoft + '40');
+  wash.addColorStop(1, 'transparent');
+  ctx.fillStyle = wash;
+  ctx.fillRect(0, 0, W, H);
+
+  ctx.fillStyle = b.accent;
+  ctx.fillRect(0, 0, W, 2);
+
+  ctx.textAlign = 'center';
+
+  // --- HEADLINE ---
+  ctx.fillStyle = MUTED;
+  ctx.font = '400 12px "Jost", sans-serif';
+  ctx.fillText('Acesso imediato ao seu', W / 2, 24);
+
+  ctx.fillStyle = BURGUNDY;
+  ctx.font = '700 22px "Cormorant Garamond", serif';
+  ctx.fillText('Mapa do Coração ' + b.estilo, W / 2, 52);
+
+  ctx.fillStyle = b.accent;
+  ctx.fillRect(W / 2 - 36, 62, 72, 1.5);
+
+  // --- PROMESSA (pill) ---
+  const promY = 86;
+  ctx.fillStyle = WARM_WHITE + 'cc';
+  roundRect(ctx, 18, promY - 14, W - 36, 36, 18);
+  ctx.fill();
+  ctx.strokeStyle = b.accent + '50';
+  ctx.lineWidth = 1;
+  roundRect(ctx, 18, promY - 14, W - 36, 36, 18);
+  ctx.stroke();
+
+  ctx.fillStyle = OFF_BLACK;
+  ctx.font = '400 11px "Jost", sans-serif';
+  wrapText(ctx, b.promessa, W / 2, promY + 2, W - 56, 15);
+
+  // --- OBJECAO ---
+  const objY = 132;
+  ctx.fillStyle = b.accentSoft + '90';
+  roundRect(ctx, 24, objY - 12, W - 48, 30, 15);
+  ctx.fill();
+
+  ctx.fillStyle = BURGUNDY;
+  ctx.font = '500 10.5px "Jost", sans-serif';
+  ctx.fillText(b.objecao, W / 2, objY + 4);
+
+  // --- CAPA DO MAPA (center) ---
+  const coverW = 110;
+  const coverH = 145;
+  const coverX = W / 2 - coverW / 2 + 24;
+  const coverY = 162;
+  drawMapaCover(ctx, coverX, coverY, coverW, coverH, b);
+
+  // --- SELO (left of cover) ---
+  drawSeloGarantia(ctx, coverX - 38, coverY + coverH / 2, 30);
+
+  // --- PRECO ---
+  const precoCardY = 320;
+  ctx.fillStyle = WARM_WHITE;
+  roundRect(ctx, W / 2 - 80, precoCardY, 160, 42, 10);
+  ctx.fill();
+  ctx.strokeStyle = b.accent + '50';
+  ctx.lineWidth = 1;
+  roundRect(ctx, W / 2 - 80, precoCardY, 160, 42, 10);
+  ctx.stroke();
+
+  ctx.fillStyle = MUTED;
+  ctx.font = '400 10px "Jost", sans-serif';
+  ctx.fillText('Apenas', W / 2 - 30, precoCardY + 28);
+
+  ctx.fillStyle = BURGUNDY;
+  ctx.font = '700 26px "Cormorant Garamond", serif';
+  ctx.fillText('R$37', W / 2 + 30, precoCardY + 32);
+
+  // --- CTA ---
+  ctx.fillStyle = BURGUNDY;
+  ctx.fillRect(0, ctaY, W, CTA_H);
+  ctx.fillStyle = NUDE;
+  ctx.font = '500 9.5px "Jost", sans-serif';
+  ctx.fillText('Finalize sua compra e receba seu Mapa agora no e-mail', W / 2, ctaY + 20);
+}
+
+// ============ HELPERS ============
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  const words = text.split(' ');
+  let line = '';
+  let ly = y;
+  for (let i = 0; i < words.length; i++) {
+    const testLine = line + words[i] + ' ';
+    if (ctx.measureText(testLine).width > maxWidth && i > 0) {
+      ctx.fillText(line.trim(), x, ly);
+      line = words[i] + ' ';
+      ly += lineHeight;
+    } else {
+      line = testLine;
+    }
+  }
+  ctx.fillText(line.trim(), x, ly);
+}
+
+function downloadCanvas(canvasId, filename) {
+  const canvas = document.getElementById(canvasId);
+  const link = document.createElement('a');
+  link.download = filename + '.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+
+// ============ RENDER ============
+
+function renderAll() {
+  const container = document.getElementById('banners-container');
+  container.innerHTML = '';
+
+  BANNERS.forEach(b => {
+    const section = document.createElement('div');
+    section.className = 'banner-section';
+    section.style.setProperty('--accent', b.accent);
+    section.innerHTML = '<h2>' + b.nome + '</h2>';
+
+    const dRow = document.createElement('div');
+    dRow.className = 'banner-row';
+    dRow.innerHTML = '<div class="banner-label">Desktop — 2000 x 590 px</div>';
+    const cD = document.createElement('canvas');
+    cD.id = 'desktop-' + b.id;
+    cD.width = 2000; cD.height = 590;
+    cD.className = 'canvas-desktop';
+    dRow.appendChild(cD);
+
+    const mRow = document.createElement('div');
+    mRow.className = 'banner-row';
+    mRow.innerHTML = '<div class="banner-label">Mobile — 400 x 400 px</div>';
+    const cM = document.createElement('canvas');
+    cM.id = 'mobile-' + b.id;
+    cM.width = 400; cM.height = 400;
+    cM.className = 'canvas-mobile';
+    mRow.appendChild(cM);
+
+    const dlRow = document.createElement('div');
+    dlRow.className = 'download-row';
+    dlRow.innerHTML =
+      '<button class="btn-download" onclick="downloadCanvas(\'desktop-' + b.id + '\', \'banner-checkout-' + b.id + '-desktop-2000x590\')">Download Desktop PNG</button>' +
+      '<button class="btn-download" onclick="downloadCanvas(\'mobile-' + b.id + '\', \'banner-checkout-' + b.id + '-mobile-400x400\')">Download Mobile PNG</button>';
+
+    const specs = document.createElement('div');
+    specs.className = 'specs';
+    specs.textContent = 'Accent: ' + b.accent;
+
+    section.appendChild(dRow);
+    section.appendChild(mRow);
+    section.appendChild(dlRow);
+    section.appendChild(specs);
+    container.appendChild(section);
+
+    drawDesktop(cD.getContext('2d'), b);
+    drawMobile(cM.getContext('2d'), b);
+  });
+}
+
+document.fonts.ready.then(() => {
+  renderAll();
+  setTimeout(renderAll, 600);
+});
+</script>
+</body>
+</html>

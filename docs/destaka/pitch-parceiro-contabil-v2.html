@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destaka Saúde | Parceria para Escritórios de Contabilidade</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #091e2f;
+            --bg-card: rgba(255, 255, 255, 0.04);
+            --border-card: rgba(255, 255, 255, 0.08);
+            --accent: #0EA5E9;
+            --accent-glow: rgba(14, 165, 233, 0.15);
+            --text-primary: #ffffff;
+            --text-secondary: #e2e8f0;
+            --text-muted: #94a3b8;
+            --radius: 16px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ===== LAYOUT ===== */
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        section {
+            padding: 96px 0;
+        }
+
+        /* ===== NAV ===== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            background: rgba(9, 30, 47, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-mark {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .logo-text {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.35rem;
+            color: var(--text-primary);
+            letter-spacing: 0.5px;
+        }
+
+        .logo-text span {
+            color: var(--accent);
+        }
+
+        .nav-badge {
+            display: inline-block;
+            background: rgba(14, 165, 233, 0.12);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            color: var(--accent);
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 4px 12px;
+            border-radius: 100px;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-eyebrow {
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 20px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+            color: var(--text-primary);
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -0.03em;
+        }
+
+        h1 .accent {
+            color: var(--accent);
+        }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-width: 520px;
+            margin-bottom: 36px;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent);
+            color: var(--text-primary);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 16px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 24px rgba(14, 165, 233, 0.25);
+        }
+
+        .hero-cta:hover {
+            background: #0284c7;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(14, 165, 233, 0.35);
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-card-stack {
+            position: relative;
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .hero-stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius);
+            padding: 28px;
+            backdrop-filter: blur(8px);
+        }
+
+        .hero-stat-card + .hero-stat-card {
+            margin-top: 16px;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+
+        .stat-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* ===== SECTION HEADERS ===== */
+        .section-header {
+            margin-bottom: 56px;
+        }
+
+        .section-header h2 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            color: var(--text-primary);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 560px;
+        }
+
+        /* ===== BILATERAL CARDS ===== */
+        .bilateral-section {
+            background: linear-gradient(180deg, transparent, rgba(14, 165, 233, 0.03) 50%, transparent);
+        }
+
+        .bilateral-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .bilateral-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius);
+            padding: 40px 32px;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .bilateral-card:hover {
+            border-color: rgba(14, 165, 233, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .bilateral-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            opacity: 0.6;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .card-icon svg {
+            width: 22px;
+            height: 22px;
+            fill: var(--accent);
+        }
+
+        .bilateral-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .bilateral-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .card-highlight {
+            display: inline-block;
+            margin-top: 16px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--accent);
+        }
+
+        /* ===== STEPS ===== */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .step-item {
+            position: relative;
+            padding: 32px 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius);
+            text-align: center;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .step-item:hover {
+            border-color: rgba(14, 165, 233, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .step-number {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 3rem;
+            color: rgba(14, 165, 233, 0.15);
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+
+        .step-item h4 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .step-item p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* ===== SCENARIOS ===== */
+        .scenarios-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .scenario-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius);
+            padding: 36px 28px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .scenario-card:hover {
+            border-color: rgba(14, 165, 233, 0.25);
+            transform: translateY(-4px);
+        }
+
+        .scenario-card.featured {
+            border-color: rgba(14, 165, 233, 0.3);
+            background: rgba(14, 165, 233, 0.04);
+        }
+
+        .scenario-card.featured::before {
+            content: 'Popular';
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            background: var(--accent);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 100px;
+        }
+
+        .scenario-count {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 2.8rem;
+            color: var(--text-primary);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .scenario-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 20px;
+        }
+
+        .scenario-divider {
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+            margin: 0 auto 20px;
+            opacity: 0.5;
+        }
+
+        .scenario-value {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.6rem;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .scenario-period {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .scenarios-note {
+            text-align: center;
+            margin-top: 32px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-style: italic;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== WHY SECTION ===== */
+        .why-section {
+            position: relative;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .why-content h2 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--text-primary);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .why-content p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .why-list {
+            list-style: none;
+            margin-top: 24px;
+        }
+
+        .why-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .why-list li::before {
+            content: '';
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            background: rgba(14, 165, 233, 0.15);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .why-visual {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .why-stat {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .why-stat-number {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+
+        .why-stat-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* ===== CTA ===== */
+        .cta-section {
+            text-align: center;
+            padding: 64px 0;
+            position: relative;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-content h2 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .cta-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .cta-subtext {
+            font-size: 0.9rem !important;
+            color: var(--text-muted) !important;
+            margin-bottom: 36px !important;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent);
+            color: var(--text-primary);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 18px 40px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 24px rgba(14, 165, 233, 0.3);
+        }
+
+        .cta-button:hover {
+            background: #0284c7;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 40px rgba(14, 165, 233, 0.4);
+        }
+
+        .cta-button svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .cta-trust {
+            margin-top: 24px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            opacity: 0.7;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .download-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.visible,
+        .reveal-left.visible,
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .hero-card-stack {
+                max-width: 360px;
+                margin: 0 auto;
+            }
+
+            .steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 64px 0;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+
+            .bilateral-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .scenarios-grid {
+                grid-template-columns: 1fr;
+                max-width: 320px;
+                margin: 0 auto;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .nav-badge {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                min-height: auto;
+                padding-top: 80px;
+                padding-bottom: 48px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-card-stack {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAV -->
+    <nav class="nav">
+        <div class="container">
+            <div class="logo-mark">
+                <svg width="28" height="36" viewBox="0 0 120 160" fill="none">
+                    <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#0EA5E9"/>
+                    <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#091e2f"/>
+                    <circle cx="60" cy="56" r="7" fill="#0EA5E9"/>
+                </svg>
+                <span class="logo-text">Destaka <span>Saúde</span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="pitch-content">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content reveal-left">
+                    <div class="hero-eyebrow">Parceria bilateral para escritórios contábeis</div>
+                    <h1>Seus clientes médicos estão <span class="accent">invisíveis</span> no Google.</h1>
+                    <p class="hero-sub">
+                        Quando um paciente busca "dentista perto de mim" ou "cardiologista em Campinas", seus clientes aparecem? Na maioria dos casos, não. E isso custa pacientes todos os dias.
+                    </p>
+                    <a href="#cta" class="hero-cta">
+                        Quero entender o modelo
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+                <div class="hero-visual reveal-right">
+                    <div class="hero-card-stack">
+                        <div class="hero-stat-card">
+                            <div class="stat-label">Comissão por indicação</div>
+                            <div class="stat-value">R$ 300</div>
+                            <div class="stat-desc">por profissional de saúde ativado</div>
+                        </div>
+                        <div class="hero-stat-card">
+                            <div class="stat-label">Lado B: clientes contábeis</div>
+                            <div class="stat-value">LTV R$ 10.000+</div>
+                            <div class="stat-desc">médicos encaminhados para seu escritório</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- O QUE FAZEMOS -->
+    <section>
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>O que a Destaka Saúde faz</h2>
+                <p>Otimizamos o Google Business Profile de médicos, dentistas e profissionais de saúde para que apareçam nas primeiras posições das buscas locais. Sem esforço do profissional, sem equipe de marketing, sem complexidade.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BILATERAL -->
+    <section class="bilateral-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Parceria bilateral: ganho dos dois lados</h2>
+                <p>Você indica clientes e recebe comissão. Nós encaminhamos médicos sem contador para seu escritório.</p>
+            </div>
+            <div class="bilateral-grid">
+                <div class="bilateral-card reveal-left">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.94s4.18 1.36 4.18 3.85c0 1.89-1.44 2.98-3.12 3.19z"/></svg>
+                    </div>
+                    <h3>Lado A: Indicação</h3>
+                    <p>Você indica um cliente seu para a Destaka. Recebe a comissão automaticamente (2x R$150 nos meses 1 e 2).</p>
+                    <span class="card-highlight">R$ 300 por ativação</span>
+                </div>
+                <div class="bilateral-card reveal-right">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                    </div>
+                    <h3>Lado B: Captação</h3>
+                    <p>A Destaka atrai médicos que ainda não têm contador. Encaminhamos para seu escritório. Você ganha um cliente recorrente.</p>
+                    <span class="card-highlight">LTV R$ 10.000+</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMO FUNCIONA -->
+    <section>
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Como funciona</h2>
+                <p>Quatro passos simples. Zero complexidade para seu time.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-item reveal">
+                    <div class="step-number">01</div>
+                    <h4>Apresente</h4>
+                    <p>Você nos apresenta aos seus clientes de saúde. Um e-mail ou mensagem basta.</p>
+                </div>
+                <div class="step-item reveal">
+                    <div class="step-number">02</div>
+                    <h4>Nós cuidamos</h4>
+                    <p>A Destaka cuida da venda, onboarding e execução. Zero trabalho para seu time.</p>
+                </div>
+                <div class="step-item reveal">
+                    <div class="step-number">03</div>
+                    <h4>Receba</h4>
+                    <p>A cada ativação, seu escritório recebe a comissão automaticamente.</p>
+                </div>
+                <div class="step-item reveal">
+                    <div class="step-number">04</div>
+                    <h4>Receba clientes</h4>
+                    <p>Médicos sem contador que chegam à Destaka são encaminhados para você.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CENÁRIOS -->
+    <section>
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Quanto seu escritório pode ganhar</h2>
+                <p>Cenários baseados em indicações por trimestre.</p>
+            </div>
+            <div class="scenarios-grid">
+                <div class="scenario-card reveal">
+                    <div class="scenario-count">5</div>
+                    <div class="scenario-label">indicações</div>
+                    <div class="scenario-divider"></div>
+                    <div class="scenario-value">R$ 1.500</div>
+                    <div class="scenario-period">por trimestre</div>
+                </div>
+                <div class="scenario-card featured reveal">
+                    <div class="scenario-count">10</div>
+                    <div class="scenario-label">indicações</div>
+                    <div class="scenario-divider"></div>
+                    <div class="scenario-value">R$ 3.000</div>
+                    <div class="scenario-period">por trimestre</div>
+                </div>
+                <div class="scenario-card reveal">
+                    <div class="scenario-count">20</div>
+                    <div class="scenario-label">indicações</div>
+                    <div class="scenario-divider"></div>
+                    <div class="scenario-value">R$ 6.000</div>
+                    <div class="scenario-period">por trimestre</div>
+                </div>
+            </div>
+            <p class="scenarios-note reveal">
+                Valores referentes apenas ao Lado A (comissão por indicação). O Lado B (clientes contábeis encaminhados pela Destaka) gera receita recorrente adicional para seu escritório.
+            </p>
+        </div>
+    </section>
+
+    <!-- POR QUE -->
+    <section class="why-section">
+        <div class="container">
+            <div class="why-grid">
+                <div class="why-content reveal-left">
+                    <h2>Por que escritórios de saúde são parceiros ideais</h2>
+                    <p>Você já é o consultor de confiança desses profissionais. Quando recomenda uma solução, eles ouvem.</p>
+                    <ul class="why-list">
+                        <li>A Destaka complementa seu serviço sem competir com ele</li>
+                        <li>É uma extensão natural do valor que você já entrega</li>
+                        <li>Fortalece o relacionamento com seus clientes de saúde</li>
+                        <li>Gera receita extra sem esforço operacional</li>
+                    </ul>
+                </div>
+                <div class="why-visual reveal-right">
+                    <div class="why-stat">
+                        <div class="why-stat-number">87%</div>
+                        <div class="why-stat-text">dos pacientes buscam profissionais de saúde no Google antes de agendar</div>
+                    </div>
+                    <div class="why-stat">
+                        <div class="why-stat-number">3x</div>
+                        <div class="why-stat-text">mais agendamentos quando o perfil está otimizado nas primeiras posições</div>
+                    </div>
+                    <div class="why-stat">
+                        <div class="why-stat-number">0</div>
+                        <div class="why-stat-text">trabalho para seu time. A Destaka executa tudo no piloto automático.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="cta">
+        <div class="container">
+            <div class="cta-content reveal">
+                <h2>Vamos conversar?</h2>
+                <p>Sem contrato. Sem compromisso.</p>
+                <p class="cta-subtext">Explico o modelo em 10 minutos.</p>
+                <a href="https://wa.me/5511943451866?text=Ol%C3%A1%20David%2C%20tenho%20interesse%20na%20parceria%20Destaka%20para%20meu%20escrit%C3%B3rio%20de%20contabilidade." class="cta-button">
+                    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Falar com David
+                </a>
+                <p class="cta-trust">WhatsApp direto. Resposta em até 2h.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div>
+                    <div class="logo-mark" style="margin-bottom: 8px;">
+                        <svg width="20" height="26" viewBox="0 0 120 160" fill="none">
+                            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#0EA5E9"/>
+                            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#091e2f"/>
+                            <circle cx="60" cy="56" r="7" fill="#0EA5E9"/>
+                        </svg>
+                        <span class="logo-text" style="font-size: 1rem;">Destaka <span>Saúde</span></span>
+                    </div>
+                    <p><a href="https://destaka.com.br">destaka.com.br</a></p>
+                </div>
+                <button class="download-btn" onclick="downloadPNG()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    Baixar como PNG
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // IntersectionObserver for scroll reveal
+        document.addEventListener('DOMContentLoaded', function() {
+            const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            revealElements.forEach(function(el) {
+                observer.observe(el);
+            });
+        });
+
+        // Download PNG via Canvas API with fallback
+        function downloadPNG() {
+            const content = document.getElementById('pitch-content');
+
+            // Try html2canvas-like approach via foreignObject
+            const rect = document.body.getBoundingClientRect();
+            const scale = 2;
+            const canvas = document.createElement('canvas');
+            canvas.width = rect.width * scale;
+            canvas.height = document.body.scrollHeight * scale;
+
+            const ctx = canvas.getContext('2d');
+            ctx.scale(scale, scale);
+
+            // Clone HTML for SVG foreignObject
+            const clone = document.documentElement.cloneNode(true);
+            // Remove scripts
+            clone.querySelectorAll('script').forEach(function(s) { s.remove(); });
+
+            const svgStr = '<svg xmlns="http://www.w3.org/2000/svg" width="' + rect.width + '" height="' + document.body.scrollHeight + '">' +
+                '<foreignObject width="100%" height="100%">' +
+                '<div xmlns="http://www.w3.org/1999/xhtml">' +
+                new XMLSerializer().serializeToString(clone) +
+                '</div></foreignObject></svg>';
+
+            const svgBlob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(svgBlob);
+            const img = new Image();
+
+            img.onload = function() {
+                ctx.drawImage(img, 0, 0, rect.width, document.body.scrollHeight);
+                URL.revokeObjectURL(url);
+
+                canvas.toBlob(function(pngBlob) {
+                    if (pngBlob) {
+                        var link = document.createElement('a');
+                        link.download = 'destaka-pitch-parceiro-contabil.png';
+                        link.href = URL.createObjectURL(pngBlob);
+                        link.click();
+                        URL.revokeObjectURL(link.href);
+                    } else {
+                        fallbackDownload();
+                    }
+                }, 'image/png');
+            };
+
+            img.onerror = function() {
+                URL.revokeObjectURL(url);
+                fallbackDownload();
+            };
+
+            img.src = url;
+        }
+
+        function fallbackDownload() {
+            alert('Para exportar como PNG em alta qualidade:\n\n1. Abra no Chrome\n2. Pressione F12 (DevTools)\n3. Ctrl+Shift+P → "Capture full size screenshot"\n\nO arquivo será salvo automaticamente.');
+        }
+    </script>
+</body>
+</html>

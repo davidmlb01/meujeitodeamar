@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destaka — Refinamento: Pin+Olho vs Monograma D (Outfit 700)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #080808;
+            color: #e5e5e5;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+        .container { max-width: 1000px; margin: 0 auto; }
+        h1 { font-size: 24px; color: #fff; margin-bottom: 4px; font-family: 'Outfit', sans-serif; }
+        h2 { font-size: 18px; color: #fff; margin: 64px 0 24px; padding-bottom: 8px; border-bottom: 1px solid #1a1a1a; }
+        h3 { font-size: 14px; color: #4ade80; margin: 32px 0 16px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .subtitle { color: #666; margin-bottom: 48px; font-size: 13px; }
+        .badge {
+            display: inline-block;
+            background: rgba(74, 222, 128, 0.1);
+            color: #4ade80;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        /* Lockup showcase */
+        .lockup-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            margin: 20px 0;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .lockup-cell {
+            padding: 48px 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .lockup-cell.dark { background: #0F2A1F; }
+        .lockup-cell.light { background: #ffffff; }
+        .lockup-cell.black { background: #0a0a0a; }
+        .lockup-cell.gray { background: #f5f5f5; }
+        .cell-label {
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.4;
+            margin-bottom: 8px;
+        }
+
+        /* Application mockups */
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .app-card {
+            background: #111;
+            border: 1px solid #1a1a1a;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .app-card .label {
+            font-size: 10px;
+            color: #444;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Business card mockup */
+        .bizcard {
+            width: 340px;
+            height: 200px;
+            border-radius: 10px;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 16px auto;
+        }
+        .bizcard.dark-green { background: #0F2A1F; }
+        .bizcard.white-card { background: #fff; border: 1px solid #e5e5e5; }
+        .bizcard-top { display: flex; align-items: center; gap: 10px; }
+        .bizcard-bottom { font-size: 10px; opacity: 0.5; }
+
+        /* Social avatar */
+        .avatar-row {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            margin: 24px 0;
+            flex-wrap: wrap;
+        }
+        .avatar-item { text-align: center; }
+        .avatar-circle {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px;
+        }
+        .avatar-square {
+            width: 64px;
+            height: 64px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px;
+        }
+        .avatar-label { font-size: 9px; color: #555; }
+
+        /* Side by side comparison */
+        .compare-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin: 32px 0;
+        }
+        .compare-col {
+            background: #111;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 32px;
+        }
+        .compare-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #222;
+        }
+
+        /* Vertical variants */
+        .vertical-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #111;
+        }
+        .vertical-row:last-child { border-bottom: none; }
+        .v-color {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* Navbar mockup */
+        .navbar-mock {
+            background: #0F2A1F;
+            border-radius: 10px;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 16px 0;
+        }
+        .navbar-links {
+            margin-left: auto;
+            display: flex;
+            gap: 20px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Email header mockup */
+        .email-mock {
+            background: #fff;
+            border-radius: 10px;
+            padding: 24px;
+            margin: 16px 0;
+            max-width: 480px;
+        }
+        .email-from {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #eee;
+        }
+        .email-subject { font-size: 14px; color: #111; font-weight: 600; margin-bottom: 8px; }
+        .email-body { font-size: 12px; color: #666; line-height: 1.6; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="badge">REFINAMENTO FINAL</span>
+        <h1>Pin+Olho vs Monograma D — Outfit 700</h1>
+        <p class="subtitle">Execucao detalhada das 2 direcoes finalistas em contextos reais de uso</p>
+
+        <!-- ================================ -->
+        <!-- MARK A: PIN + OLHO -->
+        <!-- ================================ -->
+        <h2>A. Pin + Olho (Hibrido)</h2>
+
+        <h3>A.1 Lockup principal</h3>
+        <div class="lockup-row">
+            <div class="lockup-cell dark">
+                <span class="cell-label" style="color:rgba(255,255,255,0.3);">Fundo verde (primario)</span>
+                <svg width="48" height="56" viewBox="0 0 72 84" fill="none">
+                    <path d="M36 6C36 6 58 22 58 36C58 50 36 70 36 70C36 70 14 50 14 36C14 22 36 6 36 6Z" stroke="#fff" stroke-width="2.8" fill="none"/>
+                    <path d="M22 36C22 36 27 29 36 29C45 29 50 36 50 36C50 36 45 43 36 43C27 43 22 36 22 36Z" stroke="#fff" stroke-width="2.2" fill="none"/>
+                    <circle cx="36" cy="36" r="4" fill="#4ade80"/>
+                </svg>
+                <div style="font-family:'Outfit'; font-weight:700; font-size:32px; color:#fff; letter-spacing:-0.5px;">Destaka</div>
+            </div>
+            <div class="lockup-cell light">
+                <span class="cell-label" style="color:rgba(0,0,0,0.3);">Fundo branco</span>
+                <svg width="48" height="56" viewBox="0 0 72 84" fill="none">
+                    <path d="M36 6C36 6 58 22 58 36C58 50 36 70 36 70C36 70 14 50 14 36C14 22 36 6 36 6Z" stroke="#0F2A1F" stroke-width="2.8" fill="none"/>
+                    <path d="M22 36C22 36 27 29 36 29C45 29 50 36 50 36C50 36 45 43 36 43C27 43 22 36 22 36Z" stroke="#0F2A1F" stroke-width="2.2" fill="none"/>
+                    <circle cx="36" cy="36" r="4" fill="#0F2A1F"/>
+                </svg>
+                <div style="font-family:'Outfit'; font-weight:700; font-size:32px; color:#0F2A1F; letter-spacing:-0.5px;">Destaka</div>
+            </div>
+            <div class="lockup-cell black">
+                <span class="cell-label" style="color:rgba(255,255,255,0.3);">Fundo preto</span>
+                <svg width="48" height="56" viewBox="0 0 72 84" fill="none">
+                    <path d="M36 6C36 6 58 22 58 36C58 50 36 70 36 70C36 70 14 50 14 36C14 22 36 6 36 6Z" stroke="#4ade80" stroke-width="2.8" fill="none"/>
+                    <path d="M22 36C22 36 27 29 36 29C45 29 50 36 50 36C50 36 45 43 36 43C27 43 22 36 22 36Z" stroke="#4ade80" stroke-width="2.2" fill="none"/>
+                    <circle cx="36" cy="36" r="4" fill="#4ade80"/>
+                </svg>
+                <div style="font-family:'Outfit'; font-weight:700; font-size:32px; color:#fff; letter-spacing:-0.5px;">Destaka</div>
+            </div>
+            <div class="lockup-cell gray">
+                <span class="cell-label" style="color:rgba(0,0,0,0.3);">Monocromatico</span>
+                <svg width="48" height="56" viewBox="0 0 72 84" fill="none">
+                    <path d="M36 6C36 6 58 22 58 36C58 50 36 70 36 70C36 70 14 50 14 36C14 22 36 6 36 6Z" stroke="#333" stroke-width="2.8" fill="none"/>
+                    <path d="M22 36C22 36 27 29 36 29C45 29 50 36 50 36C50 36 45 43 36 43C27 43 22 36 22 36Z" stroke="#333" stroke-width="2.2" fill="none"/>
+                    <circle cx="36" cy="36" r="4" fill="#333"/>
+                </svg>
+                <div style="font-family:'Outfit'; font-weight:700; font-size:32px; color:#333; letter-spacing:-0.5px;">Destaka</div>
+            </div>
+        </div>
+
+        <h3>A.2 Com verticais</h3>
+        <div style="background:#0F2A1F; border-radius:16px; padding:32px;">
+            <div class="vertical-row">
+                <svg width="28" height="32" viewBox="0 0 72 84" fill="none"><path d="M36 6C36 6 58 22 58 36C58 50 36 70 36 70C36 70 14 50 14 36C14 22 36 6 36 6Z" stroke="#fff" stroke-width="3.5" fill="none"/><path d="M22 36C22 36 27 29 36 29C45 29 50 36 50 36C50 36 45 43 36 43C27 43 22 36 22 36Z" stroke="#fff" stroke-width="2.5" fill="none"/><circle cx="36" cy="36" r="4" fill="#0EA5E9"/></svg>
+                <span class="v-color" style="background:#0EA5E9;"></span>
+                <span style="font-family:'Outfit'; font-weight:700; font-size:22px; color:#fff;">Destaka</span>
+                <span style="font-family:'Outfit'; font-weight:300; font-size:22px; color:rgba(255,255,255,0.5);">Saude</span>
+            </div>
+            <div class="vertical-row">
+                <svg width="28" height="32" viewBox="0 0 72 84" fill="none"><path d="M36 6C36 6 58 22 58 36C58 50 36 70 36 70C36 70 14 50 14 36C14 22 36 6 36 6Z" stroke="#fff" stroke-width="3.5" fill="none"/><path d="M22 36C22 36 27 29 36 29C45 29 50 36 50 36C50 36 45 43 36 43C27 43 22 36 22 36Z" stroke="#fff" stroke-width="2.5" fill="none"/><circle cx="36" cy="36" r="4" fill="#22C55E"/></svg>
+                <span class="v-color" style="background:#22C55E;"></span>
+                <span style="font-family:'Outfit'; font-weight:700; font-size:22px; color:#fff;">Destaka</span>
+                <span style="font-family:'Outfit'; font-weight:300; font-size:22px; color:rgba(255,255,255,0.5);">Pet</span>
+            </div>
+            <div class="vertical-row">
+                <svg width="28" height="32" viewBox="0 0 72 84" fill="none"><path d="M36 6C36 6 58 22 58 36C58 50 36 70 36 70C36 70 14 50 14 36C14 22 36 6 36 6Z" stroke="#fff" stroke-width="3.5" fill="none"/><path d="M22 36C22 36 27 29 36 29C45 29 50 36 50 36C50 36 45 43 36 43C27 43 22 36 22 36Z" stroke="#fff" stroke-width="2.5" fill="none"/><circle cx="36" cy="36" r="4" fill="#1E3A5F"/></svg>
+                <span class="v-color" style="background:#1E3A5F;"></span>
+                <span style="font-family:'Outfit'; font-weight:700; font-size:22px; color:#fff;">Destaka</span>
+                <span style="font-family:'Outfit'; font-weight:300; font-size:22px; color:rgba(255,255,255,0.5);">Juridico</span>
+            </div>
+            <div class="vertical-row">
+                <svg width="28" height="32" viewBox="0 0 72 84" fill="none"><path d="M36 6C36 6 58 22 58 36C58 50 36 70 36 70C36 70 14 50 14 36C14 22 36 6 36 6Z" stroke="#fff" stroke-width="3.5" fill="none"/><path d="M22 36C22 36 27 29 36 29C45 29 50 36 50 36C50 36 45 43 36 43C27 43 22 36 22 36Z" stroke="#fff" stroke-width="2.5" fill="none"/><circle cx="36" cy="36" r="4" fill="#7C3AED"/></svg>
+                <span class="v-color" style="background:#7C3AED;"></span>
+                <span style="font-family:'Outfit'; font-weight:700; font-size:22px; color:#fff;">Destaka</span>
+                <span style="font-family:'Outfit'; font-weight:300; font-size:22px; color:rgba(255,255,255,0.5);">Contabil</span>
+            </div>
+            <div class="vertical-row">
+                <svg width="28" height="32" viewBox="0 0 72 84" fill="none"><path d="M36 6C36 6 58 22 58 36C58 50 36 70 36 70C36 70 14 50 14 36C14 22 36 6 36 6Z" stroke="#fff" stroke-width="3.5" fill="none"/><path d="M22 36C22 36 27 29 36 29C45 29 50 36 50 36C50 36 45 43 36 43C27 43 22 36 22 36Z" stroke="#fff" stroke-width="2.5" fill="none"/><circle cx="36" cy="36" r="4" fill="#D97706"/></svg>
+                <span class="v-color" style="background:#D97706;"></span>
+                <span style="font-family:'Outfit'; font-weight:700; font-size:22px; color:#fff;">Destaka</span>
+                <span style="font-family:'Outfit'; font-weight:300; font-size:22px; color:rgba(255,255,255,0.5);">Imoveis</span>
+            </div>
+        </div>
+
+        <h3>A.3 Aplicacoes reais</h3>
+
+        <!-- Navbar -->
+        <p style="font-size:11px; color:#555; margin-bottom:8px;">Navbar do site</p>
+        <div class="navbar-mock">
+            <svg width="22" height="26" viewBox="0 0 72 84" fill="none"><path d="M36 6C36 6 58 22 58 36C58 50 36 70 36 70C36 70 14 50 14 36C14 22 36 6 36 6Z" stroke="#fff" stroke-width="3.5" fill="none"/><path d="M22 36C22 36 27 29 36 29C45 29 50 36 50 36C50 36 45 43 36 43C27 43 22 36 22 36Z" stroke="#fff" stroke-width="2.5" fill="none"/><circle cx="36" cy="36" r="4" fill="#4ade80"/></svg>
+            <span style="font-family:'Outfit'; font-weight:700; font-size:18px; color:#fff;">Destaka</span>
+            <div class="navbar-links">
+                <span>Saude</span><span>Pet</span><span>Juridico</span><span>Sobre</span><span style="color:#4ade80;">Login</span>
+            </div>
+        </div>
+
+        <!-- Avatares sociais -->
+        <p style="font-size:11px; color:#555; margin:24px 0 8px;">Avatares (LinkedIn, WhatsApp, favicon)</p>
+        <div class="avatar-row">
+            <div class="avatar-item">
+                <div class="avatar-circle" style="background:#0F2A1F;">
+                    <svg width="32" height="36" viewBox="0 0 72 84" fill="none"><path d="M36 6C36 6 58 22 58 36C58 50 36 70 36 70C36 70 14 50 14 36C14 22 36 6 36 6Z" stroke="#4ade80" stroke-width="3.5" fill="none"/><path d="M22 36C22 36 27 29 36 29C45 29 50 36 50 36C50 36 45 43 36 43C27 43 22 36 22 36Z" stroke="#4ade80" stroke-width="2.5" fill="none"/><circle cx="36" cy="36" r="4" fill="#4ade80"/></svg>
+                </div>
+                <div class="avatar-label">LinkedIn</div>
+            </div>
+            <div class="avatar-item">
+                <div class="avatar-circle" style="background:#4ade80;">
+                    <svg width="32" height="36" viewBox="0 0 72 84" fill="none"><path d="M36 6C36 6 58 22 58 36C58 50 36 70 36 70C36 70 14 50 14 36C14 22 36 6 36 6Z" stroke="#0F2A1F" stroke-width="3.5" fill="none"/><path d="M22 36C22 36 27 29 36 29C45 29 50 36 50 36C50 36 45 43 36 43C27 43 22 36 22 36Z" stroke="#0F2A1F" stroke-width="2.5" fill="none"/><circle cx="36" cy="36" r="4" fill="#0F2A1F"/></svg>
+                </div>
+                <div class="avatar-label">WhatsApp</div>
+            </div>
+            <div class="avatar-item">
+                <div class="avatar-square" style="background:#0F2A1F;">
+                    <svg width="32" height="36" viewBox="0 0 72 84" fill="none"><path d="M36 6C36 6 58 22 58 36C58 50 36 70 36 70C36 70 14 50 14 36C14 22 36 6 36 6Z" stroke="#4ade80" stroke-width="4" fill="none"/><circle cx="36" cy="36" r="5" fill="#4ade80"/></svg>
+                </div>
+                <div class="avatar-label">Favicon 32px</div>
+            </div>
+            <div class="avatar-item">
+                <div style="width:16px; height:16px; background:#0F2A1F; border-radius:3px; display:flex; align-items:center; justify-content:center; margin:0 auto 8px;">
+                    <svg width="12" height="14" viewBox="0 0 72 84" fill="none"><path d="M36 6C36 6 58 22 58 36C58 50 36 70 36 70C36 70 14 50 14 36C14 22 36 6 36 6Z" stroke="#4ade80" stroke-width="6" fill="none"/><circle cx="36" cy="36" r="6" fill="#4ade80"/></svg>
+                </div>
+                <div class="avatar-label">Favicon 16px</div>
+            </div>
+            <div class="avatar-item">
+                <div class="avatar-square" style="background:#0F2A1F; width:80px; height:80px; border-radius:18px;">
+                    <svg width="44" height="52" viewBox="0 0 72 84" fill="none"><path d="M36 6C36 6 58 22 58 36C58 50 36 70 36 70C36 70 14 50 14 36C14 22 36 6 36 6Z" stroke="#4ade80" stroke-width="3" fill="none"/><path d="M22 36C22 36 27 29 36 29C45 29 50 36 50 36C50 36 45 43 36 43C27 43 22 36 22 36Z" stroke="#4ade80" stroke-width="2" fill="none"/><circle cx="36" cy="36" r="4" fill="#4ade80"/></svg>
+                </div>
+                <div class="avatar-label">App Icon iOS</div>
+            </div>
+        </div>
+
+        <!-- Cartao de visita -->
+        <p style="font-size:11px; color:#555; margin:24px 0 8px;">Cartao de visita</p>
+        <div style="display:flex; gap:20px; justify-content:center; flex-wrap:wrap;">
+            <div class="bizcard dark-green">
+                <div class="bizcard-top">
+                    <svg width="24" height="28" viewBox="0 0 72 84" fill="none"><path d="M36 6C36 6 58 22 58 36C58 50 36 70 36 70C36 70 14 50 14 36C14 22 36 6 36 6Z" stroke="#4ade80" stroke-width="3.5" fill="none"/><path d="M22 36C22 36 27 29 36 29C45 29 50 36 50 36C50 36 45 43 36 43C27 43 22 36 22 36Z" stroke="#4ade80" stroke-width="2.5" fill="none"/><circle cx="36" cy="36" r="4" fill="#4ade80"/></svg>
+                    <span style="font-family:'Outfit'; font-weight:700; font-size:18px; color:#fff;">Destaka</span>
+                </div>
+                <div>
+                    <div style="font-family:'Outfit'; font-weight:500; font-size:14px; color:#fff;">David Levy</div>
+                    <div style="font-size:11px; color:rgba(255,255,255,0.5); margin-top:4px;">Fundador</div>
+                </div>
+                <div class="bizcard-bottom" style="color:rgba(255,255,255,0.3);">destaka.com.br</div>
+            </div>
+            <div class="bizcard white-card">
+                <div class="bizcard-top">
+                    <svg width="24" height="28" viewBox="0 0 72 84" fill="none"><path d="M36 6C36 6 58 22 58 36C58 50 36 70 36 70C36 70 14 50 14 36C14 22 36 6 36 6Z" stroke="#0F2A1F" stroke-width="3.5" fill="none"/><path d="M22 36C22 36 27 29 36 29C45 29 50 36 50 36C50 36 45 43 36 43C27 43 22 36 22 36Z" stroke="#0F2A1F" stroke-width="2.5" fill="none"/><circle cx="36" cy="36" r="4" fill="#0F2A1F"/></svg>
+                    <span style="font-family:'Outfit'; font-weight:700; font-size:18px; color:#0F2A1F;">Destaka</span>
+                </div>
+                <div>
+                    <div style="font-family:'Outfit'; font-weight:500; font-size:14px; color:#0F2A1F;">David Levy</div>
+                    <div style="font-size:11px; color:rgba(0,0,0,0.4); margin-top:4px;">Fundador</div>
+                </div>
+                <div class="bizcard-bottom" style="color:rgba(0,0,0,0.3);">destaka.com.br</div>
+            </div>
+        </div>
+
+        <!-- ================================ -->
+        <!-- MARK B: MONOGRAMA D -->
+        <!-- ================================ -->
+        <h2>B. Monograma "D" Geometrico</h2>
+
+        <h3>B.1 Lockup principal</h3>
+        <div class="lockup-row">
+            <div class="lockup-cell dark">
+                <span class="cell-label" style="color:rgba(255,255,255,0.3);">Fundo verde (primario)</span>
+                <svg width="52" height="52" viewBox="0 0 72 72" fill="none">
+                    <rect x="4" y="4" width="64" height="64" rx="16" stroke="#4ade80" stroke-width="2.5" fill="none"/>
+                    <path d="M26 18H38C50 18 56 27 56 36C56 45 50 54 38 54H26V18Z" stroke="#fff" stroke-width="3" fill="none" stroke-linejoin="round"/>
+                </svg>
+                <div style="font-family:'Outfit'; font-weight:700; font-size:32px; color:#fff; letter-spacing:-0.5px;">Destaka</div>
+            </div>
+            <div class="lockup-cell light">
+                <span class="cell-label" style="color:rgba(0,0,0,0.3);">Fundo branco</span>
+                <svg width="52" height="52" viewBox="0 0 72 72" fill="none">
+                    <rect x="4" y="4" width="64" height="64" rx="16" stroke="#0F2A1F" stroke-width="2.5" fill="none"/>
+                    <path d="M26 18H38C50 18 56 27 56 36C56 45 50 54 38 54H26V18Z" stroke="#0F2A1F" stroke-width="3" fill="none" stroke-linejoin="round"/>
+                </svg>
+                <div style="font-family:'Outfit'; font-weight:700; font-size:32px; color:#0F2A1F; letter-spacing:-0.5px;">Destaka</div>
+            </div>
+            <div class="lockup-cell black">
+                <span class="cell-label" style="color:rgba(255,255,255,0.3);">Fundo preto</span>
+                <svg width="52" height="52" viewBox="0 0 72 72" fill="none">
+                    <rect x="4" y="4" width="64" height="64" rx="16" fill="#4ade80"/>
+                    <path d="M26 18H38C50 18 56 27 56 36C56 45 50 54 38 54H26V18Z" fill="#0F2A1F" stroke="none"/>
+                </svg>
+                <div style="font-family:'Outfit'; font-weight:700; font-size:32px; color:#fff; letter-spacing:-0.5px;">Destaka</div>
+            </div>
+            <div class="lockup-cell gray">
+                <span class="cell-label" style="color:rgba(0,0,0,0.3);">Monocromatico</span>
+                <svg width="52" height="52" viewBox="0 0 72 72" fill="none">
+                    <rect x="4" y="4" width="64" height="64" rx="16" stroke="#333" stroke-width="2.5" fill="none"/>
+                    <path d="M26 18H38C50 18 56 27 56 36C56 45 50 54 38 54H26V18Z" stroke="#333" stroke-width="3" fill="none" stroke-linejoin="round"/>
+                </svg>
+                <div style="font-family:'Outfit'; font-weight:700; font-size:32px; color:#333; letter-spacing:-0.5px;">Destaka</div>
+            </div>
+        </div>
+
+        <h3>B.2 Com verticais</h3>
+        <div style="background:#0F2A1F; border-radius:16px; padding:32px;">
+            <div class="vertical-row">
+                <svg width="28" height="28" viewBox="0 0 72 72" fill="none"><rect x="4" y="4" width="64" height="64" rx="16" fill="#0EA5E9"/><path d="M26 18H38C50 18 56 27 56 36C56 45 50 54 38 54H26V18Z" fill="#fff" stroke="none"/></svg>
+                <span style="font-family:'Outfit'; font-weight:700; font-size:22px; color:#fff;">Destaka</span>
+                <span style="font-family:'Outfit'; font-weight:300; font-size:22px; color:rgba(255,255,255,0.5);">Saude</span>
+            </div>
+            <div class="vertical-row">
+                <svg width="28" height="28" viewBox="0 0 72 72" fill="none"><rect x="4" y="4" width="64" height="64" rx="16" fill="#22C55E"/><path d="M26 18H38C50 18 56 27 56 36C56 45 50 54 38 54H26V18Z" fill="#fff" stroke="none"/></svg>
+                <span style="font-family:'Outfit'; font-weight:700; font-size:22px; color:#fff;">Destaka</span>
+                <span style="font-family:'Outfit'; font-weight:300; font-size:22px; color:rgba(255,255,255,0.5);">Pet</span>
+            </div>
+            <div class="vertical-row">
+                <svg width="28" height="28" viewBox="0 0 72 72" fill="none"><rect x="4" y="4" width="64" height="64" rx="16" fill="#1E3A5F"/><path d="M26 18H38C50 18 56 27 56 36C56 45 50 54 38 54H26V18Z" fill="#fff" stroke="none"/></svg>
+                <span style="font-family:'Outfit'; font-weight:700; font-size:22px; color:#fff;">Destaka</span>
+                <span style="font-family:'Outfit'; font-weight:300; font-size:22px; color:rgba(255,255,255,0.5);">Juridico</span>
+            </div>
+            <div class="vertical-row">
+                <svg width="28" height="28" viewBox="0 0 72 72" fill="none"><rect x="4" y="4" width="64" height="64" rx="16" fill="#7C3AED"/><path d="M26 18H38C50 18 56 27 56 36C56 45 50 54 38 54H26V18Z" fill="#fff" stroke="none"/></svg>
+                <span style="font-family:'Outfit'; font-weight:700; font-size:22px; color:#fff;">Destaka</span>
+                <span style="font-family:'Outfit'; font-weight:300; font-size:22px; color:rgba(255,255,255,0.5);">Contabil</span>
+            </div>
+            <div class="vertical-row">
+                <svg width="28" height="28" viewBox="0 0 72 72" fill="none"><rect x="4" y="4" width="64" height="64" rx="16" fill="#D97706"/><path d="M26 18H38C50 18 56 27 56 36C56 45 50 54 38 54H26V18Z" fill="#fff" stroke="none"/></svg>
+                <span style="font-family:'Outfit'; font-weight:700; font-size:22px; color:#fff;">Destaka</span>
+                <span style="font-family:'Outfit'; font-weight:300; font-size:22px; color:rgba(255,255,255,0.5);">Imoveis</span>
+            </div>
+        </div>
+
+        <h3>B.3 Aplicacoes reais</h3>
+
+        <!-- Navbar -->
+        <p style="font-size:11px; color:#555; margin-bottom:8px;">Navbar do site</p>
+        <div class="navbar-mock">
+            <svg width="24" height="24" viewBox="0 0 72 72" fill="none"><rect x="4" y="4" width="64" height="64" rx="16" fill="#4ade80"/><path d="M26 18H38C50 18 56 27 56 36C56 45 50 54 38 54H26V18Z" fill="#0F2A1F" stroke="none"/></svg>
+            <span style="font-family:'Outfit'; font-weight:700; font-size:18px; color:#fff;">Destaka</span>
+            <div class="navbar-links">
+                <span>Saude</span><span>Pet</span><span>Juridico</span><span>Sobre</span><span style="color:#4ade80;">Login</span>
+            </div>
+        </div>
+
+        <!-- Avatares -->
+        <p style="font-size:11px; color:#555; margin:24px 0 8px;">Avatares (LinkedIn, WhatsApp, favicon)</p>
+        <div class="avatar-row">
+            <div class="avatar-item">
+                <div class="avatar-circle" style="background:#0F2A1F;">
+                    <svg width="32" height="32" viewBox="0 0 72 72" fill="none"><rect x="4" y="4" width="64" height="64" rx="16" fill="#4ade80"/><path d="M26 18H38C50 18 56 27 56 36C56 45 50 54 38 54H26V18Z" fill="#0F2A1F" stroke="none"/></svg>
+                </div>
+                <div class="avatar-label">LinkedIn</div>
+            </div>
+            <div class="avatar-item">
+                <div class="avatar-circle" style="background:#4ade80;">
+                    <svg width="32" height="32" viewBox="0 0 72 72" fill="none"><rect x="4" y="4" width="64" height="64" rx="16" fill="none" stroke="#0F2A1F" stroke-width="3"/><path d="M26 18H38C50 18 56 27 56 36C56 45 50 54 38 54H26V18Z" stroke="#0F2A1F" stroke-width="3" fill="none" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="avatar-label">WhatsApp</div>
+            </div>
+            <div class="avatar-item">
+                <div class="avatar-square" style="background:#4ade80;">
+                    <svg width="28" height="28" viewBox="0 0 72 72" fill="none"><path d="M26 18H38C50 18 56 27 56 36C56 45 50 54 38 54H26V18Z" fill="#0F2A1F" stroke="none"/></svg>
+                </div>
+                <div class="avatar-label">Favicon 32px</div>
+            </div>
+            <div class="avatar-item">
+                <div style="width:16px; height:16px; background:#4ade80; border-radius:3px; display:flex; align-items:center; justify-content:center; margin:0 auto 8px;">
+                    <svg width="10" height="10" viewBox="0 0 72 72" fill="none"><path d="M22 14H40C54 14 60 25 60 36C60 47 54 58 40 58H22V14Z" fill="#0F2A1F" stroke="none"/></svg>
+                </div>
+                <div class="avatar-label">Favicon 16px</div>
+            </div>
+            <div class="avatar-item">
+                <div class="avatar-square" style="background:#4ade80; width:80px; height:80px; border-radius:18px;">
+                    <svg width="40" height="40" viewBox="0 0 72 72" fill="none"><path d="M26 18H38C50 18 56 27 56 36C56 45 50 54 38 54H26V18Z" fill="#0F2A1F" stroke="none"/></svg>
+                </div>
+                <div class="avatar-label">App Icon iOS</div>
+            </div>
+        </div>
+
+        <!-- Cartao -->
+        <p style="font-size:11px; color:#555; margin:24px 0 8px;">Cartao de visita</p>
+        <div style="display:flex; gap:20px; justify-content:center; flex-wrap:wrap;">
+            <div class="bizcard dark-green">
+                <div class="bizcard-top">
+                    <svg width="24" height="24" viewBox="0 0 72 72" fill="none"><rect x="4" y="4" width="64" height="64" rx="16" fill="#4ade80"/><path d="M26 18H38C50 18 56 27 56 36C56 45 50 54 38 54H26V18Z" fill="#0F2A1F" stroke="none"/></svg>
+                    <span style="font-family:'Outfit'; font-weight:700; font-size:18px; color:#fff;">Destaka</span>
+                </div>
+                <div>
+                    <div style="font-family:'Outfit'; font-weight:500; font-size:14px; color:#fff;">David Levy</div>
+                    <div style="font-size:11px; color:rgba(255,255,255,0.5); margin-top:4px;">Fundador</div>
+                </div>
+                <div class="bizcard-bottom" style="color:rgba(255,255,255,0.3);">destaka.com.br</div>
+            </div>
+            <div class="bizcard white-card">
+                <div class="bizcard-top">
+                    <svg width="24" height="24" viewBox="0 0 72 72" fill="none"><rect x="4" y="4" width="64" height="64" rx="16" fill="#0F2A1F"/><path d="M26 18H38C50 18 56 27 56 36C56 45 50 54 38 54H26V18Z" fill="#4ade80" stroke="none"/></svg>
+                    <span style="font-family:'Outfit'; font-weight:700; font-size:18px; color:#0F2A1F;">Destaka</span>
+                </div>
+                <div>
+                    <div style="font-family:'Outfit'; font-weight:500; font-size:14px; color:#0F2A1F;">David Levy</div>
+                    <div style="font-size:11px; color:rgba(0,0,0,0.4); margin-top:4px;">Fundador</div>
+                </div>
+                <div class="bizcard-bottom" style="color:rgba(0,0,0,0.3);">destaka.com.br</div>
+            </div>
+        </div>
+
+        <!-- ================================ -->
+        <!-- FINAL COMPARISON -->
+        <!-- ================================ -->
+        <h2>C. Comparativo Final</h2>
+
+        <div class="compare-section">
+            <div class="compare-col">
+                <div class="compare-title">Pin + Olho</div>
+                <p style="font-size:12px; color:#aaa; line-height:1.8; margin-bottom:16px;">
+                    <strong style="color:#4ade80;">Melhor em:</strong> significado, storytelling, unicidade.<br>
+                    <strong style="color:#f87171;">Pior em:</strong> complexidade em tamanhos pequenos, precisa de designer forte pra refinar.<br><br>
+                    <strong style="color:#fff;">Quando brilha:</strong> hero do site, materiais de marca, apresentacoes, email marketing, LinkedIn. Onde o mark aparece grande.<br><br>
+                    <strong style="color:#fff;">Quando sofre:</strong> favicon 16px, tab do browser, icone de notificacao. Perde o olho interno e vira pin generico.
+                </p>
+                <p style="font-size:12px; color:#666;">
+                    Solucao: versao responsiva (16-24px usa pin simplificado, 32px+ usa versao completa com olho).
+                </p>
+            </div>
+            <div class="compare-col">
+                <div class="compare-title">Monograma D</div>
+                <p style="font-size:12px; color:#aaa; line-height:1.8; margin-bottom:16px;">
+                    <strong style="color:#4ade80;">Melhor em:</strong> escalabilidade perfeita, app icon, favicon, versatilidade, atemporal.<br>
+                    <strong style="color:#f87171;">Pior em:</strong> significado (nao conta historia), genericidade (muitas marcas com D).<br><br>
+                    <strong style="color:#fff;">Quando brilha:</strong> app icon, favicon, avatar de redes sociais, selo/carimbo, swag. Onde precisa funcionar pequeno e rapido.<br><br>
+                    <strong style="color:#fff;">Quando sofre:</strong> isolado sem wordmark nos primeiros 2 anos (ninguem associa "D verde" com Destaka ainda). Precisa de awareness antes de funcionar sozinho.
+                </p>
+                <p style="font-size:12px; color:#666;">
+                    Solucao: usar SEMPRE com wordmark ate atingir ~5000 clientes. Depois libera uso solo.
+                </p>
+            </div>
+        </div>
+
+        <div style="background:rgba(74,222,128,0.05); border:1px solid rgba(74,222,128,0.2); border-radius:12px; padding:24px; margin:32px 0; text-align:center;">
+            <p style="font-size:14px; color:#ccc; line-height:1.8;">
+                <strong style="color:#4ade80;">Opcao hibrida (recomendacao):</strong><br>
+                Usar os DOIS. Pin+Olho como mark principal (hero, materiais, email, LinkedIn).<br>
+                Monograma D como variante compacta (favicon, app icon, notificacao).<br><br>
+                Marcas maduras fazem isso: Nike tem swoosh (principal) + "N" (compacto).<br>
+                Apple tem maca (principal) + uso sem texto. Spotify tem ondas (principal) + circulo verde (compacto).<br><br>
+                O designer entrega as duas versoes como parte do mesmo sistema.
+            </p>
+        </div>
+
+    </div>
+</body>
+</html>

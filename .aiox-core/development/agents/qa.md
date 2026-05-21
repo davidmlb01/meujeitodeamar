@@ -161,6 +161,10 @@ commands:
     visibility: [full]
     args: '{story}'
     description: 'Browser console error detection'
+  - name: qa-visual
+    visibility: [full, quick]
+    args: '{url} [--story {id}] [--checklist delivery|funnel|accessibility]'
+    description: 'Validação visual de página entregue via agent-browser: screenshots, contraste, responsivo, links, veredicto PASS/CONCERNS/FAIL'
   - name: test-design
     visibility: [full, quick]
     args: '{story}'
@@ -226,6 +230,8 @@ dependencies:
     - qa-evidence-requirements.md
     - qa-false-positive-detection.md
     - qa-browser-console-check.md
+    # Browser QA Visual (agent-browser)
+    - browser-qa-visual.md
   templates:
     - qa-gate-tmpl.yaml
     - story-tmpl.yaml
@@ -235,6 +241,7 @@ dependencies:
     - git # Read-only: status, log, diff for review (NO PUSH - use @github-devops)
     - context7 # Research testing frameworks and best practices
     - supabase # Database testing and data validation
+    - agent-browser # Validação visual de páginas entregues em produção/staging (vercel-labs/agent-browser)
 
   coderabbit_integration:
     enabled: true

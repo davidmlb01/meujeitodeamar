@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Destaka | Brand Guidelines v1</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #0F2A1F;
+    --bg-dark: #0a1f16;
+    --bg-surface: #132e22;
+    --bg-surface-2: #1a3d2d;
+    --accent: #4ade80;
+    --accent-dim: rgba(74,222,128,0.15);
+    --accent-glow: rgba(74,222,128,0.06);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255,255,255,0.7);
+    --text-tertiary: rgba(255,255,255,0.45);
+    --border-subtle: rgba(255,255,255,0.06);
+    --border-accent: rgba(74,222,128,0.2);
+    --saude: #0EA5E9;
+    --pet: #22C55E;
+    --juridico: #6B9AC4;
+    --danger: #ef4444;
+    --font-display: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 24px;
+    --space-lg: 32px;
+    --space-xl: 48px;
+    --space-2xl: 64px;
+    --space-3xl: 96px;
+    --space-4xl: 128px;
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Layout */
+  .container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+  }
+
+  /* Typography */
+  .label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .section-number {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    opacity: 0.7;
+    letter-spacing: 1px;
+  }
+
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+    margin-top: var(--space-xs);
+    color: var(--text-primary);
+  }
+
+  .section-desc {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 560px;
+    margin-top: var(--space-sm);
+  }
+
+  .body-text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+
+  .caption {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    letter-spacing: 0.3px;
+  }
+
+  .mono {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 13px;
+  }
+
+  /* Sections */
+  .section {
+    padding: var(--space-3xl) 0;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .section + .section {
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-2xl) var(--space-lg);
+    background: radial-gradient(ellipse at 50% 40%, var(--accent-glow) 0%, transparent 60%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 79px,
+      rgba(74,222,128,0.03) 79px,
+      rgba(74,222,128,0.03) 80px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 79px,
+      rgba(74,222,128,0.03) 79px,
+      rgba(74,222,128,0.03) 80px
+    );
+    pointer-events: none;
+  }
+
+  .hero-logo {
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-top: var(--space-lg);
+    animation: fadeInUp 0.8s ease-out 0.15s both;
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-top: var(--space-sm);
+    animation: fadeInUp 0.8s ease-out 0.25s both;
+  }
+
+  .hero-desc {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--text-secondary);
+    max-width: 480px;
+    margin-top: var(--space-sm);
+    animation: fadeInUp 0.8s ease-out 0.35s both;
+  }
+
+  .hero-version {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--text-tertiary);
+    margin-top: var(--space-xl);
+    animation: fadeInUp 0.8s ease-out 0.45s both;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Cards */
+  .card {
+    background: var(--bg-surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+    overflow: hidden;
+  }
+
+  .card-padded {
+    padding: var(--space-xl) var(--space-lg);
+  }
+
+  /* Grid helpers */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+  }
+
+  .grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+  }
+
+  .grid-5 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--space-md);
+  }
+
+  /* ─── CONSTRUCTION GRID ─── */
+  .construction-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-2xl);
+    background: var(--bg-deep);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+    min-height: 480px;
+  }
+
+  .construction-svg {
+    width: 100%;
+    max-width: 600px;
+  }
+
+  /* Specs table */
+  .specs-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: var(--space-md);
+  }
+
+  .specs-table th {
+    text-align: left;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid var(--border-accent);
+  }
+
+  .specs-table td {
+    font-size: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+  }
+
+  .specs-table td:first-child {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .specs-table td .mono {
+    color: var(--accent);
+    font-size: 12px;
+  }
+
+  /* Lockup cards */
+  .lockup-card {
+    border-radius: var(--radius-md);
+    padding: var(--space-2xl) var(--space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 240px;
+    border: 1px solid var(--border-subtle);
+    position: relative;
+  }
+
+  .lockup-dark { background: var(--bg-deep); }
+  .lockup-light { background: #f8faf9; }
+  .lockup-medium { background: #e8ece9; }
+
+  .lockup-label {
+    position: absolute;
+    top: var(--space-sm);
+    left: var(--space-sm);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: 0.4;
+  }
+
+  .lockup-horizontal {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .lockup-stacked {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .lockup-wordmark {
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .lockup-wordmark-sm {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .lockup-tagline {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    opacity: 0.5;
+    margin-top: 4px;
+  }
+
+  /* Color swatches */
+  .swatch-card {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-surface);
+  }
+
+  .swatch-color {
+    height: 120px;
+    position: relative;
+  }
+
+  .swatch-info {
+    padding: var(--space-sm);
+  }
+
+  .swatch-name {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .swatch-hex {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 12px;
+    color: var(--accent);
+  }
+
+  .swatch-rgb {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 11px;
+    color: var(--text-tertiary);
+    margin-top: 2px;
+  }
+
+  /* Typography scale */
+  .type-row {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-lg);
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .type-size {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    width: 48px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .type-sample {
+    flex: 1;
+  }
+
+  .type-use {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    width: 120px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  /* Misuse grid */
+  .misuse-card {
+    background: var(--bg-surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    min-height: 200px;
+  }
+
+  .misuse-x {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(239,68,68,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .misuse-x svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .misuse-visual {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-sm) 0;
+  }
+
+  .misuse-label {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    margin-top: var(--space-sm);
+  }
+
+  /* Favicon section */
+  .favicon-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+    align-items: end;
+  }
+
+  .favicon-card {
+    background: var(--bg-surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-sm);
+  }
+
+  .favicon-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Clear space visual */
+  .clearspace-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-2xl);
+    background: var(--bg-deep);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+    min-height: 360px;
+  }
+
+  /* Minimum size */
+  .minsize-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: var(--space-2xl);
+    padding: var(--space-xl) 0;
+  }
+
+  .minsize-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  /* TOC */
+  .toc {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+  }
+
+  .toc-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: 12px var(--space-sm);
+    background: var(--bg-surface);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .toc-item:hover {
+    border-color: var(--accent);
+    color: var(--text-primary);
+  }
+
+  .toc-num {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    opacity: 0.6;
+  }
+
+  /* Verticals lockup */
+  .vertical-lockup-card {
+    border-radius: var(--radius-md);
+    padding: var(--space-xl) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 280px;
+    justify-content: center;
+    border: 1px solid var(--border-subtle);
+    gap: var(--space-sm);
+  }
+
+  .vertical-name {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-top: var(--space-xs);
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .grid-5 { grid-template-columns: repeat(3, 1fr); }
+    .favicon-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-subtitle { font-size: 40px; }
+    .section-heading { font-size: 30px; }
+    .toc { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .grid-2 { grid-template-columns: 1fr; }
+    .grid-3 { grid-template-columns: 1fr; }
+    .grid-4 { grid-template-columns: 1fr; }
+    .grid-5 { grid-template-columns: repeat(2, 1fr); }
+    .hero-subtitle { font-size: 32px; }
+    .section-heading { font-size: 26px; }
+    .lockup-wordmark { font-size: 28px; }
+    .toc { grid-template-columns: 1fr; }
+    .construction-container { min-height: 320px; padding: var(--space-lg); }
+    .clearspace-container { min-height: 280px; padding: var(--space-lg); }
+    .favicon-grid { grid-template-columns: repeat(2, 1fr); }
+    .type-use { display: none; }
+    .minsize-row { flex-direction: column; align-items: center; }
+  }
+
+  @media (max-width: 480px) {
+    .container { padding: 0 var(--space-sm); }
+    .grid-5 { grid-template-columns: 1fr; }
+    .hero-subtitle { font-size: 28px; }
+    .section { padding: var(--space-2xl) 0; }
+    .lockup-card { padding: var(--space-xl) var(--space-sm); min-height: 180px; }
+    .favicon-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .section { transition: none; }
+    .fade-in { opacity: 1; transform: none; transition: none; }
+    @keyframes fadeInUp { from, to { opacity: 1; transform: none; } }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- HERO -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-logo">
+    <svg width="80" height="106" viewBox="0 0 120 160" fill="none">
+      <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+      <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+      <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+    </svg>
+  </div>
+  <div class="hero-title">Destaka</div>
+  <div class="hero-subtitle">Brand Guidelines</div>
+  <div class="hero-desc">
+    Documento de referência para uso correto da marca, seus elementos visuais, proporções e regras de aplicação.
+  </div>
+  <div class="hero-version">v1.0 | Maio 2026</div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- TABLE OF CONTENTS -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="section visible" style="opacity:1;transform:none;">
+  <div class="container">
+    <span class="label">Índice</span>
+    <h2 class="section-heading" style="margin-bottom: var(--space-xs);">Conteúdo</h2>
+    <nav class="toc">
+      <a href="#construction" class="toc-item"><span class="toc-num">01</span> Grid de construção</a>
+      <a href="#clearspace" class="toc-item"><span class="toc-num">02</span> Área de proteção</a>
+      <a href="#lockups" class="toc-item"><span class="toc-num">03</span> Lockups oficiais</a>
+      <a href="#colors" class="toc-item"><span class="toc-num">04</span> Paleta de cores</a>
+      <a href="#typography" class="toc-item"><span class="toc-num">05</span> Tipografia</a>
+      <a href="#misuse" class="toc-item"><span class="toc-num">06</span> Uso incorreto</a>
+      <a href="#verticals" class="toc-item"><span class="toc-num">07</span> Verticais</a>
+      <a href="#favicon" class="toc-item"><span class="toc-num">08</span> Favicon e ícones</a>
+      <a href="#minsize" class="toc-item"><span class="toc-num">09</span> Tamanho mínimo</a>
+    </nav>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- 01. CONSTRUCTION GRID -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="section" id="construction">
+  <div class="container">
+    <span class="section-number">01</span>
+    <h2 class="section-heading">Grid de construção</h2>
+    <p class="section-desc">
+      O símbolo Pin+Olho é construído a partir de três elementos geométricos puros: a silhueta do pin (container), o olho em espaço negativo (visão) e a íris sólida (foco). Cada proporção é deliberada.
+    </p>
+
+    <div class="construction-container" style="margin-top: var(--space-lg);">
+      <svg class="construction-svg" viewBox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Background grid -->
+        <defs>
+          <pattern id="grid8" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(74,222,128,0.06)" stroke-width="0.5"/>
+          </pattern>
+          <pattern id="grid80" width="100" height="100" patternUnits="userSpaceOnUse">
+            <path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(74,222,128,0.12)" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        <rect width="400" height="500" fill="url(#grid8)"/>
+        <rect width="400" height="500" fill="url(#grid80)"/>
+
+        <!-- Center guides -->
+        <line x1="200" y1="0" x2="200" y2="500" stroke="rgba(74,222,128,0.15)" stroke-width="0.5" stroke-dasharray="4 4"/>
+        <line x1="0" y1="215" x2="400" y2="215" stroke="rgba(74,222,128,0.15)" stroke-width="0.5" stroke-dasharray="4 4"/>
+
+        <!-- Construction circles -->
+        <!-- Outer bounding circle for pin head -->
+        <circle cx="200" cy="195" r="150" stroke="rgba(74,222,128,0.2)" stroke-width="0.75" fill="none" stroke-dasharray="6 3"/>
+        <!-- Inner circle for eye zone -->
+        <circle cx="200" cy="195" r="100" stroke="rgba(74,222,128,0.15)" stroke-width="0.5" fill="none" stroke-dasharray="4 4"/>
+        <!-- Iris guide circle -->
+        <circle cx="200" cy="195" r="23.3" stroke="rgba(74,222,128,0.25)" stroke-width="0.75" fill="none"/>
+
+        <!-- The logo itself -->
+        <g transform="translate(200, 195) scale(3.33) translate(-60, -56)">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80" fill-opacity="0.15" stroke="#4ade80" stroke-width="0.6"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F" stroke="rgba(74,222,128,0.4)" stroke-width="0.4"/>
+          <circle cx="60" cy="56" r="7" fill="#4ade80" stroke="#4ade80" stroke-width="0.3"/>
+        </g>
+
+        <!-- Dimension annotations -->
+        <!-- Vertical dimension: full height -->
+        <line x1="60" y1="15" x2="60" y2="425" stroke="rgba(74,222,128,0.3)" stroke-width="0.5"/>
+        <line x1="55" y1="15" x2="65" y2="15" stroke="rgba(74,222,128,0.3)" stroke-width="0.5"/>
+        <line x1="55" y1="425" x2="65" y2="425" stroke="rgba(74,222,128,0.3)" stroke-width="0.5"/>
+        <text x="58" y="225" fill="rgba(74,222,128,0.5)" font-family="SF Mono, monospace" font-size="9" text-anchor="end" transform="rotate(-90, 58, 225)">420u (viewBox 160)</text>
+
+        <!-- Horizontal dimension: full width -->
+        <line x1="67" y1="460" x2="333" y2="460" stroke="rgba(74,222,128,0.3)" stroke-width="0.5"/>
+        <line x1="67" y1="455" x2="67" y2="465" stroke="rgba(74,222,128,0.3)" stroke-width="0.5"/>
+        <line x1="333" y1="455" x2="333" y2="465" stroke="rgba(74,222,128,0.3)" stroke-width="0.5"/>
+        <text x="200" y="475" fill="rgba(74,222,128,0.5)" font-family="SF Mono, monospace" font-size="9" text-anchor="middle">333u (viewBox 120)</text>
+
+        <!-- Iris annotation -->
+        <line x1="223" y1="195" x2="280" y2="155" stroke="rgba(74,222,128,0.3)" stroke-width="0.5"/>
+        <circle cx="280" cy="155" r="2" fill="rgba(74,222,128,0.4)"/>
+        <text x="286" y="153" fill="rgba(74,222,128,0.5)" font-family="SF Mono, monospace" font-size="9">r=7 (íris)</text>
+        <text x="286" y="165" fill="rgba(74,222,128,0.35)" font-family="SF Mono, monospace" font-size="8">1x = 14u (diâmetro)</text>
+
+        <!-- Eye annotation -->
+        <line x1="310" y1="195" x2="340" y2="225" stroke="rgba(74,222,128,0.3)" stroke-width="0.5"/>
+        <circle cx="340" cy="225" r="2" fill="rgba(74,222,128,0.4)"/>
+        <text x="346" y="223" fill="rgba(74,222,128,0.5)" font-family="SF Mono, monospace" font-size="9">olho negativo</text>
+        <text x="346" y="235" fill="rgba(74,222,128,0.35)" font-family="SF Mono, monospace" font-size="8">68u wide, 36u tall</text>
+
+        <!-- Pin tip annotation -->
+        <line x1="200" y1="435" x2="300" y2="445" stroke="rgba(74,222,128,0.3)" stroke-width="0.5"/>
+        <text x="306" y="448" fill="rgba(74,222,128,0.5)" font-family="SF Mono, monospace" font-size="9">ponta do pin</text>
+      </svg>
+    </div>
+
+    <!-- Specs table -->
+    <table class="specs-table" style="margin-top: var(--space-lg);">
+      <thead>
+        <tr>
+          <th>Elemento</th>
+          <th>Valor</th>
+          <th>Proporção</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ViewBox</td>
+          <td><span class="mono">0 0 120 160</span></td>
+          <td>Ratio 3:4</td>
+        </tr>
+        <tr>
+          <td>Silhueta do pin</td>
+          <td><span class="mono">100 x 126u</span></td>
+          <td>Centro horizontal em x=60</td>
+        </tr>
+        <tr>
+          <td>Centro do olho</td>
+          <td><span class="mono">x=60, y=56</span></td>
+          <td>35% da altura total (56/160)</td>
+        </tr>
+        <tr>
+          <td>Largura do olho</td>
+          <td><span class="mono">68u</span> (26 a 94)</td>
+          <td>68% da largura do pin</td>
+        </tr>
+        <tr>
+          <td>Altura do olho</td>
+          <td><span class="mono">36u</span> (38 a 74)</td>
+          <td>Ratio olho 1.89:1 (largura:altura)</td>
+        </tr>
+        <tr>
+          <td>Raio da íris</td>
+          <td><span class="mono">r=7u</span></td>
+          <td>Diâmetro = 14u (1x)</td>
+        </tr>
+        <tr>
+          <td>Unidade base (1x)</td>
+          <td><span class="mono">14u</span></td>
+          <td>= diâmetro da íris. Todas as medidas derivam desta unidade</td>
+        </tr>
+        <tr>
+          <td>Ponta do pin</td>
+          <td><span class="mono">y=132</span></td>
+          <td>82.5% da altura total</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- 02. CLEAR SPACE -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="section" id="clearspace">
+  <div class="container">
+    <span class="section-number">02</span>
+    <h2 class="section-heading">Área de proteção</h2>
+    <p class="section-desc">
+      A área de proteção garante que o símbolo respire. A unidade "x" é definida pelo diâmetro da íris (14u no viewBox original). A clear space mínima é 2x ao redor de todo o símbolo.
+    </p>
+
+    <div class="clearspace-container" style="margin-top: var(--space-lg);">
+      <svg viewBox="0 0 300 380" width="260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Outer clear space boundary -->
+        <rect x="22" y="10" width="256" height="360" rx="4" stroke="rgba(74,222,128,0.25)" stroke-width="1" stroke-dasharray="6 3" fill="none"/>
+
+        <!-- Clear space dimension markers -->
+        <!-- Top -->
+        <line x1="150" y1="10" x2="150" y2="38" stroke="rgba(74,222,128,0.3)" stroke-width="0.5"/>
+        <text x="160" y="28" fill="rgba(74,222,128,0.5)" font-family="SF Mono, monospace" font-size="10">2x</text>
+        <!-- Bottom -->
+        <line x1="150" y1="342" x2="150" y2="370" stroke="rgba(74,222,128,0.3)" stroke-width="0.5"/>
+        <text x="160" y="362" fill="rgba(74,222,128,0.5)" font-family="SF Mono, monospace" font-size="10">2x</text>
+        <!-- Left -->
+        <line x1="22" y1="190" x2="50" y2="190" stroke="rgba(74,222,128,0.3)" stroke-width="0.5"/>
+        <text x="28" y="180" fill="rgba(74,222,128,0.5)" font-family="SF Mono, monospace" font-size="10">2x</text>
+        <!-- Right -->
+        <line x1="250" y1="190" x2="278" y2="190" stroke="rgba(74,222,128,0.3)" stroke-width="0.5"/>
+        <text x="254" y="180" fill="rgba(74,222,128,0.5)" font-family="SF Mono, monospace" font-size="10">2x</text>
+
+        <!-- The logo -->
+        <g transform="translate(150, 185) scale(1.875) translate(-60, -56)">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+          <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+        </g>
+
+        <!-- Iris reference -->
+        <line x1="150" y1="185" x2="200" y2="135" stroke="rgba(74,222,128,0.2)" stroke-width="0.5"/>
+        <text x="204" y="133" fill="rgba(74,222,128,0.4)" font-family="SF Mono, monospace" font-size="9">1x = diâmetro íris</text>
+      </svg>
+    </div>
+
+    <div class="card card-padded" style="margin-top: var(--space-md);">
+      <p class="body-text">
+        <strong style="color: var(--text-primary);">Regra:</strong> nenhum elemento gráfico, texto ou borda pode invadir a zona de 2x ao redor do símbolo. Em lockups com wordmark, o gap entre símbolo e texto já respeita essa proporção.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- 03. LOCKUPS -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="section" id="lockups">
+  <div class="container">
+    <span class="section-number">03</span>
+    <h2 class="section-heading">Lockups oficiais</h2>
+    <p class="section-desc">
+      Duas configurações aprovadas: horizontal (preferencial) e empilhado. Ambas devem ser usadas sem modificação de proporções, cores ou espaçamento.
+    </p>
+
+    <div style="margin-top: var(--space-lg);">
+      <!-- Horizontal lockups -->
+      <div class="label" style="margin-bottom: var(--space-sm);">Horizontal</div>
+      <div class="grid-2">
+        <!-- Dark -->
+        <div class="lockup-card lockup-dark">
+          <span class="lockup-label" style="color: var(--text-secondary);">Dark</span>
+          <div class="lockup-horizontal">
+            <svg width="44" height="58" viewBox="0 0 120 160" fill="none">
+              <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+              <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+              <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+            </svg>
+            <div>
+              <div class="lockup-wordmark" style="color: #ffffff;">Destaka</div>
+              <div class="lockup-tagline" style="color: rgba(255,255,255,0.5);">Quem te procura, te encontra.</div>
+            </div>
+          </div>
+        </div>
+        <!-- Light -->
+        <div class="lockup-card lockup-light">
+          <span class="lockup-label" style="color: rgba(0,0,0,0.4);">Light</span>
+          <div class="lockup-horizontal">
+            <svg width="44" height="58" viewBox="0 0 120 160" fill="none">
+              <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#0F2A1F"/>
+              <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#f8faf9"/>
+              <circle cx="60" cy="56" r="7" fill="#0F2A1F"/>
+            </svg>
+            <div>
+              <div class="lockup-wordmark" style="color: #0F2A1F;">Destaka</div>
+              <div class="lockup-tagline" style="color: rgba(15,42,31,0.5);">Quem te procura, te encontra.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stacked lockups -->
+      <div class="label" style="margin-bottom: var(--space-sm); margin-top: var(--space-lg);">Empilhado</div>
+      <div class="grid-2">
+        <!-- Dark -->
+        <div class="lockup-card lockup-dark">
+          <span class="lockup-label" style="color: var(--text-secondary);">Dark</span>
+          <div class="lockup-stacked">
+            <svg width="56" height="74" viewBox="0 0 120 160" fill="none">
+              <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+              <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+              <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+            </svg>
+            <div style="text-align: center;">
+              <div class="lockup-wordmark-sm" style="color: #ffffff;">Destaka</div>
+              <div class="lockup-tagline" style="color: rgba(255,255,255,0.5);">Quem te procura, te encontra.</div>
+            </div>
+          </div>
+        </div>
+        <!-- Light -->
+        <div class="lockup-card lockup-light">
+          <span class="lockup-label" style="color: rgba(0,0,0,0.4);">Light</span>
+          <div class="lockup-stacked">
+            <svg width="56" height="74" viewBox="0 0 120 160" fill="none">
+              <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#0F2A1F"/>
+              <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#f8faf9"/>
+              <circle cx="60" cy="56" r="7" fill="#0F2A1F"/>
+            </svg>
+            <div style="text-align: center;">
+              <div class="lockup-wordmark-sm" style="color: #0F2A1F;">Destaka</div>
+              <div class="lockup-tagline" style="color: rgba(15,42,31,0.5);">Quem te procura, te encontra.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Symbol only -->
+      <div class="label" style="margin-bottom: var(--space-sm); margin-top: var(--space-lg);">Símbolo isolado</div>
+      <div class="grid-4">
+        <div class="lockup-card lockup-dark" style="min-height: 160px;">
+          <span class="lockup-label" style="color: var(--text-secondary);">Dark BG</span>
+          <svg width="48" height="64" viewBox="0 0 120 160" fill="none">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+            <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+          </svg>
+        </div>
+        <div class="lockup-card lockup-light" style="min-height: 160px;">
+          <span class="lockup-label" style="color: rgba(0,0,0,0.4);">Light BG</span>
+          <svg width="48" height="64" viewBox="0 0 120 160" fill="none">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#0F2A1F"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#f8faf9"/>
+            <circle cx="60" cy="56" r="7" fill="#0F2A1F"/>
+          </svg>
+        </div>
+        <div class="lockup-card" style="min-height: 160px; background: var(--accent);">
+          <span class="lockup-label" style="color: rgba(15,42,31,0.5);">Accent BG</span>
+          <svg width="48" height="64" viewBox="0 0 120 160" fill="none">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#0F2A1F"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#4ade80"/>
+            <circle cx="60" cy="56" r="7" fill="#0F2A1F"/>
+          </svg>
+        </div>
+        <div class="lockup-card" style="min-height: 160px; background: #1a1a1a;">
+          <span class="lockup-label" style="color: var(--text-secondary);">Neutro</span>
+          <svg width="48" height="64" viewBox="0 0 120 160" fill="none">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#1a1a1a"/>
+            <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Spacing spec -->
+      <div class="card card-padded" style="margin-top: var(--space-md);">
+        <table class="specs-table">
+          <thead>
+            <tr>
+              <th>Propriedade</th>
+              <th>Horizontal</th>
+              <th>Empilhado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Gap símbolo/wordmark</td>
+              <td><span class="mono">6px</span> (0.43x)</td>
+              <td><span class="mono">4px</span> (0.29x)</td>
+            </tr>
+            <tr>
+              <td>Wordmark font-size</td>
+              <td><span class="mono">40px</span></td>
+              <td><span class="mono">28px</span></td>
+            </tr>
+            <tr>
+              <td>Wordmark tracking</td>
+              <td><span class="mono">0.5px</span></td>
+              <td><span class="mono">0.5px</span></td>
+            </tr>
+            <tr>
+              <td>Tagline font-size</td>
+              <td><span class="mono">11px</span></td>
+              <td><span class="mono">11px</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- 04. COLORS -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="section" id="colors">
+  <div class="container">
+    <span class="section-number">04</span>
+    <h2 class="section-heading">Paleta de cores</h2>
+    <p class="section-desc">
+      As cores da Destaka são divididas em marca-mãe (fundo + accent) e verticais. Cada vertical usa o accent verde como base e substitui pelo matiz próprio em contextos específicos.
+    </p>
+
+    <!-- Primary colors -->
+    <div class="label" style="margin-top: var(--space-lg); margin-bottom: var(--space-sm);">Marca-mãe</div>
+    <div class="grid-3">
+      <div class="swatch-card">
+        <div class="swatch-color" style="background: #0F2A1F;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Verde Profundo</div>
+          <div class="swatch-hex">#0F2A1F</div>
+          <div class="swatch-rgb">RGB 15, 42, 31</div>
+        </div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-color" style="background: #4ade80;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Accent</div>
+          <div class="swatch-hex">#4ade80</div>
+          <div class="swatch-rgb">RGB 74, 222, 128</div>
+        </div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-color" style="background: #0a1f16;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Background Dark</div>
+          <div class="swatch-hex">#0a1f16</div>
+          <div class="swatch-rgb">RGB 10, 31, 22</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Surface colors -->
+    <div class="label" style="margin-top: var(--space-lg); margin-bottom: var(--space-sm);">Superfícies</div>
+    <div class="grid-4">
+      <div class="swatch-card">
+        <div class="swatch-color" style="background: #132e22; height: 80px;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Surface</div>
+          <div class="swatch-hex">#132e22</div>
+        </div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-color" style="background: #1a3d2d; height: 80px;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Surface 2</div>
+          <div class="swatch-hex">#1a3d2d</div>
+        </div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-color" style="background: rgba(74,222,128,0.15); height: 80px;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Accent Dim</div>
+          <div class="swatch-hex">accent/15%</div>
+        </div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-color" style="background: rgba(74,222,128,0.06); height: 80px;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Accent Glow</div>
+          <div class="swatch-hex">accent/6%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vertical colors -->
+    <div class="label" style="margin-top: var(--space-lg); margin-bottom: var(--space-sm);">Verticais</div>
+    <div class="grid-3">
+      <div class="swatch-card">
+        <div class="swatch-color" style="background: #0EA5E9;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Saúde</div>
+          <div class="swatch-hex">#0EA5E9</div>
+          <div class="swatch-rgb">RGB 14, 165, 233</div>
+        </div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-color" style="background: #22C55E;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Pet</div>
+          <div class="swatch-hex">#22C55E</div>
+          <div class="swatch-rgb">RGB 34, 197, 94</div>
+        </div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-color" style="background: #6B9AC4;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Jurídico</div>
+          <div class="swatch-hex">#6B9AC4</div>
+          <div class="swatch-rgb">RGB 107, 154, 196</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text colors -->
+    <div class="label" style="margin-top: var(--space-lg); margin-bottom: var(--space-sm);">Texto</div>
+    <div class="grid-4">
+      <div class="swatch-card">
+        <div class="swatch-color" style="background: #ffffff; height: 64px;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Primário</div>
+          <div class="swatch-hex">#FFFFFF</div>
+        </div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-color" style="background: rgba(255,255,255,0.7); height: 64px;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Secundário</div>
+          <div class="swatch-hex">white/70%</div>
+        </div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-color" style="background: rgba(255,255,255,0.45); height: 64px;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Terciário</div>
+          <div class="swatch-hex">white/45%</div>
+        </div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-color" style="background: var(--accent); height: 64px;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Accent text</div>
+          <div class="swatch-hex">#4ade80</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- 05. TYPOGRAPHY -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="section" id="typography">
+  <div class="container">
+    <span class="section-number">05</span>
+    <h2 class="section-heading">Tipografia</h2>
+    <p class="section-desc">
+      Outfit 700 para display e wordmark. Inter 400 para corpo e UI. Tracking de 0.5px no wordmark preserva a abertura das letras em tamanhos grandes.
+    </p>
+
+    <!-- Font families -->
+    <div class="grid-2" style="margin-top: var(--space-lg);">
+      <div class="card card-padded">
+        <div class="label" style="margin-bottom: var(--space-sm);">Display</div>
+        <div style="font-family: var(--font-display); font-size: 48px; font-weight: 700; letter-spacing: 0.5px; line-height: 1.1;">
+          Outfit 700
+        </div>
+        <div style="font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--text-secondary); margin-top: var(--space-sm); letter-spacing: 0.5px;">
+          ABCDEFGHIJKLMNOPQRSTUVWXYZ
+        </div>
+        <div style="font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--text-tertiary); letter-spacing: 0.5px;">
+          abcdefghijklmnopqrstuvwxyz 0123456789
+        </div>
+        <div style="margin-top: var(--space-sm);">
+          <span class="caption">Uso: headlines, wordmark, CTAs</span><br>
+          <span class="caption">Tracking: <span class="mono" style="color: var(--accent);">0.5px</span></span>
+        </div>
+      </div>
+      <div class="card card-padded">
+        <div class="label" style="margin-bottom: var(--space-sm);">Body</div>
+        <div style="font-family: var(--font-body); font-size: 32px; font-weight: 400; line-height: 1.2;">
+          Inter 400
+        </div>
+        <div style="font-family: var(--font-body); font-size: 16px; color: var(--text-secondary); margin-top: var(--space-sm);">
+          ABCDEFGHIJKLMNOPQRSTUVWXYZ
+        </div>
+        <div style="font-family: var(--font-body); font-size: 16px; color: var(--text-tertiary);">
+          abcdefghijklmnopqrstuvwxyz 0123456789
+        </div>
+        <div style="margin-top: var(--space-sm);">
+          <span class="caption">Uso: corpo, UI, labels, descrições</span><br>
+          <span class="caption">Pesos: <span class="mono" style="color: var(--accent);">400, 500, 600</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Type scale -->
+    <div class="label" style="margin-top: var(--space-lg); margin-bottom: var(--space-sm);">Escala tipográfica</div>
+    <div class="card card-padded">
+      <div class="type-row">
+        <span class="type-size">48px</span>
+        <span class="type-sample" style="font-family: var(--font-display); font-size: 48px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.1;">Destaka</span>
+        <span class="type-use">Hero / Display</span>
+      </div>
+      <div class="type-row">
+        <span class="type-size">36px</span>
+        <span class="type-sample" style="font-family: var(--font-display); font-size: 36px; font-weight: 700; letter-spacing: -0.3px; line-height: 1.15;">Presença digital</span>
+        <span class="type-use">H1</span>
+      </div>
+      <div class="type-row">
+        <span class="type-size">28px</span>
+        <span class="type-sample" style="font-family: var(--font-display); font-size: 28px; font-weight: 700; line-height: 1.2;">Quem te procura</span>
+        <span class="type-use">H2</span>
+      </div>
+      <div class="type-row">
+        <span class="type-size">22px</span>
+        <span class="type-sample" style="font-family: var(--font-display); font-size: 22px; font-weight: 700; line-height: 1.3;">Grid de construção</span>
+        <span class="type-use">H3</span>
+      </div>
+      <div class="type-row">
+        <span class="type-size">18px</span>
+        <span class="type-sample" style="font-family: var(--font-display); font-size: 18px; font-weight: 700; line-height: 1.4;">Lockups oficiais</span>
+        <span class="type-use">H4</span>
+      </div>
+      <div class="type-row">
+        <span class="type-size">16px</span>
+        <span class="type-sample" style="font-family: var(--font-body); font-size: 16px; font-weight: 400; line-height: 1.7;">Corpo de texto padrão para parágrafos e descrições.</span>
+        <span class="type-use">Body Large</span>
+      </div>
+      <div class="type-row">
+        <span class="type-size">14px</span>
+        <span class="type-sample" style="font-family: var(--font-body); font-size: 14px; font-weight: 400; line-height: 1.7; color: var(--text-secondary);">Texto auxiliar, notas, informações complementares.</span>
+        <span class="type-use">Body</span>
+      </div>
+      <div class="type-row">
+        <span class="type-size">13px</span>
+        <span class="type-sample" style="font-family: var(--font-body); font-size: 13px; font-weight: 400; line-height: 1.6; color: var(--text-secondary);">Captions e subtextos de menor destaque.</span>
+        <span class="type-use">Caption</span>
+      </div>
+      <div class="type-row">
+        <span class="type-size">12px</span>
+        <span class="type-sample" style="font-family: var(--font-body); font-size: 12px; font-weight: 500; letter-spacing: 0.3px; color: var(--text-tertiary);">Metadados, timestamps, labels pequenos.</span>
+        <span class="type-use">Small</span>
+      </div>
+      <div class="type-row">
+        <span class="type-size">11px</span>
+        <span class="type-sample" style="font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--accent);">SECTION LABEL</span>
+        <span class="type-use">Overline</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- 06. MISUSE -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="section" id="misuse">
+  <div class="container">
+    <span class="section-number">06</span>
+    <h2 class="section-heading">Uso incorreto</h2>
+    <p class="section-desc">
+      O símbolo foi projetado com proporções exatas. Qualquer alteração compromete a integridade da marca. Estes são exemplos do que nunca fazer.
+    </p>
+
+    <div class="grid-3" style="margin-top: var(--space-lg);">
+      <!-- Distort horizontally -->
+      <div class="misuse-card">
+        <div class="misuse-x">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M3 3L11 11M11 3L3 11" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="misuse-visual">
+          <svg width="70" height="50" viewBox="0 0 120 160" fill="none" style="opacity: 0.4;" preserveAspectRatio="none">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+            <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+          </svg>
+        </div>
+        <div class="misuse-label">Não distorcer proporções</div>
+      </div>
+
+      <!-- Rotate -->
+      <div class="misuse-card">
+        <div class="misuse-x">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M3 3L11 11M11 3L3 11" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="misuse-visual">
+          <svg width="44" height="58" viewBox="0 0 120 160" fill="none" style="opacity: 0.4; transform: rotate(25deg);">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+            <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+          </svg>
+        </div>
+        <div class="misuse-label">Não rotacionar o símbolo</div>
+      </div>
+
+      <!-- Wrong colors -->
+      <div class="misuse-card">
+        <div class="misuse-x">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M3 3L11 11M11 3L3 11" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="misuse-visual">
+          <svg width="44" height="58" viewBox="0 0 120 160" fill="none" style="opacity: 0.4;">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#ff6b6b"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+            <circle cx="60" cy="56" r="7" fill="#ff6b6b"/>
+          </svg>
+        </div>
+        <div class="misuse-label">Não usar cores fora da paleta</div>
+      </div>
+
+      <!-- Drop shadow -->
+      <div class="misuse-card">
+        <div class="misuse-x">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M3 3L11 11M11 3L3 11" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="misuse-visual">
+          <svg width="44" height="58" viewBox="0 0 120 160" fill="none" style="opacity: 0.4; filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.8));">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+            <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+          </svg>
+        </div>
+        <div class="misuse-label">Não adicionar sombra projetada</div>
+      </div>
+
+      <!-- Outline -->
+      <div class="misuse-card">
+        <div class="misuse-x">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M3 3L11 11M11 3L3 11" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="misuse-visual">
+          <svg width="44" height="58" viewBox="0 0 120 160" fill="none" style="opacity: 0.4;">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="none" stroke="#4ade80" stroke-width="3"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="none" stroke="#4ade80" stroke-width="2"/>
+            <circle cx="60" cy="56" r="7" fill="none" stroke="#4ade80" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="misuse-label">Não usar versão outline</div>
+      </div>
+
+      <!-- Gradient -->
+      <div class="misuse-card">
+        <div class="misuse-x">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M3 3L11 11M11 3L3 11" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="misuse-visual">
+          <svg width="44" height="58" viewBox="0 0 120 160" fill="none" style="opacity: 0.4;">
+            <defs><linearGradient id="badGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4ade80"/><stop offset="100%" stop-color="#0EA5E9"/></linearGradient></defs>
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="url(#badGrad)"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+            <circle cx="60" cy="56" r="7" fill="url(#badGrad)"/>
+          </svg>
+        </div>
+        <div class="misuse-label">Não aplicar gradientes</div>
+      </div>
+    </div>
+
+    <!-- Additional rules -->
+    <div class="card card-padded" style="margin-top: var(--space-md);">
+      <div class="label" style="margin-bottom: var(--space-sm);">Regras adicionais</div>
+      <ul class="body-text" style="padding-left: var(--space-md); display: grid; gap: 8px;">
+        <li>Não colocar o símbolo sobre fotografias de baixo contraste</li>
+        <li>Não alterar a posição relativa dos três elementos (pin, olho, íris)</li>
+        <li>Não usar o símbolo em tamanho menor que 24px de altura</li>
+        <li>Não adicionar contorno, bevel, emboss ou qualquer efeito 3D</li>
+        <li>Não usar opacidade abaixo de 100% no símbolo completo</li>
+        <li>Não recriar o símbolo. Sempre usar o arquivo SVG original</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- 07. VERTICALS -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="section" id="verticals">
+  <div class="container">
+    <span class="section-number">07</span>
+    <h2 class="section-heading">Verticais</h2>
+    <p class="section-desc">
+      Cada vertical da Destaka substitui o accent #4ade80 pela cor própria. O olho em negativo assume a cor do fundo local. A estrutura do símbolo permanece idêntica.
+    </p>
+
+    <div class="grid-3" style="margin-top: var(--space-lg);">
+      <!-- Saúde -->
+      <div class="vertical-lockup-card" style="background: #091e2f;">
+        <svg width="48" height="64" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#0EA5E9"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#091e2f"/>
+          <circle cx="60" cy="56" r="7" fill="#0EA5E9"/>
+        </svg>
+        <div class="vertical-name" style="color: #0EA5E9;">Destaka Saúde</div>
+        <div class="caption">#0EA5E9</div>
+      </div>
+
+      <!-- Pet -->
+      <div class="vertical-lockup-card" style="background: #0a1f14;">
+        <svg width="48" height="64" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#22C55E"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0a1f14"/>
+          <circle cx="60" cy="56" r="7" fill="#22C55E"/>
+        </svg>
+        <div class="vertical-name" style="color: #22C55E;">Destaka Pet</div>
+        <div class="caption">#22C55E</div>
+      </div>
+
+      <!-- Jurídico -->
+      <div class="vertical-lockup-card" style="background: #0f1a2a;">
+        <svg width="48" height="64" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#6B9AC4"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0f1a2a"/>
+          <circle cx="60" cy="56" r="7" fill="#6B9AC4"/>
+        </svg>
+        <div class="vertical-name" style="color: #6B9AC4;">Destaka Jurídico</div>
+        <div class="caption">#6B9AC4</div>
+      </div>
+    </div>
+
+    <div class="card card-padded" style="margin-top: var(--space-md);">
+      <p class="body-text">
+        <strong style="color: var(--text-primary);">Regra de adaptação:</strong> o olho negativo sempre assume a cor do fundo onde o logo está aplicado. Isso garante que o recorte funcione em qualquer contexto, de dark a light. Apenas a cor do pin e da íris muda por vertical.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- 08. FAVICON AND ICONS -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="section" id="favicon">
+  <div class="container">
+    <span class="section-number">08</span>
+    <h2 class="section-heading">Favicon e ícones</h2>
+    <p class="section-desc">
+      Em tamanhos pequenos, o olho amendoado perde legibilidade. Para 16px, usamos o pin simplificado com apenas a íris. Para 48px ou mais, o olho amendoado aparece completo.
+    </p>
+
+    <div class="favicon-grid" style="margin-top: var(--space-lg);">
+      <!-- 16px favicon -->
+      <div class="favicon-card">
+        <div class="label" style="font-size: 10px;">Favicon 16px</div>
+        <div class="favicon-preview" style="width: 64px; height: 64px; background: var(--bg-deep);">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M8 1C4.3 1 1.5 3.8 1.5 7.5C1.5 9.2 2.5 10.5 3.5 11.5C4.5 12.5 6 13.5 8 15C10 13.5 11.5 12.5 12.5 11.5C13.5 10.5 14.5 9.2 14.5 7.5C14.5 3.8 11.7 1 8 1Z" fill="#4ade80"/>
+            <circle cx="8" cy="7" r="2" fill="#0F2A1F"/>
+          </svg>
+        </div>
+        <div class="caption">Pin + círculo central</div>
+        <div class="caption" style="color: var(--accent);">Sem olho amendoado</div>
+      </div>
+
+      <!-- 32px -->
+      <div class="favicon-card">
+        <div class="label" style="font-size: 10px;">Favicon 32px</div>
+        <div class="favicon-preview" style="width: 64px; height: 64px; background: var(--bg-deep);">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <path d="M16 2C9 2 3 8 3 15C3 19 5 22 8 25C10 27 13 29.5 16 32C19 29.5 22 27 24 25C27 22 29 19 29 15C29 8 23 2 16 2Z" fill="#4ade80"/>
+            <path d="M7 15C9.5 11 12.5 9.5 16 9.5C19.5 9.5 22.5 11 25 15C22.5 19 19.5 20.5 16 20.5C12.5 20.5 9.5 19 7 15Z" fill="#0F2A1F"/>
+            <circle cx="16" cy="15" r="2.5" fill="#4ade80"/>
+          </svg>
+        </div>
+        <div class="caption">Pin + olho + íris</div>
+        <div class="caption" style="color: var(--accent);">3 elementos</div>
+      </div>
+
+      <!-- 48px app icon -->
+      <div class="favicon-card">
+        <div class="label" style="font-size: 10px;">App Icon 48px</div>
+        <div class="favicon-preview" style="width: 64px; height: 64px; background: var(--bg-deep);">
+          <svg width="48" height="48" viewBox="0 0 120 160" fill="none">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+            <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+          </svg>
+        </div>
+        <div class="caption">Símbolo completo</div>
+        <div class="caption" style="color: var(--accent);">3 elementos</div>
+      </div>
+
+      <!-- 192px / 512px -->
+      <div class="favicon-card">
+        <div class="label" style="font-size: 10px;">PWA 192/512px</div>
+        <div class="favicon-preview" style="width: 64px; height: 64px; background: var(--bg-deep); border-radius: 12px;">
+          <svg width="44" height="58" viewBox="0 0 120 160" fill="none">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+            <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+          </svg>
+        </div>
+        <div class="caption">Símbolo em container</div>
+        <div class="caption" style="color: var(--accent);">Corner radius 20%</div>
+      </div>
+    </div>
+
+    <div class="card card-padded" style="margin-top: var(--space-md);">
+      <table class="specs-table">
+        <thead>
+          <tr>
+            <th>Tamanho</th>
+            <th>Elementos</th>
+            <th>Uso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="mono">16px</span></td>
+            <td>Pin + círculo central (2 elementos)</td>
+            <td>Favicon browser tab</td>
+          </tr>
+          <tr>
+            <td><span class="mono">32px</span></td>
+            <td>Pin + olho + íris (3 elementos)</td>
+            <td>Favicon retina, bookmark</td>
+          </tr>
+          <tr>
+            <td><span class="mono">48px</span></td>
+            <td>Símbolo completo (3 elementos)</td>
+            <td>App icon, shortcuts</td>
+          </tr>
+          <tr>
+            <td><span class="mono">192px</span></td>
+            <td>Símbolo completo em container</td>
+            <td>PWA, Android home screen</td>
+          </tr>
+          <tr>
+            <td><span class="mono">512px</span></td>
+            <td>Símbolo completo em container</td>
+            <td>PWA splash, app stores</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- 09. MINIMUM SIZE -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="section" id="minsize">
+  <div class="container">
+    <span class="section-number">09</span>
+    <h2 class="section-heading">Tamanho mínimo</h2>
+    <p class="section-desc">
+      Abaixo destes limites, a legibilidade dos elementos internos fica comprometida. Respeitar o mínimo garante que o olho e a íris permaneçam reconhecíveis.
+    </p>
+
+    <div class="card card-padded" style="margin-top: var(--space-lg);">
+      <div class="minsize-row">
+        <!-- Symbol minimum -->
+        <div class="minsize-item">
+          <svg width="18" height="24" viewBox="0 0 120 160" fill="none">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+            <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+          </svg>
+          <div class="caption">24px altura</div>
+          <div class="caption" style="color: var(--accent);">Mínimo símbolo</div>
+        </div>
+
+        <!-- Horizontal lockup minimum -->
+        <div class="minsize-item">
+          <div class="lockup-horizontal" style="gap: 6px;">
+            <svg width="18" height="24" viewBox="0 0 120 160" fill="none">
+              <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+              <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+              <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+            </svg>
+            <span style="font-family: var(--font-display); font-size: 16px; font-weight: 700; letter-spacing: 0.5px;">Destaka</span>
+          </div>
+          <div class="caption" style="margin-top: var(--space-sm);">24px símbolo + wordmark 16px</div>
+          <div class="caption" style="color: var(--accent);">Mínimo horizontal</div>
+        </div>
+
+        <!-- Stacked lockup minimum -->
+        <div class="minsize-item">
+          <div class="lockup-stacked" style="gap: 4px;">
+            <svg width="24" height="32" viewBox="0 0 120 160" fill="none">
+              <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+              <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+              <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+            </svg>
+            <span style="font-family: var(--font-display); font-size: 14px; font-weight: 700; letter-spacing: 0.5px;">Destaka</span>
+          </div>
+          <div class="caption" style="margin-top: var(--space-sm);">32px símbolo + wordmark 14px</div>
+          <div class="caption" style="color: var(--accent);">Mínimo empilhado</div>
+        </div>
+      </div>
+
+      <table class="specs-table" style="margin-top: var(--space-md);">
+        <thead>
+          <tr>
+            <th>Formato</th>
+            <th>Mínimo digital</th>
+            <th>Mínimo impresso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Símbolo isolado</td>
+            <td><span class="mono">24px</span> de altura</td>
+            <td><span class="mono">8mm</span> de altura</td>
+          </tr>
+          <tr>
+            <td>Lockup horizontal</td>
+            <td><span class="mono">24px</span> símbolo, <span class="mono">16px</span> wordmark</td>
+            <td><span class="mono">8mm</span> símbolo, <span class="mono">5mm</span> wordmark</td>
+          </tr>
+          <tr>
+            <td>Lockup empilhado</td>
+            <td><span class="mono">32px</span> símbolo, <span class="mono">14px</span> wordmark</td>
+            <td><span class="mono">10mm</span> símbolo, <span class="mono">4mm</span> wordmark</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- FOOTER -->
+<!-- ════════════════════════════════════════════════ -->
+<footer style="padding: var(--space-2xl) 0; border-top: 1px solid var(--border-subtle);">
+  <div class="container" style="text-align: center;">
+    <svg width="32" height="42" viewBox="0 0 120 160" fill="none" style="opacity: 0.3;">
+      <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+      <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+      <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+    </svg>
+    <p style="font-size: 13px; color: var(--text-tertiary); margin-top: var(--space-sm);">
+      Destaka Brand Guidelines v1.0 | Maio 2026
+    </p>
+    <p style="font-size: 11px; color: var(--text-tertiary); margin-top: 4px; opacity: 0.6;">
+      Documento confidencial. Uso restrito à equipe Destaka.
+    </p>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- SCROLL ANIMATIONS -->
+<!-- ════════════════════════════════════════════════ -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var sections = document.querySelectorAll('.section');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.08,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  sections.forEach(function(section) {
+    if (!section.classList.contains('visible')) {
+      observer.observe(section);
+    }
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1440">
+    <title>Destaka — Brand Guidelines</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0F2A1F;
+            --leaf: #4ade80;
+            --paper: #f6f4ef;
+            --rule: #d8d6cd;
+            --muted: #6c6c63;
+            --red: #ef4444;
+            --black: #0a0a0a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Outfit', system-ui, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            -webkit-font-smoothing: antialiased;
+        }
+        .page { max-width: 1200px; margin: 0 auto; padding: 0 56px; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        .mast {
+            border-bottom: 1px solid var(--rule);
+            padding: 28px 0 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .mast-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+        .hero {
+            padding: 72px 0 64px;
+            border-bottom: 1px solid var(--rule);
+        }
+        .hero h1 { font-size: 64px; font-weight: 700; letter-spacing: -0.04em; line-height: 1; margin-bottom: 20px; }
+        .hero p { font-size: 18px; max-width: 620px; color: #2a3a31; line-height: 1.5; }
+
+        section { padding: 72px 0; border-bottom: 1px solid var(--rule); }
+        .sec-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+        .sec-title { font-size: 36px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 16px; }
+        .sec-desc { font-size: 16px; color: #2a3a31; max-width: 600px; line-height: 1.55; margin-bottom: 48px; }
+
+        /* Do / Don't grid */
+        .dodont-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 24px 0;
+        }
+        .dodont-card {
+            border: 1px solid var(--rule);
+            border-radius: 6px;
+            overflow: hidden;
+            background: #fff;
+        }
+        .dodont-card.do { border-top: 3px solid var(--leaf); }
+        .dodont-card.dont { border-top: 3px solid var(--red); }
+        .dodont-stage {
+            aspect-ratio: 16/10;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            position: relative;
+        }
+        .dodont-label {
+            position: absolute;
+            top: 12px;
+            left: 14px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        .do .dodont-label { color: #166534; }
+        .dont .dodont-label { color: var(--red); }
+        .dodont-info {
+            padding: 14px 16px;
+            border-top: 1px solid #ece9e2;
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        /* Rule cards */
+        .rule-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 24px 0;
+        }
+        .rule-card {
+            border: 1px solid var(--rule);
+            border-radius: 6px;
+            padding: 24px;
+            background: #fff;
+        }
+        .rule-card .num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--leaf);
+            background: rgba(74,222,128,0.1);
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .rule-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+        .rule-card p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+        /* Spec table */
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+        }
+        .spec-table th {
+            text-align: left;
+            padding: 12px 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            border-bottom: 1px solid var(--rule);
+            font-weight: 500;
+        }
+        .spec-table td {
+            padding: 14px 16px;
+            font-size: 14px;
+            border-bottom: 1px solid #ece9e2;
+        }
+        .spec-table td:first-child { font-weight: 500; }
+        .spec-table code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            background: rgba(15,42,31,0.06);
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        /* Color pairing */
+        .pair-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .pair-card {
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--rule);
+        }
+        .pair-stage {
+            aspect-ratio: 1/1;
+            display: grid;
+            place-items: center;
+            padding: 16px;
+        }
+        .pair-info {
+            padding: 12px 14px;
+            background: #fff;
+            border-top: 1px solid var(--rule);
+        }
+        .pair-name { font-size: 12px; font-weight: 500; }
+        .pair-status { font-size: 11px; margin-top: 2px; }
+        .pair-status.ok { color: #166534; }
+        .pair-status.no { color: var(--red); }
+        .pair-status.cond { color: #b45309; }
+
+        /* Typography samples */
+        .type-row {
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            gap: 32px;
+            padding: 20px 0;
+            border-bottom: 1px solid #ece9e2;
+            align-items: baseline;
+        }
+        .type-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: .06em;
+        }
+
+        /* Clearspace demo */
+        .clearspace-demo {
+            background: #fff;
+            border: 1px solid var(--rule);
+            border-radius: 6px;
+            padding: 48px;
+            display: grid;
+            place-items: center;
+            margin: 24px 0;
+        }
+        .clearspace-box {
+            position: relative;
+            display: inline-block;
+        }
+        .cs-border {
+            position: absolute;
+            border: 1px dashed rgba(74,222,128,0.5);
+        }
+        .cs-label {
+            position: absolute;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            color: var(--leaf);
+            letter-spacing: .08em;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+
+        <header class="mast">
+            <div class="mast-label">DESTAKA / BRAND GUIDELINES V1.0</div>
+            <div class="mast-label">07.MAY.2026</div>
+        </header>
+
+        <div class="hero">
+            <h1>Brand Guidelines</h1>
+            <p>Regras de uso da marca Destaka. O que pode, o que nao pode, e por que. Para manter consistencia em todos os touchpoints, verticais e contextos.</p>
+        </div>
+
+        <!-- ========================================= -->
+        <!-- 01: CLEAR SPACE & MINIMUM SIZE -->
+        <!-- ========================================= -->
+        <section>
+            <div class="sec-label">01 / ESPACO E TAMANHO</div>
+            <div class="sec-title">Clear space e tamanho minimo</div>
+            <div class="sec-desc">A area de respiro ao redor do mark garante legibilidade e presenca. Nunca comprima ou encoste elementos no logo.</div>
+
+            <div class="clearspace-demo">
+                <div class="clearspace-box">
+                    <div class="cs-border" style="top:-32px; left:-32px; right:-32px; bottom:-32px; border-radius:4px;"></div>
+                    <div class="cs-label" style="top:-28px; left:50%; transform:translateX(-50%);">x · 1.5</div>
+                    <div class="cs-label" style="left:-30px; top:50%; transform:translateY(-50%) rotate(-90deg);">x · 1.5</div>
+                    <svg width="72" height="84" viewBox="0 0 72 84" fill="none">
+                        <path fill-rule="evenodd" d="M36 5C50.91 5 63 17.09 63 32C63 43.5 56.4 51.7 49.6 59.6C44.5 65.55 39.6 71.2 36 76C32.4 71.2 27.5 65.55 22.4 59.6C15.6 51.7 9 43.5 9 32C9 17.09 21.09 5 36 5Z M19.5 32C24 24.5 30 21 36 21C42 21 48 24.5 52.5 32C48 39.5 42 43 36 43C30 43 24 39.5 19.5 32Z" fill="#0F2A1F"/>
+                        <circle cx="36" cy="32" r="4.2" fill="#4ade80"/>
+                    </svg>
+                </div>
+            </div>
+
+            <table class="spec-table">
+                <thead>
+                    <tr><th>Contexto</th><th>Tamanho minimo</th><th>Versao</th><th>Observacao</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Favicon</td><td><code>16px</code></td><td>Mark mini (pin + ponto)</td><td>Sem olho interno, stroke mais grosso</td></tr>
+                    <tr><td>Navegacao / tab</td><td><code>24px</code></td><td>Mark mini</td><td>Ponto central suficiente</td></tr>
+                    <tr><td>App icon</td><td><code>32px</code></td><td>Mark completo ou Monograma D</td><td>iOS/Android, usar versao solid do D</td></tr>
+                    <tr><td>Navbar / header</td><td><code>32px</code> mark + wordmark</td><td>Lockup horizontal</td><td>Mark + "Destaka" lado a lado</td></tr>
+                    <tr><td>Hero / destaque</td><td><code>64px+</code></td><td>Mark completo</td><td>Olho interno visivel, todas as camadas</td></tr>
+                    <tr><td>Impressao</td><td><code>15mm</code> de altura</td><td>Mark completo</td><td>Abaixo disso, usar mark mini</td></tr>
+                </tbody>
+            </table>
+
+            <div class="rule-grid">
+                <div class="rule-card">
+                    <div class="num">R1</div>
+                    <h4>Clear space = 1.5x</h4>
+                    <p>Margem minima ao redor do mark e do lockup = 1.5 vezes a largura do "x" da fonte (12 unidades no grid). Nenhum elemento (texto, borda, icone, foto) entra nessa zona.</p>
+                </div>
+                <div class="rule-card">
+                    <div class="num">R2</div>
+                    <h4>Sempre solido, nunca outline</h4>
+                    <p>O Pin+Olho e SEMPRE usado em versao solida (fill com evenodd). Nunca em outline/stroke. A versao solida tem mais presenca, mais peso visual e funciona melhor em qualquer tamanho.</p>
+                </div>
+                <div class="rule-card">
+                    <div class="num">R3</div>
+                    <h4>Abaixo de 24px = mini</h4>
+                    <p>Em tamanhos menores que 24px, usar sempre a versao simplificada (pin + ponto central, sem olho). O detalhe do olho nao e legivel e vira ruido.</p>
+                </div>
+                <div class="rule-card">
+                    <div class="num">R4</div>
+                    <h4>Monograma D para quadrado</h4>
+                    <p>Quando o contexto exige formato quadrado (app icon, avatar, selo), usar o Monograma D. Nunca forcar o Pin+Olho num container quadrado.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================= -->
+        <!-- 02: DO / DON'T — MARK -->
+        <!-- ========================================= -->
+        <section>
+            <div class="sec-label">02 / USO DO MARK</div>
+            <div class="sec-title">O que fazer e nao fazer</div>
+            <div class="sec-desc">Regras inegociaveis. Qualquer desvio compromete a consistencia da marca.</div>
+
+            <div class="dodont-grid">
+                <div class="dodont-card do">
+                    <div class="dodont-stage" style="background:#f9f9f6;">
+                        <div class="dodont-label">CERTO</div>
+                        <svg width="56" height="65" viewBox="0 0 72 84" fill="none">
+                            <path fill-rule="evenodd" d="M36 5C50.91 5 63 17.09 63 32C63 43.5 56.4 51.7 49.6 59.6C44.5 65.55 39.6 71.2 36 76C32.4 71.2 27.5 65.55 22.4 59.6C15.6 51.7 9 43.5 9 32C9 17.09 21.09 5 36 5Z M19.5 32C24 24.5 30 21 36 21C42 21 48 24.5 52.5 32C48 39.5 42 43 36 43C30 43 24 39.5 19.5 32Z" fill="#0F2A1F"/>
+                            <circle cx="36" cy="32" r="4.2" fill="#4ade80"/>
+                        </svg>
+                    </div>
+                    <div class="dodont-info">Usar o mark SEMPRE em versao solida (fill, nunca outline/stroke). Cor do vertical domina o mark inteiro, nao so a pupila.</div>
+                </div>
+                <div class="dodont-card dont">
+                    <div class="dodont-stage" style="background:#f9f9f6;">
+                        <div class="dodont-label">ERRADO</div>
+                        <svg width="56" height="65" viewBox="0 0 72 84" fill="none" style="transform: scaleX(1.4);">
+                            <path fill-rule="evenodd" d="M36 5C50.91 5 63 17.09 63 32C63 43.5 56.4 51.7 49.6 59.6C44.5 65.55 39.6 71.2 36 76C32.4 71.2 27.5 65.55 22.4 59.6C15.6 51.7 9 43.5 9 32C9 17.09 21.09 5 36 5Z M19.5 32C24 24.5 30 21 36 21C42 21 48 24.5 52.5 32C48 39.5 42 43 36 43C30 43 24 39.5 19.5 32Z" fill="#0F2A1F"/>
+                            <circle cx="36" cy="32" r="4.2" fill="#4ade80"/>
+                        </svg>
+                    </div>
+                    <div class="dodont-info">Nunca distorcer o mark. Sem esticar, achatar, rotacionar ou inclinar. Proporcoes sao fixas.</div>
+                </div>
+                <div class="dodont-card do">
+                    <div class="dodont-stage" style="background: var(--ink);">
+                        <div class="dodont-label" style="color:#4ade80;">CERTO</div>
+                        <svg width="56" height="65" viewBox="0 0 72 84" fill="none">
+                            <path fill-rule="evenodd" d="M36 5C50.91 5 63 17.09 63 32C63 43.5 56.4 51.7 49.6 59.6C44.5 65.55 39.6 71.2 36 76C32.4 71.2 27.5 65.55 22.4 59.6C15.6 51.7 9 43.5 9 32C9 17.09 21.09 5 36 5Z M19.5 32C24 24.5 30 21 36 21C42 21 48 24.5 52.5 32C48 39.5 42 43 36 43C30 43 24 39.5 19.5 32Z" fill="#ffffff"/>
+                            <circle cx="36" cy="32" r="4.2" fill="#4ade80"/>
+                        </svg>
+                    </div>
+                    <div class="dodont-info">Sobre fundo escuro: pin e olho em branco solido (fill, nao stroke), pupila accent ou cor do vertical.</div>
+                </div>
+                <div class="dodont-card dont">
+                    <div class="dodont-stage" style="background: #c2c2c2;">
+                        <div class="dodont-label">ERRADO</div>
+                        <svg width="56" height="65" viewBox="0 0 72 84" fill="none" style="opacity:0.3;">
+                            <path fill-rule="evenodd" d="M36 5C50.91 5 63 17.09 63 32C63 43.5 56.4 51.7 49.6 59.6C44.5 65.55 39.6 71.2 36 76C32.4 71.2 27.5 65.55 22.4 59.6C15.6 51.7 9 43.5 9 32C9 17.09 21.09 5 36 5Z M19.5 32C24 24.5 30 21 36 21C42 21 48 24.5 52.5 32C48 39.5 42 43 36 43C30 43 24 39.5 19.5 32Z" fill="#999"/>
+                            <circle cx="36" cy="32" r="4.2" fill="#999"/>
+                        </svg>
+                    </div>
+                    <div class="dodont-info">Nunca colocar o mark sobre fundo que nao garante contraste. Sem fundos meio-tom, texturas ou fotos sem overlay.</div>
+                </div>
+                <div class="dodont-card do">
+                    <div class="dodont-stage" style="background:#f9f9f6;">
+                        <div class="dodont-label">CERTO</div>
+                        <div style="display:flex; align-items:center; gap:14px;">
+                            <svg width="40" height="47" viewBox="0 0 72 84" fill="none">
+                                <path fill-rule="evenodd" d="M36 5C50.91 5 63 17.09 63 32C63 43.5 56.4 51.7 49.6 59.6C44.5 65.55 39.6 71.2 36 76C32.4 71.2 27.5 65.55 22.4 59.6C15.6 51.7 9 43.5 9 32C9 17.09 21.09 5 36 5Z M19.5 32C24 24.5 30 21 36 21C42 21 48 24.5 52.5 32C48 39.5 42 43 36 43C30 43 24 39.5 19.5 32Z" fill="#0EA5E9"/>
+                                <circle cx="36" cy="32" r="4.2" fill="#0EA5E9"/>
+                            </svg>
+                            <span style="font-family:'Outfit'; font-weight:700; font-size:24px; color:#0F2A1F;">Destaka</span>
+                            <span style="font-family:'Outfit'; font-weight:300; font-size:24px; color:rgba(15,42,31,0.4);">Saude</span>
+                        </div>
+                    </div>
+                    <div class="dodont-info">Mark inteiro na cor do vertical (fundo claro) ou pin branco + pupila na cor (fundo escuro). Nome do vertical em Outfit 300, opacidade 40-50%.</div>
+                </div>
+                <div class="dodont-card dont">
+                    <div class="dodont-stage" style="background:#f9f9f6;">
+                        <div class="dodont-label">ERRADO</div>
+                        <div style="display:flex; align-items:center; gap:14px;">
+                            <svg width="40" height="47" viewBox="0 0 72 84" fill="none">
+                                <path d="M36 5C50.91 5 63 17.09 63 32C63 43.5 56.4 51.7 49.6 59.6C44.5 65.55 39.6 71.2 36 76C32.4 71.2 27.5 65.55 22.4 59.6C15.6 51.7 9 43.5 9 32C9 17.09 21.09 5 36 5Z" fill="none" stroke="#0EA5E9" stroke-width="3.6" stroke-linejoin="round"/>
+                                <path d="M19.5 32C24 24.5 30 21 36 21C42 21 48 24.5 52.5 32C48 39.5 42 43 36 43C30 43 24 39.5 19.5 32Z" fill="none" stroke="#0EA5E9" stroke-width="3.2" stroke-linejoin="round"/>
+                                <circle cx="36" cy="32" r="4.2" fill="#0EA5E9"/>
+                            </svg>
+                            <span style="font-family:'Outfit'; font-weight:700; font-size:24px; color:#0EA5E9;">Destaka</span>
+                            <span style="font-family:'Outfit'; font-weight:700; font-size:24px; color:#0EA5E9;">Saude</span>
+                        </div>
+                    </div>
+                    <div class="dodont-info">Em fundo escuro, pin fica branco e pupila na cor do vertical. Em fundo claro, pin E pupila na cor. Nunca usar mesmo peso no nome do vertical (sempre 300, nunca 700).</div>
+                </div>
+                <div class="dodont-card dont">
+                    <div class="dodont-stage" style="background:#f9f9f6;">
+                        <div class="dodont-label">ERRADO</div>
+                        <div style="display:flex; align-items:center; gap:14px;">
+                            <svg width="40" height="47" viewBox="0 0 72 84" fill="none">
+                                <path fill-rule="evenodd" d="M36 5C50.91 5 63 17.09 63 32C63 43.5 56.4 51.7 49.6 59.6C44.5 65.55 39.6 71.2 36 76C32.4 71.2 27.5 65.55 22.4 59.6C15.6 51.7 9 43.5 9 32C9 17.09 21.09 5 36 5Z M19.5 32C24 24.5 30 21 36 21C42 21 48 24.5 52.5 32C48 39.5 42 43 36 43C30 43 24 39.5 19.5 32Z" fill="#0F2A1F"/>
+                                <circle cx="36" cy="32" r="4.2" fill="#4ade80"/>
+                            </svg>
+                            <span style="font-family:'Arial'; font-weight:700; font-size:24px; color:#0F2A1F;">Destaka</span>
+                        </div>
+                    </div>
+                    <div class="dodont-info">Nunca substituir a fonte do wordmark. Sempre Outfit 700. Nao usar Arial, Helvetica, ou qualquer outra fonte.</div>
+                </div>
+                <div class="dodont-card dont">
+                    <div class="dodont-stage" style="background:#f9f9f6;">
+                        <div class="dodont-label">ERRADO</div>
+                        <div style="position:relative;">
+                            <svg width="56" height="65" viewBox="0 0 72 84" fill="none">
+                                <path fill-rule="evenodd" d="M36 5C50.91 5 63 17.09 63 32C63 43.5 56.4 51.7 49.6 59.6C44.5 65.55 39.6 71.2 36 76C32.4 71.2 27.5 65.55 22.4 59.6C15.6 51.7 9 43.5 9 32C9 17.09 21.09 5 36 5Z M19.5 32C24 24.5 30 21 36 21C42 21 48 24.5 52.5 32C48 39.5 42 43 36 43C30 43 24 39.5 19.5 32Z" fill="#0F2A1F"/>
+                                <circle cx="36" cy="32" r="4.2" fill="#4ade80"/>
+                            </svg>
+                            <div style="position:absolute; top:0; left:0; width:100%; height:100%; background:linear-gradient(135deg, rgba(255,0,0,0.2), rgba(0,0,255,0.2)); border-radius:4px;"></div>
+                        </div>
+                    </div>
+                    <div class="dodont-info">Nunca aplicar efeitos: sombra, gradiente, glow, bevel, outline adicional. O mark e limpo por definicao.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================= -->
+        <!-- 03: FUNDOS PERMITIDOS -->
+        <!-- ========================================= -->
+        <section>
+            <div class="sec-label">03 / FUNDOS</div>
+            <div class="sec-title">Combinacoes permitidas</div>
+            <div class="sec-desc">O mark funciona em 4 fundos. Qualquer outro fundo precisa de aprovacao.</div>
+
+            <div class="pair-grid">
+                <div class="pair-card">
+                    <div class="pair-stage" style="background:var(--ink);">
+                        <svg width="40" height="47" viewBox="0 0 72 84" fill="none">
+                            <path fill-rule="evenodd" d="M36 5C50.91 5 63 17.09 63 32C63 43.5 56.4 51.7 49.6 59.6C44.5 65.55 39.6 71.2 36 76C32.4 71.2 27.5 65.55 22.4 59.6C15.6 51.7 9 43.5 9 32C9 17.09 21.09 5 36 5Z M19.5 32C24 24.5 30 21 36 21C42 21 48 24.5 52.5 32C48 39.5 42 43 36 43C30 43 24 39.5 19.5 32Z" fill="#ffffff"/>
+                            <circle cx="36" cy="32" r="4.2" fill="#4ade80"/>
+                        </svg>
+                    </div>
+                    <div class="pair-info">
+                        <div class="pair-name">Verde Profundo #0F2A1F</div>
+                        <div class="pair-status ok">PRIMARIO</div>
+                    </div>
+                </div>
+                <div class="pair-card">
+                    <div class="pair-stage" style="background:#fff;">
+                        <svg width="40" height="47" viewBox="0 0 72 84" fill="none">
+                            <path fill-rule="evenodd" d="M36 5C50.91 5 63 17.09 63 32C63 43.5 56.4 51.7 49.6 59.6C44.5 65.55 39.6 71.2 36 76C32.4 71.2 27.5 65.55 22.4 59.6C15.6 51.7 9 43.5 9 32C9 17.09 21.09 5 36 5Z M19.5 32C24 24.5 30 21 36 21C42 21 48 24.5 52.5 32C48 39.5 42 43 36 43C30 43 24 39.5 19.5 32Z" fill="#0F2A1F"/>
+                            <circle cx="36" cy="32" r="4.2" fill="#0F2A1F"/>
+                        </svg>
+                    </div>
+                    <div class="pair-info">
+                        <div class="pair-name">Branco #FFFFFF</div>
+                        <div class="pair-status ok">PERMITIDO</div>
+                    </div>
+                </div>
+                <div class="pair-card">
+                    <div class="pair-stage" style="background:#0a0a0a;">
+                        <svg width="40" height="47" viewBox="0 0 72 84" fill="none">
+                            <path fill-rule="evenodd" d="M36 5C50.91 5 63 17.09 63 32C63 43.5 56.4 51.7 49.6 59.6C44.5 65.55 39.6 71.2 36 76C32.4 71.2 27.5 65.55 22.4 59.6C15.6 51.7 9 43.5 9 32C9 17.09 21.09 5 36 5Z M19.5 32C24 24.5 30 21 36 21C42 21 48 24.5 52.5 32C48 39.5 42 43 36 43C30 43 24 39.5 19.5 32Z" fill="#4ade80"/>
+                            <circle cx="36" cy="32" r="4.2" fill="#4ade80"/>
+                        </svg>
+                    </div>
+                    <div class="pair-info">
+                        <div class="pair-name">Preto #0A0A0A</div>
+                        <div class="pair-status ok">PERMITIDO</div>
+                    </div>
+                </div>
+                <div class="pair-card">
+                    <div class="pair-stage" style="background:var(--paper);">
+                        <svg width="40" height="47" viewBox="0 0 72 84" fill="none">
+                            <path fill-rule="evenodd" d="M36 5C50.91 5 63 17.09 63 32C63 43.5 56.4 51.7 49.6 59.6C44.5 65.55 39.6 71.2 36 76C32.4 71.2 27.5 65.55 22.4 59.6C15.6 51.7 9 43.5 9 32C9 17.09 21.09 5 36 5Z M19.5 32C24 24.5 30 21 36 21C42 21 48 24.5 52.5 32C48 39.5 42 43 36 43C30 43 24 39.5 19.5 32Z" fill="#0F2A1F"/>
+                            <circle cx="36" cy="32" r="4.2" fill="#0F2A1F"/>
+                        </svg>
+                    </div>
+                    <div class="pair-info">
+                        <div class="pair-name">Paper #F6F4EF</div>
+                        <div class="pair-status ok">PERMITIDO</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rule-grid">
+                <div class="rule-card">
+                    <div class="num" style="background:rgba(239,68,68,0.1); color:#ef4444;">PROIBIDO</div>
+                    <h4>Fundos coloridos</h4>
+                    <p>Nunca sobre azul, vermelho, amarelo ou qualquer cor fora da paleta. Inclui gradientes e fotos sem overlay escuro.</p>
+                </div>
+                <div class="rule-card">
+                    <div class="num" style="background:rgba(239,68,68,0.1); color:#ef4444;">PROIBIDO</div>
+                    <h4>Fundos meio-tom</h4>
+                    <p>Cinzas entre #666 e #999 nao garantem contraste. Fundo precisa ser claramente claro ou claramente escuro.</p>
+                </div>
+                <div class="rule-card">
+                    <div class="num" style="background:rgba(180,147,9,0.1); color:#b45309;">CONDICIONAL</div>
+                    <h4>Sobre fotografia</h4>
+                    <p>Permitido so com overlay escuro (min 70% opacidade de #0F2A1F). O mark precisa de contraste minimo 4.5:1.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================= -->
+        <!-- 04: TIPOGRAFIA -->
+        <!-- ========================================= -->
+        <section>
+            <div class="sec-label">04 / TIPOGRAFIA</div>
+            <div class="sec-title">Sistema tipografico</div>
+            <div class="sec-desc">Duas familias, papeis claros. Outfit para marca e headings. Inter para corpo de texto. Nunca misturar.</div>
+
+            <div class="type-row">
+                <div class="type-label">Display / Wordmark</div>
+                <div style="font-family:'Outfit'; font-weight:700; font-size:40px; letter-spacing:-0.03em; color:var(--ink);">Outfit Bold 700</div>
+            </div>
+            <div class="type-row">
+                <div class="type-label">Vertical name</div>
+                <div style="font-family:'Outfit'; font-weight:300; font-size:40px; letter-spacing:-0.03em; color:rgba(15,42,31,0.4);">Outfit Light 300</div>
+            </div>
+            <div class="type-row">
+                <div class="type-label">Headings</div>
+                <div style="font-family:'Outfit'; font-weight:600; font-size:28px; letter-spacing:-0.02em; color:var(--ink);">Outfit Semibold 600</div>
+            </div>
+            <div class="type-row">
+                <div class="type-label">Body</div>
+                <div style="font-family:'Inter'; font-weight:400; font-size:16px; line-height:1.6; color:#333;">Inter Regular 400. Usado em paragrafos, descricoes, UI. Line-height 1.5 a 1.7.</div>
+            </div>
+            <div class="type-row">
+                <div class="type-label">Body emphasis</div>
+                <div style="font-family:'Inter'; font-weight:600; font-size:16px; color:var(--ink);">Inter Semibold 600. Labels, botoes, destaques em texto.</div>
+            </div>
+            <div class="type-row">
+                <div class="type-label">Code / specs</div>
+                <div style="font-family:'JetBrains Mono'; font-weight:400; font-size:14px; color:var(--muted);">JetBrains Mono 400. Hex codes, specs tecnicas, labels secundarios.</div>
+            </div>
+
+            <div class="rule-grid" style="margin-top:32px;">
+                <div class="rule-card">
+                    <div class="num">T1</div>
+                    <h4>Wordmark = Outfit 700</h4>
+                    <p>A palavra "Destaka" SEMPRE em Outfit Bold 700, letter-spacing -0.5px. Sem exceção. Nenhum outro peso, nenhuma outra fonte.</p>
+                </div>
+                <div class="rule-card">
+                    <div class="num">T2</div>
+                    <h4>Vertical = Outfit 300</h4>
+                    <p>Nome do vertical (Saude, Pet, etc.) SEMPRE em Outfit Light 300, opacidade 40-50%. Nunca em bold, nunca na mesma cor que o wordmark.</p>
+                </div>
+                <div class="rule-card">
+                    <div class="num">T3</div>
+                    <h4>Body nunca em Outfit</h4>
+                    <p>Paragrafos e texto corrido sempre em Inter. Outfit e so para display, headings e marca. Misturar mata a hierarquia.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================= -->
+        <!-- 05: CORES — REGRAS -->
+        <!-- ========================================= -->
+        <section>
+            <div class="sec-label">05 / COR</div>
+            <div class="sec-title">Regras de uso de cor</div>
+            <div class="sec-desc">A cor do vertical domina o mark inteiro (pin + pupila) e o fundo do Monograma D. Sobre fundo escuro, pin fica branco e pupila na cor.</div>
+
+            <div class="rule-grid">
+                <div class="rule-card">
+                    <div class="num">C1</div>
+                    <h4>Cor do vertical = mark inteiro</h4>
+                    <p>No mark Pin+Olho, a cor do vertical domina o mark inteiro (pin + pupila). Sobre fundo escuro: pin branco, pupila na cor do vertical. Sobre fundo claro: pin E pupila na cor do vertical. A cor do vertical nunca fica restrita so a pupila.</p>
+                </div>
+                <div class="rule-card">
+                    <div class="num">C2</div>
+                    <h4>Monograma D = fundo vertical</h4>
+                    <p>No Monograma D solid, o fundo do squircle usa a cor do vertical. O D interno fica branco (sobre fundo colorido) ou verde-escuro (sobre fundo claro).</p>
+                </div>
+                <div class="rule-card">
+                    <div class="num">C3</div>
+                    <h4>Nunca misturar cores de vertical</h4>
+                    <p>Cada contexto tem um vertical ativo. Nunca mostrar pupila azul (Saude) ao lado de wordmark com cor verde (Pet). Um vertical por vez.</p>
+                </div>
+                <div class="rule-card">
+                    <div class="num">C4</div>
+                    <h4>Marca-mae = accent (#4ade80)</h4>
+                    <p>Quando nao ha vertical ativo (hub institucional, manifesto, LinkedIn da empresa), o mark inteiro usa #4ade80 (verde vibrante) sobre fundo escuro, ou branco sobre verde. Nunca cinza.</p>
+                </div>
+                <div class="rule-card">
+                    <div class="num">C5</div>
+                    <h4>CTA = accent ou ink</h4>
+                    <p>Botoes primarios: fundo #4ade80, texto #0F2A1F. Botoes secundarios: borda #0F2A1F, texto #0F2A1F. Nunca usar cor de vertical em botao.</p>
+                </div>
+                <div class="rule-card">
+                    <div class="num">C6</div>
+                    <h4>Texto = ink ou branco</h4>
+                    <p>Texto sempre em #0F2A1F (fundos claros) ou #FFFFFF (fundos escuros). Nunca em cor de vertical, nunca em accent. Cor e pra marca, nao pra texto.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================= -->
+        <!-- 06: LOCKUPS -->
+        <!-- ========================================= -->
+        <section>
+            <div class="sec-label">06 / LOCKUPS</div>
+            <div class="sec-title">Configuracoes do lockup</div>
+            <div class="sec-desc">O lockup e a combinacao mark + wordmark. Tem regras fixas de proporcao e alinhamento.</div>
+
+            <table class="spec-table">
+                <thead>
+                    <tr><th>Regra</th><th>Especificacao</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Distancia mark → wordmark</td><td>0.15x a largura do "x" (cap-height da fonte). Mark quase colado ao wordmark, formando unidade visual coesa.</td></tr>
+                    <tr><td>Alinhamento vertical</td><td>Centro optico do mark alinhado com baseline do wordmark.</td></tr>
+                    <tr><td>Proporcao mark:wordmark</td><td>Altura do mark = cap-height do wordmark. Nunca maior, nunca menor.</td></tr>
+                    <tr><td>Lockup vertical (empilhado)</td><td>Permitido so acima de 200px de largura. Mark em cima, wordmark embaixo, centralizado.</td></tr>
+                    <tr><td>Wordmark sozinho</td><td>Permitido quando mark ja aparece em outro lugar da pagina (ex: favicon carregado = wordmark no header).</td></tr>
+                    <tr><td>Mark sozinho</td><td>Permitido em contextos onde espaco e limitado (avatar, favicon, selo). Sempre com clear space.</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ========================================= -->
+        <!-- 07: TAGLINES -->
+        <!-- ========================================= -->
+        <section>
+            <div class="sec-label">07 / TAGLINES</div>
+            <div class="sec-title">Uso das taglines</div>
+            <div class="sec-desc">Taglines aprovadas e onde usar cada uma.</div>
+
+            <table class="spec-table">
+                <thead>
+                    <tr><th>Tagline</th><th>Contexto de uso</th><th>Formatacao</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Quem te procura, te encontra.</strong></td><td>Hero do site, bio LinkedIn, cartao de visita, assinatura de email, OG image</td><td>Outfit 500 ou Inter 500, uppercase com letter-spacing 1.5px, ou sentence case 16-20px</td></tr>
+                    <tr><td><strong>Competencia visivel.</strong></td><td>Manifesto, apresentacoes, swag, material institucional</td><td>Outfit 600, sentence case, tamanho grande (28-48px)</td></tr>
+                    <tr><td>Taglines de vertical</td><td>Landing page do vertical, email de boas-vindas, ads do vertical</td><td>Inter 500, sentence case, 16-18px. Nunca em lockup com mark.</td></tr>
+                </tbody>
+            </table>
+
+            <div class="rule-grid" style="margin-top:24px;">
+                <div class="rule-card">
+                    <div class="num">TG1</div>
+                    <h4>Tagline nao e parte do lockup</h4>
+                    <p>A tagline nunca e travada com mark+wordmark. Sempre aparece separada, abaixo ou ao lado, com espaco proprio.</p>
+                </div>
+                <div class="rule-card">
+                    <div class="num">TG2</div>
+                    <h4>Uma tagline por contexto</h4>
+                    <p>Nunca mostrar tagline institucional e tagline de vertical no mesmo bloco visual. Escolher uma.</p>
+                </div>
+                <div class="rule-card">
+                    <div class="num">TG3</div>
+                    <h4>Sem travessao</h4>
+                    <p>Regra absoluta de copy: nenhum texto da marca usa travessao (—). Substituir por virgula, ponto ou reescrever.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================= -->
+        <!-- 08: RESUMO RAPIDO -->
+        <!-- ========================================= -->
+        <section style="border-bottom:none;">
+            <div class="sec-label">08 / RESUMO</div>
+            <div class="sec-title">Checklist rapido</div>
+            <div class="sec-desc">Antes de publicar qualquer material com a marca Destaka, verifique:</div>
+
+            <div style="background:var(--ink); border-radius:8px; padding:40px; color:#fff;">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px;">
+                    <div>
+                        <h4 style="color:var(--leaf); font-size:13px; font-family:'JetBrains Mono',monospace; letter-spacing:.1em; margin-bottom:16px;">OBRIGATORIO</h4>
+                        <ul style="list-style:none; font-size:14px; line-height:2.2;">
+                            <li>☐ Mark nas proporcoes originais (sem distorcao)</li>
+                            <li>☐ Clear space de 1.5x respeitado</li>
+                            <li>☐ Fundo aprovado (verde, branco, preto ou paper)</li>
+                            <li>☐ Contraste minimo 4.5:1</li>
+                            <li>☐ Wordmark em Outfit 700</li>
+                            <li>☐ Vertical em Outfit 300, opacidade 40-50%</li>
+                            <li>☐ Pupila na cor correta (accent ou vertical)</li>
+                            <li>☐ Sem efeitos (sombra, glow, gradiente)</li>
+                            <li>☐ Sem travessao em nenhum texto</li>
+                            <li>☐ Acentuacao 100% correta</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color:var(--red); font-size:13px; font-family:'JetBrains Mono',monospace; letter-spacing:.1em; margin-bottom:16px;">PROIBIDO</h4>
+                        <ul style="list-style:none; font-size:14px; line-height:2.2; color:rgba(255,255,255,0.7);">
+                            <li>✗ Usar Pin+Olho em outline/stroke (sempre solid)</li>
+                            <li>✗ Distorcer, rotacionar ou inclinar o mark</li>
+                            <li>✗ Trocar fonte do wordmark</li>
+                            <li>✗ Colorir stroke do mark na cor do vertical</li>
+                            <li>✗ Usar mark sobre fundo sem contraste</li>
+                            <li>✗ Usar mark completo abaixo de 32px</li>
+                            <li>✗ Misturar cores de verticais diferentes</li>
+                            <li>✗ Usar cor de vertical em texto ou botao</li>
+                            <li>✗ Emoji em interface de produto</li>
+                            <li>✗ Usar travessao em qualquer copy</li>
+                            <li>✗ Dados falsos ou mock em material publico</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</body>
+</html>

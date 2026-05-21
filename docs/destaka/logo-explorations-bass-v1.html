@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Destaka — Logo Explorations by Saul Bass</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #fafafa; font-family: 'Outfit', sans-serif; color: #1a1a1a; }
+
+  .header {
+    background: #0F2A1F;
+    padding: 48px 40px;
+    color: #fff;
+  }
+  .header h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; }
+  .header p { font-size: 15px; opacity: 0.6; margin-top: 8px; font-weight: 300; }
+
+  .section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 40px;
+  }
+  .section-title {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #999;
+    margin-bottom: 32px;
+    font-weight: 400;
+  }
+  .section-subtitle {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 40px;
+    max-width: 640px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .card {
+    border-radius: 16px;
+    padding: 48px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 320px;
+    position: relative;
+    transition: transform 0.2s;
+  }
+  .card:hover { transform: translateY(-2px); }
+  .card-dark { background: #0F2A1F; }
+  .card-light { background: #fff; border: 1px solid #e5e5e5; }
+  .card-green { background: #0F2A1F; }
+  .card-saude { background: #0c2d4a; }
+  .card-pet { background: #0a2e14; }
+  .card-juridico { background: #1E3A5F; }
+
+  .card-label {
+    position: absolute;
+    top: 16px;
+    left: 20px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    opacity: 0.4;
+    font-weight: 400;
+  }
+
+  .card svg { max-width: 100%; }
+
+  .wordmark-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid #e5e5e5;
+    margin: 0;
+  }
+
+  .notes {
+    background: #f5f5f0;
+    padding: 40px;
+    border-radius: 16px;
+    margin-top: 24px;
+  }
+  .notes h3 { font-size: 16px; font-weight: 700; margin-bottom: 16px; }
+  .notes ul { list-style: none; }
+  .notes li { font-size: 14px; color: #555; line-height: 1.8; padding-left: 16px; position: relative; font-weight: 300; }
+  .notes li::before { content: ""; position: absolute; left: 0; top: 10px; width: 6px; height: 6px; border-radius: 50%; background: #4ade80; }
+
+  .scale-row {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .scale-item { text-align: center; }
+  .scale-item span { display: block; font-size: 11px; color: #999; margin-top: 8px; letter-spacing: 1px; }
+
+  .combo-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Canvas download */
+  .download-bar {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+  .btn-download {
+    background: #0F2A1F;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: opacity 0.2s;
+  }
+  .btn-download:hover { opacity: 0.85; }
+  .btn-download.light { background: #fff; color: #0F2A1F; border: 1px solid #ddd; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Destaka — Logo Explorations</h1>
+  <p>Saul Bass methodology: reduction to essence, geometric purity, narrative in a single frame</p>
+</div>
+
+<!-- ============================================================ -->
+<!-- EXPLORATION A: PIN+OLHO REFINADO (GEOMETRIC) -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-title">Exploration A — Pin+Olho Geom&eacute;trico</div>
+  <div class="section-subtitle">
+    O pin de localiza&ccedil;&atilde;o cont&eacute;m um olho. Duas ideias numa forma s&oacute;:
+    "onde voc&ecirc; est&aacute;" + "quem te v&ecirc;". Redu&ccedil;&atilde;o m&aacute;xima. Constru&iacute;do sobre c&iacute;rculo e tri&acirc;ngulo.
+  </div>
+
+  <div class="grid">
+    <!-- A1: Dark -->
+    <div class="card card-dark">
+      <span class="card-label" style="color:#fff">A1 — Dark</span>
+      <svg width="140" height="180" viewBox="0 0 140 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Pin body -->
+        <path d="M70 8C38.2 8 12 34.2 12 66C12 89 24 106 38 120C50 132 62 143 70 155C78 143 90 132 102 120C116 106 128 89 128 66C128 34.2 101.8 8 70 8Z" fill="#4ade80"/>
+        <!-- Eye cutout (negative space) -->
+        <path d="M32 66C44 50 56 44 70 44C84 44 96 50 108 66C96 82 84 88 70 88C56 88 44 82 32 66Z" fill="#0F2A1F"/>
+        <!-- Iris -->
+        <circle cx="70" cy="66" r="9" fill="#4ade80"/>
+        <!-- Pupil -->
+        <circle cx="70" cy="66" r="4" fill="#0F2A1F"/>
+      </svg>
+    </div>
+
+    <!-- A2: Light -->
+    <div class="card card-light">
+      <span class="card-label" style="color:#1a1a1a">A2 — Light</span>
+      <svg width="140" height="180" viewBox="0 0 140 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M70 8C38.2 8 12 34.2 12 66C12 89 24 106 38 120C50 132 62 143 70 155C78 143 90 132 102 120C116 106 128 89 128 66C128 34.2 101.8 8 70 8Z" fill="#0F2A1F"/>
+        <path d="M32 66C44 50 56 44 70 44C84 44 96 50 108 66C96 82 84 88 70 88C56 88 44 82 32 66Z" fill="#fff"/>
+        <circle cx="70" cy="66" r="9" fill="#0F2A1F"/>
+        <circle cx="70" cy="66" r="4" fill="#fff"/>
+      </svg>
+    </div>
+
+    <!-- A3: Mono white -->
+    <div class="card card-dark">
+      <span class="card-label" style="color:#fff">A3 — Mono</span>
+      <svg width="140" height="180" viewBox="0 0 140 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M70 8C38.2 8 12 34.2 12 66C12 89 24 106 38 120C50 132 62 143 70 155C78 143 90 132 102 120C116 106 128 89 128 66C128 34.2 101.8 8 70 8Z" fill="#ffffff"/>
+        <path d="M32 66C44 50 56 44 70 44C84 44 96 50 108 66C96 82 84 88 70 88C56 88 44 82 32 66Z" fill="#0F2A1F"/>
+        <circle cx="70" cy="66" r="9" fill="#ffffff"/>
+        <circle cx="70" cy="66" r="4" fill="#0F2A1F"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ============================================================ -->
+<!-- EXPLORATION B: PIN+OLHO SIMPLIFICADO (MÁXIMA REDUÇÃO) -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-title">Exploration B — Redu&ccedil;&atilde;o M&aacute;xima</div>
+  <div class="section-subtitle">
+    Sem pupila. Sem detalhes desnecess&aacute;rios. O olho &eacute; apenas a forma amendoada no negativo.
+    A &iacute;ris &eacute; um c&iacute;rculo s&oacute;lido. "Se voc&ecirc; pode remover uma linha e o significado sobrevive, remova."
+  </div>
+
+  <div class="grid">
+    <!-- B1 -->
+    <div class="card card-dark">
+      <span class="card-label" style="color:#fff">B1 — Minimal Dark</span>
+      <svg width="120" height="160" viewBox="0 0 120 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+        <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+        <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+      </svg>
+    </div>
+
+    <!-- B2 -->
+    <div class="card card-light">
+      <span class="card-label" style="color:#1a1a1a">B2 — Minimal Light</span>
+      <svg width="120" height="160" viewBox="0 0 120 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#0F2A1F"/>
+        <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#fff"/>
+        <circle cx="60" cy="56" r="7" fill="#0F2A1F"/>
+      </svg>
+    </div>
+
+    <!-- B3: Outline only -->
+    <div class="card card-light">
+      <span class="card-label" style="color:#1a1a1a">B3 — Outline</span>
+      <svg width="120" height="160" viewBox="0 0 120 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" stroke="#0F2A1F" stroke-width="3" fill="none"/>
+        <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" stroke="#0F2A1F" stroke-width="3" fill="none"/>
+        <circle cx="60" cy="56" r="7" fill="#0F2A1F"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ============================================================ -->
+<!-- EXPLORATION C: OLHO COMO PIN (FUSÃO) -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-title">Exploration C — Fus&atilde;o Olho-Pin</div>
+  <div class="section-subtitle">
+    E se o olho N&Atilde;O estivesse dentro do pin, mas FOSSE o pin?
+    A forma do olho j&aacute; tem a anatomia de um pin: larga no centro, afinando na base.
+    Uma &uacute;nica forma que &eacute; simultaneamente olho e localiza&ccedil;&atilde;o.
+  </div>
+
+  <div class="grid">
+    <!-- C1 -->
+    <div class="card card-dark">
+      <span class="card-label" style="color:#fff">C1 — Eye-Pin Dark</span>
+      <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Eye shape that tapers to a point like a pin -->
+        <path d="M20 70C40 40 60 30 80 30C100 30 120 40 140 70C120 100 100 110 80 110C60 110 40 100 20 70Z" fill="#4ade80"/>
+        <!-- Pin point below -->
+        <path d="M68 108L80 140L92 108" fill="#4ade80"/>
+        <!-- Iris -->
+        <circle cx="80" cy="70" r="16" fill="#0F2A1F"/>
+        <!-- Pupil -->
+        <circle cx="80" cy="70" r="7" fill="#4ade80"/>
+      </svg>
+    </div>
+
+    <!-- C2 -->
+    <div class="card card-light">
+      <span class="card-label" style="color:#1a1a1a">C2 — Eye-Pin Light</span>
+      <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 70C40 40 60 30 80 30C100 30 120 40 140 70C120 100 100 110 80 110C60 110 40 100 20 70Z" fill="#0F2A1F"/>
+        <path d="M68 108L80 140L92 108" fill="#0F2A1F"/>
+        <circle cx="80" cy="70" r="16" fill="#fff"/>
+        <circle cx="80" cy="70" r="7" fill="#0F2A1F"/>
+      </svg>
+    </div>
+
+    <!-- C3: Minimal -->
+    <div class="card card-dark">
+      <span class="card-label" style="color:#fff">C3 — Eye-Pin Minimal</span>
+      <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 70C40 40 60 30 80 30C100 30 120 40 140 70C120 100 100 110 80 110C60 110 40 100 20 70Z" fill="#4ade80"/>
+        <path d="M68 108L80 140L92 108" fill="#4ade80"/>
+        <circle cx="80" cy="70" r="10" fill="#0F2A1F"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ============================================================ -->
+<!-- COMBINATION MARKS (SYMBOL + WORDMARK) -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-title">Combination Marks — S&iacute;mbolo + Wordmark</div>
+  <div class="section-subtitle">
+    O s&iacute;mbolo precisa funcionar sozinho (favicon, app icon). Mas na maioria dos contextos,
+    aparece ao lado do nome. Outfit 700, tracking aberto.
+  </div>
+
+  <div class="grid" style="grid-template-columns: 1fr;">
+    <!-- Combo A: Pin+Olho + Destaka -->
+    <div class="card card-dark" style="min-height: 200px; flex-direction: row; gap: 24px;">
+      <span class="card-label" style="color:#fff">Lockup A — Horizontal</span>
+      <svg width="60" height="80" viewBox="0 0 120 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+        <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+        <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+      </svg>
+      <div>
+        <div style="font-size: 36px; font-weight: 700; color: #fff; letter-spacing: 3px;">DESTAKA</div>
+        <div style="font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.4); letter-spacing: 4px; margin-top: 4px;">QUEM TE PROCURA, TE ENCONTRA</div>
+      </div>
+    </div>
+
+    <!-- Combo B: Stacked -->
+    <div class="card card-dark" style="min-height: 280px;">
+      <span class="card-label" style="color:#fff">Lockup B — Stacked</span>
+      <svg width="80" height="106" viewBox="0 0 120 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+        <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+        <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+      </svg>
+      <div style="text-align: center; margin-top: 16px;">
+        <div style="font-size: 32px; font-weight: 700; color: #fff; letter-spacing: 4px;">DESTAKA</div>
+      </div>
+    </div>
+
+    <!-- Combo on white -->
+    <div class="card card-light" style="min-height: 200px; flex-direction: row; gap: 24px;">
+      <span class="card-label" style="color:#1a1a1a">Lockup C — Light Background</span>
+      <svg width="60" height="80" viewBox="0 0 120 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#0F2A1F"/>
+        <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#fff"/>
+        <circle cx="60" cy="56" r="7" fill="#0F2A1F"/>
+      </svg>
+      <div>
+        <div style="font-size: 36px; font-weight: 700; color: #0F2A1F; letter-spacing: 3px;">DESTAKA</div>
+        <div style="font-size: 12px; font-weight: 300; color: rgba(15,42,31,0.4); letter-spacing: 4px; margin-top: 4px;">QUEM TE PROCURA, TE ENCONTRA</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ============================================================ -->
+<!-- VERTICAL MARKS -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-title">Verticais — Cor por Nicho</div>
+  <div class="section-subtitle">
+    Mesmo s&iacute;mbolo, cor muda por vertical. A forma &eacute; constante, a cor identifica o nicho.
+    Branded House: o pin &eacute; sempre o mesmo.
+  </div>
+
+  <div class="grid">
+    <!-- Saude -->
+    <div class="card card-saude">
+      <span class="card-label" style="color:#fff">Sa&uacute;de — #0EA5E9</span>
+      <svg width="80" height="106" viewBox="0 0 120 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#0EA5E9"/>
+        <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0c2d4a"/>
+        <circle cx="60" cy="56" r="7" fill="#0EA5E9"/>
+      </svg>
+      <div style="text-align: center; margin-top: 12px;">
+        <div style="font-size: 20px; font-weight: 700; color: #fff; letter-spacing: 3px;">DESTAKA</div>
+        <div style="font-size: 13px; font-weight: 300; color: #0EA5E9; letter-spacing: 2px;">SA&Uacute;DE</div>
+      </div>
+    </div>
+
+    <!-- Pet -->
+    <div class="card card-pet">
+      <span class="card-label" style="color:#fff">Pet — #22C55E</span>
+      <svg width="80" height="106" viewBox="0 0 120 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#22C55E"/>
+        <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0a2e14"/>
+        <circle cx="60" cy="56" r="7" fill="#22C55E"/>
+      </svg>
+      <div style="text-align: center; margin-top: 12px;">
+        <div style="font-size: 20px; font-weight: 700; color: #fff; letter-spacing: 3px;">DESTAKA</div>
+        <div style="font-size: 13px; font-weight: 300; color: #22C55E; letter-spacing: 2px;">PET</div>
+      </div>
+    </div>
+
+    <!-- Juridico -->
+    <div class="card card-juridico">
+      <span class="card-label" style="color:#fff">Jur&iacute;dico — #1E3A5F</span>
+      <svg width="80" height="106" viewBox="0 0 120 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#94B8DB"/>
+        <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#1E3A5F"/>
+        <circle cx="60" cy="56" r="7" fill="#94B8DB"/>
+      </svg>
+      <div style="text-align: center; margin-top: 12px;">
+        <div style="font-size: 20px; font-weight: 700; color: #fff; letter-spacing: 3px;">DESTAKA</div>
+        <div style="font-size: 13px; font-weight: 300; color: #94B8DB; letter-spacing: 2px;">JUR&Iacute;DICO</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ============================================================ -->
+<!-- SCALE TEST -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-title">Scale Test — 12px a 120px</div>
+  <div class="section-subtitle">
+    "A marca deve funcionar no tamanho de um favicon E no tamanho de um outdoor."
+    Aqui est&aacute; o Pin+Olho em 6 tamanhos.
+  </div>
+
+  <div class="card card-dark" style="min-height: 200px;">
+    <div class="scale-row">
+      <div class="scale-item">
+        <svg width="16" height="21" viewBox="0 0 120 160" fill="none"><path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/><path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/><circle cx="60" cy="56" r="7" fill="#4ade80"/></svg>
+        <span>16px</span>
+      </div>
+      <div class="scale-item">
+        <svg width="24" height="32" viewBox="0 0 120 160" fill="none"><path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/><path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/><circle cx="60" cy="56" r="7" fill="#4ade80"/></svg>
+        <span>24px</span>
+      </div>
+      <div class="scale-item">
+        <svg width="32" height="42" viewBox="0 0 120 160" fill="none"><path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/><path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/><circle cx="60" cy="56" r="7" fill="#4ade80"/></svg>
+        <span>32px</span>
+      </div>
+      <div class="scale-item">
+        <svg width="48" height="64" viewBox="0 0 120 160" fill="none"><path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/><path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/><circle cx="60" cy="56" r="7" fill="#4ade80"/></svg>
+        <span>48px</span>
+      </div>
+      <div class="scale-item">
+        <svg width="72" height="96" viewBox="0 0 120 160" fill="none"><path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/><path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/><circle cx="60" cy="56" r="7" fill="#4ade80"/></svg>
+        <span>72px</span>
+      </div>
+      <div class="scale-item">
+        <svg width="120" height="160" viewBox="0 0 120 160" fill="none"><path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/><path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/><circle cx="60" cy="56" r="7" fill="#4ade80"/></svg>
+        <span>120px</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ============================================================ -->
+<!-- MONOGRAM D -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-title">Monograma D — Contextos Compactos</div>
+  <div class="section-subtitle">
+    Para app icon, favicon, avatar em plataformas. O "D" com o olho embutido.
+  </div>
+
+  <div class="grid">
+    <div class="card card-dark">
+      <span class="card-label" style="color:#fff">D1 — D com olho</span>
+      <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- D shape -->
+        <path d="M28 16H60C82 16 100 34 100 56C100 78 82 96 60 96H28V16Z" fill="#4ade80" fill-rule="evenodd"/>
+        <!-- Vertical bar of D -->
+        <rect x="28" y="16" width="14" height="80" fill="#4ade80"/>
+        <!-- Eye cutout in the belly of D -->
+        <path d="M46 56C52 48 58 45 66 45C74 45 80 48 86 56C80 64 74 67 66 67C58 67 52 64 46 56Z" fill="#0F2A1F"/>
+        <circle cx="66" cy="56" r="5" fill="#4ade80"/>
+      </svg>
+    </div>
+
+    <div class="card card-light">
+      <span class="card-label" style="color:#1a1a1a">D2 — D invertido</span>
+      <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M28 16H60C82 16 100 34 100 56C100 78 82 96 60 96H28V16Z" fill="#0F2A1F" fill-rule="evenodd"/>
+        <rect x="28" y="16" width="14" height="80" fill="#0F2A1F"/>
+        <path d="M46 56C52 48 58 45 66 45C74 45 80 48 86 56C80 64 74 67 66 67C58 67 52 64 46 56Z" fill="#fff"/>
+        <circle cx="66" cy="56" r="5" fill="#0F2A1F"/>
+      </svg>
+    </div>
+
+    <div class="card card-dark">
+      <span class="card-label" style="color:#fff">D3 — App Icon</span>
+      <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Rounded square background -->
+        <rect x="4" y="4" width="112" height="112" rx="24" fill="#4ade80"/>
+        <!-- D shape dark -->
+        <path d="M30 24H58C76 24 90 38 90 56C90 74 76 88 58 88H30V24Z" fill="#0F2A1F"/>
+        <rect x="30" y="24" width="12" height="64" fill="#0F2A1F"/>
+        <!-- Eye in D -->
+        <path d="M46 56C52 48 58 46 64 46C70 46 76 48 82 56C76 64 70 66 64 66C58 66 52 64 46 56Z" fill="#4ade80"/>
+        <circle cx="64" cy="56" r="4.5" fill="#0F2A1F"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ============================================================ -->
+<!-- DESIGN NOTES -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="notes">
+    <h3>Notas de Design — Saul Bass</h3>
+    <ul>
+      <li><strong>Exploration A</strong> (Pin+Olho Geom&eacute;trico): vers&atilde;o mais detalhada, com pupila. Funciona bem em tamanhos maiores. Em 16px, a pupila desaparece.</li>
+      <li><strong>Exploration B</strong> (Redu&ccedil;&atilde;o M&aacute;xima): minha recomenda&ccedil;&atilde;o. Sem pupila, o olho &eacute; puro negativo + &iacute;ris s&oacute;lida. Funciona em TODOS os tamanhos. Uma crian&ccedil;a desenharia isto.</li>
+      <li><strong>Exploration C</strong> (Fus&atilde;o Olho-Pin): conceito ousado. O olho &Eacute; o pin. Mais horizontal, diferente. Pode ser polarizante.</li>
+      <li><strong>Verticais:</strong> a forma n&atilde;o muda, s&oacute; a cor. Branded House puro. O s&iacute;mbolo carrega a marca-m&atilde;e.</li>
+      <li><strong>Monograma D:</strong> o olho vive na barriga do D. Funciona como app icon e favicon. Complementar ao Pin+Olho, nunca substituto.</li>
+      <li><strong>Tipografia:</strong> Outfit 700 uppercase com tracking 3-4px. Clean, moderno, n&atilde;o compete com o s&iacute;mbolo.</li>
+      <li><strong>Pr&oacute;ximo passo:</strong> escolher dire&ccedil;&atilde;o (A, B ou C), refinar curvas com precis&atilde;o &oacute;ptica, e passar para Vignelli (grid + guidelines) e Bierut (adapta&ccedil;&atilde;o digital).</li>
+    </ul>
+  </div>
+</div>
+
+<div style="padding: 40px; text-align: center; color: #999; font-size: 12px;">
+  Destaka Logo Explorations v1 — Saul Bass methodology — 2026-05-07
+</div>
+
+</body>
+</html>

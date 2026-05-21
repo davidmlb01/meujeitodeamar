@@ -143,6 +143,12 @@ commands:
     visibility: [full]
     description: 'Extract and document code patterns from codebase'
 
+  # Browser Research
+  - name: browser-research
+    visibility: [full, quick]
+    args: '{url} --goal {competitor|funnel|copy|ux|pricing} [--depth 1] [--project {nome}]'
+    description: 'Pesquisar página externa com agent-browser: captura copy, UX, pricing e screenshots'
+
   # Document Operations
   - name: doc-out
     visibility: [full]
@@ -170,6 +176,8 @@ dependencies:
     - document-project.md
     # Spec Pipeline (Epic 3)
     - spec-research-dependencies.md
+    # Browser Research (agent-browser)
+    - browser-research.md
   scripts:
     # Memory Layer (Epic 7)
     - pattern-extractor.js
@@ -185,6 +193,7 @@ dependencies:
     - google-workspace # Research documentation (Drive, Docs, Sheets)
     - exa # Advanced web research
     - context7 # Library documentation
+    - agent-browser # Browser automation para pesquisa de páginas externas (vercel-labs/agent-browser)
 
 autoClaude:
   version: '3.0'
