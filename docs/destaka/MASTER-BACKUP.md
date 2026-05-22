@@ -1,6 +1,6 @@
 # MASTER-BACKUP: Destaka
-**Última atualização:** 2026-04-12 (sessão 2)
-**Status:** Blueprint completo: PRD, Epic validado pelo PO, arquitetura, compliance, UX onboarding. Pronto para Sprint 1.
+**Última atualização:** 2026-05-22 (sessão design upgrade)
+**Status:** MVP /saude em produção. Design Fases 1+2 concluídas (Geist, Teal, pill buttons, FAQ reordenado). Fase 3 e provas sociais pendentes.
 
 ---
 
@@ -15,6 +15,30 @@
 ## Contexto de Origem
 
 Projeto nasceu da validação com dentistas e fisioterapeutas. Descoberta central: a dor real não é técnica ("não apareço no Google"), é de identidade ("não quero virar marqueteiro meia boca"). Isso define toda a filosofia de produto.
+
+---
+
+## Sessão 2026-05-22 — Design Upgrade Fases 1+2
+
+### O que foi feito
+- Tipografia: Inter removida, Geist Sans instalada (pacote `geist` Vercel, não Google Fonts)
+- Acento de cor: azul `#0EA5E9` substituído por Teal `#14B8A6` (território livre no nicho saúde Brasil)
+- Fundo base: `#091e2f` ajustado para `#071a19` (temperatura mais quente, alinhada ao Teal)
+- Botões: `rounded-xl` para `rounded-full`, active state com `scale(0.97) translateY(-1px)`
+- Button-in-Button: seta em círculo `bg-black/20` nos 4 CTAs principais
+- Animações: `ease-out` substituído por `cubic-bezier(0.32, 0.72, 0, 1)` em `.reveal`, `.reveal-left`, `.reveal-right`, `.card-hover`
+- FAQ reposicionado: ordem mudada de `Recursos > FAQ` para `FAQ > Recursos`
+- Reassurance copy: "Grátis. Sem cartão de crédito." abaixo dos CTAs
+- Fix gramatical: "decide quem o seu paciente vai ligar" para "decide para quem vai ligar"
+- Commit `a6e71ac` pushado para `origin/main`, Vercel deploy automático iniciado
+
+### Pendências registradas (backlog: project_destaka_design_backlog.md)
+- Fase 3: bento assimétrico nos 9 cards, double-bezel, navbar pill flutuante, Framer Motion
+- Estudo do Pin como sistema visual proprietário (Paula Scher)
+- Seção de provas sociais (aguardando dados reais de 2 testadores)
+- Atualizar brand docs com nova cor Teal (#14B8A6 em vez de #0EA5E9)
+- Google OAuth: publicar app para produção no GCP (tokens expiram em 7 dias em modo Testing)
+- Opção B onboarding: cliente adiciona app@destaka.com.br como gerente GMB
 
 ---
 
