@@ -1,6 +1,6 @@
 # MASTER-BACKUP: Destaka
-**Última atualização:** 2026-05-22 (sessão design upgrade)
-**Status:** MVP /saude em produção. Design Fases 1+2 concluídas (Geist, Teal, pill buttons, FAQ reordenado). Fase 3 e provas sociais pendentes.
+**Última atualização:** 2026-05-24 (sessão design Fase 3 completa)
+**Status:** MVP /saude em produção. Design Fases 1+2+3 concluídas. Provas sociais pendentes (2 testadores).
 
 ---
 
@@ -33,12 +33,62 @@ Projeto nasceu da validação com dentistas e fisioterapeutas. Descoberta centra
 - Commit `a6e71ac` pushado para `origin/main`, Vercel deploy automático iniciado
 
 ### Pendências registradas (backlog: project_destaka_design_backlog.md)
-- Fase 3: bento assimétrico nos 9 cards, double-bezel, navbar pill flutuante, Framer Motion
-- Estudo do Pin como sistema visual proprietário (Paula Scher)
 - Seção de provas sociais (aguardando dados reais de 2 testadores)
-- Atualizar brand docs com nova cor Teal (#14B8A6 em vez de #0EA5E9)
 - Google OAuth: publicar app para produção no GCP (tokens expiram em 7 dias em modo Testing)
 - Opção B onboarding: cliente adiciona app@destaka.com.br como gerente GMB
+- Obsidian MOC desatualizado (iCloud EPERM persistente — verificar permissões macOS)
+
+---
+
+## Sessão 2026-05-24 — Lockup D + Cor Teal + Fase 3 Design Completa
+
+### Commits desta sessão
+- `8ebc1c0` — Logo.tsx: lockup D (Pin | Destaka | divider 1px | SAÚDE uppercase teal)
+- `3f8eea1` — Navbar pill flutuante (glass morphism, pointer-events-none outer)
+- `6bc8dd0` — Fase 3 completa: double-bezel + bento assimétrico + Framer Motion spring physics
+
+### O que foi feito
+
+**Lockup D (Logo.tsx):**
+- `dividerH = Math.round(s.text * 0.72)` — divisor na cap-height do Outfit 700
+- `verticalSize = Math.round(s.text * 0.48)` — vertical proporcional ao wordmark
+- `align-items: baseline` no lockup (baseline tipográfica correta para textos de tamanhos mistos)
+- SVG e divisor com `align-self: center` explícito
+
+**Cor Teal — brand docs:**
+- 4 arquivos atualizados: `brand-system-final.html`, `brand-architecture-v1.html`, `brandbook-verticais.html`, `design-system-base.html`
+- 43 ocorrências de `#0EA5E9` substituídas por `#14B8A6`
+
+**Pin Visual System:**
+- `docs/destaka/pin-visual-system-scher-v1.html` — 5 direções exploradas (Desconstrução, Padrão, Escala, Tipografia, DNA)
+- Criado para estudo do Pin+Olho como sistema visual proprietário (abordagem Paula Scher)
+
+**Lockup preview:**
+- `docs/destaka/lockup-final-preview.html` — antes/depois + escala SM/MD/LG/XL + fundo claro + pill
+
+**Navbar pill flutuante:**
+- `div` outer `pointer-events-none` + `nav` inner `rounded-full` com backdrop-blur(24px)
+- Logo size `sm`, gap 6, links hidden em mobile
+
+**Double-bezel (todos os cards):**
+- Outer: `p-[2px] rounded-2xl` + `background: rgba ring`
+- Inner: `rounded-[14px] background: #071a19 boxShadow: inset`
+- Dois estilos: branco (`rgba(255,255,255,0.06)`) e teal (`rgba(20,184,166,0.10)`)
+
+**Bento assimétrico (Recursos, 10 cards):**
+- Grid: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-12`
+- Spans: 7+5 / 4+4+4 / 12-wide / 5+7 / 6+6
+- Card 0 (`large: true`): padding p-8, ícone 28px, título 18px
+- Card 5 (`wide: true`): col-12, flex-row no desktop
+
+**Framer Motion (`components/ui/motion.tsx`):**
+- `MotionCard`: `whileInView` spring (stiffness 100) + `whileHover` lift -3px spring (stiffness 400)
+- `MotionReveal`: suporta direções up/left/right (stiffness 80)
+- `ScrollReveal` script JS removido — substituído por motion whileInView
+
+### Pendências pós-sessão
+- Padrão D02 na landing (pin grid em 8-12% opacity — recomendação Paula Scher)
+- Provas sociais: aguardando dados dos 2 testadores (nome, resultado numérico, autorização)
 
 ---
 

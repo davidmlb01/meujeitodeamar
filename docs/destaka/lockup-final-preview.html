@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Destaka — Lockup Final</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #071a19; font-family: 'Outfit', sans-serif; -webkit-font-smoothing: antialiased; }
+
+  .stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+    padding: 72px 40px;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    max-width: 860px;
+  }
+
+  .row-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.2);
+  }
+
+  .swatch {
+    width: 100%;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 32px;
+  }
+
+  /*
+   * LOCKUP — sistema de tamanhos
+   *
+   * font-size no .lockup é a BASE de todos os elementos.
+   * Tudo usa unidades relativas (em) a partir daí.
+   * O SVG tem height: 1.35em (ligeiramente maior que a cap-height do wordmark).
+   * O divisor tem height: 0.72em (≈ cap-height do Outfit 700).
+   * O vertical tem font-size: 0.48em para escala correta.
+   */
+  .lockup {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.45em;
+    font-size: 22px; /* BASE — sobrescrita por variantes */
+  }
+
+  .lockup svg {
+    display: block;
+    width: auto;
+    height: 1.35em;
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+  .lockup-wordmark {
+    font-size: 1em;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.015em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .lockup-divider {
+    width: 1px;
+    height: 0.72em;   /* cap-height de Outfit 700 */
+    background: rgba(255,255,255,0.22);
+    flex-shrink: 0;
+    align-self: center; /* divisor centralizado, texto alinhado pela baseline */
+  }
+
+  .lockup-vertical {
+    font-size: 0.48em;
+    font-weight: 500;
+    color: #14B8A6;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  /* variantes de tamanho */
+  .lockup--sm  { font-size: 18px; }
+  .lockup--md  { font-size: 22px; }
+  .lockup--lg  { font-size: 32px; }
+  .lockup--xl  { font-size: 44px; }
+
+  /* fundo claro */
+  .lockup--light .lockup-wordmark  { color: #0F2A1F; }
+  .lockup--light .lockup-divider   { background: rgba(0,0,0,0.18); }
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <!-- ANTES / DEPOIS -->
+  <div class="row">
+    <div class="row-label">Antes / Depois — navbar</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; width:100%;">
+
+      <div class="swatch" style="background:#071a19; border:1px solid rgba(255,255,255,0.06); flex-direction:column; gap:14px;">
+        <div style="font-size:10px; color:rgba(255,255,255,0.18); letter-spacing:1.5px; text-transform:uppercase;">Logo atual</div>
+        <div class="lockup lockup--md">
+          <svg viewBox="0 0 120 160" fill="none">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#14B8A6"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#071a19"/>
+            <circle cx="60" cy="56" r="7" fill="#14B8A6"/>
+          </svg>
+          <span class="lockup-wordmark">Destaka</span>
+          <span style="font-size:0.56em; font-weight:400; color:rgba(255,255,255,0.35); line-height:1;">Saúde</span>
+        </div>
+      </div>
+
+      <div class="swatch" style="background:#071a19; border:1px solid rgba(20,184,166,0.35); flex-direction:column; gap:14px;">
+        <div style="font-size:10px; color:rgba(20,184,166,0.45); letter-spacing:1.5px; text-transform:uppercase;">Lockup novo</div>
+        <div class="lockup lockup--md">
+          <svg viewBox="0 0 120 160" fill="none">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#14B8A6"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#071a19"/>
+            <circle cx="60" cy="56" r="7" fill="#14B8A6"/>
+          </svg>
+          <span class="lockup-wordmark">Destaka</span>
+          <div class="lockup-divider"></div>
+          <span class="lockup-vertical">SAÚDE</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TAMANHOS -->
+  <div class="row">
+    <div class="row-label">Escala — SM / MD / LG / XL</div>
+    <div class="swatch" style="background:#071a19; border:1px solid rgba(255,255,255,0.06); flex-direction:column; gap:32px; align-items:flex-start; padding:40px 48px;">
+
+      <div class="lockup lockup--sm">
+        <svg viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#14B8A6"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#071a19"/>
+          <circle cx="60" cy="56" r="7" fill="#14B8A6"/>
+        </svg>
+        <span class="lockup-wordmark">Destaka</span>
+        <div class="lockup-divider"></div>
+        <span class="lockup-vertical">SAÚDE</span>
+      </div>
+
+      <div class="lockup lockup--md">
+        <svg viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#14B8A6"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#071a19"/>
+          <circle cx="60" cy="56" r="7" fill="#14B8A6"/>
+        </svg>
+        <span class="lockup-wordmark">Destaka</span>
+        <div class="lockup-divider"></div>
+        <span class="lockup-vertical">SAÚDE</span>
+      </div>
+
+      <div class="lockup lockup--lg">
+        <svg viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#14B8A6"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#071a19"/>
+          <circle cx="60" cy="56" r="7" fill="#14B8A6"/>
+        </svg>
+        <span class="lockup-wordmark">Destaka</span>
+        <div class="lockup-divider"></div>
+        <span class="lockup-vertical">SAÚDE</span>
+      </div>
+
+      <div class="lockup lockup--xl">
+        <svg viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#14B8A6"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#071a19"/>
+          <circle cx="60" cy="56" r="7" fill="#14B8A6"/>
+        </svg>
+        <span class="lockup-wordmark">Destaka</span>
+        <div class="lockup-divider"></div>
+        <span class="lockup-vertical">SAÚDE</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FUNDO CLARO -->
+  <div class="row">
+    <div class="row-label">Fundo claro</div>
+    <div class="swatch" style="background:#f0f7f6; border:1px solid rgba(0,0,0,0.06);">
+      <div class="lockup lockup--md lockup--light">
+        <svg viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#14B8A6"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#f0f7f6"/>
+          <circle cx="60" cy="56" r="7" fill="#14B8A6"/>
+        </svg>
+        <span class="lockup-wordmark">Destaka</span>
+        <div class="lockup-divider"></div>
+        <span class="lockup-vertical">SAÚDE</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR PILL -->
+  <div class="row">
+    <div class="row-label">Navbar pill flutuante</div>
+    <div class="swatch" style="background:#071a19; border:1px solid rgba(255,255,255,0.06);">
+      <div style="
+        background: rgba(255,255,255,0.04);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 100px;
+        padding: 10px 20px;
+        display: inline-flex;
+        align-items: center;
+        gap: 28px;
+      ">
+        <div class="lockup lockup--sm">
+          <svg viewBox="0 0 120 160" fill="none">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#14B8A6"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="rgba(7,26,25,0.95)"/>
+            <circle cx="60" cy="56" r="7" fill="#14B8A6"/>
+          </svg>
+          <span class="lockup-wordmark">Destaka</span>
+          <div class="lockup-divider"></div>
+          <span class="lockup-vertical">SAÚDE</span>
+        </div>
+        <div style="display:flex; gap:20px;">
+          <span style="font-size:13px; color:rgba(255,255,255,0.5);">Como funciona</span>
+          <span style="font-size:13px; color:rgba(255,255,255,0.5);">Recursos</span>
+          <span style="font-size:13px; color:rgba(255,255,255,0.5);">Preço</span>
+        </div>
+        <div style="background:#14B8A6; color:#071a19; font-size:13px; font-weight:600; padding:7px 16px; border-radius:100px;">
+          Diagnóstico grátis
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

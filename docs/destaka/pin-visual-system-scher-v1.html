@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Destaka | Pin como Sistema Visual — Estudo Paula Scher</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep:     #071a19;
+    --bg-dark:     #0a1f1e;
+    --bg-surface:  #0f2826;
+    --accent:      #14B8A6;
+    --accent-dim:  rgba(20,184,166,0.12);
+    --accent-glow: rgba(20,184,166,0.06);
+    --brand-green: #4ade80;
+    --text-primary:    #ffffff;
+    --text-secondary:  rgba(255,255,255,0.65);
+    --text-tertiary:   rgba(255,255,255,0.38);
+    --font-display: 'Outfit', sans-serif;
+    --font-body:    'Inter', sans-serif;
+    --sp-xs: 8px; --sp-sm: 16px; --sp-md: 24px;
+    --sp-lg: 32px; --sp-xl: 48px; --sp-2xl: 64px;
+    --sp-3xl: 96px; --sp-4xl: 128px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 var(--sp-lg);
+  }
+
+  .label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    margin-top: var(--sp-sm);
+  }
+
+  .section-desc {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 560px;
+    margin-top: var(--sp-sm);
+  }
+
+  .section {
+    padding: var(--sp-3xl) 0;
+  }
+
+  .section + .section {
+    border-top: 1px solid rgba(20,184,166,0.08);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--sp-2xl) var(--sp-lg);
+    background: radial-gradient(ellipse at 50% 35%, rgba(20,184,166,0.07) 0%, transparent 65%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* fundo de pinos espalhados no hero */
+  .hero-bg-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-top: var(--sp-md);
+    animation: fadeInUp 0.8s ease-out both;
+  }
+
+  .hero-title span { color: var(--accent); }
+
+  .hero-sub {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin-top: var(--sp-md);
+    max-width: 520px;
+    line-height: 1.6;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+  }
+
+  .hero-meta {
+    margin-top: var(--sp-xl);
+    display: flex;
+    gap: var(--sp-lg);
+    align-items: center;
+    justify-content: center;
+    animation: fadeInUp 0.8s ease-out 0.35s both;
+  }
+
+  .hero-meta-item {
+    text-align: center;
+  }
+
+  .hero-meta-value {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+  }
+
+  .hero-meta-label {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── CARD GRID ── */
+  .card-grid {
+    display: grid;
+    gap: var(--sp-md);
+    margin-top: var(--sp-xl);
+  }
+
+  .card-grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .card-grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .card-grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+  .card {
+    background: var(--bg-surface);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 20px;
+    padding: var(--sp-xl) var(--sp-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .card.accent-border {
+    border-color: var(--accent);
+    background: linear-gradient(160deg, rgba(20,184,166,0.06) 0%, var(--bg-surface) 100%);
+  }
+
+  .card-title {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: var(--sp-md);
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-top: var(--sp-xs);
+  }
+
+  .card-tag {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--bg-deep);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-bottom: var(--sp-md);
+  }
+
+  /* ── ESCALA ── */
+  .scale-row {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--sp-xl);
+    padding: var(--sp-xl) 0;
+    justify-content: center;
+  }
+
+  .scale-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--sp-sm);
+  }
+
+  .scale-label {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    letter-spacing: 0.5px;
+  }
+
+  /* ── PATTERN DEMOS ── */
+  .pattern-demo {
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.04);
+    position: relative;
+  }
+
+  /* ── TYPO EXPLORATIONS ── */
+  .typo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--sp-md);
+    margin-top: var(--sp-xl);
+  }
+
+  .typo-card {
+    background: var(--bg-surface);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 20px;
+    padding: var(--sp-2xl) var(--sp-xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 220px;
+    justify-content: center;
+  }
+
+  /* ── DNA TEST ── */
+  .dna-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--sp-md);
+    margin-top: var(--sp-xl);
+  }
+
+  .dna-card {
+    border-radius: 16px;
+    padding: var(--sp-xl) var(--sp-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.04);
+    min-height: 200px;
+    justify-content: center;
+  }
+
+  /* ── NOTES ── */
+  .notes-box {
+    background: var(--bg-surface);
+    border: 1px solid rgba(20,184,166,0.12);
+    border-radius: 16px;
+    padding: var(--sp-xl);
+    margin-top: var(--sp-xl);
+  }
+
+  .notes-box h3 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: var(--sp-md);
+  }
+
+  .notes-box ul { list-style: none; }
+
+  .notes-box li {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    padding-left: var(--sp-md);
+    position: relative;
+    margin-bottom: var(--sp-xs);
+  }
+
+  .notes-box li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: var(--sp-2xl) 0;
+    text-align: center;
+    border-top: 1px solid rgba(20,184,166,0.08);
+  }
+
+  .footer p {
+    font-size: 12px;
+    color: var(--text-tertiary);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .card-grid-3 { grid-template-columns: 1fr 1fr; }
+    .dna-grid    { grid-template-columns: 1fr 1fr; }
+    .typo-grid   { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .card-grid-3 { grid-template-columns: 1fr; }
+    .card-grid-4 { grid-template-columns: 1fr 1fr; }
+    .dna-grid    { grid-template-columns: 1fr 1fr; }
+    .scale-row   { flex-wrap: wrap; gap: var(--sp-lg); }
+    .section-heading { font-size: 22px; }
+    .section { padding: var(--sp-2xl) 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- HERO                                                            -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section class="hero">
+
+  <!-- padrão de fundo: pinos espalhados em grid sutil -->
+  <div class="hero-bg-pattern">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="pin-repeat" x="0" y="0" width="80" height="100" patternUnits="userSpaceOnUse">
+          <path d="M40 4C26 4 16 14 16 26C16 34 20 40 26 46C30 50 34 54 40 60C46 54 50 50 54 46C60 40 64 34 64 26C64 14 54 4 40 4Z" fill="#14B8A6"/>
+          <path d="M28 26C32 20 36 18 40 18C44 18 48 20 52 26C48 32 44 34 40 34C36 34 32 32 28 26Z" fill="#071a19"/>
+          <circle cx="40" cy="26" r="4" fill="#14B8A6"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#pin-repeat)"/>
+    </svg>
+  </div>
+
+  <!-- símbolo principal -->
+  <svg width="72" height="96" viewBox="0 0 120 160" fill="none" style="animation: fadeInUp 0.6s ease-out both;">
+    <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#14B8A6"/>
+    <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#071a19"/>
+    <circle cx="60" cy="56" r="7" fill="#14B8A6"/>
+  </svg>
+
+  <h1 class="hero-title">O Pin como<br><span>Sistema Visual</span></h1>
+  <p class="hero-sub">
+    O logo funciona. Mas se trocar "Destaka" por qualquer concorrente, o site continua fazendo sentido.
+    Este estudo explora o Pin+Olho como DNA irreproduzível — derivações, padrões, escala, tipografia.
+  </p>
+
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <div class="hero-meta-value">Paula Scher</div>
+      <div class="hero-meta-label">Referência</div>
+    </div>
+    <div style="width:1px; height:32px; background:rgba(255,255,255,0.1);"></div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-value">Public Theater</div>
+      <div class="hero-meta-label">Modelo</div>
+    </div>
+    <div style="width:1px; height:32px; background:rgba(255,255,255,0.1);"></div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-value">5 Direções</div>
+      <div class="hero-meta-label">Neste documento</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- 1. GEOMETRIA BASE                                               -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="label">Direção 01</div>
+    <h2 class="section-heading">Geometria Base — Desconstrução</h2>
+    <p class="section-desc">
+      O símbolo é formado por 3 primitivos. Cada um carrega significado autônomo.
+      Separar para entender o que pode virar sistema.
+    </p>
+
+    <div class="card-grid card-grid-3" style="margin-top: var(--sp-xl);">
+
+      <!-- Pin Shape -->
+      <div class="card fade-in">
+        <svg width="80" height="107" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#14B8A6"/>
+        </svg>
+        <div class="card-title">01 — O Pin</div>
+        <div class="card-desc">
+          Forma de gota. Identifica localização. Carrega sozinho a ideia de "encontrar" sem o olho interno.
+          Funciona como bullet, marcador, separador.
+        </div>
+      </div>
+
+      <!-- Iris Oval -->
+      <div class="card fade-in">
+        <svg width="80" height="107" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="rgba(20,184,166,0.12)"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#14B8A6"/>
+        </svg>
+        <div class="card-title">02 — A Íris</div>
+        <div class="card-desc">
+          Oval horizontal negativo. Forma de olho. Separado do pin, vira ícone de visibilidade,
+          monitoramento, observação — sem precisar do pin.
+        </div>
+      </div>
+
+      <!-- Iris Core -->
+      <div class="card fade-in">
+        <svg width="80" height="107" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="rgba(20,184,166,0.08)"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="rgba(20,184,166,0.15)"/>
+          <circle cx="60" cy="56" r="12" fill="#14B8A6"/>
+        </svg>
+        <div class="card-title">03 — O Núcleo</div>
+        <div class="card-desc">
+          Círculo sólido central. Ponto focal, origem. Vira avatar, marcador de passo ativo,
+          indicador de status em UI.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="notes-box fade-in" style="margin-top: var(--sp-xl);">
+      <h3>Insight de desconstrução</h3>
+      <ul>
+        <li>Cada primitivo carrega valor semântico autônomo — um sistema bem projetado não precisa do logo inteiro para comunicar.</li>
+        <li>A íris oval é o elemento mais diferenciado: nenhum concorrente de GMB usa um "olho" como metáfora de visibilidade.</li>
+        <li>O núcleo como "ponto ativo" tem aplicação direta em UI: steps, progress indicators, status de perfil.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- 2. PIN COMO PADRÃO                                              -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="label">Direção 02</div>
+    <h2 class="section-heading">O Pin como Padrão — Repetição e Textura</h2>
+    <p class="section-desc">
+      O mesmo símbolo repetido em sistema gera identidade antes do nome.
+      Três variações: grid denso, dispersão orgânica, orientações alternadas.
+    </p>
+
+    <div class="card-grid card-grid-3" style="margin-top: var(--sp-xl);">
+
+      <!-- Padrão: Grid Denso -->
+      <div class="pattern-demo fade-in" style="min-height:280px; background:var(--bg-surface);">
+        <svg width="100%" height="280" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="grid-dense" x="0" y="0" width="40" height="52" patternUnits="userSpaceOnUse">
+              <path d="M20 2C13.4 2 8 7.4 8 13C8 17 10 20 13 23C15 25 17 27 20 30C23 27 25 25 27 23C30 20 32 17 32 13C32 7.4 26.6 2 20 2Z" fill="rgba(20,184,166,0.18)"/>
+              <path d="M12 13C14 10 16.5 9 20 9C23.5 9 26 10 28 13C26 16 23.5 17 20 17C16.5 17 14 16 12 13Z" fill="rgba(7,26,25,0.9)"/>
+              <circle cx="20" cy="13" r="2.5" fill="rgba(20,184,166,0.4)"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="280" fill="url(#grid-dense)"/>
+          <rect width="100%" height="280" fill="linear-gradient(180deg, transparent 40%, var(--bg-surface) 100%)"/>
+        </svg>
+        <div style="position:absolute; bottom:20px; left:0; right:0; text-align:center; padding:0 16px;">
+          <div class="card-title" style="font-size:14px;">Grid Denso</div>
+          <div class="card-desc" style="font-size:12px; margin-top:4px;">Fundo de seções premium. Identidade pré-logo.</div>
+        </div>
+      </div>
+
+      <!-- Padrão: Dispersão Orgânica -->
+      <div class="pattern-demo fade-in" style="min-height:280px; background:var(--bg-deep); position:relative;">
+        <svg width="100%" height="280" viewBox="0 0 320 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <!-- pinos em posições orgânicas, tamanhos variados -->
+          <g opacity="0.15">
+            <path transform="translate(30,20) scale(0.5)" d="M20 2C13.4 2 8 7.4 8 13C8 17 10 20 13 23C15 25 17 27 20 30C23 27 25 25 27 23C30 20 32 17 32 13C32 7.4 26.6 2 20 2Z" fill="#14B8A6"/>
+          </g>
+          <g opacity="0.25">
+            <path transform="translate(140,10) scale(0.8)" d="M20 2C13.4 2 8 7.4 8 13C8 17 10 20 13 23C15 25 17 27 20 30C23 27 25 25 27 23C30 20 32 17 32 13C32 7.4 26.6 2 20 2Z" fill="#14B8A6"/>
+          </g>
+          <g opacity="0.12">
+            <path transform="translate(260,40) scale(1.2)" d="M20 2C13.4 2 8 7.4 8 13C8 17 10 20 13 23C15 25 17 27 20 30C23 27 25 25 27 23C30 20 32 17 32 13C32 7.4 26.6 2 20 2Z" fill="#14B8A6"/>
+          </g>
+          <g opacity="0.2">
+            <path transform="translate(60,100) scale(0.7)" d="M20 2C13.4 2 8 7.4 8 13C8 17 10 20 13 23C15 25 17 27 20 30C23 27 25 25 27 23C30 20 32 17 32 13C32 7.4 26.6 2 20 2Z" fill="#14B8A6"/>
+          </g>
+          <g opacity="0.3">
+            <path transform="translate(200,80) scale(1.0)" d="M20 2C13.4 2 8 7.4 8 13C8 17 10 20 13 23C15 25 17 27 20 30C23 27 25 25 27 23C30 20 32 17 32 13C32 7.4 26.6 2 20 2Z" fill="#14B8A6"/>
+          </g>
+          <g opacity="0.08">
+            <path transform="translate(20,180) scale(1.5)" d="M20 2C13.4 2 8 7.4 8 13C8 17 10 20 13 23C15 25 17 27 20 30C23 27 25 25 27 23C30 20 32 17 32 13C32 7.4 26.6 2 20 2Z" fill="#14B8A6"/>
+          </g>
+          <g opacity="0.22">
+            <path transform="translate(160,170) scale(0.6)" d="M20 2C13.4 2 8 7.4 8 13C8 17 10 20 13 23C15 25 17 27 20 30C23 27 25 25 27 23C30 20 32 17 32 13C32 7.4 26.6 2 20 2Z" fill="#14B8A6"/>
+          </g>
+          <g opacity="0.18">
+            <path transform="translate(270,160) scale(0.9)" d="M20 2C13.4 2 8 7.4 8 13C8 17 10 20 13 23C15 25 17 27 20 30C23 27 25 25 27 23C30 20 32 17 32 13C32 7.4 26.6 2 20 2Z" fill="#14B8A6"/>
+          </g>
+        </svg>
+        <div style="position:absolute; bottom:20px; left:0; right:0; text-align:center; padding:0 16px;">
+          <div class="card-title" style="font-size:14px;">Dispersão Orgânica</div>
+          <div class="card-desc" style="font-size:12px; margin-top:4px;">Slides, capas de apresentação, backgrounds hero.</div>
+        </div>
+      </div>
+
+      <!-- Padrão: Orientações Alternadas -->
+      <div class="pattern-demo fade-in" style="min-height:280px; background:var(--bg-surface);">
+        <svg width="100%" height="280" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="grid-alt" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+              <!-- normal -->
+              <path transform="translate(5,2) scale(0.55)" d="M20 2C13.4 2 8 7.4 8 13C8 17 10 20 13 23C15 25 17 27 20 30C23 27 25 25 27 23C30 20 32 17 32 13C32 7.4 26.6 2 20 2Z" fill="rgba(20,184,166,0.22)"/>
+              <!-- rotacionado 180 (apontando para cima) -->
+              <path transform="translate(35,2) scale(0.55) rotate(180 20 15)" d="M20 2C13.4 2 8 7.4 8 13C8 17 10 20 13 23C15 25 17 27 20 30C23 27 25 25 27 23C30 20 32 17 32 13C32 7.4 26.6 2 20 2Z" fill="rgba(20,184,166,0.1)"/>
+              <!-- segunda linha: 90 graus -->
+              <path transform="translate(5,32) scale(0.55) rotate(90 20 15)" d="M20 2C13.4 2 8 7.4 8 13C8 17 10 20 13 23C15 25 17 27 20 30C23 27 25 25 27 23C30 20 32 17 32 13C32 7.4 26.6 2 20 2Z" fill="rgba(20,184,166,0.08)"/>
+              <path transform="translate(35,32) scale(0.55) rotate(270 20 15)" d="M20 2C13.4 2 8 7.4 8 13C8 17 10 20 13 23C15 25 17 27 20 30C23 27 25 25 27 23C30 20 32 17 32 13C32 7.4 26.6 2 20 2Z" fill="rgba(20,184,166,0.16)"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="280" fill="url(#grid-alt)"/>
+        </svg>
+        <div style="position:absolute; bottom:20px; left:0; right:0; text-align:center; padding:0 16px;">
+          <div class="card-title" style="font-size:14px;">Orientações Alternadas</div>
+          <div class="card-desc" style="font-size:12px; margin-top:4px;">Textura de tecido, swag, impressão offset.</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- 3. PIN EM ESCALA                                                -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="label">Direção 03</div>
+    <h2 class="section-heading">Escala — Do Micro ao Macro</h2>
+    <p class="section-desc">
+      Uma marca proprietária sobrevive em qualquer escala sem perder identidade.
+      Teste de redução e ampliação do Pin+Olho.
+    </p>
+
+    <div class="scale-row fade-in">
+
+      <!-- 12px -->
+      <div class="scale-item">
+        <svg width="12" height="16" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#14B8A6"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#071a19"/>
+          <circle cx="60" cy="56" r="7" fill="#14B8A6"/>
+        </svg>
+        <div class="scale-label">12px<br>Bullet / inline</div>
+      </div>
+
+      <!-- 24px -->
+      <div class="scale-item">
+        <svg width="24" height="32" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#14B8A6"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#071a19"/>
+          <circle cx="60" cy="56" r="7" fill="#14B8A6"/>
+        </svg>
+        <div class="scale-label">24px<br>Nav / favicon</div>
+      </div>
+
+      <!-- 48px -->
+      <div class="scale-item">
+        <svg width="48" height="64" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#14B8A6"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#071a19"/>
+          <circle cx="60" cy="56" r="7" fill="#14B8A6"/>
+        </svg>
+        <div class="scale-label">48px<br>App icon</div>
+      </div>
+
+      <!-- 96px -->
+      <div class="scale-item">
+        <svg width="96" height="128" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#14B8A6"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#071a19"/>
+          <circle cx="60" cy="56" r="7" fill="#14B8A6"/>
+        </svg>
+        <div class="scale-label">96px<br>Card / seção</div>
+      </div>
+
+      <!-- 192px -->
+      <div class="scale-item">
+        <svg width="192" height="256" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#14B8A6"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#071a19"/>
+          <circle cx="60" cy="56" r="7" fill="#14B8A6"/>
+        </svg>
+        <div class="scale-label">192px<br>Hero / OOH</div>
+      </div>
+
+    </div>
+
+    <div class="notes-box fade-in">
+      <h3>Diagnóstico de escala</h3>
+      <ul>
+        <li>Abaixo de 16px: o olho interno some. Fica como teardrop puro — ainda reconhecível.</li>
+        <li>16px a 48px: os 3 elementos visíveis. Janela principal de uso em produto.</li>
+        <li>Acima de 96px: detalhe da íris oval fica evidente. Funciona como hero element em landings.</li>
+        <li>OOH (outdoor): o pin ampliado sem wordmark identifica a marca — teste para próxima etapa.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- 4. TIPOGRAFIA — INTEGRAÇÃO                                      -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="label">Direção 04</div>
+    <h2 class="section-heading">Integração Tipográfica — Pin no Wordmark</h2>
+    <p class="section-desc">
+      O pin como elemento da letra, não apenas ao lado dela. Quatro experimentos.
+    </p>
+
+    <div class="typo-grid fade-in">
+
+      <!-- A: Pin substituindo ponto / i -->
+      <div class="typo-card">
+        <div style="display:flex; align-items:flex-start; gap:0;">
+          <span style="font-family:var(--font-display); font-size:56px; font-weight:900; letter-spacing:-1px; color:#fff;">DESTAKA</span>
+        </div>
+        <div style="margin-top: 12px; display:flex; align-items:center; gap:8px;">
+          <!-- pin como ponto de separação -->
+          <svg width="10" height="14" viewBox="0 0 120 160" fill="none">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#14B8A6"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#071a19"/>
+            <circle cx="60" cy="56" r="7" fill="#14B8A6"/>
+          </svg>
+          <span style="font-family:var(--font-display); font-size:56px; font-weight:300; color:rgba(255,255,255,0.5);">SAÚDE</span>
+        </div>
+        <div class="card-title" style="margin-top:var(--sp-md);">A — Separador Visual</div>
+        <div class="card-desc">Pin como separador entre marca-mãe e vertical.</div>
+      </div>
+
+      <!-- B: Wordmark com pin acima de letra -->
+      <div class="typo-card">
+        <div style="position:relative; display:inline-block;">
+          <span style="font-family:var(--font-display); font-size:56px; font-weight:900; letter-spacing:-1px; color:#fff;">DEST</span>
+          <span style="position:relative; display:inline-flex; align-items:flex-start;">
+            <!-- o A com pin no apex -->
+            <span style="font-family:var(--font-display); font-size:56px; font-weight:900; color:#fff;">A</span>
+            <svg width="10" height="14" viewBox="0 0 120 160" fill="none" style="position:absolute; top:-8px; left:50%; transform:translateX(-50%);">
+              <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#14B8A6"/>
+              <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#071a19"/>
+              <circle cx="60" cy="56" r="7" fill="#14B8A6"/>
+            </svg>
+          </span>
+          <span style="font-family:var(--font-display); font-size:56px; font-weight:900; letter-spacing:-1px; color:#fff;">KA</span>
+        </div>
+        <div class="card-title" style="margin-top:var(--sp-md);">B — Pin no Apex</div>
+        <div class="card-desc">Pin acima do A central. Marcador de posição literal no wordmark.</div>
+      </div>
+
+      <!-- C: Só o símbolo + vertical (sem "Destaka") -->
+      <div class="typo-card" style="background:rgba(20,184,166,0.05); border-color:rgba(20,184,166,0.2);">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <svg width="32" height="43" viewBox="0 0 120 160" fill="none">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#14B8A6"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#071a19"/>
+            <circle cx="60" cy="56" r="7" fill="#14B8A6"/>
+          </svg>
+          <div>
+            <div style="font-family:var(--font-display); font-size:28px; font-weight:900; letter-spacing:-0.5px; color:#fff; line-height:1;">Saúde</div>
+            <div style="font-size:11px; color:rgba(20,184,166,0.8); letter-spacing:2px; text-transform:uppercase; margin-top:2px;">by Destaka</div>
+          </div>
+        </div>
+        <div class="card-title" style="margin-top:var(--sp-md);">C — Símbolo + Vertical</div>
+        <div class="card-desc">Sem o nome principal. O pin carrega a marca, o vertical é o produto.</div>
+      </div>
+
+      <!-- D: Horizontal compacto -->
+      <div class="typo-card">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <svg width="24" height="32" viewBox="0 0 120 160" fill="none">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#14B8A6"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#071a19"/>
+            <circle cx="60" cy="56" r="7" fill="#14B8A6"/>
+          </svg>
+          <span style="font-family:var(--font-display); font-size:32px; font-weight:700; color:#fff; letter-spacing:-0.5px;">destaka</span>
+          <span style="width:1px; height:28px; background:rgba(20,184,166,0.3); display:inline-block;"></span>
+          <span style="font-family:var(--font-display); font-size:14px; font-weight:400; color:rgba(20,184,166,0.8); letter-spacing:1px; text-transform:uppercase; line-height:1.2;">saúde</span>
+        </div>
+        <div class="card-title" style="margin-top:var(--sp-md);">D — Lockup Compacto</div>
+        <div class="card-desc">Horizontal com divisor. Hierarquia marca-mãe + vertical em linha única.</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- 5. TESTE DE DNA                                                 -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="label">Direção 05 — Teste crítico</div>
+    <h2 class="section-heading">Reconhecimento sem Nome</h2>
+    <p class="section-desc">
+      A pergunta de Paula Scher: o elemento funciona sem o nome?
+      Se sim, temos um símbolo proprietário. Se não, temos apenas um logotipo bonito.
+    </p>
+
+    <div class="dna-grid fade-in">
+
+      <!-- No nome, dark bg -->
+      <div class="dna-card" style="background:#071a19;">
+        <svg width="56" height="75" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#14B8A6"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#071a19"/>
+          <circle cx="60" cy="56" r="7" fill="#14B8A6"/>
+        </svg>
+        <div style="font-size:12px; color:var(--text-tertiary); margin-top:16px; letter-spacing:0.5px;">Sem nome<br>Fundo escuro</div>
+      </div>
+
+      <!-- No name, colored bg -->
+      <div class="dna-card" style="background:#0f3332;">
+        <svg width="56" height="75" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#fff"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0f3332"/>
+          <circle cx="60" cy="56" r="7" fill="#fff"/>
+        </svg>
+        <div style="font-size:12px; color:rgba(255,255,255,0.5); margin-top:16px; letter-spacing:0.5px;">Sem nome<br>Fundo Teal</div>
+      </div>
+
+      <!-- Só o padrão, sem símbolo -->
+      <div class="dna-card" style="background:var(--bg-surface); overflow:hidden; padding:0; position:relative;">
+        <svg width="100%" height="200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="dna-pattern" x="0" y="0" width="40" height="52" patternUnits="userSpaceOnUse">
+              <path d="M20 2C13.4 2 8 7.4 8 13C8 17 10 20 13 23C15 25 17 27 20 30C23 27 25 25 27 23C30 20 32 17 32 13C32 7.4 26.6 2 20 2Z" fill="rgba(20,184,166,0.2)"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="200" fill="url(#dna-pattern)"/>
+        </svg>
+        <div style="position:absolute; bottom:16px; left:0; right:0; text-align:center; font-size:12px; color:var(--text-tertiary); letter-spacing:0.5px;">Só o padrão<br>Sem símbolo</div>
+      </div>
+
+      <!-- Mono white -->
+      <div class="dna-card" style="background:#f4f4f4;">
+        <svg width="56" height="75" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#0F2A1F"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#f4f4f4"/>
+          <circle cx="60" cy="56" r="7" fill="#0F2A1F"/>
+        </svg>
+        <div style="font-size:12px; color:#888; margin-top:16px; letter-spacing:0.5px;">Mono escuro<br>Fundo claro</div>
+      </div>
+
+    </div>
+
+    <div class="notes-box fade-in">
+      <h3>Veredicto do teste de DNA</h3>
+      <ul>
+        <li>O pin sozinho, sem nome, é reconhecível nas 4 variações? Responder após auditoria com @brand-expert.</li>
+        <li>O padrão repetido (terceiro card) indica identidade de marca sem símbolo explícito. Isso é o teste real do Public Theater de Scher.</li>
+        <li>A combinação pin+padrão, sem wordmark, deve ser testada em contextos reais: mockup de stories, capa de apresentação, capa de relatório mensal ao cliente.</li>
+        <li>Próximo passo: levar os 5 cards do padrão para 3 profissionais de saúde fora do contexto Destaka e perguntar: "O que isso te comunica?"</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- NOTAS PARA @BRAND-EXPERT                                        -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="label">Auditoria</div>
+    <h2 class="section-heading">Para o @brand-expert</h2>
+    <p class="section-desc">
+      Perguntas abertas que este estudo levanta. Auditoria define a direção antes de implementar.
+    </p>
+
+    <div class="notes-box fade-in">
+      <h3>Questões em aberto</h3>
+      <ul>
+        <li><strong style="color:#fff;">Direção prioritária:</strong> qual das 5 direções tem mais potencial de virar sistema proprietário? (Padrão, Escala, Tipografia, Desconstrução, DNA)</li>
+        <li><strong style="color:#fff;">Risco de confusão:</strong> a íris oval solta (Direção 01, item 02) parece ícone de câmera/olho genérico ou tem diferenciação suficiente no contexto saúde?</li>
+        <li><strong style="color:#fff;">Opção C de tipografia</strong> (símbolo + vertical, sem marca-mãe): viável como lockup secundário para Destaka Saúde, ou dilui a marca-mãe?</li>
+        <li><strong style="color:#fff;">Padrão como fundo de seção:</strong> grid denso (3px de opacidade) é sutil o suficiente para não competir com conteúdo, ou precisa ser mais denso para criar identidade?</li>
+        <li><strong style="color:#fff;">Referência Scher:</strong> o Pin tem potencial de alcançar a reconhecibilidade do símbolo do Public Theater sem o nome? O que falta para chegar lá?</li>
+      </ul>
+    </div>
+
+    <div class="card-grid card-grid-3" style="margin-top: var(--sp-lg);">
+      <div class="card fade-in">
+        <div style="font-size:32px;">01</div>
+        <div class="card-title" style="margin-top:8px;">Curto prazo</div>
+        <div class="card-desc">Implementar padrão como fundo de uma seção da landing /saude (grid denso, opacidade 3-5%).</div>
+      </div>
+      <div class="card fade-in accent-border">
+        <div class="card-tag">Prioridade</div>
+        <div class="card-title">Médio prazo</div>
+        <div class="card-desc">Lockup D (compacto horizontal) para uso no dashboard — substitui o logo atual em contextos de topo de página.</div>
+      </div>
+      <div class="card fade-in">
+        <div style="font-size:32px;">03</div>
+        <div class="card-title" style="margin-top:8px;">Longo prazo</div>
+        <div class="card-desc">Quando 3+ verticais estiverem ativos, teste do padrão sem nome em campanha de brand awareness.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="container">
+    <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:12px;">
+      <svg width="16" height="21" viewBox="0 0 120 160" fill="none">
+        <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#14B8A6"/>
+        <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#071a19"/>
+        <circle cx="60" cy="56" r="7" fill="#14B8A6"/>
+      </svg>
+      <span style="font-family:var(--font-display); font-size:14px; font-weight:700; color:rgba(255,255,255,0.4);">Destaka</span>
+    </div>
+    <p>Pin como Sistema Visual — Estudo Paula Scher — v1.0 — 2026-05-24</p>
+    <p style="margin-top:4px;">Auditoria pendente com @brand-expert antes de qualquer implementação</p>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+  );
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
