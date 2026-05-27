@@ -344,3 +344,57 @@ Canal B2B2C via escritorios de contabilidade especializados em profissionais de 
 ---
 
 *Backup atualizado em sessao 16 (2026-05-05): estrategia B2B2C via escritorios contabeis especializados em saude, modelo bilateral ganha-ganha*
+
+---
+
+## Sessão 2026-05-27 — Brandbook v1.0 Completo
+
+**Commit:** `78f24cb` — `docs/destaka/brandbook-v1.html` criado (1774 linhas)
+
+### O que foi feito
+
+**Arquivo criado:** `docs/destaka/brandbook-v1.html`
+Brandbook completo em HTML estático, 14 seções, design system documentado.
+
+**Seções do brandbook:**
+1. Capa (dark, watermark pin, ano)
+2. Manifesto (3 declarações + abertura)
+3. Quem é a Destaka (arquétipo Sage + Regular Guy)
+4. Valores da voz (9 adjetivos)
+5. Paleta (Forest, Leaf, Paper, Rule, Black + 5 verticais)
+6. Sistema tipográfico (Outfit + Inter + JetBrains Mono)
+7. Feed Instagram 4:5 (3 cards redesenhados)
+8. Stories 9:16 (3 cards em grid, lado a lado)
+9. Apresentação 16:9 (4 slides em grid 2×2)
+10. Extensões da marca / Sub-marcas (5 lockups com pin colorido por vertical)
+11. Set de Ícones (16 ícones em grid 8 colunas)
+12. Variações do logo
+13. Como a Destaka fala (Tom, vocabulário, certo vs. errado)
+14. Contracapa
+
+**Decisões de design consolidadas:**
+- Tipografia: Outfit (display/wordmark/headlines) + Inter (body) + JetBrains Mono (labels/mono)
+- Cor primária: `#14B8A6` (Teal) — Destaka solo e vertical Saúde
+- Fundo escuro: `#071a19` (near-black teal, NOT forest verde)
+- Lockup: `[pin] Destaka | VERTICAL` — inline-flex, baseline, divisor 1px cap-height 0.72em
+- Regra do pin: herda a cor da vertical que representa
+- Paleta verticais aprovada:
+  - Saúde: `#14B8A6`
+  - Pet: `#34D399`
+  - Jurídico: `#60A5FA`
+  - Contábil: `#A78BFA`
+  - Imóveis: `#F59E0B`
+
+**Correções aplicadas na sessão:**
+- 14 acentos PT-BR corrigidos (Primário, Secundário, Confiável, já, também, sarcástica, etc.)
+- SVG mark: paths corretos + fill Teal em todos os pontos
+- Feed cards: redesenhados com números dominantes (108px) + watermarks + inversão de cor
+- Stories: layout corrigido de flex-column quebrado para grid repeat(3,220px)
+- Apresentação: slides com inline styles para garantir backgrounds e grid 2×2
+- Contracapa: rebuilt com inline styles (sem depender de classe CSS que se perdia)
+
+### Pendências
+- [ ] Exportar brandbook como PDF (quando design estiver aprovado)
+- [ ] Aplicar paleta de verticais no produto (Pet, Jurídico, Contábil, Imóveis)
+- [ ] Provas sociais: aguardando dados reais de 2 testadores
+- [ ] Google OAuth: publicar app para produção no GCP
