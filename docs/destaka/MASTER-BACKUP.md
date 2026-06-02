@@ -34,7 +34,7 @@ Projeto nasceu da validação com dentistas e fisioterapeutas. Descoberta centra
 
 ### Pendências registradas (backlog: project_destaka_design_backlog.md)
 - Seção de provas sociais (aguardando dados reais de 2 testadores)
-- Google OAuth: publicar app para produção no GCP (tokens expiram em 7 dias em modo Testing)
+- ~~Google OAuth: publicar app para produção no GCP~~ ✅ App já em produção (confirmado 2026-05-28). Limite de 100 usuários OAuth por escopos restritos não verificados — ok para piloto. Verificação formal necessária antes de escalar além de 100 usuários.
 - Opção B onboarding: cliente adiciona app@destaka.com.br como gerente GMB
 - Obsidian MOC desatualizado (iCloud EPERM persistente — verificar permissões macOS)
 
@@ -398,3 +398,20 @@ Brandbook completo em HTML estático, 14 seções, design system documentado.
 - [ ] Aplicar paleta de verticais no produto (Pet, Jurídico, Contábil, Imóveis)
 - [ ] Provas sociais: aguardando dados reais de 2 testadores
 - [ ] Google OAuth: publicar app para produção no GCP
+
+---
+
+## Sessão 2026-06-02 — GBP API Resubmissão
+
+### O que foi feito
+
+- Investigado ticket anterior `0-2582000041216` (submetido 19/05): confirmado que nunca foi processado pelo Google, sem email de confirmação, sem registro no sistema.
+- Resubmetido formulário oficial de acesso à GBP API via conta `david@unlmtd.etc.br`.
+- Empresa selecionada: UNLMTD (validada no GMB).
+- Projeto Google Cloud: `248596818772` (destaka-492513).
+- Novo ticket gerado: `4-9265000041644`.
+- Prazo de resposta: 7 a 10 dias úteis.
+
+### Pendências
+- [~] Aguardar aprovação ticket `4-9265000041644`
+- [ ] Implementar Opção B onboarding (UI para cliente adicionar app@destaka.com.br como gerente no GMB) — não depende do ticket
