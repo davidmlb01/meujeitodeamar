@@ -1,6 +1,38 @@
 # MASTER-BACKUP: Destaka
-**Última atualização:** 2026-05-24 (sessão design Fase 3 completa)
-**Status:** MVP /saude em produção. Design Fases 1+2+3 concluídas. Provas sociais pendentes (2 testadores).
+**Última atualização:** 2026-06-04 (sessão governança de IA — 3 correções implementadas)
+**Status:** MVP /saude em produção. Governança de IA L1 consolidada. GBP API ticket 4-9265000041644 pendente (~16/06).
+
+---
+
+## Sessão 2026-06-04 — Auditoria de IA + Governança (Kai/caio-architect)
+
+### O que foi feito
+
+- Auditoria completa do stack de IA do Destaka por Kai (agente caio-architect)
+- 3 correções de governança implementadas, TypeScript limpo, commit `4231c90`
+- `feat/zero-touch-engine` promovido a `main` (force push — o main anterior tinha apenas HTMLs de brand, sem código de produto)
+
+### Correções implementadas
+
+**A — `src/lib/ai/compliance-validator.ts` (novo)**
+Segunda passagem independente pós-geração. O Claude não valida o próprio output confiavelmente. Um prompt de auditor CFM/CRO separado analisa cada post antes de publicar. Fallback: bloqueia por precaução.
+
+**B — `src/lib/ai/prompt-sanitizer.ts` (novo)**
+LGPD Art. 11 (dados sensíveis de saúde). Remove CPF, telefone, email e nomes de comentários de pacientes antes de entrar no contexto do LLM. `hasLgpdConsentForAi()` criada — pendente integração no `review-monitor.ts`.
+
+**C — getDiversityContext + postSequence (modificação)**
+Seed temporal (semana do ano + sequência por org) injetada em cada prompt. Evita conteúdo duplicado entre clientes na mesma janela temporal.
+
+### Maturidade de IA
+
+- Score atual: **L1 consolidado** (humano no loop, guardrails operacionais)
+- Caminho para L2: Fase 3, pós-aprovação GBP API + modelo preditivo de churn + calibração por feedback
+
+### Pendente desta sessão
+
+- [ ] Verificar se campos `lgpd_ai_consent` e `lgpd_consent_date` existem na tabela `organizations` do Supabase
+- [ ] Integrar `hasLgpdConsentForAi()` no `review-monitor.ts`
+- [ ] GBP API ticket 4-9265000041644 — aguardando aprovação Google (~16/06/2026)
 
 ---
 
