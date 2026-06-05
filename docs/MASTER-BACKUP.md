@@ -833,9 +833,51 @@ Primeiro uso do agent-browser (vercel-labs/agent-browser — CLI Rust) integrado
 ### Pendências
 
 - [ ] Depoimentos específicos com nome e foto (precisa de pessoas reais)
-- [ ] Value stack (só implementável quando criar produtos gratuitos novos)
+- [x] Value stack definido: copy pronto, HTMLs pendentes (2026-06-04)
 - [ ] Relançar anúncios após validar /resultado com dados limpos
 - [ ] Novos criativos (David tem ideias prontas)
 - [ ] Validar mobile layout com device real (agent-browser não emulou corretamente 375px)
 
 *Backup atualizado por Orion (AIOX Master) em 2026-05-20*
+
+---
+
+## 23. SESSAO 2026-06-04: BONUS VALUE STACK — COPY PRONTO
+
+### Decisao
+
+Definidos 3 produtos gratuitos para compor o value stack da /resultado.
+Nenhum conflita com OBs ou Upsell existentes.
+
+### Value stack planejado
+
+```
+Leitura Completa [Estilo]:          R$97  (anchor)
++ Cartao de Ativacao [Estilo]:      R$17
++ Exercicio dos 7 Dias:             R$27
++ Roteiro da Primeira Conversa:     R$19
+Total:                              R$160
+Voce paga:                          R$37
+```
+
+### Produtos criados
+
+| Bonus | Formato | Versoes | Status |
+|-------|---------|---------|--------|
+| Cartao de Ativacao | PDF 1 pagina | 4 (uma por estilo) | Copy pronto |
+| Exercicio dos 7 Dias | PDF 1 pagina | 1 generica | Copy pronto |
+| Roteiro da Primeira Conversa | PDF 1 pagina | 1 generica | Copy pronto |
+
+### Arquivo
+
+`docs/freud/bonus-copy-v1.md` — copy completo dos 3 bonus
+
+### Pendente (proxima sessao)
+
+- [ ] Produzir HTML dos 3 bonus no padrao de docs/design/leituras-pdf.html
+- [ ] Atualizar /resultado com o novo value stack (R$160 / R$37)
+- [ ] Configurar entrega dos PDFs no Kiwify junto com leitura principal
+- [ ] Novos criativos para relançar ADS
+- [ ] QA mobile 375px
+
+*Backup atualizado por Orion (AIOX Master) em 2026-06-04*
