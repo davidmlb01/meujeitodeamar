@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1440">
+    <title>Destaka / Brandbook de Verticais</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0F2A1F;
+            --leaf: #4ade80;
+            --paper: #f6f4ef;
+            --rule: #d8d6cd;
+            --muted: #6c6c63;
+            --red: #ef4444;
+            --saude: #0EA5E9;
+            --pet: #22C55E;
+            --juridico: #1E3A5F;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Outfit', system-ui, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            -webkit-font-smoothing: antialiased;
+        }
+        .page { max-width: 1200px; margin: 0 auto; padding: 0 56px; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .body-text { font-family: 'Inter', system-ui, sans-serif; }
+
+        /* Masthead */
+        .mast {
+            border-bottom: 1px solid var(--rule);
+            padding: 28px 0 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .mast-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+        /* Hero */
+        .hero {
+            padding: 72px 0 64px;
+            border-bottom: 1px solid var(--rule);
+        }
+        .hero h1 { font-size: 58px; font-weight: 700; letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 20px; }
+        .hero p { font-family: 'Inter', sans-serif; font-size: 17px; max-width: 640px; color: #2a3a31; line-height: 1.6; }
+
+        /* Sections */
+        section { padding: 72px 0; border-bottom: 1px solid var(--rule); }
+        .sec-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+        .sec-title { font-size: 36px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 16px; }
+        .sec-desc { font-family: 'Inter', sans-serif; font-size: 15px; color: #2a3a31; max-width: 620px; line-height: 1.6; margin-bottom: 48px; }
+
+        /* Vertical Hero Section */
+        .vertical-hero {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            margin-bottom: 56px;
+            padding: 40px;
+            border-radius: 10px;
+            border: 1px solid var(--rule);
+            background: #fff;
+        }
+        .vertical-hero .mark-wrap {
+            flex-shrink: 0;
+        }
+        .vertical-hero .info h2 {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 8px;
+        }
+        .vertical-hero .tagline {
+            font-family: 'Inter', sans-serif;
+            font-size: 17px;
+            font-style: italic;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+        .vertical-hero .color-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--muted);
+        }
+        .vertical-hero .chip {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        /* Sub-sections within verticals */
+        .subsec {
+            margin-bottom: 48px;
+        }
+        .subsec-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+        .subsec h3 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+        .subsec p, .subsec li {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: #2a3a31;
+            line-height: 1.65;
+        }
+        .subsec ul {
+            list-style: none;
+            padding: 0;
+        }
+        .subsec ul li {
+            padding: 6px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+        .subsec ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 13px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--rule);
+        }
+
+        /* Accent bullet colors per vertical */
+        .v-saude .subsec ul li::before { background: var(--saude); }
+        .v-pet .subsec ul li::before { background: var(--pet); }
+        .v-juridico .subsec ul li::before { background: var(--juridico); }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 16px 0;
+        }
+        .card-grid.triple { grid-template-columns: 1fr 1fr 1fr; }
+        .card {
+            border: 1px solid var(--rule);
+            border-radius: 6px;
+            padding: 20px 22px;
+            background: #fff;
+        }
+        .card .card-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .card h4 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+        .card p { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+        /* Do/Don't */
+        .do-dont {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 16px 0;
+        }
+        .do-card, .dont-card {
+            border: 1px solid var(--rule);
+            border-radius: 6px;
+            padding: 20px 22px;
+            background: #fff;
+        }
+        .do-card { border-top: 3px solid var(--leaf); }
+        .dont-card { border-top: 3px solid var(--red); }
+        .do-card .tag, .dont-card .tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        .do-card .tag { color: #166534; }
+        .dont-card .tag { color: var(--red); }
+        .do-card ul, .dont-card ul { list-style: none; padding: 0; }
+        .do-card li, .dont-card li {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: #2a3a31;
+            line-height: 1.55;
+            padding: 4px 0;
+            padding-left: 14px;
+            position: relative;
+        }
+        .do-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #166534;
+            font-weight: 600;
+            font-size: 11px;
+        }
+        .dont-card li::before {
+            content: '✕';
+            position: absolute;
+            left: 0;
+            color: var(--red);
+            font-weight: 600;
+            font-size: 11px;
+        }
+
+        /* Formality scale */
+        .formality {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin: 12px 0;
+        }
+        .formality .dot {
+            width: 28px;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--rule);
+        }
+        .formality .dot.active { background: var(--muted); }
+        .formality-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--muted);
+            margin-left: 12px;
+        }
+
+        /* Example blocks */
+        .example-block {
+            background: #fff;
+            border: 1px solid var(--rule);
+            border-radius: 6px;
+            padding: 24px;
+            margin: 12px 0;
+        }
+        .example-block .ex-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+        .example-block .ex-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: #2a3a31;
+            line-height: 1.65;
+            font-style: italic;
+        }
+
+        /* Comparison table */
+        .comp-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+        }
+        .comp-table th {
+            text-align: left;
+            padding: 14px 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            border-bottom: 2px solid var(--rule);
+            font-weight: 500;
+        }
+        .comp-table th.col-saude { color: var(--saude); }
+        .comp-table th.col-pet { color: var(--pet); }
+        .comp-table th.col-juridico { color: var(--juridico); }
+        .comp-table td {
+            padding: 14px 16px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            border-bottom: 1px solid #ece9e2;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+        .comp-table td:first-child {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            white-space: nowrap;
+            width: 160px;
+        }
+        .comp-table tr:last-child td { border-bottom: none; }
+
+        /* Pricing badge */
+        .pricing {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--ink);
+        }
+
+        /* Divider */
+        .divider {
+            border: none;
+            border-top: 1px solid var(--rule);
+            margin: 56px 0;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* Compliance card */
+        .compliance-card {
+            border: 1px solid var(--rule);
+            border-radius: 6px;
+            padding: 24px;
+            background: #fff;
+            border-left: 3px solid var(--red);
+            margin: 12px 0;
+        }
+        .compliance-card h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--ink);
+        }
+        .compliance-card p, .compliance-card li {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: #2a3a31;
+            line-height: 1.6;
+        }
+        .compliance-card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 8px;
+        }
+        .compliance-card li {
+            padding: 3px 0 3px 16px;
+            position: relative;
+        }
+        .compliance-card li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--red);
+        }
+
+        /* Killer feature highlight */
+        .killer-card {
+            border: 1px solid var(--rule);
+            border-radius: 6px;
+            padding: 28px;
+            background: #fff;
+            margin: 12px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .killer-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+        .v-saude .killer-card::before { background: var(--saude); }
+        .v-pet .killer-card::before { background: var(--pet); }
+        .v-juridico .killer-card::before { background: var(--juridico); }
+        .killer-card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .killer-card p {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: #2a3a31;
+            line-height: 1.6;
+        }
+        .killer-card .vs {
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid #ece9e2;
+        }
+        .killer-card .vs-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        /* Swatch inline */
+        .swatch-inline {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+            vertical-align: middle;
+            margin-right: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+
+        <!-- MASTHEAD -->
+        <header class="mast">
+            <div class="mast-label">DESTAKA / BRANDBOOK VERTICAIS V1.0</div>
+            <div class="mast-label">05.MAI.2026</div>
+        </header>
+
+        <!-- HERO -->
+        <div class="hero">
+            <h1>Verticais da Marca</h1>
+            <p>Cada vertical do Destaka atende um mercado com dores, regulamentações e vocabulário próprios. Este documento define identidade, tom de voz, compliance e posicionamento para cada um dos três verticais ativos: Saúde, Pet e Jurídico.</p>
+        </div>
+
+        <!-- ================================================================== -->
+        <!-- INTRODUÇÃO -->
+        <!-- ================================================================== -->
+        <section>
+            <div class="sec-label">00 / INTRODUÇÃO</div>
+            <div class="sec-title">Arquitetura multissetorial</div>
+            <div class="sec-desc">O Destaka é uma plataforma única com personalidades distintas por setor. A marca mãe (Destaka, verde #4ade80) permanece como âncora, enquanto cada vertical recebe sua cor accent, vocabulário e nível de formalidade. O mark Pin+Olho se adapta cromaticamente ao vertical, mantendo a forma inalterada.</div>
+
+            <div class="card-grid triple">
+                <div class="card" style="border-top: 3px solid var(--saude);">
+                    <div class="card-label" style="color: var(--saude);">SAÚDE</div>
+                    <h4>Destaka Saúde</h4>
+                    <p>Dentistas, médicos e profissionais de saúde com consultório independente.</p>
+                </div>
+                <div class="card" style="border-top: 3px solid var(--pet);">
+                    <div class="card-label" style="color: var(--pet);">PET</div>
+                    <h4>Destaka Pet</h4>
+                    <p>Veterinários com clínica de bairro, atendimento a cães e gatos.</p>
+                </div>
+                <div class="card" style="border-top: 3px solid var(--juridico);">
+                    <div class="card-label" style="color: var(--juridico);">JURÍDICO</div>
+                    <h4>Destaka Jurídico</h4>
+                    <p>Advogados autônomos e bancas pequenas com foco em consumidor final.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================== -->
+        <!-- VERTICAL 1: SAÚDE -->
+        <!-- ================================================================== -->
+        <section class="v-saude">
+            <div class="sec-label">01 / VERTICAL SAÚDE</div>
+
+            <!-- A. Identidade -->
+            <div class="vertical-hero">
+                <div class="mark-wrap">
+                    <svg width="72" height="84" viewBox="0 0 72 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M36 5C50.91 5 63 17.09 63 32C63 43.5 56.4 51.7 49.6 59.6C44.5 65.55 39.6 71.2 36 76C32.4 71.2 27.5 65.55 22.4 59.6C15.6 51.7 9 43.5 9 32C9 17.09 21.09 5 36 5ZM19.5 32C24 24.5 30 21 36 21C42 21 48 24.5 52.5 32C48 39.5 42 43 36 43C30 43 24 39.5 19.5 32Z" fill="#0EA5E9"/>
+                        <circle cx="36" cy="32" r="4.2" fill="#0EA5E9"/>
+                    </svg>
+                </div>
+                <div class="info">
+                    <h2>Destaka <span style="font-weight:300; opacity:0.5;">Saúde</span></h2>
+                    <div class="tagline">"Cuide dos seus pacientes. A gente cuida do Google."</div>
+                    <div class="color-chip">
+                        <span class="chip" style="background: #0EA5E9;"></span>
+                        #0EA5E9
+                    </div>
+                </div>
+            </div>
+
+            <!-- B. ICP -->
+            <div class="subsec">
+                <div class="subsec-label">B / ICP</div>
+                <h3>Perfil do cliente ideal</h3>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-label" style="color: var(--saude);">QUEM É</div>
+                        <p>Dentista ou médico com consultório independente. Faturamento entre R$15k e R$80k/mês. Nunca mexeu no Google Meu Negócio. Sabe que precisa aparecer no Google, mas não sabe como.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-label" style="color: var(--saude);">PERFIL DEMOGRÁFICO</div>
+                        <p>30 a 55 anos. Pós-graduação em especialidade clínica. Foco total no atendimento. Usa WhatsApp como principal canal de comunicação. Instagram pessoal ou do consultório com postagens esporádicas.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-label" style="color: var(--saude);">DOR PRINCIPAL</div>
+                        <p>"Meu consultório vive de indicação. Se parar de indicar, para de entrar paciente."</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-label" style="color: var(--saude);">RESISTÊNCIA</div>
+                        <p>Não quer aprender marketing. Não quer postar no Instagram. Não quer lidar com ferramenta de tecnologia. Quer resultado sem ter que mudar a rotina clínica.</p>
+                    </div>
+                </div>
+                <div class="card" style="margin-top: 16px;">
+                    <div class="card-label" style="color: var(--saude);">COMO COMPRA SOFTWARE</div>
+                    <p>Por indicação de colega ou fornecedor de confiança (contador, representante de insumos). Raramente pesquisa ativamente. Prioriza simplicidade e resultado rápido. Não compara funcionalidades, compara "quem já usa e gostou".</p>
+                </div>
+            </div>
+
+            <!-- C. Tom de voz -->
+            <div class="subsec">
+                <div class="subsec-label">C / TOM DE VOZ</div>
+                <h3>Como falamos com profissionais de saúde</h3>
+                <p style="margin-bottom: 20px;">Profissional, acessível, sem jargão de marketing. Como um parceiro de confiança que entende a rotina do consultório e resolve sem complicar.</p>
+
+                <div class="do-dont">
+                    <div class="do-card">
+                        <div class="tag">Palavras que sim</div>
+                        <ul>
+                            <li>Paciente</li>
+                            <li>Consultório</li>
+                            <li>Avaliações</li>
+                            <li>Agenda</li>
+                            <li>Presença digital</li>
+                            <li>Aparecer no Google</li>
+                            <li>Automático</li>
+                        </ul>
+                    </div>
+                    <div class="dont-card">
+                        <div class="tag">Palavras que não</div>
+                        <ul>
+                            <li>Cliente (use "paciente")</li>
+                            <li>Clínica genérica (use "consultório")</li>
+                            <li>Reviews (use "avaliações")</li>
+                            <li>Pipeline (use "agenda")</li>
+                            <li>Terapia, sessão, psicólogo</li>
+                            <li>Análise, diagnóstico (fora do contexto)</li>
+                            <li>Leads, funil, conversão</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <div class="subsec-label">FORMALIDADE</div>
+                    <div class="formality">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot active"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <span class="formality-label">3/5: Profissional, mas acessível</span>
+                    </div>
+                    <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: var(--muted); margin-top: 8px;">Referência de tom: como se fosse um colega de pós-graduação que trabalha com tecnologia. Respeita o profissional, não fala de cima, mas também não força intimidade.</p>
+                </div>
+            </div>
+
+            <!-- D. Linguagem e vocabulário -->
+            <div class="subsec">
+                <div class="subsec-label">D / LINGUAGEM E VOCABULÁRIO</div>
+                <h3>Terminologia do vertical</h3>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-label" style="color: var(--saude);">TERMOS DO NICHO</div>
+                        <ul>
+                            <li>"Paciente" (nunca "cliente")</li>
+                            <li>"Consultório" (nunca "clínica" genérica)</li>
+                            <li>"Avaliações" (nunca "reviews")</li>
+                            <li>"Agenda" (nunca "pipeline")</li>
+                            <li>"Retorno" (para consulta de acompanhamento)</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <div class="card-label" style="color: var(--red);">TERMOS PROIBIDOS</div>
+                        <ul>
+                            <li>"Terapia" (risco legal)</li>
+                            <li>"Sessão" (ambíguo)</li>
+                            <li>"Psicólogo" (escopo diferente)</li>
+                            <li>"Análise" (em contexto clínico)</li>
+                            <li>"Diagnóstico" (fora de contexto médico)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-grid" style="margin-top: 16px;">
+                    <div class="card">
+                        <div class="card-label" style="color: var(--saude);">USUÁRIO DESTAKA</div>
+                        <p>Chamar de "profissional", "doutor(a)" ou pelo nome. Nunca "usuário" ou "assinante".</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-label" style="color: var(--saude);">CLIENTE FINAL</div>
+                        <p>Chamar de "paciente". Nunca "cliente final", "consumidor" ou "lead".</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- E. Imagery -->
+            <div class="subsec">
+                <div class="subsec-label">E / IMAGERY E ESTILO VISUAL</div>
+                <h3>Direção visual do vertical</h3>
+                <div class="do-dont">
+                    <div class="do-card">
+                        <div class="tag">Usar</div>
+                        <ul>
+                            <li>Fotos reais de consultórios</li>
+                            <li>Iluminação natural e ambiente limpo</li>
+                            <li>Profissional no ambiente de trabalho</li>
+                            <li>Equipamentos e instrumentos reais</li>
+                            <li>Cores complementares: branco, azul-claro, cinza</li>
+                        </ul>
+                    </div>
+                    <div class="dont-card">
+                        <div class="tag">Nunca usar</div>
+                        <ul>
+                            <li>Banco de imagem genérico</li>
+                            <li>Jaleco genérico sem contexto</li>
+                            <li>Sorriso forçado / pose artificial</li>
+                            <li>Ilustrações cartoon de médicos</li>
+                            <li>Fotos de antes/depois sem autorização</li>
+                        </ul>
+                    </div>
+                </div>
+                <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: var(--muted); margin-top: 12px;">Referências visuais: Doctoralia (fotografia), Notion (simplicidade de UI), Stripe (confiança corporativa).</p>
+                <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: var(--muted); margin-top: 4px;">Cores secundárias permitidas: #E0F2FE (azul-claro), #F0F9FF (quase-branco azulado), #FFFFFF, #F8FAFC.</p>
+            </div>
+
+            <!-- F. Exemplos de comunicação -->
+            <div class="subsec">
+                <div class="subsec-label">F / EXEMPLOS DE COMUNICAÇÃO</div>
+                <h3>Como o Destaka Saúde fala na prática</h3>
+
+                <div class="example-block">
+                    <div class="ex-label">Post LinkedIn</div>
+                    <div class="ex-text">"87% dos pacientes pesquisam no Google antes de agendar. O seu consultório aparece? Com o Destaka, seu perfil do Google fica atualizado automaticamente com horários, avaliações e fotos do seu espaço. Sem precisar postar nada. Sem mudar sua rotina."</div>
+                </div>
+
+                <div class="example-block">
+                    <div class="ex-label">Email de boas-vindas (primeiro parágrafo)</div>
+                    <div class="ex-text">"Bem-vindo(a) ao Destaka, doutor(a). A partir de agora, a presença digital do seu consultório está no piloto automático. Nas próximas 24 horas, vamos otimizar seu perfil do Google para que pacientes da sua região encontrem você com mais facilidade."</div>
+                </div>
+
+                <div class="example-block">
+                    <div class="ex-label">Notificação WhatsApp</div>
+                    <div class="ex-text">"Seu consultório recebeu 3 novas avaliações esta semana. Quer ver o resumo? Acesse o painel do Destaka."</div>
+                </div>
+
+                <div class="example-block">
+                    <div class="ex-label">CTA / Botão</div>
+                    <div class="ex-text">"Quero aparecer no Google" · "Ver meu perfil" · "Ativar presença digital"</div>
+                </div>
+            </div>
+
+            <!-- G. Compliance -->
+            <div class="subsec">
+                <div class="subsec-label">G / COMPLIANCE E RESTRIÇÕES LEGAIS</div>
+                <h3>Regulamentação do setor</h3>
+
+                <div class="compliance-card">
+                    <h4>Órgão regulador: CRM / CRO</h4>
+                    <p>O Conselho Regional de Medicina e o Conselho Regional de Odontologia regulam toda publicidade de profissionais de saúde.</p>
+                    <ul>
+                        <li>Posts informativos sobre saúde: permitido</li>
+                        <li>Solicitar avaliações de pacientes: permitido (de forma genérica)</li>
+                        <li>Prometer resultado clínico: proibido</li>
+                        <li>Fotos de antes/depois sem autorização por escrito: proibido</li>
+                        <li>Comparação com outros profissionais: proibido</li>
+                    </ul>
+                </div>
+
+                <div class="card-grid" style="margin-top: 16px;">
+                    <div class="card" style="border-left: 3px solid var(--leaf);">
+                        <div class="card-label" style="color: #166534;">PODE AUTOMATIZAR</div>
+                        <ul>
+                            <li>Publicação de posts informativos no GMB</li>
+                            <li>Atualização de horários e fotos</li>
+                            <li>Solicitação genérica de avaliação</li>
+                            <li>Lembrete de retorno ao paciente</li>
+                        </ul>
+                    </div>
+                    <div class="card" style="border-left: 3px solid var(--red);">
+                        <div class="card-label" style="color: var(--red);">NÃO PODE AUTOMATIZAR</div>
+                        <ul>
+                            <li>Diagnóstico ou triagem por bot</li>
+                            <li>Promessa de resultado em anúncio</li>
+                            <li>Publicação de foto clínica sem consentimento</li>
+                            <li>Comparação com outros profissionais</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- H. Killer feature -->
+            <div class="subsec">
+                <div class="subsec-label">H / KILLER FEATURE E POSICIONAMENTO</div>
+                <h3>Diferencial competitivo</h3>
+
+                <div class="killer-card">
+                    <h4>Reativação de paciente inativo via WhatsApp</h4>
+                    <p>O Destaka identifica pacientes que não retornam há mais de X meses e envia lembrete personalizado via WhatsApp. Não é só CRM: é reativação inteligente com contexto do Google (avaliação + agenda + último contato).</p>
+                    <div class="vs">
+                        <div class="vs-label">VS CONCORRENTES</div>
+                        <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: var(--muted); line-height: 1.6;"><strong>Doctoralia:</strong> marketplace de agendamento, não otimiza Google Meu Negócio. <strong>Simples Dental:</strong> focado em odonto, sem automação de GMB. Nenhum concorrente combina GMB + WhatsApp + reativação.</p>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 16px;">
+                    <div class="card-label" style="color: var(--saude);">ROI ESPERADO</div>
+                    <p>Um paciente reativado vale em média R$300 a R$2.000 (dependendo do procedimento). Com 5 reativações/mês, o plano de R$197 se paga no primeiro paciente.</p>
+                </div>
+
+                <div class="card" style="margin-top: 16px;">
+                    <div class="card-label" style="color: var(--saude);">PRICING</div>
+                    <p class="pricing">R$197 / R$497 / R$797</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================== -->
+        <!-- VERTICAL 2: PET -->
+        <!-- ================================================================== -->
+        <section class="v-pet">
+            <div class="sec-label">02 / VERTICAL PET</div>
+
+            <!-- A. Identidade -->
+            <div class="vertical-hero">
+                <div class="mark-wrap">
+                    <svg width="72" height="84" viewBox="0 0 72 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M36 5C50.91 5 63 17.09 63 32C63 43.5 56.4 51.7 49.6 59.6C44.5 65.55 39.6 71.2 36 76C32.4 71.2 27.5 65.55 22.4 59.6C15.6 51.7 9 43.5 9 32C9 17.09 21.09 5 36 5ZM19.5 32C24 24.5 30 21 36 21C42 21 48 24.5 52.5 32C48 39.5 42 43 36 43C30 43 24 39.5 19.5 32Z" fill="#22C55E"/>
+                        <circle cx="36" cy="32" r="4.2" fill="#22C55E"/>
+                    </svg>
+                </div>
+                <div class="info">
+                    <h2>Destaka <span style="font-weight:300; opacity:0.5;">Pet</span></h2>
+                    <div class="tagline">"Sua clínica cheia. Sem parar de atender."</div>
+                    <div class="color-chip">
+                        <span class="chip" style="background: #22C55E;"></span>
+                        #22C55E
+                    </div>
+                </div>
+            </div>
+
+            <!-- B. ICP -->
+            <div class="subsec">
+                <div class="subsec-label">B / ICP</div>
+                <h3>Perfil do cliente ideal</h3>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-label" style="color: var(--pet);">QUEM É</div>
+                        <p>Veterinário com clínica de bairro. Equipe de 1 a 3 vets. Atende cães e gatos. Faturamento entre R$10k e R$50k/mês. Marketing atual: boca a boca e Instagram esporádico.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-label" style="color: var(--pet);">PERFIL DEMOGRÁFICO</div>
+                        <p>28 a 50 anos. Formação em medicina veterinária. Forte vínculo emocional com os animais e com os tutores. Usa WhatsApp intensamente para comunicação com tutores.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-label" style="color: var(--pet);">DOR PRINCIPAL</div>
+                        <p>"Meus horários vagos poderiam estar preenchidos, mas ninguém me acha no Google."</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-label" style="color: var(--pet);">RESISTÊNCIA</div>
+                        <p>Não quer parar de atender para fazer marketing. Não quer contratar agência (caro demais para o porte). Não confia em ferramentas que prometem "resultado mágico".</p>
+                    </div>
+                </div>
+                <div class="card" style="margin-top: 16px;">
+                    <div class="card-label" style="color: var(--pet);">COMO COMPRA SOFTWARE</div>
+                    <p>Por recomendação de colegas veterinários, em grupos de WhatsApp da categoria ou em eventos do setor. Valoriza depoimento de quem já usa. Testa antes de pagar. Prefere planos sem fidelidade.</p>
+                </div>
+            </div>
+
+            <!-- C. Tom de voz -->
+            <div class="subsec">
+                <div class="subsec-label">C / TOM DE VOZ</div>
+                <h3>Como falamos com veterinários</h3>
+                <p style="margin-bottom: 20px;">Acolhedor e profissional, mas com mais leveza que o vertical Saúde. Respeitamos a ciência veterinária sem ser engessados. O veterinário é parceiro, não aluno.</p>
+
+                <div class="do-dont">
+                    <div class="do-card">
+                        <div class="tag">Palavras que sim</div>
+                        <ul>
+                            <li>Tutor (quem cuida do animal)</li>
+                            <li>Pet / Animal de companhia</li>
+                            <li>Clínica veterinária</li>
+                            <li>Vacinação</li>
+                            <li>Retorno</li>
+                            <li>Calendário vacinal</li>
+                            <li>Cuidado preventivo</li>
+                        </ul>
+                    </div>
+                    <div class="dont-card">
+                        <div class="tag">Palavras que não</div>
+                        <ul>
+                            <li>"Dono" (CRMV desencoraja)</li>
+                            <li>"Bichinho" (infantiliza)</li>
+                            <li>"Cachorrinho" / "Gatinho" (diminutivo)</li>
+                            <li>"Leads" / "Funil" / "Conversão"</li>
+                            <li>"Pacotão" / "Promoção" (desvaloriza)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <div class="subsec-label">FORMALIDADE</div>
+                    <div class="formality">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot active" style="width: 14px;"></div>
+                        <div class="dot" style="width: 14px;"></div>
+                        <div class="dot"></div>
+                        <span class="formality-label">2.5/5: Acessível e caloroso, mas profissional</span>
+                    </div>
+                    <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: var(--muted); margin-top: 8px;">Referência de tom: como se fosse um colega de faculdade que montou uma startup de tecnologia para o setor. Entende a rotina, fala a língua do vet, mas não tenta ser engraçadinho.</p>
+                </div>
+            </div>
+
+            <!-- D. Linguagem e vocabulário -->
+            <div class="subsec">
+                <div class="subsec-label">D / LINGUAGEM E VOCABULÁRIO</div>
+                <h3>Terminologia do vertical</h3>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-label" style="color: var(--pet);">TERMOS DO NICHO</div>
+                        <ul>
+                            <li>"Tutor" (nunca "dono")</li>
+                            <li>"Pet" ou "animal de companhia"</li>
+                            <li>"Clínica veterinária"</li>
+                            <li>"Vacinação" / "calendário vacinal"</li>
+                            <li>"Retorno" (para consulta de acompanhamento)</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <div class="card-label" style="color: var(--red);">TERMOS PROIBIDOS</div>
+                        <ul>
+                            <li>"Dono" (CRMV desencoraja o termo)</li>
+                            <li>"Bichinho" (infantiliza a profissão)</li>
+                            <li>"Cachorrinho" / "Gatinho" (diminutivos)</li>
+                            <li>"Promoção" (desvaloriza o serviço)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-grid" style="margin-top: 16px;">
+                    <div class="card">
+                        <div class="card-label" style="color: var(--pet);">USUÁRIO DESTAKA</div>
+                        <p>Chamar de "doutor(a)", "veterinário(a)" ou pelo nome. Nunca "usuário" ou "assinante".</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-label" style="color: var(--pet);">CLIENTE FINAL</div>
+                        <p>Chamar de "tutor". O animal é o "pet" ou "animal de companhia". Nunca "dono" ou "proprietário".</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- E. Imagery -->
+            <div class="subsec">
+                <div class="subsec-label">E / IMAGERY E ESTILO VISUAL</div>
+                <h3>Direção visual do vertical</h3>
+                <div class="do-dont">
+                    <div class="do-card">
+                        <div class="tag">Usar</div>
+                        <ul>
+                            <li>Animais reais em ambiente clínico</li>
+                            <li>Profissional interagindo com o animal</li>
+                            <li>Ambiente limpo e organizado</li>
+                            <li>Fotos com iluminação natural</li>
+                            <li>Cores complementares: verde-claro, branco, bege</li>
+                        </ul>
+                    </div>
+                    <div class="dont-card">
+                        <div class="tag">Nunca usar</div>
+                        <ul>
+                            <li>Animais com fantasia ou roupa</li>
+                            <li>Fotos fofas genéricas de banco de imagem</li>
+                            <li>Ilustrações cartoon de animais</li>
+                            <li>Fotos sem contexto profissional</li>
+                            <li>Emojis de animais em comunicação formal</li>
+                        </ul>
+                    </div>
+                </div>
+                <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: var(--muted); margin-top: 12px;">Referências visuais: SimplesVet (UI limpa), Cobasi (fotografia profissional de animais), Petlove (linguagem acessível).</p>
+                <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: var(--muted); margin-top: 4px;">Cores secundárias permitidas: #DCFCE7 (verde-claro), #F0FDF4 (quase-branco verde), #FFFFFF, #FAFAF5.</p>
+            </div>
+
+            <!-- F. Exemplos de comunicação -->
+            <div class="subsec">
+                <div class="subsec-label">F / EXEMPLOS DE COMUNICAÇÃO</div>
+                <h3>Como o Destaka Pet fala na prática</h3>
+
+                <div class="example-block">
+                    <div class="ex-label">Post LinkedIn</div>
+                    <div class="ex-text">"O tutor do seu bairro pesquisa 'veterinário perto de mim' antes de agendar. Se a sua clínica não aparece nas primeiras posições do Google, ele vai para o concorrente. O Destaka mantém seu perfil otimizado automaticamente, com horários, avaliações e calendário vacinal atualizado."</div>
+                </div>
+
+                <div class="example-block">
+                    <div class="ex-label">Email de boas-vindas (primeiro parágrafo)</div>
+                    <div class="ex-text">"Bem-vindo(a) ao Destaka, doutor(a). Sua clínica agora tem presença digital no piloto automático. Vamos começar otimizando seu perfil do Google para que tutores da sua região encontrem você quando mais precisam."</div>
+                </div>
+
+                <div class="example-block">
+                    <div class="ex-label">Notificação WhatsApp</div>
+                    <div class="ex-text">"12 pets da sua base estão com vacina vencendo este mês. Quer que o Destaka publique um lembrete no Google automaticamente?"</div>
+                </div>
+
+                <div class="example-block">
+                    <div class="ex-label">CTA / Botão</div>
+                    <div class="ex-text">"Aparecer no Google" · "Ativar calendário vacinal" · "Ver minha clínica no Google"</div>
+                </div>
+            </div>
+
+            <!-- G. Compliance -->
+            <div class="subsec">
+                <div class="subsec-label">G / COMPLIANCE E RESTRIÇÕES LEGAIS</div>
+                <h3>Regulamentação do setor</h3>
+
+                <div class="compliance-card">
+                    <h4>Órgão regulador: CRMV</h4>
+                    <p>O Conselho Regional de Medicina Veterinária regulamenta a atuação profissional e a publicidade de serviços veterinários.</p>
+                    <ul>
+                        <li>Posts informativos sobre saúde animal: permitido</li>
+                        <li>Lembrete de vacina para tutores: permitido (não é ato médico)</li>
+                        <li>Bot de triagem com diagnóstico: proibido</li>
+                        <li>Publicidade comparativa com concorrentes: proibido</li>
+                    </ul>
+                </div>
+
+                <div class="card-grid" style="margin-top: 16px;">
+                    <div class="card" style="border-left: 3px solid var(--leaf);">
+                        <div class="card-label" style="color: #166534;">PODE AUTOMATIZAR</div>
+                        <ul>
+                            <li>Publicação de posts informativos no GMB</li>
+                            <li>Lembrete de vacinação para tutores</li>
+                            <li>Atualização de horários e fotos</li>
+                            <li>Solicitação genérica de avaliação</li>
+                        </ul>
+                    </div>
+                    <div class="card" style="border-left: 3px solid var(--red);">
+                        <div class="card-label" style="color: var(--red);">NÃO PODE AUTOMATIZAR</div>
+                        <ul>
+                            <li>Diagnóstico ou triagem por bot</li>
+                            <li>Prescrição de medicamentos</li>
+                            <li>Aconselhamento veterinário automatizado</li>
+                            <li>Promessa de resultado clínico</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- H. Killer feature -->
+            <div class="subsec">
+                <div class="subsec-label">H / KILLER FEATURE E POSICIONAMENTO</div>
+                <h3>Diferencial competitivo</h3>
+
+                <div class="killer-card">
+                    <h4>Calendário vacinal que alimenta conteúdo GMB</h4>
+                    <p>Diferente de ERPs que apenas enviam lembrete de vacina, o Destaka transforma o calendário vacinal em conteúdo para o Google Meu Negócio. Quando muitos pets da base estão com V10 vencendo, o sistema publica automaticamente um post informativo sobre a importância da vacina. Marketing que vem da operação, não de esforço extra.</p>
+                    <div class="vs">
+                        <div class="vs-label">VS CONCORRENTES</div>
+                        <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: var(--muted); line-height: 1.6;"><strong>SimplesVet:</strong> ERP completo, mas sem nenhuma automação de marketing ou GMB. <strong>Fly Vet:</strong> agência de marketing veterinário, caro e manual. Nenhum concorrente faz GMB automatizado para clínicas vet.</p>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 16px;">
+                    <div class="card-label" style="color: var(--pet);">ROI ESPERADO</div>
+                    <p>Cada consulta veterinária vale em média R$120 a R$300. Com 3 novos tutores/mês via Google, o plano de R$197 se paga no primeiro atendimento.</p>
+                </div>
+
+                <div class="card" style="margin-top: 16px;">
+                    <div class="card-label" style="color: var(--pet);">PRICING</div>
+                    <p class="pricing">R$197 / R$397 / R$697</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================== -->
+        <!-- VERTICAL 3: JURÍDICO -->
+        <!-- ================================================================== -->
+        <section class="v-juridico">
+            <div class="sec-label">03 / VERTICAL JURÍDICO</div>
+
+            <!-- A. Identidade -->
+            <div class="vertical-hero">
+                <div class="mark-wrap">
+                    <svg width="72" height="84" viewBox="0 0 72 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M36 5C50.91 5 63 17.09 63 32C63 43.5 56.4 51.7 49.6 59.6C44.5 65.55 39.6 71.2 36 76C32.4 71.2 27.5 65.55 22.4 59.6C15.6 51.7 9 43.5 9 32C9 17.09 21.09 5 36 5ZM19.5 32C24 24.5 30 21 36 21C42 21 48 24.5 52.5 32C48 39.5 42 43 36 43C30 43 24 39.5 19.5 32Z" fill="#1E3A5F"/>
+                        <circle cx="36" cy="32" r="4.2" fill="#1E3A5F"/>
+                    </svg>
+                </div>
+                <div class="info">
+                    <h2>Destaka <span style="font-weight:300; opacity:0.5;">Jurídico</span></h2>
+                    <div class="tagline">"O cliente certo te encontra. Você decide quem atende."</div>
+                    <div class="color-chip">
+                        <span class="chip" style="background: #1E3A5F;"></span>
+                        #1E3A5F
+                    </div>
+                </div>
+            </div>
+
+            <!-- B. ICP -->
+            <div class="subsec">
+                <div class="subsec-label">B / ICP</div>
+                <h3>Perfil do cliente ideal</h3>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-label" style="color: var(--juridico);">QUEM É</div>
+                        <p>Advogado autônomo ou banca pequena (1 a 3 advogados). Atua em áreas de consumidor final: trabalhista, família, previdenciário, criminal. Faturamento entre R$8k e R$40k/mês.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-label" style="color: var(--juridico);">PERFIL DEMOGRÁFICO</div>
+                        <p>28 a 55 anos. OAB ativa. Escritório próprio ou coworking jurídico. Networking como principal fonte de clientes. Presença digital limitada a Instagram pessoal.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-label" style="color: var(--juridico);">DOR PRINCIPAL</div>
+                        <p>"Dependo de indicação. Quando para de indicar, o escritório fica vazio."</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-label" style="color: var(--juridico);">RESISTÊNCIA</div>
+                        <p>Medo de ferir regras da OAB. Não quer parecer "vendedor". Acha que marketing jurídico é antiético. Não quer investir tempo aprendendo ferramenta nova.</p>
+                    </div>
+                </div>
+                <div class="card" style="margin-top: 16px;">
+                    <div class="card-label" style="color: var(--juridico);">COMO COMPRA SOFTWARE</div>
+                    <p>Por recomendação de colegas advogados, em grupos de WhatsApp da OAB seccional ou em eventos de associações de classe. Valoriza conformidade com a OAB acima de tudo. Testa com cautela. Prefere planos que pode cancelar a qualquer momento.</p>
+                </div>
+            </div>
+
+            <!-- C. Tom de voz -->
+            <div class="subsec">
+                <div class="subsec-label">C / TOM DE VOZ</div>
+                <h3>Como falamos com advogados</h3>
+                <p style="margin-bottom: 20px;">Mais formal que os outros verticais, mas sem ser burocrático. Respeitamos a tradição da profissão e a preocupação legítima com compliance da OAB. Segurança e conformidade são os pilares da comunicação.</p>
+
+                <div class="do-dont">
+                    <div class="do-card">
+                        <div class="tag">Palavras que sim</div>
+                        <ul>
+                            <li>Cliente</li>
+                            <li>Causa / Caso</li>
+                            <li>Escritório / Banca</li>
+                            <li>Audiência</li>
+                            <li>Consulta</li>
+                            <li>Conforme a OAB</li>
+                            <li>Qualificação</li>
+                        </ul>
+                    </div>
+                    <div class="dont-card">
+                        <div class="tag">Palavras que não</div>
+                        <ul>
+                            <li>"Processo" (ambíguo fora de contexto jurídico)</li>
+                            <li>"Ganhar causa" (resultado é incerto)</li>
+                            <li>"Melhor advogado" (publicidade comparativa)</li>
+                            <li>"Grátis" (desvaloriza a profissão)</li>
+                            <li>"Leads" / "Funil" / "Conversão"</li>
+                            <li>"Captação" (proibido pela OAB)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <div class="subsec-label">FORMALIDADE</div>
+                    <div class="formality">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot active"></div>
+                        <div class="dot"></div>
+                        <span class="formality-label">4/5: Formal, mas não engessado</span>
+                    </div>
+                    <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: var(--muted); margin-top: 8px;">Referência de tom: como se fosse um sócio de escritório de tecnologia jurídica. Entende a linguagem do direito, respeita a tradição, mas apresenta soluções com clareza e objetividade.</p>
+                </div>
+            </div>
+
+            <!-- D. Linguagem e vocabulário -->
+            <div class="subsec">
+                <div class="subsec-label">D / LINGUAGEM E VOCABULÁRIO</div>
+                <h3>Terminologia do vertical</h3>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-label" style="color: var(--juridico);">TERMOS DO NICHO</div>
+                        <ul>
+                            <li>"Cliente" (não "paciente")</li>
+                            <li>"Causa" ou "caso"</li>
+                            <li>"Escritório" ou "banca"</li>
+                            <li>"Audiência"</li>
+                            <li>"Consulta" (primeira conversa)</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <div class="card-label" style="color: var(--red);">TERMOS PROIBIDOS</div>
+                        <ul>
+                            <li>"Processo" (fora de contexto jurídico)</li>
+                            <li>"Ganhar causa" (proibido pela OAB)</li>
+                            <li>"Melhor advogado" (comparativo proibido)</li>
+                            <li>"Grátis" (desvaloriza)</li>
+                            <li>"Captação" (proibido pela OAB)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-grid" style="margin-top: 16px;">
+                    <div class="card">
+                        <div class="card-label" style="color: var(--juridico);">USUÁRIO DESTAKA</div>
+                        <p>Chamar de "doutor(a)", "advogado(a)" ou pelo nome. Nunca "usuário" ou "assinante".</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-label" style="color: var(--juridico);">CLIENTE FINAL</div>
+                        <p>Chamar de "cliente" ou "pessoa que busca orientação jurídica". Nunca "lead", "consumidor" ou "prospect".</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- E. Imagery -->
+            <div class="subsec">
+                <div class="subsec-label">E / IMAGERY E ESTILO VISUAL</div>
+                <h3>Direção visual do vertical</h3>
+                <div class="do-dont">
+                    <div class="do-card">
+                        <div class="tag">Usar</div>
+                        <ul>
+                            <li>Ambiente profissional sóbrio</li>
+                            <li>Escritório real, mesa de trabalho</li>
+                            <li>Profissional em contexto de trabalho</li>
+                            <li>Livros jurídicos como elemento visual</li>
+                            <li>Cores complementares: azul-marinho, cinza, branco</li>
+                        </ul>
+                    </div>
+                    <div class="dont-card">
+                        <div class="tag">Nunca usar</div>
+                        <ul>
+                            <li>Martelo de juiz (clichê extremo)</li>
+                            <li>Balança da justiça (genérico)</li>
+                            <li>Toga fora de audiência</li>
+                            <li>Ilustrações cartoon de advogados</li>
+                            <li>Imagens agressivas ou dramáticas</li>
+                        </ul>
+                    </div>
+                </div>
+                <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: var(--muted); margin-top: 12px;">Referências visuais: Jusbrasil (confiança), Linear (minimalismo), Notion (clareza). Tom visual sóbrio e contemporâneo.</p>
+                <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: var(--muted); margin-top: 4px;">Cores secundárias permitidas: #DBEAFE (azul-claro), #EFF6FF (quase-branco azulado), #F1F5F9 (cinza-frio), #FFFFFF.</p>
+            </div>
+
+            <!-- F. Exemplos de comunicação -->
+            <div class="subsec">
+                <div class="subsec-label">F / EXEMPLOS DE COMUNICAÇÃO</div>
+                <h3>Como o Destaka Jurídico fala na prática</h3>
+
+                <div class="example-block">
+                    <div class="ex-label">Post LinkedIn</div>
+                    <div class="ex-text">"Quando alguém pesquisa 'advogado trabalhista em [cidade]' no Google, o seu escritório aparece? O Destaka otimiza o seu perfil do Google de forma automática, em conformidade com o Provimento 205/2021 da OAB. Informação acessível, presença profissional, sem captação ativa."</div>
+                </div>
+
+                <div class="example-block">
+                    <div class="ex-label">Email de boas-vindas (primeiro parágrafo)</div>
+                    <div class="ex-text">"Bem-vindo(a) ao Destaka, doutor(a). A partir de agora, a presença digital do seu escritório está estruturada para atrair clientes qualificados pelo Google, em total conformidade com as normas da OAB. Sem captação ativa. Sem publicidade comparativa. Apenas visibilidade profissional."</div>
+                </div>
+
+                <div class="example-block">
+                    <div class="ex-label">Notificação WhatsApp</div>
+                    <div class="ex-text">"2 novos contatos encontraram seu escritório pelo Google esta semana. Acesse o Destaka para qualificar e decidir se deseja atender."</div>
+                </div>
+
+                <div class="example-block">
+                    <div class="ex-label">CTA / Botão</div>
+                    <div class="ex-text">"Aparecer no Google" · "Qualificar contatos" · "Ver meu perfil profissional"</div>
+                </div>
+            </div>
+
+            <!-- G. Compliance -->
+            <div class="subsec">
+                <div class="subsec-label">G / COMPLIANCE E RESTRIÇÕES LEGAIS</div>
+                <h3>Regulamentação do setor</h3>
+
+                <div class="compliance-card">
+                    <h4>Órgão regulador: OAB (Provimento 205/2021)</h4>
+                    <p>A Ordem dos Advogados do Brasil regulamenta toda publicidade de serviços jurídicos. O Provimento 205/2021 é a norma vigente, com tendência mais permissiva em relação ao marketing digital informativo.</p>
+                    <ul>
+                        <li>Posts informativos sobre direito: permitido</li>
+                        <li>Solicitar avaliações no Google: permitido (de forma genérica)</li>
+                        <li>Google Ads: permitido</li>
+                        <li>Bot WhatsApp reativo (responde quem procurou): zona cinza aceitável</li>
+                        <li>Bot WhatsApp ativo / broadcast: proibido (captação ativa)</li>
+                        <li>Publicidade comparativa: proibido</li>
+                        <li>Promessa de resultado: proibido</li>
+                    </ul>
+                </div>
+
+                <div class="card-grid" style="margin-top: 16px;">
+                    <div class="card" style="border-left: 3px solid var(--leaf);">
+                        <div class="card-label" style="color: #166534;">PODE AUTOMATIZAR</div>
+                        <ul>
+                            <li>Publicação de posts informativos no GMB</li>
+                            <li>Atualização de horários e dados do escritório</li>
+                            <li>Qualificação reativa de contatos (quem procurou)</li>
+                            <li>Solicitação genérica de avaliação</li>
+                        </ul>
+                    </div>
+                    <div class="card" style="border-left: 3px solid var(--red);">
+                        <div class="card-label" style="color: var(--red);">NÃO PODE AUTOMATIZAR</div>
+                        <ul>
+                            <li>Iniciar conversa com potencial cliente (captação ativa)</li>
+                            <li>Broadcast de ofertas de serviço</li>
+                            <li>Promessa de resultado em qualquer canal</li>
+                            <li>Publicidade comparativa automatizada</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- H. Killer feature -->
+            <div class="subsec">
+                <div class="subsec-label">H / KILLER FEATURE E POSICIONAMENTO</div>
+                <h3>Diferencial competitivo</h3>
+
+                <div class="killer-card">
+                    <h4>Qualificação reativa de contatos</h4>
+                    <p>O Destaka qualifica automaticamente quem já entrou em contato com o escritório. O bot não inicia conversa (proibido pela OAB), mas quando alguém procura o advogado pelo Google e entra em contato, o sistema qualifica a demanda, identifica a área de atuação e apresenta ao advogado com contexto completo. O advogado decide se quer atender.</p>
+                    <div class="vs">
+                        <div class="vs-label">VS CONCORRENTES</div>
+                        <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: var(--muted); line-height: 1.6;"><strong>SábioAdv:</strong> IA + WhatsApp, mas sem otimização de GMB. <strong>Causi:</strong> CRM + IA, sem GMB. <strong>JusLead:</strong> CRM puro, sem GMB. Nenhum concorrente combina GMB + qualificação reativa + conformidade OAB.</p>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 16px;">
+                    <div class="card-label" style="color: var(--juridico);">ROI ESPERADO</div>
+                    <p>O ticket médio de uma causa jurídica varia de R$3.000 a R$15.000. Com apenas 1 cliente novo/mês via Google, o plano de R$397 se paga mais de 7 vezes.</p>
+                </div>
+
+                <div class="card" style="margin-top: 16px;">
+                    <div class="card-label" style="color: var(--juridico);">PRICING</div>
+                    <p class="pricing">R$397 / R$597 / R$897</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================== -->
+        <!-- TABELA COMPARATIVA -->
+        <!-- ================================================================== -->
+        <section>
+            <div class="sec-label">04 / COMPARATIVO</div>
+            <div class="sec-title">Três verticais, lado a lado</div>
+            <div class="sec-desc">Visão consolidada das diferenças entre os verticais ativos. Use esta tabela como referência rápida para manter consistência na comunicação de cada setor.</div>
+
+            <div style="overflow-x: auto;">
+                <table class="comp-table">
+                    <thead>
+                        <tr>
+                            <th>Dimensão</th>
+                            <th class="col-saude">Saúde</th>
+                            <th class="col-pet">Pet</th>
+                            <th class="col-juridico">Jurídico</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Cor accent</td>
+                            <td><span class="swatch-inline" style="background:#0EA5E9;"></span> #0EA5E9</td>
+                            <td><span class="swatch-inline" style="background:#22C55E;"></span> #22C55E</td>
+                            <td><span class="swatch-inline" style="background:#1E3A5F;"></span> #1E3A5F</td>
+                        </tr>
+                        <tr>
+                            <td>Tagline</td>
+                            <td>Cuide dos seus pacientes. A gente cuida do Google.</td>
+                            <td>Sua clínica cheia. Sem parar de atender.</td>
+                            <td>O cliente certo te encontra. Você decide quem atende.</td>
+                        </tr>
+                        <tr>
+                            <td>ICP</td>
+                            <td>Dentista/médico, consultório independente, R$15k-R$80k/mês</td>
+                            <td>Veterinário, clínica de bairro, 1-3 vets, R$10k-R$50k/mês</td>
+                            <td>Advogado autônomo ou banca pequena, R$8k-R$40k/mês</td>
+                        </tr>
+                        <tr>
+                            <td>Formalidade</td>
+                            <td>3/5</td>
+                            <td>2.5/5</td>
+                            <td>4/5</td>
+                        </tr>
+                        <tr>
+                            <td>Órgão regulador</td>
+                            <td>CRM / CRO</td>
+                            <td>CRMV</td>
+                            <td>OAB</td>
+                        </tr>
+                        <tr>
+                            <td>Usuário</td>
+                            <td>"Paciente"</td>
+                            <td>"Tutor"</td>
+                            <td>"Cliente"</td>
+                        </tr>
+                        <tr>
+                            <td>Killer feature</td>
+                            <td>Reativação de paciente inativo via WhatsApp</td>
+                            <td>Calendário vacinal que alimenta conteúdo GMB</td>
+                            <td>Qualificação reativa de contatos</td>
+                        </tr>
+                        <tr>
+                            <td>Pricing</td>
+                            <td>R$197 / R$497 / R$797</td>
+                            <td>R$197 / R$397 / R$697</td>
+                            <td>R$397 / R$597 / R$897</td>
+                        </tr>
+                        <tr>
+                            <td>Concorrentes</td>
+                            <td>Doctoralia, Simples Dental</td>
+                            <td>SimplesVet, Fly Vet</td>
+                            <td>SábioAdv, Causi, JusLead</td>
+                        </tr>
+                        <tr>
+                            <td>Risco principal</td>
+                            <td>Promessa de resultado clínico</td>
+                            <td>Bot com diagnóstico veterinário</td>
+                            <td>Captação ativa (OAB proíbe)</td>
+                        </tr>
+                        <tr>
+                            <td>Termo proibido chave</td>
+                            <td>"Terapia", "Sessão"</td>
+                            <td>"Dono", "Bichinho"</td>
+                            <td>"Ganhar causa", "Melhor advogado"</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-text">Destaka / Brandbook Verticais V1.0</div>
+            <div class="footer-text">Confidencial</div>
+        </footer>
+
+    </div>
+</body>
+</html>

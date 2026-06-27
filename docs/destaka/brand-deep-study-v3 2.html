@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destaka — Estudo Profundo: Fonte + Mark</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #080808;
+            color: #e5e5e5;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+        .container { max-width: 960px; margin: 0 auto; }
+        h1 { font-size: 28px; color: #fff; margin-bottom: 4px; }
+        h2 { font-size: 20px; color: #fff; margin: 64px 0 20px; padding-bottom: 8px; border-bottom: 1px solid #1a1a1a; }
+        h3 { font-size: 15px; color: #4ade80; margin: 32px 0 16px; }
+        .subtitle { color: #888; margin-bottom: 48px; font-size: 14px; }
+        .badge {
+            display: inline-block;
+            background: rgba(74, 222, 128, 0.1);
+            color: #4ade80;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        p.desc { color: #888; font-size: 13px; margin-bottom: 20px; }
+
+        /* Comparison layout */
+        .vs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            margin: 24px 0;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .vs-col {
+            background: #111;
+            padding: 32px;
+        }
+        .vs-label {
+            font-size: 11px;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        /* Size scale */
+        .size-row {
+            margin: 16px 0;
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+        }
+        .size-label {
+            font-size: 10px;
+            color: #444;
+            min-width: 40px;
+        }
+
+        /* Context cards */
+        .context-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .context-card {
+            background: #111;
+            border: 1px solid #1a1a1a;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+        .context-card.light {
+            background: #fff;
+        }
+        .context-card .label {
+            font-size: 10px;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+        .context-card.light .label { color: #999; }
+
+        /* Mark deep study */
+        .mark-deep-card {
+            background: #111;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 32px;
+            margin: 20px 0;
+        }
+        .mark-deep-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .mark-deep-icon {
+            width: 72px;
+            height: 72px;
+            flex-shrink: 0;
+        }
+        .mark-deep-title {
+            font-size: 18px;
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .mark-deep-concept {
+            font-size: 13px;
+            color: #888;
+        }
+        .mark-deep-body {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #1a1a1a;
+        }
+        .mark-rationale {
+            font-size: 13px;
+            color: #aaa;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+        .mark-applications {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .mark-app-item {
+            text-align: center;
+            padding: 12px 8px;
+            background: #0a0a0a;
+            border-radius: 8px;
+        }
+        .mark-app-item .icon-size {
+            margin-bottom: 6px;
+        }
+        .mark-app-item .size-text {
+            font-size: 9px;
+            color: #555;
+        }
+        .mark-pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .pros, .cons {
+            font-size: 12px;
+            line-height: 1.8;
+        }
+        .pros { color: #4ade80; }
+        .cons { color: #f87171; }
+        .pros li, .cons li { list-style: none; padding-left: 16px; position: relative; }
+        .pros li::before { content: "+"; position: absolute; left: 0; font-weight: 700; }
+        .cons li::before { content: "-"; position: absolute; left: 0; font-weight: 700; }
+
+        /* Score bar */
+        .score-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin: 4px 0;
+        }
+        .score-label {
+            font-size: 11px;
+            color: #666;
+            min-width: 100px;
+        }
+        .score-bar {
+            flex: 1;
+            height: 6px;
+            background: #1a1a1a;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .score-fill {
+            height: 100%;
+            background: #4ade80;
+            border-radius: 3px;
+        }
+        .score-val {
+            font-size: 11px;
+            color: #888;
+            min-width: 30px;
+            text-align: right;
+        }
+
+        /* Verdict */
+        .verdict-box {
+            background: rgba(74, 222, 128, 0.05);
+            border: 1px solid rgba(74, 222, 128, 0.2);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+        .verdict-box h4 {
+            color: #4ade80;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        .verdict-box p {
+            font-size: 13px;
+            color: #ccc;
+            line-height: 1.7;
+        }
+
+        /* Favicon grid */
+        .favicon-grid {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            justify-content: center;
+            margin: 16px 0;
+            flex-wrap: wrap;
+        }
+        .favicon-item {
+            text-align: center;
+        }
+        .favicon-item .fav-label {
+            font-size: 9px;
+            color: #444;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="badge">ESTUDO PROFUNDO v3</span>
+        <h1>Destaka — Fonte + Mark</h1>
+        <p class="subtitle">Comparativo detalhado Outfit vs Space Grotesk + estudo aprofundado de 6 direcoes de mark</p>
+
+        <!-- ================================ -->
+        <!-- PART 1: FONT COMPARISON -->
+        <!-- ================================ -->
+        <h2>Parte 1: Outfit 700 vs Space Grotesk 700</h2>
+
+        <h3>1.1 Escala de tamanhos</h3>
+        <div class="vs-grid">
+            <div class="vs-col">
+                <div class="vs-label">Outfit 700</div>
+                <div class="size-row"><span class="size-label">48px</span><span style="font-family:'Outfit'; font-weight:700; font-size:48px; color:#fff; letter-spacing:-1px;">Destaka</span></div>
+                <div class="size-row"><span class="size-label">36px</span><span style="font-family:'Outfit'; font-weight:700; font-size:36px; color:#fff; letter-spacing:-0.5px;">Destaka</span></div>
+                <div class="size-row"><span class="size-label">24px</span><span style="font-family:'Outfit'; font-weight:700; font-size:24px; color:#fff;">Destaka</span></div>
+                <div class="size-row"><span class="size-label">16px</span><span style="font-family:'Outfit'; font-weight:700; font-size:16px; color:#fff;">Destaka</span></div>
+                <div class="size-row"><span class="size-label">12px</span><span style="font-family:'Outfit'; font-weight:700; font-size:12px; color:#fff;">Destaka</span></div>
+            </div>
+            <div class="vs-col">
+                <div class="vs-label">Space Grotesk 700</div>
+                <div class="size-row"><span class="size-label">48px</span><span style="font-family:'Space Grotesk'; font-weight:700; font-size:48px; color:#fff; letter-spacing:-1px;">Destaka</span></div>
+                <div class="size-row"><span class="size-label">36px</span><span style="font-family:'Space Grotesk'; font-weight:700; font-size:36px; color:#fff; letter-spacing:-0.5px;">Destaka</span></div>
+                <div class="size-row"><span class="size-label">24px</span><span style="font-family:'Space Grotesk'; font-weight:700; font-size:24px; color:#fff;">Destaka</span></div>
+                <div class="size-row"><span class="size-label">16px</span><span style="font-family:'Space Grotesk'; font-weight:700; font-size:16px; color:#fff;">Destaka</span></div>
+                <div class="size-row"><span class="size-label">12px</span><span style="font-family:'Space Grotesk'; font-weight:700; font-size:12px; color:#fff;">Destaka</span></div>
+            </div>
+        </div>
+
+        <h3>1.2 Com nome do vertical</h3>
+        <div class="vs-grid">
+            <div class="vs-col">
+                <div class="vs-label">Outfit</div>
+                <div style="margin: 12px 0;"><span style="font-family:'Outfit'; font-weight:700; font-size:28px; color:#fff;">Destaka</span> <span style="font-family:'Outfit'; font-weight:400; font-size:28px; color:rgba(255,255,255,0.4);">Saude</span></div>
+                <div style="margin: 12px 0;"><span style="font-family:'Outfit'; font-weight:700; font-size:28px; color:#fff;">Destaka</span> <span style="font-family:'Outfit'; font-weight:400; font-size:28px; color:rgba(255,255,255,0.4);">Pet</span></div>
+                <div style="margin: 12px 0;"><span style="font-family:'Outfit'; font-weight:700; font-size:28px; color:#fff;">Destaka</span> <span style="font-family:'Outfit'; font-weight:400; font-size:28px; color:rgba(255,255,255,0.4);">Juridico</span></div>
+                <div style="margin: 12px 0;"><span style="font-family:'Outfit'; font-weight:700; font-size:28px; color:#fff;">Destaka</span> <span style="font-family:'Outfit'; font-weight:400; font-size:28px; color:rgba(255,255,255,0.4);">Contabil</span></div>
+                <div style="margin: 12px 0;"><span style="font-family:'Outfit'; font-weight:700; font-size:28px; color:#fff;">Destaka</span> <span style="font-family:'Outfit'; font-weight:400; font-size:28px; color:rgba(255,255,255,0.4);">Imoveis</span></div>
+            </div>
+            <div class="vs-col">
+                <div class="vs-label">Space Grotesk</div>
+                <div style="margin: 12px 0;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:28px; color:#fff;">Destaka</span> <span style="font-family:'Space Grotesk'; font-weight:400; font-size:28px; color:rgba(255,255,255,0.4);">Saude</span></div>
+                <div style="margin: 12px 0;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:28px; color:#fff;">Destaka</span> <span style="font-family:'Space Grotesk'; font-weight:400; font-size:28px; color:rgba(255,255,255,0.4);">Pet</span></div>
+                <div style="margin: 12px 0;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:28px; color:#fff;">Destaka</span> <span style="font-family:'Space Grotesk'; font-weight:400; font-size:28px; color:rgba(255,255,255,0.4);">Juridico</span></div>
+                <div style="margin: 12px 0;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:28px; color:#fff;">Destaka</span> <span style="font-family:'Space Grotesk'; font-weight:400; font-size:28px; color:rgba(255,255,255,0.4);">Contabil</span></div>
+                <div style="margin: 12px 0;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:28px; color:#fff;">Destaka</span> <span style="font-family:'Space Grotesk'; font-weight:400; font-size:28px; color:rgba(255,255,255,0.4);">Imoveis</span></div>
+            </div>
+        </div>
+
+        <h3>1.3 Sobre fundo verde (marca-mae) e fundo branco (materiais impressos)</h3>
+        <div class="context-grid">
+            <div class="context-card" style="background: #0F2A1F;">
+                <div class="label" style="color: rgba(255,255,255,0.4);">Outfit — fundo verde</div>
+                <div style="font-family:'Outfit'; font-weight:700; font-size:36px; color:#fff;">Destaka</div>
+                <div style="font-family:'Inter'; font-size:12px; color:#4ade80; margin-top:8px; letter-spacing:1.5px; text-transform:uppercase;">Visivel pra quem importa</div>
+            </div>
+            <div class="context-card" style="background: #0F2A1F;">
+                <div class="label" style="color: rgba(255,255,255,0.4);">Space Grotesk — fundo verde</div>
+                <div style="font-family:'Space Grotesk'; font-weight:700; font-size:36px; color:#fff;">Destaka</div>
+                <div style="font-family:'Inter'; font-size:12px; color:#4ade80; margin-top:8px; letter-spacing:1.5px; text-transform:uppercase;">Visivel pra quem importa</div>
+            </div>
+            <div class="context-card light">
+                <div class="label">Outfit — fundo branco</div>
+                <div style="font-family:'Outfit'; font-weight:700; font-size:36px; color:#0F2A1F;">Destaka</div>
+                <div style="font-family:'Inter'; font-size:12px; color:#166534; margin-top:8px; letter-spacing:1.5px; text-transform:uppercase;">Visivel pra quem importa</div>
+            </div>
+            <div class="context-card light">
+                <div class="label">Space Grotesk — fundo branco</div>
+                <div style="font-family:'Space Grotesk'; font-weight:700; font-size:36px; color:#0F2A1F;">Destaka</div>
+                <div style="font-family:'Inter'; font-size:12px; color:#166534; margin-top:8px; letter-spacing:1.5px; text-transform:uppercase;">Visivel pra quem importa</div>
+            </div>
+        </div>
+
+        <h3>1.4 Analise comparativa</h3>
+        <div class="vs-grid">
+            <div class="vs-col">
+                <div class="vs-label">Outfit 700</div>
+                <div class="score-row"><span class="score-label">Distinção</span><div class="score-bar"><div class="score-fill" style="width:70%"></div></div><span class="score-val">7/10</span></div>
+                <div class="score-row"><span class="score-label">Legibilidade sm</span><div class="score-bar"><div class="score-fill" style="width:90%"></div></div><span class="score-val">9/10</span></div>
+                <div class="score-row"><span class="score-label">Versatilidade</span><div class="score-bar"><div class="score-fill" style="width:90%"></div></div><span class="score-val">9/10</span></div>
+                <div class="score-row"><span class="score-label">Personalidade</span><div class="score-bar"><div class="score-fill" style="width:65%"></div></div><span class="score-val">6.5/10</span></div>
+                <div class="score-row"><span class="score-label">Multi-vertical</span><div class="score-bar"><div class="score-fill" style="width:90%"></div></div><span class="score-val">9/10</span></div>
+                <p style="font-size:12px; color:#888; margin-top:16px; line-height:1.7;">
+                    <strong style="color:#fff;">Personalidade:</strong> neutra-premium. Nao ofende nenhum vertical, funciona de saude a imoveis. Geometrica com cantos suavizados. Mais "institucional".<br><br>
+                    <strong style="color:#fff;">Risco:</strong> pode ser esquecivel. Nao grita personalidade. E uma boa fonte pra marcas que precisam escalar sem atrito.
+                </p>
+            </div>
+            <div class="vs-col">
+                <div class="vs-label">Space Grotesk 700</div>
+                <div class="score-row"><span class="score-label">Distinção</span><div class="score-bar"><div class="score-fill" style="width:85%"></div></div><span class="score-val">8.5/10</span></div>
+                <div class="score-row"><span class="score-label">Legibilidade sm</span><div class="score-bar"><div class="score-fill" style="width:80%"></div></div><span class="score-val">8/10</span></div>
+                <div class="score-row"><span class="score-label">Versatilidade</span><div class="score-bar"><div class="score-fill" style="width:75%"></div></div><span class="score-val">7.5/10</span></div>
+                <div class="score-row"><span class="score-label">Personalidade</span><div class="score-bar"><div class="score-fill" style="width:85%"></div></div><span class="score-val">8.5/10</span></div>
+                <div class="score-row"><span class="score-label">Multi-vertical</span><div class="score-bar"><div class="score-fill" style="width:75%"></div></div><span class="score-val">7.5/10</span></div>
+                <p style="font-size:12px; color:#888; margin-top:16px; line-height:1.7;">
+                    <strong style="color:#fff;">Personalidade:</strong> geometrica com quirks (olhe o "k" e o "a"). Mais memoravel, mais tech, mais proprietaria. O "D" e o "k" tem formas que gravam.<br><br>
+                    <strong style="color:#fff;">Risco:</strong> pode parecer muito "startup tech" pra um medico de 55 anos. Funciona menos bem com verticais tradicionais (juridico, contabil). Tom mais jovem.
+                </p>
+            </div>
+        </div>
+
+        <!-- ================================ -->
+        <!-- PART 2: MARK DEEP STUDY -->
+        <!-- ================================ -->
+        <h2>Parte 2: Estudo de Mark (6 direcoes)</h2>
+        <p class="desc">Cada direcao explorada com: conceito, racional, aplicacoes em diferentes tamanhos, pontos fortes e fracos, e score por criterio.</p>
+
+        <!-- MARK 1: PIN ABSTRATO -->
+        <div class="mark-deep-card">
+            <div class="mark-deep-header">
+                <div class="mark-deep-icon">
+                    <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M36 8C36 8 52 20 52 32C52 44 36 60 36 60C36 60 20 44 20 32C20 20 36 8 36 8Z" stroke="#4ade80" stroke-width="3" fill="none"/>
+                        <circle cx="36" cy="30" r="6" fill="#4ade80"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="mark-deep-title">1. Pin de Localizacao Abstrato</div>
+                    <div class="mark-deep-concept">Conceito: "Ser encontrado no mapa"</div>
+                </div>
+            </div>
+            <div class="mark-deep-body">
+                <p class="mark-rationale">
+                    Conexao direta com o core business: presenca no Google Maps, busca local, "perto de mim". O ponto central representa o profissional, a forma envolvente representa a area de alcance. Diferente do pin do Google porque e organico (curvas, nao geometrico duro).
+                </p>
+                <div class="mark-applications">
+                    <div class="mark-app-item">
+                        <svg width="16" height="16" viewBox="0 0 72 72" fill="none"><path d="M36 8C36 8 52 20 52 32C52 44 36 60 36 60C36 60 20 44 20 32C20 20 36 8 36 8Z" stroke="#4ade80" stroke-width="4" fill="none"/><circle cx="36" cy="30" r="6" fill="#4ade80"/></svg>
+                        <div class="size-text">16px favicon</div>
+                    </div>
+                    <div class="mark-app-item">
+                        <svg width="24" height="24" viewBox="0 0 72 72" fill="none"><path d="M36 8C36 8 52 20 52 32C52 44 36 60 36 60C36 60 20 44 20 32C20 20 36 8 36 8Z" stroke="#4ade80" stroke-width="3.5" fill="none"/><circle cx="36" cy="30" r="6" fill="#4ade80"/></svg>
+                        <div class="size-text">24px nav</div>
+                    </div>
+                    <div class="mark-app-item">
+                        <svg width="32" height="32" viewBox="0 0 72 72" fill="none"><path d="M36 8C36 8 52 20 52 32C52 44 36 60 36 60C36 60 20 44 20 32C20 20 36 8 36 8Z" stroke="#4ade80" stroke-width="3" fill="none"/><circle cx="36" cy="30" r="6" fill="#4ade80"/></svg>
+                        <div class="size-text">32px tab</div>
+                    </div>
+                    <div class="mark-app-item">
+                        <svg width="48" height="48" viewBox="0 0 72 72" fill="none"><path d="M36 8C36 8 52 20 52 32C52 44 36 60 36 60C36 60 20 44 20 32C20 20 36 8 36 8Z" stroke="#4ade80" stroke-width="3" fill="none"/><circle cx="36" cy="30" r="6" fill="#4ade80"/></svg>
+                        <div class="size-text">48px app</div>
+                    </div>
+                    <div class="mark-app-item">
+                        <svg width="64" height="64" viewBox="0 0 72 72" fill="none"><path d="M36 8C36 8 52 20 52 32C52 44 36 60 36 60C36 60 20 44 20 32C20 20 36 8 36 8Z" stroke="#4ade80" stroke-width="2.5" fill="none"/><circle cx="36" cy="30" r="6" fill="#4ade80"/></svg>
+                        <div class="size-text">64px hero</div>
+                    </div>
+                </div>
+                <div class="mark-pros-cons">
+                    <ul class="pros">
+                        <li>Conexao semantica imediata com "busca local"</li>
+                        <li>Funciona em todos os tamanhos</li>
+                        <li>Facil de reconhecer mesmo sem wordmark</li>
+                        <li>Neutro o suficiente pra todos os verticais</li>
+                    </ul>
+                    <ul class="cons">
+                        <li>Pode lembrar Google Maps (associacao com outro brand)</li>
+                        <li>Conceito literal demais? (pin = localizacao e obvio)</li>
+                        <li>Nao comunica "automacao" ou "tecnologia"</li>
+                    </ul>
+                </div>
+                <div style="margin-top:16px;">
+                    <div class="score-row"><span class="score-label">Memorabilidade</span><div class="score-bar"><div class="score-fill" style="width:75%"></div></div><span class="score-val">7.5</span></div>
+                    <div class="score-row"><span class="score-label">Escalabilidade</span><div class="score-bar"><div class="score-fill" style="width:90%"></div></div><span class="score-val">9</span></div>
+                    <div class="score-row"><span class="score-label">Originalidade</span><div class="score-bar"><div class="score-fill" style="width:60%"></div></div><span class="score-val">6</span></div>
+                    <div class="score-row"><span class="score-label">Multi-vertical</span><div class="score-bar"><div class="score-fill" style="width:85%"></div></div><span class="score-val">8.5</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MARK 2: OLHO / VISIBILIDADE -->
+        <div class="mark-deep-card">
+            <div class="mark-deep-header">
+                <div class="mark-deep-icon">
+                    <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 36C12 36 20 22 36 22C52 22 60 36 60 36C60 36 52 50 36 50C20 50 12 36 12 36Z" stroke="#4ade80" stroke-width="3" fill="none"/>
+                        <circle cx="36" cy="36" r="7" stroke="#4ade80" stroke-width="3" fill="none"/>
+                        <circle cx="36" cy="36" r="3" fill="#4ade80"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="mark-deep-title">2. Olho / Visibilidade</div>
+                    <div class="mark-deep-concept">Conceito: "Ser visto. Estar no radar."</div>
+                </div>
+            </div>
+            <div class="mark-deep-body">
+                <p class="mark-rationale">
+                    A essencia do Destaka e visibilidade. O profissional precisa ser VISTO por quem procura. O olho comunica isso de forma universal. O ponto central (iris/pupila) e o profissional, a forma externa e o campo de visao do paciente/cliente. Pode ser interpretado como "atenção focada" ou "destaque visual".
+                </p>
+                <div class="mark-applications">
+                    <div class="mark-app-item">
+                        <svg width="16" height="16" viewBox="0 0 72 72" fill="none"><path d="M12 36C12 36 20 22 36 22C52 22 60 36 60 36C60 36 52 50 36 50C20 50 12 36 12 36Z" stroke="#4ade80" stroke-width="5" fill="none"/><circle cx="36" cy="36" r="5" fill="#4ade80"/></svg>
+                        <div class="size-text">16px favicon</div>
+                    </div>
+                    <div class="mark-app-item">
+                        <svg width="24" height="24" viewBox="0 0 72 72" fill="none"><path d="M12 36C12 36 20 22 36 22C52 22 60 36 60 36C60 36 52 50 36 50C20 50 12 36 12 36Z" stroke="#4ade80" stroke-width="4" fill="none"/><circle cx="36" cy="36" r="5" fill="#4ade80"/></svg>
+                        <div class="size-text">24px nav</div>
+                    </div>
+                    <div class="mark-app-item">
+                        <svg width="32" height="32" viewBox="0 0 72 72" fill="none"><path d="M12 36C12 36 20 22 36 22C52 22 60 36 60 36C60 36 52 50 36 50C20 50 12 36 12 36Z" stroke="#4ade80" stroke-width="3.5" fill="none"/><circle cx="36" cy="36" r="6" fill="#4ade80"/></svg>
+                        <div class="size-text">32px tab</div>
+                    </div>
+                    <div class="mark-app-item">
+                        <svg width="48" height="48" viewBox="0 0 72 72" fill="none"><path d="M12 36C12 36 20 22 36 22C52 22 60 36 60 36C60 36 52 50 36 50C20 50 12 36 12 36Z" stroke="#4ade80" stroke-width="3" fill="none"/><circle cx="36" cy="36" r="7" stroke="#4ade80" stroke-width="3" fill="none"/><circle cx="36" cy="36" r="3" fill="#4ade80"/></svg>
+                        <div class="size-text">48px app</div>
+                    </div>
+                    <div class="mark-app-item">
+                        <svg width="64" height="64" viewBox="0 0 72 72" fill="none"><path d="M12 36C12 36 20 22 36 22C52 22 60 36 60 36C60 36 52 50 36 50C20 50 12 36 12 36Z" stroke="#4ade80" stroke-width="2.5" fill="none"/><circle cx="36" cy="36" r="7" stroke="#4ade80" stroke-width="2.5" fill="none"/><circle cx="36" cy="36" r="3" fill="#4ade80"/></svg>
+                        <div class="size-text">64px hero</div>
+                    </div>
+                </div>
+                <div class="mark-pros-cons">
+                    <ul class="pros">
+                        <li>Semantica perfeita: visibilidade = core do produto</li>
+                        <li>Forte, memoravel, unico no segmento</li>
+                        <li>Funciona conceitual e emocionalmente</li>
+                        <li>Escala bem de favicon a billboard</li>
+                    </ul>
+                    <ul class="cons">
+                        <li>Pode evocar "vigilancia" se mal executado</li>
+                        <li>Forma horizontal, precisa adaptar pra quadrado (app icon)</li>
+                        <li>Olho e simbolo usado por muitas marcas (CBS, AOL, etc.)</li>
+                    </ul>
+                </div>
+                <div style="margin-top:16px;">
+                    <div class="score-row"><span class="score-label">Memorabilidade</span><div class="score-bar"><div class="score-fill" style="width:85%"></div></div><span class="score-val">8.5</span></div>
+                    <div class="score-row"><span class="score-label">Escalabilidade</span><div class="score-bar"><div class="score-fill" style="width:75%"></div></div><span class="score-val">7.5</span></div>
+                    <div class="score-row"><span class="score-label">Originalidade</span><div class="score-bar"><div class="score-fill" style="width:70%"></div></div><span class="score-val">7</span></div>
+                    <div class="score-row"><span class="score-label">Multi-vertical</span><div class="score-bar"><div class="score-fill" style="width:90%"></div></div><span class="score-val">9</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MARK 3: SETA ASCENDENTE -->
+        <div class="mark-deep-card">
+            <div class="mark-deep-header">
+                <div class="mark-deep-icon">
+                    <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 52L36 14L48 52" stroke="#4ade80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        <path d="M28 44H44" stroke="#4ade80" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="36" cy="14" r="5" fill="#4ade80"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="mark-deep-title">3. Seta Ascendente + Ponto</div>
+                    <div class="mark-deep-concept">Conceito: "Subir no ranking. Destakar."</div>
+                </div>
+            </div>
+            <div class="mark-deep-body">
+                <p class="mark-rationale">
+                    Conecta diretamente com "destaque" e "subir". A forma triangular/seta aponta pra cima (crescimento, ranking). O ponto no topo e o objetivo alcancado. A barra horizontal ancora a forma e pode ser lida como "base solida". Remete a graficos de crescimento sem ser literal.
+                </p>
+                <div class="mark-applications">
+                    <div class="mark-app-item">
+                        <svg width="16" height="16" viewBox="0 0 72 72" fill="none"><path d="M24 52L36 14L48 52" stroke="#4ade80" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="36" cy="14" r="5" fill="#4ade80"/></svg>
+                        <div class="size-text">16px favicon</div>
+                    </div>
+                    <div class="mark-app-item">
+                        <svg width="24" height="24" viewBox="0 0 72 72" fill="none"><path d="M24 52L36 14L48 52" stroke="#4ade80" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M28 44H44" stroke="#4ade80" stroke-width="4" stroke-linecap="round"/><circle cx="36" cy="14" r="5" fill="#4ade80"/></svg>
+                        <div class="size-text">24px nav</div>
+                    </div>
+                    <div class="mark-app-item">
+                        <svg width="32" height="32" viewBox="0 0 72 72" fill="none"><path d="M24 52L36 14L48 52" stroke="#4ade80" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M28 44H44" stroke="#4ade80" stroke-width="3.5" stroke-linecap="round"/><circle cx="36" cy="14" r="5" fill="#4ade80"/></svg>
+                        <div class="size-text">32px tab</div>
+                    </div>
+                    <div class="mark-app-item">
+                        <svg width="48" height="48" viewBox="0 0 72 72" fill="none"><path d="M24 52L36 14L48 52" stroke="#4ade80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M28 44H44" stroke="#4ade80" stroke-width="3" stroke-linecap="round"/><circle cx="36" cy="14" r="5" fill="#4ade80"/></svg>
+                        <div class="size-text">48px app</div>
+                    </div>
+                    <div class="mark-app-item">
+                        <svg width="64" height="64" viewBox="0 0 72 72" fill="none"><path d="M24 52L36 14L48 52" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M28 44H44" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round"/><circle cx="36" cy="14" r="5" fill="#4ade80"/></svg>
+                        <div class="size-text">64px hero</div>
+                    </div>
+                </div>
+                <div class="mark-pros-cons">
+                    <ul class="pros">
+                        <li>Conecta com nome "Destaka" (destakar = subir)</li>
+                        <li>Forma de "A" invertido, pode ler como letra</li>
+                        <li>Comunica crescimento e resultado</li>
+                        <li>Funciona muito bem em favicon (forma simples)</li>
+                    </ul>
+                    <ul class="cons">
+                        <li>Pode parecer generico "growth" (toda startup usa seta)</li>
+                        <li>Nao comunica "local" ou "profissional"</li>
+                        <li>Depende mais do wordmark pra fazer sentido</li>
+                    </ul>
+                </div>
+                <div style="margin-top:16px;">
+                    <div class="score-row"><span class="score-label">Memorabilidade</span><div class="score-bar"><div class="score-fill" style="width:70%"></div></div><span class="score-val">7</span></div>
+                    <div class="score-row"><span class="score-label">Escalabilidade</span><div class="score-bar"><div class="score-fill" style="width:95%"></div></div><span class="score-val">9.5</span></div>
+                    <div class="score-row"><span class="score-label">Originalidade</span><div class="score-bar"><div class="score-fill" style="width:55%"></div></div><span class="score-val">5.5</span></div>
+                    <div class="score-row"><span class="score-label">Multi-vertical</span><div class="score-bar"><div class="score-fill" style="width:85%"></div></div><span class="score-val">8.5</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MARK 4: D MONOGRAMA -->
+        <div class="mark-deep-card">
+            <div class="mark-deep-header">
+                <div class="mark-deep-icon">
+                    <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="8" y="8" width="56" height="56" rx="14" stroke="#4ade80" stroke-width="3" fill="none"/>
+                        <path d="M26 20H36C46 20 52 28 52 36C52 44 46 52 36 52H26V20Z" stroke="#4ade80" stroke-width="3" fill="none" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="mark-deep-title">4. Monograma "D" Geometrico</div>
+                    <div class="mark-deep-concept">Conceito: "A marca reduzida a essencia"</div>
+                </div>
+            </div>
+            <div class="mark-deep-body">
+                <p class="mark-rationale">
+                    O "D" e a forma mais reduzida possivel da marca. Funciona como app icon, favicon, selo, carimbo. A vantagem do monograma e que ele aguenta qualquer tamanho e contexto sem perder legibilidade. Marcas como Uber, Discord, Deliveroo usam monograma com sucesso. A curva do D dentro do quadrado arredondado cria tensao entre geometrico e organico.
+                </p>
+                <div class="mark-applications">
+                    <div class="mark-app-item">
+                        <svg width="16" height="16" viewBox="0 0 72 72" fill="none"><rect x="8" y="8" width="56" height="56" rx="14" fill="#4ade80"/><path d="M26 22H36C44 22 50 28 50 36C50 44 44 50 36 50H26V22Z" fill="#0F2A1F" stroke="none"/></svg>
+                        <div class="size-text">16px favicon</div>
+                    </div>
+                    <div class="mark-app-item">
+                        <svg width="24" height="24" viewBox="0 0 72 72" fill="none"><rect x="8" y="8" width="56" height="56" rx="14" fill="#4ade80"/><path d="M26 22H36C44 22 50 28 50 36C50 44 44 50 36 50H26V22Z" fill="#0F2A1F" stroke="none"/></svg>
+                        <div class="size-text">24px nav</div>
+                    </div>
+                    <div class="mark-app-item">
+                        <svg width="32" height="32" viewBox="0 0 72 72" fill="none"><rect x="8" y="8" width="56" height="56" rx="14" fill="#4ade80"/><path d="M26 22H36C44 22 50 28 50 36C50 44 44 50 36 50H26V22Z" fill="#0F2A1F" stroke="none"/></svg>
+                        <div class="size-text">32px tab</div>
+                    </div>
+                    <div class="mark-app-item">
+                        <svg width="48" height="48" viewBox="0 0 72 72" fill="none"><rect x="8" y="8" width="56" height="56" rx="14" fill="#4ade80"/><path d="M26 22H36C44 22 50 28 50 36C50 44 44 50 36 50H26V22Z" fill="#0F2A1F" stroke="none"/></svg>
+                        <div class="size-text">48px app</div>
+                    </div>
+                    <div class="mark-app-item">
+                        <svg width="64" height="64" viewBox="0 0 72 72" fill="none"><rect x="8" y="8" width="56" height="56" rx="14" stroke="#4ade80" stroke-width="2.5" fill="none"/><path d="M26 20H36C46 20 52 28 52 36C52 44 46 52 36 52H26V20Z" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linejoin="round"/></svg>
+                        <div class="size-text">64px hero</div>
+                    </div>
+                </div>
+                <div class="mark-pros-cons">
+                    <ul class="pros">
+                        <li>Maximo de escalabilidade (funciona em 1px ate outdoor)</li>
+                        <li>App icon perfeito (ja e quadrado)</li>
+                        <li>Atemporal, nao envelhece</li>
+                        <li>Neutro pra qualquer vertical</li>
+                    </ul>
+                    <ul class="cons">
+                        <li>Nao comunica nada alem de "marca"</li>
+                        <li>Muitas marcas com "D" (Disney, Deliveroo, Discord)</li>
+                        <li>Precisa do wordmark pra ser reconhecido nos primeiros anos</li>
+                        <li>Zero conexao semantica com o produto</li>
+                    </ul>
+                </div>
+                <div style="margin-top:16px;">
+                    <div class="score-row"><span class="score-label">Memorabilidade</span><div class="score-bar"><div class="score-fill" style="width:65%"></div></div><span class="score-val">6.5</span></div>
+                    <div class="score-row"><span class="score-label">Escalabilidade</span><div class="score-bar"><div class="score-fill" style="width:100%"></div></div><span class="score-val">10</span></div>
+                    <div class="score-row"><span class="score-label">Originalidade</span><div class="score-bar"><div class="score-fill" style="width:50%"></div></div><span class="score-val">5</span></div>
+                    <div class="score-row"><span class="score-label">Multi-vertical</span><div class="score-bar"><div class="score-fill" style="width:100%"></div></div><span class="score-val">10</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MARK 5: PIN + OLHO HIBRIDO -->
+        <div class="mark-deep-card">
+            <div class="mark-deep-header">
+                <div class="mark-deep-icon">
+                    <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M36 10C36 10 54 24 54 34C54 44 36 62 36 62C36 62 18 44 18 34C18 24 36 10 36 10Z" stroke="#4ade80" stroke-width="3" fill="none"/>
+                        <path d="M24 34C24 34 28 28 36 28C44 28 48 34 48 34C48 34 44 40 36 40C28 40 24 34 24 34Z" stroke="#4ade80" stroke-width="2.5" fill="none"/>
+                        <circle cx="36" cy="34" r="3.5" fill="#4ade80"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="mark-deep-title">5. Pin + Olho (Hibrido)</div>
+                    <div class="mark-deep-concept">Conceito: "Visibilidade local. Ser visto onde voce esta."</div>
+                </div>
+            </div>
+            <div class="mark-deep-body">
+                <p class="mark-rationale">
+                    Combina as duas ideias mais fortes: localizacao (pin) + visibilidade (olho). A forma externa e o pin (presenca local), e dentro dele mora o olho (ser visto). E a sintese perfeita do que o Destaka faz: tornar o profissional visivel na busca local. Mais complexo, mas mais rico em significado.
+                </p>
+                <div class="mark-applications">
+                    <div class="mark-app-item">
+                        <svg width="16" height="16" viewBox="0 0 72 72" fill="none"><path d="M36 10C36 10 54 24 54 34C54 44 36 62 36 62C36 62 18 44 18 34C18 24 36 10 36 10Z" stroke="#4ade80" stroke-width="5" fill="none"/><circle cx="36" cy="34" r="5" fill="#4ade80"/></svg>
+                        <div class="size-text">16px favicon</div>
+                    </div>
+                    <div class="mark-app-item">
+                        <svg width="24" height="24" viewBox="0 0 72 72" fill="none"><path d="M36 10C36 10 54 24 54 34C54 44 36 62 36 62C36 62 18 44 18 34C18 24 36 10 36 10Z" stroke="#4ade80" stroke-width="4" fill="none"/><path d="M24 34C24 34 28 28 36 28C44 28 48 34 48 34C48 34 44 40 36 40C28 40 24 34 24 34Z" stroke="#4ade80" stroke-width="3" fill="none"/><circle cx="36" cy="34" r="3" fill="#4ade80"/></svg>
+                        <div class="size-text">24px nav</div>
+                    </div>
+                    <div class="mark-app-item">
+                        <svg width="32" height="32" viewBox="0 0 72 72" fill="none"><path d="M36 10C36 10 54 24 54 34C54 44 36 62 36 62C36 62 18 44 18 34C18 24 36 10 36 10Z" stroke="#4ade80" stroke-width="3.5" fill="none"/><path d="M24 34C24 34 28 28 36 28C44 28 48 34 48 34C48 34 44 40 36 40C28 40 24 34 24 34Z" stroke="#4ade80" stroke-width="2.5" fill="none"/><circle cx="36" cy="34" r="3.5" fill="#4ade80"/></svg>
+                        <div class="size-text">32px tab</div>
+                    </div>
+                    <div class="mark-app-item">
+                        <svg width="48" height="48" viewBox="0 0 72 72" fill="none"><path d="M36 10C36 10 54 24 54 34C54 44 36 62 36 62C36 62 18 44 18 34C18 24 36 10 36 10Z" stroke="#4ade80" stroke-width="3" fill="none"/><path d="M24 34C24 34 28 28 36 28C44 28 48 34 48 34C48 34 44 40 36 40C28 40 24 34 24 34Z" stroke="#4ade80" stroke-width="2.5" fill="none"/><circle cx="36" cy="34" r="3.5" fill="#4ade80"/></svg>
+                        <div class="size-text">48px app</div>
+                    </div>
+                    <div class="mark-app-item">
+                        <svg width="64" height="64" viewBox="0 0 72 72" fill="none"><path d="M36 10C36 10 54 24 54 34C54 44 36 62 36 62C36 62 18 44 18 34C18 24 36 10 36 10Z" stroke="#4ade80" stroke-width="2.5" fill="none"/><path d="M24 34C24 34 28 28 36 28C44 28 48 34 48 34C48 34 44 40 36 40C28 40 24 34 24 34Z" stroke="#4ade80" stroke-width="2" fill="none"/><circle cx="36" cy="34" r="3.5" fill="#4ade80"/></svg>
+                        <div class="size-text">64px hero</div>
+                    </div>
+                </div>
+                <div class="mark-pros-cons">
+                    <ul class="pros">
+                        <li>Sintese conceitual perfeita (local + visibilidade)</li>
+                        <li>Unico, ninguem tem isso no segmento</li>
+                        <li>Rico em significado, conta uma historia</li>
+                        <li>Funciona como elemento de brand storytelling</li>
+                    </ul>
+                    <ul class="cons">
+                        <li>Mais complexo, perde detalhe em tamanhos muito pequenos</li>
+                        <li>Em 16px vira basicamente um pin simples (olho nao aparece)</li>
+                        <li>Precisa de designer habilidoso pra refinar proporcoes</li>
+                    </ul>
+                </div>
+                <div style="margin-top:16px;">
+                    <div class="score-row"><span class="score-label">Memorabilidade</span><div class="score-bar"><div class="score-fill" style="width:90%"></div></div><span class="score-val">9</span></div>
+                    <div class="score-row"><span class="score-label">Escalabilidade</span><div class="score-bar"><div class="score-fill" style="width:65%"></div></div><span class="score-val">6.5</span></div>
+                    <div class="score-row"><span class="score-label">Originalidade</span><div class="score-bar"><div class="score-fill" style="width:90%"></div></div><span class="score-val">9</span></div>
+                    <div class="score-row"><span class="score-label">Multi-vertical</span><div class="score-bar"><div class="score-fill" style="width:85%"></div></div><span class="score-val">8.5</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MARK 6: SPOTLIGHT / FOCO -->
+        <div class="mark-deep-card">
+            <div class="mark-deep-header">
+                <div class="mark-deep-icon">
+                    <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="36" cy="36" r="8" fill="#4ade80"/>
+                        <path d="M36 12V18" stroke="#4ade80" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M36 54V60" stroke="#4ade80" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M12 36H18" stroke="#4ade80" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M54 36H60" stroke="#4ade80" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="36" cy="36" r="20" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-dasharray="4 6"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="mark-deep-title">6. Spotlight / Foco de Atencao</div>
+                    <div class="mark-deep-concept">Conceito: "Holofote sobre voce. Destaque."</div>
+                </div>
+            </div>
+            <div class="mark-deep-body">
+                <p class="mark-rationale">
+                    O nome "Destaka" vem de "destaque". O spotlight e a metafora mais direta: o profissional sai da escuridao e recebe um holofote. O circulo central e o profissional, os raios sao a atencao/visibilidade chegando, o circulo tracejado externo e o alcance/raio de busca. Pode ser simplificado pra tamanhos menores (so circulo + raios).
+                </p>
+                <div class="mark-applications">
+                    <div class="mark-app-item">
+                        <svg width="16" height="16" viewBox="0 0 72 72" fill="none"><circle cx="36" cy="36" r="10" fill="#4ade80"/><path d="M36 14V20" stroke="#4ade80" stroke-width="4" stroke-linecap="round"/><path d="M36 52V58" stroke="#4ade80" stroke-width="4" stroke-linecap="round"/><path d="M14 36H20" stroke="#4ade80" stroke-width="4" stroke-linecap="round"/><path d="M52 36H58" stroke="#4ade80" stroke-width="4" stroke-linecap="round"/></svg>
+                        <div class="size-text">16px favicon</div>
+                    </div>
+                    <div class="mark-app-item">
+                        <svg width="24" height="24" viewBox="0 0 72 72" fill="none"><circle cx="36" cy="36" r="9" fill="#4ade80"/><path d="M36 12V18" stroke="#4ade80" stroke-width="3.5" stroke-linecap="round"/><path d="M36 54V60" stroke="#4ade80" stroke-width="3.5" stroke-linecap="round"/><path d="M12 36H18" stroke="#4ade80" stroke-width="3.5" stroke-linecap="round"/><path d="M54 36H60" stroke="#4ade80" stroke-width="3.5" stroke-linecap="round"/></svg>
+                        <div class="size-text">24px nav</div>
+                    </div>
+                    <div class="mark-app-item">
+                        <svg width="32" height="32" viewBox="0 0 72 72" fill="none"><circle cx="36" cy="36" r="8" fill="#4ade80"/><path d="M36 12V18" stroke="#4ade80" stroke-width="3" stroke-linecap="round"/><path d="M36 54V60" stroke="#4ade80" stroke-width="3" stroke-linecap="round"/><path d="M12 36H18" stroke="#4ade80" stroke-width="3" stroke-linecap="round"/><path d="M54 36H60" stroke="#4ade80" stroke-width="3" stroke-linecap="round"/><circle cx="36" cy="36" r="20" stroke="#4ade80" stroke-width="2" fill="none" stroke-dasharray="4 6"/></svg>
+                        <div class="size-text">32px tab</div>
+                    </div>
+                    <div class="mark-app-item">
+                        <svg width="48" height="48" viewBox="0 0 72 72" fill="none"><circle cx="36" cy="36" r="8" fill="#4ade80"/><path d="M36 12V18" stroke="#4ade80" stroke-width="3" stroke-linecap="round"/><path d="M36 54V60" stroke="#4ade80" stroke-width="3" stroke-linecap="round"/><path d="M12 36H18" stroke="#4ade80" stroke-width="3" stroke-linecap="round"/><path d="M54 36H60" stroke="#4ade80" stroke-width="3" stroke-linecap="round"/><circle cx="36" cy="36" r="20" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-dasharray="4 6"/></svg>
+                        <div class="size-text">48px app</div>
+                    </div>
+                    <div class="mark-app-item">
+                        <svg width="64" height="64" viewBox="0 0 72 72" fill="none"><circle cx="36" cy="36" r="8" fill="#4ade80"/><path d="M36 12V18" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round"/><path d="M36 54V60" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round"/><path d="M12 36H18" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round"/><path d="M54 36H60" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round"/><circle cx="36" cy="36" r="20" stroke="#4ade80" stroke-width="2" fill="none" stroke-dasharray="4 6"/></svg>
+                        <div class="size-text">64px hero</div>
+                    </div>
+                </div>
+                <div class="mark-pros-cons">
+                    <ul class="pros">
+                        <li>Conexao direta com o nome "Destaka" (destaque/holofote)</li>
+                        <li>Positivo, energetico, expansivo</li>
+                        <li>Simplifica lindamente em tamanhos pequenos</li>
+                        <li>Pode animar facilmente (raios pulsando)</li>
+                    </ul>
+                    <ul class="cons">
+                        <li>Pode parecer "sol" ou "target" fora de contexto</li>
+                        <li>Menos unico que o hibrido pin+olho</li>
+                        <li>Nao comunica "local" explicitamente</li>
+                    </ul>
+                </div>
+                <div style="margin-top:16px;">
+                    <div class="score-row"><span class="score-label">Memorabilidade</span><div class="score-bar"><div class="score-fill" style="width:80%"></div></div><span class="score-val">8</span></div>
+                    <div class="score-row"><span class="score-label">Escalabilidade</span><div class="score-bar"><div class="score-fill" style="width:90%"></div></div><span class="score-val">9</span></div>
+                    <div class="score-row"><span class="score-label">Originalidade</span><div class="score-bar"><div class="score-fill" style="width:75%"></div></div><span class="score-val">7.5</span></div>
+                    <div class="score-row"><span class="score-label">Multi-vertical</span><div class="score-bar"><div class="score-fill" style="width:90%"></div></div><span class="score-val">9</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VERDICT -->
+        <h2>Parte 3: Ranking Final</h2>
+
+        <table style="width:100%; border-collapse:collapse; margin:20px 0;">
+            <thead>
+                <tr>
+                    <th style="text-align:left; padding:12px; color:#888; font-size:11px; border-bottom:1px solid #1a1a1a;">#</th>
+                    <th style="text-align:left; padding:12px; color:#888; font-size:11px; border-bottom:1px solid #1a1a1a;">Mark</th>
+                    <th style="text-align:center; padding:12px; color:#888; font-size:11px; border-bottom:1px solid #1a1a1a;">Memo</th>
+                    <th style="text-align:center; padding:12px; color:#888; font-size:11px; border-bottom:1px solid #1a1a1a;">Escala</th>
+                    <th style="text-align:center; padding:12px; color:#888; font-size:11px; border-bottom:1px solid #1a1a1a;">Original</th>
+                    <th style="text-align:center; padding:12px; color:#888; font-size:11px; border-bottom:1px solid #1a1a1a;">Multi-V</th>
+                    <th style="text-align:center; padding:12px; color:#888; font-size:11px; border-bottom:1px solid #1a1a1a;">MEDIA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td style="padding:12px; border-bottom:1px solid #111; color:#4ade80;">1</td><td style="padding:12px; border-bottom:1px solid #111; color:#fff;">Pin + Olho (Hibrido)</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">9</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">6.5</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">9</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">8.5</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center; color:#4ade80; font-weight:700;">8.25</td></tr>
+                <tr><td style="padding:12px; border-bottom:1px solid #111; color:#4ade80;">2</td><td style="padding:12px; border-bottom:1px solid #111; color:#fff;">Olho / Visibilidade</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">8.5</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">7.5</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">7</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">9</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center; color:#4ade80; font-weight:700;">8.0</td></tr>
+                <tr><td style="padding:12px; border-bottom:1px solid #111;">3</td><td style="padding:12px; border-bottom:1px solid #111; color:#fff;">Spotlight / Foco</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">8</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">9</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">7.5</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">9</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">8.38</td></tr>
+                <tr><td style="padding:12px; border-bottom:1px solid #111;">4</td><td style="padding:12px; border-bottom:1px solid #111; color:#fff;">Pin Abstrato</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">7.5</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">9</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">6</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">8.5</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">7.75</td></tr>
+                <tr><td style="padding:12px; border-bottom:1px solid #111;">5</td><td style="padding:12px; border-bottom:1px solid #111; color:#fff;">Monograma D</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">6.5</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">10</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">5</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">10</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">7.88</td></tr>
+                <tr><td style="padding:12px; border-bottom:1px solid #111;">6</td><td style="padding:12px; border-bottom:1px solid #111; color:#fff;">Seta Ascendente</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">7</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">9.5</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">5.5</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">8.5</td><td style="padding:12px; border-bottom:1px solid #111; text-align:center;">7.63</td></tr>
+            </tbody>
+        </table>
+
+        <div class="verdict-box">
+            <h4>Minha leitura</h4>
+            <p>
+                <strong>Fonte:</strong> Space Grotesk se voce quer que a marca grite personalidade. Outfit se voce quer que a marca funcione silenciosamente em qualquer contexto. Pra plataforma multi-vertical que precisa escalar de vet a advogado, Outfit e mais segura. Pra marca que quer ser lembrada no primeiro contato, Space Grotesk ganha.<br><br>
+                <strong>Mark:</strong> O hibrido Pin+Olho (opcao 5) tem o melhor score em memorabilidade + originalidade, mas perde em escalabilidade (complexo demais em 16px). Na pratica, o designer pode resolver isso com versao simplificada pra tamanhos pequenos (so pin com ponto).<br><br>
+                O Spotlight (opcao 6) e o melhor equilibrio geral: comunica "destaque", escala bem, anima bem, funciona em todos os verticais. E o mais seguro.<br><br>
+                Decisao sua. Preciso saber: qual direcao de mark te atrai mais e qual fonte fecha?
+            </p>
+        </div>
+
+    </div>
+</body>
+</html>

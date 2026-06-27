@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Destaka |Explorações de Marca</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #0F2A1F;
+    --bg-dark: #0a1f16;
+    --bg-surface: #132e22;
+    --accent: #4ade80;
+    --accent-dim: rgba(74,222,128,0.15);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255,255,255,0.7);
+    --text-tertiary: rgba(255,255,255,0.55);
+    --saude: #0EA5E9;
+    --pet: #22C55E;
+    --juridico: #6B9AC4;
+    --font-display: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 24px;
+    --space-lg: 32px;
+    --space-xl: 48px;
+    --space-2xl: 64px;
+    --space-3xl: 96px;
+    --space-4xl: 128px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Layout ── */
+  .container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+  }
+
+  /* ── Typography ── */
+  .label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    margin-top: var(--space-sm);
+    color: var(--text-primary);
+  }
+
+  .section-desc {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 560px;
+    margin-top: var(--space-sm);
+  }
+
+  /* ── Sections ── */
+  .section {
+    padding: var(--space-3xl) 0;
+  }
+
+  .section + .section {
+    border-top: 1px solid rgba(74,222,128,0.08);
+  }
+
+  /* ── Hero ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-2xl) var(--space-lg);
+    background: radial-gradient(ellipse at 50% 40%, rgba(74,222,128,0.06) 0%, transparent 60%);
+    position: relative;
+  }
+
+  .hero-logo {
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  .hero-wordmark {
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-top: 6px;
+    animation: fadeInUp 0.8s ease-out 0.15s both;
+  }
+
+  .hero-tagline {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    letter-spacing: 0.3px;
+    margin-top: var(--space-xs);
+    animation: fadeInUp 0.8s ease-out 0.3s both;
+  }
+
+  /* ── Comparison Grid ── */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+  }
+
+  .compare-card {
+    background: var(--bg-surface);
+    border-radius: 16px;
+    padding: var(--space-xl) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .compare-card.recommended {
+    border-color: var(--accent);
+    background: linear-gradient(180deg, rgba(74,222,128,0.06) 0%, var(--bg-surface) 100%);
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--bg-deep);
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-bottom: var(--space-md);
+  }
+
+  .compare-card-title {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: var(--space-md);
+  }
+
+  .compare-card-desc {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-top: var(--space-xs);
+  }
+
+  .compare-card svg {
+    filter: drop-shadow(0 0 40px rgba(74,222,128,0.08));
+  }
+
+  /* ── Lockups ── */
+  .lockup-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+
+  .lockup-card {
+    border-radius: 16px;
+    padding: var(--space-2xl) var(--space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+  .lockup-dark { background: var(--bg-deep); }
+  .lockup-light { background: #f8faf9; }
+
+  .lockup-horizontal {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .lockup-stacked {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .lockup-wordmark {
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .lockup-tagline {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    opacity: 0.6;
+    margin-top: 4px;
+  }
+
+  /* ── Verticals ── */
+  .vertical-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+  }
+
+  .vertical-card {
+    border-radius: 16px;
+    padding: var(--space-xl) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 340px;
+    justify-content: center;
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+  .vertical-saude { background: #091e2f; }
+  .vertical-pet { background: #0a1f14; }
+  .vertical-juridico { background: #0f1a2a; }
+
+  .vertical-label {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: var(--space-md);
+  }
+
+  .vertical-wordmark {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #fff;
+    margin-top: var(--space-sm);
+  }
+
+  .vertical-tagline-text {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-top: var(--space-xs);
+    line-height: 1.5;
+  }
+
+  /* ── Scale + Context ── */
+  .scale-strip {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: var(--space-xl);
+    padding: var(--space-xl) 0;
+  }
+
+  .scale-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+
+  .scale-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: var(--text-tertiary);
+    letter-spacing: 0.5px;
+  }
+
+  .context-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+  }
+
+  .context-card {
+    background: var(--bg-surface);
+    border-radius: 16px;
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .context-label {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--text-tertiary);
+    margin-top: var(--space-sm);
+  }
+
+  /* ── Notes ── */
+  .notes-section {
+    background: var(--bg-surface);
+    border-radius: 16px;
+    padding: var(--space-xl);
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .notes-section h3 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: var(--space-md);
+  }
+
+  .notes-section ul {
+    list-style: none;
+  }
+
+  .notes-section li {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    padding-left: var(--space-md);
+    position: relative;
+    margin-bottom: var(--space-xs);
+  }
+  .notes-section li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* ── Footer ── */
+  .footer {
+    padding: var(--space-2xl) 0;
+    text-align: center;
+    border-top: 1px solid rgba(74,222,128,0.08);
+  }
+  .footer p {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--text-tertiary);
+  }
+
+  /* ── Animations ── */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 1024px) {
+    .compare-grid { grid-template-columns: repeat(3, 1fr); gap: var(--space-sm); }
+    .lockup-grid { grid-template-columns: 1fr; }
+    .hero-wordmark { font-size: 40px; }
+  }
+
+  @media (max-width: 768px) {
+    .compare-grid { grid-template-columns: 1fr; gap: var(--space-sm); }
+    .vertical-grid { grid-template-columns: 1fr; }
+    .context-grid { grid-template-columns: 1fr; }
+    .hero-wordmark { font-size: 32px; }
+    .hero { min-height: 80vh; }
+    .section { padding: var(--space-2xl) 0; }
+    .section-heading { font-size: 22px; }
+    .scale-strip { flex-wrap: wrap; gap: var(--space-lg); }
+    .lockup-horizontal { flex-direction: column; text-align: center; }
+    .lockup-wordmark { font-size: 28px; }
+  }
+
+  @media (max-width: 480px) {
+    .container { padding: 0 var(--space-sm); }
+    .hero-wordmark { font-size: 28px; letter-spacing: 0.5px; }
+    .hero-tagline { font-size: 14px; }
+    .compare-card { padding: var(--space-lg) var(--space-md); }
+    .vertical-card { padding: var(--space-lg) var(--space-md); min-height: 280px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- HERO -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-logo">
+    <svg width="200" height="266" viewBox="0 0 120 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+      <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0a1f16"/>
+      <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+    </svg>
+  </div>
+  <div class="hero-wordmark">DESTAKA</div>
+  <div class="hero-tagline">Quem te procura, te encontra.</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- COMPARACAO -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="label">Explorações</div>
+    <h2 class="section-heading">Três direções. Uma escolha.</h2>
+    <p class="section-desc">
+      Cada exploração reduz o conceito Pin+Olho (localização + visibilidade) a uma forma diferente. A recomendação é a B: mínima, inevitável, funcional em qualquer escala.
+    </p>
+
+    <div class="compare-grid" style="margin-top: var(--space-xl);">
+
+      <!-- A: Geometrico -->
+      <div class="compare-card fade-in">
+        <svg width="140" height="186" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+          <circle cx="60" cy="56" r="9" fill="#4ade80"/>
+          <circle cx="60" cy="56" r="4" fill="#0F2A1F"/>
+        </svg>
+        <div class="compare-card-title">A. Geométrico</div>
+        <div class="compare-card-desc">Olho completo com íris e pupila. Mais detalhado. Perde legibilidade abaixo de 32px.</div>
+      </div>
+
+      <!-- B: Reducao Maxima (RECOMENDADA) -->
+      <div class="compare-card recommended fade-in">
+        <div class="badge">Recomendada</div>
+        <svg width="140" height="186" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0a1f16"/>
+          <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+        </svg>
+        <div class="compare-card-title">B. Redução Máxima</div>
+        <div class="compare-card-desc">3 elementos. Nada pode ser removido sem perder significado. Funciona de 16px a outdoor.</div>
+      </div>
+
+      <!-- C: Fusao -->
+      <div class="compare-card fade-in">
+        <svg width="160" height="150" viewBox="0 0 160 150" fill="none">
+          <path d="M20 65C40 35 60 25 80 25C100 25 120 35 140 65C120 95 100 105 80 105C60 105 40 95 20 65Z" fill="#4ade80"/>
+          <path d="M70 103Q80 135 90 103" fill="#4ade80" stroke="#4ade80" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="80" cy="65" r="14" fill="#0a1f16"/>
+          <circle cx="80" cy="65" r="6" fill="#4ade80"/>
+        </svg>
+        <div class="compare-card-title">C. Fusão Olho-Pin</div>
+        <div class="compare-card-desc">O olho é o pin. Forma horizontal, conceito ousado. Exploração conceitual.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- VARIANTES DA B -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="label">Exploração B</div>
+    <h2 class="section-heading">Três contextos. Mesma marca.</h2>
+    <p class="section-desc">
+      Dark (principal), light (materiais impressos, fundos claros) e monocromático (aplicações de baixo contraste, gravação, carimbo).
+    </p>
+
+    <div class="compare-grid" style="margin-top: var(--space-xl);">
+
+      <!-- Dark -->
+      <div class="compare-card fade-in" style="background: var(--bg-deep);">
+        <svg width="160" height="213" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+          <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+        </svg>
+        <div class="compare-card-title">Dark</div>
+        <div class="compare-card-desc">Uso principal. Digital, redes sociais, produto.</div>
+      </div>
+
+      <!-- Light -->
+      <div class="compare-card fade-in" style="background: #f8faf9; border-color: #e0e0e0;">
+        <svg width="160" height="213" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#0F2A1F"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#f8faf9"/>
+          <circle cx="60" cy="56" r="7" fill="#0F2A1F"/>
+        </svg>
+        <div class="compare-card-title" style="color: #0F2A1F;">Light</div>
+        <div class="compare-card-desc" style="color: #555;">Materiais impressos, fundos claros, documentos.</div>
+      </div>
+
+      <!-- Mono -->
+      <div class="compare-card fade-in" style="background: var(--bg-deep);">
+        <svg width="160" height="213" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#ffffff"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+          <circle cx="60" cy="56" r="7" fill="#ffffff"/>
+        </svg>
+        <div class="compare-card-title">Mono</div>
+        <div class="compare-card-desc">Gravação, carimbo, estamparia, contextos monocromáticos.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- LOCKUPS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="label">Lockups</div>
+    <h2 class="section-heading">Símbolo + Wordmark</h2>
+    <p class="section-desc">
+      O símbolo funciona sozinho. Mas na maioria dos contextos, aparece ao lado do nome. Outfit 700, tracking controlado.
+    </p>
+
+    <div class="lockup-grid" style="margin-top: var(--space-xl);">
+
+      <!-- Horizontal Dark -->
+      <div class="lockup-card lockup-dark fade-in">
+        <div class="lockup-horizontal">
+          <svg width="48" height="64" viewBox="0 0 120 160" fill="none">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+            <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+          </svg>
+          <div>
+            <div class="lockup-wordmark" style="color: #fff;">DESTAKA</div>
+            <div class="lockup-tagline">Quem te procura, te encontra.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Horizontal Light -->
+      <div class="lockup-card lockup-light fade-in" style="border: 1px solid #e0e0e0;">
+        <div class="lockup-horizontal">
+          <svg width="48" height="64" viewBox="0 0 120 160" fill="none">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#0F2A1F"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#f8faf9"/>
+            <circle cx="60" cy="56" r="7" fill="#0F2A1F"/>
+          </svg>
+          <div>
+            <div class="lockup-wordmark" style="color: #0F2A1F;">DESTAKA</div>
+            <div class="lockup-tagline" style="color: rgba(15,42,31,0.7);">Quem te procura, te encontra.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stacked Dark -->
+      <div class="lockup-card lockup-dark fade-in">
+        <div class="lockup-stacked">
+          <svg width="72" height="96" viewBox="0 0 120 160" fill="none">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/>
+            <circle cx="60" cy="56" r="7" fill="#4ade80"/>
+          </svg>
+          <div class="lockup-wordmark" style="color: #fff; font-size: 28px;">DESTAKA</div>
+        </div>
+      </div>
+
+      <!-- Stacked Light -->
+      <div class="lockup-card lockup-light fade-in" style="border: 1px solid #e0e0e0;">
+        <div class="lockup-stacked">
+          <svg width="72" height="96" viewBox="0 0 120 160" fill="none">
+            <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#0F2A1F"/>
+            <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#f8faf9"/>
+            <circle cx="60" cy="56" r="7" fill="#0F2A1F"/>
+          </svg>
+          <div class="lockup-wordmark" style="color: #0F2A1F; font-size: 28px;">DESTAKA</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- VERTICAIS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="label">Branded House</div>
+    <h2 class="section-heading">Mesma forma, cor do nicho.</h2>
+    <p class="section-desc">
+      O símbolo é constante. A cor identifica o vertical. Ano 1: Saúde, Pet, Jurídico.
+    </p>
+
+    <div class="vertical-grid" style="margin-top: var(--space-xl);">
+
+      <!-- Saude -->
+      <div class="vertical-card vertical-saude fade-in">
+        <svg width="120" height="160" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#0EA5E9"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#091e2f"/>
+          <circle cx="60" cy="56" r="7" fill="#0EA5E9"/>
+        </svg>
+        <div class="vertical-label" style="color: #0EA5E9;">Saúde</div>
+        <div class="vertical-wordmark">DESTAKA</div>
+        <div class="vertical-tagline-text">Cuide dos seus pacientes.<br>A gente cuida do Google.</div>
+      </div>
+
+      <!-- Pet -->
+      <div class="vertical-card vertical-pet fade-in">
+        <svg width="120" height="160" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#22C55E"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0a1f14"/>
+          <circle cx="60" cy="56" r="7" fill="#22C55E"/>
+        </svg>
+        <div class="vertical-label" style="color: #22C55E;">Pet</div>
+        <div class="vertical-wordmark">DESTAKA</div>
+        <div class="vertical-tagline-text">Sua clínica cheia.<br>Sem parar de atender.</div>
+      </div>
+
+      <!-- Juridico -->
+      <div class="vertical-card vertical-juridico fade-in">
+        <svg width="120" height="160" viewBox="0 0 120 160" fill="none">
+          <path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#6B9AC4"/>
+          <path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0f1a2a"/>
+          <circle cx="60" cy="56" r="7" fill="#6B9AC4"/>
+        </svg>
+        <div class="vertical-label" style="color: #6B9AC4;">Jurídico</div>
+        <div class="vertical-wordmark">DESTAKA</div>
+        <div class="vertical-tagline-text">O cliente certo te encontra.<br>Você decide quem atende.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- ESCALA + CONTEXTO -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="label">Escala e Contexto</div>
+    <h2 class="section-heading">De favicon a outdoor.</h2>
+    <p class="section-desc">
+      A marca precisa funcionar em 16px (favicon) e em 12 metros (fachada). Aqui está o teste de escala e os contextos de aplicação.
+    </p>
+
+    <!-- Scale strip -->
+    <div class="scale-strip fade-in" style="margin-top: var(--space-xl);">
+      <div class="scale-item">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1C4.7 1 2 3.7 2 7C2 9.5 3.5 11.2 5 13C6 14 7 15 8 16C9 15 10 14 11 13C12.5 11.2 14 9.5 14 7C14 3.7 11.3 1 8 1Z" fill="#4ade80"/><circle cx="8" cy="7" r="2.5" fill="#0a1f16"/></svg>
+        <span class="scale-label">16px</span>
+      </div>
+      <div class="scale-item">
+        <svg width="24" height="32" viewBox="0 0 120 160" fill="none"><path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/><path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0a1f16"/><circle cx="60" cy="56" r="7" fill="#4ade80"/></svg>
+        <span class="scale-label">24px</span>
+      </div>
+      <div class="scale-item">
+        <svg width="32" height="42" viewBox="0 0 120 160" fill="none"><path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/><path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0a1f16"/><circle cx="60" cy="56" r="7" fill="#4ade80"/></svg>
+        <span class="scale-label">32px</span>
+      </div>
+      <div class="scale-item">
+        <svg width="48" height="64" viewBox="0 0 120 160" fill="none"><path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/><path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0a1f16"/><circle cx="60" cy="56" r="7" fill="#4ade80"/></svg>
+        <span class="scale-label">48px</span>
+      </div>
+      <div class="scale-item">
+        <svg width="72" height="96" viewBox="0 0 120 160" fill="none"><path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/><path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0a1f16"/><circle cx="60" cy="56" r="7" fill="#4ade80"/></svg>
+        <span class="scale-label">72px</span>
+      </div>
+      <div class="scale-item">
+        <svg width="120" height="160" viewBox="0 0 120 160" fill="none"><path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 122 60 132C68 122 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/><path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0a1f16"/><circle cx="60" cy="56" r="7" fill="#4ade80"/></svg>
+        <span class="scale-label">120px</span>
+      </div>
+    </div>
+
+    <!-- Context cards -->
+    <div class="context-grid fade-in">
+      <div class="context-card">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+          <rect width="48" height="48" rx="11" fill="#4ade80"/>
+          <path d="M24 8C17.4 8 12 13.4 12 20C12 26 15 30 18.5 34C20.5 36 22.5 38 24 40C25.5 38 27.5 36 29.5 34C33 30 36 26 36 20C36 13.4 30.6 8 24 8Z" fill="#0F2A1F"/>
+          <path d="M16.5 20C19 16 21.5 14.5 24 14.5C26.5 14.5 29 16 31.5 20C29 24 26.5 25.5 24 25.5C21.5 25.5 19 24 16.5 20Z" fill="#4ade80"/>
+          <circle cx="24" cy="20" r="1.8" fill="#0F2A1F"/>
+        </svg>
+        <span class="context-label">App Icon</span>
+      </div>
+      <div class="context-card">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M8 1C4.7 1 2 3.7 2 7C2 9.5 3.5 11.2 5 13C6 14 7 15 8 16C9 15 10 14 11 13C12.5 11.2 14 9.5 14 7C14 3.7 11.3 1 8 1Z" fill="#4ade80"/>
+          <circle cx="8" cy="7" r="2.5" fill="#0a1f16"/>
+        </svg>
+        <span class="context-label">Favicon (simplificado)</span>
+      </div>
+      <div class="context-card">
+        <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--bg-deep); display: flex; align-items: center; justify-content: center; overflow: hidden;">
+          <svg width="24" height="28" viewBox="0 0 120 140" fill="none"><path d="M60 6C32.4 6 10 28.4 10 56C10 76 20 90 32 102C42 112 52 118 60 124C68 118 78 112 88 102C100 90 110 76 110 56C110 28.4 87.6 6 60 6Z" fill="#4ade80"/><path d="M26 56C36 43 47 38 60 38C73 38 84 43 94 56C84 69 73 74 60 74C47 74 36 69 26 56Z" fill="#0F2A1F"/><circle cx="60" cy="56" r="7" fill="#4ade80"/></svg>
+        </div>
+        <span class="context-label">Avatar Social</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- NOTAS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="notes-section fade-in">
+      <h3>Notas do designer</h3>
+      <ul>
+        <li><strong>Exploração B é a recomendação.</strong> 3 elementos (pin, olho negativo, íris sólida). Nada pode ser removido sem perder significado.</li>
+        <li><strong>Verticais:</strong> a forma não muda, só a cor. Branded House puro. O símbolo carrega a marca-mãe.</li>
+        <li><strong>Monograma D não aparece aqui.</strong> Será desenvolvido na próxima fase, após aprovação do símbolo principal.</li>
+        <li><strong>Próximo passo:</strong> aprovação da direção, refinamento geométrico das curvas, e passagem para Vignelli (grid + guidelines) e Bierut (adaptação digital responsiva).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- FOOTER -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <p>Destaka |Explorações de Marca v2 |Maio 2026</p>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SCROLL ANIMATIONS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<script>
+(function() {
+  var items = document.querySelectorAll('.fade-in');
+  if (!items.length) return;
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  items.forEach(function(item) { observer.observe(item); });
+})();
+</script>
+
+</body>
+</html>

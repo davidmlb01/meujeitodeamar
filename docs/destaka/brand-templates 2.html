@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1440">
+    <title>Destaka. Templates de Comunicação</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --ink: #0F2A1F; --leaf: #4ade80; --paper: #f6f4ef; --rule: #d8d6cd; --muted: #6c6c63; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Outfit', system-ui, sans-serif; background: var(--paper); color: var(--ink); -webkit-font-smoothing: antialiased; }
+        .page { max-width: 1200px; margin: 0 auto; padding: 0 56px; }
+        .mast { border-bottom: 1px solid var(--rule); padding: 28px 0 22px; display: flex; justify-content: space-between; align-items: center; }
+        .mast-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+        .hero { padding: 72px 0 64px; border-bottom: 1px solid var(--rule); }
+        .hero h1 { font-size: 56px; font-weight: 700; letter-spacing: -0.04em; line-height: 1; margin-bottom: 20px; }
+        .hero p { font-size: 18px; max-width: 620px; color: #2a3a31; line-height: 1.5; }
+        section { padding: 72px 0; border-bottom: 1px solid var(--rule); }
+        .sec-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+        .sec-title { font-size: 32px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 12px; }
+        .sec-desc { font-size: 15px; color: #2a3a31; max-width: 580px; line-height: 1.55; margin-bottom: 40px; }
+        .spec { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: .06em; margin-bottom: 16px; }
+        .template-frame { border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; margin: 24px 0; background: #fff; }
+        .template-meta { padding: 14px 16px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; background: var(--paper); }
+        .template-meta .lbl { font-size: 13px; font-weight: 500; }
+        .template-meta .size { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+        .dl-btn { background: var(--ink); color: #fff; border: none; padding: 8px 16px; border-radius: 6px; font-size: 12px; font-family: 'Outfit', sans-serif; font-weight: 500; cursor: pointer; }
+        .dl-btn:hover { background: #1a3d2d; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .copy-btn { background: transparent; color: var(--muted); border: 1px solid var(--rule); padding: 6px 14px; border-radius: 6px; font-size: 11px; font-family: 'JetBrains Mono', monospace; cursor: pointer; }
+        .copy-btn:hover { border-color: var(--ink); color: var(--ink); }
+        .copy-btn.copied { border-color: var(--leaf); color: #166534; }
+        .sig-preview { font-family: 'Inter', -apple-system, sans-serif; padding: 32px; background: #fff; }
+    </style>
+</head>
+<body>
+    <div class="page">
+
+        <header class="mast">
+            <div class="mast-label">DESTAKA / TEMPLATES DE COMUNICAÇÃO V2.0</div>
+            <div class="mast-label">05.MAY.2026</div>
+        </header>
+
+        <div class="hero">
+            <h1>Templates</h1>
+            <p>Assets prontos para uso nos principais pontos de contato da marca. Todos seguem o brand system e guidelines aprovados. Revisão interna aplicada.</p>
+        </div>
+
+        <!-- 01: LINKEDIN BANNER EMPRESA -->
+        <section>
+            <div class="sec-label">01 / LINKEDIN BANNER, EMPRESA</div>
+            <div class="sec-title">Página da empresa</div>
+            <div class="sec-desc">Banner para a company page no LinkedIn. Versão marca-mãe e variante Saúde.</div>
+            <div class="spec">1128 × 191 PX</div>
+            <div class="template-frame">
+                <div class="template-stage"><canvas id="li-co" width="1128" height="191"></canvas></div>
+                <div class="template-meta"><span class="lbl">LinkedIn Company Banner</span><div style="display:flex;gap:8px;align-items:center;"><span class="size">1128 × 191</span><button class="dl-btn" onclick="dl('li-co','destaka-linkedin-company.png')">Download PNG</button></div></div>
+            </div>
+            <div class="template-frame">
+                <div class="template-stage"><canvas id="li-co-saude" width="1128" height="191"></canvas></div>
+                <div class="template-meta"><span class="lbl">LinkedIn Company Banner, Destaka Saúde</span><div style="display:flex;gap:8px;align-items:center;"><span class="size">1128 × 191</span><button class="dl-btn" onclick="dl('li-co-saude','destaka-linkedin-saude.png')">Download PNG</button></div></div>
+            </div>
+        </section>
+
+        <!-- 02: LINKEDIN BANNER PESSOAL -->
+        <section>
+            <div class="sec-label">02 / LINKEDIN BANNER, PESSOAL</div>
+            <div class="sec-title">Perfil do David</div>
+            <div class="spec">1584 × 396 PX</div>
+            <div class="template-frame">
+                <div class="template-stage"><canvas id="li-personal" width="1584" height="396" style="width:100%;height:auto;"></canvas></div>
+                <div class="template-meta"><span class="lbl">LinkedIn Personal Banner</span><div style="display:flex;gap:8px;align-items:center;"><span class="size">1584 × 396</span><button class="dl-btn" onclick="dl('li-personal','destaka-linkedin-pessoal.png')">Download PNG</button></div></div>
+            </div>
+        </section>
+
+        <!-- 03: OG IMAGE -->
+        <section>
+            <div class="sec-label">03 / OG IMAGE</div>
+            <div class="sec-title">Open Graph (compartilhamento social)</div>
+            <div class="spec">1200 × 630 PX</div>
+            <div class="template-frame">
+                <div class="template-stage"><canvas id="og" width="1200" height="630" style="width:100%;height:auto;"></canvas></div>
+                <div class="template-meta"><span class="lbl">OG Image, Marca-mãe</span><div style="display:flex;gap:8px;align-items:center;"><span class="size">1200 × 630</span><button class="dl-btn" onclick="dl('og','destaka-og-image.png')">Download PNG</button></div></div>
+            </div>
+        </section>
+
+        <!-- 04: AVATARES -->
+        <section>
+            <div class="sec-label">04 / AVATARES</div>
+            <div class="sec-title">WhatsApp, LinkedIn, Instagram</div>
+            <div class="sec-desc">Pin+Olho em fundo colorido por vertical. Marca única em todos os contextos.</div>
+            <div class="grid-4">
+                <div class="template-frame"><div class="template-stage"><canvas id="av-main" width="512" height="512" style="width:100%;height:auto;"></canvas></div><div class="template-meta"><span class="lbl">Marca-mãe</span><button class="dl-btn" onclick="dl('av-main','destaka-avatar-main.png')">PNG</button></div></div>
+                <div class="template-frame"><div class="template-stage"><canvas id="av-saude" width="512" height="512" style="width:100%;height:auto;"></canvas></div><div class="template-meta"><span class="lbl">Saúde</span><button class="dl-btn" onclick="dl('av-saude','destaka-avatar-saude.png')">PNG</button></div></div>
+                <div class="template-frame"><div class="template-stage"><canvas id="av-pet" width="512" height="512" style="width:100%;height:auto;"></canvas></div><div class="template-meta"><span class="lbl">Pet</span><button class="dl-btn" onclick="dl('av-pet','destaka-avatar-pet.png')">PNG</button></div></div>
+                <div class="template-frame"><div class="template-stage"><canvas id="av-juridico" width="512" height="512" style="width:100%;height:auto;"></canvas></div><div class="template-meta"><span class="lbl">Jurídico</span><button class="dl-btn" onclick="dl('av-juridico','destaka-avatar-juridico.png')">PNG</button></div></div>
+            </div>
+        </section>
+
+        <!-- 05: FAVICONS -->
+        <section>
+            <div class="sec-label">05 / FAVICONS</div>
+            <div class="sec-title">Pin+Olho simplificado</div>
+            <div class="sec-desc">Marca Pin para tamanhos pequenos. Silhueta sólida sem o recorte do olho, apenas o ponto central.</div>
+            <div class="grid-4">
+                <div class="template-frame"><div class="template-stage"><canvas id="fav-32" width="32" height="32" style="width:128px;height:128px;margin:32px auto;display:block;"></canvas></div><div class="template-meta"><span class="lbl">Favicon 32px</span><button class="dl-btn" onclick="dl('fav-32','destaka-favicon-32.png')">PNG</button></div></div>
+                <div class="template-frame"><div class="template-stage"><canvas id="fav-16" width="16" height="16" style="width:128px;height:128px;margin:32px auto;display:block;"></canvas></div><div class="template-meta"><span class="lbl">Favicon 16px</span><button class="dl-btn" onclick="dl('fav-16','destaka-favicon-16.png')">PNG</button></div></div>
+                <div class="template-frame"><div class="template-stage"><canvas id="fav-32-saude" width="32" height="32" style="width:128px;height:128px;margin:32px auto;display:block;"></canvas></div><div class="template-meta"><span class="lbl">Favicon 32px Saúde</span><button class="dl-btn" onclick="dl('fav-32-saude','destaka-favicon-32-saude.png')">PNG</button></div></div>
+                <div class="template-frame"><div class="template-stage"><canvas id="fav-16-saude" width="16" height="16" style="width:128px;height:128px;margin:32px auto;display:block;"></canvas></div><div class="template-meta"><span class="lbl">Favicon 16px Saúde</span><button class="dl-btn" onclick="dl('fav-16-saude','destaka-favicon-16-saude.png')">PNG</button></div></div>
+            </div>
+        </section>
+
+        <!-- 06: APP ICONS -->
+        <section>
+            <div class="sec-label">06 / APP ICONS</div>
+            <div class="sec-title">Ícones de aplicativo (1024px)</div>
+            <div class="sec-desc">Pin+Olho em alta resolução para App Store, Google Play e PWA.</div>
+            <div class="spec">1024 × 1024 PX</div>
+            <div class="grid-2">
+                <div class="template-frame"><div class="template-stage"><canvas id="app-icon" width="1024" height="1024" style="width:100%;height:auto;"></canvas></div><div class="template-meta"><span class="lbl">App Icon, Marca-mãe</span><button class="dl-btn" onclick="dl('app-icon','destaka-app-icon-1024.png')">PNG</button></div></div>
+                <div class="template-frame"><div class="template-stage"><canvas id="app-saude" width="1024" height="1024" style="width:100%;height:auto;"></canvas></div><div class="template-meta"><span class="lbl">App Icon, Saúde</span><button class="dl-btn" onclick="dl('app-saude','destaka-app-icon-saude.png')">PNG</button></div></div>
+            </div>
+        </section>
+
+        <!-- 07: EMAIL HEADER -->
+        <section>
+            <div class="sec-label">07 / EMAIL HEADER</div>
+            <div class="sec-title">Cabeçalho de email marketing</div>
+            <div class="spec">600 × 120 PX</div>
+            <div class="grid-2">
+                <div class="template-frame"><div class="template-stage"><canvas id="eh-dark" width="600" height="120" style="width:100%;height:auto;"></canvas></div><div class="template-meta"><span class="lbl">Dark</span><button class="dl-btn" onclick="dl('eh-dark','destaka-email-header-dark.png')">PNG</button></div></div>
+                <div class="template-frame"><div class="template-stage"><canvas id="eh-light" width="600" height="120" style="width:100%;height:auto;"></canvas></div><div class="template-meta"><span class="lbl">Light</span><button class="dl-btn" onclick="dl('eh-light','destaka-email-header-light.png')">PNG</button></div></div>
+            </div>
+        </section>
+
+        <!-- 08: ASSINATURA DE EMAIL -->
+        <section>
+            <div class="sec-label">08 / ASSINATURA DE EMAIL</div>
+            <div class="sec-title">Email signature (HTML)</div>
+            <div class="sec-desc">Copie o HTML e cole nas configurações de assinatura do seu email (Gmail > Configurações > Assinatura).</div>
+            <div class="template-frame">
+                <div class="template-stage">
+                    <div class="sig-preview" id="email-sig">
+                        <table cellpadding="0" cellspacing="0" border="0" style="font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;font-size:14px;color:#0F2A1F;">
+                            <tr><td style="vertical-align:top;padding-right:16px;border-right:2px solid #4ade80;">
+                                <svg width="32" height="38" viewBox="0 0 72 84" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M36 5C50.91 5 63 17.09 63 32C63 43.5 56.4 51.7 49.6 59.6C44.5 65.55 39.6 71.2 36 76C32.4 71.2 27.5 65.55 22.4 59.6C15.6 51.7 9 43.5 9 32C9 17.09 21.09 5 36 5Z M19.5 32C24 24.5 30 21 36 21C42 21 48 24.5 52.5 32C48 39.5 42 43 36 43C30 43 24 39.5 19.5 32Z" fill="#4ade80"/><circle cx="36" cy="32" r="4.2" fill="#4ade80"/></svg>
+                            </td><td style="vertical-align:top;padding-left:16px;">
+                                <div style="font-weight:600;font-size:15px;color:#0F2A1F;margin-bottom:2px;">David Levy</div>
+                                <div style="font-size:12px;color:#6c6c63;margin-bottom:8px;">Fundador</div>
+                                <div style="font-size:12px;color:#6c6c63;line-height:1.6;">
+                                    <a href="https://destaka.com.br" style="color:#0F2A1F;text-decoration:none;font-weight:500;">destaka.com.br</a><br>
+                                    <span style="color:#999;">Quem te procura, te encontra.</span>
+                                </div>
+                            </td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="template-meta"><span class="lbl">Assinatura, Marca-mãe</span><button class="copy-btn" onclick="copySig('email-sig',this)">Copiar HTML</button></div>
+            </div>
+            <div class="template-frame" style="margin-top:16px;">
+                <div class="template-stage">
+                    <div class="sig-preview" id="email-sig-saude">
+                        <table cellpadding="0" cellspacing="0" border="0" style="font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;font-size:14px;color:#0F2A1F;">
+                            <tr><td style="vertical-align:top;padding-right:16px;border-right:2px solid #0EA5E9;">
+                                <svg width="32" height="38" viewBox="0 0 72 84" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M36 5C50.91 5 63 17.09 63 32C63 43.5 56.4 51.7 49.6 59.6C44.5 65.55 39.6 71.2 36 76C32.4 71.2 27.5 65.55 22.4 59.6C15.6 51.7 9 43.5 9 32C9 17.09 21.09 5 36 5Z M19.5 32C24 24.5 30 21 36 21C42 21 48 24.5 52.5 32C48 39.5 42 43 36 43C30 43 24 39.5 19.5 32Z" fill="#0EA5E9"/><circle cx="36" cy="32" r="4.2" fill="#0EA5E9"/></svg>
+                            </td><td style="vertical-align:top;padding-left:16px;">
+                                <div style="font-weight:600;font-size:15px;color:#0F2A1F;margin-bottom:2px;">David Levy</div>
+                                <div style="font-size:12px;color:#6c6c63;margin-bottom:8px;">Fundador · Destaka Saúde</div>
+                                <div style="font-size:12px;color:#6c6c63;line-height:1.6;">
+                                    <a href="https://destaka.com.br/saude" style="color:#0F2A1F;text-decoration:none;font-weight:500;">destaka.com.br/saúde</a><br>
+                                    <span style="color:#999;">Cuide dos seus pacientes. A gente cuida do Google.</span>
+                                </div>
+                            </td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="template-meta"><span class="lbl">Assinatura, Destaka Saúde</span><button class="copy-btn" onclick="copySig('email-sig-saude',this)">Copiar HTML</button></div>
+            </div>
+        </section>
+
+        <!-- 09: POST LINKEDIN SQUARE -->
+        <section>
+            <div class="sec-label">09 / POST LINKEDIN, QUADRADO</div>
+            <div class="sec-title">Template para imagem de post</div>
+            <div class="sec-desc">Layout editorial premium com hierarquia tipográfica forte, textura geométrica e barra de rodapé com lockup.</div>
+            <div class="spec">1080 × 1080 PX</div>
+            <div class="template-frame">
+                <div class="template-stage"><canvas id="post-sq" width="1080" height="1080" style="width:100%;height:auto;"></canvas></div>
+                <div class="template-meta"><span class="lbl">Post quadrado</span><button class="dl-btn" onclick="dl('post-sq','destaka-post-square.png')">PNG</button></div>
+            </div>
+        </section>
+
+        <!-- 10: POST LINKEDIN LANDSCAPE -->
+        <section style="border-bottom:none;">
+            <div class="sec-label">10 / POST LINKEDIN, LANDSCAPE</div>
+            <div class="sec-title">Template para link preview</div>
+            <div class="sec-desc">Formato horizontal para compartilhamento de artigos e links no LinkedIn.</div>
+            <div class="spec">1200 × 628 PX</div>
+            <div class="template-frame">
+                <div class="template-stage"><canvas id="post-ls" width="1200" height="628" style="width:100%;height:auto;"></canvas></div>
+                <div class="template-meta"><span class="lbl">Post landscape</span><button class="dl-btn" onclick="dl('post-ls','destaka-post-landscape.png')">PNG</button></div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+    // ── HELPERS ───────────────────────────────────────────
+
+    function drawPin(ctx, x, y, scale, fillColor, pupilColor) {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.scale(scale, scale);
+        ctx.beginPath();
+        ctx.moveTo(36,5);ctx.bezierCurveTo(50.91,5,63,17.09,63,32);ctx.bezierCurveTo(63,43.5,56.4,51.7,49.6,59.6);ctx.bezierCurveTo(44.5,65.55,39.6,71.2,36,76);ctx.bezierCurveTo(32.4,71.2,27.5,65.55,22.4,59.6);ctx.bezierCurveTo(15.6,51.7,9,43.5,9,32);ctx.bezierCurveTo(9,17.09,21.09,5,36,5);ctx.closePath();
+        ctx.moveTo(19.5,32);ctx.bezierCurveTo(24,24.5,30,21,36,21);ctx.bezierCurveTo(42,21,48,24.5,52.5,32);ctx.bezierCurveTo(48,39.5,42,43,36,43);ctx.bezierCurveTo(30,43,24,39.5,19.5,32);ctx.closePath();
+        ctx.fillStyle = fillColor; ctx.fill('evenodd');
+        ctx.beginPath(); ctx.arc(36,32,4.2,0,Math.PI*2);
+        ctx.fillStyle = pupilColor; ctx.fill();
+        ctx.restore();
+    }
+
+    function drawPinMini(ctx, x, y, scale, fillColor, pupilColor) {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.scale(scale, scale);
+        ctx.beginPath();
+        ctx.moveTo(36,5);ctx.bezierCurveTo(50.91,5,63,17.09,63,32);ctx.bezierCurveTo(63,43.5,56.4,51.7,49.6,59.6);ctx.bezierCurveTo(44.5,65.55,39.6,71.2,36,76);ctx.bezierCurveTo(32.4,71.2,27.5,65.55,22.4,59.6);ctx.bezierCurveTo(15.6,51.7,9,43.5,9,32);ctx.bezierCurveTo(9,17.09,21.09,5,36,5);ctx.closePath();
+        ctx.fillStyle = fillColor; ctx.fill();
+        ctx.beginPath(); ctx.arc(36,30,6.5,0,Math.PI*2);
+        ctx.fillStyle = pupilColor; ctx.fill();
+        ctx.restore();
+    }
+
+
+
+    // Lockup: mark left, wordmark right, gap = 0.15 * fontSize (tight)
+    function drawLockup(ctx, x, y, fontSize, markScale, pinColor, pupilColor, textColor, vertical, vertAlpha) {
+        const markW = 54 * markScale;
+        const markH = 71 * markScale;
+        const gap = fontSize * 0.15;
+        const textX = x + markW + gap;
+        const markY = y + (fontSize * 0.85 - markH) / 2;
+
+        drawPin(ctx, x - 9 * markScale, markY - 5 * markScale, markScale, pinColor, pupilColor);
+
+        ctx.font = '700 ' + fontSize + 'px Outfit';
+        ctx.fillStyle = textColor;
+        ctx.textBaseline = 'top';
+        ctx.fillText('Destaka', textX, y);
+        if (vertical) {
+            const w = ctx.measureText('Destaka ').width;
+            ctx.font = '300 ' + fontSize + 'px Outfit';
+            ctx.globalAlpha = vertAlpha || 0.4;
+            ctx.fillText(vertical, textX + w, y);
+            ctx.globalAlpha = 1;
+        }
+    }
+
+    // Lockup with PinMini for smaller contexts
+    function drawLockupMini(ctx, x, y, fontSize, markScale, pinColor, pupilColor, textColor, vertical, vertAlpha) {
+        const markW = 54 * markScale;
+        const markH = 71 * markScale;
+        const gap = fontSize * 0.15;
+        const textX = x + markW + gap;
+        const markY = y + (fontSize * 0.85 - markH) / 2;
+
+        drawPinMini(ctx, x - 9 * markScale, markY - 5 * markScale, markScale, pinColor, pupilColor);
+
+        ctx.font = '700 ' + fontSize + 'px Outfit';
+        ctx.fillStyle = textColor;
+        ctx.textBaseline = 'top';
+        ctx.fillText('Destaka', textX, y);
+        if (vertical) {
+            const w = ctx.measureText('Destaka ').width;
+            ctx.font = '300 ' + fontSize + 'px Outfit';
+            ctx.globalAlpha = vertAlpha || 0.4;
+            ctx.fillText(vertical, textX + w, y);
+            ctx.globalAlpha = 1;
+        }
+    }
+
+    function dl(id, name) {
+        const c = document.getElementById(id);
+        const a = document.createElement('a');
+        a.download = name; a.href = c.toDataURL('image/png'); a.click();
+    }
+
+    function copySig(id, btn) {
+        navigator.clipboard.writeText(document.getElementById(id).innerHTML).then(function() {
+            btn.textContent = 'Copiado!'; btn.classList.add('copied');
+            setTimeout(function() { btn.textContent = 'Copiar HTML'; btn.classList.remove('copied'); }, 2000);
+        });
+    }
+
+    function wrapText(ctx, text, x, y, maxW, lh) {
+        var words = text.split(' '); var line = '';
+        for (var i = 0; i < words.length; i++) {
+            var test = line + words[i] + ' ';
+            if (ctx.measureText(test).width > maxW && i > 0) {
+                ctx.fillText(line.trim(), x, y); line = words[i] + ' '; y += lh;
+            } else { line = test; }
+        }
+        ctx.fillText(line.trim(), x, y);
+        return y;
+    }
+
+    // Draw subtle geometric grid pattern
+    function drawGridPattern(ctx, w, h, color, spacing, dotSize) {
+        ctx.save();
+        ctx.fillStyle = color;
+        for (var gx = spacing; gx < w; gx += spacing) {
+            for (var gy = spacing; gy < h; gy += spacing) {
+                ctx.beginPath();
+                ctx.arc(gx, gy, dotSize, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        ctx.restore();
+    }
+
+    // Draw corner marks (framing elements)
+    function drawCornerMarks(ctx, x, y, w, h, len, color, lineWidth) {
+        ctx.save();
+        ctx.strokeStyle = color;
+        ctx.lineWidth = lineWidth || 1.5;
+        // Top-left
+        ctx.beginPath(); ctx.moveTo(x, y + len); ctx.lineTo(x, y); ctx.lineTo(x + len, y); ctx.stroke();
+        // Top-right
+        ctx.beginPath(); ctx.moveTo(x + w - len, y); ctx.lineTo(x + w, y); ctx.lineTo(x + w, y + len); ctx.stroke();
+        // Bottom-left
+        ctx.beginPath(); ctx.moveTo(x, y + h - len); ctx.lineTo(x, y + h); ctx.lineTo(x + len, y + h); ctx.stroke();
+        // Bottom-right
+        ctx.beginPath(); ctx.moveTo(x + w - len, y + h); ctx.lineTo(x + w, y + h); ctx.lineTo(x + w, y + h - len); ctx.stroke();
+        ctx.restore();
+    }
+
+    // Draw a subtle noise texture via tiny random dots
+    function drawNoise(ctx, w, h, alpha) {
+        ctx.save();
+        for (var i = 0; i < w * h * 0.012; i++) {
+            var nx = Math.random() * w;
+            var ny = Math.random() * h;
+            ctx.fillStyle = 'rgba(255,255,255,' + (Math.random() * alpha) + ')';
+            ctx.fillRect(nx, ny, 1, 1);
+        }
+        ctx.restore();
+    }
+
+    // ── RENDER ────────────────────────────────────────────
+
+    document.fonts.ready.then(function() {
+
+        // ── 01: LinkedIn Company (1128x191) ──
+        {
+            var c = document.getElementById('li-co'), ctx = c.getContext('2d');
+            ctx.fillStyle = '#0F2A1F'; ctx.fillRect(0,0,1128,191);
+            var fs = 36; var lockY = (191 - fs * 0.85) / 2 - 10;
+            drawLockup(ctx, 48, lockY, fs, 0.52, '#fff', '#4ade80', '#fff');
+            ctx.font = '400 14px Inter'; ctx.fillStyle = 'rgba(255,255,255,0.7)';
+            var tagX = 48 + 54*0.52 + fs*0.15;
+            ctx.fillText('Quem te procura, te encontra.', tagX, lockY + fs + 4);
+        }
+        {
+            var c = document.getElementById('li-co-saude'), ctx = c.getContext('2d');
+            ctx.fillStyle = '#0F2A1F'; ctx.fillRect(0,0,1128,191);
+            var fs = 36; var lockY = (191 - fs * 0.85) / 2 - 10;
+            drawLockup(ctx, 48, lockY, fs, 0.52, '#fff', '#0EA5E9', '#fff', 'Saúde', 0.45);
+            ctx.font = '400 14px Inter'; ctx.fillStyle = 'rgba(255,255,255,0.65)';
+            var tagX = 48 + 54*0.52 + fs*0.15;
+            ctx.fillText('Cuide dos seus pacientes. A gente cuida do Google.', tagX, lockY + fs + 4);
+        }
+
+        // ── 02: LinkedIn Personal (1584x396) ──
+        {
+            var c = document.getElementById('li-personal'), ctx = c.getContext('2d');
+            ctx.fillStyle = '#0F2A1F'; ctx.fillRect(0,0,1584,396);
+            // Decorative mark top-right, subtle
+            drawPin(ctx, 1340, 80, 2.8, 'rgba(255,255,255,0.07)', 'rgba(74,222,128,0.15)');
+            // Wordmark left
+            ctx.font = '700 56px Outfit'; ctx.fillStyle = '#fff'; ctx.textBaseline = 'top';
+            ctx.fillText('Destaka', 80, 120);
+            ctx.font = '400 20px Inter'; ctx.fillStyle = 'rgba(255,255,255,0.5)';
+            ctx.fillText('Quem te procura, te encontra.', 80, 185);
+            ctx.font = '400 13px JetBrains Mono'; ctx.fillStyle = 'rgba(255,255,255,0.4)';
+            ctx.fillText('DESTAKA.COM.BR', 80, 330);
+            // Small lockup bottom-right
+            drawLockup(ctx, 1260, 340, 16, 0.25, 'rgba(255,255,255,0.3)', 'rgba(74,222,128,0.4)', 'rgba(255,255,255,0.3)');
+        }
+
+        // ── 03: OG Image (1200x630) ──
+        {
+            var c = document.getElementById('og'), ctx = c.getContext('2d');
+            ctx.fillStyle = '#0F2A1F'; ctx.fillRect(0,0,1200,630);
+            // Decorative mark right, subtle
+            drawPin(ctx, 880, 140, 3.5, 'rgba(255,255,255,0.05)', 'rgba(74,222,128,0.1)');
+            // Lockup left
+            drawLockup(ctx, 72, 200, 56, 0.8, '#fff', '#4ade80', '#fff');
+            ctx.font = '400 22px Inter'; ctx.fillStyle = 'rgba(255,255,255,0.55)';
+            ctx.fillText('Quem te procura, te encontra.', 72 + 54*0.8 + 56*0.15, 268);
+            ctx.font = '400 15px Inter'; ctx.fillStyle = 'rgba(255,255,255,0.5)';
+            ctx.fillText('Presença digital no piloto automático para profissionais liberais.', 72, 420);
+            ctx.font = '400 12px JetBrains Mono'; ctx.fillStyle = 'rgba(255,255,255,0.35)';
+            ctx.fillText('DESTAKA.COM.BR', 72, 560);
+        }
+
+        // ── 04: Avatares (Pin+Olho, NEVER Monogram D) ──
+        function drawAvatar(id, bg, pinColor, pupilColor) {
+            var c = document.getElementById(id), ctx = c.getContext('2d'), s = c.width;
+            ctx.fillStyle = bg; ctx.fillRect(0,0,s,s);
+            var pad = s * 0.18;
+            var availW = s - pad * 2;
+            var availH = s - pad * 2;
+            var sc = Math.min(availW / 54, availH / 71);
+            var offX = (s - 54 * sc) / 2 - 9 * sc;
+            var offY = (s - 71 * sc) / 2 - 5 * sc;
+            drawPin(ctx, offX, offY, sc, pinColor, pupilColor);
+        }
+        drawAvatar('av-main', '#0F2A1F', '#fff', '#4ade80');
+        drawAvatar('av-saude', '#0EA5E9', '#fff', '#0EA5E9');
+        drawAvatar('av-pet', '#22C55E', '#fff', '#22C55E');
+        drawAvatar('av-juridico', '#1E3A5F', '#fff', '#1E3A5F');
+
+        // ── 05: Favicons (PIN mark simplified, NOT Monogram D) ──
+        function drawFavicon(id, bg, pinColor, pupilColor) {
+            var c = document.getElementById(id), ctx = c.getContext('2d'), s = c.width;
+            ctx.fillStyle = bg; ctx.fillRect(0,0,s,s);
+            // Scale pin to fit: pin is 54w x 71h in path space (9..63 x 5..76)
+            var pad = s * 0.1;
+            var availW = s - pad * 2;
+            var availH = s - pad * 2;
+            var sc = Math.min(availW / 54, availH / 71);
+            var offX = (s - 54 * sc) / 2 - 9 * sc;
+            var offY = (s - 71 * sc) / 2 - 5 * sc;
+            drawPinMini(ctx, offX, offY, sc, pinColor, pupilColor);
+        }
+        drawFavicon('fav-32', '#0F2A1F', '#fff', '#4ade80');
+        drawFavicon('fav-16', '#0F2A1F', '#fff', '#4ade80');
+        drawFavicon('fav-32-saude', '#0F2A1F', '#fff', '#0EA5E9');
+        drawFavicon('fav-16-saude', '#0F2A1F', '#fff', '#0EA5E9');
+
+        // ── 06: App Icons (PIN+OLHO mark, NOT Monogram D) ──
+        function drawAppIcon(id, bg, pinColor, pupilColor) {
+            var c = document.getElementById(id), ctx = c.getContext('2d'), s = c.width;
+            // Rounded rect background
+            var r = s * 0.22;
+            ctx.beginPath(); ctx.roundRect(0,0,s,s,r);
+            ctx.fillStyle = bg; ctx.fill();
+            // Center the pin
+            var pad = s * 0.18;
+            var availW = s - pad * 2;
+            var availH = s - pad * 2;
+            var sc = Math.min(availW / 54, availH / 71);
+            var offX = (s - 54 * sc) / 2 - 9 * sc;
+            var offY = (s - 71 * sc) / 2 - 5 * sc;
+            drawPin(ctx, offX, offY, sc, pinColor, pupilColor);
+        }
+        drawAppIcon('app-icon', '#0F2A1F', '#fff', '#4ade80');
+        drawAppIcon('app-saude', '#0F2A1F', '#fff', '#0EA5E9');
+
+        // ── 07: Email Headers (600x120) ──
+        {
+            var c = document.getElementById('eh-dark'), ctx = c.getContext('2d');
+            ctx.fillStyle = '#0F2A1F'; ctx.fillRect(0,0,600,120);
+            var fs = 24; var lockY = (120 - fs*0.85) / 2 - 6;
+            drawLockup(ctx, 28, lockY, fs, 0.38, '#fff', '#4ade80', '#fff');
+            ctx.font = '400 11px Inter'; ctx.fillStyle = 'rgba(255,255,255,0.65)';
+            var tagX = 28 + 54*0.38 + fs*0.15;
+            ctx.fillText('Quem te procura, te encontra.', tagX, lockY + fs + 3);
+        }
+        {
+            var c = document.getElementById('eh-light'), ctx = c.getContext('2d');
+            ctx.fillStyle = '#fff'; ctx.fillRect(0,0,600,120);
+            ctx.fillStyle = '#ece9e2'; ctx.fillRect(0,118,600,2);
+            var fs = 24; var lockY = (120 - fs*0.85) / 2 - 6;
+            // Light bg: pin AND pupil in vertical color (leaf)
+            drawLockup(ctx, 28, lockY, fs, 0.38, '#4ade80', '#4ade80', '#0F2A1F');
+            ctx.font = '400 11px Inter'; ctx.fillStyle = '#6c6c63';
+            var tagX = 28 + 54*0.38 + fs*0.15;
+            ctx.fillText('Quem te procura, te encontra.', tagX, lockY + fs + 3);
+        }
+
+        // ── 09: Post LinkedIn Square (1080x1080) ── PREMIUM TEMPLATE ──
+        {
+            var c = document.getElementById('post-sq'), ctx = c.getContext('2d');
+            var W = 1080, H = 1080;
+
+            // Background
+            ctx.fillStyle = '#0F2A1F'; ctx.fillRect(0,0,W,H);
+
+            // Subtle dot grid pattern
+            drawGridPattern(ctx, W, H, 'rgba(255,255,255,0.025)', 40, 1);
+
+            // Subtle noise texture
+            drawNoise(ctx, W, H, 0.03);
+
+            // Accent line, left edge: thin vertical stripe
+            ctx.fillStyle = '#4ade80';
+            ctx.fillRect(0, 0, 4, H);
+
+            // Corner marks (framing)
+            drawCornerMarks(ctx, 56, 56, W - 112, H - 112, 32, 'rgba(255,255,255,0.08)', 1.5);
+
+            // Top: small lockup
+            drawLockup(ctx, 80, 80, 20, 0.3, '#fff', '#4ade80', '#fff');
+
+            // Accent bar (horizontal)
+            ctx.fillStyle = '#4ade80';
+            ctx.fillRect(80, 380, 56, 4);
+
+            // Main headline: large, bold
+            ctx.font = '700 64px Outfit';
+            ctx.fillStyle = '#fff';
+            ctx.textBaseline = 'top';
+            wrapText(ctx, 'Seus pacientes já estão no Google. Você aparece?', 80, 416, 720, 78);
+
+            // Supporting text: lighter weight
+            ctx.font = '400 22px Inter';
+            ctx.fillStyle = 'rgba(255,255,255,0.5)';
+            wrapText(ctx, 'Presença digital no piloto automático para profissionais de saúde.', 80, 660, 680, 32);
+
+            // Decorative: large faded pin, bottom-right
+            drawPin(ctx, 780, 720, 3.8, 'rgba(255,255,255,0.03)', 'rgba(74,222,128,0.06)');
+
+            // Bottom bar
+            ctx.fillStyle = 'rgba(255,255,255,0.06)';
+            ctx.fillRect(0, H - 100, W, 100);
+            ctx.fillStyle = 'rgba(255,255,255,0.08)';
+            ctx.fillRect(0, H - 100, W, 1);
+
+            // Bottom lockup
+            drawLockup(ctx, 80, H - 72, 18, 0.26, '#fff', '#4ade80', '#fff');
+
+            // Bottom URL right-aligned
+            ctx.font = '500 13px JetBrains Mono';
+            ctx.fillStyle = 'rgba(255,255,255,0.5)';
+            ctx.textBaseline = 'top';
+            ctx.textAlign = 'right';
+            ctx.fillText('DESTAKA.COM.BR', W - 80, H - 66);
+            ctx.textAlign = 'left';
+
+            // Thin top accent line
+            ctx.fillStyle = '#4ade80';
+            ctx.fillRect(0, 0, W, 3);
+        }
+
+        // ── 10: Post LinkedIn Landscape (1200x628) ── PREMIUM TEMPLATE ──
+        {
+            var c = document.getElementById('post-ls'), ctx = c.getContext('2d');
+            var W = 1200, H = 628;
+
+            // Background
+            ctx.fillStyle = '#0F2A1F'; ctx.fillRect(0,0,W,H);
+
+            // Dot grid
+            drawGridPattern(ctx, W, H, 'rgba(255,255,255,0.02)', 36, 0.8);
+
+            // Noise
+            drawNoise(ctx, W, H, 0.025);
+
+            // Top accent line
+            ctx.fillStyle = '#4ade80';
+            ctx.fillRect(0, 0, W, 3);
+
+            // Left accent stripe
+            ctx.fillStyle = '#4ade80';
+            ctx.fillRect(0, 0, 4, H);
+
+            // Corner marks
+            drawCornerMarks(ctx, 48, 48, W - 96, H - 96, 24, 'rgba(255,255,255,0.07)', 1.5);
+
+            // Top: small lockup
+            drawLockup(ctx, 64, 56, 18, 0.26, '#fff', '#4ade80', '#fff');
+
+            // Accent bar
+            ctx.fillStyle = '#4ade80';
+            ctx.fillRect(64, 180, 44, 3);
+
+            // Headline
+            ctx.font = '700 48px Outfit';
+            ctx.fillStyle = '#fff';
+            ctx.textBaseline = 'top';
+            wrapText(ctx, 'Seus pacientes já estão no Google. Você aparece?', 64, 208, 700, 60);
+
+            // Supporting text
+            ctx.font = '400 18px Inter';
+            ctx.fillStyle = 'rgba(255,255,255,0.7)';
+            wrapText(ctx, 'Presença digital no piloto automático para profissionais de saúde.', 64, 380, 640, 28);
+
+            // Decorative pin
+            drawPin(ctx, 940, 180, 3, 'rgba(255,255,255,0.03)', 'rgba(74,222,128,0.06)');
+
+            // Bottom bar
+            ctx.fillStyle = 'rgba(255,255,255,0.06)';
+            ctx.fillRect(0, H - 80, W, 80);
+            ctx.fillStyle = 'rgba(255,255,255,0.08)';
+            ctx.fillRect(0, H - 80, W, 1);
+
+            // Bottom lockup
+            drawLockup(ctx, 64, H - 56, 16, 0.24, '#fff', '#4ade80', '#fff');
+
+            // Bottom URL right
+            ctx.font = '500 12px JetBrains Mono';
+            ctx.fillStyle = 'rgba(255,255,255,0.5)';
+            ctx.textBaseline = 'top';
+            ctx.textAlign = 'right';
+            ctx.fillText('DESTAKA.COM.BR', W - 64, H - 52);
+            ctx.textAlign = 'left';
+        }
+
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Destaka · Estudo de Paleta de Cores por Vertical</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f6f4ef;
+    color: #1a1a1a;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 40px;
+  }
+
+  h1 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 3rem;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: #0F2A1F;
+    margin-bottom: 16px;
+  }
+
+  h1 span { color: #4ade80; }
+
+  .subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 60px;
+  }
+
+  h2 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    color: #0F2A1F;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+
+  h3 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 1.35rem;
+    color: #333;
+    margin-bottom: 8px;
+  }
+
+  p { margin-bottom: 16px; color: #444; }
+
+  .section {
+    margin-bottom: 80px;
+    padding-top: 40px;
+    border-top: 1px solid #ddd;
+  }
+
+  .section:first-of-type { border-top: none; padding-top: 0; }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #999;
+    margin-bottom: 8px;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+    margin: 32px 0;
+  }
+
+  .problem-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e5e5e5;
+  }
+
+  .problem-card-header {
+    padding: 20px 24px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .problem-card-header h4 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  .verdict {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .verdict-ok { background: #dcfce7; color: #166534; }
+  .verdict-conflict { background: #fee2e2; color: #991b1b; }
+  .verdict-question { background: #fef3c7; color: #92400e; }
+  .verdict-maybe { background: #e0f2fe; color: #075985; }
+
+  .problem-card canvas { display: block; width: 100%; }
+
+  .color-info {
+    padding: 16px 24px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: #666;
+    border-top: 1px solid #f0f0f0;
+  }
+
+  .swatch {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: 1px solid rgba(0,0,0,0.1);
+    flex-shrink: 0;
+  }
+
+  /* Mockup section */
+  .mockup-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(580px, 1fr));
+    gap: 32px;
+    margin: 32px 0;
+  }
+
+  .mockup-wrapper {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e5e5e5;
+  }
+
+  .mockup-wrapper h4 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 16px 24px 12px;
+  }
+
+  .mockup-wrapper canvas { display: block; width: 100%; }
+
+  /* Pros/Cons */
+  .pros-cons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 24px 0 40px;
+  }
+
+  .pros, .cons {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid #e5e5e5;
+  }
+
+  .pros h4 { color: #166534; font-family: 'Outfit', sans-serif; font-weight: 600; margin-bottom: 12px; }
+  .cons h4 { color: #991b1b; font-family: 'Outfit', sans-serif; font-weight: 600; margin-bottom: 12px; }
+
+  .pros ul, .cons ul { list-style: none; padding: 0; }
+  .pros li, .cons li {
+    padding: 6px 0;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.5;
+  }
+  .pros li::before { content: '+ '; color: #22c55e; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+  .cons li::before { content: '- '; color: #ef4444; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+
+  /* Score table */
+  .score-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #e5e5e5;
+  }
+
+  .score-table th {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-align: left;
+    padding: 14px 20px;
+    background: #f8f8f6;
+    border-bottom: 1px solid #e5e5e5;
+    color: #333;
+  }
+
+  .score-table td {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #f0f0f0;
+    color: #555;
+  }
+
+  .score-table tr:last-child td { border-bottom: none; }
+
+  .score-table .winner {
+    font-weight: 600;
+    color: #166534;
+    background: #f0fdf4;
+  }
+
+  .rec-box {
+    background: #0F2A1F;
+    color: white;
+    border-radius: 16px;
+    padding: 40px;
+    margin: 32px 0;
+  }
+
+  .rec-box h3 {
+    font-family: 'Outfit', sans-serif;
+    color: #4ade80;
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+  }
+
+  .rec-box p { color: #ccc; }
+
+  .big-mockup-wrapper {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e5e5e5;
+    margin: 32px 0;
+  }
+
+  .big-mockup-wrapper canvas { display: block; width: 100%; }
+
+  @media (max-width: 768px) {
+    .container { padding: 40px 20px; }
+    h1 { font-size: 2rem; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .mockup-row { grid-template-columns: 1fr; }
+    .pros-cons { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>Estudo de Paleta de Cores<br><span>por Vertical</span></h1>
+  <p class="subtitle">Destaka Multi-Vertical SaaS &middot; Maio 2026</p>
+
+  <!-- ===================== SECTION 1: O PROBLEMA ===================== -->
+  <div class="section">
+    <p class="section-label">Seção 01</p>
+    <h2>O Problema</h2>
+    <p>
+      O plano atual usa verde escuro <code>#0F2A1F</code> como fundo de interface para <strong>todas</strong> as verticais,
+      variando apenas o accent. Funciona quando o accent é verde (Marca-mãe, Pet), mas gera conflito
+      visual quando o accent é azul, roxo ou cores que não pertencem à família do verde.
+    </p>
+    <p>
+      Abaixo, cada vertical com o fundo verde atual e seu accent. Observe como Saúde e Jurídico
+      ficam dissonantes, enquanto Marca-mãe e Pet são harmônicos naturalmente.
+    </p>
+
+    <div class="cards-grid" id="problem-cards"></div>
+  </div>
+
+  <!-- ===================== SECTION 2: ABORDAGEM A ===================== -->
+  <div class="section">
+    <p class="section-label">Seção 02</p>
+    <h2>Abordagem A: Fundo próprio por vertical</h2>
+    <p>
+      Cada vertical recebe um fundo escuro derivado da sua cor accent.
+      O fundo e o accent pertencem à mesma família cromática, garantindo harmonia natural.
+    </p>
+
+    <div class="mockup-row" id="approach-a-mockups"></div>
+
+    <div class="pros-cons">
+      <div class="pros">
+        <h4>Vantagens</h4>
+        <ul>
+          <li>Harmonia cromática perfeita em cada vertical</li>
+          <li>Identidade visual única e memorável por vertical</li>
+          <li>Não força nenhuma cor a "conviver" com fundo estranho</li>
+          <li>Cada vertical se sente como um produto dedicado</li>
+        </ul>
+      </div>
+      <div class="cons">
+        <h4>Desvantagens</h4>
+        <ul>
+          <li>Mais complexo de implementar (6+ temas CSS)</li>
+          <li>Pode fragmentar a percepção de marca unificada</li>
+          <li>Manutenção de 6 paletas paralelas</li>
+          <li>Risco de parecer 6 produtos diferentes, não um SaaS multisserviço</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== SECTION 3: ABORDAGEM B ===================== -->
+  <div class="section">
+    <p class="section-label">Seção 03</p>
+    <h2>Abordagem B: Fundo neutro escuro + accent forte</h2>
+    <p>
+      Todas as verticais compartilham o mesmo fundo neutro escuro (<code>#0F1117</code>), sem nenhuma
+      tonalidade de cor. O accent é o único elemento cromático da interface. Referências: Linear, Vercel, Raycast.
+    </p>
+
+    <div class="mockup-row" id="approach-b-mockups"></div>
+
+    <div class="pros-cons">
+      <div class="pros">
+        <h4>Vantagens</h4>
+        <ul>
+          <li>Qualquer accent funciona sobre fundo neutro</li>
+          <li>Marca unificada: mesma base, accent diferencia</li>
+          <li>Implementação simples (1 tema, 1 variável de accent)</li>
+          <li>Escalável para infinitas verticais futuras</li>
+          <li>Referência em produtos premium (Linear, Vercel)</li>
+        </ul>
+      </div>
+      <div class="cons">
+        <h4>Desvantagens</h4>
+        <ul>
+          <li>Perde o verde escuro como identidade da marca-mãe</li>
+          <li>Interfaces podem parecer genéricas sem o verde Destaka</li>
+          <li>Menos diferenciação visual entre verticais (só o accent muda)</li>
+          <li>Precisa reconstruir identidade sem o verde como âncora</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== SECTION 4: ABORDAGEM C ===================== -->
+  <div class="section">
+    <p class="section-label">Seção 04</p>
+    <h2>Abordagem C: Fundo verde + accent ajustado</h2>
+    <p>
+      Mantém o fundo verde <code>#0F2A1F</code> para todas as verticais, mas ajusta os accents que
+      conflitavam. Saúde vira teal/ciano, Jurídico ganha azul mais claro, Contábil fica lilás suave.
+      Cores quentes (Imóveis) e verdes (Pet) permanecem como estão.
+    </p>
+
+    <div class="mockup-row" id="approach-c-mockups"></div>
+
+    <div class="pros-cons">
+      <div class="pros">
+        <h4>Vantagens</h4>
+        <ul>
+          <li>Mantém o verde escuro como DNA da marca</li>
+          <li>Consistência total: um fundo, marca reconhecível</li>
+          <li>Implementação simples (1 tema, variável de accent)</li>
+          <li>Teal e ciano harmonizam naturalmente com verde</li>
+        </ul>
+      </div>
+      <div class="cons">
+        <h4>Desvantagens</h4>
+        <ul>
+          <li>Accents ajustados podem perder associação com o segmento (Saúde = azul, não teal)</li>
+          <li>Limita o espectro cromático: tudo precisa "combinar com verde"</li>
+          <li>Novas verticais futuras terão a mesma restrição</li>
+          <li>Roxo/lilás sobre verde ainda pode gerar estranheza sutil</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== SECTION 5: RECOMENDAÇÃO ===================== -->
+  <div class="section">
+    <p class="section-label">Seção 05</p>
+    <h2>Recomendação</h2>
+    <p>
+      Análise comparativa das três abordagens em cinco critérios, cada um pontuado de 0 a 10.
+    </p>
+
+    <table class="score-table">
+      <thead>
+        <tr>
+          <th>Critério</th>
+          <th>A: Fundo próprio</th>
+          <th>B: Neutro escuro</th>
+          <th>C: Verde + ajuste</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Harmonia cromática</td>
+          <td class="winner">10</td>
+          <td>9</td>
+          <td>7</td>
+        </tr>
+        <tr>
+          <td>Consistência de marca</td>
+          <td>5</td>
+          <td>8</td>
+          <td class="winner">10</td>
+        </tr>
+        <tr>
+          <td>Facilidade técnica</td>
+          <td>4</td>
+          <td class="winner">9</td>
+          <td>8</td>
+        </tr>
+        <tr>
+          <td>Diferenciação entre verticais</td>
+          <td class="winner">9</td>
+          <td>6</td>
+          <td>6</td>
+        </tr>
+        <tr>
+          <td>Escalabilidade</td>
+          <td>5</td>
+          <td class="winner">10</td>
+          <td>6</td>
+        </tr>
+        <tr style="font-weight:700; background:#f8f8f6;">
+          <td><strong>TOTAL</strong></td>
+          <td>33</td>
+          <td class="winner"><strong>42</strong></td>
+          <td>37</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="rec-box">
+      <h3>Abordagem B: Fundo neutro escuro</h3>
+      <p>
+        A abordagem B pontua mais alto por combinar escalabilidade, facilidade técnica e harmonia
+        cromática universal. Qualquer accent funciona sobre fundo neutro, o que elimina o problema
+        de conflito cromático em todas as verticais presentes e futuras.
+      </p>
+      <p style="margin-top:16px;">
+        No entanto, o verde escuro <code style="color:#4ade80;">#0F2A1F</code> pode ser preservado em elementos de marca
+        (logo, onboarding, marketing site) mesmo usando fundo neutro na interface do produto.
+        Isso mantém o DNA verde sem contaminar a neutralidade operacional da UI.
+      </p>
+      <p style="margin-top:16px;">
+        <strong style="color:#4ade80;">Alternativa forte:</strong> Se preservar o verde na UI for prioridade absoluta,
+        a Abordagem C (37 pts) é a segunda melhor opção, com ajustes de accent que resolvem os piores conflitos.
+      </p>
+    </div>
+  </div>
+
+  <!-- ===================== SECTION 6: PREVIEW DETALHADO ===================== -->
+  <div class="section">
+    <p class="section-label">Seção 06</p>
+    <h2>Preview de Interface: Saúde (Abordagem B)</h2>
+    <p>
+      Mockup detalhado da vertical Saúde usando a abordagem recomendada: fundo neutro escuro
+      <code>#0F1117</code> + accent azul <code>#0EA5E9</code>. Sidebar completa com logo Pin+Olho,
+      navegação com estado ativo, área de conteúdo com Score Gauge, cards de métricas e botões.
+    </p>
+
+    <div class="big-mockup-wrapper">
+      <canvas id="big-mockup" width="1200" height="700"></canvas>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ============================================================
+// UTILITY: Draw Pin+Olho
+// ============================================================
+function drawPin(ctx, x, y, scale, fill, pupil) {
+    ctx.save(); ctx.translate(x,y); ctx.scale(scale,scale);
+    ctx.beginPath();
+    ctx.moveTo(36,5);ctx.bezierCurveTo(50.91,5,63,17.09,63,32);ctx.bezierCurveTo(63,43.5,56.4,51.7,49.6,59.6);ctx.bezierCurveTo(44.5,65.55,39.6,71.2,36,76);ctx.bezierCurveTo(32.4,71.2,27.5,65.55,22.4,59.6);ctx.bezierCurveTo(15.6,51.7,9,43.5,9,32);ctx.bezierCurveTo(9,17.09,21.09,5,36,5);ctx.closePath();
+    ctx.moveTo(19.5,32);ctx.bezierCurveTo(24,24.5,30,21,36,21);ctx.bezierCurveTo(42,21,48,24.5,52.5,32);ctx.bezierCurveTo(48,39.5,42,43,36,43);ctx.bezierCurveTo(30,43,24,39.5,19.5,32);ctx.closePath();
+    ctx.fillStyle=fill; ctx.fill('evenodd');
+    ctx.beginPath(); ctx.arc(36,32,4.2,0,Math.PI*2);
+    ctx.fillStyle=pupil; ctx.fill();
+    ctx.restore();
+}
+
+// ============================================================
+// UTILITY: Rounded rect
+// ============================================================
+function roundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x+r, y);
+    ctx.lineTo(x+w-r, y);
+    ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+    ctx.lineTo(x+w, y+h-r);
+    ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+    ctx.lineTo(x+r, y+h);
+    ctx.quadraticCurveTo(x, y+h, x, y+h-r);
+    ctx.lineTo(x, y+r);
+    ctx.quadraticCurveTo(x, y, x+r, y);
+    ctx.closePath();
+}
+
+// ============================================================
+// UTILITY: Hex to rgba
+// ============================================================
+function hexToRgba(hex, alpha) {
+    const r = parseInt(hex.slice(1,3),16);
+    const g = parseInt(hex.slice(3,5),16);
+    const b = parseInt(hex.slice(5,7),16);
+    return `rgba(${r},${g},${b},${alpha})`;
+}
+
+// ============================================================
+// UTILITY: Lighter shade
+// ============================================================
+function lighten(hex, amount) {
+    let r = parseInt(hex.slice(1,3),16);
+    let g = parseInt(hex.slice(3,5),16);
+    let b = parseInt(hex.slice(5,7),16);
+    r = Math.min(255, r + amount);
+    g = Math.min(255, g + amount);
+    b = Math.min(255, b + amount);
+    return `rgb(${r},${g},${b})`;
+}
+
+// ============================================================
+// DRAW SMALL MOCKUP (for Sections 2-4)
+// ============================================================
+function drawSmallMockup(canvas, bg, sidebarBg, accent, verticalName) {
+    const dpr = window.devicePixelRatio || 1;
+    const W = 600, H = 400;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    const ctx = canvas.getContext('2d');
+    ctx.scale(dpr, dpr);
+
+    const sideW = 160;
+    const contentBg = lighten(bg, 8);
+
+    // Sidebar
+    ctx.fillStyle = sidebarBg;
+    ctx.fillRect(0, 0, sideW, H);
+
+    // Content area
+    ctx.fillStyle = contentBg;
+    ctx.fillRect(sideW, 0, W - sideW, H);
+
+    // Sidebar: Logo
+    drawPin(ctx, 16, 16, 0.35, accent, sidebarBg);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '600 14px Outfit, sans-serif';
+    ctx.fillText('Destaka', 46, 38);
+    ctx.fillStyle = hexToRgba(accent, 0.7);
+    ctx.font = '400 11px Inter, sans-serif';
+    ctx.fillText(verticalName, 46, 54);
+
+    // Sidebar: divider
+    ctx.fillStyle = hexToRgba('#ffffff', 0.08);
+    ctx.fillRect(16, 70, sideW - 32, 1);
+
+    // Sidebar: nav items
+    const navItems = ['Dashboard', 'Clientes', 'Relatórios', 'Configurações', 'Ajuda'];
+    navItems.forEach((item, i) => {
+        const ny = 88 + i * 40;
+        if (i === 0) {
+            // Active state
+            roundRect(ctx, 12, ny - 4, sideW - 24, 32, 8);
+            ctx.fillStyle = hexToRgba(accent, 0.15);
+            ctx.fill();
+            ctx.fillStyle = accent;
+        } else {
+            ctx.fillStyle = hexToRgba('#ffffff', 0.5);
+        }
+        ctx.font = '500 13px Inter, sans-serif';
+        ctx.fillText(item, 28, ny + 16);
+    });
+
+    // Sidebar: user info at bottom
+    ctx.fillStyle = hexToRgba('#ffffff', 0.08);
+    ctx.fillRect(16, H - 60, sideW - 32, 1);
+    ctx.beginPath();
+    ctx.arc(32, H - 30, 14, 0, Math.PI * 2);
+    ctx.fillStyle = hexToRgba(accent, 0.3);
+    ctx.fill();
+    ctx.fillStyle = '#fff';
+    ctx.font = '600 11px Inter, sans-serif';
+    ctx.fillText('DL', 26, H - 26);
+    ctx.fillStyle = hexToRgba('#ffffff', 0.7);
+    ctx.font = '500 12px Inter, sans-serif';
+    ctx.fillText('David Levy', 54, H - 26);
+
+    // Content: Header
+    const cx = sideW + 32;
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '600 20px Outfit, sans-serif';
+    ctx.fillText('Dashboard', cx, 46);
+    ctx.fillStyle = hexToRgba('#ffffff', 0.4);
+    ctx.font = '400 12px Inter, sans-serif';
+    ctx.fillText('Visão geral dos seus indicadores', cx, 68);
+
+    // Content: Metric cards
+    const cardW = 180, cardH = 90;
+    for (let i = 0; i < 2; i++) {
+        const cardX = cx + i * (cardW + 20);
+        const cardY = 90;
+        roundRect(ctx, cardX, cardY, cardW, cardH, 10);
+        ctx.fillStyle = hexToRgba('#ffffff', 0.06);
+        ctx.fill();
+        ctx.strokeStyle = hexToRgba('#ffffff', 0.08);
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        ctx.fillStyle = hexToRgba('#ffffff', 0.5);
+        ctx.font = '400 11px Inter, sans-serif';
+        ctx.fillText(i === 0 ? 'Score Visibilidade' : 'Clientes Ativos', cardX + 16, cardY + 24);
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '700 28px Outfit, sans-serif';
+        ctx.fillText(i === 0 ? '8.4' : '127', cardX + 16, cardY + 60);
+
+        // Small accent bar
+        roundRect(ctx, cardX + 16, cardY + 72, 40, 4, 2);
+        ctx.fillStyle = accent;
+        ctx.fill();
+    }
+
+    // Content: Button
+    roundRect(ctx, cx, 210, 140, 38, 8);
+    ctx.fillStyle = accent;
+    ctx.fill();
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '600 13px Inter, sans-serif';
+    ctx.fillText('Novo relatório', cx + 20, 234);
+
+    // Content: Badge
+    roundRect(ctx, cx + 160, 214, 80, 28, 6);
+    ctx.fillStyle = hexToRgba(accent, 0.15);
+    ctx.fill();
+    ctx.fillStyle = accent;
+    ctx.font = '500 11px JetBrains Mono, monospace';
+    ctx.fillText('Ativo', cx + 184, 232);
+
+    // Content: Table-like area
+    const tableY = 270;
+    roundRect(ctx, cx, tableY, W - sideW - 64, H - tableY - 20, 10);
+    ctx.fillStyle = hexToRgba('#ffffff', 0.04);
+    ctx.fill();
+    ctx.strokeStyle = hexToRgba('#ffffff', 0.06);
+    ctx.stroke();
+
+    // Table header
+    ctx.fillStyle = hexToRgba('#ffffff', 0.5);
+    ctx.font = '500 11px Inter, sans-serif';
+    ctx.fillText('Cliente', cx + 16, tableY + 24);
+    ctx.fillText('Score', cx + 200, tableY + 24);
+    ctx.fillText('Status', cx + 290, tableY + 24);
+
+    // Table rows
+    const rows = [
+        ['Clínica São Lucas', '9.2', 'Otimizado'],
+        ['Consultório Dental Prime', '7.8', 'Em progresso'],
+        ['Centro Médico Vida', '6.1', 'Pendente'],
+    ];
+    rows.forEach((row, i) => {
+        const ry = tableY + 50 + i * 30;
+        ctx.fillStyle = hexToRgba('#ffffff', 0.08);
+        ctx.fillRect(cx + 12, ry + 10, W - sideW - 88, 1);
+
+        ctx.fillStyle = hexToRgba('#ffffff', 0.8);
+        ctx.font = '400 12px Inter, sans-serif';
+        ctx.fillText(row[0], cx + 16, ry + 4);
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '500 12px JetBrains Mono, monospace';
+        ctx.fillText(row[1], cx + 200, ry + 4);
+
+        // Status badge
+        const statusColors = [accent, '#f59e0b', hexToRgba('#ffffff', 0.4)];
+        ctx.fillStyle = statusColors[i];
+        ctx.font = '400 11px Inter, sans-serif';
+        ctx.fillText(row[2], cx + 290, ry + 4);
+    });
+}
+
+// ============================================================
+// DRAW PROBLEM CARD (small swatch preview for Section 1)
+// ============================================================
+function drawProblemPreview(canvas, bg, accent) {
+    const dpr = window.devicePixelRatio || 1;
+    const W = 380, H = 180;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width = '100%';
+    canvas.style.height = 'auto';
+    const ctx = canvas.getContext('2d');
+    ctx.scale(dpr, dpr);
+
+    // Background
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, W, H);
+
+    // Sidebar hint
+    ctx.fillStyle = hexToRgba('#000000', 0.2);
+    ctx.fillRect(0, 0, 60, H);
+
+    // Pin logo
+    drawPin(ctx, 10, 10, 0.28, accent, bg);
+
+    // Nav items
+    for (let i = 0; i < 3; i++) {
+        const ny = 50 + i * 28;
+        if (i === 0) {
+            roundRect(ctx, 6, ny, 48, 20, 4);
+            ctx.fillStyle = hexToRgba(accent, 0.2);
+            ctx.fill();
+        }
+        roundRect(ctx, 14, ny + 5, 30, 8, 3);
+        ctx.fillStyle = i === 0 ? accent : hexToRgba('#ffffff', 0.2);
+        ctx.fill();
+    }
+
+    // Content area
+    const cx = 80;
+
+    // Title text
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '600 16px Outfit, sans-serif';
+    ctx.fillText('Dashboard', cx, 36);
+
+    // Button
+    roundRect(ctx, cx, 54, 100, 30, 6);
+    ctx.fillStyle = accent;
+    ctx.fill();
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '600 12px Inter, sans-serif';
+    ctx.fillText('Novo relatório', cx + 12, 74);
+
+    // Badge
+    roundRect(ctx, cx + 120, 58, 60, 22, 5);
+    ctx.fillStyle = hexToRgba(accent, 0.15);
+    ctx.fill();
+    ctx.fillStyle = accent;
+    ctx.font = '500 10px JetBrains Mono, monospace';
+    ctx.fillText('Ativo', cx + 136, 73);
+
+    // Card
+    roundRect(ctx, cx, 100, 140, 60, 8);
+    ctx.fillStyle = hexToRgba('#ffffff', 0.06);
+    ctx.fill();
+    ctx.strokeStyle = hexToRgba('#ffffff', 0.08);
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    ctx.fillStyle = hexToRgba('#ffffff', 0.5);
+    ctx.font = '400 10px Inter, sans-serif';
+    ctx.fillText('Score', cx + 12, 120);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '700 22px Outfit, sans-serif';
+    ctx.fillText('8.4', cx + 12, 148);
+    roundRect(ctx, cx + 12, 154, 30, 3, 1.5);
+    ctx.fillStyle = accent;
+    ctx.fill();
+
+    // Second card
+    roundRect(ctx, cx + 160, 100, 140, 60, 8);
+    ctx.fillStyle = hexToRgba('#ffffff', 0.06);
+    ctx.fill();
+    ctx.strokeStyle = hexToRgba('#ffffff', 0.08);
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    ctx.fillStyle = hexToRgba('#ffffff', 0.5);
+    ctx.font = '400 10px Inter, sans-serif';
+    ctx.fillText('Clientes', cx + 172, 120);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '700 22px Outfit, sans-serif';
+    ctx.fillText('127', cx + 172, 148);
+    roundRect(ctx, cx + 172, 154, 30, 3, 1.5);
+    ctx.fillStyle = accent;
+    ctx.fill();
+}
+
+// ============================================================
+// SECTION 1: Build problem cards
+// ============================================================
+const problems = [
+    { name: 'Marca-mãe', bg: '#0F2A1F', accent: '#4ade80', verdict: 'Harmônico', verdictClass: 'verdict-ok', bgLabel: '#0F2A1F', accentLabel: '#4ade80' },
+    { name: 'Saúde', bg: '#0F2A1F', accent: '#0EA5E9', verdict: 'Conflito', verdictClass: 'verdict-conflict', bgLabel: '#0F2A1F', accentLabel: '#0EA5E9' },
+    { name: 'Pet', bg: '#0F2A1F', accent: '#22C55E', verdict: 'OK', verdictClass: 'verdict-ok', bgLabel: '#0F2A1F', accentLabel: '#22C55E' },
+    { name: 'Jurídico', bg: '#0F2A1F', accent: '#1E3A5F', verdict: 'Conflito', verdictClass: 'verdict-conflict', bgLabel: '#0F2A1F', accentLabel: '#1E3A5F' },
+    { name: 'Contábil', bg: '#0F2A1F', accent: '#7C3AED', verdict: 'Questionável', verdictClass: 'verdict-question', bgLabel: '#0F2A1F', accentLabel: '#7C3AED' },
+    { name: 'Imóveis', bg: '#0F2A1F', accent: '#D97706', verdict: 'Pode funcionar', verdictClass: 'verdict-maybe', bgLabel: '#0F2A1F', accentLabel: '#D97706' },
+];
+
+const problemContainer = document.getElementById('problem-cards');
+problems.forEach((p, idx) => {
+    const card = document.createElement('div');
+    card.className = 'problem-card';
+    card.innerHTML = `
+        <div class="problem-card-header">
+            <h4>${p.name}</h4>
+            <span class="verdict ${p.verdictClass}">${p.verdict}</span>
+        </div>
+        <canvas id="problem-canvas-${idx}"></canvas>
+        <div class="color-info">
+            <div class="swatch" style="background:${p.bg}"></div>
+            <span>bg ${p.bgLabel}</span>
+            <div class="swatch" style="background:${p.accent}"></div>
+            <span>accent ${p.accentLabel}</span>
+        </div>
+    `;
+    problemContainer.appendChild(card);
+    const canvas = document.getElementById(`problem-canvas-${idx}`);
+    drawProblemPreview(canvas, p.bg, p.accent);
+});
+
+// ============================================================
+// SECTION 2: Approach A mockups
+// ============================================================
+const approachA = [
+    { name: 'Marca-mãe', bg: '#0F2A1F', sidebar: '#0a1f16', accent: '#4ade80' },
+    { name: 'Saúde', bg: '#0A1929', sidebar: '#071320', accent: '#0EA5E9' },
+    { name: 'Pet', bg: '#0F2A1F', sidebar: '#0a1f16', accent: '#22C55E' },
+    { name: 'Jurídico', bg: '#0D1B2E', sidebar: '#091322', accent: '#38BDF8' },
+    { name: 'Contábil', bg: '#150D2E', sidebar: '#0f0922', accent: '#A78BFA' },
+    { name: 'Imóveis', bg: '#1F1508', sidebar: '#170f05', accent: '#F59E0B' },
+];
+
+const approachAContainer = document.getElementById('approach-a-mockups');
+approachA.forEach((v, idx) => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'mockup-wrapper';
+    wrapper.innerHTML = `
+        <h4>${v.name} <span style="color:#999;font-weight:400;font-size:0.8rem;">bg ${v.bg} + accent ${v.accent}</span></h4>
+        <canvas id="a-canvas-${idx}"></canvas>
+    `;
+    approachAContainer.appendChild(wrapper);
+    const canvas = document.getElementById(`a-canvas-${idx}`);
+    drawSmallMockup(canvas, v.bg, v.sidebar, v.accent, v.name);
+});
+
+// ============================================================
+// SECTION 3: Approach B mockups
+// ============================================================
+const approachB = [
+    { name: 'Saúde', accent: '#0EA5E9' },
+    { name: 'Pet', accent: '#22C55E' },
+    { name: 'Jurídico', accent: '#38BDF8' },
+    { name: 'Contábil', accent: '#A78BFA' },
+    { name: 'Imóveis', accent: '#F59E0B' },
+    { name: 'Marca-mãe', accent: '#4ade80' },
+];
+
+const neutralBg = '#0F1117';
+const neutralSidebar = '#0a0c12';
+
+const approachBContainer = document.getElementById('approach-b-mockups');
+approachB.forEach((v, idx) => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'mockup-wrapper';
+    wrapper.innerHTML = `
+        <h4>${v.name} <span style="color:#999;font-weight:400;font-size:0.8rem;">bg ${neutralBg} + accent ${v.accent}</span></h4>
+        <canvas id="b-canvas-${idx}"></canvas>
+    `;
+    approachBContainer.appendChild(wrapper);
+    const canvas = document.getElementById(`b-canvas-${idx}`);
+    drawSmallMockup(canvas, neutralBg, neutralSidebar, v.accent, v.name);
+});
+
+// ============================================================
+// SECTION 4: Approach C mockups
+// ============================================================
+const approachC = [
+    { name: 'Saúde', accent: '#2DD4BF', note: 'teal (era #0EA5E9)' },
+    { name: 'Pet', accent: '#22C55E', note: 'mantido' },
+    { name: 'Jurídico', accent: '#60A5FA', note: 'azul claro (era #1E3A5F)' },
+    { name: 'Contábil', accent: '#C084FC', note: 'lilás claro (era #7C3AED)' },
+    { name: 'Imóveis', accent: '#F59E0B', note: 'mantido' },
+    { name: 'Marca-mãe', accent: '#4ade80', note: 'mantido' },
+];
+
+const greenBg = '#0F2A1F';
+const greenSidebar = '#0a1f16';
+
+const approachCContainer = document.getElementById('approach-c-mockups');
+approachC.forEach((v, idx) => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'mockup-wrapper';
+    wrapper.innerHTML = `
+        <h4>${v.name} <span style="color:#999;font-weight:400;font-size:0.8rem;">${v.note} ${v.accent}</span></h4>
+        <canvas id="c-canvas-${idx}"></canvas>
+    `;
+    approachCContainer.appendChild(wrapper);
+    const canvas = document.getElementById(`c-canvas-${idx}`);
+    drawSmallMockup(canvas, greenBg, greenSidebar, v.accent, v.name);
+});
+
+// ============================================================
+// SECTION 6: Big detailed mockup (Saúde, Approach B)
+// ============================================================
+(function drawBigMockup() {
+    const canvas = document.getElementById('big-mockup');
+    const dpr = window.devicePixelRatio || 1;
+    const W = 1200, H = 700;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width = '100%';
+    canvas.style.height = 'auto';
+    const ctx = canvas.getContext('2d');
+    ctx.scale(dpr, dpr);
+
+    const bg = '#0F1117';
+    const sidebar = '#0a0c12';
+    const accent = '#0EA5E9';
+    const sideW = 240;
+
+    // Content bg
+    ctx.fillStyle = lighten(bg, 6);
+    ctx.fillRect(0, 0, W, H);
+
+    // Sidebar
+    ctx.fillStyle = sidebar;
+    ctx.fillRect(0, 0, sideW, H);
+
+    // Sidebar border
+    ctx.fillStyle = hexToRgba('#ffffff', 0.06);
+    ctx.fillRect(sideW - 1, 0, 1, H);
+
+    // Logo
+    drawPin(ctx, 24, 24, 0.45, accent, sidebar);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '700 18px Outfit, sans-serif';
+    ctx.fillText('Destaka', 60, 48);
+    ctx.fillStyle = accent;
+    ctx.font = '500 12px Inter, sans-serif';
+    ctx.fillText('Saúde', 60, 66);
+
+    // Sidebar divider
+    ctx.fillStyle = hexToRgba('#ffffff', 0.06);
+    ctx.fillRect(20, 90, sideW - 40, 1);
+
+    // Nav section label
+    ctx.fillStyle = hexToRgba('#ffffff', 0.3);
+    ctx.font = '600 10px JetBrains Mono, monospace';
+    ctx.fillText('PRINCIPAL', 24, 116);
+
+    // Nav items
+    const navItems = [
+        { icon: '◉', label: 'Dashboard', active: true },
+        { icon: '◎', label: 'Clientes', active: false },
+        { icon: '◈', label: 'Relatórios', active: false },
+        { icon: '◆', label: 'Campanhas', active: false },
+    ];
+
+    navItems.forEach((item, i) => {
+        const ny = 132 + i * 44;
+        if (item.active) {
+            roundRect(ctx, 12, ny - 2, sideW - 24, 36, 8);
+            ctx.fillStyle = hexToRgba(accent, 0.12);
+            ctx.fill();
+            // Active indicator
+            roundRect(ctx, 12, ny + 6, 3, 20, 1.5);
+            ctx.fillStyle = accent;
+            ctx.fill();
+        }
+        ctx.fillStyle = item.active ? accent : hexToRgba('#ffffff', 0.4);
+        ctx.font = '400 14px Inter, sans-serif';
+        ctx.fillText(item.icon, 28, ny + 22);
+        ctx.fillStyle = item.active ? '#ffffff' : hexToRgba('#ffffff', 0.55);
+        ctx.font = '500 14px Inter, sans-serif';
+        ctx.fillText(item.label, 52, ny + 22);
+    });
+
+    // Second nav section
+    ctx.fillStyle = hexToRgba('#ffffff', 0.06);
+    ctx.fillRect(20, 320, sideW - 40, 1);
+    ctx.fillStyle = hexToRgba('#ffffff', 0.3);
+    ctx.font = '600 10px JetBrains Mono, monospace';
+    ctx.fillText('CONFIGURAÇÕES', 24, 346);
+
+    const navItems2 = [
+        { icon: '⚙', label: 'Preferências' },
+        { icon: '◫', label: 'Integrações' },
+        { icon: '?', label: 'Ajuda' },
+    ];
+
+    navItems2.forEach((item, i) => {
+        const ny = 362 + i * 44;
+        ctx.fillStyle = hexToRgba('#ffffff', 0.4);
+        ctx.font = '400 14px Inter, sans-serif';
+        ctx.fillText(item.icon, 28, ny + 22);
+        ctx.fillStyle = hexToRgba('#ffffff', 0.55);
+        ctx.font = '500 14px Inter, sans-serif';
+        ctx.fillText(item.label, 52, ny + 22);
+    });
+
+    // User at bottom
+    ctx.fillStyle = hexToRgba('#ffffff', 0.06);
+    ctx.fillRect(20, H - 80, sideW - 40, 1);
+    ctx.beginPath();
+    ctx.arc(40, H - 40, 18, 0, Math.PI * 2);
+    ctx.fillStyle = hexToRgba(accent, 0.25);
+    ctx.fill();
+    ctx.fillStyle = '#fff';
+    ctx.font = '600 13px Inter, sans-serif';
+    ctx.fillText('DL', 31, H - 36);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '500 14px Inter, sans-serif';
+    ctx.fillText('David Levy', 68, H - 44);
+    ctx.fillStyle = hexToRgba('#ffffff', 0.4);
+    ctx.font = '400 12px Inter, sans-serif';
+    ctx.fillText('Administrador', 68, H - 28);
+
+    // ======= CONTENT AREA =======
+    const cx = sideW + 40;
+    const cw = W - sideW - 80;
+
+    // Header
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '700 28px Outfit, sans-serif';
+    ctx.fillText('Dashboard', cx, 52);
+    ctx.fillStyle = hexToRgba('#ffffff', 0.4);
+    ctx.font = '400 14px Inter, sans-serif';
+    ctx.fillText('Visão geral de visibilidade dos seus clientes', cx, 78);
+
+    // Header buttons
+    // Export button
+    roundRect(ctx, W - 280, 30, 100, 36, 8);
+    ctx.fillStyle = hexToRgba('#ffffff', 0.06);
+    ctx.fill();
+    ctx.strokeStyle = hexToRgba('#ffffff', 0.1);
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.fillStyle = hexToRgba('#ffffff', 0.7);
+    ctx.font = '500 13px Inter, sans-serif';
+    ctx.fillText('Exportar', W - 258, 53);
+
+    // New report button
+    roundRect(ctx, W - 165, 30, 125, 36, 8);
+    ctx.fillStyle = accent;
+    ctx.fill();
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '600 13px Inter, sans-serif';
+    ctx.fillText('Novo relatório', W - 147, 53);
+
+    // ======= SCORE GAUGE =======
+    const gaugeX = cx + 100;
+    const gaugeY = 170;
+    const gaugeR = 60;
+
+    // Gauge background circle
+    ctx.beginPath();
+    ctx.arc(gaugeX, gaugeY, gaugeR, 0, Math.PI * 2);
+    ctx.fillStyle = hexToRgba('#ffffff', 0.04);
+    ctx.fill();
+
+    // Gauge track
+    ctx.beginPath();
+    ctx.arc(gaugeX, gaugeY, gaugeR - 8, Math.PI * 0.75, Math.PI * 2.25, false);
+    ctx.strokeStyle = hexToRgba('#ffffff', 0.08);
+    ctx.lineWidth = 8;
+    ctx.lineCap = 'round';
+    ctx.stroke();
+
+    // Gauge fill (84%)
+    const startAngle = Math.PI * 0.75;
+    const fullAngle = Math.PI * 1.5;
+    const fillAngle = startAngle + fullAngle * 0.84;
+    ctx.beginPath();
+    ctx.arc(gaugeX, gaugeY, gaugeR - 8, startAngle, fillAngle, false);
+    ctx.strokeStyle = accent;
+    ctx.lineWidth = 8;
+    ctx.lineCap = 'round';
+    ctx.stroke();
+
+    // Gauge text
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '700 32px Outfit, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('8.4', gaugeX, gaugeY + 8);
+    ctx.fillStyle = hexToRgba('#ffffff', 0.4);
+    ctx.font = '400 11px Inter, sans-serif';
+    ctx.fillText('Score médio', gaugeX, gaugeY + 28);
+    ctx.textAlign = 'left';
+
+    // Gauge card container
+    roundRect(ctx, cx, 100, 220, 160, 12);
+    ctx.strokeStyle = hexToRgba('#ffffff', 0.06);
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // Label above gauge
+    ctx.fillStyle = hexToRgba('#ffffff', 0.5);
+    ctx.font = '500 12px Inter, sans-serif';
+    ctx.fillText('Score de Visibilidade', cx + 16, 122);
+
+    // ======= METRIC CARDS =======
+    const metricCards = [
+        { label: 'Clientes ativos', value: '127', change: '+12%', up: true },
+        { label: 'Perfis otimizados', value: '89', change: '+8%', up: true },
+        { label: 'Alertas pendentes', value: '14', change: '-3%', up: false },
+    ];
+
+    metricCards.forEach((card, i) => {
+        const mx = cx + 240 + i * 200;
+        const my = 100;
+        roundRect(ctx, mx, my, 185, 160, 12);
+        ctx.fillStyle = hexToRgba('#ffffff', 0.03);
+        ctx.fill();
+        ctx.strokeStyle = hexToRgba('#ffffff', 0.06);
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        ctx.fillStyle = hexToRgba('#ffffff', 0.5);
+        ctx.font = '400 12px Inter, sans-serif';
+        ctx.fillText(card.label, mx + 20, my + 32);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '700 36px Outfit, sans-serif';
+        ctx.fillText(card.value, mx + 20, my + 80);
+
+        // Change badge
+        roundRect(ctx, mx + 20, my + 100, 55, 24, 6);
+        ctx.fillStyle = card.up ? hexToRgba('#22c55e', 0.12) : hexToRgba('#ef4444', 0.12);
+        ctx.fill();
+        ctx.fillStyle = card.up ? '#22c55e' : '#ef4444';
+        ctx.font = '500 11px JetBrains Mono, monospace';
+        ctx.fillText(card.change, mx + 30, my + 116);
+
+        // Bottom accent bar
+        roundRect(ctx, mx + 20, my + 140, 50, 4, 2);
+        ctx.fillStyle = accent;
+        ctx.fill();
+    });
+
+    // ======= TABLE AREA =======
+    const tableY = 290;
+    const tableW = cw;
+    const tableH = H - tableY - 20;
+
+    roundRect(ctx, cx, tableY, tableW, tableH, 12);
+    ctx.fillStyle = hexToRgba('#ffffff', 0.02);
+    ctx.fill();
+    ctx.strokeStyle = hexToRgba('#ffffff', 0.06);
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // Table title
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '600 16px Outfit, sans-serif';
+    ctx.fillText('Clientes recentes', cx + 24, tableY + 32);
+
+    // Column headers
+    ctx.fillStyle = hexToRgba('#ffffff', 0.4);
+    ctx.font = '500 11px JetBrains Mono, monospace';
+    const cols = [
+        { label: 'CLIENTE', x: cx + 24 },
+        { label: 'SCORE', x: cx + 320 },
+        { label: 'STATUS', x: cx + 440 },
+        { label: 'ÚLTIMA ATUALIZAÇÃO', x: cx + 580 },
+    ];
+    cols.forEach(c => ctx.fillText(c.label, c.x, tableY + 64));
+
+    // Divider
+    ctx.fillStyle = hexToRgba('#ffffff', 0.06);
+    ctx.fillRect(cx + 20, tableY + 74, tableW - 40, 1);
+
+    // Table rows
+    const tableRows = [
+        { name: 'Clínica São Lucas', score: '9.2', status: 'Otimizado', statusColor: accent, date: '04 Mai 2026' },
+        { name: 'Consultório Dental Prime', score: '7.8', status: 'Em progresso', statusColor: '#f59e0b', date: '03 Mai 2026' },
+        { name: 'Centro Médico Vida Nova', score: '6.1', status: 'Pendente', statusColor: hexToRgba('#ffffff', 0.35), date: '02 Mai 2026' },
+        { name: 'Laboratório Diagnóstica+', score: '8.9', status: 'Otimizado', statusColor: accent, date: '01 Mai 2026' },
+        { name: 'Clínica Bem Estar', score: '5.4', status: 'Alerta', statusColor: '#ef4444', date: '30 Abr 2026' },
+        { name: 'Hospital São José', score: '7.2', status: 'Em progresso', statusColor: '#f59e0b', date: '29 Abr 2026' },
+        { name: 'Farmácia Popular Central', score: '8.0', status: 'Otimizado', statusColor: accent, date: '28 Abr 2026' },
+        { name: 'Clínica Dermatológica SP', score: '6.8', status: 'Em progresso', statusColor: '#f59e0b', date: '27 Abr 2026' },
+    ];
+
+    tableRows.forEach((row, i) => {
+        const ry = tableY + 96 + i * 40;
+        if (ry + 20 > tableY + tableH) return;
+
+        // Row hover bg (alternate)
+        if (i % 2 === 0) {
+            ctx.fillStyle = hexToRgba('#ffffff', 0.015);
+            ctx.fillRect(cx + 4, ry - 10, tableW - 8, 40);
+        }
+
+        // Avatar circle
+        ctx.beginPath();
+        ctx.arc(cx + 38, ry + 8, 14, 0, Math.PI * 2);
+        ctx.fillStyle = hexToRgba(accent, 0.12);
+        ctx.fill();
+        ctx.fillStyle = accent;
+        ctx.font = '600 10px Inter, sans-serif';
+        ctx.fillText(row.name.charAt(0), cx + 33, ry + 12);
+
+        // Name
+        ctx.fillStyle = hexToRgba('#ffffff', 0.85);
+        ctx.font = '500 13px Inter, sans-serif';
+        ctx.fillText(row.name, cx + 60, ry + 12);
+
+        // Score
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '500 13px JetBrains Mono, monospace';
+        ctx.fillText(row.score, cols[1].x, ry + 12);
+
+        // Status badge
+        roundRect(ctx, cols[2].x, ry - 2, 90, 24, 6);
+        ctx.fillStyle = hexToRgba(row.statusColor, 0.12);
+        ctx.fill();
+        ctx.fillStyle = row.statusColor;
+        ctx.font = '500 11px Inter, sans-serif';
+        ctx.fillText(row.status, cols[2].x + 10, ry + 14);
+
+        // Date
+        ctx.fillStyle = hexToRgba('#ffffff', 0.4);
+        ctx.font = '400 12px Inter, sans-serif';
+        ctx.fillText(row.date, cols[3].x, ry + 12);
+    });
+
+})();
+</script>
+</body>
+</html>
