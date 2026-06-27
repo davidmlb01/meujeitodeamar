@@ -1,0 +1,457 @@
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #080c14; color: #e2e8f0; padding: 32px 24px; }
+
+  .family-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 12px;
+    padding: 28px 32px;
+    background: #0a0f1e;
+    border: 1px solid #1e293b;
+    border-radius: 16px;
+  }
+  .family-word { text-align: center; }
+  .family-wordmark {
+    font-size: 40px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    line-height: 1;
+  }
+  .unlmtd-color { color: #64748b; }
+  .dstk-color { color: #2dd4bf; }
+  .family-label {
+    font-size: 10px;
+    color: #334155;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+  .family-dot { color: #1e293b; font-size: 28px; padding-bottom: 16px; }
+
+  .me-rule {
+    margin-bottom: 28px;
+    padding: 16px 20px;
+    border-radius: 10px;
+    background: #0a0f1e;
+    border: 1px solid #1e293b;
+  }
+  .me-rule-title {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: #334155; margin-bottom: 10px;
+  }
+  .me-rule-text {
+    font-size: 13px; color: #64748b; line-height: 1.6;
+  }
+  .me-rule-text strong { color: #94a3b8; }
+  .me-example {
+    margin-top: 10px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .me-ex {
+    font-family: 'SF Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 6px;
+    background: #111827;
+    color: #475569;
+    border: 1px solid #1e293b;
+  }
+  .me-ex .phrase {
+    color: #2dd4bf;
+    margin-left: 6px;
+    font-weight: 400;
+    font-size: 11px;
+  }
+
+  .section-title {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: #334155; margin: 0 0 16px;
+  }
+
+  .options { display: grid; grid-template-columns: 1fr; gap: 14px; }
+
+  .option {
+    background: #0d1220;
+    border: 2px solid #1e293b;
+    border-radius: 14px;
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .option:hover { border-color: #334155; }
+  .option.selected { border-color: #2dd4bf; background: #071a19; }
+
+  .option.gem { border-color: #854d0e; background: #0d0900; }
+  .option.gem:hover { border-color: #a16207; }
+  .option.gem.selected { border-color: #f59e0b; background: #140d00; }
+
+  .option.weak { opacity: 0.55; }
+
+  .gem-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #f59e0b;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding: 3px 10px;
+    background: #1c1200;
+    border: 1px solid #854d0e;
+    border-radius: 20px;
+  }
+  .weak-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #64748b;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding: 3px 10px;
+    background: #111827;
+    border: 1px solid #1e293b;
+    border-radius: 20px;
+  }
+
+  .option-top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+  .option-letter {
+    width: 26px; height: 26px; background: #1e293b; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: #64748b; flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .option.selected .option-letter { background: #0d9488; color: #fff; }
+  .option.gem.selected .option-letter { background: #a16207; color: #fff; }
+
+  .wordmark-option {
+    font-size: 38px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    line-height: 1;
+  }
+  .domain-tag {
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3px;
+  }
+  .domain-name {
+    font-size: 13px;
+    color: #334155;
+    font-family: 'SF Mono', monospace;
+    transition: color 0.2s;
+  }
+  .option.selected .domain-name { color: #2dd4bf; }
+  .option.gem.selected .domain-name { color: #f59e0b; }
+
+  /* O TESTE DO .me */
+  .me-test {
+    margin-bottom: 16px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #1e293b;
+  }
+  .me-test-label {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: #334155;
+    padding: 6px 12px;
+    background: #111827;
+  }
+  .me-test-body {
+    padding: 12px 14px;
+    background: #090d1a;
+    display: flex;
+    gap: 16px;
+  }
+  .me-lang {
+    flex: 1;
+  }
+  .me-lang-flag { font-size: 10px; color: #475569; margin-bottom: 3px; letter-spacing: 0.08em; }
+  .me-phrase {
+    font-size: 18px;
+    font-weight: 800;
+    font-family: 'SF Mono', monospace;
+    margin-bottom: 4px;
+  }
+  .me-phrase .dot-me { color: #475569; font-weight: 400; }
+  .me-translation { font-size: 11px; color: #475569; line-height: 1.5; }
+  .me-verdict {
+    padding: 8px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .me-verdict.pass { background: #071a19; color: #2dd4bf; border-top: 1px solid #0d3d35; }
+  .me-verdict.pass.gold { background: #140d00; color: #f59e0b; border-top: 1px solid #854d0e; }
+  .me-verdict.fail { background: #111827; color: #475569; border-top: 1px solid #1e293b; }
+
+  .bilingual-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .lang-pill {
+    flex: 1;
+    min-width: 120px;
+    background: #111827;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    padding: 8px 12px;
+  }
+  .lang-name { font-size: 9px; font-weight: 700; color: #334155; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 3px; }
+  .lang-meaning { font-size: 12px; color: #94a3b8; font-weight: 600; }
+  .lang-context { font-size: 10px; color: #475569; line-height: 1.4; margin-top: 2px; }
+
+  .rationale { font-size: 12px; color: #64748b; line-height: 1.6; margin-bottom: 14px; }
+
+  .family-preview {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #080c14;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    border: 1px solid #0f1628;
+  }
+  .fp { font-size: 17px; font-weight: 900; letter-spacing: 0.08em; font-family: 'SF Mono', 'Fira Code', monospace; }
+  .fp-sep { color: #1e293b; font-size: 16px; }
+  .fp-domain { font-size: 11px; color: #334155; margin-left: auto; font-family: 'SF Mono', monospace; }
+
+  .traits { display: flex; flex-wrap: wrap; gap: 6px; }
+  .trait {
+    font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px;
+    background: #1e293b; color: #94a3b8; border: 1px solid #334155;
+  }
+  .trait.strong { background: #0d3d35; color: #2dd4bf; border-color: #0d9488; }
+  .trait.gold { background: #1c1200; color: #f59e0b; border-color: #854d0e; }
+  .trait.risk { background: #1c0f0f; color: #f87171; border-color: #7f1d1d; }
+</style>
+
+<!-- FAMILIA -->
+<div class="section-title">Familia de marcas</div>
+<div class="family-bar">
+  <div class="family-word">
+    <div class="family-wordmark unlmtd-color">UNLMTD</div>
+    <div class="family-label">Empresa</div>
+  </div>
+  <div class="family-dot">·</div>
+  <div class="family-word">
+    <div class="family-wordmark dstk-color">DSTK</div>
+    <div class="family-label">Visibilidade</div>
+  </div>
+  <div class="family-dot">·</div>
+  <div class="family-word">
+    <div class="family-wordmark" style="color:#334155;font-size:28px">?</div>
+    <div class="family-label">Retencao</div>
+  </div>
+</div>
+
+<!-- REGRA DO .ME -->
+<div class="me-rule">
+  <div class="me-rule-title">A regra do .me</div>
+  <div class="me-rule-text">
+    O dominio nao e so endereco. Ele precisa <strong>formar uma frase</strong> quando lido em voz alta. <strong>dstk.me</strong> = "destaka dot me" = destaka minha visibilidade. O terceiro produto precisa passar o mesmo teste: ler o dominio e entender a promessa.
+  </div>
+  <div class="me-example">
+    <div class="me-ex">dstk.me <span class="phrase">= "destaka me" = me destaca</span></div>
+    <div class="me-ex">unlmtd<span class="phrase"> (empresa, sem .me)</span></div>
+  </div>
+</div>
+
+<div class="section-title">Candidatos — teste do .me aplicado</div>
+<div class="options">
+
+  <!-- RECALL -->
+  <div class="option gem" data-choice="recall" onclick="toggleSelect(this)">
+    <div class="gem-badge">★ Melhor com .me — duplo significado</div>
+    <div class="option-top">
+      <div class="option-letter">A</div>
+      <div class="wordmark-option" style="color:#f59e0b">RCLL</div>
+      <div class="domain-tag">
+        <div class="domain-name">rcll.me</div>
+      </div>
+    </div>
+
+    <div class="me-test">
+      <div class="me-test-label">Teste do .me — como soa em voz alta</div>
+      <div class="me-test-body">
+        <div class="me-lang">
+          <div class="me-lang-flag">PT-BR</div>
+          <div class="me-phrase"><span style="color:#f59e0b">rcll</span><span class="dot-me">.me</span></div>
+          <div class="me-translation">"recall me"<br>= sistema de recall para mim<br>= me faz o recall automaticamente</div>
+        </div>
+        <div class="me-lang">
+          <div class="me-lang-flag">EN</div>
+          <div class="me-phrase"><span style="color:#f59e0b">rcll</span><span class="dot-me">.me</span></div>
+          <div class="me-translation">"recall me"<br>= remember me, call me back<br>= the practice recalls me automatically</div>
+        </div>
+      </div>
+      <div class="me-verdict pass gold">★ PASSA — e uma frase completa em PT e EN. Duplo significado perfeito.</div>
+    </div>
+
+    <div class="bilingual-row">
+      <div class="lang-pill">
+        <div class="lang-name">Portugues</div>
+        <div class="lang-meaning">recall</div>
+        <div class="lang-context">Jargao clinico. "Fazer o recall do paciente" = protocolo de retorno. O dentista ja usa essa palavra todo dia.</div>
+      </div>
+      <div class="lang-pill">
+        <div class="lang-name">English</div>
+        <div class="lang-meaning">recall</div>
+        <div class="lang-context">"Patient recall system" = termo tecnico em clinicas EN. + "remember, call back." Zero traducao necessaria.</div>
+      </div>
+    </div>
+
+    <div class="family-preview">
+      <span class="fp unlmtd-color">UNLMTD</span>
+      <span class="fp-sep">·</span>
+      <span class="fp dstk-color">DSTK</span>
+      <span class="fp-sep">·</span>
+      <span class="fp" style="color:#f59e0b">RCLL</span>
+      <span class="fp-domain">unlmtd · dstk.me · rcll.me</span>
+    </div>
+    <div class="traits">
+      <span class="trait gold">rcll.me = "recall me" em PT + EN</span>
+      <span class="trait gold">Jargao clinico odontologico</span>
+      <span class="trait strong">Zero explicacao para dentistas</span>
+      <span class="trait strong">Produto = nome = protocolo</span>
+    </div>
+  </div>
+
+  <!-- BOND -->
+  <div class="option" data-choice="bond" onclick="toggleSelect(this)">
+    <div class="option-top">
+      <div class="option-letter">B</div>
+      <div class="wordmark-option" style="color:#818cf8">BND</div>
+      <div class="domain-tag">
+        <div class="domain-name">bnd.me</div>
+      </div>
+    </div>
+
+    <div class="me-test">
+      <div class="me-test-label">Teste do .me — como soa em voz alta</div>
+      <div class="me-test-body">
+        <div class="me-lang">
+          <div class="me-lang-flag">PT-BR</div>
+          <div class="me-phrase"><span style="color:#818cf8">bnd</span><span class="dot-me">.me</span></div>
+          <div class="me-translation">"bond me"<br>= cria um vinculo comigo<br>= me conecta ao meu consultorio</div>
+        </div>
+        <div class="me-lang">
+          <div class="me-lang-flag">EN</div>
+          <div class="me-phrase"><span style="color:#818cf8">bnd</span><span class="dot-me">.me</span></div>
+          <div class="me-translation">"bond me"<br>= bond with me, connect me<br>= creates a bond between us</div>
+        </div>
+      </div>
+      <div class="me-verdict pass">PASSA — "bond me" funciona nos dois idiomas como frase de conexao.</div>
+    </div>
+
+    <div class="bilingual-row">
+      <div class="lang-pill">
+        <div class="lang-name">Portugues</div>
+        <div class="lang-meaning">bond (vinculo)</div>
+        <div class="lang-context">Incorporada ao vocabulario brasileiro. Lacos, vinculos, conexao profunda.</div>
+      </div>
+      <div class="lang-pill">
+        <div class="lang-name">English</div>
+        <div class="lang-meaning">bond</div>
+        <div class="lang-context">"The bond between doctor and patient." Confianca, sofisticacao, durabilidade.</div>
+      </div>
+    </div>
+
+    <div class="family-preview">
+      <span class="fp unlmtd-color">UNLMTD</span>
+      <span class="fp-sep">·</span>
+      <span class="fp dstk-color">DSTK</span>
+      <span class="fp-sep">·</span>
+      <span class="fp" style="color:#818cf8">BND</span>
+      <span class="fp-domain">unlmtd · dstk.me · bnd.me</span>
+    </div>
+    <div class="traits">
+      <span class="trait strong">bnd.me = "bond me" = me conecta</span>
+      <span class="trait strong">Conceito de vinculo emocional</span>
+      <span class="trait">B-N-D: plosiva, nasal, plosiva</span>
+    </div>
+  </div>
+
+  <!-- VITAL — fraco no .me -->
+  <div class="option weak" data-choice="vital" onclick="toggleSelect(this)">
+    <div class="weak-badge">Nao passa no teste do .me</div>
+    <div class="option-top">
+      <div class="option-letter">C</div>
+      <div class="wordmark-option" style="color:#334155">VTL</div>
+      <div class="domain-tag">
+        <div class="domain-name">vtl.me</div>
+      </div>
+    </div>
+
+    <div class="me-test">
+      <div class="me-test-label">Teste do .me — como soa em voz alta</div>
+      <div class="me-test-body">
+        <div class="me-lang">
+          <div class="me-lang-flag">PT + EN</div>
+          <div class="me-phrase"><span style="color:#334155">vtl</span><span class="dot-me">.me</span></div>
+          <div class="me-translation">"vital me"<br>= nao forma frase clara<br>= sem acao, sem promessa</div>
+        </div>
+      </div>
+      <div class="me-verdict fail">NAO PASSA — "vital me" nao comunica nada. Adjetivo sem verbo.</div>
+    </div>
+
+    <div class="traits">
+      <span class="trait risk">vtl.me = "vital me" — sem acao, sem frase</span>
+      <span class="trait">Palavra forte, dominio fraco</span>
+    </div>
+  </div>
+
+  <!-- PULSE — fraco no .me -->
+  <div class="option weak" data-choice="pulse" onclick="toggleSelect(this)">
+    <div class="weak-badge">Nao passa no teste do .me</div>
+    <div class="option-top">
+      <div class="option-letter">D</div>
+      <div class="wordmark-option" style="color:#334155">PLSE</div>
+      <div class="domain-tag">
+        <div class="domain-name">plse.me</div>
+      </div>
+    </div>
+
+    <div class="me-test">
+      <div class="me-test-label">Teste do .me — como soa em voz alta</div>
+      <div class="me-test-body">
+        <div class="me-lang">
+          <div class="me-lang-flag">PT + EN</div>
+          <div class="me-phrase"><span style="color:#334155">plse</span><span class="dot-me">.me</span></div>
+          <div class="me-translation">"pulse me"<br>= muito tecnico, nao e frase natural<br>= ninguem diz "pulse me" em nenhum idioma</div>
+        </div>
+      </div>
+      <div class="me-verdict fail">NAO PASSA — "pulse me" nao e uma frase real em PT nem EN.</div>
+    </div>
+
+    <div class="traits">
+      <span class="trait risk">plse.me = "pulse me" — sem significado natural</span>
+      <span class="trait">Palavra forte, dominio fraco</span>
+    </div>
+  </div>
+
+</div>

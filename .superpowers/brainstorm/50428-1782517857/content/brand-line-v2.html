@@ -1,0 +1,274 @@
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #080c14; color: #e2e8f0; padding: 32px 24px; }
+
+  .family-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 12px;
+    padding: 28px 32px;
+    background: #0a0f1e;
+    border: 1px solid #1e293b;
+    border-radius: 16px;
+  }
+  .family-word {
+    text-align: center;
+  }
+  .family-wordmark {
+    font-size: 40px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    line-height: 1;
+  }
+  .unlmtd-color { color: #64748b; }
+  .dstk-color { color: #2dd4bf; }
+  .new-color { color: #f1f5f9; }
+  .family-label {
+    font-size: 10px;
+    color: #334155;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+  .family-dot {
+    color: #1e293b;
+    font-size: 28px;
+    padding-bottom: 16px;
+  }
+
+  .insight {
+    font-size: 12px;
+    color: #475569;
+    text-align: center;
+    margin-bottom: 32px;
+    padding: 10px;
+    border-radius: 8px;
+    background: #0a0f1e;
+    border: 1px solid #1e293b;
+    line-height: 1.6;
+  }
+  .insight strong { color: #94a3b8; }
+
+  .section-title {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: #334155; margin: 0 0 16px;
+  }
+
+  .options { display: grid; grid-template-columns: 1fr; gap: 14px; }
+
+  .option {
+    background: #0d1220;
+    border: 2px solid #1e293b;
+    border-radius: 14px;
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .option:hover { border-color: #334155; }
+  .option.selected { border-color: #2dd4bf; background: #071a19; }
+
+  .option-top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  .option-letter {
+    width: 26px; height: 26px; background: #1e293b; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: #64748b; flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .option.selected .option-letter { background: #0d9488; color: #fff; }
+
+  .wordmark-option {
+    font-size: 38px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    line-height: 1;
+  }
+  .domain-option {
+    font-size: 13px;
+    color: #334155;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    margin-left: auto;
+    transition: color 0.2s;
+  }
+  .option.selected .domain-option { color: #2dd4bf; }
+
+  .origin-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+  .chip {
+    font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px;
+    background: #1e293b; color: #64748b; border: 1px solid #334155;
+  }
+  .chip.word { color: #94a3b8; }
+  .chip.lang { color: #60a5fa; background: #0f1f35; border-color: #1e3a5f; }
+  .arr { color: #334155; font-size: 14px; }
+
+  .promise { font-size: 15px; font-weight: 700; color: #f1f5f9; margin-bottom: 6px; }
+  .rationale { font-size: 12px; color: #64748b; line-height: 1.6; margin-bottom: 14px; }
+
+  .family-preview {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #080c14;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    border: 1px solid #0f1628;
+  }
+  .fp { font-size: 17px; font-weight: 900; letter-spacing: 0.08em; font-family: 'SF Mono', 'Fira Code', monospace; }
+  .fp-sep { color: #1e293b; font-size: 16px; }
+  .fp-domain { font-size: 11px; color: #334155; margin-left: auto; font-family: 'SF Mono', monospace; }
+
+  .traits { display: flex; flex-wrap: wrap; gap: 6px; }
+  .trait {
+    font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px;
+    background: #1e293b; color: #94a3b8; border: 1px solid #334155;
+  }
+  .trait.strong { background: #0d3d35; color: #2dd4bf; border-color: #0d9488; }
+  .trait.risk { background: #1c0f0f; color: #f87171; border-color: #7f1d1d; }
+</style>
+
+<!-- FAMÍLIA ATUAL -->
+<div class="section-title">Família de marcas</div>
+<div class="family-bar">
+  <div class="family-word">
+    <div class="family-wordmark unlmtd-color">UNLMTD</div>
+    <div class="family-label">Empresa</div>
+  </div>
+  <div class="family-dot">·</div>
+  <div class="family-word">
+    <div class="family-wordmark dstk-color">DSTK</div>
+    <div class="family-label">Visibilidade</div>
+  </div>
+  <div class="family-dot">·</div>
+  <div class="family-word">
+    <div class="family-wordmark new-color" style="color:#334155;letter-spacing:0.12em;font-size:28px">?</div>
+    <div class="family-label">Retencao</div>
+  </div>
+</div>
+
+<div class="insight">
+  <strong>O padrao que funciona:</strong> palavras aspiracionais com peso proprio — que transmitem identidade, nao feature. "Unlimited" nao descreve o produto; diz o que voce e. "Destaka" nao descreve o produto; diz o que acontece com voce. O terceiro nome precisa do mesmo carater.
+</div>
+
+<div class="section-title">Novos candidatos — identidade, nao funcao</div>
+<div class="options">
+
+  <!-- FRVR -->
+  <div class="option" data-choice="frvr" onclick="toggleSelect(this)">
+    <div class="option-top">
+      <div class="option-letter">A</div>
+      <div class="wordmark-option" style="color:#f472b6">FRVR</div>
+      <div class="domain-option">frvr.me</div>
+    </div>
+    <div class="origin-row">
+      <span class="chip word">FOREVER</span>
+      <span class="arr">→</span>
+      <span class="chip word">FRVR</span>
+      <span class="chip lang">EN universal</span>
+      <span class="chip lang">PT: para sempre</span>
+      <span class="chip lang">ES: para siempre</span>
+    </div>
+    <div class="promise">Pacientes para sempre. O consultorio que nao perde ninguem.</div>
+    <div class="rationale">
+      FOREVER e uma palavra de promessa absoluta com peso emocional imenso — e universalmente reconhecida. Sem vogais vira FRVR: quatro consoantes com ritmo alternado F-R-V-R (fricativa, vibrante, fricativa, vibrante) que cria o mesmo tipo de energia de DSTK (consoante, consoante, consoante, consoante com alternancia de qualidade). frvr.me = "forever dot me" = para sempre, meu. A personalizacao do .me potencializa: e o seu forever, o forever do seu consultorio.
+    </div>
+    <div class="family-preview">
+      <span class="fp unlmtd-color">UNLMTD</span>
+      <span class="fp-sep">·</span>
+      <span class="fp dstk-color">DSTK</span>
+      <span class="fp-sep">·</span>
+      <span class="fp" style="color:#f472b6">FRVR</span>
+      <span class="fp-domain">unlmtd · dstk.me · frvr.me</span>
+    </div>
+    <div class="traits">
+      <span class="trait strong">Peso emocional maximo</span>
+      <span class="trait strong">Universal — lido em qualquer idioma</span>
+      <span class="trait strong">F-R-V-R: ritmo identico ao DSTK</span>
+      <span class="trait strong">frvr.me = "forever, meu"</span>
+    </div>
+  </div>
+
+  <!-- LYLTY -->
+  <div class="option" data-choice="lylty" onclick="toggleSelect(this)">
+    <div class="option-top">
+      <div class="option-letter">B</div>
+      <div class="wordmark-option" style="color:#fbbf24">LYLTY</div>
+      <div class="domain-option">lylty.me</div>
+    </div>
+    <div class="origin-row">
+      <span class="chip word">LOYALTY</span>
+      <span class="arr">→</span>
+      <span class="chip word">LYLTY</span>
+      <span class="chip lang">EN universal</span>
+      <span class="chip lang">PT: lealdade</span>
+      <span class="chip lang">ES: lealtad</span>
+    </div>
+    <div class="promise">Lealdade automatizada. Pacientes que so voltam para voce.</div>
+    <div class="rationale">
+      LOYALTY e a palavra mais precisa para o resultado do produto — mas a precisao nao sacrifica o peso. Sem vogais vira LYLTY: cinco consoantes que criam uma densidade visual poderosa, como UNLMTD. A simetria L-Y-L-T-Y tem uma qualidade palindromica que agrada ao olho. lylty.me = "loyalty dot me" = minha lealdade, a lealdade dos meus pacientes. Cinco letras aproxima mais de UNLMTD do que de DSTK — pode ser intencional se o produto quiser carregar mais peso corporativo.
+    </div>
+    <div class="family-preview">
+      <span class="fp unlmtd-color">UNLMTD</span>
+      <span class="fp-sep">·</span>
+      <span class="fp dstk-color">DSTK</span>
+      <span class="fp-sep">·</span>
+      <span class="fp" style="color:#fbbf24">LYLTY</span>
+      <span class="fp-domain">unlmtd · dstk.me · lylty.me</span>
+    </div>
+    <div class="traits">
+      <span class="trait strong">Palavra mais precisa para a promessa</span>
+      <span class="trait strong">L-Y-L-T-Y: simetria visual forte</span>
+      <span class="trait strong">5 letras — ressoa com UNLMTD</span>
+      <span class="trait">lylty.me disponivel provavel</span>
+    </div>
+  </div>
+
+  <!-- BLNG -->
+  <div class="option" data-choice="blng" onclick="toggleSelect(this)">
+    <div class="option-top">
+      <div class="option-letter">C</div>
+      <div class="wordmark-option" style="color:#34d399">BLNG</div>
+      <div class="domain-option">blng.me</div>
+    </div>
+    <div class="origin-row">
+      <span class="chip word">BELONG</span>
+      <span class="arr">→</span>
+      <span class="chip word">BLNG</span>
+      <span class="chip lang">EN universal</span>
+      <span class="chip lang">PT: pertencer</span>
+      <span class="chip lang">ES: pertenecer</span>
+    </div>
+    <div class="promise">Pacientes que pertencem ao seu consultorio. Para sempre.</div>
+    <div class="rationale">
+      BELONG e a palavra com maior profundidade conceitual. Nao e apenas sobre voltar — e sobre pertencimento. O paciente que "belongs" nao considera ir a outro dentista: ele e seu. blng.me = "belong dot me" = pertencer a mim, ser meu. A identidade do consultorio que cria esse vinculo profundo. Quatro consoantes como DSTK. B plosiva da impacto. L suaviza. N aquece. G fecha com forca. Marty Neumeier escolheria esse: e a diferenciacao mais radical — de ferramenta de CRM para filosofia de relacao.
+    </div>
+    <div class="family-preview">
+      <span class="fp unlmtd-color">UNLMTD</span>
+      <span class="fp-sep">·</span>
+      <span class="fp dstk-color">DSTK</span>
+      <span class="fp-sep">·</span>
+      <span class="fp" style="color:#34d399">BLNG</span>
+      <span class="fp-domain">unlmtd · dstk.me · blng.me</span>
+    </div>
+    <div class="traits">
+      <span class="trait strong">Conceito mais profundo — pertencimento</span>
+      <span class="trait strong">4 letras exatas como DSTK</span>
+      <span class="trait strong">blng.me = "belong dot me"</span>
+      <span class="trait strong">Diferenciacao radical do mercado</span>
+    </div>
+  </div>
+
+</div>

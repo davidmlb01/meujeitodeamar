@@ -1,0 +1,399 @@
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #080c14; color: #e2e8f0; padding: 32px 24px; }
+
+  /* BRAND LINE HERO */
+  .brand-line {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 40px;
+    padding: 32px;
+    background: #0a0f1e;
+    border: 1px solid #1e293b;
+    border-radius: 16px;
+  }
+  .brand-product {
+    flex: 1;
+    text-align: center;
+  }
+  .brand-wordmark {
+    font-size: 52px;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+  .wordmark-dstk { color: #2dd4bf; }
+  .wordmark-new { color: #94a3b8; }
+  .wordmark-placeholder { color: #334155; font-style: normal; }
+  .brand-domain {
+    font-size: 13px;
+    color: #475569;
+    margin-top: 6px;
+    letter-spacing: 0.08em;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+  .brand-promise {
+    font-size: 11px;
+    color: #334155;
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .brand-divider {
+    width: 1px;
+    height: 80px;
+    background: #1e293b;
+    margin: 0 32px;
+  }
+  .brand-plus {
+    color: #1e293b;
+    font-size: 24px;
+    padding: 0 20px;
+  }
+
+  /* SECTION */
+  .section-title {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: #334155; margin: 32px 0 16px;
+  }
+
+  /* NAMING OPTIONS */
+  .options { display: grid; grid-template-columns: 1fr; gap: 14px; }
+
+  .option {
+    background: #0d1220;
+    border: 2px solid #1e293b;
+    border-radius: 14px;
+    padding: 22px 24px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .option:hover { border-color: #334155; background: #0f1628; }
+  .option.selected { border-color: #2dd4bf; background: #071a19; }
+
+  .option-top {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 14px;
+  }
+  .option-letter {
+    width: 26px; height: 26px; background: #1e293b; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: #64748b; flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .option.selected .option-letter { background: #0d9488; color: #fff; }
+
+  .wordmark-option {
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    line-height: 1;
+  }
+  .domain-option {
+    font-size: 13px;
+    color: #475569;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    margin-left: auto;
+  }
+  .option.selected .domain-option { color: #2dd4bf; }
+
+  .origin-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .origin-chip {
+    font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px;
+    background: #1e293b; color: #64748b; border: 1px solid #334155;
+  }
+  .origin-chip.word { color: #94a3b8; }
+  .arrow-chip { color: #334155; font-size: 14px; }
+
+  .promise-line {
+    font-size: 14px;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin-bottom: 6px;
+  }
+  .rationale {
+    font-size: 12px;
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .brand-preview {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #080c14;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+  }
+  .preview-dstk {
+    font-size: 16px; font-weight: 900; letter-spacing: 0.08em;
+    color: #2dd4bf; font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+  .preview-sep { color: #1e293b; font-size: 18px; }
+  .preview-new {
+    font-size: 16px; font-weight: 900; letter-spacing: 0.08em;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+
+  .traits { display: flex; flex-wrap: wrap; gap: 6px; }
+  .trait {
+    font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px;
+    background: #1e293b; color: #94a3b8; border: 1px solid #334155;
+  }
+  .trait.strong { background: #0d3d35; color: #2dd4bf; border-color: #0d9488; }
+  .trait.risk { background: #1c0f0f; color: #f87171; border-color: #7f1d1d; }
+
+  .rhythm-bar {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 10px;
+  }
+  .letter-block {
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 6px;
+    font-size: 14px; font-weight: 800;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+  .stop { background: #1e2d3a; color: #60a5fa; } /* plosivas: força */
+  .fric { background: #1a2e1a; color: #4ade80; } /* fricativas: fluxo */
+  .nasal { background: #2d1f2d; color: #c084fc; } /* nasais: calor */
+  .vowel { background: #2d2510; color: #fbbf24; }
+  .letter-type { font-size: 9px; color: #334155; text-align: center; }
+</style>
+
+<!-- BRAND LINE HERO -->
+<div class="section-title">Arquitetura da linha de produtos</div>
+<div class="brand-line">
+  <div class="brand-product">
+    <div class="brand-wordmark wordmark-dstk">DSTK</div>
+    <div class="brand-domain">dstk.me</div>
+    <div class="brand-promise">Visibilidade · Aquisição · Google</div>
+  </div>
+  <div class="brand-divider"></div>
+  <div class="brand-product">
+    <div class="brand-wordmark wordmark-placeholder">????</div>
+    <div class="brand-domain" style="color:#334155">????.me</div>
+    <div class="brand-promise">Retenção · Relacionamento · WhatsApp</div>
+  </div>
+</div>
+
+<p style="font-size:12px;color:#475569;margin-bottom:4px;margin-top:-24px;text-align:center">Legenda fonosemantica das letras abaixo</p>
+<div style="display:flex;gap:12px;justify-content:center;margin-bottom:32px">
+  <span style="font-size:11px;color:#60a5fa">■ plosiva = força/impacto</span>
+  <span style="font-size:11px;color:#4ade80">■ fricativa = fluxo/elegancia</span>
+  <span style="font-size:11px;color:#c084fc">■ nasal = calor/conforto</span>
+</div>
+
+<!-- OPÇÕES -->
+<div class="section-title">Candidatos — sem vogais, com peso</div>
+<div class="options">
+
+  <!-- RTRN -->
+  <div class="option" data-choice="rtrn" onclick="toggleSelect(this)">
+    <div class="option-top">
+      <div class="option-letter">A</div>
+      <div class="wordmark-option" style="color:#2dd4bf">RTRN</div>
+      <div class="domain-option">rtrn.me</div>
+    </div>
+    <div class="origin-row">
+      <span class="origin-chip word">RETORNO</span>
+      <span class="arrow-chip">→</span>
+      <span class="origin-chip">RT RN</span>
+      <span class="arrow-chip">→</span>
+      <span class="origin-chip word">RTRN</span>
+      <span class="origin-chip" style="margin-left:4px">EN: return · PT: retorno · ES: retorno</span>
+    </div>
+    <div class="rhythm-bar">
+      <div><div class="letter-block stop">R</div><div class="letter-type">vibr</div></div>
+      <div><div class="letter-block stop">T</div><div class="letter-type">stop</div></div>
+      <div><div class="letter-block stop">R</div><div class="letter-type">vibr</div></div>
+      <div><div class="letter-block nasal">N</div><div class="letter-type">nasal</div></div>
+    </div>
+    <div class="promise-line">O nome e a promessa. Pacientes que RTRN.</div>
+    <div class="rationale">
+      Estrutura palindromica R-T-R-N: simetria visual que remete a ciclo, repeticao, retorno. Universalmente legivel — qualquer pessoa nos tres idiomas le "return" ou "retorno" instintivamente. O R vibrante duplo da energia e movimento. O N nasal no final suaviza e da conforto. 4 letras exatas como DSTK.
+    </div>
+    <div class="brand-preview">
+      <span class="preview-dstk">DSTK</span>
+      <span class="preview-sep">+</span>
+      <span class="preview-new" style="color:#2dd4bf">RTRN</span>
+      <span style="font-size:12px;color:#334155;margin-left:auto">dstk.me &nbsp;·&nbsp; rtrn.me</span>
+    </div>
+    <div class="traits">
+      <span class="trait strong">Promessa explodida no proprio nome</span>
+      <span class="trait strong">Simetria R_T_R_N — ciclo visual</span>
+      <span class="trait strong">Global: EN + PT + ES identicos</span>
+      <span class="trait strong">4 letras como DSTK</span>
+    </div>
+  </div>
+
+  <!-- FLXO -->
+  <div class="option" data-choice="flxo" onclick="toggleSelect(this)">
+    <div class="option-top">
+      <div class="option-letter">B</div>
+      <div class="wordmark-option" style="color:#60a5fa">FLXO</div>
+      <div class="domain-option">flxo.me</div>
+    </div>
+    <div class="origin-row">
+      <span class="origin-chip word">FLUXO</span>
+      <span class="arrow-chip">→</span>
+      <span class="origin-chip">FL XO</span>
+      <span class="arrow-chip">→</span>
+      <span class="origin-chip word">FLXO</span>
+      <span class="origin-chip" style="margin-left:4px">PT: fluxo · ES: flujo · EN: flow</span>
+    </div>
+    <div class="rhythm-bar">
+      <div><div class="letter-block fric">F</div><div class="letter-type">fric</div></div>
+      <div><div class="letter-block fric">L</div><div class="letter-type">lat</div></div>
+      <div><div class="letter-block stop">X</div><div class="letter-type">fri+stop</div></div>
+      <div><div class="letter-block vowel">O</div><div class="letter-type">vogal</div></div>
+    </div>
+    <div class="promise-line">O fluxo continuo de pacientes que nunca para.</div>
+    <div class="rationale">
+      FLXO mantem o O final de FLUXO, o que facilita a leitura e cria um contraste com DSTK (sem vogais vs. com vogal terminal). F fricativa da elegancia e velocidade. L lateral da suavidade. X e o caracter de maior impacto visual — cria tensao positiva. O O final da gravidade e completude. O fluxo que nunca cessa.
+    </div>
+    <div class="brand-preview">
+      <span class="preview-dstk">DSTK</span>
+      <span class="preview-sep">+</span>
+      <span class="preview-new" style="color:#60a5fa">FLXO</span>
+      <span style="font-size:12px;color:#334155;margin-left:auto">dstk.me &nbsp;·&nbsp; flxo.me</span>
+    </div>
+    <div class="traits">
+      <span class="trait strong">F + L = elegancia e suavidade</span>
+      <span class="trait strong">X = impacto visual maximo</span>
+      <span class="trait strong">O terminal — facil de ler</span>
+      <span class="trait">Leve variacao (tem vogal) vs DSTK</span>
+    </div>
+  </div>
+
+  <!-- SMPR -->
+  <div class="option" data-choice="smpr" onclick="toggleSelect(this)">
+    <div class="option-top">
+      <div class="option-letter">C</div>
+      <div class="wordmark-option" style="color:#f472b6">SMPR</div>
+      <div class="domain-option">smpr.me</div>
+    </div>
+    <div class="origin-row">
+      <span class="origin-chip word">SEMPRE</span>
+      <span class="arrow-chip">→</span>
+      <span class="origin-chip">S MPR</span>
+      <span class="arrow-chip">→</span>
+      <span class="origin-chip word">SMPR</span>
+      <span class="origin-chip" style="margin-left:4px">PT: sempre · ES: siempre · IT: sempre</span>
+    </div>
+    <div class="rhythm-bar">
+      <div><div class="letter-block fric">S</div><div class="letter-type">fric</div></div>
+      <div><div class="letter-block nasal">M</div><div class="letter-type">nasal</div></div>
+      <div><div class="letter-block stop">P</div><div class="letter-type">stop</div></div>
+      <div><div class="letter-block stop">R</div><div class="letter-type">vibr</div></div>
+    </div>
+    <div class="promise-line">Sempre presente. O relacionamento que nunca falha.</div>
+    <div class="rationale">
+      SMPR e talvez o mais emocional dos candidatos. "Sempre" e uma palavra de promessa absoluta — e exatamente o que o profissional de saude quer: que o sistema esteja sempre la, cuidando dos pacientes sem que ele precise fazer nada. S fricativa = velocidade. M nasal = calor. PR = impacto e finalizacao. Funciona em PT, ES (siempre) e IT (sempre). O unico que nao funciona bem em ingles — "sempre" nao existe em EN. Compensado pela universalidade nos idiomas latinos.
+    </div>
+    <div class="brand-preview">
+      <span class="preview-dstk">DSTK</span>
+      <span class="preview-sep">+</span>
+      <span class="preview-new" style="color:#f472b6">SMPR</span>
+      <span style="font-size:12px;color:#334155;margin-left:auto">dstk.me &nbsp;·&nbsp; smpr.me</span>
+    </div>
+    <div class="traits">
+      <span class="trait strong">Promessa de permanencia — "sempre la"</span>
+      <span class="trait strong">S + M = velocidade + calor</span>
+      <span class="trait strong">Forte em mercados latinos (BR, ES, IT)</span>
+      <span class="trait risk">Nao ressoa em ingles (limite global)</span>
+    </div>
+  </div>
+
+  <!-- VNCL -->
+  <div class="option" data-choice="vncl" onclick="toggleSelect(this)">
+    <div class="option-top">
+      <div class="option-letter">D</div>
+      <div class="wordmark-option" style="color:#c084fc">VNCL</div>
+      <div class="domain-option">vncl.me</div>
+    </div>
+    <div class="origin-row">
+      <span class="origin-chip word">VÍNCULO</span>
+      <span class="arrow-chip">→</span>
+      <span class="origin-chip">V NCL</span>
+      <span class="arrow-chip">→</span>
+      <span class="origin-chip word">VNCL</span>
+      <span class="origin-chip" style="margin-left:4px">PT: vinculo · ES: vinculo · EN: bond/link</span>
+    </div>
+    <div class="rhythm-bar">
+      <div><div class="letter-block fric">V</div><div class="letter-type">fric</div></div>
+      <div><div class="letter-block nasal">N</div><div class="letter-type">nasal</div></div>
+      <div><div class="letter-block stop">C</div><div class="letter-type">stop</div></div>
+      <div><div class="letter-block fric">L</div><div class="letter-type">lat</div></div>
+    </div>
+    <div class="promise-line">O vinculo entre profissional e paciente, automatizado.</div>
+    <div class="rationale">
+      VNCL e o mais emocional e profundo dos candidatos. Vinculo e a palavra mais precisa para o que o produto faz: cria e mantem o laco (bond) entre o consultorio e cada paciente. V fricativa = elegancia. N nasal = calor e proximidade. C plosiva = solidez. L lateral = suavidade de aterrizagem. O desafio e que VNCL tem quatro consoantes diferentes em qualidade — pode parecer abrupto de ler em sequencia.
+    </div>
+    <div class="brand-preview">
+      <span class="preview-dstk">DSTK</span>
+      <span class="preview-sep">+</span>
+      <span class="preview-new" style="color:#c084fc">VNCL</span>
+      <span style="font-size:12px;color:#334155;margin-left:auto">dstk.me &nbsp;·&nbsp; vncl.me</span>
+    </div>
+    <div class="traits">
+      <span class="trait strong">Significado mais rico e profundo</span>
+      <span class="trait strong">V + N = elegancia + calor</span>
+      <span class="trait">Ibero-americano forte (PT + ES)</span>
+      <span class="trait risk">Sequencia VNCL mais dificil de ler rapido</span>
+    </div>
+  </div>
+
+  <!-- LNKR -->
+  <div class="option" data-choice="lnkr" onclick="toggleSelect(this)">
+    <div class="option-top">
+      <div class="option-letter">E</div>
+      <div class="wordmark-option" style="color:#fbbf24">LNKR</div>
+      <div class="domain-option">lnkr.me</div>
+    </div>
+    <div class="origin-row">
+      <span class="origin-chip word">LIGAR</span>
+      <span class="arrow-chip">→</span>
+      <span class="origin-chip word">LINKER</span>
+      <span class="arrow-chip">→</span>
+      <span class="origin-chip word">LNKR</span>
+      <span class="origin-chip" style="margin-left:4px">PT: ligar · EN: link/connect · ES: conectar</span>
+    </div>
+    <div class="rhythm-bar">
+      <div><div class="letter-block fric">L</div><div class="letter-type">lat</div></div>
+      <div><div class="letter-block nasal">N</div><div class="letter-type">nasal</div></div>
+      <div><div class="letter-block stop">K</div><div class="letter-type">stop</div></div>
+      <div><div class="letter-block stop">R</div><div class="letter-type">vibr</div></div>
+    </div>
+    <div class="promise-line">O conector. Liga o consultorio a cada paciente, para sempre.</div>
+    <div class="rationale">
+      LNKR tem uma vantagem unica: soa como "linker" em ingles (tech-native, o produto que linka) e como derivado de "ligar" em portugues. LinkedIn usou LNK como abreviacao de "link" e e globalmente reconhecido. O K plosivo velar da forca e impacto — e o mesmo K que fecha DSTK, criando coesao sonora entre os dois produtos da linha. LNKR.me lida facilmente em qualquer idioma.
+    </div>
+    <div class="brand-preview">
+      <span class="preview-dstk">DSTK</span>
+      <span class="preview-sep">+</span>
+      <span class="preview-new" style="color:#fbbf24">LNKR</span>
+      <span style="font-size:12px;color:#334155;margin-left:auto">dstk.me &nbsp;·&nbsp; lnkr.me</span>
+    </div>
+    <div class="traits">
+      <span class="trait strong">K final — coesao sonora com DSTK</span>
+      <span class="trait strong">Tech-native: lembra LinkedIn LNK</span>
+      <span class="trait strong">Verdadeiramente global (PT + EN + ES)</span>
+      <span class="trait">Mais tech, menos saude — posicionamento diferente</span>
+    </div>
+  </div>
+
+</div>
