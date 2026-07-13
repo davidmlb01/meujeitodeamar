@@ -1,0 +1,354 @@
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0f1e; color: #e2e8f0; padding: 32px 24px; }
+
+  .page-title { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #64748b; margin-bottom: 6px; }
+  .product-name { font-size: 28px; font-weight: 800; color: #f1f5f9; margin-bottom: 4px; }
+  .tagline { font-size: 14px; color: #94a3b8; margin-bottom: 32px; }
+
+  .grid { display: grid; gap: 16px; }
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+  .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  .card { background: #111827; border: 1px solid #1e293b; border-radius: 12px; padding: 20px; }
+  .card.accent-teal { border-color: #0d9488; }
+  .card.accent-blue { border-color: #3b82f6; }
+  .card.accent-purple { border-color: #8b5cf6; }
+  .card.accent-orange { border-color: #f97316; }
+  .card.accent-yellow { border-color: #eab308; }
+
+  .card-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
+  .teal { color: #2dd4bf; } .blue { color: #60a5fa; } .purple { color: #a78bfa; }
+  .orange { color: #fb923c; } .green { color: #4ade80; } .red { color: #f87171; }
+  .gray { color: #64748b; } .yellow { color: #facc15; }
+
+  .card h3 { font-size: 15px; font-weight: 700; color: #f1f5f9; margin-bottom: 10px; }
+  .card p { font-size: 13px; color: #94a3b8; line-height: 1.5; }
+
+  .funnel { display: flex; gap: 0; border-radius: 10px; overflow: hidden; margin-bottom: 16px; }
+  .funnel-half { flex: 1; padding: 16px; text-align: center; }
+  .funnel-half.destaka { background: #0f2a1e; border: 1px solid #166534; }
+  .funnel-half.novo { background: #0f1f2a; border: 1px solid #1e3a5f; }
+  .funnel-half h4 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .funnel-half p { font-size: 12px; color: #64748b; }
+  .funnel-arrow { display: flex; align-items: center; justify-content: center; padding: 0 8px; color: #334155; font-size: 20px; }
+
+  .automation-list { list-style: none; }
+  .automation-list li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid #1e293b; font-size: 13px; }
+  .automation-list li:last-child { border-bottom: none; }
+  .trigger { font-size: 10px; font-weight: 600; background: #1e293b; color: #64748b; padding: 2px 7px; border-radius: 20px; white-space: nowrap; margin-left: auto; flex-shrink: 0; }
+  .auto-name { color: #e2e8f0; }
+  .auto-desc { color: #64748b; font-size: 12px; }
+
+  .flow { display: flex; align-items: center; gap: 0; flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; }
+  .flow-step { background: #1e293b; border-radius: 8px; padding: 8px 12px; font-size: 12px; color: #cbd5e1; text-align: center; flex-shrink: 0; min-width: 100px; }
+  .flow-step.highlight { background: #0d3d35; color: #2dd4bf; border: 1px solid #0d9488; }
+  .flow-step.warn { background: #2d1b00; color: #fb923c; border: 1px solid #c2410c; }
+  .flow-step.yellow-hl { background: #1c1a00; color: #facc15; border: 1px solid #854d0e; }
+  .flow-arrow { color: #334155; padding: 0 6px; font-size: 16px; flex-shrink: 0; }
+
+  .ai-badge { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; letter-spacing: 0.08em; display: inline-block; margin-bottom: 6px; }
+  .ai-badge.v1 { background: #0d3d35; color: #2dd4bf; border: 1px solid #0d9488; }
+  .ai-badge.v2 { background: #1e1a2e; color: #a78bfa; border: 1px solid #6d28d9; }
+
+  .ai-item { margin-bottom: 14px; }
+  .ai-item h4 { font-size: 13px; font-weight: 600; color: #e2e8f0; margin-bottom: 3px; }
+  .ai-item p { font-size: 12px; color: #64748b; line-height: 1.5; }
+
+  .stack-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .stack-chip { background: #1e293b; border-radius: 6px; padding: 6px 12px; font-size: 12px; font-weight: 500; color: #cbd5e1; border: 1px solid #334155; }
+  .stack-chip.new { border-color: #f97316; color: #fb923c; background: #1c1008; }
+
+  .metric-box { background: #0d3d35; border: 1px solid #0d9488; border-radius: 10px; padding: 16px 20px; margin-bottom: 16px; }
+  .metric-box .label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #2dd4bf; margin-bottom: 6px; }
+  .metric-box .value { font-size: 16px; font-weight: 700; color: #f1f5f9; line-height: 1.4; }
+
+  .rule-item { display: flex; gap: 8px; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid #1e293b; font-size: 12px; color: #94a3b8; }
+  .rule-item:last-child { border-bottom: none; }
+  .rule-item .dot { color: #f87171; font-size: 16px; line-height: 1; flex-shrink: 0; }
+  .rule-item .dot.ok { color: #4ade80; }
+
+  .section-title { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #475569; margin: 24px 0 12px; }
+
+  .campaign-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .campaign-table th { text-align: left; color: #64748b; font-weight: 600; padding: 6px 10px; border-bottom: 1px solid #1e293b; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .campaign-table td { padding: 9px 10px; border-bottom: 1px solid #1a2234; color: #94a3b8; vertical-align: top; }
+  .campaign-table td:first-child { color: #e2e8f0; font-weight: 500; }
+  .campaign-table tr:last-child td { border-bottom: none; }
+
+  .badge-new { font-size: 9px; font-weight: 700; background: #facc1520; color: #facc15; border: 1px solid #854d0e; padding: 1px 6px; border-radius: 20px; letter-spacing: 0.08em; vertical-align: middle; margin-left: 6px; }
+
+  .roadmap-row { display: flex; gap: 12px; }
+  .roadmap-col { flex: 1; }
+  .roadmap-col h4 { font-size: 12px; font-weight: 700; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid #1e293b; }
+  .roadmap-item { font-size: 12px; color: #94a3b8; padding: 4px 0; display: flex; gap: 6px; }
+  .roadmap-item::before { content: '→'; color: #334155; flex-shrink: 0; }
+  .roadmap-item.new-item { color: #facc15; }
+  .roadmap-item.new-item::before { color: #854d0e; }
+</style>
+
+<div class="page-title">Mapa de Produto — v2</div>
+<div class="product-name">CRM de Saúde + WhatsApp</div>
+<div class="tagline">Agenda preenchida sem esforço. Sua base de pacientes como canal de marketing próprio.</div>
+
+<!-- POSICIONAMENTO -->
+<div class="section-title">Posicionamento estratégico</div>
+<div class="funnel">
+  <div class="funnel-half destaka">
+    <div class="card-label green">Destaka</div>
+    <h4 style="color:#4ade80">Aquisição</h4>
+    <p>Atrai novos pacientes via Google</p>
+  </div>
+  <div class="funnel-arrow">+</div>
+  <div class="funnel-half novo">
+    <div class="card-label blue">Novo produto</div>
+    <h4 style="color:#60a5fa">Retenção + LTV + Ativação de base</h4>
+    <p>Mantém, reativa e comunica com pacientes existentes</p>
+  </div>
+</div>
+
+<!-- MÉTRICA -->
+<div class="metric-box">
+  <div class="label">North Star Metric</div>
+  <div class="value">% de agenda preenchida via reativação automática e campanhas de base<br><span style="font-size:13px;font-weight:400;color:#94a3b8">= slots preenchidos sem ação manual ÷ total de slots disponíveis</span></div>
+</div>
+
+<!-- MERCADO -->
+<div class="section-title">Mercado</div>
+<div class="grid grid-3">
+  <div class="card accent-teal">
+    <div class="card-label teal">Primário</div>
+    <h3>Dentistas</h3>
+    <p>ICP validado pelo Destaka. Canal de vendas existente.</p>
+  </div>
+  <div class="card accent-blue">
+    <div class="card-label blue">Primário</div>
+    <h3>Fisioterapeutas</h3>
+    <p>Ciclos de tratamento previsíveis. Reativação ainda mais crítica.</p>
+  </div>
+  <div class="card">
+    <div class="card-label gray">Aberto</div>
+    <h3>Demais profissionais</h3>
+    <p>Sem bloqueio. Entram por conta própria ou indicação.</p>
+  </div>
+</div>
+
+<!-- 6 AUTOMAÇÕES CORE -->
+<div class="section-title">6 automações core — reativas, disparadas por eventos</div>
+<div class="card">
+  <ul class="automation-list">
+    <li>
+      <div><div class="auto-name">Confirmação de consulta</div><div class="auto-desc">Solicita confirmação e inicia fluxo de lista de espera se cancelar</div></div>
+      <span class="trigger">48h antes</span>
+    </li>
+    <li>
+      <div><div class="auto-name">Lembrete de consulta</div><div class="auto-desc">Reforço final com endereço e instruções</div></div>
+      <span class="trigger">2h antes</span>
+    </li>
+    <li>
+      <div><div class="auto-name">Pós-consulta / feedback</div><div class="auto-desc">Coleta NPS do paciente e sinaliza insatisfação ao profissional</div></div>
+      <span class="trigger">24h depois</span>
+    </li>
+    <li>
+      <div><div class="auto-name">Mensagem de aniversário</div><div class="auto-desc">Relacionamento pessoal + CTA suave de agendamento</div></div>
+      <span class="trigger">Data de nascimento</span>
+    </li>
+    <li>
+      <div><div class="auto-name">Lembrete de retorno</div><div class="auto-desc">Configurável por frequência esperada (não por especialidade)</div></div>
+      <span class="trigger">X meses após consulta</span>
+    </li>
+    <li>
+      <div><div class="auto-name">Reativação de inativo</div><div class="auto-desc">Aciona quando paciente ultrapassa o ciclo esperado sem novo agendamento</div></div>
+      <span class="trigger">Ciclo ultrapassado</span>
+    </li>
+  </ul>
+</div>
+
+<!-- ATIVAÇÃO DE BASE — NOVO -->
+<div class="section-title">Ativação de base <span class="badge-new">NOVO</span> — proativa, disparada pelo profissional</div>
+<div class="card accent-yellow">
+  <div class="card-label yellow">Campanhas segmentadas para base própria</div>
+  <p style="font-size:13px;color:#94a3b8;margin-bottom:16px">O profissional tem uma intenção (promoção, agenda fraca, novo serviço) e ativa um segmento específico da base com um clique. Sem depender de tráfego pago.</p>
+
+  <table class="campaign-table">
+    <thead>
+      <tr>
+        <th>Tipo de campanha</th>
+        <th>Exemplo</th>
+        <th>Segmento sugerido pela IA</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Promocional</td>
+        <td>Clareamento com 20% off</td>
+        <td>Pacientes que fizeram clareamento 12+ meses atrás</td>
+      </tr>
+      <tr>
+        <td>Sazonal</td>
+        <td>Limpeza antes do verão</td>
+        <td>Inativos há 6+ meses</td>
+      </tr>
+      <tr>
+        <td>Novo serviço</td>
+        <td>Aparelho invisível disponível</td>
+        <td>Histórico de consulta ortodôntica</td>
+      </tr>
+      <tr>
+        <td>Agenda fraca</td>
+        <td>Horários disponíveis essa semana</td>
+        <td>Inativos recentes (3-5 meses)</td>
+      </tr>
+      <tr>
+        <td>Aniversário do mês</td>
+        <td>Presente especial do mês do seu aniversário</td>
+        <td>Aniversariantes do mês corrente</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:16px;padding-top:14px;border-top:1px solid #1e293b">
+    <div style="margin-bottom:10px">
+      <span class="ai-badge v1">IA V1</span>
+      <span style="font-size:13px;font-weight:600;color:#e2e8f0"> Sugestão inteligente de segmento</span>
+      <p style="font-size:12px;color:#64748b;margin-top:3px">Dentista digita "promoção de clareamento" → sistema responde "Você tem 47 pacientes que fizeram clareamento há mais de 12 meses. Quer enviar para eles?" Zero fricção para montar o filtro.</p>
+    </div>
+    <div>
+      <span class="ai-badge v1">IA V1</span>
+      <span style="font-size:13px;font-weight:600;color:#e2e8f0"> Copy gerada por LLM</span>
+      <p style="font-size:12px;color:#64748b;margin-top:3px">Profissional informa a promoção, sistema gera a mensagem no tom certo para saúde. <strong style="color:#f87171">Aprovação obrigatória antes de disparar</strong> — nunca automático em campanhas proativas.</p>
+    </div>
+  </div>
+</div>
+
+<!-- LOOP DE AGENDA -->
+<div class="section-title">Loop de agenda inteligente</div>
+<div class="card accent-blue">
+  <div class="card-label blue">Cancelamento → preenchimento automático</div>
+  <div class="flow" style="margin-bottom:12px">
+    <div class="flow-step">Confirmação enviada</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step warn">Cancela ou ignora</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step highlight">Lista de espera acionada</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">Top 3 contactados</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step highlight">Slot preenchido</div>
+  </div>
+  <div style="font-size:12px;color:#64748b">
+    <strong style="color:#94a3b8">Lista de espera considera:</strong> disponibilidade de horário · tipo de procedimento · urgência · velocidade histórica de resposta<br><br>
+    <strong style="color:#94a3b8">Race condition:</strong> reserva temporária de 10 min por Inngest + Supabase Row Lock. Primeiro a confirmar garante o slot.
+  </div>
+</div>
+
+<!-- IA -->
+<div class="section-title">Inteligência artificial</div>
+<div class="grid grid-2">
+  <div class="card accent-teal">
+    <div class="card-label teal">V1 — Lançamento</div>
+    <div class="ai-item">
+      <span class="ai-badge v1">V1</span>
+      <h4>Personalização de mensagem por LLM</h4>
+      <p>Gera mensagem baseada no histórico do paciente. Requer consentimento LGPD.</p>
+    </div>
+    <div class="ai-item">
+      <span class="ai-badge v1">V1</span>
+      <h4>Sugestão de segmento para campanhas</h4>
+      <p>A partir da intenção do profissional, sugere o segmento mais relevante da base.</p>
+    </div>
+    <div class="ai-item">
+      <span class="ai-badge v1">V1</span>
+      <h4>Copy de campanha por LLM</h4>
+      <p>Gera mensagem da campanha. Aprovação humana obrigatória antes do disparo.</p>
+    </div>
+    <div class="ai-item">
+      <span class="ai-badge v1">V1</span>
+      <h4>Otimização de horário de envio</h4>
+      <p>Aprende quando cada paciente responde e ajusta o horário automaticamente.</p>
+    </div>
+  </div>
+  <div class="card accent-purple">
+    <div class="card-label purple">V2 — Roadmap</div>
+    <div class="ai-item">
+      <span class="ai-badge v2">V2</span>
+      <h4>Predição de churn de paciente</h4>
+      <p>Detecta padrão de abandono antes do cancelamento formal. Requer 50+ consultórios.</p>
+    </div>
+    <div class="ai-item">
+      <span class="ai-badge v2">V2</span>
+      <h4>Análise de sentimento nas respostas</h4>
+      <p>"Não tenho interesse" → para. "Não posso nessa data" → oferece reagendamento.</p>
+    </div>
+    <div style="margin-top:14px;padding-top:12px;border-top:1px solid #1e293b">
+      <div class="card-label red">Nunca</div>
+      <p style="font-size:12px;color:#94a3b8">Agente conversacional autônomo no WhatsApp. Recomendação clínica ou diagnóstico por IA.</p>
+    </div>
+  </div>
+</div>
+
+<!-- STACK -->
+<div class="section-title">Stack técnica</div>
+<div class="card">
+  <div style="margin-bottom:10px">
+    <div class="card-label gray" style="margin-bottom:8px">Herdado do Destaka</div>
+    <div class="stack-row">
+      <span class="stack-chip">Next.js</span>
+      <span class="stack-chip">Supabase</span>
+      <span class="stack-chip">Inngest</span>
+      <span class="stack-chip">Claude API</span>
+      <span class="stack-chip">Google OAuth</span>
+      <span class="stack-chip">Vercel</span>
+    </div>
+  </div>
+  <div>
+    <div class="card-label orange" style="margin-bottom:8px">Novo neste produto</div>
+    <div class="stack-row">
+      <span class="stack-chip new">Google Calendar API</span>
+      <span class="stack-chip new">WhatsApp BSP (Twilio ou Zenvia)</span>
+    </div>
+  </div>
+  <div style="margin-top:14px;padding-top:12px;border-top:1px solid #1e293b;font-size:12px;color:#64748b">
+    <strong style="color:#94a3b8">Arquitetura:</strong> repo separado · banco Supabase próprio · multi-tenant desde V1 · Google Calendar como agenda primária
+  </div>
+</div>
+
+<!-- GOVERNANÇA -->
+<div class="section-title">Governança e compliance</div>
+<div class="card">
+  <div class="rule-item"><span class="dot ok">✓</span> Consentimento LGPD Art. 11 coletado no onboarding do paciente antes de qualquer disparo</div>
+  <div class="rule-item"><span class="dot ok">✓</span> Prompt sanitizer remove PII antes de processar por LLM</div>
+  <div class="rule-item"><span class="dot ok">✓</span> NPS dos pacientes coletado — sinalização imediata ao profissional se score baixo</div>
+  <div class="rule-item"><span class="dot ok">✓</span> Aprovação humana obrigatória em campanhas proativas antes do disparo</div>
+  <div class="rule-item"><span class="dot">✗</span> Zero recomendação clínica ou diagnóstico por IA</div>
+  <div class="rule-item"><span class="dot">✗</span> Zero conversação autônoma de IA com paciente em V1</div>
+</div>
+
+<!-- ROADMAP -->
+<div class="section-title">Roadmap</div>
+<div class="card">
+  <div class="roadmap-row">
+    <div class="roadmap-col">
+      <h4 class="teal">V1 — MVP</h4>
+      <div class="roadmap-item">6 automações core</div>
+      <div class="roadmap-item">Loop agenda + lista de espera</div>
+      <div class="roadmap-item">Google Calendar integration</div>
+      <div class="roadmap-item">WhatsApp via BSP</div>
+      <div class="roadmap-item">LLM personalization</div>
+      <div class="roadmap-item">Otimização de horário de envio</div>
+      <div class="roadmap-item new-item">Ativação de base com segmentação</div>
+      <div class="roadmap-item new-item">Sugestão de segmento por IA</div>
+      <div class="roadmap-item new-item">Copy de campanha por LLM</div>
+      <div class="roadmap-item">Dashboard de agenda preenchida</div>
+    </div>
+    <div class="roadmap-col">
+      <h4 class="purple">V2 — Roadmap</h4>
+      <div class="roadmap-item">Predição de churn de paciente</div>
+      <div class="roadmap-item">Análise de sentimento</div>
+      <div class="roadmap-item">Templates por especialidade</div>
+      <div class="roadmap-item">Integrações dental software</div>
+      <div class="roadmap-item">Multi-profissional por clínica</div>
+      <div class="roadmap-item">Relatório mensal de LTV via WhatsApp</div>
+    </div>
+  </div>
+</div>

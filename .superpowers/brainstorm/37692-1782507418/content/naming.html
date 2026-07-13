@@ -1,0 +1,229 @@
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0f1e; color: #e2e8f0; padding: 32px 24px; }
+
+  h2 { font-size: 20px; font-weight: 800; color: #f1f5f9; margin-bottom: 6px; }
+  .subtitle { font-size: 13px; color: #64748b; margin-bottom: 28px; }
+
+  .options { display: grid; grid-template-columns: 1fr; gap: 20px; }
+
+  .option {
+    background: #0f1623;
+    border: 2px solid #1e293b;
+    border-radius: 16px;
+    padding: 28px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+  }
+  .option:hover { border-color: #334155; }
+  .option.selected { border-color: #2dd4bf; background: #071a19; }
+
+  .option-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 6px;
+  }
+  .option-letter {
+    width: 28px; height: 28px;
+    background: #1e293b;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: #64748b;
+    flex-shrink: 0;
+    transition: background 0.2s, color 0.2s;
+  }
+  .option.selected .option-letter { background: #0d9488; color: #fff; }
+
+  .product-name {
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .name-a { color: #2dd4bf; }
+  .name-b { color: #818cf8; }
+  .name-c { color: #fb923c; }
+
+  .by-destaka {
+    font-size: 13px;
+    font-weight: 500;
+    color: #475569;
+    margin-bottom: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  .concept-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #475569;
+    margin-bottom: 4px;
+  }
+  .concept {
+    font-size: 15px;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin-bottom: 10px;
+  }
+
+  .tagline {
+    font-size: 17px;
+    font-style: italic;
+    color: #94a3b8;
+    margin-bottom: 16px;
+    line-height: 1.4;
+    padding-left: 12px;
+    border-left: 2px solid #1e293b;
+  }
+  .option.selected .tagline { border-left-color: #0d9488; }
+
+  .rationale {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .traits {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .trait {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: #1e293b;
+    color: #94a3b8;
+    border: 1px solid #334155;
+  }
+  .trait.strong { background: #0d3d35; color: #2dd4bf; border-color: #0d9488; }
+  .trait.risk { background: #1c0f0f; color: #f87171; border-color: #7f1d1d; }
+
+  .divider { border: none; border-top: 1px solid #1e293b; margin: 16px 0; }
+
+  .corridor-test {
+    background: #111827;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-top: 16px;
+  }
+  .corridor-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #475569;
+    margin-bottom: 6px;
+  }
+  .corridor-quote {
+    font-size: 13px;
+    color: #94a3b8;
+    font-style: italic;
+  }
+  .corridor-quote strong { color: #e2e8f0; font-style: normal; }
+</style>
+
+<h2>Naming — 3 candidatos</h2>
+<p class="subtitle">Clique para selecionar o que mais ressoa. Todos abstratos, memoraveis, compatíveis com "by Destaka".</p>
+
+<div class="options">
+
+  <!-- OPÇÃO A: PULSO -->
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="option-header">
+      <div class="option-letter">A</div>
+      <div class="product-name name-a">Pulso</div>
+    </div>
+    <div class="by-destaka">Pulso by Destaka</div>
+
+    <div class="concept-label">Conceito</div>
+    <div class="concept">O batimento cardiaco do consultorio. Regular, automatico, nunca para.</div>
+
+    <div class="tagline">"Sua agenda no ritmo certo, sozinha."</div>
+
+    <div class="rationale">
+      Pulso e uma metafora de saude que todo profissional entende visceralmente — um batimento que nunca para, que define o ritmo de tudo. O produto trabalha no mesmo principio: enquanto o medico cuida dos pacientes, o Pulso mantem o ritmo de retorno, confirmacao e relacionamento funcionando automaticamente. Nao precisa de explicacao.
+    </div>
+
+    <hr class="divider">
+    <div class="traits">
+      <span class="trait strong">Metafora de saude universal</span>
+      <span class="trait strong">2 silabas — facil de falar</span>
+      <span class="trait strong">Associacao com ritmo e continuidade</span>
+      <span class="trait">Fonetica forte em PT-BR</span>
+    </div>
+
+    <div class="corridor-test">
+      <div class="corridor-label">Teste do corredor (congresso odontologico)</div>
+      <div class="corridor-quote">"Uso o <strong>Pulso</strong>. E um sistema que enche minha agenda sozinho, me manda pacientes inativos de volta, tudo pelo WhatsApp. Nao faco nada."</div>
+    </div>
+  </div>
+
+  <!-- OPÇÃO B: NEXO -->
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="option-header">
+      <div class="option-letter">B</div>
+      <div class="product-name name-b">Nexo</div>
+    </div>
+    <div class="by-destaka">Nexo by Destaka</div>
+
+    <div class="concept-label">Conceito</div>
+    <div class="concept">A conexao que mantem paciente e profissional ligados para sempre.</div>
+
+    <div class="tagline">"O relacionamento que voce nao tem tempo de fazer, feito."</div>
+
+    <div class="rationale">
+      Nexo vem do latim nexus — vinculo, conexao, ligacao. E o elo invisivel entre o profissional e o paciente que faz o paciente voltar nao por obrigacao, mas porque se sente lembrado, valorizado, conectado. O produto e a infraestrutura dessa conexao — automatica, discreta, continua. Tem apelo emocional forte e soturno profissional.
+    </div>
+
+    <hr class="divider">
+    <div class="traits">
+      <span class="trait strong">Apelo emocional alto</span>
+      <span class="trait strong">Origem latina — ressoa em area de saude</span>
+      <span class="trait strong">Posicionamento de relacionamento, nao de ferramenta</span>
+      <span class="trait">Internacional — funciona em portugues e espanhol</span>
+    </div>
+
+    <div class="corridor-test">
+      <div class="corridor-label">Teste do corredor</div>
+      <div class="corridor-quote">"Uso o <strong>Nexo</strong>. Mantém meu contato com os pacientes automatico — aniversario, retorno, confirmacao, tudo pelo WhatsApp. Minha agenda encheu sozinha."</div>
+    </div>
+  </div>
+
+  <!-- OPÇÃO C: LACO -->
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="option-header">
+      <div class="option-letter">C</div>
+      <div class="product-name name-c">Laco</div>
+    </div>
+    <div class="by-destaka">Laco by Destaka</div>
+
+    <div class="concept-label">Conceito</div>
+    <div class="concept">O vinculo que prende o paciente ao consultorio — com gentileza, nao com obrigacao.</div>
+
+    <div class="tagline">"Pacientes que voltam porque gostam, nao porque precisam."</div>
+
+    <div class="rationale">
+      Laco e o vinculo entre duas pessoas. Diferente de "fidelizacao" (que soa corporativo), laco e uma palavra afetiva — remete a amizade, a cuidado, a continuidade de uma relacao. Para profissionais de saude que constroem carreira em cima de confianca e repeticao, a metafora e cirurgicamente precisa. O risco e a associacao com "lacos" no sentido de armadilha — dependendo do framing, pode ser revertido.
+    </div>
+
+    <hr class="divider">
+    <div class="traits">
+      <span class="trait strong">Alta carga emocional e afetiva</span>
+      <span class="trait strong">Diferenciacao por sentimento, nao por funcionalidade</span>
+      <span class="trait">2 silabas — facil de falar</span>
+      <span class="trait risk">Risco: associacao com "armadilha" no contexto errado</span>
+    </div>
+
+    <div class="corridor-test">
+      <div class="corridor-label">Teste do corredor</div>
+      <div class="corridor-quote">"Uso o <strong>Laco</strong>. Cuida do relacionamento com meus pacientes automaticamente — eles voltam, confirmam consulta, tudo sem eu precisar fazer nada."</div>
+    </div>
+  </div>
+
+</div>

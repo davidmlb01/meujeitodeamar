@@ -1,0 +1,243 @@
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0f1e; color: #e2e8f0; padding: 32px 24px; }
+
+  h2 { font-size: 20px; font-weight: 800; color: #f1f5f9; margin-bottom: 4px; }
+  .subtitle { font-size: 13px; color: #64748b; margin-bottom: 6px; }
+  .saved-note { font-size: 11px; color: #475569; margin-bottom: 28px; padding: 8px 12px; background: #111827; border-radius: 6px; border-left: 2px solid #1e293b; }
+
+  .options { display: grid; grid-template-columns: 1fr; gap: 16px; }
+
+  .option {
+    background: #0f1623;
+    border: 2px solid #1e293b;
+    border-radius: 16px;
+    padding: 24px 28px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .option:hover { border-color: #334155; }
+  .option.selected { border-color: #2dd4bf; background: #071a19; }
+
+  .option-header { display: flex; align-items: baseline; gap: 14px; margin-bottom: 4px; }
+  .option-letter {
+    width: 26px; height: 26px; background: #1e293b; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: #64748b; flex-shrink: 0;
+    transition: background 0.2s, color 0.2s;
+  }
+  .option.selected .option-letter { background: #0d9488; color: #fff; }
+
+  .product-name { font-size: 40px; font-weight: 900; letter-spacing: -0.03em; line-height: 1; }
+  .d { color: #f472b6; }
+  .e { color: #34d399; }
+  .f { color: #fbbf24; }
+  .g { color: #60a5fa; }
+  .h { color: #c084fc; }
+
+  .by-destaka { font-size: 12px; font-weight: 500; color: #475569; margin-bottom: 14px; letter-spacing: 0.02em; }
+
+  .concept { font-size: 14px; font-weight: 700; color: #f1f5f9; margin-bottom: 8px; }
+  .tagline {
+    font-size: 16px; font-style: italic; color: #94a3b8; margin-bottom: 14px;
+    line-height: 1.4; padding-left: 12px; border-left: 2px solid #1e293b;
+  }
+  .option.selected .tagline { border-left-color: #0d9488; }
+
+  .rationale { font-size: 13px; color: #64748b; line-height: 1.6; margin-bottom: 14px; }
+
+  .brand-voice {
+    background: #111827;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .brand-voice-name {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: #475569; white-space: nowrap; padding-top: 1px; min-width: 80px; flex-shrink: 0;
+  }
+  .brand-voice-quote { font-size: 12px; color: #94a3b8; line-height: 1.5; font-style: italic; }
+
+  .traits { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
+  .trait {
+    font-size: 10px; font-weight: 600; padding: 3px 9px; border-radius: 20px;
+    background: #1e293b; color: #94a3b8; border: 1px solid #334155;
+  }
+  .trait.strong { background: #0d3d35; color: #2dd4bf; border-color: #0d9488; }
+  .trait.risk { background: #1c0f0f; color: #f87171; border-color: #7f1d1d; }
+
+  .lingo-badge {
+    display: inline-flex; gap: 5px; align-items: center; margin-bottom: 10px;
+    font-size: 11px; color: #64748b;
+  }
+  .lingo-badge span {
+    background: #1e293b; border-radius: 4px; padding: 1px 7px;
+    font-weight: 600; color: #94a3b8; font-size: 10px;
+  }
+</style>
+
+<h2>Naming — mais 5 opcoes</h2>
+<p class="subtitle">Brand squad envolvido. Cada nome com analise fonosemantica + voz de especialista.</p>
+<div class="saved-note">Guardados da rodada anterior: A. Pulso &nbsp;|&nbsp; B. Nexo &nbsp;|&nbsp; C. Laco</div>
+
+<div class="options">
+
+  <!-- D: VOLTA -->
+  <div class="option" data-choice="d" onclick="toggleSelect(this)">
+    <div class="option-header">
+      <div class="option-letter">D</div>
+      <div class="product-name d">Volta</div>
+    </div>
+    <div class="by-destaka">Volta by Destaka</div>
+    <div class="lingo-badge">
+      Origem: <span>Portugues</span> Tipo: <span>Metaforico</span> Fonema dominante: <span>V + A aberto</span>
+    </div>
+    <div class="concept">O nome e a promessa. O produto faz o paciente voltar. O nome JA diz isso.</div>
+    <div class="tagline">"Pacientes que sempre voltam. Sozinhos."</div>
+    <div class="rationale">
+      Saul Bass diria que o nome ideal e aquele que performa o produto. Volta nao descreve uma feature — ele descreve o resultado que o dentista quer. O "V" fricativo da velocidade e movimento. O "A" aberto da acessibilidade. Duas silabas. Impossivel de esquecer. Risco: "dar uma volta" (passeio) pode confundir em contextos informais, mas no frame de saude a associacao de retorno domina.
+    </div>
+    <div class="brand-voice">
+      <div class="brand-voice-name">Saul Bass</div>
+      <div class="brand-voice-quote">"Reduce to the single idea. What does this product do? It makes patients VOLTA. The name IS the product. Done."</div>
+    </div>
+    <div class="brand-voice">
+      <div class="brand-voice-name">Naming Strat.</div>
+      <div class="brand-voice-quote">"Phonosemantically strong. V + OL + TA: fricative energy, open vowel accessibility, plosive finish. It sounds like movement and arrival simultaneously."</div>
+    </div>
+    <div class="traits">
+      <span class="trait strong">Nome = promessa = resultado</span>
+      <span class="trait strong">2 silabas perfeitas</span>
+      <span class="trait strong">Passa o teste do corredor com zero explicacao</span>
+      <span class="trait risk">Risco de ambiguidade com "dar uma volta"</span>
+    </div>
+  </div>
+
+  <!-- E: FILO -->
+  <div class="option" data-choice="e" onclick="toggleSelect(this)">
+    <div class="option-header">
+      <div class="option-letter">E</div>
+      <div class="product-name e">Filo</div>
+    </div>
+    <div class="by-destaka">Filo by Destaka</div>
+    <div class="lingo-badge">
+      Origem: <span>Grego philos</span> Tipo: <span>Sugestivo</span> Fonema dominante: <span>F fricativo + I preciso</span>
+    </div>
+    <div class="concept">Do grego philos — amor, amizade, lealdade. O produto que cultiva a relacao entre profissional e paciente ate ela se tornar fidelidade.</div>
+    <div class="tagline">"Pacientes fieis. Automaticamente."</div>
+    <div class="rationale">
+      Filo carrega a etimologia da palavra "fidelidade" sem soar corporativo. Filosofia, filantrofia, filo — todas derivam de philos, amor pelo outro. Para um dentista que constroi carreira em confianca e repeticao, o nome ressoa emocionalmente antes de qualquer explicacao. O "F" da velocidade e elegancia. O "I" da precisao. Breve, memoravel, e tem profundidade para quem conhece a etimologia — e funciona mesmo para quem nao conhece.
+    </div>
+    <div class="brand-voice">
+      <div class="brand-voice-name">Marty Neumeier</div>
+      <div class="brand-voice-quote">"ZAG. Every CRM sounds like a database. Filo sounds like a friend. Gut feeling test: which would you rather have managing your patients — a CRM or a Filo?"</div>
+    </div>
+    <div class="brand-voice">
+      <div class="brand-voice-name">Naming Strat.</div>
+      <div class="brand-voice-quote">"Etymology creates brand equity over time. Customers don't need to know the Greek root — but they feel it. Filo sounds both modern and timeless."</div>
+    </div>
+    <div class="traits">
+      <span class="trait strong">Etimologia poderosa (philos = amor)</span>
+      <span class="trait strong">Diferencia radicalmente de CRMs genericos</span>
+      <span class="trait strong">2 silabas, facil de escrever e falar</span>
+      <span class="trait">Internacional — funciona em PT, ES, EN</span>
+    </div>
+  </div>
+
+  <!-- F: ARCO -->
+  <div class="option" data-choice="f" onclick="toggleSelect(this)">
+    <div class="option-header">
+      <div class="option-letter">F</div>
+      <div class="product-name f">Arco</div>
+    </div>
+    <div class="by-destaka">Arco by Destaka</div>
+    <div class="lingo-badge">
+      Origem: <span>Latim arcus</span> Tipo: <span>Metaforico</span> Fonema dominante: <span>A aberto + K plosivo</span>
+    </div>
+    <div class="concept">O arco do relacionamento. A curva longa que une o primeiro atendimento a decima consulta — e o produto que mantem esse arco sempre em movimento.</div>
+    <div class="tagline">"O relacionamento que dura. Automaticamente."</div>
+    <div class="rationale">
+      Arco tem dupla forca: e a curva de uma relacao no tempo (arco narrativo, arco de fidelidade) e e estrutural — um arco so se sustenta sob pressao, quanto mais peso, mais forte fica. A metafora e cirurgicamente precisa para um produto de retencao. Vignelli escolheria esse: classico, timeless, sem modismo. O "A" aberto da acessibilidade. O "K" plosivo da solidez.
+    </div>
+    <div class="brand-voice">
+      <div class="brand-voice-name">Massimo Vignelli</div>
+      <div class="brand-voice-quote">"Timeless. In 20 years it will not look dated. An arc is a structural solution — the more pressure applied, the stronger it becomes. This is what loyalty is."</div>
+    </div>
+    <div class="brand-voice">
+      <div class="brand-voice-name">Naming Strat.</div>
+      <div class="brand-voice-quote">"Metaphorical category. Borrowed from architecture and narrative — two domains with strong positive associations. Works in all romance languages."</div>
+    </div>
+    <div class="traits">
+      <span class="trait strong">Metafora estrutural poderosa</span>
+      <span class="trait strong">Timeless — sem risco de envelhecer</span>
+      <span class="trait strong">2 silabas, universal</span>
+      <span class="trait">Graficamente muito forte para identidade visual</span>
+    </div>
+  </div>
+
+  <!-- G: VENA -->
+  <div class="option" data-choice="g" onclick="toggleSelect(this)">
+    <div class="option-header">
+      <div class="option-letter">G</div>
+      <div class="product-name g">Vena</div>
+    </div>
+    <div class="by-destaka">Vena by Destaka</div>
+    <div class="lingo-badge">
+      Origem: <span>Latim vena</span> Tipo: <span>Metaforico</span> Fonema dominante: <span>V fricativo + N nasal</span>
+    </div>
+    <div class="concept">Veia — sempre fluindo, nunca para. O produto que mantem o fluxo de pacientes continuo, como a circulacao que nao cessa.</div>
+    <div class="tagline">"O fluxo de pacientes que nunca para."</div>
+    <div class="rationale">
+      Vena e uma palavra medica que qualquer profissional de saude conhece — mas que fora do contexto clinico soa moderna e fluida. O "V" da elegancia e velocidade. O nasal "N" da conforto e continuidade. Tem uma qualidade quase poetica no contexto de saude: a veia e o canal pelo qual a vida circula. Para um produto que mantem a vida do consultorio circulando, a metafora e perfeita. Risco baixo — "vena" nao tem conotacao negativa em portugues.
+    </div>
+    <div class="brand-voice">
+      <div class="brand-voice-name">Naming Strat.</div>
+      <div class="brand-voice-quote">"Medical professionals will immediately feel the resonance without it feeling clinical. The nasal N creates warmth. V + ENA has an almost poetic quality — velocity with continuity."</div>
+    </div>
+    <div class="brand-voice">
+      <div class="brand-voice-name">Marty Neumeier</div>
+      <div class="brand-voice-quote">"The swap test: remove Vena and put any competitor name. Does the gut feeling change? Yes. That's the sign of a real brand."</div>
+    </div>
+    <div class="traits">
+      <span class="trait strong">Metafora medica que ressoa sem ser clinica</span>
+      <span class="trait strong">V + nasal = elegancia + conforto</span>
+      <span class="trait strong">Sem conotacao negativa</span>
+      <span class="trait">2 silabas, facil em PT/ES/EN/IT</span>
+    </div>
+  </div>
+
+  <!-- H: BRIO -->
+  <div class="option" data-choice="h" onclick="toggleSelect(this)">
+    <div class="option-header">
+      <div class="option-letter">H</div>
+      <div class="product-name h">Brio</div>
+    </div>
+    <div class="by-destaka">Brio by Destaka</div>
+    <div class="lingo-badge">
+      Origem: <span>Italiano/Portugues</span> Tipo: <span>Sugestivo abstrato</span> Fonema dominante: <span>B plosivo + R vibrante</span>
+    </div>
+    <div class="concept">Energia, vivacidade, esprito. O consultorio que tem brio — funciona sozinho, cheio de vida, cheio de pacientes.</div>
+    <div class="tagline">"Seu consultorio com vida propria."</div>
+    <div class="rationale">
+      Brio e uma palavra que os brasileiros reconhecem e amam — "fulano tem brio" e elogio de carater e vigor. Aplicado ao consultorio: o consultorio que tem brio e aquele que funciona com energia propria, sem o profissional precisar empurrar. E o produto que da brio ao consultorio. O "B" plosivo da impacto e forca. O "R" vibrante da energia. 2 silabas. Quase impossivel de esquecer. Unico risco: verificar disponibilidade de dominio e marca registrada.
+    </div>
+    <div class="brand-voice">
+      <div class="brand-voice-name">Paula Scher</div>
+      <div class="brand-voice-quote">"Brio is a feeling before it's a word. You say it and people smile. Every brand should make people feel something the moment they hear the name."</div>
+    </div>
+    <div class="brand-voice">
+      <div class="brand-voice-name">Naming Strat.</div>
+      <div class="brand-voice-quote">"B plosive = strength and impact. R vibrant = energy and movement. Short O = power and gravity. Phonosemantically ideal for a product that promises effortless momentum."</div>
+    </div>
+    <div class="traits">
+      <span class="trait strong">Alta carga emocional positiva</span>
+      <span class="trait strong">B + R = impacto + energia (fonosemantica)</span>
+      <span class="trait strong">Unico no mercado de saude</span>
+      <span class="trait risk">Verificar marca registrada antes de avançar</span>
+    </div>
+  </div>
+
+</div>

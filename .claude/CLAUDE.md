@@ -31,6 +31,7 @@ Ativar com `@agent-name` ou `/AIOX:agents:agent-name`. Comandos: prefixo `*`.
 | `@data-engineer` | Dara | Database design |
 | `@ux-design-expert` | Uma | UX/UI design |
 | `@devops` | Gage | CI/CD, git push (EXCLUSIVO) |
+| `@caio-architect` | Kai | Estrategia de IA, LLM patterns, ROI de IA, IA responsavel |
 
 Quando um agente esta ativo: seguir persona, expertise e workflow patterns desse agente.
 
