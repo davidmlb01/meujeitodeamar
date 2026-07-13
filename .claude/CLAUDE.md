@@ -61,11 +61,15 @@ Quando um agente esta ativo: seguir persona, expertise e workflow patterns desse
 2. Ler MOC do projeto no vault: `projects/{nome}/MOC.md`
 3. Carregar so o que a tarefa exige (max 2 notas extras do vault)
 
-### Ao encerrar sessao:
-1. Atualizar MOC.md dos projetos tocados (campo updated: + decisoes)
-2. Atualizar MASTER-BACKUP.md
-3. Commit + push
-4. /save-session
+### Ao encerrar sessao (OBRIGATORIO — nesta ordem):
+1. **Obsidian vault primeiro:** criar/atualizar `projects/{nome}/MOC.md` no vault com decisoes da sessao
+2. **Se projeto novo:** criar tambem `projects/{nome}/{nome}.md` com contexto estrategico completo
+3. Atualizar MASTER-BACKUP.md no BIG HEAD
+4. Commit + push (BIG HEAD)
+5. /save-session
+
+> REGRA ABSOLUTA: Obsidian e sempre o passo 1. Nao existe "salvar depois". Nao esperar o David pedir.
+> Vault path: `/Users/davidlevy/Library/Mobile Documents/iCloud~md~obsidian/Documents/Joker's Mind/`
 
 ### Indice de Projetos Ativos
 
@@ -78,6 +82,7 @@ Quando um agente esta ativo: seguir persona, expertise e workflow patterns desse
 | Mulambada | projects/mulambada/MOC.md | Kickoff completo |
 | Energy Tech | projects/energy-tech/MOC.md | 1a entrega 30/04 |
 | UNLMTD | projects/unlmtd/MOC.md | Brandbook pronto |
+| Brivia | projects/brivia/MOC.md | Tagline fechada: Built Forward |
 
 ### Protocolos detalhados (ler sob demanda do vault):
 - `reference/aiox-protocols.md` — agents, authority, squads
@@ -119,6 +124,12 @@ Quando um agente esta ativo: seguir persona, expertise e workflow patterns desse
 Ao CRIAR memoria: vault (L2) primeiro, depois espelho em L1.
 Ao ATUALIZAR: editar vault, atualizar espelho.
 L2 prevalece em caso de divergencia.
+
+**QUANDO salvar no Obsidian:**
+- Ao encerrar qualquer sessao (passo 1, obrigatorio)
+- Ao tomar qualquer decisao importante no projeto
+- Ao criar projeto novo (MOC + nota de contexto)
+- NAO esperar o David pedir. NAO perguntar se deve salvar. Salvar e executar.
 
 ---
 *Synkra AIOX v3.0 — Context Retrieval Architecture*
