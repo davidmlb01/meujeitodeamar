@@ -1,6 +1,6 @@
 # MASTER-BACKUP: Destaka
-**Última atualização:** 2026-06-04 (sessão governança de IA — 3 correções implementadas)
-**Status:** MVP /saude em produção. Governança de IA L1 consolidada. GBP API ticket 4-9265000041644 pendente (~16/06).
+**Última atualização:** 2026-06-26 (sessão landing page publica + deploy Vercel + resubmissao GBP API)
+**Status:** MVP /saude em producao. Landing page publica no ar. GBP API ticket 4-9265000041644 sem resposta (REJEITADO via Gmail — ver nota abaixo). Opcao B como caminho principal.
 
 ---
 
@@ -33,6 +33,34 @@ Seed temporal (semana do ano + sequência por org) injetada em cada prompt. Evit
 - [ ] Verificar se campos `lgpd_ai_consent` e `lgpd_consent_date` existem na tabela `organizations` do Supabase
 - [ ] Integrar `hasLgpdConsentForAi()` no `review-monitor.ts`
 - [ ] GBP API ticket 4-9265000041644 — aguardando aprovação Google (~16/06/2026)
+
+---
+
+## Sessão 2026-06-26 — Landing Page Publica + Deploy Vercel
+
+**Objetivo:** desbloquear aprovacao GBP API (rejeitada). Google exige site publico funcional.
+
+### O que foi feito
+
+1. **`src/app/page.tsx`** reescrito: substituiu `redirect('/login')` por landing page completa (hero, features, how it works, pricing, footer). Cores: teal `#14B8A6`, dark bg `#071a19`.
+2. **`src/app/privacy/page.tsx`** criado: politica LGPD completa (10 secoes). OAuth 2.0, Stripe, Claude AI com sanitizacao, Supabase, retencao 30 dias.
+3. **`src/app/termos/page.tsx`** criado: termos de uso completos. Jurisdicao Sao Paulo, sem reembolso proporcional, limitacao de responsabilidade.
+4. **`src/app/layout.tsx`** corrigido: titulo "Create Next App" -> "Destaka | Google Business Profile no piloto automatico", lang=pt-BR.
+5. **Vercel bug resolvido:** `rootDirectory: packages/web` causava Error em todo deploy. Corrigido via API REST PATCH -> `rootDirectory: null`. Deploy READY: `destaka-299atxjjs-david-8558s-projects.vercel.app`.
+6. **Migracoes Supabase commitadas:** `002_google_tokens.sql`, `005_instrumentation.sql`, `006_automation_engine.sql`.
+
+### Pendentes desta sessao
+
+- [ ] OAuth consent screen GCP (projeto 248596818772): adicionar `https://destaka.com.br/privacy` e `/termos`
+- [ ] Categoria GBP "Empresa de Software": fotos ainda com status PENDING no painel Google
+- [ ] Resubmeter formulario GBP API com texto de `docs/destaka/gbp-api-aprovacao-plano.md`
+- [ ] `hasLgpdConsentForAi()` pendente integracao em `review-monitor.ts` (vem da sessao 04/06)
+
+### Nota GBP API (verificado em 27/07/2026 via Gmail)
+
+- Ticket antigo `0-2582000041216`: **REJEITADO** em 08/06/2026. Motivo: "account did not pass our internal quality checks."
+- Ticket novo `4-9265000041644`: sem resposta registrada no Gmail ate 27/07/2026 (54 dias).
+- Caminho principal: **Opcao B onboarding** (cliente adiciona `app@destaka.com.br` como gerente no GMB — funciona hoje, sem depender de API).
 
 ---
 
@@ -302,12 +330,50 @@ Stories 01-08, 10-11 todas implementadas em `destaka-remote`. Story 09 (NAP Cita
 - [x] Onboarding flow UX com @ux-design-expert (ux-onboarding-flow.md, 15 telas)
 - [x] Setup do repositório e stack técnica (destaka-remote, deploy Vercel ativo)
 - [x] EPIC-001 MVP completo: Stories 01-08, 10, 11 implementadas e em producao
+- [x] Landing page publica criada (26/06): hero, features, pricing, privacy, termos
+- [x] Google OAuth: app em producao, verificado (sem tela "app nao verificado")
+
+### Tecnico
+
+- [ ] Verificar/criar campos `lgpd_ai_consent` e `lgpd_consent_date` na tabela `organizations` (Supabase migration)
+- [ ] Integrar `hasLgpdConsentForAi()` no `review-monitor.ts`
+- [ ] Implementar Opcao B onboarding: UI para cliente adicionar `app@destaka.com.br` como gerente no GMB (funciona hoje, nao depende de API)
+- [ ] OAuth consent screen GCP (projeto 248596818772): adicionar URLs `/privacy` e `/termos`
+- [ ] CSP nonce-based HIGH-01 (sprint separada)
+- [ ] Next.js 16: renomear `middleware.ts` para `proxy.ts` (sprint separada)
+- [ ] Padrão D02 na landing: pin grid em 8-12% opacity (estetica, recomendacao Paula Scher)
+- [ ] Aplicar paleta de verticais no produto: Pet, Juridico, Contabil, Imoveis
+
+### GBP API
+
+- [ ] Categoria GBP "Empresa de Software": fotos ainda com status PENDING no painel Google
+- [ ] Resubmeter formulario GBP API usando `docs/destaka/gbp-api-aprovacao-plano.md`
+
+### Aquisicao
+
+- [ ] Primeiro cliente via Opcao B (caminho desbloqueado hoje, sem depender de API)
 - [ ] Conseguir GBP real de dentista para teste end-to-end do produto
 - [ ] Validar pricing com 5 dentistas antes de lançar
-- [ ] Contratar advogado especializado em publicidade de saúde (quando houver faturamento)
-- [ ] Iniciar aprovação WhatsApp Business API com Meta (Fase 2, sem urgência)
+- [ ] LinkedIn: posting manual (2/dia, conteudo em `content/social/`)
+- [ ] Submeter sitemap no Google Search Console (`destaka.com.br/sitemap.xml`)
 - [ ] Primeiros clientes pagantes (meta: 5 pilotos dentistas)
-- [ ] Criar pagina LinkedIn (enxoval pronto em docs/social/linkedin-setup.html)
+- [ ] Provas sociais: aguardando dados reais dos 2 testadores (nome, resultado, autorizacao)
+- [ ] Mapear 5-10 escritorios contabeis especializados em saude (SP, BH, RJ, Campinas)
+- [ ] Pitch de 1 pagina para parceria contabil (modelo bilateral ganha-ganha)
+- [ ] Kit parceiro: link rastreavel, material de apoio, WhatsApp direto
+
+### Legal / Compliance
+
+- [ ] Contratar advogado especializado em publicidade de saude (quando houver faturamento)
+- [ ] Compliance CRMV (antes de lançar vertical Pet)
+- [ ] Contratar advogado OAB (antes de lançar vertical Juridico)
+
+### Fase 2 (sem urgencia)
+
+- [ ] Iniciar aprovacao WhatsApp Business API com Meta
+- [ ] Instagram Graph API (apos LinkedIn API aprovada)
+- [ ] Exportar brandbook como PDF
+- [ ] Google OAuth: verificacao formal antes de escalar alem de 100 usuarios
 
 ---
 

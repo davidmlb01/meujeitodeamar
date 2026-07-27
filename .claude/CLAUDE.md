@@ -59,7 +59,10 @@ Quando um agente esta ativo: seguir persona, expertise e workflow patterns desse
 ### Ao iniciar qualquer tarefa:
 1. Identificar projeto ativo (pela mensagem ou perguntar)
 2. Ler MOC do projeto no vault: `projects/{nome}/MOC.md`
-3. Carregar so o que a tarefa exige (max 2 notas extras do vault)
+3. Ler MASTER-BACKUP.md do projeto em `docs/{nome}/MASTER-BACKUP.md`
+4. Carregar so o que a tarefa exige (max 2 notas extras do vault)
+
+> REGRA ABSOLUTA DE LEITURA: ao abrir qualquer projeto (listar pendencias, dar status, responder perguntas sobre o projeto), SEMPRE ler as DUAS fontes: Obsidian MOC + MASTER-BACKUP. Nunca so uma. O Obsidian e a fonte de verdade (mais recente). O MASTER-BACKUP e o espelho local. Se divergirem, o Obsidian prevalece.
 
 ### Ao encerrar sessao (OBRIGATORIO — nesta ordem):
 1. **Obsidian vault primeiro:** criar/atualizar `projects/{nome}/MOC.md` no vault com decisoes da sessao
