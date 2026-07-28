@@ -1,6 +1,66 @@
 # MASTER-BACKUP: Destaka
-**Última atualização:** 2026-06-26 (sessão landing page publica + deploy Vercel + resubmissao GBP API)
-**Status:** MVP /saude em producao. Landing page publica no ar. GBP API ticket 4-9265000041644 sem resposta (REJEITADO via Gmail — ver nota abaixo). Opcao B como caminho principal.
+**Última atualização:** 2026-07-28 (sessao benchmark CRM + features Tier Plataforma definidas)
+**Status:** MVP /saude em producao. Benchmark CRM completo. Features P0 do Tier Plataforma definidas. GBP API Opcao B como caminho principal.
+
+---
+
+## Sessao 2026-07-28 — Benchmark CRM + Features Tier Plataforma
+
+### Benchmark realizado
+
+Arquivo completo: `docs/destaka/crm-benchmark-v1.md`
+
+Concorrentes analisados (10 sistemas): Versatilis, iClinic, Simples Dental, Clinicorp, ByDoctor, Nuvem Medica, Doctoralia Pro, Docway, Cloudia, Ploomes/Bigin/HubSpot (CRMs genericos).
+
+### 3 gaps de mercado confirmados
+
+1. **Nenhum conecta GMB ao CRM.** O Google e o principal canal de aquisicao de qualquer consultorio, mas nenhum sistema de gestao clinica toca nisso.
+2. **CRM de pacientes e superficial em todos.** O mais avancado (Simples Dental Pro, R$349/mes) tem funil de orcamentos. Ninguem automatiza retorno por ciclo clinico.
+3. **Onboarding ainda e humano.** Versatilis exige implantacao em 3 etapas. iClinic exige demo. Nenhum e self-service de verdade.
+
+### Versatilis — concorrente mais direto ao Tier Plataforma
+
+- Posicionamento all-inclusive ("nao vendemos pacotinhos"), sem tiering de features
+- 500+ clinicas, 15.000+ usuarios, 2M+ pacientes cadastrados
+- Preco sob consulta (nao divulgado publicamente)
+- Fraquezas: sem GMB, implantacao assistida obrigatoria, onboarding nao e self-service
+
+### Features P0 definidas (lancamento Tier Plataforma)
+
+| Feature | Diferencial |
+|---------|------------|
+| Reativacao automatica por ciclo clinico | Unico no mercado |
+| Dashboard de receita dormindo | Unico no mercado |
+| Loop GMB → CRM (reviews, queda de vis., indicacoes) | Unico no mercado |
+| Orcamento nao aprovado → reativacao automatica | Melhor que Simples Dental Pro |
+
+### Features P1 (lock-in)
+
+- Linha do tempo completa do paciente
+- Segmentacao inteligente por perfil (ativo, em risco, inativo, indicador)
+- Referral com trigger automatico no momento de satisfacao
+
+### Features P2 (segunda fase)
+
+- Predicao de churn por ausencia de visitas
+- Analise de cohort por procedimento
+
+### Regra Zero Touch aplicada ao CRM
+
+Nenhuma feature pode exigir acao recorrente do profissional. Se ele precisa abrir o sistema para a automacao funcionar, e feature errada.
+
+### Matematica de ROI para venda do Tier Plataforma (R$997/mes)
+
+- Consultorio medio: 200 pacientes, 20% inativos = 40 pacientes
+- 40 x ticket medio R$800 = R$32.000 de receita dormindo
+- Destaka reativa 30% = R$9.600/ano = R$800/mes de receita nova
+- R$997/mes = pago com retorno de 1,25 paciente/mes
+
+Essa matematica precisa aparecer na landing, no diagnostico gratuito e no onboarding.
+
+### Proximo passo recomendado
+
+Validar disposicao a pagar R$997/mes com 5 profissionais de saude usando a pergunta de onboarding ja aprovada pelo C-Level (04/05/2026): "Usa sistema para gerenciar pacientes?"
 
 ---
 
