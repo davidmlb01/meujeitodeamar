@@ -1,6 +1,30 @@
 # MASTER-BACKUP: Destaka
-**Última atualização:** 2026-07-28 (sessao benchmark CRM + features Tier Plataforma definidas)
-**Status:** MVP /saude em producao. Benchmark CRM completo. Features P0 do Tier Plataforma definidas. GBP API Opcao B como caminho principal.
+**Última atualização:** 2026-07-29 (landing page restaurada + GBP API prerequisites confirmados)
+**Status:** MVP em producao. Landing page bonita restaurada (commit 603fe34). GBP API: pronto para submeter formulario como UNLMTD/david@unlmtd.etc.br.
+
+---
+
+## Sessao 2026-07-29 (2) — Landing page restaurada
+
+**Problema:** sessao 26/06 destruiu a landing page original. O pedido era mover /saude para a homepage; o que aconteceu foi deletar /saude e criar uma pagina generica no lugar.
+
+**Correcao aplicada:**
+- `src/app/page.tsx` reescrito com conteudo completo de `destaka-remote/saude/page.tsx`
+- Design restaurado: fundo `#071a19`, accent teal `#14B8A6`, copy excelente em PT-BR
+- Secoes: Hero + stats 46/76/88%, tabela comparativa, Problema, Como Funciona, FAQ, Recursos (bento 12col), Manifesto, Footer
+- Componentes criados: `src/components/ui/Logo.tsx`, `Button.tsx`, `Badge.tsx`
+- Fonte Outfit adicionada como `--font-display` no layout
+- `src/app/globals.css` atualizado com tokens de design do Destaka Saude
+- Links: `/saude/verificar` e `/saude/login` apontam para `/login` (rotas existentes no DESTAKA)
+- Build: 21 rotas, zero erros TypeScript, zero ESLint warnings
+- **Pushed:** commit `603fe34` em `main` (github.com/davidmlb01/destaka)
+
+**Pendente desta sessao:**
+- [ ] **PROXIMO:** Submeter formulario GBP API em `support.google.com/business/contact/api_default` logado como `david@unlmtd.etc.br`
+- [ ] Opcao B onboarding: UI para cliente adicionar app@destaka.com.br como gerente no GMN
+- [ ] Primeiro cliente via login/dashboard (fluxo OAuth funcionando hoje)
+- [ ] LinkedIn manual posting (2/dia, content/social/)
+- [ ] Submeter sitemap Google Search Console (destaka.com.br/sitemap.xml)
 
 ---
 
