@@ -134,5 +134,23 @@ L2 prevalece em caso de divergencia.
 - Ao criar projeto novo (MOC + nota de contexto)
 - NAO esperar o David pedir. NAO perguntar se deve salvar. Salvar e executar.
 
+## Design Context — UNLMTD (unlmtd.etc.br)
+
+> Contexto completo: `/Users/davidlevy/Desktop/PJ/UNLMTD-design-system/.impeccable.md`
+
+**Personalidade:** Ousada. Editorial. Precisa.
+**Referencia:** Linear.app (dark, minimalista premium, sem ruido).
+**Anti-ref:** Corporativo, SaaS generico, agencia criativa colorida.
+
+**5 principios inegociaveis:**
+1. Dark-first exclusivo — nunca versao clara
+2. DM Serif Display e identidade, nao decoracao — peso 400, tracking negativo
+3. Contencao como sofisticacao — cada elemento justifica presenca
+4. Terra (#C4622D) com proposito — hover, acento, hierarquia. Nunca fill decorativo
+5. Copy que toma posicao — sem hedging, sem linguagem de RH
+
+**Tokens:** `--black #0D0D0D` / `--cream #EDE8DC` / `--terra #C4622D` / `--ouro #C8922A`
+**Stack:** HTML estatico, Vercel, sem build, sem frameworks
+
 ---
 *Synkra AIOX v3.0 — Context Retrieval Architecture*
