@@ -1,8 +1,8 @@
 # PRD — CRM Destaka
-**Versao:** 1.0
-**Status:** Draft — aguardando critique @qa
-**Autor:** Morgan (AIOX PM)
-**Data:** 2026-07-29
+**Versao:** 1.1
+**Status:** Revisado pos-critique @qa — aguardando re-critique
+**Autor:** Morgan (AIOX PM) | Revisao: Quinn (@qa)
+**Data:** 2026-07-29 | Revisado: 2026-07-30
 **Nome publico:** A definir (@brand-chief)
 **Nome interno:** CRM Destaka
 
@@ -44,8 +44,8 @@ O resultado: o profissional de saude descobre que perdeu pacientes so quando olh
 
 | Metrica | Meta 30 dias | Meta 90 dias |
 |---------|-------------|-------------|
-| Pacientes reativados por clinica/mes | >= 3 | >= 8 |
-| Taxa de resposta ao WhatsApp de reativacao | >= 15% | >= 20% |
+| Pacientes reativados por clinica/mes (def: responderam WA + procedimento registrado em 60 dias) | >= 3 | >= 8 |
+| Taxa de resposta ao WhatsApp de reativacao (replies rastreados via webhook Meta) | >= 15% | >= 20% |
 | Setup time (onboarding completo) | < 30 min | < 20 min |
 | NPS dos usuarios beta | >= 50 | >= 60 |
 | Retencao no beta (30 dias) | >= 80% | >= 85% |
@@ -79,8 +79,8 @@ O resultado: o profissional de saude descobre que perdeu pacientes so quando olh
 |----------|-----------|
 | Quem | Clinica com 2 a 3 profissionais, mesmo dono |
 | Tamanho | Ate 3 cadeiras / salas |
-| Diferenca do primario | Precisa de multi-profissional no mesmo sistema |
-| Nota | Precificacao diferenciada (a definir pos-beta) |
+| Acesso em V1 | Login unico (profissional principal ou secretaria). Multi-login por profissional e feature V1.1 |
+| Nota | Precificacao diferenciada para multi-profissional a definir pos-beta |
 
 ### Fora do escopo (nao atender em V1)
 
@@ -117,7 +117,12 @@ Funcionalidades:
 - Timeline do paciente: historico completo de visitas, procedimentos e comunicacoes
 - Segmentacao automatica: por status, especialidade, valor, tempo de inatividade
 - Busca e filtros avancados
-- LGPD: consentimento de comunicacao WhatsApp registrado por paciente
+- **Fluxo de consentimento LGPD (obrigatorio para habilitar WhatsApp):**
+  - Campo de consentimento por paciente: aceite para comunicacao via WhatsApp
+  - Data e hora do aceite registrados no banco (audit trail)
+  - Pacientes sem consentimento nao entram na fila de reativacao (bloqueio automatico)
+  - Fluxo de "Optou fora": paciente pode ser marcado manualmente ou por resposta negativa no WhatsApp
+  - Template de comunicacao LGPD incluido no onboarding do beta (profissional envia para pacientes antes de importar)
 
 ### 6.2 Prontuario Funcional
 
@@ -157,8 +162,8 @@ Funcionalidades:
 Funcionalidades:
 - Numero de pacientes inativos no momento
 - Estimativa de receita dormindo (inativos x ticket medio historico)
-- Receita recuperada no mes (reativacoes que agendaram)
-- ROI do produto em tempo real: "O CRM Destaka gerou R$X este mes"
+- Receita recuperada no mes: pacientes que responderam o WhatsApp de reativacao E tiveram procedimento registrado no prontuario em ate 60 dias (nao depende de agendamento integrado)
+- ROI do produto em tempo real: "O CRM Destaka gerou R$X este mes" (calculado sobre procedimentos registrados de pacientes reativados)
 - Top 10 pacientes mais valiosos para reativar
 - Grafico de evolucao de ativos vs inativos
 
@@ -207,7 +212,7 @@ Funcionalidades (ativas automaticamente se Destaka + CRM):
 - Agendamento online (o paciente nao agenda pelo CRM em V1)
 - Telemedicina
 - Faturamento TISS / plano de saude
-- Multi-profissional com permissoes distintas (V1 e mono-profissional)
+- Multi-login por profissional com permissoes distintas (V1 usa acesso unico — um login por organizacao. Clinicas com 2-3 profissionais sao suportadas via ICP secundario, mas todos acessam com o mesmo login do titular)
 - Marketplace / captacao de novos pacientes
 - Integracao com ERPs de clinica
 
@@ -264,7 +269,7 @@ Referencia completa: `docs/crm-destaka/schema-spec-v1.md`
 | Fase | Prazo | Entregaveis |
 |------|-------|------------|
 | Fundacao tecnica | Semanas 1-2 | Schema (CRM-01), auth Google, repo, Supabase |
-| CRM Core | Semanas 3-4 | Cadastro de pacientes, timeline, status automatico |
+| CRM Core + Consent LGPD | Semanas 3-4 | Cadastro de pacientes, timeline, status automatico, fluxo de consentimento WhatsApp (obrigatorio antes de habilitar reativacao) |
 | Prontuario Funcional | Semanas 5-6 | Evolucao clinica, anamnese, upload arquivos |
 | Reativacao + WhatsApp | Semanas 7-8 | Ciclos de retorno, scheduler, envio WA |
 | Dashboard + Import | Semanas 9-10 | Receita dormindo, CSV import |
@@ -326,4 +331,5 @@ Referencia completa: `docs/crm-destaka/schema-spec-v1.md`
 ---
 
 *PRD gerado por Morgan — AIOX PM | 2026-07-29*
-*Proximo passo: critique @qa (Quinn) — score minimo 4.0 para avancar*
+*Revisao v1.1 — Quinn (@qa) | 2026-07-30 — 3 criticos resolvidos: ICP/scope, conversao mensuravel, consent LGPD*
+*Proximo passo: re-critique @qa — score esperado >= 4.0 para avancar para @architect plan*
