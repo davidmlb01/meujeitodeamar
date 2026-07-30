@@ -33,19 +33,23 @@ Draft
 
 ## Tasks / Subtasks
 
-- [ ] Task 1 — Editor de evolucao clinica (AC: 1)
+- [ ] Task 1 — Migration 008 (AC: 2, 5) **[DEVE RODAR PRIMEIRO]**
+  - [ ] Adicionar coluna `anamnese jsonb` em patients
+  - [ ] Adicionar coluna `odontograma jsonb` em patients
+  - [ ] Aplicar migration no Supabase
+
+- [ ] Task 2 — Editor de evolucao clinica (AC: 1)
   - [ ] Instalar e configurar Tiptap com extensoes basicas (Bold, Italic, BulletList, Heading)
-  - [ ] Componente `EvolucaoEditor` com campo de data e submit
+  - [ ] Componente `EvolucaoEditor` com campo de data e submit (`app/components/EvolucaoEditor.tsx`)
   - [ ] POST /api/procedures: INSERT em patient_procedures (type: 'note') com conteudo Tiptap em JSON
   - [ ] Listar evolucoes em ordem cronologica inversa na timeline do paciente
 
-- [ ] Task 2 — Anamnese por especialidade (AC: 2)
+- [ ] Task 3 — Anamnese por especialidade (AC: 2)
   - [ ] Definir campos por especialidade em objeto de configuracao (nao no banco)
-  - [ ] Componente `AnamneseForm` que renderiza campos dinamicamente por especialidade da org
+  - [ ] Componente `AnamneseForm` que renderiza campos dinamicamente por especialidade da org (`app/components/AnamneseForm.tsx`)
   - [ ] Salvar anamnese em campo JSON no banco (tabela `patients.anamnese jsonb`)
-  - [ ] Adicionar coluna `anamnese jsonb` em migration nova (migration 008)
 
-- [ ] Task 3 — Upload de arquivos (AC: 3, 4, 8)
+- [ ] Task 4 — Upload de arquivos (AC: 3, 4, 8)
   - [ ] Configurar bucket `patient-files` como privado no Supabase Storage
   - [ ] Aplicar RLS policy no bucket (org_id do path deve bater com org do usuario)
   - [ ] POST /api/patients/[id]/files: upload para Storage com path correto
@@ -53,22 +57,17 @@ Draft
   - [ ] Frontend: drag-and-drop ou click para upload, preview de nome + tipo
   - [ ] Validar: maximo 10MB por arquivo, tipos aceitos (PDF/JPG/PNG)
 
-- [ ] Task 4 — Odontograma basico (AC: 5)
-  - [ ] Criar componente SVG `Odontograma` com 32 dentes (numeracao FDI)
+- [ ] Task 5 — Odontograma basico (AC: 5)
+  - [ ] Criar componente SVG `Odontograma` com 32 dentes (numeracao FDI) (`app/components/Odontograma.tsx`)
   - [ ] Click em dente: toggle estado (normal / tratado / extraido)
-  - [ ] Salvar estado do odontograma em `patients.odontograma jsonb` (migration 008 tambem)
+  - [ ] Salvar estado do odontograma em `patients.odontograma jsonb`
   - [ ] Exibir odontograma apenas para orgs com especialidade = 'dentist'
 
-- [ ] Task 5 — Impressao PDF (AC: 7)
+- [ ] Task 6 — Impressao PDF (AC: 7)
   - [ ] Instalar react-pdf (@react-pdf/renderer)
   - [ ] Criar template de PDF: cabecalho (nome org + profissional), dados paciente, anamnese, evolucoes, procedimentos
   - [ ] Botao "Imprimir PDF" gera o documento e abre no browser para impressao
   - [ ] Nao usar Puppeteer — react-pdf renderiza client-side
-
-- [ ] Task 6 — Migration 008 (AC: 2, 5)
-  - [ ] Adicionar coluna `anamnese jsonb` em patients
-  - [ ] Adicionar coluna `odontograma jsonb` em patients
-  - [ ] Aplicar migration no Supabase
 
 ## Dev Notes
 
@@ -102,6 +101,7 @@ Usar `@react-pdf/renderer` com `PDFDownloadLink` ou `PDFViewer`. Renderiza 100% 
 | Data | Versao | Descricao | Autor |
 |------|--------|-----------|-------|
 | 2026-07-30 | 1.0 | Story criada | River (sm) |
+| 2026-07-30 | 1.1 | Migration 008 movida para Task 1 (bloqueante); paths de componentes adicionados | Pax (po) |
 
 ## Dev Agent Record
 

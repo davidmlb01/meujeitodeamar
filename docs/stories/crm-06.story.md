@@ -25,7 +25,7 @@ Draft
 1. Dashboard e a pagina inicial (rota `/`) do CRM — primeira coisa que o profissional ve apos login
 2. Card "Pacientes inativos": numero total de pacientes com `status = inactive` da org no momento
 3. Card "Receita dormindo": soma de `estimated_ticket` de todos os inativos (via view `dormant_revenue_by_org`), exibido em R$ formatado (ex: R$ 12.400)
-4. Card "Receita recuperada este mes": soma de `amount_paid` dos `patient_procedures` inseridos nos ultimos 30 dias, de pacientes que tiveram um `reactivation_log.status = 'responded'` nos ultimos 60 dias antes do procedimento. Exibido em R$ com variacao vs mes anterior (ex: +23%)
+4. Card "Receita recuperada este mes": soma de `amount_paid` dos `patient_procedures` inseridos nos ultimos 30 dias, de pacientes que tiveram um `reactivation_log.status = 'responded'` nos ultimos 60 dias antes do procedimento. Exibido em R$ com variacao vs mes anterior (ex: +23%). **Nota: `patient_procedures.amount_paid` e campo obrigatorio no schema (migration 004) — verificar que o INSERT de procedimento em CRM-02b inclui este campo (pode ser 0.00 para evolucoes clinicas sem valor monetario).**
 5. Card "ROI do CRM Destaka": "O CRM gerou R$X este mes" — mesmo valor da receita recuperada, formatado como CTA emocional
 6. Tabela "Top 10 para reativar": pacientes inativos ordenados por `lifetime_value DESC`, com nome, especialidade, dias de atraso no retorno e botao "Reativar agora" (chama envio manual de CRM-04)
 7. Grafico de linha: evolucao de pacientes ativos vs inativos nos ultimos 6 meses (dados mensais, usando recharts)
@@ -104,6 +104,7 @@ No segundo caso, mostrar mensagem positiva: "Todos os seus pacientes estao ativo
 | Data | Versao | Descricao | Autor |
 |------|--------|-----------|-------|
 | 2026-07-30 | 1.0 | Story criada | River (sm) |
+| 2026-07-30 | 1.1 | AC4: nota sobre amount_paid e valor 0.00 para evolucoes sem monetario | Pax (po) |
 
 ## Dev Agent Record
 

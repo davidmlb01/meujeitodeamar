@@ -27,11 +27,11 @@ Draft
 3. Campos opcionais: email, data nascimento, genero, especialidade, notas, origem (google/referral/walk_in)
 4. Status CRM calculado automaticamente e exibido em badge colorido:
    - **Ativo** (verde): `next_return_at > now()` ou `last_visit_at` nos ultimos 90 dias
-   - **Em risco** (amarelo): `next_return_at` entre `now()` e `now() - 30 dias`
+   - **Em risco** (amarelo): `next_return_at BETWEEN (now() - interval '30 days') AND now()` (retorno ja venceu, mas ha menos de 30 dias)
    - **Inativo** (vermelho): `next_return_at < now() - 30 dias`
    - **Optou fora** (cinza): flag manual ou resposta negativa no WhatsApp
 5. Timeline do paciente: exibe historico de visitas, procedimentos registrados e mensagens enviadas em ordem cronologica inversa
-6. Segmentacao: filtros por status, especialidade e tempo de inatividade (lista paginada)
+6. Segmentacao: filtros por status, especialidade e tempo de inatividade — 30d / 60d / 90d+ (lista paginada)
 7. Busca: por nome (ILIKE) ou telefone (match exato)
 8. **Fluxo de consentimento LGPD (bloqueador para reativacao):**
    - Modal de consentimento aparece no cadastro de paciente (nao pode ser pulado)
@@ -52,7 +52,7 @@ Draft
 
 - [ ] Task 2 — UI: lista de pacientes (AC: 6, 7, 10)
   - [ ] Pagina /patients com tabela/lista de pacientes
-  - [ ] Filtros: dropdown status + dropdown especialidade
+  - [ ] Filtros: dropdown status + dropdown especialidade + dropdown tempo de inatividade (30d / 60d / 90d+)
   - [ ] Busca: input com debounce (300ms)
   - [ ] Badge de status colorido por estado
   - [ ] Paginacao (20 por pagina)
@@ -97,6 +97,7 @@ O campo `lgpd_whatsapp` e o guardiao critico do sistema. Qualquer query que enfi
 | Data | Versao | Descricao | Autor |
 |------|--------|-----------|-------|
 | 2026-07-30 | 1.0 | Story criada | River (sm) |
+| 2026-07-30 | 1.1 | AC4 status Em risco corrigido; AC6+Task2 filtro inatividade adicionado | Pax (po) |
 
 ## Dev Agent Record
 

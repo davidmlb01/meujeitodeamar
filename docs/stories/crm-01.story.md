@@ -32,10 +32,16 @@ Draft
 9. `npm run dev` sobe sem erros, rota `/login` e rota `/` (dashboard protegido) acessiveis
 10. Environments configurados no Vercel: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`
 
+## Pre-Condicoes (@devops — antes de @dev iniciar)
+
+- [ ] @devops: Criar projeto Supabase CRM (separado do Destaka) — fornecer URL + keys ao @dev
+- [ ] @devops: Criar repo GitHub `crm-destaka` — fornecer acesso ao @dev
+- [ ] @devops: Criar projeto Vercel + conectar ao repo — fornecer dashboard ao @dev
+
 ## Tasks / Subtasks
 
 - [ ] Task 1 — Supabase e infra (AC: 1, 2, 3, 4)
-  - [ ] Criar projeto Supabase CRM (separado do Destaka) — @devops
+  - [ ] _Pre-condicao: projeto Supabase ja criado pelo @devops_
   - [ ] Aplicar migration 001_organizations.sql
   - [ ] Aplicar migration 002_patients.sql com indexes
   - [ ] Aplicar migration 003_procedure_types.sql + seed
@@ -46,7 +52,7 @@ Draft
   - [ ] Testar trigger: INSERT em patient_procedures -> verificar next_return_at no paciente
 
 - [ ] Task 2 — Scaffold Next.js (AC: 6, 9)
-  - [ ] Criar repo GitHub `crm-destaka` — @devops
+  - [ ] _Pre-condicao: repo GitHub ja criado pelo @devops_
   - [ ] Inicializar Next.js 14 App Router + Tailwind CSS
   - [ ] Criar estrutura de pastas: app/(auth)/login, app/(dashboard)/layout+page, app/api/
   - [ ] Instalar dependencias: @supabase/supabase-js, @supabase/ssr, inngest
@@ -63,8 +69,8 @@ Draft
   - [ ] Criar 2 contas de teste distintas (google_sub diferentes)
   - [ ] Verificar: conta A nao le patients da conta B (RLS bloqueando corretamente)
   - [ ] Verificar: INSERT com org_id errado e rejeitado pelo RLS
-  - [ ] Configurar projeto Vercel + conectar ao repo — @devops
-  - [ ] Adicionar env vars no Vercel (dev + prod)
+  - [ ] _Pre-condicao: projeto Vercel ja criado pelo @devops_
+  - [ ] Adicionar env vars no Vercel (dev + prod) — via dashboard Vercel
 
 ## Dev Notes
 
@@ -101,6 +107,7 @@ Draft
 | Data | Versao | Descricao | Autor |
 |------|--------|-----------|-------|
 | 2026-07-30 | 1.0 | Story criada | River (sm) |
+| 2026-07-30 | 1.1 | Pre-condicoes @devops separadas das tasks @dev | Pax (po) |
 
 ## Dev Agent Record
 
