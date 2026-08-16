@@ -1,6 +1,37 @@
 # MASTER-BACKUP: Destaka
-**Última atualização:** 2026-07-29 (landing page restaurada + GBP API prerequisites confirmados)
-**Status:** MVP em producao. Landing page bonita restaurada (commit 603fe34). GBP API: pronto para submeter formulario como UNLMTD/david@unlmtd.etc.br.
+**Última atualização:** 2026-08-16 (GBP API submetida + OAuth consent screen corrigido)
+**Status:** MVP em producao. GBP API ticket 2-9359000041841 submetido como UNLMTD em 16/08/2026. Aguardando aprovacao (7-10 dias uteis). OAuth consent screen corrigido e branding publicado.
+
+---
+
+## Sessao 2026-08-16 — GBP API submetida + OAuth corrigido
+
+### O que foi feito
+
+- Auditoria completa pre-submissao GBP API (use case corrigido, tickets verificados via Gmail)
+- OAuth consent screen: privacy URL corrigida de `/privacidade` (404) para `/privacy` (funciona)
+- Branding OAuth verificado e publicado (botao "Publicar branding" executado)
+- GBP UNLMTD: perfil verificado, fotos OK, preenchimento maximo para empresa de software
+- Formulario GBP API submetido logado como `david@unlmtd.etc.br`
+- UNLMTD apareceu como "Validada" no formulario — selecionada automaticamente
+- Formulario chegou a 100% e gerou ticket imediatamente (diferente das tentativas anteriores)
+- **Ticket: 2-9359000041841** — prazo 7-10 dias uteis
+
+### Historico de tickets (completo)
+
+| Ticket | Data | Status |
+|--------|------|--------|
+| 0-2582000041216 | Mai/2026 | REJEITADO em 08/06 — "account did not pass our internal quality checks" |
+| 4-9265000041644 | 02/06/2026 | NUNCA PROCESSADO — zero emails no Gmail |
+| **2-9359000041841** | **16/08/2026** | **SUBMETIDO — aguardando revisao (7-10 dias uteis)** |
+
+### Pendentes desta sessao
+
+- [ ] Verificar email de confirmacao do ticket 2-9359000041841 em `david@unlmtd.etc.br`
+- [ ] lgpd_ai_consent e lgpd_consent_date: criar migration no Supabase
+- [ ] hasLgpdConsentForAi(): integrar em review-monitor.ts
+- [ ] Sitemap no Google Search Console (destaka.com.br/sitemap.xml)
+- [ ] Primeiro cliente via Opcao B (nao depende da API — funciona hoje)
 
 ---
 

@@ -95,41 +95,44 @@ Estimar conservadoramente: 30 a 100 no primeiro ano
 ### Campo: Intended Use Case (COPIAR E ADAPTAR)
 
 ```
-Destaka is a SaaS platform that automates Google Business Profile management
-for independent healthcare professionals in Brazil, starting with dentists
-and physicians.
+UNLMTD is a software company building Destaka (destaka.com.br), a SaaS
+platform that automates Google Business Profile management for independent
+healthcare professionals in Brazil, starting with dentists and physicians.
 
-Our platform provides:
+Our platform provides the following capabilities via the Business Profile API:
 
-1. Review monitoring and response: we poll new reviews via the MyBusiness
-   API (accounts.locations.reviews.list) and generate draft responses using
-   AI. The healthcare provider reviews and approves each response before
-   it is published via accounts.locations.reviews.updateReply.
+1. Review monitoring and response: we poll new reviews via
+   accounts.locations.reviews.list and generate AI-assisted draft responses
+   tailored to each provider's specialty. The healthcare professional
+   reviews and approves each draft before it is published via
+   accounts.locations.reviews.updateReply. We never auto-publish responses.
 
-2. Post publishing: we publish 3 educational posts per week per location
-   using accounts.locations.localPosts.create. Content is generated
-   specific to each provider's specialty and reviewed for compliance
-   with healthcare regulations (CFM/CRO) before publishing.
+2. Post publishing: we create 3 educational posts per week per location
+   using accounts.locations.localPosts.create. Content is generated per
+   provider specialty and validated for compliance with Brazilian healthcare
+   regulations (CFM Resolution 1974/2011, CRO 196/2019) before publishing.
 
-3. Profile completeness scoring: we read location data via
+3. Profile completeness audit: we read location data via
    accounts.locations.get to calculate a completeness score and surface
-   recommendations to the business owner.
+   specific recommendations to the business owner through our dashboard.
 
 4. Performance reporting: we read insights via the Business Profile
-   Performance API to generate weekly reports for each provider.
+   Performance API to generate monthly reports delivered to each provider.
 
-Authentication flow: each healthcare professional connects their own
-Google Business Profile via OAuth 2.0 (scope: business.manage).
-Destaka stores the OAuth token server-side (Supabase) and acts on
-behalf of the authenticated user. We never access profiles the user
-has not explicitly authorized.
+Authentication flow: each healthcare professional authenticates their own
+Google Business Profile via OAuth 2.0 (scope: business.manage). Destaka
+stores the access token server-side (Supabase with Row Level Security) and
+acts strictly on behalf of the authenticated user. We never access profiles
+the user has not explicitly authorized.
 
-Current pilot: 30 verified dental clinics in Brazil.
-Projected growth: 100-500 locations by end of 2026.
+Our platform is live and fully functional at https://destaka.com.br with
+OAuth 2.0 integration already deployed in production. We are requesting API
+access to replace the current manual workflow, where our team performs these
+operations on behalf of clients without programmatic access.
 
-Our platform is live at https://destaka.com.br with full OAuth integration
-already deployed. We are requesting API access to automate workflows that
-currently require manual intervention by our team.
+We are in the pre-commercial launch phase, onboarding our first healthcare
+practices as pilot users in Q3 2026, with projected growth to 50-100
+locations by end of 2026.
 ```
 
 ---
@@ -175,16 +178,16 @@ POS-APROVACAO
 
 ---
 
-## 6. SOBRE O TICKET ATUAL (4-9265000041644)
+## 6. STATUS REAL DOS TICKETS (verificado via Gmail em agosto 2026)
 
-O ticket foi submetido em 02/06/2026. Previsao original de resposta: ~16/06/2026.
+| Ticket | Submetido | Status | Evidencia no Gmail |
+|--------|-----------|--------|-------------------|
+| 0-2582000041216 | Mai/2026 | REJEITADO em 08/06/2026 | Email de rejeicao recebido em `david@unlmtd.etc.br` |
+| 4-9265000041644 | 02/06/2026 | NUNCA PROCESSADO | Zero emails para esse numero no Gmail |
+| **2-9359000041841** | **16/08/2026** | **SUBMETIDO — aguardando revisao** | **Formulario chegou a 100%, ID gerado imediatamente** |
 
-**Opcoes:**
-- Se ja passou de 16/06 sem resposta: aguardar mais 5 dias uteis antes de reabrir
-- Se houve rejeicao: aguardar pelo menos 7 dias antes de resubmeter (Google pode ter periodo de espera nao documentado)
-- Nao fechar o ticket atual para abrir outro em paralelo — isso fragmenta o historico
-
-**O que checar primeiro:** Gmail de `app@destaka.com.br` e caixa de spam — o Google manda confirmacao de recebimento com case number. Se nao chegou, o ticket pode nao ter sido processado (igual ao anterior 0-2582000041216).
+**Prazo de revisao:** 7 a 10 dias uteis a partir de 16/08/2026.
+**Verificar:** inbox de `david@unlmtd.etc.br` por email de confirmacao com o numero 2-9359000041841.
 
 ---
 
