@@ -167,7 +167,7 @@ Seed temporal (semana do ano + sequência por org) injetada em cada prompt. Evit
 ### Pendentes desta sessao
 
 - [ ] OAuth consent screen GCP (projeto 248596818772): adicionar `https://destaka.com.br/privacy` e `/termos`
-- [ ] Categoria GBP "Empresa de Software": fotos ainda com status PENDING no painel Google
+- [x] Fotos GBP "Empresa de Software": submetidas em 16/08/2026, aprovacao Google automatica
 - [ ] Resubmeter formulario GBP API com texto de `docs/destaka/gbp-api-aprovacao-plano.md`
 - [ ] `hasLgpdConsentForAi()` pendente integracao em `review-monitor.ts` (vem da sessao 04/06)
 
@@ -461,7 +461,7 @@ Stories 01-08, 10-11 todas implementadas em `destaka-remote`. Story 09 (NAP Cita
 
 ### GBP API
 
-- [ ] Categoria GBP "Empresa de Software": fotos ainda com status PENDING no painel Google
+- [x] Fotos GBP "Empresa de Software": submetidas em 16/08/2026, aprovacao Google automatica
 - [x] GBP API resubmetida: ticket 2-9359000041841 (16/08/2026)
 
 ### Aquisicao
@@ -488,7 +488,7 @@ Stories 01-08, 10-11 todas implementadas em `destaka-remote`. Story 09 (NAP Cita
 - [ ] Iniciar aprovacao WhatsApp Business API com Meta
 - [ ] Instagram Graph API (apos LinkedIn API aprovada)
 - [ ] Exportar brandbook como PDF
-- [ ] Google OAuth: verificacao formal antes de escalar alem de 100 usuarios
+- [x] Google OAuth: app em producao e verificado (16/08/2026)
 
 ---
 
