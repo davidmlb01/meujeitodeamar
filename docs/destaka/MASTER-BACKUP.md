@@ -52,7 +52,7 @@
 
 **Pendente desta sessao:**
 - [ ] **PROXIMO:** Submeter formulario GBP API em `support.google.com/business/contact/api_default` logado como `david@unlmtd.etc.br`
-- [ ] Opcao B onboarding: UI para cliente adicionar app@destaka.com.br como gerente no GMN
+- [x] ~~Opcao B onboarding~~ — DESCARTADO definitivamente por decisao do David (16/08/2026). Nao oferecer novamente.
 - [ ] Primeiro cliente via login/dashboard (fluxo OAuth funcionando hoje)
 - [ ] LinkedIn manual posting (2/dia, content/social/)
 - [ ] Submeter sitemap Google Search Console (destaka.com.br/sitemap.xml)
@@ -146,7 +146,7 @@ Seed temporal (semana do ano + sequência por org) injetada em cada prompt. Evit
 ### Pendente desta sessão
 
 - [ ] Verificar se campos `lgpd_ai_consent` e `lgpd_consent_date` existem na tabela `organizations` do Supabase
-- [ ] Integrar `hasLgpdConsentForAi()` no `review-monitor.ts`
+- [x] `hasLgpdConsentForAi()` integrada no `review-monitor.ts` (16/08/2026)
 - [ ] GBP API ticket 4-9265000041644 — aguardando aprovação Google (~16/06/2026)
 
 ---
@@ -450,12 +450,12 @@ Stories 01-08, 10-11 todas implementadas em `destaka-remote`. Story 09 (NAP Cita
 
 ### Tecnico
 
-- [ ] Verificar/criar campos `lgpd_ai_consent` e `lgpd_consent_date` na tabela `organizations` (Supabase migration)
-- [ ] Integrar `hasLgpdConsentForAi()` no `review-monitor.ts`
+- [x] Migration 007_lgpd_ai_consent: campos `lgpd_ai_consent` e `lgpd_consent_date` criados e aplicados em producao (16/08/2026)
+- [x] `hasLgpdConsentForAi()` integrada no `review-monitor.ts` (16/08/2026)
 - [ ] Implementar Opcao B onboarding: UI para cliente adicionar `app@destaka.com.br` como gerente no GMB (funciona hoje, nao depende de API)
 - [ ] OAuth consent screen GCP (projeto 248596818772): adicionar URLs `/privacy` e `/termos`
-- [ ] CSP nonce-based HIGH-01 (sprint separada)
-- [ ] Next.js 16: renomear `middleware.ts` para `proxy.ts` (sprint separada)
+- [x] CSP nonce-based HIGH-01: implementado em `proxy.ts` (16/08/2026)
+- [x] Next.js 16 `proxy.ts`: ja estava correto — verificado (16/08/2026)
 - [ ] Padrão D02 na landing: pin grid em 8-12% opacity (estetica, recomendacao Paula Scher)
 - [ ] Aplicar paleta de verticais no produto: Pet, Juridico, Contabil, Imoveis
 
@@ -470,7 +470,7 @@ Stories 01-08, 10-11 todas implementadas em `destaka-remote`. Story 09 (NAP Cita
 - [ ] Conseguir GBP real de dentista para teste end-to-end do produto
 - [ ] Validar pricing com 5 dentistas antes de lançar
 - [ ] LinkedIn: posting manual (2/dia, conteudo em `content/social/`)
-- [ ] Submeter sitemap no Google Search Console (`destaka.com.br/sitemap.xml`)
+- [x] Sitemap submetido ao Google Search Console (16/08/2026)
 - [ ] Primeiros clientes pagantes (meta: 5 pilotos dentistas)
 - [ ] Provas sociais: aguardando dados reais dos 2 testadores (nome, resultado, autorizacao)
 - [ ] Mapear 5-10 escritorios contabeis especializados em saude (SP, BH, RJ, Campinas)
