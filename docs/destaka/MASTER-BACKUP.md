@@ -27,11 +27,11 @@
 
 ### Pendentes desta sessao
 
-- [ ] Verificar email de confirmacao do ticket 2-9359000041841 em `david@unlmtd.etc.br`
-- [ ] lgpd_ai_consent e lgpd_consent_date: criar migration no Supabase
-- [ ] hasLgpdConsentForAi(): integrar em review-monitor.ts
-- [ ] Sitemap no Google Search Console (destaka.com.br/sitemap.xml)
-- [ ] Primeiro cliente via Opcao B (nao depende da API — funciona hoje)
+- [~] Verificar email ticket 2-9359000041841 — monitoramento ativo (cron a cada 15min)
+- [x] lgpd_ai_consent e lgpd_consent_date: migration 007 aplicada em producao (16/08/2026)
+- [x] hasLgpdConsentForAi(): integrada em review-monitor.ts (16/08/2026)
+- [x] Sitemap submetido ao Google Search Console (16/08/2026)
+- [x] ~~Opcao B~~ DESCARTADO (16/08/2026)
 
 ---
 
@@ -51,11 +51,11 @@
 - **Pushed:** commit `603fe34` em `main` (github.com/davidmlb01/destaka)
 
 **Pendente desta sessao:**
-- [ ] **PROXIMO:** Submeter formulario GBP API em `support.google.com/business/contact/api_default` logado como `david@unlmtd.etc.br`
+- [x] GBP API: ticket 2-9359000041841 submetido em 16/08/2026 (UNLMTD Validada)
 - [x] ~~Opcao B onboarding~~ — DESCARTADO definitivamente por decisao do David (16/08/2026). Nao oferecer novamente.
-- [ ] Primeiro cliente via login/dashboard (fluxo OAuth funcionando hoje)
+- [ ] Primeiro cliente pagante (fluxo OAuth funcionando)
 - [ ] LinkedIn manual posting (2/dia, content/social/)
-- [ ] Submeter sitemap Google Search Console (destaka.com.br/sitemap.xml)
+- [x] Sitemap destaka.com.br submetido (16/08/2026)
 
 ---
 
@@ -452,8 +452,8 @@ Stories 01-08, 10-11 todas implementadas em `destaka-remote`. Story 09 (NAP Cita
 
 - [x] Migration 007_lgpd_ai_consent: campos `lgpd_ai_consent` e `lgpd_consent_date` criados e aplicados em producao (16/08/2026)
 - [x] `hasLgpdConsentForAi()` integrada no `review-monitor.ts` (16/08/2026)
-- [ ] Implementar Opcao B onboarding: UI para cliente adicionar `app@destaka.com.br` como gerente no GMB (funciona hoje, nao depende de API)
-- [ ] OAuth consent screen GCP (projeto 248596818772): adicionar URLs `/privacy` e `/termos`
+- [x] ~~Opcao B~~ DESCARTADO definitivamente (16/08/2026)
+- [x] OAuth consent screen GCP: privacy e termos configurados, branding publicado (16/08/2026)
 - [x] CSP nonce-based HIGH-01: implementado em `proxy.ts` (16/08/2026)
 - [x] Next.js 16 `proxy.ts`: ja estava correto — verificado (16/08/2026)
 - [ ] Padrão D02 na landing: pin grid em 8-12% opacity (estetica, recomendacao Paula Scher)
@@ -462,11 +462,11 @@ Stories 01-08, 10-11 todas implementadas em `destaka-remote`. Story 09 (NAP Cita
 ### GBP API
 
 - [ ] Categoria GBP "Empresa de Software": fotos ainda com status PENDING no painel Google
-- [ ] Resubmeter formulario GBP API usando `docs/destaka/gbp-api-aprovacao-plano.md`
+- [x] GBP API resubmetida: ticket 2-9359000041841 (16/08/2026)
 
 ### Aquisicao
 
-- [ ] Primeiro cliente via Opcao B (caminho desbloqueado hoje, sem depender de API)
+- [x] ~~Opcao B~~ DESCARTADO (16/08/2026)
 - [ ] Conseguir GBP real de dentista para teste end-to-end do produto
 - [ ] Validar pricing com 5 dentistas antes de lançar
 - [ ] LinkedIn: posting manual (2/dia, conteudo em `content/social/`)
