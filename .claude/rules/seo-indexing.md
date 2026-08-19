@@ -221,6 +221,132 @@ export default function NotFound() {
 
 ---
 
+### REQ-07: Open Graph e Twitter Card em Todas as Paginas Publicas
+
+**Regra:** Toda pagina publica deve ter tags de Open Graph e Twitter Card completas.
+Sem og:image, o link compartilhado no WhatsApp, LinkedIn e redes sociais aparece sem preview — impacto direto em cliques.
+
+**Next.js (App Router) — criar `src/app/opengraph-image.tsx` (imagem dinamica):**
+```tsx
+import { ImageResponse } from 'next/og'
+
+export const alt = 'Descricao da imagem'
+export const size = { width: 1200, height: 630 }
+export const contentType = 'image/png'
+
+export default function Image() {
+  return new ImageResponse(
+    (
+      <div style={{ background: '#000', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <h1 style={{ color: '#fff', fontSize: 60 }}>Nome do Site</h1>
+      </div>
+    ),
+    { ...size },
+  )
+}
+```
+
+Next.js detecta o arquivo automaticamente e gera og:image para todas as rotas.
+Cada rota pode ter seu proprio `opengraph-image.tsx` — senao herda o da raiz.
+
+**Em cada `page.tsx` publica, adicionar openGraph e twitter:**
+```tsx
+export const metadata = {
+  openGraph: {
+    title: 'Titulo da pagina',
+    description: 'Descricao da pagina.',
+    url: 'https://seudominio.com.br/caminho',
+    siteName: 'Nome do Site',
+    locale: 'pt_BR',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Titulo da pagina',
+    description: 'Descricao da pagina.',
+  },
+}
+```
+
+**HTML estatico — adicionar no `<head>` de cada pagina:**
+```html
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://seudominio.com.br/caminho" />
+<meta property="og:title" content="Titulo da Pagina | Site" />
+<meta property="og:description" content="Descricao da pagina." />
+<meta property="og:image" content="https://seudominio.com.br/og-image.png" />
+<meta property="og:site_name" content="Nome do Site" />
+<meta property="og:locale" content="pt_BR" />
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Titulo da Pagina | Site" />
+<meta name="twitter:description" content="Descricao da pagina." />
+<meta name="twitter:image" content="https://seudominio.com.br/og-image.png" />
+```
+
+**Requisitos da og:image:**
+- Dimensoes: 1200x630px (obrigatorio para summary_large_image)
+- Formato: PNG ou JPG
+- Visual da marca (nao logo pequeno em fundo branco)
+- Se so tiver logo pequeno: usar `twitter:card: summary` (square) em vez de `summary_large_image`
+
+---
+
+### REQ-08: JSON-LD / Structured Data
+
+**Regra:** Todo site deve ter ao menos um schema JSON-LD na pagina principal.
+JSON-LD permite ao Google gerar rich results (estrelas, FAQ expandido, informacoes extras nos resultados de busca).
+
+**Schemas por tipo de site:**
+
+| Tipo de site | Schema recomendado |
+|---|---|
+| SaaS / Produto | `SoftwareApplication` |
+| Empresa / Institucional | `Organization` |
+| Profissional de saude | `Physician` ou `LocalBusiness` |
+| Pagina com FAQ | `FAQPage` |
+| Blog / Artigo | `Article` ou `BlogPosting` |
+
+**Next.js — adicionar no componente `page.tsx` principal:**
+```tsx
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Nome da Empresa',
+  url: 'https://seudominio.com.br',
+  logo: 'https://seudominio.com.br/logo.png',
+  contactPoint: { '@type': 'ContactPoint', email: 'contato@empresa.com', contactType: 'customer service' },
+  address: { '@type': 'PostalAddress', addressLocality: 'São Paulo', addressRegion: 'SP', addressCountry: 'BR' },
+}
+
+export default function Page() {
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
+      {/* resto da pagina */}
+    </>
+  )
+}
+```
+
+**HTML estatico — adicionar no `<head>` da pagina principal:**
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Nome da Empresa",
+  "url": "https://seudominio.com.br",
+  "logo": "https://seudominio.com.br/logo.png"
+}
+</script>
+```
+
+**Validar em:** [Google Rich Results Test](https://search.google.com/test/rich-results)
+
+---
+
 ## Checklist de Entrega (Pre-Deploy)
 
 Antes de qualquer deploy em producao, validar:
@@ -237,6 +363,11 @@ Antes de qualquer deploy em producao, validar:
 - [ ] REQ-06: Pagina 404 customizada existe (not-found.tsx ou 404.html)
 - [ ] REQ-06: Pagina 404 tem noindex e link de volta ao inicio
 - [ ] REQ-06: Visual da 404 e consistente com a identidade da marca
+- [ ] REQ-07: og:title, og:description, og:image, og:url em todas as paginas publicas
+- [ ] REQ-07: twitter:card, twitter:title, twitter:description, twitter:image em todas as paginas publicas
+- [ ] REQ-07: opengraph-image.tsx ou og-image.png criado (Next.js: 1200x630px)
+- [ ] REQ-08: JSON-LD schema na pagina principal (Organization, SoftwareApplication ou FAQPage)
+- [ ] REQ-08: Validar schema em Rich Results Test do Google
 - [ ] Validar: acessar /robots.txt e /sitemap.xml em producao para confirmar
 - [ ] Validar: acessar /url-que-nao-existe e confirmar que aparece a 404 customizada
 - [ ] Validar: inspecionar URL no Search Console apos deploy
@@ -254,5 +385,5 @@ Motivos reportados pelo Google Search Console:
 
 ---
 
-**Versao:** 1.1 — 2026-08-19
+**Versao:** 1.2 — 2026-08-19
 **Proxima revisao:** Quando novo motivo de nao-indexacao for identificado em producao
