@@ -7,12 +7,12 @@
 
 ## Regra Central
 
-Nenhum site vai a producao sem os 5 requisitos abaixo implementados e validados.
+Nenhum site vai a producao sem os 6 requisitos abaixo implementados e validados.
 O Google nao indexa o que nao e declarado corretamente.
 
 ---
 
-## 5 Requisitos Obrigatorios
+## 6 Requisitos Obrigatorios
 
 ### REQ-01: Tag Canonical em Todas as Paginas
 
@@ -157,6 +157,70 @@ export const metadata: Metadata = {
 
 ---
 
+### REQ-06: Pagina 404 Customizada
+
+**Regra:** Todo site deve ter uma pagina 404 customizada, no estilo visual da marca, com `noindex` e link de volta ao inicio.
+
+**Por que importa para SEO:**
+- Sem 404 customizada, o Google recebe resposta ambigua e continua tentando rastrear URLs mortas
+- Com 404 clara (status HTTP 404 correto + visual da marca), o Google entende e para de tentar
+- O usuario nao abandona o site — ve mensagem util e volta ao inicio
+- Evita que o Search Console acumule erros de "Nao encontrado (404)"
+
+**Next.js (App Router) — criar `src/app/not-found.tsx`:**
+```tsx
+import Link from 'next/link'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Pagina nao encontrada | Nome do Site',
+  robots: { index: false, follow: false },
+}
+
+export default function NotFound() {
+  return (
+    <main className="min-h-screen flex items-center justify-center px-6">
+      <div className="text-center max-w-md">
+        <p className="text-8xl font-bold mb-6">404</p>
+        <h1 className="text-xl font-semibold mb-2">Pagina nao encontrada</h1>
+        <p className="text-muted mb-8">
+          Essa URL nao existe ou foi removida.
+        </p>
+        <Link href="/" className="btn-primary">
+          Voltar ao inicio
+        </Link>
+      </div>
+    </main>
+  )
+}
+```
+
+**HTML estatico — criar `404.html`** (Vercel serve automaticamente quando o arquivo existe):
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pagina nao encontrada | Nome do Site</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <!-- estilos da marca -->
+</head>
+<body>
+  <!-- layout 404 no visual da marca, com link href="/" -->
+</body>
+</html>
+```
+
+**Requisitos da pagina 404:**
+- [ ] Status HTTP 404 correto (Next.js e Vercel garantem automaticamente)
+- [ ] `noindex, nofollow` para nao indexar a propria pagina de erro
+- [ ] Visual no estilo da marca (nao pagina generica do servidor)
+- [ ] Link de volta ao inicio (`href="/"`)
+- [ ] Sem canonical tag (nao e uma pagina para indexar)
+
+---
+
 ## Checklist de Entrega (Pre-Deploy)
 
 Antes de qualquer deploy em producao, validar:
@@ -170,7 +234,11 @@ Antes de qualquer deploy em producao, validar:
 - [ ] REQ-03: Sitemap sem URLs de admin/api/dashboard
 - [ ] REQ-04: Redirect www → non-www (ou non-www → www) configurado
 - [ ] REQ-05: Layouts de rotas privadas com robots noindex
+- [ ] REQ-06: Pagina 404 customizada existe (not-found.tsx ou 404.html)
+- [ ] REQ-06: Pagina 404 tem noindex e link de volta ao inicio
+- [ ] REQ-06: Visual da 404 e consistente com a identidade da marca
 - [ ] Validar: acessar /robots.txt e /sitemap.xml em producao para confirmar
+- [ ] Validar: acessar /url-que-nao-existe e confirmar que aparece a 404 customizada
 - [ ] Validar: inspecionar URL no Search Console apos deploy
 ```
 
@@ -186,5 +254,5 @@ Motivos reportados pelo Google Search Console:
 
 ---
 
-**Versao:** 1.0 — 2026-08-19
+**Versao:** 1.1 — 2026-08-19
 **Proxima revisao:** Quando novo motivo de nao-indexacao for identificado em producao
