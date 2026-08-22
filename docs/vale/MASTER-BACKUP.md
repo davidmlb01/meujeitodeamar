@@ -83,11 +83,10 @@ Pasta Obsidian: `projects/vale/referencias/`
 ## Kanban
 
 ### Backlog
-- [ ] Definir escopo e entregaveis
 - [ ] Analisar filme de marca (aguardando upload)
 - [ ] Kickoff executivo (CEO + CMO)
 - [ ] Kickoff de marca (brand-chief + story-chief)
-- [ ] Primeiro entregavel
+- [ ] Campanha externa grandiosa (fase 2)
 
 ### Em andamento
 _vazio_
@@ -98,4 +97,6 @@ _vazio_
 - [x] Absorver e armazenar Guia de Marca (106pp)
 - [x] Absorver e armazenar Vale2027 Trends (45pp)
 - [x] Absorver e armazenar Box1824 Work Session Report (151pp)
-- [x] Criar 3 arquivos de referencia em BIG HEAD + espelhos no Obsidian
+- [x] Criar 3 arquivos de referência em BIG HEAD + espelhos no Obsidian
+- [x] Definir escopo: estratégia inside-out, 60 mil funcionários como advogados da marca
+- [x] Entregável v1: direcional de copy "Mineração do Futuro" (4 quadrantes + tom de voz + manifesto profissional)
