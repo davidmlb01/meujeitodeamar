@@ -1,35 +1,44 @@
 # MINERAÇÃO DO FUTURO VALE
-## Direcional Estratégico de Copy
+## Direcional Estratégico de Posicionamento
 
 **Natureza:** documento de referência para construção de estratégia e campanha de marca.
 **Uso:** direcional para copywriters. Não é peça criativa final.
-**Estrutura:** 4 quadrantes + tom de voz + frases síntese + manifesto do profissional Vale.
+**Estrutura:** 4 dimensões da matriz + tom de voz + frases síntese + manifesto do profissional Vale.
 **Data:** 2026-08-22
 
 ---
 
-## Q1. EMPREENDEDORA DE PAÍS
-*(TODO + LEGAL: de "Eterna devedora" para "Empreendedora de País")*
+## A MATRIZ
 
-**Palavra: SOBERANIA**
+|  | LEGAL | LEGADO |
+|---|---|---|
+| **TODO** | Posicionamento + Transparência | Posicionamento + Propósito |
+| **PARTE** | Proximidade + Transparência | Proximidade + Propósito |
+
+- **TODO** requer posicionamento, esclarecimento.
+- **PARTE** precisa de proximidade, conexão, calor.
+- **LEGAL** exige transparência, evidência, fatos.
+- **LEGADO** inspira visão, propósito, futuro.
+
+---
+
+## EMPREENDEDORA DE PAÍS
+*(TODO + LEGAL)*
+**Posicionamento + Transparência**
 
 ### Versão A
 
-A Vale não é uma empresa que espera. Quando o setor inteiro olha para o regulador esperando a próxima regra, a Vale já está sentada na mesa perguntando se a régua está no lugar certo. Isso incomoda. Sempre incomoda. Mas é assim que um setor inteiro sobe de nível. E quando a maior mineradora do hemisfério sul decide que cumprir não basta, todo mundo sente.
+A Vale é grande o suficiente para definir padrões para o setor inteiro. Mas grandeza sem transparência é só tamanho. A direção aqui é clara: a Vale precisa ser a empresa que não espera ser cobrada. Que abre os números antes que peçam. Que mostra o processo, não só o resultado. Que trata governança não como obrigação cumprida, mas como oportunidade de liderar. Parte disso já acontece. O que falta é tornar visível, consistente e inegociável. Porque uma empresa com mais de 60 mil pessoas e operações em 30 países deve esse nível de clareza a si mesma, antes de dever a qualquer um.
 
 ### Versão B
 
-A Vale emprega mais de 60 mil pessoas. Opera em 30 países. Paga impostos em dezenas de municípios. Números assim não cabem numa empresa que só cumpre o mínimo. Cabem numa empresa que usa o próprio tamanho para mudar as coisas. Não as coisas que beneficiam a Vale. As coisas que protegem o país e fazem o setor avançar.
-
-### Versão C
-
-Tem uma pergunta que o Brasil ainda não fez em voz alta: se a maior mineradora desse continente não puxar a conversa sobre como fazer mineração melhor, quem vai puxar? A Vale não esperou a pergunta. Já está respondendo.
+Aqui a Vale precisa sair do lugar de quem responde para o lugar de quem propõe. A maior mineradora do hemisfério sul não pode se dar ao luxo de só cumprir regras. Precisa ajudar a escrevê-las. E precisa fazer isso de portas abertas. A direção para a marca neste espaço é dizer: a gente mostra o que faz, mostra o que errou, mostra o que mudou. E mostra por decisão própria, não porque foi obrigada. As pessoas que trabalham aqui merecem isso. O país merece isso.
 
 ### Do's
 - Usar dados verificáveis como prova, nunca como propaganda
 - Mostrar decisões concretas onde a Vale foi além do exigido
 - Tratar regulação como arena de liderança, não como peso cumprido
-- Falar no presente: o que se faz, não o que se pretende
+- Falar do que já está sendo feito e do que ainda precisa ser feito, com a mesma honestidade
 
 ### Don'ts
 - Nunca listar certificações como prova de caráter
@@ -37,26 +46,21 @@ Tem uma pergunta que o Brasil ainda não fez em voz alta: se a maior mineradora 
 - Nunca soar como empresa prestando contas à sociedade
 - Nunca confundir o mínimo legal com mérito
 
-**Nuance de voz:** autoridade de quem já decidiu. Não justifica. Informa.
+**Nuance de voz:** firme, clara, de portas abertas. Quem fala aqui tem coragem de mostrar.
 
 ---
 
-## Q2. REFERÊNCIA ATUANTE
-*(TODO + LEGADO: de "Potência Vigilante" para "Referência Atuante")*
-
-**Palavra: ORGULHO**
+## REFERÊNCIA ATUANTE
+*(TODO + LEGADO)*
+**Posicionamento + Propósito**
 
 ### Versão A
 
-Cada carro elétrico que o mundo celebra precisa de seis vezes mais minerais do que um convencional. Cada turbina eólica carrega toneladas de cobre. Cada bateria de celular começa em algum lugar debaixo da terra. Esse lugar, muitas vezes, é o Brasil. E quem faz isso acontecer são 60 mil pessoas que acordam antes do sol, resolvem problemas que a maioria nem sabe que existem, e fazem a economia do planeta girar sem que ninguém conte essa parte da história.
+O mundo celebra o carro elétrico, aplaude a turbina eólica, promete zerar emissões. Mas quase ninguém pergunta de onde vem o material que faz tudo isso existir. É aqui que a Vale precisa se posicionar: como a empresa cujo trabalho é a base material do futuro que o mundo promete. Esse propósito já existe no dia a dia de 60 mil pessoas. O que falta é dar nome ao que já se faz. Dar voz ao orgulho que ficou em silêncio tempo demais. Essas pessoas acordam antes do sol, resolvem problemas que a maioria nem sabe que existem, e fazem a economia do planeta girar. Elas merecem saber, com todas as letras, o tamanho do que constroem.
 
 ### Versão B
 
-Existe um Brasil que aparece nos noticiários. E existe um Brasil que faz o mundo funcionar. Engenheiros que projetam minas mais seguras do que as de dez anos atrás. Geólogos que mapeiam o subsolo com precisão de centímetros. Operadores que fazem funcionar equipamentos que custam mais do que prédios inteiros. Esse Brasil trabalha na Vale. E a transição energética que o mundo inteiro promete depende, em boa parte, do trabalho dessa gente.
-
-### Versão C
-
-O orgulho de quem faz a Vale existir ficou quieto por tempo demais. Depois de tudo que aconteceu, ficou difícil dizer em voz alta. Mas orgulho de verdade não some. Ele fica ali, no corpo, esperando o momento de ser dito. E talvez esse momento seja agora. Porque o que a Vale faz, o mundo precisa. E as pessoas que fazem isso merecem saber, com todas as letras, o tamanho do que constroem.
+Existe um Brasil que aparece nos noticiários. E existe um Brasil que faz o mundo funcionar. Engenheiros que projetam minas mais seguras do que as de dez anos atrás. Geólogos que mapeiam o subsolo com precisão de centímetros. Operadores que fazem funcionar equipamentos que custam mais do que prédios inteiros. Esse Brasil trabalha na Vale. E a transição energética que o mundo inteiro promete depende, em boa parte, do trabalho dessa gente. A direção para a marca neste espaço é conectar esse trabalho real com o propósito global. Não inventar um propósito. Revelar o que já existe. E fazer com que cada pessoa que faz parte disso sinta, de verdade, o peso e a beleza do que carrega.
 
 ### Do's
 - Colocar as pessoas da Vale como protagonistas, nunca a corporação
@@ -74,22 +78,17 @@ O orgulho de quem faz a Vale existir ficou quieto por tempo demais. Depois de tu
 
 ---
 
-## Q3. ALIADO CONFIÁVEL
-*(PARTE + LEGAL: de "Mal necessário" para "Aliado Confiável")*
-
-**Palavra: PRESENÇA**
+## ALIADO CONFIÁVEL
+*(PARTE + LEGAL)*
+**Proximidade + Transparência**
 
 ### Versão A
 
-Tem cidades onde o nome Vale carrega tudo junto: o emprego, a estrada, a escola, mas também a memória, a dor, a desconfiança. A Vale sabe quais são. E se ainda está lá, é porque ir embora seria mais fácil. Ficar é a parte difícil. Ficar, escutar, fazer de novo, fazer melhor, fazer até que a confiança volte. E se não voltar hoje, fazer de novo amanhã. E depois de amanhã.
+Tem lugares no Brasil onde o nome Vale dói. A Vale sabe quais são. Sabe o peso que esse nome carrega em cada cidade, em cada família, em cada conversa de portão. E nenhuma campanha nacional vai resolver isso. A direção aqui é a mais difícil e a mais importante: estar perto e mostrar. Proximidade real, não institucional. Transparência de fato, não de relatório. O técnico que aparece todo mês. O dado aberto para quem quiser ver. A obra que fica de pé quando ninguém está olhando. Parte disso já acontece nos territórios, mas de forma dispersa, sem narrativa, sem visibilidade. O caminho é tornar essas ações uma postura de marca. Porque proximidade sem transparência é encenação. E a Vale já não pode se dar ao luxo de encenar.
 
 ### Versão B
 
-Confiança não se recupera com campanha. Se recupera com presença. Com o técnico que volta todo mês. Com o projeto que não muda quando muda a diretoria. Com a decisão de ouvir antes de explicar. Nos territórios onde a Vale opera, as pessoas não querem ouvir promessa. Querem ver resultado. E ver leva tempo. A Vale está disposta a gastar esse tempo.
-
-### Versão C
-
-Em Minas, a Vale não é um logo. É o vizinho. É o cunhado. É a filha. Quando a empresa erra, quem sente primeiro é essa gente. Por isso cada acerto precisa ser do tipo que se vê da janela de casa. Não do tipo que aparece em relatório. A presença da Vale nos territórios não é programa com data de validade. É decisão de ficar. E ficar de verdade.
+A confiança que se perdeu em certos territórios não volta com discurso. Volta com presença e com verdade. E volta devagar. Neste espaço, a marca precisa falar de perto. Com o técnico que volta todo mês. Com o projeto que continua quando a câmera vai embora. Com os fatos na mesa, para quem quiser conferir. Hoje existem ações e projetos nos territórios que já fazem isso. O que falta é tornar isso uma postura consistente. Não um esforço isolado de cada área, mas uma decisão de marca: a gente fica, a gente mostra, a gente escuta antes de falar. As pessoas que vivem nesses territórios merecem isso. E as pessoas da Vale que trabalham lá, e carregam esse peso no peito todo dia, merecem ainda mais.
 
 ### Do's
 - Colocar o território e as comunidades como protagonistas
@@ -107,22 +106,17 @@ Em Minas, a Vale não é um logo. É o vizinho. É o cunhado. É a filha. Quando
 
 ---
 
-## Q4. TECNOLOGIA SOCIAL COMPARTILHADA
-*(PARTE + LEGADO: de "Atuação Fragmentada" para "Tecnologia Social Compartilhada")*
-
-**Palavra: LEGADO**
+## TECNOLOGIA SOCIAL COMPARTILHADA
+*(PARTE + LEGADO)*
+**Proximidade + Propósito**
 
 ### Versão A
 
-Quando a Vale for embora de um lugar, e um dia vai, o que vai ter ficado? A escola funcionando sem a empresa. A cooperativa vendendo sem o nome da Vale. O técnico local ensinando o que aprendeu para quem vem depois. Quando isso acontece, e já acontece em mais lugares do que as pessoas imaginam, aí sim dá para dizer que o trabalho foi feito.
+A mineração tem prazo. O minério acaba. A operação muda de lugar. Mas as pessoas ficam. E o que a Vale construiu junto com essas pessoas precisa ficar também. Não como lembrança. Como estrutura. Como capacidade. Como algo que funciona sozinho, sem o nome da empresa na porta. Esse é o propósito mais difícil de uma mineradora: deixar mais do que tirou. Alguns desses resultados já existem. Escolas que rodam sozinhas. Cooperativas que aprenderam a vender. Técnicos que ensinam o que aprenderam. Mas estão dispersos, sem narrativa que os conecte. A direção aqui é transformar essas experiências em compromisso declarado: a Vale quer criar independência, não dependência. E é o único legado que vale a pena.
 
 ### Versão B
 
-O maior elogio que uma comunidade pode fazer para a Vale é não precisar mais dela. A maioria das empresas quer criar dependência. A Vale quer criar independência. Quer que o conhecimento transferido vire capacidade própria. Que o projeto que nasceu junto rode sem a empresa no meio. Isso é legado. O resto é vitrine.
-
-### Versão C
-
-Os melhores resultados da Vale são os que não precisam mais do nome dela para existir. Uma escola que roda sozinha. Um negócio que cresceu. Uma técnica que passou de geração. Ninguém olha para isso e pensa na Vale. E tudo bem. Porque o ponto nunca foi que lembrassem da empresa. O ponto sempre foi que ficasse de pé.
+O propósito de estar perto não é ser lembrado. É deixar algo que fique de pé. A escola que roda sem a Vale. A cooperativa que vende sem o nome da empresa. O técnico local que ensina o que aprendeu para quem vem depois. Quando um território consegue andar sozinho, sem depender de quem estava ali, aí sim o propósito se cumpriu. Não antes. Hoje existem iniciativas que já caminham nessa direção. Mas falta o fio que conecta todas elas. A marca precisa assumir esse propósito com clareza: o maior elogio que uma comunidade pode fazer para a Vale é não precisar mais dela. E trabalhar para que isso aconteça, com humildade e com constância, é o que separa presença com propósito de presença por obrigação.
 
 ### Do's
 - Mostrar resultados que já funcionam sem a presença da Vale
@@ -136,7 +130,7 @@ Os melhores resultados da Vale são os que não precisam mais do nome dela para 
 - Nunca fazer a empresa protagonista de uma história que pertence ao território
 - Nunca confundir dispersão de projetos desconectados com estratégia de legado
 
-**Nuance de voz:** generosa, concreta. A marca desaparece para o resultado aparecer.
+**Nuance de voz:** generosa, concreta. A marca desaparece para o resultado aparecer. E há beleza nisso.
 
 ---
 
@@ -196,26 +190,24 @@ ESG, stakeholder, sustentabilidade, impacto positivo, proposta de valor, licenç
 
 ### Versão A
 
-Tem uma coisa que quem trabalha na Vale sabe, mas não diz.
+Tem uma coisa que quem trabalha na Vale sabe, mas faz tempo que não diz em voz alta.
 
 Sabe no corpo. Na hora que o despertador toca e o dia começa antes do sol. No caminho até a mina, até o laboratório, até o escritório, até o porto. No silêncio de quem faz um trabalho pesado e volta para casa sem contar o que fez, porque é difícil explicar para quem não vive isso.
 
-**[Q3 — Aliado Confiável / PRESENÇA]**
-Depois de Mariana. Depois de Brumadinho. O orgulho ficou quieto. Engolido. Guardado num lugar que dói, entre a certeza do que a gente faz de certo e o peso do que deu errado.
+**[Proximidade + Transparência]**
+Depois de Mariana. Depois de Brumadinho. O orgulho ficou quieto. Engolido. Guardado num lugar que dói, entre a certeza do que a gente faz de certo e o peso do que deu errado. Quem ficou, sabe o que carrega. E carrega mesmo assim.
 
-**[Q1 — Empreendedora de País / SOBERANIA]**
-Mas o que a gente faz não parou. Os protocolos mudaram. A tecnologia mudou. A escuta mudou. A forma de estar nos territórios mudou. Mudou porque as pessoas que trabalham aqui fizeram mudar. Não o logo. Não a marca. As pessoas.
+**[Posicionamento + Transparência]**
+Mas tem outra coisa que quem trabalha aqui também sabe: o que mudou. E o que ainda está mudando. Os protocolos que não existiam. A tecnologia que entrou. As portas que se abriram. Isso não aconteceu sozinho. Aconteceu porque as pessoas que estão aqui dentro fizeram acontecer. De dentro para fora. E precisa continuar acontecendo.
 
-**[Q2 — Referência Atuante / ORGULHO]**
-E o que essas pessoas fazem, todo dia, é a base material do futuro que o mundo inteiro diz que quer. Sem o minério que sai dessas minas, não tem carro elétrico. Não tem energia limpa. Não tem transição nenhuma. Tem discurso.
+**[Posicionamento + Propósito]**
+E o que essas pessoas fazem, todo dia, é a base material do futuro que o mundo inteiro promete. Sem o que sai dessas minas, não tem carro elétrico. Não tem turbina eólica. Não tem transição energética. Tem discurso. Esse propósito existe em cada turno. Só que ninguém organizou as palavras para dizer isso ainda. Até agora.
 
-**[Q4 — Tecnologia Social Compartilhada / LEGADO]**
-Nos territórios onde a Vale está, o trabalho vai além da operação. São escolas que ficam de pé, cooperativas que aprenderam a andar sozinhas, comunidades que construíram capacidade própria. Resultados que já não precisam do nome da empresa para continuar existindo.
+**[Proximidade + Propósito]**
+Nos territórios onde a Vale está, o caminho é construir algo que fique de pé sozinho. Comunidades que andem sem depender da empresa. Conhecimento que passe de geração. É um propósito que está começando a ganhar forma. E que precisa virar compromisso de verdade.
 
-**[Síntese — os 4 quadrantes juntos]**
-Então quando alguém perguntar onde é que a gente trabalha, a resposta não precisa mais vir com pedido de desculpa. Pode vir com fato. Com história. Com a verdade de quem acordou cedo, desceu fundo e fez o futuro funcionar.
-
-O orgulho que a gente sente tem fundamento. Está na hora de dizer.
+**[Síntese]**
+O orgulho que existe dentro da Vale é real. É feito de trabalho, de mudança, de decisão de ficar e fazer diferente. Esse orgulho não precisa mais de silêncio. Precisa de voz. E este é o primeiro passo.
 
 ---
 
@@ -223,25 +215,22 @@ O orgulho que a gente sente tem fundamento. Está na hora de dizer.
 
 Ninguém explica o que é trabalhar na Vale em uma frase. Porque não cabe.
 
-**[Q2 — Referência Atuante / ORGULHO]**
-Não cabe o tamanho do que a gente opera. Não cabe a precisão que o trabalho exige. Não cabe o que significa fazer a economia de dezenas de países funcionar a partir de uma mina no interior do Brasil.
+**[Posicionamento + Propósito]**
+Não cabe a escala. Não cabe a precisão. Não cabe o que significa extrair da terra brasileira o material que faz o futuro do mundo funcionar. Cada bateria, cada turbina, cada rede elétrica começa no trabalho de alguém que a maioria nunca vai conhecer. Esse propósito existe. Está vivo. Só precisa ser dito.
 
-**[Q3 — Aliado Confiável / PRESENÇA]**
-Não cabe o peso que o nome carrega em certos lugares. O olhar de quem ainda não perdoou. A decisão de ficar mesmo assim, porque ficar é a única forma de reconstruir.
+**[Proximidade + Transparência]**
+Não cabe o peso que o nome carrega em certos lugares. A memória que não apagou. A decisão de ficar, de perto, mostrando o que faz, sem esconder o que foi. Quem escolheu continuar, escolheu carregar tudo junto. E continua escolhendo.
 
-**[Q1 — Empreendedora de País / SOBERANIA]**
-Mas cabe uma verdade: o mundo precisa do que a gente faz. Precisa hoje, vai precisar amanhã, vai precisar daqui a 50 anos. Cada mineral que sai da terra brasileira vira energia, vira mobilidade, vira a infraestrutura do futuro que todo mundo promete e que pouca gente sabe como se constrói. A gente sabe. Porque a gente constrói.
+**[Posicionamento + Transparência]**
+Mas cabe uma direção: a Vale está mudando. Não porque mudou de logo. Porque as pessoas que trabalham aqui estão mudando os processos, abrindo as portas, colocando os fatos na mesa. Esse movimento já começou. E este documento existe para que ele não pare.
 
-**[Q3 + Q4 — Presença + Legado]**
-A Vale errou. E as pessoas que estão aqui carregaram esse peso junto. Mas as mesmas pessoas que carregaram o peso são as que mudaram os processos, criaram os protocolos, ficaram nos territórios, construíram o que vai ficar de pé depois que a operação mudar de lugar.
-
-**[Q4 — Tecnologia Social Compartilhada / LEGADO]**
-Esse trabalho merece ser reconhecido. Não por campanha. Por verdade. Pela verdade de quem vê, todo dia, o resultado do que faz.
+**[Proximidade + Propósito]**
+E o que está sendo construído nos territórios, nas comunidades, no conhecimento que começa a ficar quando a operação muda de lugar, precisa virar propósito assumido. Não esforço isolado. Não ação de uma área. Compromisso da marca inteira.
 
 **[Síntese]**
-O orgulho de trabalhar na Vale não precisa mais ficar em silêncio.
+O orgulho de trabalhar na Vale não precisa mais ficar em silêncio. Ele tem fundamento. E agora tem direção.
 
 ---
 
-*Documento criado por Copy Squad (Cyrus, orquestrador / David Ogilvy, primary / David Deutsch, secondary)*
+*Documento criado por Copy Squad (Cyrus, orquestrador / David Ogilvy + Gary Halbert, copywriters)*
 *Projeto Vale — Reposicionamento de Marca — 2026-08-22*
