@@ -1,6 +1,25 @@
 # MASTER-BACKUP: Destaka
-**Última atualização:** 2026-08-16 (GBP API submetida + OAuth consent screen corrigido)
-**Status:** MVP em producao. GBP API ticket 2-9359000041841 submetido como UNLMTD em 16/08/2026. Aguardando aprovacao (7-10 dias uteis). OAuth consent screen corrigido e branding publicado.
+**Ultima atualizacao:** 2026-08-26 (Verificacao GBP API email)
+**Status:** MVP em producao. GBP API ticket 2-9359000041841 submetido em 16/08/2026. Gmail auditado em 26/08: zero emails do Google (confirmado que nao enviam confirmacao). Aguardar ate 01/09.
+
+---
+
+## Sessao 2026-08-26 — Verificacao GBP API email
+
+### O que foi feito
+
+- Gmail auditado: inbox, spam e busca por ticket `2-9359000041841`. Zero resultados.
+- Confirmado que Google NAO envia email de confirmacao apos formulario GBP API.
+- Evidencia: ticket 1 (`0-2582000041216`) so recebeu email na rejeicao (11 dias depois, 08/06). Nenhuma confirmacao intermediaria.
+- Ticket 2 (`4-9265000041644`): zero emails ate hoje. Nunca processado.
+- Silencio atual do ticket 3 e comportamento normal do Google.
+
+### Decisao
+
+Aguardar ate 01/09 (10 dias uteis completos). Se nao houver resposta, escalar via:
+1. Google Cloud Support (Workspace)
+2. Twitter/X @GoogleMyBiz
+3. Resubmissao do formulario
 
 ---
 
