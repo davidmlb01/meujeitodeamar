@@ -4,6 +4,30 @@
 
 ---
 
+## Sessao 2026-08-27 — Sites fora do ar (redirect loop) + auditoria
+
+### Problema
+destaka.com.br e unlmtd.etc.br fora do ar por redirect loop infinito.
+
+### Causa raiz
+Vercel tinha `www` como dominio primario (redirecionava non-www→www). O codigo/config fazia o redirect oposto (www→non-www). Loop infinito.
+
+### Correcoes aplicadas
+1. **Redirect loop:** API Vercel PATCH para inverter primario. `destaka.com.br` e `unlmtd.etc.br` agora sao primarios, `www` redireciona 308 para eles.
+2. **UNLMTD /privacy 404:** `cleanUrls: true` adicionado ao `vercel.json`. Commit `2a714fc`.
+3. **Auditoria SEO completa:** canonical, og, robots, sitemap, 404, SSL, JSON-LD. Tudo OK nos dois sites.
+
+### TODO URGENTE (proxima sessao)
+- [ ] HSTDOMAINS: apontar A record de `destaka.com.br` para `76.76.21.21` (Vercel)
+- [ ] Cloudflare: apontar A record de `unlmtd.etc.br` para `76.76.21.21` (Vercel)
+- [ ] Ambos apontam para IP de parking `216.198.79.1` — fragil, pode cair sem aviso
+
+### Problemas menores identificados
+- `/saude/login` e `/saude/verificar` retornam 404 (rotas nao existem, middleware redireciona `/login` para la)
+- `/api/health` retorna 404 em vez de JSON
+
+---
+
 ## Sessao 2026-08-26 — Verificacao GBP API email
 
 ### O que foi feito
