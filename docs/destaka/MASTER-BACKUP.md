@@ -22,9 +22,15 @@ Vercel tinha `www` como dominio primario (redirecionava non-www→www). O codigo
 - [ ] Cloudflare: apontar A record de `unlmtd.etc.br` para `76.76.21.21` (Vercel)
 - [ ] Ambos apontam para IP de parking `216.198.79.1` — fragil, pode cair sem aviso
 
+### Botao Google OAuth corrigido
+- **CSP proxy.ts incompleto:** faltava accounts.google.com em connect-src, script-src, frame-src e form-action. Commit `7ececa4`.
+- **Supabase pausado:** free tier pausa apos 7 dias sem atividade. Reativado no dashboard.
+- **Verificacao final:** todas as rotas 200 OK, CSP completo, Supabase Auth respondendo.
+
 ### Problemas menores identificados
-- `/saude/login` e `/saude/verificar` retornam 404 (rotas nao existem, middleware redireciona `/login` para la)
+- `/saude/login` e `/saude/verificar` retornam 404 (rotas legado, nao afeta producao)
 - `/api/health` retorna 404 em vez de JSON
+- Supabase free tier vai pausar de novo sem atividade (considerar Pro $25/mes)
 
 ---
 
