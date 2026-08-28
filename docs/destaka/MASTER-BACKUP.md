@@ -33,6 +33,7 @@ Vercel tinha `www` como dominio primario (redirecionava non-www→www). O codigo
 - Supabase free tier vai pausar de novo sem atividade (considerar Pro $25/mes)
 
 ### TODO PRIMEIRA HORA (proxima sessao)
+- [ ] Pagina `/verificar` (diagnostico gratuito) nao existe no deploy atual. Migrar de `packages/web/src/app/saude/verificar/` para `src/app/`
 - [ ] Diagnostico gratuito pula direto para resultado quando usuario logado. Corrigir fluxo: sempre pedir nome/URL da clinica, independente de auth
 - [ ] Dashboard layout errado (fundo claro generico vs design dark teal com sidebar)
 - [ ] Verificar se GBP do usuario logado esta sendo lido corretamente apos OAuth com scope business.manage
