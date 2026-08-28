@@ -32,6 +32,11 @@ Vercel tinha `www` como dominio primario (redirecionava non-www→www). O codigo
 - `/api/health` retorna 404 em vez de JSON
 - Supabase free tier vai pausar de novo sem atividade (considerar Pro $25/mes)
 
+### TODO PRIMEIRA HORA (proxima sessao)
+- [ ] Diagnostico gratuito pula direto para resultado quando usuario logado. Corrigir fluxo: sempre pedir nome/URL da clinica, independente de auth
+- [ ] Dashboard layout errado (fundo claro generico vs design dark teal com sidebar)
+- [ ] Verificar se GBP do usuario logado esta sendo lido corretamente apos OAuth com scope business.manage
+
 ---
 
 ## Sessao 2026-08-26 — Verificacao GBP API email
