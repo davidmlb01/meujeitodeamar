@@ -140,3 +140,53 @@ CRM para profissionais de saude. Standalone — funciona sem o Destaka GMB, mas 
 | iClinic | R$299/prof. | Sem CRM, WhatsApp via terceiro |
 | Simples Dental Pro | R$349 | So dentistas, CRM basico |
 | ByDoctor | R$147 | Sem CRM, sem GMB |
+| DeskcommCRM | Open source (gratis) | Sem GMB, sem billing, self-hosted |
+
+---
+
+## Analise Estrategica: DeskcommCRM (28/08/2026)
+
+> Fonte: github.com/melgarafael/DeskcommCRM (MIT, v1.0, 715 stars, 329 forks)
+
+### O que e
+
+CRM open source brasileiro para SMEs que vendem via WhatsApp. Combina inbox unificada, pipeline kanban, agentes AI com RAG, e compliance LGPD nativa. Stack: Next.js 16, Supabase (pgvector + RLS), Vercel AI SDK, WAHA Plus.
+
+### Features relevantes para o CRM Destaka
+
+| Feature | Valor | Esforco estimado |
+|---------|-------|-----------------|
+| Inbox WhatsApp centralizada (real-time) | ALTISSIMO | 4-6 semanas |
+| Pipeline Kanban drag-drop | ALTO | 2-3 semanas |
+| Agentes AI com RAG (pgvector) | ALTISSIMO | 6-8 semanas |
+| Customer 360 (timeline unificada) | ALTO | 3-4 semanas |
+| LGPD nativa (redact, export, audit) | CRITICO | 2-3 semanas |
+| Automacoes QUANDO/SE/ENTAO | ALTO | 3-4 semanas |
+| Handoff IA para humano com auditoria | ALTO | 2 semanas |
+| MCP Server (19 tools) | DIFERENCIADOR | 2-3 semanas |
+| Sentiment Detection | ALTO | 1-2 semanas |
+| RBAC (4 papeis) | NECESSARIO | 1-2 semanas |
+
+### Veredicto (3 squads: Tech + CEO/Board + Hormozi)
+
+**Tecnologia:** Compatibilidade tecnica ALTA (mesmo ecossistema). NAO forkar (self-hosted vs SaaS). Usar como referencia de arquitetura ("Inspired by, not forked from").
+
+**CEO/Board:** Valida a tese do CRM Destaka. Destaka e o UNICO no cruzamento GMB + Patient CRM + WhatsApp. Janela de 6 meses antes que Deskcomm possa adicionar GMB.
+
+**Hormozi:** Valor percebido adicional ~R$2.900/mes. Cliente paga R$997 para recuperar R$9.600/mes de receita dormindo. ROI 9.6x. Custo alternativa: agencia R$3-5k/mes.
+
+### Precificacao com CRM
+
+| Tier | Features | Preco |
+|---|---|---|
+| Visibilidade | GMB + Score + Content + Reviews | R$197/mes |
+| Crescimento | Visibilidade + Google Ads | R$497/mes |
+| Plataforma | Crescimento + WhatsApp + IA + Pipeline + Reativacao + LGPD | R$997/mes |
+| Plataforma Pro | Plataforma + RAG ilimitado + MCP + Automacoes avancadas | R$1.497/mes |
+
+### Proximos passos
+
+- [ ] Spec do CRM Destaka usando features do DeskcommCRM como checklist
+- [ ] Priorizar 3 features core (inbox, pipeline, reativacao) para Tier Plataforma
+- [ ] Monitorar DeskcommCRM para timeline de GMB integration
+- [ ] Validar R$997 com 5 profissionais de saude (pergunta onboarding ja aprovada)
