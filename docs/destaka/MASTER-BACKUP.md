@@ -32,11 +32,23 @@ Vercel tinha `www` como dominio primario (redirecionava non-www→www). O codigo
 - `/api/health` retorna 404 em vez de JSON
 - Supabase free tier vai pausar de novo sem atividade (considerar Pro $25/mes)
 
-### TODO PRIMEIRA HORA (proxima sessao)
-- [ ] Pagina `/verificar` (diagnostico gratuito) nao existe no deploy atual. Migrar de `packages/web/src/app/saude/verificar/` para `src/app/`
-- [ ] Diagnostico gratuito pula direto para resultado quando usuario logado. Corrigir fluxo: sempre pedir nome/URL da clinica, independente de auth
-- [ ] Dashboard layout errado (fundo claro generico vs design dark teal com sidebar)
-- [ ] Verificar se GBP do usuario logado esta sendo lido corretamente apos OAuth com scope business.manage
+### Sessao 2026-08-28 — Restauracao massiva
+
+**Concluido:**
+- [x] /verificar restaurado e funcionando (diagnostico gratuito com Places API)
+- [x] Dashboard dark theme com sidebar (DashboardLayout + MobileNav)
+- [x] 35+ componentes, 13 hooks, 30+ libs extraidos do git
+- [x] 8 sub-rotas reais restauradas (reviews, posts, optimizations, keywords, etc.)
+- [x] Build corrigido apos 10+ falhas (deps npm + modulos + types)
+- [x] Org DB: "Dra Rubia Carolina" → "UNLMTD"
+- [x] Signout route criada
+- [x] Deploy final READY (commit f642be7)
+
+### TODO PROXIMA SESSAO
+- [ ] Testar dashboard com deploy novo (build passou, David nao testou)
+- [ ] Popular dados UNLMTD no banco (Places API nao encontra perfil, precisa alternativa)
+- [ ] Diagnostico pula direto para resultado quando logado
+- [ ] DNS: HSTDOMAINS destaka.com.br + Cloudflare unlmtd.etc.br → 76.76.21.21
 
 ---
 
