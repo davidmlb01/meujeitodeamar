@@ -2,7 +2,7 @@
 
 **Projeto:** Vale Reposicionamento de Marca
 **Inicio:** 2026-08-22
-**Status:** [~] Insumos absorvidos — aguardando kickoff flow e confirmacao de entregavel
+**Status:** [~] Proposta de valor em desenvolvimento (3 versoes finalistas)
 **Obsidian MOC:** `projects/vale/MOC.md`
 
 ---
@@ -89,7 +89,9 @@ Pasta Obsidian: `projects/vale/referencias/`
 - [ ] Campanha externa grandiosa (fase 2)
 
 ### Em andamento
-_vazio_
+- [~] Proposta de Valor Geral de Marca (slide 86) — 3 versoes finalistas, David aprovou direcao
+- [ ] Tom de Voz Geral de Marca (slide 87)
+- [ ] Do's & Don'ts Geral de Marca (slide 88)
 
 ### Concluido
 - [x] Criar estrutura do projeto no framework
@@ -100,3 +102,6 @@ _vazio_
 - [x] Criar 3 arquivos de referência em BIG HEAD + espelhos no Obsidian
 - [x] Definir escopo: estratégia inside-out, 60 mil funcionários como advogados da marca
 - [x] Entregável v1: direcional de copy "Mineração do Futuro" (4 quadrantes + tom de voz + manifesto profissional)
+- [x] PDF Natura Nova Expressao (204 slides) absorvido como referencia de design system
+- [x] Slides 70-89 da apresentacao Box1824 absorvidos (quadrantes, manifestos, do's/don'ts)
+- [x] Proposta de Valor: 3 versoes finalistas com coragem + orgulho + 4 quadrantes
