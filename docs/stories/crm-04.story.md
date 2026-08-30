@@ -5,10 +5,10 @@ quality_gate: "@qa"
 quality_gate_tools: ["review", "lint", "typecheck"]
 epic: EPIC-CRM-001
 project: crm-destaka
-depends_on: ["CRM-01", "CRM-03"]
+depends_on: ["CRM-01", "CRM-02a"]
 ---
 
-# Story CRM-04: WhatsApp + Meta Cloud API
+# Story CRM-04: Pipeline Visual de Pacientes (Kanban)
 
 ## Status
 
@@ -17,104 +17,102 @@ Draft
 ## Story
 
 **As a** profissional de saude,
-**I want** que o CRM envie mensagens WhatsApp automaticamente para os pacientes elegiveis e registre as respostas deles,
-**so that** a reativacao aconteca sem nenhuma acao manual minha, e eu veja no CRM quem respondeu e o que disse.
+**I want** ver meus pacientes organizados visualmente em colunas por etapa do relacionamento (agendado, confirmado, atendido, retorno),
+**so that** eu saiba exatamente em que ponto cada paciente esta e o que preciso fazer, sem precisar filtrar listas ou lembrar de cabeca.
+
+## Contexto Estrategico
+
+Pipeline visual e a feature #2 das 3 que justificam o Tier Plataforma (R$997/mes).
+Inspirada no DeskcommCRM (pipeline kanban drag-drop) mas adaptada para ciclo clinico, nao funil de vendas.
+Objetivo: o profissional abre o CRM todo dia para ver o pipeline. Isso cria habito e lock-in.
 
 ## Acceptance Criteria
 
-1. Endpoint POST `/api/reactivation/send`: recebe `{ patient_id, org_id, trigger_type }` — valida LGPD, anti-spam e envia template WhatsApp via Meta Cloud API
-2. Template `reativacao_ciclo` enviado com 3 variaveis: `{{1}}` = nome do paciente, `{{2}}` = nome do procedimento mais recente, `{{3}}` = nome do profissional (da org)
-3. Dupla validacao de LGPD no momento do envio: mesmo que o scheduler tenha validado, o endpoint valida novamente antes de chamar a API Meta (protecao contra race condition)
-4. Apos envio bem-sucedido: INSERT em `reactivation_log` com `{ org_id, patient_id, trigger_type, channel: 'whatsapp', status: 'sent', meta_message_id, message_template }`
-5. Webhook POST `/api/webhooks/meta`:
-   - Verificacao de assinatura HMAC-SHA256 com `X-Hub-Signature-256` header — rejeitar com 401 se invalido
-   - Handler para `messages` (resposta do paciente): UPDATE `reactivation_log.status = 'responded'`, detectar resposta negativa
-   - Handler para `statuses` (delivery/read): UPDATE `reactivation_log.status = 'delivered' | 'read'`
-6. Resposta negativa do paciente (palavras-chave: "nao", "nao quero", "parar", "sair", "cancelar"): UPDATE `patients.status = 'opted_out'` automaticamente
-7. Notificacao in-app: quando paciente responde, badge de notificacao aparece no header + lista "Respostas pendentes" acessivel
-8. Envio manual disponivel: botao "Reativar agora" no perfil do paciente dispara o endpoint imediatamente (fora do scheduler)
-9. Fallback SMS: se `META_API_ENABLED = false` nas envs, usar Twilio SMS com texto equivalente (para beta se templates nao aprovados)
+1. Pagina `/pipeline` acessivel via sidebar, exibe board kanban com colunas configuradas
+2. Colunas padrao (criadas automaticamente no primeiro acesso):
+   - **Agendado**: paciente marcou consulta mas ainda nao veio
+   - **Confirmado**: consulta confirmada (lembrete enviado e respondido)
+   - **Atendido**: consulta realizada, aguardando retorno
+   - **Retorno pendente**: `next_return_at` vencido, paciente precisa voltar
+   - **Inativo**: sem retorno ha mais de 30 dias alem do previsto
+3. Cada card de paciente exibe: nome, telefone, especialidade, status badge, dias desde ultimo contato
+4. Drag-and-drop entre colunas: arrastar paciente de uma coluna para outra atualiza o status no banco
+5. Movimentacao automatica: quando um `patient_procedure` e registrado, o paciente move automaticamente de qualquer coluna para "Atendido". Quando `next_return_at` vence, move para "Retorno pendente"
+6. Contadores por coluna: exibir quantidade de pacientes em cada coluna no header
+7. Filtros no pipeline: por especialidade e por periodo de inatividade
+8. Click no card abre perfil do paciente (rota /patients/[id])
+9. Pipeline stages configuráveis: profissional pode renomear colunas e adicionar/remover stages em /settings
+10. Mobile: em telas < 768px, exibir como lista com tabs em vez de kanban horizontal
 
 ## Tasks / Subtasks
 
-- [ ] Task 1 — Integracao Meta Cloud API (AC: 1, 2, 3, 4)
-  - [ ] Criar `lib/meta/send-template.ts` com funcao `sendWhatsAppTemplate(phone, templateName, components)`
-  - [ ] POST https://graph.facebook.com/v18.0/{PHONE_NUMBER_ID}/messages com Bearer token
-  - [ ] Estrutura do payload: `{ messaging_product: 'whatsapp', to: phone, type: 'template', template: { name, language: { code: 'pt_BR' }, components } }`
-  - [ ] Env vars necessarias: `META_ACCESS_TOKEN`, `META_PHONE_NUMBER_ID`, `META_WABA_ID`, `META_WEBHOOK_SECRET`
-  - [ ] Criar endpoint `/api/reactivation/send/route.ts` com validacoes
+- [ ] Task 1 — Migration + modelo de dados (AC: 2, 9)
+  - [ ] Criar tabela `pipeline_stages`: id, org_id, name, position, is_default, created_at
+  - [ ] Criar tabela `patient_pipeline`: id, org_id, patient_id, stage_id, moved_at, moved_by
+  - [ ] RLS em ambas (org_id baseado em google_sub)
+  - [ ] Seed de stages padrao no callback de auth (primeiro login cria 5 stages)
 
-- [ ] Task 2 — Webhook Meta (AC: 5, 6)
-  - [ ] Criar `/api/webhooks/meta/route.ts`
-  - [ ] GET handler: verificacao do webhook Meta (challenge response com `hub.verify_token`)
-  - [ ] POST handler: parse do payload Meta
-  - [ ] Criar `lib/meta/verify-webhook.ts`: verificar HMAC-SHA256 com `META_WEBHOOK_SECRET`
-  - [ ] Handler `messages`: UPDATE reactivation_log + deteccao de resposta negativa + opted_out
-  - [ ] Handler `statuses`: UPDATE reactivation_log.status
+- [ ] Task 2 — API do pipeline (AC: 4, 5, 6, 7)
+  - [ ] GET /api/pipeline: retorna stages com pacientes agrupados
+  - [ ] PATCH /api/pipeline/move: move paciente entre stages (drag-drop)
+  - [ ] Logica de movimentacao automatica: trigger ou job que reposiciona baseado em next_return_at
 
-- [ ] Task 3 — Notificacao in-app (AC: 7)
-  - [ ] Tabela `notifications` ou usar `reactivation_log.status = 'responded'` como fonte
-  - [ ] Endpoint GET /api/notifications: retorna respostas nao lidas de pacientes
-  - [ ] Badge no header com contagem de respostas pendentes
-  - [ ] Pagina ou drawer "Respostas de pacientes" com lista e botao "Marcar como lido"
+- [ ] Task 3 — UI: board kanban desktop (AC: 1, 3, 4, 6, 8)
+  - [ ] Pagina /pipeline com colunas horizontais
+  - [ ] Drag-and-drop com biblioteca leve (dnd-kit ou similar)
+  - [ ] Card do paciente com dados resumidos + status badge
+  - [ ] Contadores no header de cada coluna
+  - [ ] Click no card navega para /patients/[id]
 
-- [ ] Task 4 — Envio manual (AC: 8)
-  - [ ] Botao "Reativar agora" no perfil do paciente
-  - [ ] Modal de confirmacao com preview da mensagem que sera enviada
-  - [ ] Chama POST /api/reactivation/send diretamente
-  - [ ] Feedback: toast de sucesso ou erro
+- [ ] Task 4 — UI: mobile responsive (AC: 10)
+  - [ ] Em telas < 768px: tabs horizontais no topo (uma por stage)
+  - [ ] Conteudo de cada tab e lista vertical de cards
+  - [ ] Swipe entre tabs (opcional, nice-to-have)
 
-- [ ] Task 5 — Fallback SMS (AC: 9)
-  - [ ] Instalar `twilio` package
-  - [ ] Criar `lib/twilio/send-sms.ts` com funcao `sendSMS(phone, message)`
-  - [ ] Em `send-template.ts`: checar `process.env.META_API_ENABLED !== 'false'` antes de chamar Meta — senao usar Twilio
-  - [ ] Env vars: `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_FROM_NUMBER`
+- [ ] Task 5 — Configuracao de stages (AC: 9)
+  - [ ] Secao "Pipeline" em /settings
+  - [ ] Renomear stage: input inline editavel
+  - [ ] Adicionar/remover stage: max 8, min 2
+  - [ ] Reordenar: drag-drop ou botoes seta
+
+- [ ] Task 6 — Filtros (AC: 7)
+  - [ ] Dropdown de especialidade no topo do pipeline
+  - [ ] Dropdown de periodo de inatividade (30d / 60d / 90d+)
+  - [ ] Filtros aplicam em todas as colunas simultaneamente
 
 ## Dev Notes
 
-### Meta Cloud API — template enviado
-O template `reativacao_ciclo` precisa estar aprovado pelo Meta antes do envio. Variantes por especialidade podem ser templates distintos (ex: `reativacao_dentista`, `reativacao_medico`) ou um template generico com linguagem neutra.
+### Drag-and-drop
+Usar `@dnd-kit/core` + `@dnd-kit/sortable` (leve, acessivel, React 18 compativel). Alternativa: `react-beautiful-dnd` (mais pesado, arquivado pelo Atlassian).
 
-Template sugerido para aprovacao:
-```
-Ola {{1}}, tudo bem? 😊
+### Movimentacao automatica
+Duas abordagens possiveis:
+1. **Trigger no banco**: ao INSERT em patient_procedures, trigger move patient_pipeline para "Atendido"
+2. **Calculo em runtime**: ao carregar o pipeline, recalcular posicao baseado em next_return_at (sem mover no banco)
 
-Seu profissional lembrou de voce! Ja faz um tempo desde sua ultima {{2}}.
+Recomendacao: abordagem hibrida. Drag-drop manual salva no banco. Colunas "Retorno pendente" e "Inativo" sao calculadas em runtime a partir de next_return_at (nao precisam de row em patient_pipeline).
 
-Que tal marcar um horario? Responda aqui mesmo ou entre em contato com {{3}}.
-```
+### Performance
+Pipeline carrega todos os pacientes da org de uma vez (orgs pequenas, < 500 pacientes). Para orgs maiores, paginar por stage (lazy load ao scroll).
 
-### Verificacao HMAC webhook Meta
-```typescript
-import crypto from 'crypto'
-const signature = request.headers.get('x-hub-signature-256')
-const body = await request.text()
-const expected = 'sha256=' + crypto.createHmac('sha256', META_WEBHOOK_SECRET).update(body).digest('hex')
-if (signature !== expected) return new Response('Unauthorized', { status: 401 })
-```
-
-### Deteccao de resposta negativa
-Usar lista simples de palavras-chave em lowercase: `['nao', 'nao quero', 'parar', 'sair', 'cancelar', 'remove', 'stop']`. Se qualquer palavra-chave bater com o texto da resposta: opted_out. Nao usar regex complexo — simples e mais confiavel.
-
-### Phone Number ID vs WABA ID
-- `META_PHONE_NUMBER_ID`: ID do numero de telefone registrado no Meta (usado na URL do POST)
-- `META_WABA_ID`: ID do WhatsApp Business Account (usado para verificacao)
-- Ambos disponiveis no Meta Business Manager
+### Relacao com status CRM
+O pipeline complementa o status CRM (active/at_risk/inactive) mas nao substitui. O status continua sendo calculado em runtime. O pipeline adiciona granularidade operacional (agendado vs confirmado vs atendido).
 
 ## Testing
 
-- Enviar template para numero de teste do proprio dev: verificar entrega no WhatsApp
-- Simular webhook de resposta com payload valido: verificar UPDATE no reactivation_log
-- Simular webhook com assinatura invalida: deve retornar 401
-- Resposta com texto "nao quero": paciente deve ficar com status opted_out
-- Tentar enviar para paciente com lgpd_whatsapp = false: deve rejeitar com erro claro
-- Com META_API_ENABLED=false: SMS via Twilio deve ser disparado no lugar
+- Criar 5 pacientes em stages diferentes: verificar que cada coluna mostra o correto
+- Drag-and-drop de "Agendado" para "Confirmado": verificar UPDATE no banco
+- Registrar procedimento: paciente deve mover automaticamente para "Atendido"
+- Paciente com next_return_at vencido: deve aparecer em "Retorno pendente"
+- Mobile: verificar que tabs funcionam e cards sao legíveis em 320px
+- Renomear stage: novo nome deve persistir apos reload
 
 ## Change Log
 
 | Data | Versao | Descricao | Autor |
 |------|--------|-----------|-------|
-| 2026-07-30 | 1.0 | Story criada | River (sm) |
+| 2026-07-30 | 1.0 | Story original: WhatsApp + Meta Cloud API | River (sm) |
+| 2026-08-30 | 2.0 | Reescrita: Pipeline Kanban (WhatsApp movido para CRM-08) | Morgan (pm) |
 
 ## Dev Agent Record
 
