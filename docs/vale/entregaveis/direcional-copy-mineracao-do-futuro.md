@@ -143,8 +143,8 @@ A Vale fala como alguém que trabalha na Vale. Não como alguém que fala sobre 
 ### Princípio 1. Entre na conversa que já existe
 Antes de dizer qualquer coisa, reconheça o que as pessoas já sentem. O orgulho que engoliam. A frustração de não conseguir explicar. O peso de carregar o nome da empresa em cidades onde esse nome dói. Se o texto não começa por aí, ele não conecta.
 
-### Princípio 2. Fatos geram emoção. Emoção sozinha evapora
-"A gente instalou 4 mil sensores" é mais forte do que "cuidamos de segurança." Mas "a gente instalou 4 mil sensores porque ninguém aqui quer passar por aquilo de novo" é mais forte ainda. Fato com contexto humano. Essa é a fórmula.
+### Princípio 2. Fato primeiro, emoção depois.
+Quando o fato é forte, ele não precisa de adjetivo. Precisa de espaço.
 
 ### Princípio 3. Primeira pessoa do plural, sempre
 "A gente", "nosso", "nós". São pessoas falando do próprio trabalho. Nunca "a companhia entende que" ou "a Vale acredita em." Marca não acredita em nada. Gente acredita.
