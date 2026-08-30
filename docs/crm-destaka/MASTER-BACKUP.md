@@ -1,31 +1,15 @@
 # CRM Destaka — MASTER-BACKUP
 
 > Espelho local do Obsidian MOC. Fonte de verdade: `projects/crm-destaka/MOC.md` no vault.
-> Ultima sincronizacao: 2026-07-30
+> Ultima sincronizacao: 2026-08-30
 
 ---
 
 ## Visao
 
-CRM para profissionais de saude. Standalone — funciona sem o Destaka GMB, mas integra nativamente com o ecossistema Destaka quando ambos os produtos estao ativos.
+CRM para profissionais de saude. Standalone: funciona sem o Destaka GMB, mas integra nativamente com o ecossistema Destaka quando ambos os produtos estao ativos.
 
 **Posicionamento:** O unico CRM que usa dados do Google Business Profile para reativar pacientes automaticamente.
-
----
-
-## Decisoes Arquiteturais
-
-- Produto separado do Destaka (repo, Supabase e dominio proprios)
-- Auth: Google OAuth — mesmo `google_sub` como ponte de identidade com o Destaka
-- Supabase: projeto CRM separado do Destaka
-- CRM-First: funciona sem conexao GMB. GMB e modulo de enriquecimento opcional
-- Standalone: cliente pode assinar o CRM sem assinar o Destaka
-- Scheduler: Inngest para jobs diarios (return cycles, quote followup, mv refresh)
-- API: Next.js App Router + Route Handlers. Sem API layer separado em V1
-- Webhook: Meta HMAC-SHA256 + Destaka shared secret por org
-- Editor prontuario: Tiptap
-- PDF prontuario: react-pdf (mais leve que Puppeteer no Vercel)
-- CRM-02 dividido em 02a + 02b para entregas incrementais e QA separado
 
 ---
 
@@ -35,100 +19,117 @@ CRM para profissionais de saude. Standalone — funciona sem o Destaka GMB, mas 
 |--------|-----------|
 | Framework | Next.js 14 App Router |
 | CSS | Tailwind CSS |
-| DB/Auth | Supabase (projeto CRM separado) |
+| DB/Auth | Supabase (projeto CRM separado: grluelermxcxptsfzcig) |
 | Auth provider | Google OAuth via Supabase Auth |
 | Scheduler | Inngest (3 jobs diarios) |
-| WhatsApp | Meta Cloud API + templates aprovados |
-| SMS fallback | Twilio |
-| Editor clinico | Tiptap |
+| WhatsApp | Meta Cloud API + templates aprovados (pendente WABA) |
+| Editor clinico | Tiptap (@tiptap/react + starter-kit) |
 | PDF | react-pdf (@react-pdf/renderer) |
-| CSV import | papaparse |
 | Charts | recharts |
-| Deploy | Vercel |
+| Drag-drop | @dnd-kit/core + sortable |
+| Phone validation | libphonenumber-js |
+| Deploy | Vercel (linkado: david-8558s-projects/crm-destaka) |
 | Pagamentos | Stripe (V1.1) |
 
 ---
 
-## Estado (30/07/2026) — FIM DA SESSAO 2
+## Estado (30/08/2026) — FIM DA SESSAO 3
 
-### Spec Pipeline: CONCLUIDO (sessao 1 + 2)
+### Infra: OPERACIONAL
 
-| Fase | Agente | Output | Status |
-|------|--------|--------|--------|
-| 1. Gather | @pm Morgan | Requirements | Completo |
-| 2. Assess | @architect Aria | COMPLEX 20/25 | Completo |
-| 4. Write Spec | @pm Morgan | PRD v1.1 | Completo |
-| 5. Critique | @qa Quinn | Score 4.0 APPROVED | Completo |
-| 6. Plan | @architect Aria | implementation-plan-v1.md | Completo |
+| Item | Status |
+|------|--------|
+| GitHub repo | `davidmlb01/crm-destaka` (privado, criado 16/08) |
+| Supabase | Online (grluelermxcxptsfzcig, free tier, reativado 30/08) |
+| Vercel | Linkado, 4 envs configurados |
+| Google OAuth | Habilitado, callback funcionando |
+| RLS | Validado em todas as tabelas |
 
-### Story Development: BACKLOG PRONTO
+### Stories: 6 de 9 IMPLEMENTADAS
 
-| Story | Versao | Status PO Gate |
-|-------|--------|---------------|
-| CRM-01 | v1.1 | GO — aguarda @devops (infra pre-condicao) |
-| CRM-02a | v1.1 | GO — dep: CRM-01 |
-| CRM-02b | v1.1 | GO — dep: CRM-02a |
-| CRM-03 | v1.0 | GO — dep: CRM-02a |
-| CRM-04 | v1.0 | GO — dep: CRM-03 |
-| CRM-05 | v1.0 | GO — dep: CRM-02a |
-| CRM-06 | v1.1 | GO — dep: CRM-03 |
-| CRM-07 | v1.0 | GO opcional — dep: CRM-04 |
+| Story | Titulo | Status | Commit |
+|-------|--------|--------|--------|
+| CRM-01 | Schema + Auth + Infra | **COMPLETA** | 8ed2c8f |
+| CRM-02a | CRM Core + LGPD Consent | **COMPLETA** | d0c035f |
+| CRM-02b | Prontuario Funcional | **COMPLETA** | 02c8c6b |
+| CRM-03 | Scheduler Reativacao | **COMPLETA** | bb0fc0d |
+| CRM-04 | Pipeline Kanban | **COMPLETA** | d88886c |
+| CRM-05 | Inbox WhatsApp | Draft (bloqueada Meta WABA) | - |
+| CRM-06 | Dashboard Receita Dormindo | **COMPLETA** | 2cfeb71 |
+| CRM-07 | Modulo GMB (opcional) | Draft | - |
+| CRM-08 | WhatsApp + Meta Cloud API | Draft (bloqueada Meta WABA) | - |
+| CRM-09 | Import CSV | Draft (backlog) | - |
 
-### Git (local, aguardando push @devops)
+### Rotas do produto
 
-| Commit | Descricao |
-|--------|-----------|
-| 4aadaa6 | feat: kickoff PRD v1.0 + schema base spec |
-| 37c420b | feat: Spec Pipeline completo — PRD v1.1 + implementation plan |
-| f7ad20c | feat: EPIC-CRM-001 — 8 stories mapeadas |
-| 5b44781 | feat: stories CRM-01 a CRM-07 formalizadas |
-| 033d5bd | fix: stories v1.1 — 5 should-fix PO Gate |
+| Rota | Descricao |
+|------|-----------|
+| /login | Google OAuth |
+| /dashboard | Metricas, receita dormindo, top 10, grafico 6 meses |
+| /patients | Lista paginada, filtros, busca, LGPD badges |
+| /patients/[id] | Perfil, timeline, anamnese, odontograma, files, PDF |
+| /pipeline | Kanban drag-drop (5 stages), mobile tabs |
+| /settings | Ciclos de retorno customizaveis |
+| /api/inngest | 3 cron jobs (refresh view, return cycles, quote followup) |
+| /api/reactivation/queue | Debug: fila de reativacao elegivel |
+
+### Migrations aplicadas no Supabase
+
+| # | Arquivo | Conteudo |
+|---|---------|----------|
+| 001 | organizations.sql | Tabela tenant + RLS |
+| 002 | patients.sql | Pacientes + indexes |
+| 003 | procedure_types.sql + seed | 18 tipos, 6 especialidades |
+| 004 | patient_procedures.sql | Trigger calculate_next_return |
+| 005 | quotes.sql | Trigger set_quote_followup |
+| 006 | reactivation_log.sql | Historico de reativacoes |
+| 007 | views.sql | inactive_patients (MV) + dormant_revenue_by_org |
+| 008 | seed_nutri.sql | Especialidade nutri (2 tipos) |
+| 009 | prontuario.sql | Colunas anamnese + odontograma jsonb |
+| 010 | clinical_notes.sql | Tabela evolucoes clinicas |
+| 011 | refresh_rpc.sql | RPC refresh_inactive_patients() |
+| 012 | recovered_revenue_rpc.sql | RPC calculate_recovered_revenue() |
+| 013 | pipeline.sql | pipeline_stages + patient_pipeline |
+
+### Roadmap reescrito (30/08/2026)
+
+Pos-analise DeskcommCRM, roadmap prioriza as 3 features que justificam R$997/mes:
+
+1. **Reativacao por ciclo clinico** (CRM-03) — IMPLEMENTADA
+2. **Dashboard receita dormindo** (CRM-06) — IMPLEMENTADA
+3. **Pipeline kanban** (CRM-04) — IMPLEMENTADA
+
+Stories movidas:
+- CRM-04 antigo (WhatsApp) -> CRM-08 (bloqueada por Meta WABA)
+- CRM-05 antigo (Import CSV) -> CRM-09 (backlog)
+- CRM-05 novo: Inbox WhatsApp Centralizada (bloqueada por CRM-08)
 
 ---
 
-## Arquivos do Projeto
+## Decisoes Arquiteturais
 
-| Arquivo | Descricao | Versao |
-|---------|-----------|--------|
-| `docs/crm-destaka/PRD-crm-destaka.md` | PRD APPROVED | v1.1 |
-| `docs/crm-destaka/schema-spec-v1.md` | Schema Supabase CRM | v1.0 |
-| `docs/crm-destaka/implementation-plan-v1.md` | Plano 6 fases / 12 semanas | v1.0 |
-| `docs/crm-destaka/EPIC-CRM-001.md` | Epic formal | v1.0 |
-| `docs/stories/crm-01.story.md` | Schema + Auth + Infra | v1.1 GO |
-| `docs/stories/crm-02a.story.md` | CRM Core + LGPD Consent | v1.1 GO |
-| `docs/stories/crm-02b.story.md` | Prontuario Funcional | v1.1 GO |
-| `docs/stories/crm-03.story.md` | Scheduler Inngest | v1.0 GO |
-| `docs/stories/crm-04.story.md` | WhatsApp + Meta Cloud API | v1.0 GO |
-| `docs/stories/crm-05.story.md` | Import CSV | v1.0 GO |
-| `docs/stories/crm-06.story.md` | Dashboard Receita Dormindo | v1.1 GO |
-| `docs/stories/crm-07.story.md` | Modulo GMB (opcional) | v1.0 GO |
-| `docs/destaka/crm-benchmark-v1.md` | Benchmark 10 concorrentes | v1.0 |
+- Produto separado do Destaka (repo, Supabase e dominio proprios)
+- Auth: Google OAuth, mesmo google_sub como ponte de identidade
+- CRM-First: funciona sem conexao GMB
+- Standalone: cliente pode assinar CRM sem assinar Destaka
+- Scheduler: Inngest para jobs diarios (3 crons UTC)
+- NAO forkar DeskcommCRM. Estrategia: "Inspired by, not forked from"
+- Pipeline: hibrido (manual via drag-drop + automatico via next_return_at)
+- Evolucoes clinicas em tabela separada (clinical_notes), nao em patient_procedures
+- Odontograma: SVG 32 dentes FDI, estado em jsonb
 
 ---
 
-## Pendente
+## Precificacao (revisada 28/08/2026)
 
-- [x] PRD v1.1 aprovado
-- [x] Implementation Plan criado
-- [x] EPIC-CRM-001 criado
-- [x] Stories CRM-01 a CRM-07 formalizadas e validadas (PO Gate GO)
-- [ ] Push 5 commits para origin/main (@devops) — amanha
-- [ ] Repo GitHub `crm-destaka` criado (@devops) — CRITICO semana 1
-- [ ] Projeto Supabase CRM criado (@devops) — CRITICO semana 1
-- [ ] Projeto Vercel + envs (@devops) — CRITICO semana 1
-- [ ] Submissao Meta WABA + 3 templates (@devops) — URGENTE
-- [ ] Nome de dominio (@brand-chief) — deferred
+| Tier | Features | Preco |
+|---|---|---|
+| Visibilidade | GMB + Score + Content + Reviews | R$197/mes |
+| Crescimento | Visibilidade + Google Ads | R$497/mes |
+| Plataforma | Crescimento + WhatsApp + IA + Pipeline + Reativacao + LGPD | R$997/mes |
+| Plataforma Pro | Plataforma + RAG ilimitado + MCP + Automacoes avancadas | R$1.497/mes |
 
----
-
-## Dependencias Externas Criticas
-
-| Dependencia | Responsavel | Deadline | Impacto |
-|-------------|-------------|---------|---------|
-| Aprovacao templates Meta WABA | @devops + Meta | Semana 7 | Bloqueia CRM-04 completamente |
-| Repo GitHub + Supabase + Vercel | @devops | Semana 1 | Bloqueia todo dev |
-| Conta Inngest | @devops | Semana 5 | Bloqueia CRM-03 |
-| Destaka emitindo webhooks HTTP | Equipe Destaka | Semana 11 | Condicional para CRM-07 |
+**ROI:** Cliente paga R$997 para recuperar R$9.600/mes de receita dormindo. ROI 9.6x.
 
 ---
 
@@ -144,49 +145,40 @@ CRM para profissionais de saude. Standalone — funciona sem o Destaka GMB, mas 
 
 ---
 
-## Analise Estrategica: DeskcommCRM (28/08/2026)
+## Dependencias Externas
 
-> Fonte: github.com/melgarafael/DeskcommCRM (MIT, v1.0, 715 stars, 329 forks)
+| Dependencia | Status |
+|-------------|--------|
+| Meta WABA aprovacao | Pendente (ticket 2-9359000041841) |
+| Conta Inngest | Pendente criacao |
+| Supabase Storage bucket patient-files | Pendente criacao |
+| Nome de dominio | Deferred |
 
-### O que e
+---
 
-CRM open source brasileiro para SMEs que vendem via WhatsApp. Combina inbox unificada, pipeline kanban, agentes AI com RAG, e compliance LGPD nativa. Stack: Next.js 16, Supabase (pgvector + RLS), Vercel AI SDK, WAHA Plus.
+## Pendente
 
-### Features relevantes para o CRM Destaka
-
-| Feature | Valor | Esforco estimado |
-|---------|-------|-----------------|
-| Inbox WhatsApp centralizada (real-time) | ALTISSIMO | 4-6 semanas |
-| Pipeline Kanban drag-drop | ALTO | 2-3 semanas |
-| Agentes AI com RAG (pgvector) | ALTISSIMO | 6-8 semanas |
-| Customer 360 (timeline unificada) | ALTO | 3-4 semanas |
-| LGPD nativa (redact, export, audit) | CRITICO | 2-3 semanas |
-| Automacoes QUANDO/SE/ENTAO | ALTO | 3-4 semanas |
-| Handoff IA para humano com auditoria | ALTO | 2 semanas |
-| MCP Server (19 tools) | DIFERENCIADOR | 2-3 semanas |
-| Sentiment Detection | ALTO | 1-2 semanas |
-| RBAC (4 papeis) | NECESSARIO | 1-2 semanas |
-
-### Veredicto (3 squads: Tech + CEO/Board + Hormozi)
-
-**Tecnologia:** Compatibilidade tecnica ALTA (mesmo ecossistema). NAO forkar (self-hosted vs SaaS). Usar como referencia de arquitetura ("Inspired by, not forked from").
-
-**CEO/Board:** Valida a tese do CRM Destaka. Destaka e o UNICO no cruzamento GMB + Patient CRM + WhatsApp. Janela de 6 meses antes que Deskcomm possa adicionar GMB.
-
-**Hormozi:** Valor percebido adicional ~R$2.900/mes. Cliente paga R$997 para recuperar R$9.600/mes de receita dormindo. ROI 9.6x. Custo alternativa: agencia R$3-5k/mes.
-
-### Precificacao com CRM
-
-| Tier | Features | Preco |
-|---|---|---|
-| Visibilidade | GMB + Score + Content + Reviews | R$197/mes |
-| Crescimento | Visibilidade + Google Ads | R$497/mes |
-| Plataforma | Crescimento + WhatsApp + IA + Pipeline + Reativacao + LGPD | R$997/mes |
-| Plataforma Pro | Plataforma + RAG ilimitado + MCP + Automacoes avancadas | R$1.497/mes |
-
-### Proximos passos
-
-- [ ] Spec do CRM Destaka usando features do DeskcommCRM como checklist
-- [ ] Priorizar 3 features core (inbox, pipeline, reativacao) para Tier Plataforma
-- [ ] Monitorar DeskcommCRM para timeline de GMB integration
-- [ ] Validar R$997 com 5 profissionais de saude (pergunta onboarding ja aprovada)
+- [x] PRD v1.1 aprovado
+- [x] Implementation Plan criado
+- [x] EPIC-CRM-001 criado
+- [x] Stories CRM-01 a CRM-07 formalizadas
+- [x] Repo GitHub criado e pushed
+- [x] Projeto Supabase CRM criado e online
+- [x] Projeto Vercel linkado com envs
+- [x] CRM-01 implementada (schema, auth, RLS)
+- [x] CRM-02a implementada (CRUD pacientes, LGPD)
+- [x] CRM-02b implementada (prontuario, tiptap, odontograma, PDF)
+- [x] CRM-03 implementada (scheduler Inngest, 3 jobs)
+- [x] CRM-04 implementada (pipeline kanban, drag-drop)
+- [x] CRM-06 implementada (dashboard receita dormindo, recharts)
+- [x] Roadmap reescrito pos-DeskcommCRM
+- [ ] Aplicar migrations 012 + 013 no SQL Editor do Supabase
+- [ ] Criar conta Inngest e registrar functions
+- [ ] Criar bucket patient-files no Supabase Storage
+- [ ] Submissao Meta WABA + 3 templates
+- [ ] CRM-05 Inbox WhatsApp (bloqueada por WABA)
+- [ ] CRM-08 WhatsApp Meta Cloud API (bloqueada por WABA)
+- [ ] CRM-09 Import CSV (backlog)
+- [ ] CRM-07 Modulo GMB (backlog)
+- [ ] Validar R$997 com 5 profissionais de saude
+- [ ] Deploy producao no Vercel
