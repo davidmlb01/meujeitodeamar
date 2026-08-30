@@ -1,6 +1,6 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-08-26 (Verificacao GBP API email)
-**Status:** MVP em producao. GBP API ticket 2-9359000041841 submetido em 16/08/2026. Gmail auditado em 26/08: zero emails do Google (confirmado que nao enviam confirmacao). Aguardar ate 01/09.
+**Ultima atualizacao:** 2026-08-29 (Teste completo em producao + fix dashboard)
+**Status:** MVP em producao. Dashboard fix deployado (maybeSingle). /verificar no sitemap. GBP API ticket 2-9359000041841 deadline 01/09.
 
 ---
 
@@ -44,11 +44,26 @@ Vercel tinha `www` como dominio primario (redirecionava non-www→www). O codigo
 - [x] Signout route criada
 - [x] Deploy final READY (commit f642be7)
 
+### Sessao 2026-08-29 — Teste completo em producao + fix dashboard
+
+**Teste completo (todas as paginas publicas OK):**
+- Homepage, /verificar, /login, /privacy, /termos, robots.txt, sitemap.xml, 404 customizada
+- SEO completo: canonical, OG, JSON-LD, Twitter Card
+
+**Bug corrigido:**
+- Dashboard crashava com PGRST116 (.single() em queries sem resultados)
+- Fix: .maybeSingle() em scores e gbp_profiles (page.tsx + route.ts)
+- Commits: 728720c (sitemap), 2771d27 (dashboard fix)
+
+**Sitemap corrigido:**
+- /verificar adicionado (prioridade 0.8, era o lead magnet faltando)
+
 ### TODO PROXIMA SESSAO
-- [ ] Testar dashboard com deploy novo (build passou, David nao testou)
+- [ ] David testar dashboard logado (fix deployado)
 - [ ] Popular dados UNLMTD no banco (Places API nao encontra perfil, precisa alternativa)
 - [ ] Diagnostico pula direto para resultado quando logado
 - [ ] DNS: HSTDOMAINS destaka.com.br + Cloudflare unlmtd.etc.br → 76.76.21.21
+- [ ] GBP API ticket 2-9359000041841: deadline 01/09
 
 ---
 
