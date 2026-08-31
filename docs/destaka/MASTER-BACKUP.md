@@ -1,6 +1,6 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-08-29 (Teste completo em producao + fix dashboard)
-**Status:** MVP em producao. Dashboard fix deployado (maybeSingle). /verificar no sitemap. GBP API ticket 2-9359000041841 deadline 01/09.
+**Ultima atualizacao:** 2026-08-30 (Dashboard restaurado com layout original)
+**Status:** MVP em producao. Dashboard com gauge circular restaurado. API routes para sub-paginas criadas. Pendente teste pelo David. GBP API ticket 2-9359000041841 deadline 01/09.
 
 ---
 
@@ -44,26 +44,32 @@ Vercel tinha `www` como dominio primario (redirecionava non-www→www). O codigo
 - [x] Signout route criada
 - [x] Deploy final READY (commit f642be7)
 
-### Sessao 2026-08-29 — Teste completo em producao + fix dashboard
+### Sessao 2026-08-30 — Dashboard restaurado com layout original
 
-**Teste completo (todas as paginas publicas OK):**
-- Homepage, /verificar, /login, /privacy, /termos, robots.txt, sitemap.xml, 404 customizada
-- SEO completo: canonical, OG, JSON-LD, Twitter Card
+**Debug do crash (por eliminacao):**
+- .single() → .maybeSingle() em todas as queries
+- Redirect loop /dashboard → /login → /dashboard corrigido para /onboarding
+- Pagina debug minima isolou problema nos componentes (nao no data layer)
+- SafeRender ErrorBoundary identificou: ScoreHero (score.components null) e AuditGapsCard (objetos em vez de strings)
 
-**Bug corrigido:**
-- Dashboard crashava com PGRST116 (.single() em queries sem resultados)
-- Fix: .maybeSingle() em scores e gbp_profiles (page.tsx + route.ts)
-- Commits: 728720c (sitemap), 2771d27 (dashboard fix)
+**Restauracao:**
+- DashboardContent original com ScoreGauge, MetricCards, ScoreCards por categoria
+- API /api/dashboard reescrita para shape do useDashboard hook
+- Dashboard funcionando: score 45/100, "Presenca Funcional"
 
-**Sitemap corrigido:**
-- /verificar adicionado (prioridade 0.8, era o lead magnet faltando)
+**API routes criadas:**
+- GET /api/reviews, /api/posts, /api/competitors (sub-paginas usavam hooks que chamavam APIs inexistentes)
+
+### Sessao 2026-08-29 — Teste completo em producao
+- Paginas publicas OK, /verificar no sitemap, inicio debug dashboard
 
 ### TODO PROXIMA SESSAO
-- [ ] David testar dashboard logado (fix deployado)
+- [ ] David testar sub-paginas (reviews, posts, competitors) no browser
 - [ ] Popular dados UNLMTD no banco (Places API nao encontra perfil, precisa alternativa)
-- [ ] Diagnostico pula direto para resultado quando logado
+- [ ] Sidebar sub-paginas mostra "Clinica Odontologica So..." (usa gmb_profiles em vez de professionals)
 - [ ] DNS: HSTDOMAINS destaka.com.br + Cloudflare unlmtd.etc.br → 76.76.21.21
 - [ ] GBP API ticket 2-9359000041841: deadline 01/09
+- [ ] Considerar Supabase Pro ($25/mes)
 
 ---
 
