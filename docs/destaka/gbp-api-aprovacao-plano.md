@@ -184,7 +184,8 @@ POS-APROVACAO
 |--------|-----------|--------|-------------------|
 | 0-2582000041216 | Mai/2026 | REJEITADO em 08/06/2026 | Email de rejeicao recebido em `david@unlmtd.etc.br` |
 | 4-9265000041644 | 02/06/2026 | NUNCA PROCESSADO | Zero emails para esse numero no Gmail |
-| **2-9359000041841** | **16/08/2026** | **SUBMETIDO — aguardando revisao** | **Formulario chegou a 100%, ID gerado imediatamente** |
+| 2-9359000041841 | 16/08/2026 | REJEITADO em 04/09/2026 | URL do site no formulario diferente do GBP (destaka.com.br vs unlmtd.etc.br) |
+| **2-5600000041034** | **04/09/2026** | **SUBMETIDO — aguardando revisao** | **Company Website: unlmtd.etc.br (bate com GBP). Video: youtu.be/FYdSb3i-QEc. Prazo 7-10 dias uteis.** |
 
 **Prazo de revisao:** 7 a 10 dias uteis a partir de 16/08/2026.
 **Verificar:** inbox de `david@unlmtd.etc.br` por email de confirmacao com o numero 2-9359000041841.

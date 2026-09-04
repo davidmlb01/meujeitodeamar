@@ -30,9 +30,20 @@ Consultor revisou checklist ponto a ponto:
 - Fix competitors: profile_id via gmb_profiles
 - Keywords removido do sidebar
 
+### Video e resubmissao
+- [x] Video gravado e enviado: https://youtu.be/FYdSb3i-QEc
+- [x] Ticket 2-9359000041841: REJEITADO em 04/09 (URL do site diferente do GBP)
+- [x] Novo ticket submetido: 2-5600000041034 (04/09/2026)
+  - Company Website: https://unlmtd.etc.br (bate com GBP)
+  - Texto com CNPJ, Client ID, link do video
+  - Prazo: 7-10 dias uteis (ate ~18/09/2026)
+
 ### Pendente
-- [ ] Gravar video demonstracao para consultor Google
+- [ ] Aguardar resposta ticket 2-5600000041034 (verificar ~15/09)
 - [ ] /verificar: UNLMTD nao encontrada na Places API (consultoria virtual)
+- [ ] Anthropic: pagamento R$550 falhou, assinatura pausada
+- [ ] Stripe: fornecer informacoes sobre UNLMTD DIGITAL LTDA
+- [ ] Vercel: 100% free tier Edge Requests usado
 
 ---
 
