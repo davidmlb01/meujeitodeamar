@@ -172,7 +172,8 @@ Stories movidas:
 - [x] CRM-04 implementada (pipeline kanban, drag-drop)
 - [x] CRM-06 implementada (dashboard receita dormindo, recharts)
 - [x] Roadmap reescrito pos-DeskcommCRM
-- [ ] Aplicar migrations 012 + 013 no SQL Editor do Supabase
+- [x] Aplicar migrations 012 + 013 no SQL Editor do Supabase (30/08)
+- [x] Fix Inngest lazy-load supabase client para build Vercel (7d52e58)
 - [ ] Criar conta Inngest e registrar functions
 - [ ] Criar bucket patient-files no Supabase Storage
 - [ ] Submissao Meta WABA + 3 templates
@@ -181,4 +182,4 @@ Stories movidas:
 - [ ] CRM-09 Import CSV (backlog)
 - [ ] CRM-07 Modulo GMB (backlog)
 - [ ] Validar R$997 com 5 profissionais de saude
-- [ ] Deploy producao no Vercel
+- [ ] Deploy producao no Vercel (BLOQUEADO: builds ficam UNKNOWN no Hobby plan, CLI retorna "Not authorized". Verificar dashboard Vercel, cancelar deploys travados e redeployar)
