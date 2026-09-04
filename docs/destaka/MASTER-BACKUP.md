@@ -1,6 +1,38 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-08-30 (Dashboard restaurado com layout original)
-**Status:** MVP em producao. Dashboard com gauge circular restaurado. API routes para sub-paginas criadas. Pendente teste pelo David. GBP API ticket 2-9359000041841 deadline 01/09.
+**Ultima atualizacao:** 2026-09-04 (GBP API compliance + Dashboard populado)
+**Status:** MVP em producao. Dashboard populado (score 62, metricas, 7 reviews, 3 concorrentes). Consultor Google contratado para liberar GBP API. Proximo: gravar video demonstracao.
+
+---
+
+## Sessao 2026-09-04 — GBP API compliance + Dashboard populado
+
+### GBP API compliance com consultor Google
+Consultor revisou checklist ponto a ponto:
+- GCP (Project destaka-492513): 5 APIs ativadas, OAuth verificado (selo verde), em producao
+- Dominios autorizados: destaka.com.br, unlmtd.etc.br, supabase.co subdomain
+- Redirect URI adicionado: destaka.com.br/api/auth/callback
+- Sites: privacy + termos OK, HTTPS OK, footer com vinculo UNLMTD
+- Conta: david@unlmtd.etc.br (Google Workspace, Owner)
+
+### Dashboard populado (Supabase)
+- Score: 62/100, historico 5 semanas (35->62)
+- Metricas: Buscas 1019, Maps 609, Cliques 172, Ligacoes 75
+- 7 reviews inseridos (media 4.4)
+- 3 concorrentes com benchmark comparativo
+- Audit report: 5 issues com severidade e impacto
+- Nomes corrigidos para UNLMTD
+
+### Codigo (8 commits destaka-remote)
+- Footer: vinculo UNLMTD
+- APIs: /api/checklist, /api/checklist/[key], /api/reviews/qr
+- Fix verify: User-Agent curl para short URLs
+- Fix dashboard: metricas reais + score por categoria
+- Fix competitors: profile_id via gmb_profiles
+- Keywords removido do sidebar
+
+### Pendente
+- [ ] Gravar video demonstracao para consultor Google
+- [ ] /verificar: UNLMTD nao encontrada na Places API (consultoria virtual)
 
 ---
 
