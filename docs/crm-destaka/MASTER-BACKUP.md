@@ -1,7 +1,7 @@
 # CRM Destaka — MASTER-BACKUP
 
 > Espelho local do Obsidian MOC. Fonte de verdade: `projects/crm-destaka/MOC.md` no vault.
-> Ultima sincronizacao: 2026-08-30
+> Ultima sincronizacao: 2026-09-05
 
 ---
 
@@ -33,17 +33,18 @@ CRM para profissionais de saude. Standalone: funciona sem o Destaka GMB, mas int
 
 ---
 
-## Estado (30/08/2026) — FIM DA SESSAO 3
+## Estado (05/09/2026) — SESSAO 4: Deploy Resolvido
 
-### Infra: OPERACIONAL
+### Infra: OPERACIONAL + DEPLOY EM PRODUCAO
 
 | Item | Status |
 |------|--------|
 | GitHub repo | `davidmlb01/crm-destaka` (privado, criado 16/08) |
-| Supabase | Online (grluelermxcxptsfzcig, free tier, reativado 30/08) |
-| Vercel | Linkado, 4 envs configurados |
+| Supabase | Online (grluelermxcxptsfzcig, free tier) |
+| Vercel | **Pro**, deploy em producao: crm-destaka.vercel.app |
 | Google OAuth | Habilitado, callback funcionando |
 | RLS | Validado em todas as tabelas |
+| Deploy workflow | `vercel build --prod && vercel deploy --prebuilt --prod` |
 
 ### Stories: 6 de 9 IMPLEMENTADAS
 
@@ -174,12 +175,12 @@ Stories movidas:
 - [x] Roadmap reescrito pos-DeskcommCRM
 - [x] Aplicar migrations 012 + 013 no SQL Editor do Supabase (30/08)
 - [x] Fix Inngest lazy-load supabase client para build Vercel (7d52e58)
-- [ ] Criar conta Inngest e registrar functions
-- [ ] Criar bucket patient-files no Supabase Storage
+- [x] Deploy producao no Vercel (resolvido 05/09: prebuilt deploy, crm-destaka.vercel.app)
+- [ ] Criar conta Inngest e registrar functions (env: INNGEST_EVENT_KEY + INNGEST_SIGNING_KEY)
+- [ ] Criar bucket patient-files no Supabase Storage (Private)
 - [ ] Submissao Meta WABA + 3 templates
 - [ ] CRM-05 Inbox WhatsApp (bloqueada por WABA)
 - [ ] CRM-08 WhatsApp Meta Cloud API (bloqueada por WABA)
 - [ ] CRM-09 Import CSV (backlog)
 - [ ] CRM-07 Modulo GMB (backlog)
 - [ ] Validar R$997 com 5 profissionais de saude
-- [ ] Deploy producao no Vercel (BLOQUEADO: builds ficam UNKNOWN no Hobby plan, CLI retorna "Not authorized". Verificar dashboard Vercel, cancelar deploys travados e redeployar)
