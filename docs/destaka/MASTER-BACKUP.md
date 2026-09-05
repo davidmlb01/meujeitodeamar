@@ -1,6 +1,32 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-09-04 (GBP API compliance + Dashboard populado)
-**Status:** MVP em producao. Dashboard populado (score 62, metricas, 7 reviews, 3 concorrentes). Consultor Google contratado para liberar GBP API. Proximo: gravar video demonstracao.
+**Ultima atualizacao:** 2026-09-05 (Infra + Dashboard bug fixes)
+**Status:** MVP em producao. Vercel Pro ativo. DNS corrigido (direto para Vercel). Dashboard sidebar corrigido em todas as sub-paginas. Competitors API com POST handler. GBP API ticket 2-5600000041034 aguardando (~18/09).
+
+---
+
+## Sessao 2026-09-05 — Infra + Dashboard bug fixes
+
+### Infra resolvida
+- Anthropic: pagamento R$550 resolvido
+- Vercel: upgrade para Pro (edge requests 100% esgotados no free tier)
+- DNS: destaka.com.br (Hostinger) + unlmtd.etc.br (Cloudflare) apontados para 76.76.21.21 (Vercel direto, sem mais proxy fragil do registrador)
+- Deploys: todos Ready, builds funcionando normalmente
+
+### Dashboard fixes (commits 9bec653, aede85e)
+- Sidebar de 6 sub-paginas (reviews, posts, competitors, optimizations, keywords, plan) mostrava "Clinica Odontologica So..." de gmb_profiles. Corrigido para usar professionals → organizations
+- Competitors API: POST handler adicionado. profile_id corrigido de orgId para gmbProfileId
+- Posts API: status 'pending' duplicado removido do filtro
+
+### Auditoria sub-paginas
+- Reviews, Posts, Competitors, Optimizations: OK
+- Keywords: API nao existe, pagina ja removida do sidebar
+
+### Pendente
+- [ ] Aguardar ticket GBP API 2-5600000041034 (~18/09)
+- [ ] Stripe: fornecer informacoes UNLMTD DIGITAL LTDA
+- [ ] /verificar: UNLMTD nao encontrada na Places API
+- [ ] Supabase Pro ($25/mes) para evitar pausas
+- [ ] Primeiro cliente pagante
 
 ---
 
