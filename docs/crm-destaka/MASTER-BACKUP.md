@@ -1,7 +1,7 @@
 # CRM Destaka — MASTER-BACKUP
 
 > Espelho local do Obsidian MOC. Fonte de verdade: `projects/crm-destaka/MOC.md` no vault.
-> Ultima sincronizacao: 2026-09-05
+> Ultima sincronizacao: 2026-09-09
 
 ---
 
@@ -30,6 +30,20 @@ CRM para profissionais de saude. Standalone: funciona sem o Destaka GMB, mas int
 | Phone validation | libphonenumber-js |
 | Deploy | Vercel (linkado: david-8558s-projects/crm-destaka) |
 | Pagamentos | Stripe (V1.1) |
+
+---
+
+## Estado (09/09/2026) — SESSAO 5: Inngest Configurado
+
+### Inngest: OPERACIONAL
+- Conta criada: UNLMTD CO / Production (inngest.com)
+- Integracao Vercel conectada (auto-sync a cada deploy)
+- 3 functions registradas e ativas:
+  - `crm/check-return-cycles` (cron diario 0:12 UTC)
+  - `crm/quote-followup` (cron diario 0:13 UTC)
+  - `crm/refresh-inactive-view` (cron diario 5:01 e 11:00 UTC)
+- Env vars configuradas automaticamente pela integracao (INNGEST_EVENT_KEY + INNGEST_SIGNING_KEY)
+- Fix: middleware excluia /api/inngest da auth (commit 41e6716)
 
 ---
 
@@ -176,7 +190,8 @@ Stories movidas:
 - [x] Aplicar migrations 012 + 013 no SQL Editor do Supabase (30/08)
 - [x] Fix Inngest lazy-load supabase client para build Vercel (7d52e58)
 - [x] Deploy producao no Vercel (resolvido 05/09: prebuilt deploy, crm-destaka.vercel.app)
-- [ ] Criar conta Inngest e registrar functions (env: INNGEST_EVENT_KEY + INNGEST_SIGNING_KEY)
+- [x] Conta Inngest criada (UNLMTD CO), integracao Vercel conectada, 3 functions registradas (09/09)
+- [x] Fix middleware: /api/inngest excluido da auth (commit 41e6716, 09/09)
 - [ ] Criar bucket patient-files no Supabase Storage (Private)
 - [ ] Submissao Meta WABA + 3 templates
 - [ ] CRM-05 Inbox WhatsApp (bloqueada por WABA)
