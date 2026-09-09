@@ -193,7 +193,7 @@ Stories movidas:
 - [x] Conta Inngest criada (UNLMTD CO), integracao Vercel conectada, 3 functions registradas (09/09)
 - [x] Fix middleware: /api/inngest excluido da auth (commit 41e6716, 09/09)
 - [x] Bucket patient-files criado no Supabase Storage (private, 10MB, PNG/JPEG/WebP/PDF/DOCX) (09/09)
-- [x] Migration 014_storage_rls.sql: RLS policies org-scoped para storage.objects (commit 0ee7839, 09/09)
+- [x] Migration 014_storage_rls.sql: RLS policies org-scoped aplicadas em producao (corrigido para google_sub, commit a2dc795, 09/09)
 - [ ] Criar bucket patient-files no Supabase Storage (Private)
 - [ ] Submissao Meta WABA + 3 templates
 - [ ] CRM-05 Inbox WhatsApp (bloqueada por WABA)
