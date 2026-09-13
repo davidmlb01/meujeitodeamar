@@ -1,6 +1,39 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-09-05 (Infra + Dashboard bug fixes)
-**Status:** MVP em producao. Vercel Pro ativo. DNS corrigido (direto para Vercel). Dashboard sidebar corrigido em todas as sub-paginas. Competitors API com POST handler. GBP API ticket 2-5600000041034 aguardando (~18/09).
+**Ultima atualizacao:** 2026-09-11 (Spec Instagram-to-GBP Pipeline aprovada)
+**Status:** MVP em producao. Vercel Pro ativo. DNS corrigido. GBP API ticket 2-5600000041034 aguardando (~18/09). Spec Instagram-to-GBP aprovada.
+
+---
+
+## Sessao 2026-09-11: Spec Instagram-to-GBP Content Pipeline
+
+### Feature aprovada
+Pipeline automatizado: Instagram do profissional (scraping Apify) → Claude reescreve com keywords SEO local → publica no GBP.
+
+### Decisoes aprovadas
+1. **Publicacao automatica** com notificacao (Zero Touch)
+2. **Max 3 posts/semana** por clinica
+3. **Instagram prioridade** sobre IA (conteudo real primeiro)
+
+### Arquitetura
+- Coleta: Apify Instagram Scraper (cron semanal via Inngest)
+- Storage: nova tabela `instagram_posts` + campo `instagram_handle` em `organizations`
+- IA: Claude reescreve caption com keywords + compliance-validator.ts
+- Publicacao: mesmo pipeline de posts GBP existente (Story 05)
+- Custo: ~R$0.50/clinica/mes (scraping) + ~R$0.10/post (IA)
+
+### Spec completa
+`docs/destaka/spec-instagram-to-gbp-pipeline.md`
+
+### Implementacao (11/09)
+- [x] Migration 008 aplicada em producao (tabela instagram_posts + campo instagram_handle)
+- [x] Scraper Apify (`src/lib/instagram/scraper.ts`)
+- [x] Rewriter Claude (`src/lib/instagram/rewriter.ts`)
+- [x] Inngest cron semanal (`src/lib/inngest/functions/instagram-sync.ts`)
+- [x] Post-generator: Instagram prioridade sobre IA
+- [x] Onboarding: campo Instagram no Step 1 (opcional)
+- [x] Conta Apify criada + APIFY_API_TOKEN no Vercel
+- [x] Commits: df14155 + 770eb9b (pushed, deploy automatico)
+- [ ] GBP API aprovada (ticket 2-5600000041034, ~18/09)
 
 ---
 
