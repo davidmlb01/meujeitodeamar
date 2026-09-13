@@ -45,6 +45,7 @@ Ponto de partida: filme de marca recebido como insumo estrategico.
 - [x] Guia de Marca Vale (106pp) — absorvido em 2026-08-22
 - [x] Vale2027 Trends (45pp) — absorvido em 2026-08-22
 - [x] Box1824 Work Session Report (151pp) — absorvido em 2026-08-22
+- [x] Box1824 Report Completo (140pp, 10.09.2026) — absorvido em 2026-09-13
 
 ---
 
@@ -67,6 +68,10 @@ Pasta Obsidian: `projects/vale/referencias/`
 | Data | Decisao | Por |
 |------|---------|-----|
 | 2026-08-22 | Projeto criado no framework AIOX | Orion |
+| 2026-09-13 | Report Completo Box1824 (140pp) absorvido | Orion |
+| 2026-09-13 | Tag rejeitada pelo cliente: "Orgulho de ter o futuro em nossas maos" (arrogante) | David |
+| 2026-09-13 | Tag de referencia aprovada: "Da terra, o que o futuro exige. De nos, a coragem de fazer diferente." | David |
+| 2026-09-13 | Banco de 60+ taglines criado com Brand Chief, Copy Chief, Mohallem, Olivetto, Ogilvy | Orion |
 
 ---
 
@@ -89,7 +94,7 @@ Pasta Obsidian: `projects/vale/referencias/`
 - [ ] Campanha externa grandiosa (fase 2)
 
 ### Em andamento
-- [~] Proposta de Valor Geral de Marca (slide 86) — 3 versoes finalistas, David aprovou direcao
+- [~] Proposta de Valor / Tagline de Marca (slide 86) — tag de referencia aprovada + banco de 60+ propostas em `entregaveis/taglines-propostas-valor-2026.md`
 - [ ] Tom de Voz Geral de Marca (slide 87)
 - [ ] Do's & Don'ts Geral de Marca (slide 88)
 
@@ -105,3 +110,6 @@ Pasta Obsidian: `projects/vale/referencias/`
 - [x] PDF Natura Nova Expressao (204 slides) absorvido como referencia de design system
 - [x] Slides 70-89 da apresentacao Box1824 absorvidos (quadrantes, manifestos, do's/don'ts)
 - [x] Proposta de Valor: 3 versoes finalistas com coragem + orgulho + 4 quadrantes
+- [x] Report Completo Box1824 (140pp, 10.09.2026) absorvido
+- [x] Taglines: 60+ propostas criadas (Brand Chief, Copy Chief, Mohallem, Olivetto, Ogilvy)
+- [x] Tag de referencia aprovada: "Da terra, o que o futuro exige. De nos, a coragem de fazer diferente."
