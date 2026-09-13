@@ -69,11 +69,13 @@ CRM para profissionais de saude. Standalone: funciona sem o Destaka GMB, mas int
 | CRM-02b | Prontuario Funcional | **COMPLETA** | 02c8c6b |
 | CRM-03 | Scheduler Reativacao | **COMPLETA** | bb0fc0d |
 | CRM-04 | Pipeline Kanban | **COMPLETA** | d88886c |
-| CRM-05 | Inbox WhatsApp | Draft (bloqueada Meta WABA) | - |
+| CRM-05 | Inbox WhatsApp | Draft (Twilio WABA em setup) | - |
 | CRM-06 | Dashboard Receita Dormindo | **COMPLETA** | 2cfeb71 |
 | CRM-07 | Modulo GMB (opcional) | Draft | - |
-| CRM-08 | WhatsApp + Meta Cloud API | Draft (bloqueada Meta WABA) | - |
+| CRM-08 | WhatsApp + Meta Cloud API via Twilio | Draft (Twilio WABA em setup) | - |
 | CRM-09 | Import CSV | Draft (backlog) | - |
+| CRM-10 | RAG Knowledge Base (pgvector, docs clinica) | V2 (pos-WhatsApp) | - |
+| CRM-11 | Automacoes QUANDO/SE/ENTAO (motor de regras) | V2 (pos-WhatsApp) | - |
 
 ### Rotas do produto
 
@@ -164,9 +166,9 @@ Stories movidas:
 
 | Dependencia | Status |
 |-------------|--------|
-| Meta WABA aprovacao | Pendente (ticket 2-9359000041841) |
-| Conta Inngest | Pendente criacao |
-| Supabase Storage bucket patient-files | Pendente criacao |
+| WhatsApp WABA via Gupshup | Conta criada (workspace UNLMTD), aguardando chip pre-pago |
+| Conta Inngest | OPERACIONAL (UNLMTD CO, 09/09) |
+| Supabase Storage bucket patient-files | CRIADO (09/09) |
 | Nome de dominio | Deferred |
 
 ---
@@ -195,9 +197,11 @@ Stories movidas:
 - [x] Bucket patient-files criado no Supabase Storage (private, 10MB, PNG/JPEG/WebP/PDF/DOCX) (09/09)
 - [x] Migration 014_storage_rls.sql: RLS policies org-scoped aplicadas em producao (corrigido para google_sub, commit a2dc795, 09/09)
 - [ ] Criar bucket patient-files no Supabase Storage (Private)
-- [ ] Submissao Meta WABA + 3 templates
+- [~] Setup Gupshup WABA: conta criada, aguardando chip pre-pago para numero dedicado
 - [ ] CRM-05 Inbox WhatsApp (bloqueada por WABA)
 - [ ] CRM-08 WhatsApp Meta Cloud API (bloqueada por WABA)
 - [ ] CRM-09 Import CSV (backlog)
 - [ ] CRM-07 Modulo GMB (backlog)
+- [ ] CRM-10 RAG Knowledge Base (V2, pos-WhatsApp)
+- [ ] CRM-11 Automacoes QUANDO/SE/ENTAO (V2, pos-WhatsApp)
 - [ ] Validar R$997 com 5 profissionais de saude
