@@ -72,6 +72,7 @@ Pasta Obsidian: `projects/vale/referencias/`
 | 2026-09-13 | Tag rejeitada pelo cliente: "Orgulho de ter o futuro em nossas maos" (arrogante) | David |
 | 2026-09-13 | Tag de referencia aprovada: "Da terra, o que o futuro exige. De nos, a coragem de fazer diferente." | David |
 | 2026-09-13 | Banco de 60+ taglines criado com Brand Chief, Copy Chief, Mohallem, Olivetto, Ogilvy | Orion |
+| 2026-09-15 | Nova rodada: frase "Coragem de construir o futuro sem tirar as maos do presente" perdeu forca do negocio. Direcao: trazer mineracao/transicao energetica para dentro da tag. 10 opcoes geradas. | Copy Chief |
 
 ---
 

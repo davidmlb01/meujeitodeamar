@@ -1,6 +1,6 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-09-11 (Spec Instagram-to-GBP Pipeline aprovada)
-**Status:** MVP em producao. Vercel Pro ativo. DNS corrigido. GBP API ticket 2-5600000041034 aguardando (~18/09). Spec Instagram-to-GBP aprovada.
+**Ultima atualizacao:** 2026-09-15 (WhatsApp WABA bloqueado por Meta BM)
+**Status:** MVP em producao. Vercel Pro ativo. DNS corrigido. GBP API ticket 2-5600000041034 aguardando (~18/09). Instagram pipeline implementado. WhatsApp WABA bloqueado: todos os BSPs exigem Meta Business Manager (conta Facebook David desabilitada).
 
 ---
 

@@ -166,7 +166,7 @@ Stories movidas:
 
 | Dependencia | Status |
 |-------------|--------|
-| WhatsApp WABA via Gupshup | Conta criada (workspace UNLMTD), aguardando chip pre-pago |
+| WhatsApp WABA via Gupshup | BLOQUEADO: exige Meta Business Manager (conta Facebook David desabilitada). Opcao recomendada: terceiro de confianca cria BM com conta Facebook dele. Chip pre-pago em maos. |
 | Conta Inngest | OPERACIONAL (UNLMTD CO, 09/09) |
 | Supabase Storage bucket patient-files | CRIADO (09/09) |
 | Nome de dominio | Deferred |
@@ -197,7 +197,7 @@ Stories movidas:
 - [x] Bucket patient-files criado no Supabase Storage (private, 10MB, PNG/JPEG/WebP/PDF/DOCX) (09/09)
 - [x] Migration 014_storage_rls.sql: RLS policies org-scoped aplicadas em producao (corrigido para google_sub, commit a2dc795, 09/09)
 - [ ] Criar bucket patient-files no Supabase Storage (Private)
-- [~] Setup Gupshup WABA: conta criada, aguardando chip pre-pago para numero dedicado
+- [~] Setup WABA: Gupshup bloqueado (exige Meta BM). Chip em maos. Proximo passo: terceiro criar Business Manager com CNPJ UNLMTD
 - [ ] CRM-05 Inbox WhatsApp (bloqueada por WABA)
 - [ ] CRM-08 WhatsApp Meta Cloud API (bloqueada por WABA)
 - [ ] CRM-09 Import CSV (backlog)
