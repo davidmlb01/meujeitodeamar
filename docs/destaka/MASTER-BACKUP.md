@@ -1,6 +1,64 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-09-15 (WhatsApp WABA bloqueado por Meta BM)
-**Status:** MVP em producao. Vercel Pro ativo. DNS corrigido. GBP API ticket 2-5600000041034 aguardando (~18/09). Instagram pipeline implementado. WhatsApp WABA bloqueado: todos os BSPs exigem Meta Business Manager (conta Facebook David desabilitada).
+**Ultima atualizacao:** 2026-09-23 (GBP API aprovada + auditoria seguranca)
+**Status:** MVP em producao com GBP API aprovada e operacional. Tokens encrypted. Auditoria de seguranca fases 1-3 concluidas. WhatsApp WABA bloqueado (Meta Business Manager).
+
+---
+
+## Sessao 2026-09-23: GBP API Aprovada + Auditoria de Seguranca
+
+### GBP API aprovada
+- Ticket 2-5600000041034 aprovado (email 23/09, googlebusinessprofile-support@google.com)
+- Projeto GCP 248596818772, quota 300 QPM
+- Todas as 5 APIs ativas no GCP
+
+### Integracao GBP API (commits 3bb4f22, 286d783)
+- [x] GBPClient: createPost(), replyToReview(), deleteReviewReply(), getPerformanceMetrics(), getSearchKeywords()
+- [x] Token refresh automatico (getValidTokenForOrg) em 8 rotas (4 cron + 4 API)
+- [x] Dashboard: metricas reais via GBP Performance API (fallback banco)
+- [x] Instagram pipeline: publicacao real via GBPClient.createPost()
+- [x] Review monitor: resposta real via GBPClient.replyToReview()
+
+### Auditoria de seguranca (3 agentes paralelos)
+Resultado: 7 criticos, 11 high, 7 medium. Fases 1-3 executadas.
+
+**Fase 1 (commit 91f7a3b):**
+- [x] Admin layout: verifica role admin (antes qualquer usuario acessava /admin)
+- [x] Demo login removido (codigo morto, vetor de ataque)
+- [x] Tokens limpos do user_metadata apos onboarding
+- [x] Erros Supabase sanitizados (nao vazam schema)
+- [x] INNGEST_SIGNING_KEY configurado no Vercel
+
+**Fase 2 (commit 571f93d):**
+- [x] google_tokens: tokens encrypted (AES-256-GCM)
+- [x] Token storage unificado: getValidGmbToken delega para getValidTokenForOrg
+- [x] Optimistic concurrency no refresh (evita race condition)
+- [x] Security headers: HSTS, X-Content-Type-Options, Referrer-Policy, Permissions-Policy
+- [x] Rate limiting fail-closed nas rotas publicas (/verify, /capture-lead)
+- [x] IP: x-real-ip (Vercel, nao spoofable)
+- [x] Callback: limpa tokens do user_metadata + salva encrypted
+
+**Fase 3 (commit 78330a9):**
+- [x] Zod validation no onboarding (enum tone/automation_preference, max length)
+- [x] Anti-prompt injection integrado ao sanitizePatientData
+- [x] gbp-audit: usa gbp_location_id existente (nao mais accounts[0])
+- [x] post-generator: fallback educativo quando sem review 5 estrelas
+- [x] deleteReviewReply: checa res.ok
+- [x] Erros GBP sanitizados em todas as rotas
+
+**Fase 4 (pendente, escala 50+ clinicas):**
+- [ ] Cache metricas GBP no dashboard (TTL 30min)
+- [ ] Fan-out nos cron jobs Inngest
+- [ ] Paginacao listReviews/listMedia
+- [ ] Consolidar 3 GBP clients em 1
+- [ ] RLS nas tabelas tenant-scoped
+- [ ] CSP: remover unsafe-inline/unsafe-eval
+
+### Pendente
+- [ ] WhatsApp WABA: David precisa definir quem cria o Meta Business Manager
+- [ ] Stripe: fornecer informacoes UNLMTD DIGITAL LTDA
+- [ ] Supabase Pro ($25/mes) para evitar pausas
+- [ ] Primeiro cliente pagante
+- [ ] Inngest signing key: rotacionar (chave exposta no chat)
 
 ---
 
