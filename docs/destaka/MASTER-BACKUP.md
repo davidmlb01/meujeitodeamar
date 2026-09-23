@@ -53,6 +53,11 @@ Resultado: 7 criticos, 11 high, 7 medium. Fases 1-3 executadas.
 - [ ] RLS nas tabelas tenant-scoped
 - [ ] CSP: remover unsafe-inline/unsafe-eval
 
+### Infra corrigida (23/09)
+- [x] Upstash Redis: database antigo deletado (free tier 14d inatividade). Novo criado: `destaka` sa-east-1. Env vars com `printf` (sem trailing newline).
+- [x] Google Places API Key: atualizada no Vercel (key antiga invalida). `/verificar` funcionando.
+- [x] `/verificar`: try/catch global adicionado (antes retornava 500 vazio).
+
 ### Pendente
 - [ ] WhatsApp WABA: David precisa definir quem cria o Meta Business Manager
 - [ ] Stripe: fornecer informacoes UNLMTD DIGITAL LTDA
