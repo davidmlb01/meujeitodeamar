@@ -2,7 +2,7 @@ markdownExploder: true
 project:
   type: EXISTING_AIOX
   installedAt: '2025-01-14T00:00:00Z'
-  version: 2.1.0
+  version: 5.4.1
 user_profile: advanced
 qa:
   qaLocation: docs/qa
@@ -163,8 +163,11 @@ projectStatus:
   maxModifiedFiles: 5
   maxRecentCommits: 2
 synapse:
+  # Total SynapseEngine layer pipeline budget. Override per process with
+  # AIOX_SYNAPSE_PIPELINE_TIMEOUT_MS. Valid range: 1-30000.
+  pipelineTimeoutMs: 100
   session:
-    staleTTLHours: 168 # 7 days — sessions older than this are cleaned up on first prompt
+    staleTTLHours: 168 # 7 days
 agentIdentity:
   greeting:
     preference: auto
@@ -312,6 +315,7 @@ ideSync:
     claude-code:
       enabled: true
       path: .claude/commands/AIOX/agents
+      skillsPath: .claude/skills
       format: full-markdown-yaml
     codex:
       enabled: true
@@ -333,6 +337,12 @@ ideSync:
       enabled: true
       path: .antigravity/rules/agents
       format: cursor-style
+    kimi:
+      enabled: true
+      path: .kimi/skills
+      format: kimi-skill
+      fallbackSources:
+        - .codex/agents
   redirects: {}
   validation:
     strictMode: true
@@ -355,19 +365,9 @@ autoClaude:
     enabled: false
   qa:
     enabled: false
-# Boundary Mapping — Framework-Project Separation (Epic BM)
-# Controls deterministic protection of framework core files via Claude Code deny rules.
-# When frameworkProtection is true (default), .claude/settings.json includes deny rules
-# that block Edit/Write operations on L1/L2 paths listed in 'protected' below.
-# Set to false for framework contributors who need to edit core files directly.
-# NOTE: This flag is read by the installer during settings.json generation.
-# Changing this value alone does NOT add/remove deny rules — re-run the installer.
-# SINGLE SOURCE OF TRUTH: Both pre-commit hook (framework-guard.js) and
-# the installer read protected/exceptions from here. Do NOT hardcode paths elsewhere.
+# Boundary Mapping
 boundary:
-  frameworkProtection: false # TEMPORARY: TOK-3 contributor mode — re-enable after story
-  # L1/L2 paths — blocked from editing in project mode
-  # Glob syntax: ** matches any depth, * matches single segment
+  frameworkProtection: false
   protected:
     - .aiox-core/core/**
     - .aiox-core/development/tasks/**
@@ -378,11 +378,22 @@ boundary:
     - .aiox-core/constitution.md
     - bin/aiox.js
     - bin/aiox-init.js
-  # L3 paths — mutable exceptions (allowed even within .aiox-core/)
   exceptions:
     - .aiox-core/data/**
     - .aiox-core/development/agents/*/MEMORY.md
     - .aiox-core/core/config/schemas/**
     - .aiox-core/core/config/template-overrides.js
 
-# Memory Intelligence System (Epic MIS) configuration placeholder — MIS-2+
+# Context-tracker dynamic model registry
+models:
+  active: claude-opus-4-6
+  registry:
+    claude-opus-4-6:
+      contextWindow: 1000000
+      avgTokensPerPrompt: 1500
+    claude-sonnet-4-6:
+      contextWindow: 200000
+      avgTokensPerPrompt: 1500
+    claude-haiku-4-5:
+      contextWindow: 200000
+      avgTokensPerPrompt: 1200
