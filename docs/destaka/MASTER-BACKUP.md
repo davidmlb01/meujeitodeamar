@@ -53,6 +53,13 @@ Resultado: 7 criticos, 11 high, 7 medium. Fases 1-3 executadas.
 - [ ] RLS nas tabelas tenant-scoped
 - [ ] CSP: remover unsafe-inline/unsafe-eval
 
+### Stripe + Otimizacao (25/09)
+- [x] Stripe Checkout integrado: verifica assinatura → redireciona para pagamento se nao tem plano
+- [x] Campo cupom habilitado (allow_promotion_codes)
+- [x] Otimizacao real: descricao via GBP API (Claude gera + PATCH aplica)
+- [x] Rotas: /api/stripe/checkout, /api/stripe/status, /api/optimization/plan, /api/optimization/execute
+- [x] Checkout testado: UNLMTD DIGITAL, R$197/mes, Mastercard OK
+
 ### Dashboard com dados reais (25/09)
 - [x] GBP API listLocations readMask corrigido (attributes/serviceItems invalidos)
 - [x] Inngest app `destaka` sincronizado com Cloud + INNGEST_EVENT_KEY configurado
