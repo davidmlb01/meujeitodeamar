@@ -53,6 +53,16 @@ Resultado: 7 criticos, 11 high, 7 medium. Fases 1-3 executadas.
 - [ ] RLS nas tabelas tenant-scoped
 - [ ] CSP: remover unsafe-inline/unsafe-eval
 
+### Dashboard com dados reais (25/09)
+- [x] GBP API listLocations readMask corrigido (attributes/serviceItems invalidos)
+- [x] Inngest app `destaka` sincronizado com Cloud + INNGEST_EVENT_KEY configurado
+- [x] Botao Sincronizar corrigido (/api/gbp/import em vez de /api/diagnostic/run)
+- [x] gbp-audit dispara score-calculator automaticamente
+- [x] Dados de teste limpos do banco. gbp_location_id corrigido para GBP resource name
+- [x] Dashboard mostra score real: 23/100 (UNLMTD, sync 25/09 15:58)
+- [x] /verificar funcionando com Places API real
+- [x] Upstash Redis recriado + env vars corrigidas (printf sem newline)
+
 ### Infra corrigida (23/09)
 - [x] Upstash Redis: database antigo deletado (free tier 14d inatividade). Novo criado: `destaka` sa-east-1. Env vars com `printf` (sem trailing newline).
 - [x] Google Places API Key: atualizada no Vercel (key antiga invalida). `/verificar` funcionando.
