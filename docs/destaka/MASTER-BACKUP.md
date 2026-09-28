@@ -1,6 +1,48 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-09-23 (GBP API aprovada + auditoria seguranca)
-**Status:** MVP em producao com GBP API aprovada e operacional. Tokens encrypted. Auditoria de seguranca fases 1-3 concluidas. WhatsApp WABA bloqueado (Meta Business Manager).
+**Ultima atualizacao:** 2026-09-28 (Otimizacao competitiva + Plano de Superacao)
+**Status:** MVP em producao com otimizacao baseada em concorrentes e plano de superacao semanal. GBP API operacional. WhatsApp WABA bloqueado (Meta Business Manager).
+
+---
+
+## Sessao 2026-09-28: Otimizacao Competitiva + Plano de Superacao
+
+### Otimizacao baseada em concorrentes (commit 61e0234)
+- [x] competitive-analyzer.ts: compara perfil vs 3 concorrentes campo a campo
+- [x] Regra de consenso 2-de-3 (gap so se 2+ concorrentes compartilham item)
+- [x] Gaps: categorias, keywords de reviews, fotos, volume avaliacoes
+- [x] Extracao de keywords dos reviews via Claude Haiku (batch)
+- [x] Places API expandida com campo reviews
+- [x] /api/optimization/plan retorna acoes audit + competitive com source
+- [x] /api/competitors/analysis endpoint GET
+- [x] UI: badge "Baseado nos concorrentes" no wizard
+- [x] UI: secao Oportunidades na pagina de concorrentes
+- [x] Migration 009: competitive_analyses + campos em competitors
+- [x] Custo: ~R$0.70/clinica/mes
+
+### Plano de Superacao (commit 5536939)
+- [x] plan-generator.ts: plano semanal de 8 semanas
+- [x] Semana 1 automatica (categorias, descricao, servicos)
+- [x] Semanas 3+ manuais (fotos, reviews) com contexto competitivo
+- [x] SurpassPlanCard no dashboard com progress bar
+- [x] Score calculator Inngest atualiza progresso automaticamente
+- [x] /api/plan/surpass: GET + POST generate
+- [x] Migration 010: surpass_plans com RLS
+- [x] Zero custo adicional (logica pura)
+
+### Specs criadas
+- docs/destaka/spec-competitive-optimization.md (implementada)
+- docs/destaka/spec-plano-superacao.md (implementada)
+
+### Arquivos novos nesta sessao
+- src/lib/gmb/competitive-analyzer.ts
+- src/lib/plan/plan-generator.ts
+- src/app/api/competitors/analysis/route.ts
+- src/app/api/plan/surpass/route.ts
+- src/components/dashboard/SurpassPlanCard.tsx
+- src/components/dashboard/hooks/useCompetitiveAnalysis.ts
+- src/components/dashboard/hooks/useSurpassPlan.ts
+- supabase/migrations/009_competitive_analysis.sql
+- supabase/migrations/010_surpass_plans.sql
 
 ---
 
