@@ -33,6 +33,15 @@
 - docs/destaka/spec-competitive-optimization.md (implementada)
 - docs/destaka/spec-plano-superacao.md (implementada)
 
+### Fixes e polish (28/09, commits eab1d0dc, 9dd2747f, 17fb6e1e)
+- [x] Fix: /api/plan/surpass usava orgId como profile_id (FK errada)
+- [x] Fix: RLS surpass_plans e competitive_analyses faltavam INSERT/UPDATE policies
+- [x] Fix: useSurpassPlan engolia erros, agora mostra feedback visual
+- [x] Revisao copy: removido "Claude" de toda UI, textos com voz Destaka
+- [x] Redesign: OptimizationConfirmCard e ManualTasksCard no dark theme
+- [x] Supabase CLI token renovado
+- [x] Plano testado em producao: 7 etapas, 60 dias, funcionando
+
 ### Arquivos novos nesta sessao
 - src/lib/gmb/competitive-analyzer.ts
 - src/lib/plan/plan-generator.ts
