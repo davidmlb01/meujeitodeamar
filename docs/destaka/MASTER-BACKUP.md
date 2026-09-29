@@ -1,10 +1,50 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-09-29 (Redesign onboarding + build limpo)
-**Status:** MVP em producao. Onboarding redesenhado (5 blocos, dark theme, prefill Google, novos campos). Build limpo. GBP API operacional. WhatsApp WABA bloqueado (Meta Business Manager).
+**Ultima atualizacao:** 2026-09-29 (Dashboard limitado + paywall + auditoria pré-cliente)
+**Status:** MVP em produção. Dashboard com modelo freemium (score gratuito, features bloqueadas com paywall contextual). Onboarding redesenhado. Build limpo. Auditoria completa: zero blockers. Pronto para primeira cliente.
 
 ---
 
-## Sessao 2026-09-29 (3): Redesign Completo do Onboarding
+## Sessão 2026-09-29 (4): Dashboard Limitado + Paywall + Auditoria
+
+### Dashboard freemium (commits 99e4503, ea80d23, 629577e)
+- [x] Dashboard gratuito: layout real com score visível, blocos com blur + lock inline
+- [x] DashboardContent aceita isSubscriber prop
+- [x] Sidebar com cadeados nas features bloqueadas
+- [x] Paywall contextual /dashboard/upgrade com copy por feature
+- [x] Sticky CTA bar no rodapé + botão CTA no card do score
+- [x] Sub-páginas verificam assinatura server-side (isActiveSubscriber)
+- [x] Helper centralizado src/lib/subscription.ts
+
+### Fixes (commits 78fcd71, bffc8a5, 0efca08)
+- [x] Fix: ManualTasksCard crashava dashboard (faltava 'use client')
+- [x] Fix: botão "Tentar novamente" sem cursor pointer
+- [x] Aba "Plano" removida do sidebar
+- [x] Acentuação PT-BR corrigida em toda a UI
+- [x] Contraste de texto aumentado para melhor leitura
+
+### Auditoria pré-cliente
+- [x] 14 pontos verificados: OAuth, onboarding, Stripe, dashboard, middleware, prefill, schema
+- [x] Zero blockers identificados
+- [x] Stripe env vars confirmadas na Vercel (6 variáveis)
+- [x] Migration 011 aplicada em produção
+
+### Arquivos novos/modificados nesta sessão
+- src/app/(dashboard)/dashboard/components/FreeDashboard.tsx (novo)
+- src/app/(dashboard)/dashboard/upgrade/page.tsx (novo)
+- src/lib/subscription.ts (novo)
+- src/components/dashboard/DashboardContent.tsx (isSubscriber + blur/lock)
+- src/components/dashboard/DashboardLayout.tsx (cadeados no sidebar)
+- src/app/(dashboard)/dashboard/page.tsx (checkSubscription)
+- src/app/(dashboard)/dashboard/reviews/page.tsx (gate assinatura)
+- src/app/(dashboard)/dashboard/posts/page.tsx (gate assinatura)
+- src/app/(dashboard)/dashboard/optimizations/page.tsx (gate assinatura)
+- src/app/(dashboard)/dashboard/competitors/page.tsx (gate assinatura)
+- src/app/(dashboard)/dashboard/components/ManualTasksCard.tsx (fix 'use client')
+- src/app/(dashboard)/dashboard/error.tsx (fix cursor pointer)
+
+---
+
+## Sessão 2026-09-29 (3): Redesign Completo do Onboarding
 
 ### Onboarding reescrito (commits fd58f11, 8b17380)
 - [x] 5 blocos conversacionais em dark theme com copy tom Destaka
