@@ -1,6 +1,39 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-09-28 (Otimizacao competitiva + Plano de Superacao)
-**Status:** MVP em producao com otimizacao baseada em concorrentes e plano de superacao semanal. GBP API operacional. WhatsApp WABA bloqueado (Meta Business Manager).
+**Ultima atualizacao:** 2026-09-29 (Auditoria features automaticas + correcao execucao GBP API)
+**Status:** MVP em producao. Todas as 5 etapas automaticas do plano executam de verdade na GBP API. Instagram prioridade real (1 post/dia, 3x/semana). GBP API operacional. WhatsApp WABA bloqueado (Meta Business Manager).
+
+---
+
+## Sessao 2026-09-29: Auditoria Features Automaticas + Correcao Execucao GBP API
+
+### Auditoria do plano de superacao
+- Auditoria revelou que 3 de 5 etapas automaticas fingiam sucesso sem chamar GBP API
+- Categorias: OptimizationConfirmCard marcava ok sem PATCH (backend pronto mas frontend nao conectava)
+- Servicos: frontend fingia ok + backend retornava 422 not_implemented
+- Atributos: frontend fingia ok (backend pronto mas frontend nao conectava)
+- Descricao: ja funcionava (unica que chamava API)
+- Posts e reviews: ja funcionavam (crons Inngest)
+
+### Correcoes aplicadas (commit c20c5ce7)
+- [x] OptimizationConfirmCard: categorias, atributos e servicos agora chamam /api/gbp/optimize/apply
+- [x] /api/gbp/optimize/apply: implementado PATCH de services na GBP API (antes 422)
+- [x] /api/optimization/execute: delega para apply em vez de marcar done falso
+- [x] TypeScript zero erros, deploy verificado em producao
+
+### Instagram prioridade real (commit 83056974)
+- [x] instagram-sync: agora so scrapa e prepara (status ready), nao publica mais
+- [x] post-generator (seg/qua/sex 10h): publica 1 Instagram ready por vez com foto
+- [x] Se nao tem Instagram ready, gera por IA (fallback)
+- [x] Scrape aumentado de 10 para 30 posts (historico antigo)
+- [x] Dedup por instagram_post_id (nunca repete)
+- [x] Ciclo: segunda 8h sync, seg/qua/sex 10h publica 1
+
+### Arquivos modificados nesta sessao
+- src/app/(dashboard)/dashboard/components/OptimizationConfirmCard.tsx
+- src/app/api/gbp/optimize/apply/route.ts
+- src/app/api/optimization/execute/route.ts
+- src/lib/inngest/functions/instagram-sync.ts
+- src/lib/inngest/functions/post-generator.ts
 
 ---
 
