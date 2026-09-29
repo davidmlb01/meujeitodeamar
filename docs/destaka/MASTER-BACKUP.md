@@ -28,6 +28,12 @@
 - [x] Dedup por instagram_post_id (nunca repete)
 - [x] Ciclo: segunda 8h sync, seg/qua/sex 10h publica 1
 
+### Deploy e dashboard
+- Dashboard crashava com erro recharts/Turbopack (Event handlers Client Component)
+- Redeploy limpo resolveu (deploy: dpl_B9tyRzgkZLjNZXAYMMBG6F1mJS5C)
+- Dashboard confirmado em producao: score 23, plano 7 etapas, grafico
+- PENDENTE: David quer revisar o que aparece no dashboard. Esclarecer na proxima sessao
+
 ### Arquivos modificados nesta sessao
 - src/app/(dashboard)/dashboard/components/OptimizationConfirmCard.tsx
 - src/app/api/gbp/optimize/apply/route.ts
