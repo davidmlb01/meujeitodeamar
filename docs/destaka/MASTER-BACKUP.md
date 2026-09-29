@@ -1,6 +1,35 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-09-29 (Auditoria features automaticas + correcao execucao GBP API)
-**Status:** MVP em producao. Todas as 5 etapas automaticas do plano executam de verdade na GBP API. Instagram prioridade real (1 post/dia, 3x/semana). GBP API operacional. WhatsApp WABA bloqueado (Meta Business Manager).
+**Ultima atualizacao:** 2026-09-29 (Redesign onboarding + build limpo)
+**Status:** MVP em producao. Onboarding redesenhado (5 blocos, dark theme, prefill Google, novos campos). Build limpo. GBP API operacional. WhatsApp WABA bloqueado (Meta Business Manager).
+
+---
+
+## Sessao 2026-09-29 (3): Redesign Completo do Onboarding
+
+### Onboarding reescrito (commits fd58f11, 8b17380)
+- [x] 5 blocos conversacionais em dark theme com copy tom Destaka
+- [x] Prefill automatico dos dados GBP via GET /api/onboarding/prefill
+- [x] Novos campos: challenge, patient_volume, services (text[]), differentials
+- [x] Migration 011: onboarding_enrichment
+- [x] Step "tom de comunicacao" removido (default proximo)
+- [x] Step "permissoes" removido
+- [x] Protecao anti-repeticao: professional existe = redirect /dashboard
+- [x] Dependencias instaladas: swr, recharts, sonner, stripe, @upstash/redis
+- [x] Build limpo (zero erros)
+- [x] Copy revisada pela brand squad (senior, clinica, direto)
+
+### Fluxo aprovado pelo David
+Login > Diagnostico basico > Stripe > Onboarding > Dashboard
+
+### Arquivos novos/modificados
+- src/app/(dashboard)/onboarding/page.tsx (reescrito)
+- src/app/api/onboarding/route.ts (novos campos)
+- src/app/api/onboarding/prefill/route.ts (novo)
+- supabase/migrations/011_onboarding_enrichment.sql (novo)
+
+### Pendente
+- [ ] Aplicar migration 011 no Supabase (supabase db push)
+- [ ] Routing: Stripe gate antes do onboarding (hoje Stripe so cobra na otimizacao)
 
 ---
 
