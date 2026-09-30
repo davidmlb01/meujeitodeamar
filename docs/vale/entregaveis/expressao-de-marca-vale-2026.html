@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expressao de Marca | Vale 2026</title>
+<style>
+/* =========================================
+   VALE 2026 — EXPRESSAO DE MARCA
+   Custom brand presentation
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
+
+:root {
+  --verde-vale: #007E7A;
+  --aqua-vale: #0ABB98;
+  --azul-vale: #3CB5E5;
+  --amarelo-vale: #ECB11F;
+  --laranja-vale: #EE6F16;
+  --cereja-vale: #C0305E;
+  --verde-escuro: #034944;
+  --cinza-escuro: #555555;
+  --cinza-vale: #747678;
+  --cinza-claro: #E6E7E8;
+  --preto: #0D0D0D;
+  --branco: #FFFFFF;
+
+  --font: 'Inter', 'Arial', 'Helvetica Neue', sans-serif;
+  --title-size: clamp(1.8rem, 5vw, 4.5rem);
+  --h2-size: clamp(1.4rem, 3.5vw, 3rem);
+  --h3-size: clamp(1.1rem, 2.5vw, 2rem);
+  --body-size: clamp(0.8rem, 1.5vw, 1.25rem);
+  --small-size: clamp(0.65rem, 1vw, 0.875rem);
+  --slide-padding: clamp(2rem, 6vw, 6rem);
+  --content-gap: clamp(0.5rem, 2vw, 2rem);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+/* SLIDE BASE */
+.slide {
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  padding: var(--slide-padding);
+  transition: opacity 0.2s ease;
+}
+
+/* SLIDE TYPES */
+.slide--dark { background: var(--preto); color: var(--branco); }
+.slide--white { background: var(--branco); color: var(--cinza-escuro); }
+.slide--verde { background: var(--verde-vale); color: var(--branco); }
+.slide--verde-escuro { background: var(--verde-escuro); color: var(--branco); }
+.slide--amarelo { background: var(--amarelo-vale); color: var(--preto); }
+.slide--laranja { background: var(--laranja-vale); color: var(--branco); }
+.slide--azul { background: var(--azul-vale); color: var(--branco); }
+.slide--cereja { background: var(--cereja-vale); color: var(--branco); }
+
+/* TYPOGRAPHY */
+.text-hero {
+  font-size: clamp(2rem, 5.5vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  max-width: 85%;
+}
+
+.text-large {
+  font-size: clamp(1.5rem, 3.5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  max-width: 80%;
+}
+
+.text-medium {
+  font-size: clamp(1.1rem, 2.2vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 75%;
+}
+
+.text-body {
+  font-size: var(--body-size);
+  font-weight: 400;
+  line-height: 1.7;
+  max-width: 70%;
+}
+
+.text-small {
+  font-size: var(--small-size);
+  font-weight: 300;
+  line-height: 1.5;
+  opacity: 0.7;
+}
+
+.text-dato {
+  font-size: clamp(4rem, 12vw, 10rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.text-dato-context {
+  font-size: clamp(0.9rem, 1.8vw, 1.5rem);
+  font-weight: 400;
+  line-height: 1.5;
+  margin-top: clamp(0.5rem, 2vh, 1.5rem);
+  max-width: 60%;
+}
+
+.text-subtitle {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-weight: 400;
+  margin-top: clamp(0.5rem, 1.5vh, 1rem);
+  opacity: 0.8;
+}
+
+.text-verde { color: var(--verde-vale); }
+.text-amarelo { color: var(--amarelo-vale); }
+.text-laranja { color: var(--laranja-vale); }
+.text-cereja { color: var(--cereja-vale); }
+.text-azul { color: var(--azul-vale); }
+.text-cinza { color: var(--cinza-vale); }
+.text-branco { color: var(--branco); }
+.text-preto { color: var(--preto); }
+
+.bold { font-weight: 700; }
+.light { font-weight: 300; }
+.italic { font-style: italic; }
+.strikethrough { text-decoration: line-through; opacity: 0.4; }
+
+/* LAYOUT */
+.slide-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.slide-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: clamp(3rem, 10vw, 12rem);
+}
+
+.gap-sm { gap: clamp(0.25rem, 0.5vh, 0.5rem); }
+.gap-md { gap: clamp(0.5rem, 1.5vh, 1.5rem); }
+.gap-lg { gap: clamp(1rem, 3vh, 3rem); }
+.gap-xl { gap: clamp(1.5rem, 4vh, 4rem); }
+
+.mt-sm { margin-top: clamp(0.5rem, 1vh, 1rem); }
+.mt-md { margin-top: clamp(1rem, 2vh, 2rem); }
+.mt-lg { margin-top: clamp(2rem, 4vh, 4rem); }
+
+/* GRID TABLE */
+.grid-table {
+  display: grid;
+  gap: 1px;
+  width: 100%;
+  max-width: min(90vw, 900px);
+}
+
+.grid-table-2 { grid-template-columns: 1fr 1fr; }
+.grid-table-3 { grid-template-columns: auto 1fr 1fr; }
+
+.grid-table-cell {
+  padding: clamp(0.4rem, 1vh, 0.8rem) clamp(0.5rem, 1.5vw, 1.2rem);
+  font-size: var(--body-size);
+  line-height: 1.5;
+}
+
+.grid-table-header {
+  font-weight: 700;
+  font-size: var(--small-size);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.6;
+  padding-bottom: clamp(0.3rem, 0.8vh, 0.6rem);
+  border-bottom: 1px solid currentColor;
+}
+
+/* BARRA LATERAL */
+.bar-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: clamp(4px, 0.5vw, 8px);
+}
+.bar-amarelo { background: var(--amarelo-vale); }
+.bar-laranja { background: var(--laranja-vale); }
+.bar-verde { background: var(--verde-vale); }
+.bar-azul { background: var(--azul-vale); }
+
+/* NUANCE (rodape) */
+.nuance {
+  position: absolute;
+  bottom: clamp(1rem, 3vh, 2rem);
+  left: var(--slide-padding);
+  right: var(--slide-padding);
+  font-size: var(--small-size);
+  font-style: italic;
+  font-weight: 300;
+  opacity: 0.6;
+}
+
+/* MATRIX */
+.matrix-grid {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  grid-template-rows: auto 1fr 1fr;
+  gap: clamp(2px, 0.3vw, 4px);
+  max-width: min(85vw, 800px);
+  max-height: min(65vh, 500px);
+}
+
+.matrix-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: var(--small-size);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: clamp(0.3rem, 0.5vw, 0.5rem);
+}
+
+.matrix-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 2vw, 2rem);
+  text-align: center;
+  gap: clamp(0.3rem, 0.5vh, 0.5rem);
+}
+
+.matrix-cell-title {
+  font-size: clamp(0.8rem, 1.5vw, 1.1rem);
+  font-weight: 700;
+}
+
+.matrix-cell-sub {
+  font-size: clamp(0.65rem, 1vw, 0.85rem);
+  font-weight: 300;
+  opacity: 0.85;
+}
+
+/* JARGAO RISCADO */
+.jargao-wall {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(0.5rem, 1.5vw, 1.5rem);
+  max-width: 80%;
+}
+
+.jargao-word {
+  font-size: clamp(1rem, 2vw, 1.6rem);
+  font-weight: 700;
+  text-decoration: line-through;
+  color: var(--cereja-vale);
+  opacity: 0.7;
+}
+
+/* FRASES SINTESE */
+.frases-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.8rem, 2vh, 2rem);
+  max-width: 80%;
+}
+
+.frase-item {
+  display: flex;
+  gap: clamp(0.5rem, 1vw, 1rem);
+  align-items: baseline;
+}
+
+.frase-num {
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
+  font-weight: 700;
+  color: var(--verde-vale);
+  min-width: 2ch;
+}
+
+.frase-text {
+  font-size: clamp(1rem, 1.8vw, 1.4rem);
+  font-weight: 700;
+  color: var(--verde-vale);
+  line-height: 1.4;
+}
+
+/* COMPROMISSOS GRID */
+.compromissos-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(0.5rem, 1.5vh, 1rem);
+  max-width: min(90vw, 800px);
+}
+
+.compromisso-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(0.5rem, 1.5vw, 1.5rem);
+  align-items: start;
+  padding: clamp(0.5rem, 1vh, 1rem) 0;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.compromisso-label {
+  font-size: var(--small-size);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  min-width: clamp(6rem, 12vw, 10rem);
+  padding-left: clamp(0.3rem, 0.5vw, 0.5rem);
+}
+
+.compromisso-text {
+  font-size: var(--body-size);
+  line-height: 1.5;
+}
+
+/* HIGHLIGHT EM PROPOSTA DE VALOR */
+.pv-highlight {
+  color: var(--branco);
+  font-weight: 700;
+}
+
+/* DO'S & DON'TS */
+.dd-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1rem, 3vw, 3rem);
+  max-width: min(90vw, 900px);
+}
+
+.dd-column { display: flex; flex-direction: column; gap: clamp(0.3rem, 0.8vh, 0.6rem); }
+
+.dd-header {
+  font-size: clamp(0.7rem, 1vw, 0.9rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding-bottom: clamp(0.3rem, 0.5vh, 0.5rem);
+  margin-bottom: clamp(0.3rem, 0.5vh, 0.5rem);
+}
+
+.dd-header-do { border-bottom: 2px solid var(--verde-vale); color: var(--verde-vale); }
+.dd-header-dont { border-bottom: 2px solid var(--cinza-vale); color: var(--cinza-vale); }
+.dd-header-do-white { border-bottom: 2px solid var(--aqua-vale); color: var(--aqua-vale); }
+.dd-header-dont-white { border-bottom: 2px solid rgba(255,255,255,0.4); color: rgba(255,255,255,0.5); }
+
+.dd-item {
+  font-size: clamp(0.7rem, 1.1vw, 0.95rem);
+  line-height: 1.5;
+  padding: clamp(0.2rem, 0.4vh, 0.4rem) 0;
+}
+
+/* ALERTA BOX */
+.alerta-box {
+  background: rgba(192, 48, 94, 0.1);
+  border-left: 3px solid var(--cereja-vale);
+  padding: clamp(0.5rem, 1vh, 0.8rem) clamp(0.8rem, 1.5vw, 1.2rem);
+  margin-top: clamp(0.5rem, 1vh, 1rem);
+  max-width: min(80vw, 700px);
+}
+
+.alerta-box p {
+  font-size: var(--small-size);
+  line-height: 1.5;
+  color: var(--cereja-vale);
+}
+
+/* PRINCIPIOS GRID */
+.principios-grid {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  gap: clamp(0.2rem, 0.5vh, 0.4rem) clamp(0.5rem, 1.5vw, 1.5rem);
+  max-width: min(90vw, 900px);
+  align-items: baseline;
+}
+
+.principio-num {
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  font-weight: 700;
+  color: var(--verde-vale);
+  min-width: 2ch;
+}
+
+.principio-title {
+  font-size: clamp(0.8rem, 1.3vw, 1.1rem);
+  font-weight: 700;
+}
+
+.principio-desc {
+  font-size: clamp(0.7rem, 1vw, 0.9rem);
+  font-weight: 300;
+  opacity: 0.7;
+}
+
+/* NAVIGATION */
+.nav-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--verde-vale);
+  z-index: 1000;
+  transition: width 0.3s ease;
+}
+
+.nav-counter {
+  position: fixed;
+  bottom: clamp(0.8rem, 2vh, 1.5rem);
+  right: clamp(1rem, 3vw, 2rem);
+  font-family: var(--font);
+  font-size: clamp(0.6rem, 0.8vw, 0.75rem);
+  font-weight: 300;
+  color: inherit;
+  opacity: 0.4;
+  z-index: 1000;
+  mix-blend-mode: difference;
+}
+
+.nav-hint {
+  position: fixed;
+  bottom: clamp(0.8rem, 2vh, 1.5rem);
+  left: clamp(1rem, 3vw, 2rem);
+  font-family: var(--font);
+  font-size: clamp(0.55rem, 0.7vw, 0.65rem);
+  font-weight: 300;
+  opacity: 0.3;
+  z-index: 1000;
+  mix-blend-mode: difference;
+  transition: opacity 0.5s ease;
+}
+
+/* REVEAL ANIMATION */
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity 0.4s ease, transform 0.4s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+@media (max-width: 768px) {
+  .dd-grid { grid-template-columns: 1fr; }
+  .matrix-grid { max-height: none; }
+  .principios-grid { grid-template-columns: auto 1fr; }
+  .principio-desc { grid-column: 1 / -1; }
+  .slide-left { padding-left: var(--slide-padding); }
+  .text-hero { max-width: 95%; }
+  .text-large { max-width: 95%; }
+  .text-medium { max-width: 95%; }
+  .text-body { max-width: 95%; }
+}
+
+@media (max-height: 600px) {
+  :root {
+    --slide-padding: clamp(1rem, 3vw, 2rem);
+  }
+  .nav-hint { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Progress bar -->
+<div class="nav-progress" id="progress"></div>
+<div class="nav-counter" id="counter"></div>
+<div class="nav-hint" id="hint">setas ou scroll para navegar</div>
+
+<!-- ============================================
+     ATO 1: O SILENCIO (slides 1-9)
+     ============================================ -->
+
+<!-- SLIDE 1 -->
+<section class="slide slide--dark slide-left" data-act="1">
+  <p class="text-hero reveal">Tem uma coisa que quem trabalha na Vale sabe, mas faz tempo que nao diz em voz alta.</p>
+</section>
+
+<!-- SLIDE 2 -->
+<section class="slide slide--dark slide-left" data-act="1">
+  <p class="text-medium reveal" style="max-width:65%;">Sabe no corpo. Na hora que o despertador toca e o dia comeca antes do sol. No caminho ate a mina, ate o laboratorio, ate o escritorio, ate o porto. No silencio de quem faz um trabalho pesado e volta para casa sem contar o que fez.</p>
+</section>
+
+<!-- SLIDE 3 -->
+<section class="slide slide--dark slide-left gap-xl" data-act="1">
+  <p class="text-medium reveal" style="font-weight:300;">Depois de Mariana. Depois de Brumadinho.</p>
+  <p class="text-medium reveal reveal-delay-1" style="font-weight:300;">O orgulho ficou quieto.</p>
+  <p class="text-medium reveal reveal-delay-2" style="font-weight:300;">Engolido.</p>
+  <p class="text-large reveal reveal-delay-3" style="margin-top:clamp(1rem,3vh,3rem);">Guardado num lugar que doi.</p>
+</section>
+
+<!-- SLIDE 4 -->
+<section class="slide slide--dark slide-center" data-act="1">
+  <p class="text-dato text-verde reveal">51%</p>
+  <p class="text-dato-context reveal reveal-delay-1" style="text-align:center;">dos brasileiros consideram a Vale essencial ou muito importante.</p>
+</section>
+
+<!-- SLIDE 5 -->
+<section class="slide slide--dark slide-center" data-act="1">
+  <p class="text-dato text-laranja reveal">9pp</p>
+  <p class="text-dato-context reveal reveal-delay-1" style="text-align:center;">de diferenca entre "trabalharia na Vale" e "apoiaria uma operacao na minha regiao".</p>
+</section>
+
+<!-- SLIDE 6 -->
+<section class="slide slide--dark slide-center" data-act="1">
+  <p class="text-dato text-cereja reveal" style="font-size:clamp(2.5rem,8vw,6rem);">53.0 &rarr; 43.1</p>
+  <p class="text-dato-context reveal reveal-delay-1" style="text-align:center;">pontos REPTRAK. Um evento destruiu em semanas o que levou 4 trimestres para construir.</p>
+</section>
+
+<!-- SLIDE 7 -->
+<section class="slide slide--dark" style="display:flex;flex-direction:column;justify-content:center;padding:var(--slide-padding);" data-act="1">
+  <div class="grid-table grid-table-2 reveal" style="max-width:min(85vw,750px);">
+    <div class="grid-table-cell grid-table-header text-verde">O que a mineracao cria</div>
+    <div class="grid-table-cell grid-table-header text-cinza">O que a mineracao custa</div>
+    <div class="grid-table-cell text-verde">Riqueza</div>
+    <div class="grid-table-cell text-cinza">Conflito</div>
+    <div class="grid-table-cell text-verde">Preservacao</div>
+    <div class="grid-table-cell text-cinza">Impacto</div>
+    <div class="grid-table-cell text-verde">Cuidado ambiental</div>
+    <div class="grid-table-cell text-cinza">Cicatriz</div>
+    <div class="grid-table-cell text-verde">Desenvolvimento</div>
+    <div class="grid-table-cell text-cinza">Dependencia</div>
+    <div class="grid-table-cell text-verde">Modernidade</div>
+    <div class="grid-table-cell text-cinza">Destruicao</div>
+    <div class="grid-table-cell text-verde">Essencialidade</div>
+    <div class="grid-table-cell text-cinza">Contestacao</div>
+  </div>
+</section>
+
+<!-- SLIDE 8 -->
+<section class="slide slide--dark slide-center" data-act="1">
+  <p class="text-dato reveal" style="color:var(--branco);">60.000</p>
+  <p class="text-dato-context reveal reveal-delay-1" style="text-align:center;">pessoas fazem a transicao energetica acontecer. Todo dia. De verdade.</p>
+  <p class="text-dato-context reveal reveal-delay-2 italic" style="text-align:center;margin-top:clamp(1rem,3vh,2rem);opacity:0.5;">E quase ninguem sabe.</p>
+</section>
+
+<!-- SLIDE 9 — TRANSICAO -->
+<section class="slide slide--verde-escuro slide-center" data-act="1">
+  <p class="text-large reveal" style="text-align:center;max-width:70%;">Mas tem outra coisa que quem trabalha aqui tambem sabe.</p>
+</section>
+
+<!-- ============================================
+     ATO 2: O MUNDO QUE DEPENDE (slides 10-17)
+     ============================================ -->
+
+<!-- SLIDE 10 -->
+<section class="slide slide--white slide-left" data-act="2">
+  <p class="text-large reveal" style="color:var(--cinza-escuro);font-weight:400;">O mundo celebra o carro eletrico, aplaude a turbina eolica, promete zerar emissoes.</p>
+</section>
+
+<!-- SLIDE 11 -->
+<section class="slide slide--white slide-left" data-act="2">
+  <p class="text-large reveal text-verde">Mas quase ninguem pergunta de onde vem o material que faz tudo isso existir.</p>
+</section>
+
+<!-- SLIDE 12 -->
+<section class="slide slide--white" style="display:flex;flex-direction:column;justify-content:center;padding:var(--slide-padding);" data-act="2">
+  <p class="text-subtitle reveal" style="font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--cinza-vale);margin-bottom:clamp(1rem,2vh,2rem);">O que as pessoas ja entendem</p>
+  <div class="grid-table grid-table-2 reveal reveal-delay-1" style="max-width:min(85vw,750px);">
+    <div class="grid-table-cell" style="font-weight:700;">Transicao energetica</div>
+    <div class="grid-table-cell"><span class="text-verde bold">64%</span> associam a trocar petroleo por renovaveis</div>
+    <div class="grid-table-cell" style="font-weight:700;">Minerais criticos</div>
+    <div class="grid-table-cell"><span class="text-verde bold">58%</span> associam a baterias, paineis solares, tecnologia</div>
+    <div class="grid-table-cell" style="font-weight:700;">Descarbonizar</div>
+    <div class="grid-table-cell"><span class="text-verde bold">49%</span> associam a reducao de poluicao climatica</div>
+    <div class="grid-table-cell" style="font-weight:700;">Circularidade</div>
+    <div class="grid-table-cell"><span class="text-verde bold">58%</span> associam a transformar residuos em novos produtos</div>
+  </div>
+</section>
+
+<!-- SLIDE 13 -->
+<section class="slide slide--verde slide-center" data-act="2">
+  <p class="text-dato reveal">40%</p>
+  <p class="text-dato-context reveal reveal-delay-1" style="text-align:center;">escolheram Mineracao do Futuro como o territorio que mais conecta com a Vale.</p>
+  <p class="text-small reveal reveal-delay-2 mt-md" style="text-align:center;">entre 5 territorios testados, n=1.085</p>
+</section>
+
+<!-- SLIDE 14 -->
+<section class="slide slide--verde" style="display:flex;flex-direction:column;justify-content:center;padding:var(--slide-padding);" data-act="2">
+  <p class="text-subtitle reveal" style="font-weight:700;margin-bottom:clamp(1rem,2vh,2rem);opacity:0.7;">O que ressoa dentro de Mineracao do Futuro</p>
+  <div style="display:flex;flex-direction:column;gap:clamp(0.5rem,1.2vh,1rem);max-width:min(85vw,700px);">
+    <div class="reveal" style="display:flex;gap:clamp(0.5rem,1vw,1rem);align-items:baseline;"><span style="font-size:clamp(1.2rem,2vw,1.8rem);font-weight:900;min-width:4ch;">16%</span><span style="font-size:var(--body-size);">Mineracao segura e com menor impacto ambiental</span></div>
+    <div class="reveal reveal-delay-1" style="display:flex;gap:clamp(0.5rem,1vw,1rem);align-items:baseline;"><span style="font-size:clamp(1.2rem,2vw,1.8rem);font-weight:900;min-width:4ch;">10%</span><span style="font-size:var(--body-size);">Regeneracao maior que extracao</span></div>
+    <div class="reveal reveal-delay-2" style="display:flex;gap:clamp(0.5rem,1vw,1rem);align-items:baseline;"><span style="font-size:clamp(1.2rem,2vw,1.8rem);font-weight:900;min-width:4ch;">7%</span><span style="font-size:var(--body-size);">Pessoas no centro da visao de futuro</span></div>
+    <div class="reveal reveal-delay-3" style="display:flex;gap:clamp(0.5rem,1vw,1rem);align-items:baseline;"><span style="font-size:clamp(1.2rem,2vw,1.8rem);font-weight:900;min-width:4ch;">4%</span><span style="font-size:var(--body-size);">Extracao responsavel dos minerais mais disputados</span></div>
+    <div class="reveal reveal-delay-4" style="display:flex;gap:clamp(0.5rem,1vw,1rem);align-items:baseline;"><span style="font-size:clamp(1.2rem,2vw,1.8rem);font-weight:900;min-width:4ch;">4%</span><span style="font-size:var(--body-size);">Peca-chave da transicao para energia limpa</span></div>
+  </div>
+</section>
+
+<!-- SLIDE 15 -->
+<section class="slide slide--dark slide-left" data-act="2">
+  <p class="text-body reveal" style="max-width:60%;line-height:1.8;font-weight:300;">Engenheiros que projetam minas mais seguras que as de dez anos atras. Geologos que mapeiam o subsolo com precisao de centimetros. Operadores que fazem funcionar equipamentos que custam mais que predios inteiros.</p>
+  <p class="text-small reveal reveal-delay-1 mt-md italic">Esse Brasil trabalha na Vale.</p>
+</section>
+
+<!-- SLIDE 16 -->
+<section class="slide slide--verde-escuro slide-left" data-act="2">
+  <p class="text-medium reveal" style="font-weight:400;max-width:70%;">O mundo promete o futuro.</p>
+  <p class="text-hero reveal reveal-delay-1 mt-sm" style="max-width:70%;">A gente entrega o material.</p>
+</section>
+
+<!-- SLIDE 17 — TRANSICAO -->
+<section class="slide slide--white slide-center" data-act="2">
+  <p class="text-medium reveal" style="text-align:center;color:var(--cinza-escuro);font-weight:300;max-width:65%;">Para dar voz a esse orgulho, a Vale precisa ter 4 conversas diferentes com 4 publicos diferentes.</p>
+</section>
+
+<!-- ============================================
+     ATO 3: AS 4 CONVERSAS (slides 18-30)
+     ============================================ -->
+
+<!-- SLIDE 18 — MATRIZ -->
+<section class="slide slide--white slide-center" data-act="3">
+  <div class="matrix-grid reveal">
+    <div></div>
+    <div class="matrix-label" style="color:var(--cinza-escuro);">LEGAL<br><span style="font-weight:300;font-size:0.8em;text-transform:none;">(transparencia)</span></div>
+    <div class="matrix-label" style="color:var(--cinza-escuro);">LEGADO<br><span style="font-weight:300;font-size:0.8em;text-transform:none;">(proposito)</span></div>
+    <div class="matrix-label" style="color:var(--cinza-escuro);writing-mode:vertical-lr;transform:rotate(180deg);">TODO<br><span style="font-weight:300;font-size:0.8em;text-transform:none;">(posicionar)</span></div>
+    <div class="matrix-cell" style="background:var(--amarelo-vale);color:var(--preto);">
+      <div class="matrix-cell-title">A conversa com o pais</div>
+      <div class="matrix-cell-sub">Empreendedora de Pais</div>
+    </div>
+    <div class="matrix-cell" style="background:var(--laranja-vale);color:var(--branco);">
+      <div class="matrix-cell-title">A conversa com o mundo</div>
+      <div class="matrix-cell-sub">Referencia Atuante</div>
+    </div>
+    <div class="matrix-label" style="color:var(--cinza-escuro);writing-mode:vertical-lr;transform:rotate(180deg);">PARTE<br><span style="font-weight:300;font-size:0.8em;text-transform:none;">(aproximar)</span></div>
+    <div class="matrix-cell" style="background:var(--verde-vale);color:var(--branco);">
+      <div class="matrix-cell-title">A conversa com os territorios</div>
+      <div class="matrix-cell-sub">Aliado Confiavel</div>
+    </div>
+    <div class="matrix-cell" style="background:var(--azul-vale);color:var(--branco);">
+      <div class="matrix-cell-title">A conversa com o futuro</div>
+      <div class="matrix-cell-sub">Tecnologia Social Compartilhada</div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 19 — Q1 TITULO -->
+<section class="slide slide--amarelo slide-center" data-act="3">
+  <p class="text-hero reveal text-preto" style="text-align:center;">A conversa com o pais</p>
+  <p class="text-subtitle reveal reveal-delay-1 text-preto" style="text-align:center;"><span class="strikethrough">Eterna Devedora</span> &rarr; <span class="bold">Empreendedora de Pais</span></p>
+</section>
+
+<!-- SLIDE 20 — Q1 CONTEUDO -->
+<section class="slide slide--white slide-left" style="position:relative;" data-act="3">
+  <div class="bar-left bar-amarelo"></div>
+  <div style="padding-left:clamp(1rem,2vw,2rem);max-width:70%;">
+    <p class="text-body reveal" style="line-height:1.8;">A Vale e grande o suficiente para definir padroes para o setor inteiro. Mas grandeza sem transparencia e so tamanho.</p>
+    <p class="text-body reveal reveal-delay-1 mt-md" style="line-height:1.8;">A direcao e clara: a Vale precisa ser a empresa que nao espera ser cobrada. Que abre os numeros antes que pecam. Que mostra o processo, nao so o resultado. Que trata governanca nao como obrigacao cumprida, mas como oportunidade de liderar.</p>
+  </div>
+  <div class="nuance">Firme, clara, de portas abertas. Quem fala aqui tem coragem de mostrar.</div>
+</section>
+
+<!-- SLIDE 21 — Q1 DO'S & DON'TS -->
+<section class="slide slide--white slide-left" style="position:relative;" data-act="3">
+  <div class="bar-left bar-amarelo"></div>
+  <div class="dd-grid reveal" style="padding-left:clamp(1rem,2vw,2rem);">
+    <div class="dd-column">
+      <div class="dd-header dd-header-do">A Vale faz</div>
+      <div class="dd-item">Usa dados verificaveis como prova, nunca como propaganda</div>
+      <div class="dd-item">Mostra decisoes concretas onde foi alem do exigido</div>
+      <div class="dd-item">Trata regulacao como arena de lideranca</div>
+      <div class="dd-item">Fala do que fez e do que ainda precisa fazer, com a mesma honestidade</div>
+    </div>
+    <div class="dd-column">
+      <div class="dd-header dd-header-dont">A Vale nao faz</div>
+      <div class="dd-item">Nunca lista certificacoes como prova de carater</div>
+      <div class="dd-item">Nunca usa "nos comprometemos a"</div>
+      <div class="dd-item">Nunca soa como empresa prestando contas</div>
+      <div class="dd-item">Nunca confunde o minimo legal com merito</div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 22 — Q2 TITULO -->
+<section class="slide slide--laranja slide-center" data-act="3">
+  <p class="text-hero reveal" style="text-align:center;">A conversa com o mundo</p>
+  <p class="text-subtitle reveal reveal-delay-1" style="text-align:center;"><span class="strikethrough">Potencia Vigilante</span> &rarr; <span class="bold">Referencia Atuante</span></p>
+</section>
+
+<!-- SLIDE 23 — Q2 CONTEUDO -->
+<section class="slide slide--white slide-left" style="position:relative;" data-act="3">
+  <div class="bar-left bar-laranja"></div>
+  <div style="padding-left:clamp(1rem,2vw,2rem);max-width:70%;">
+    <p class="text-body reveal" style="line-height:1.8;">O mundo celebra o carro eletrico, aplaude a turbina eolica, promete zerar emissoes. Mas quase ninguem pergunta de onde vem o material que faz tudo isso existir.</p>
+    <p class="text-body reveal reveal-delay-1 mt-md" style="line-height:1.8;">E aqui que a Vale precisa se posicionar: como a empresa cujo trabalho e a base material do futuro que o mundo promete. Esse proposito ja existe no dia a dia de 60 mil pessoas. O que falta e dar nome ao que ja se faz.</p>
+    <div class="reveal reveal-delay-2 mt-md" style="background:rgba(238,111,22,0.08);padding:clamp(0.5rem,1vh,1rem) clamp(0.8rem,1.5vw,1.2rem);border-radius:2px;">
+      <p style="font-size:var(--body-size);"><span class="bold text-laranja">77%</span> se conectam com a ideia de orgulho do Brasil. Metade, totalmente conectados.</p>
+    </div>
+  </div>
+  <div class="nuance">Aqui a voz aquece. O orgulho aparece como consequencia natural do fato narrado.</div>
+</section>
+
+<!-- SLIDE 24 — Q2 DO'S & DON'TS -->
+<section class="slide slide--white slide-left" style="position:relative;" data-act="3">
+  <div class="bar-left bar-laranja"></div>
+  <div class="dd-grid reveal" style="padding-left:clamp(1rem,2vw,2rem);">
+    <div class="dd-column">
+      <div class="dd-header dd-header-do">A Vale faz</div>
+      <div class="dd-item">Coloca as pessoas como protagonistas, nunca a corporacao</div>
+      <div class="dd-item">Ancora o orgulho em trabalho real: turnos, minas, laboratorios</div>
+      <div class="dd-item">Conecta o que produz com o que o mundo consome</div>
+      <div class="dd-item">Deixa o orgulho nascer do fato narrado</div>
+    </div>
+    <div class="dd-column">
+      <div class="dd-header dd-header-dont">A Vale nao faz</div>
+      <div class="dd-item">Nunca usa "lider global", "referencia mundial"</div>
+      <div class="dd-item">Nunca separa a marca das 60 mil pessoas</div>
+      <div class="dd-item">Nunca soa como relatorio para investidor</div>
+      <div class="dd-item">Nunca declara grandiosidade. Mostra.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 25 — Q3 TITULO -->
+<section class="slide slide--verde slide-center" data-act="3">
+  <p class="text-hero reveal" style="text-align:center;">A conversa com os territorios</p>
+  <p class="text-subtitle reveal reveal-delay-1" style="text-align:center;"><span class="strikethrough">Mal Necessario</span> &rarr; <span class="bold">Aliado Confiavel</span></p>
+</section>
+
+<!-- SLIDE 26 — Q3 CONTEUDO -->
+<section class="slide slide--white slide-left" style="position:relative;" data-act="3">
+  <div class="bar-left bar-verde"></div>
+  <div style="padding-left:clamp(1rem,2vw,2rem);max-width:70%;">
+    <p class="text-body reveal" style="line-height:1.8;">Tem lugares no Brasil onde o nome Vale doi. A Vale sabe quais sao. Sabe o peso que esse nome carrega em cada cidade, em cada familia, em cada conversa de portao.</p>
+    <p class="text-body reveal reveal-delay-1 mt-md" style="line-height:1.8;">A direcao aqui e a mais dificil e a mais importante: estar perto e mostrar. Proximidade real, nao institucional. Transparencia de fato, nao de relatorio.</p>
+    <div class="alerta-box reveal reveal-delay-2">
+      <p><strong>ALERTA MG:</strong> Minas Gerais e hiperlocal e hiperimportante. Exige estrategia propria, pessoas como porta-vozes, escuta ativa como premissa. Nenhuma campanha nacional resolve isso.</p>
+    </div>
+  </div>
+  <div class="nuance">Aqui a voz baixa. Nao impressiona. Fica perto. Fala como quem sabe que precisa ouvir antes de dizer.</div>
+</section>
+
+<!-- SLIDE 27 — Q3 DO'S & DON'TS -->
+<section class="slide slide--white slide-left" style="position:relative;" data-act="3">
+  <div class="bar-left bar-verde"></div>
+  <div class="dd-grid reveal" style="padding-left:clamp(1rem,2vw,2rem);">
+    <div class="dd-column">
+      <div class="dd-header dd-header-do">A Vale faz</div>
+      <div class="dd-item">Coloca o territorio e as comunidades como protagonistas</div>
+      <div class="dd-item">Fala com especificidade: nomes de lugares, resultados verificaveis</div>
+      <div class="dd-item">Reconhece o peso do passado sem fugir e sem se vitimizar</div>
+      <div class="dd-item">Mostra constancia como decisao renovada</div>
+    </div>
+    <div class="dd-column">
+      <div class="dd-header dd-header-dont">A Vale nao faz</div>
+      <div class="dd-item">Nunca usa "responsabilidade social", "investimento social privado"</div>
+      <div class="dd-item">Nunca transforma dados de reparacao em argumento publicitario</div>
+      <div class="dd-item">Nunca fala sobre MG com a mesma voz do global</div>
+      <div class="dd-item">Nunca fala de comunidades sem dar voz a quem e de la</div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 28 — Q4 TITULO -->
+<section class="slide slide--azul slide-center" data-act="3">
+  <p class="text-hero reveal" style="text-align:center;">A conversa com o futuro</p>
+  <p class="text-subtitle reveal reveal-delay-1" style="text-align:center;"><span class="strikethrough">Atuacao Fragmentada</span> &rarr; <span class="bold">Tecnologia Social Compartilhada</span></p>
+</section>
+
+<!-- SLIDE 29 — Q4 CONTEUDO -->
+<section class="slide slide--white slide-left" style="position:relative;" data-act="3">
+  <div class="bar-left bar-azul"></div>
+  <div style="padding-left:clamp(1rem,2vw,2rem);max-width:70%;">
+    <p class="text-body reveal" style="line-height:1.8;">A mineracao tem prazo. O minerio acaba. A operacao muda de lugar. Mas as pessoas ficam. E o que a Vale construiu junto com essas pessoas precisa ficar tambem.</p>
+    <p class="text-body reveal reveal-delay-1 mt-md" style="line-height:1.8;">Nao como lembranca. Como estrutura. Como capacidade. Como algo que funciona sozinho, sem o nome da empresa na porta.</p>
+    <div class="reveal reveal-delay-2 mt-md" style="background:rgba(60,181,229,0.08);padding:clamp(0.5rem,1vh,1rem) clamp(0.8rem,1.5vw,1.2rem);border-radius:2px;">
+      <p style="font-size:var(--body-size);font-style:italic;">O maior elogio que uma comunidade pode fazer para a Vale e nao precisar mais dela.</p>
+    </div>
+  </div>
+  <div class="nuance">Generosa, concreta. A marca desaparece para o resultado aparecer. E ha beleza nisso.</div>
+</section>
+
+<!-- SLIDE 30 — Q4 DO'S & DON'TS -->
+<section class="slide slide--white slide-left" style="position:relative;" data-act="3">
+  <div class="bar-left bar-azul"></div>
+  <div class="dd-grid reveal" style="padding-left:clamp(1rem,2vw,2rem);">
+    <div class="dd-column">
+      <div class="dd-header dd-header-do">A Vale faz</div>
+      <div class="dd-item">Mostra resultados que ja funcionam sem a presenca da Vale</div>
+      <div class="dd-item">Valoriza o que a comunidade trouxe para a parceria</div>
+      <div class="dd-item">Mede sucesso por autonomia gerada, nao por volume investido</div>
+      <div class="dd-item">Conta historias especificas, com nome e lugar</div>
+    </div>
+    <div class="dd-column">
+      <div class="dd-header dd-header-dont">A Vale nao faz</div>
+      <div class="dd-item">Nunca usa "investimos R$ X milhoes em Y comunidades"</div>
+      <div class="dd-item">Nunca apresenta a Vale como quem salvou um lugar</div>
+      <div class="dd-item">Nunca faz a empresa protagonista de historia que pertence ao territorio</div>
+      <div class="dd-item">Nunca confunde dispersao de projetos com estrategia de legado</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     ATO 4: A VOZ (slides 31-39)
+     ============================================ -->
+
+<!-- SLIDE 31 -->
+<section class="slide slide--dark slide-left" data-act="4">
+  <p class="text-medium reveal" style="font-weight:300;max-width:65%;">A Vale fala como alguem que trabalha na Vale. Nao como alguem que fala sobre a Vale de fora.</p>
+  <p class="text-medium reveal reveal-delay-1 mt-md" style="font-weight:300;max-width:65%;">E a voz de quem desce na mina e sobe. De quem fica no territorio quando todo mundo vai embora. De quem sabe o que custou chegar ate aqui e nao precisa exagerar nada, porque a verdade ja e forte o bastante.</p>
+</section>
+
+<!-- SLIDE 32 — REGRA DE OURO -->
+<section class="slide slide--dark slide-center" data-act="4">
+  <p class="text-large reveal text-verde" style="text-align:center;max-width:75%;">Se a frase nao funciona numa conversa entre dois tecnicos no refeitorio da mina, ela nao funciona em lugar nenhum.</p>
+</section>
+
+<!-- SLIDE 33 — 6 PRINCIPIOS -->
+<section class="slide slide--dark" style="display:flex;flex-direction:column;justify-content:center;padding:var(--slide-padding);" data-act="4">
+  <p class="text-subtitle reveal" style="font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--cinza-vale);margin-bottom:clamp(1rem,2vh,2rem);">6 principios do tom</p>
+  <div class="principios-grid">
+    <div class="principio-num reveal">1</div>
+    <div class="principio-title reveal">Entre na conversa que ja existe</div>
+    <div class="principio-desc reveal">Reconheca o que as pessoas ja sentem antes de dizer qualquer coisa</div>
+    <div class="principio-num reveal reveal-delay-1">2</div>
+    <div class="principio-title reveal reveal-delay-1">Fato primeiro, emocao depois</div>
+    <div class="principio-desc reveal reveal-delay-1">Quando o fato e forte, ele nao precisa de adjetivo</div>
+    <div class="principio-num reveal reveal-delay-1">3</div>
+    <div class="principio-title reveal reveal-delay-1">Primeira pessoa do plural</div>
+    <div class="principio-desc reveal reveal-delay-1">Marca nao acredita em nada. Gente acredita</div>
+    <div class="principio-num reveal reveal-delay-2">4</div>
+    <div class="principio-title reveal reveal-delay-2">O teste do refeitorio</div>
+    <div class="principio-desc reveal reveal-delay-2">Se soa como comunicado de imprensa, reescreva</div>
+    <div class="principio-num reveal reveal-delay-3">5</div>
+    <div class="principio-title reveal reveal-delay-3">Orgulho se mostra, nao se anuncia</div>
+    <div class="principio-desc reveal reveal-delay-3">O orgulho conta o que fez. A arrogancia conta o que e</div>
+    <div class="principio-num reveal reveal-delay-4">6</div>
+    <div class="principio-title reveal reveal-delay-4">Zero jargao</div>
+    <div class="principio-desc reveal reveal-delay-4">Nenhuma dessas palavras entra no copy final</div>
+  </div>
+</section>
+
+<!-- SLIDE 34 — PALAVRAS PROIBIDAS -->
+<section class="slide slide--dark slide-left gap-lg" data-act="4">
+  <div class="jargao-wall reveal">
+    <span class="jargao-word">ESG</span>
+    <span class="jargao-word">stakeholder</span>
+    <span class="jargao-word">sustentabilidade</span>
+    <span class="jargao-word">impacto positivo</span>
+    <span class="jargao-word">proposta de valor</span>
+    <span class="jargao-word">licenca social</span>
+    <span class="jargao-word">nos comprometemos a</span>
+    <span class="jargao-word">lider global</span>
+    <span class="jargao-word">referencia mundial</span>
+    <span class="jargao-word">investimento social privado</span>
+    <span class="jargao-word">responsabilidade social</span>
+  </div>
+  <p class="text-body reveal reveal-delay-1" style="max-width:65%;margin-top:clamp(1rem,2vh,2rem);">Se a palavra pertence a um relatorio para investidor, ela nao pertence a uma conversa com gente.</p>
+</section>
+
+<!-- SLIDE 35 — MANIFESTO ABERTURA -->
+<section class="slide slide--verde-escuro slide-center" data-act="4">
+  <p class="text-large reveal" style="text-align:center;max-width:70%;">Ninguem explica o que e trabalhar na Vale em uma frase. Porque nao cabe.</p>
+</section>
+
+<!-- SLIDE 36 — MANIFESTO CORPO -->
+<section class="slide slide--verde-escuro slide-left" data-act="4">
+  <div style="max-width:65%;display:flex;flex-direction:column;gap:clamp(1rem,2.5vh,2rem);">
+    <p class="text-body reveal" style="line-height:1.8;font-weight:300;">Nao cabe a escala. Nao cabe a precisao. Nao cabe o que significa extrair da terra brasileira o material que faz o futuro do mundo funcionar. Cada bateria, cada turbina, cada rede eletrica comeca no trabalho de alguem que a maioria nunca vai conhecer.</p>
+    <p class="text-body reveal reveal-delay-1" style="line-height:1.8;font-weight:300;">Nao cabe o peso que o nome carrega em certos lugares. A memoria que nao apagou. A decisao de ficar, de perto, mostrando o que faz, sem esconder o que foi. Quem escolheu continuar, escolheu carregar tudo junto.</p>
+    <p class="text-body reveal reveal-delay-2" style="line-height:1.8;font-weight:300;">Mas cabe uma direcao: a Vale esta mudando. Nao porque mudou de logo. Porque as pessoas que trabalham aqui estao mudando os processos, abrindo as portas, colocando os fatos na mesa.</p>
+    <p class="text-body reveal reveal-delay-3" style="line-height:1.8;font-weight:300;">E o que esta sendo construido nos territorios, nas comunidades, no conhecimento que comeca a ficar quando a operacao muda de lugar, precisa virar proposito assumido.</p>
+  </div>
+</section>
+
+<!-- SLIDE 37 — MANIFESTO FECHAMENTO -->
+<section class="slide slide--verde-escuro slide-center" data-act="4">
+  <p class="text-large reveal" style="text-align:center;max-width:70%;">O orgulho de trabalhar na Vale nao precisa mais ficar em silencio. Ele tem fundamento. E agora tem direcao.</p>
+</section>
+
+<!-- SLIDE 38 — PROPOSTA DE VALOR -->
+<section class="slide slide--dark slide-left" data-act="4">
+  <p class="text-subtitle reveal" style="font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--cinza-vale);margin-bottom:clamp(1rem,2vh,2rem);">Proposta de Valor</p>
+  <p class="text-medium reveal reveal-delay-1 text-verde" style="max-width:75%;line-height:1.6;">Para a Vale, Mineracao do Futuro e ter a <span class="pv-highlight">coragem</span> de ocupar o lugar de quem sustenta materialmente o futuro que o mundo promete, com a <span class="pv-highlight">proximidade</span> de quem escolhe ficar, a <span class="pv-highlight">transparencia</span> de quem mostra antes que pecam e o <span class="pv-highlight">orgulho</span> de deixar de pe o que funciona sem o nosso nome na porta.</p>
+</section>
+
+<!-- SLIDE 39 — TRANSICAO -->
+<section class="slide slide--white slide-center" data-act="4">
+  <p class="text-medium reveal" style="text-align:center;color:var(--cinza-escuro);font-weight:300;">E agora, o que muda na pratica.</p>
+</section>
+
+<!-- ============================================
+     ATO 5: O PRIMEIRO PASSO (slides 40-44)
+     ============================================ -->
+
+<!-- SLIDE 40 — FRASES QUE FICAM -->
+<section class="slide slide--white slide-left" data-act="5">
+  <p class="text-subtitle reveal" style="font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--cinza-vale);margin-bottom:clamp(1rem,2vh,2rem);">Frases que ficam</p>
+  <div class="frases-list">
+    <div class="frase-item reveal"><span class="frase-num">1.</span><span class="frase-text">O futuro e feito de minerais. E de gente que sabe tira-los da terra.</span></div>
+    <div class="frase-item reveal reveal-delay-1"><span class="frase-num">2.</span><span class="frase-text">Mineracao do Futuro nao e slogan. E turno.</span></div>
+    <div class="frase-item reveal reveal-delay-2"><span class="frase-num">3.</span><span class="frase-text">Se nao a Vale, quem?</span></div>
+    <div class="frase-item reveal reveal-delay-3"><span class="frase-num">4.</span><span class="frase-text">A gente sabe o que faz. Esta na hora do mundo saber tambem.</span></div>
+    <div class="frase-item reveal reveal-delay-4"><span class="frase-num">5.</span><span class="frase-text">O que a gente tira da terra, o mundo transforma em futuro. Mas comeca aqui.</span></div>
+  </div>
+</section>
+
+<!-- SLIDE 41 — COMPROMISSOS -->
+<section class="slide slide--verde" style="display:flex;flex-direction:column;justify-content:center;padding:var(--slide-padding);" data-act="5">
+  <p class="text-subtitle reveal" style="font-weight:700;text-transform:uppercase;letter-spacing:0.08em;opacity:0.7;margin-bottom:clamp(1rem,2vh,2rem);">4 compromissos de marca</p>
+  <div class="compromissos-grid reveal reveal-delay-1">
+    <div class="compromisso-row">
+      <div class="compromisso-label" style="border-left:3px solid var(--amarelo-vale);">Com o pais</div>
+      <div class="compromisso-text">Abrir os numeros antes que pecam. Governanca como lideranca, nao como obrigacao.</div>
+    </div>
+    <div class="compromisso-row">
+      <div class="compromisso-label" style="border-left:3px solid var(--laranja-vale);">Com o mundo</div>
+      <div class="compromisso-text">Colocar as pessoas como protagonistas. O orgulho nasce do fato narrado.</div>
+    </div>
+    <div class="compromisso-row">
+      <div class="compromisso-label" style="border-left:3px solid var(--verde-escuro);">Com os territorios</div>
+      <div class="compromisso-text">Estar perto e mostrar. Constancia como decisao renovada.</div>
+    </div>
+    <div class="compromisso-row" style="border-bottom:none;">
+      <div class="compromisso-label" style="border-left:3px solid var(--azul-vale);">Com o futuro</div>
+      <div class="compromisso-text">Criar independencia, nao dependencia. O maior elogio e nao precisar mais da Vale.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 42 — RESPIRO (sem texto) -->
+<section class="slide slide--dark slide-center" data-act="5" style="background:linear-gradient(135deg, var(--verde-escuro) 0%, var(--preto) 100%);">
+  <div style="width:clamp(60px,8vw,100px);height:clamp(60px,8vw,100px);border:2px solid var(--verde-vale);border-radius:50%;opacity:0.3;" class="reveal"></div>
+</section>
+
+<!-- SLIDE 43 — FECHAMENTO -->
+<section class="slide slide--dark slide-center" data-act="5">
+  <p class="text-hero reveal text-verde" style="text-align:center;max-width:80%;">Mineracao do Futuro nao e slogan. E turno.</p>
+</section>
+
+<!-- SLIDE 44 — CREDITOS -->
+<section class="slide slide--dark slide-center" data-act="5">
+  <div style="display:flex;flex-direction:column;gap:clamp(0.3rem,0.8vh,0.6rem);text-align:center;" class="reveal">
+    <p style="font-size:clamp(0.9rem,1.5vw,1.2rem);font-weight:700;color:var(--cinza-vale);">Expressao de Marca | Vale 2026</p>
+    <div style="margin:clamp(0.5rem,1.5vh,1.5rem) 0;"></div>
+    <p class="text-small">Construido a partir de:</p>
+    <p class="text-small">Guia de Marca Vale (106pp) / Vale2027 Trends (45pp)</p>
+    <p class="text-small">Box1824 Work Session Report (151pp) / Natura Nova Expressao (204 slides)</p>
+    <div style="margin:clamp(0.5rem,1.5vh,1.5rem) 0;"></div>
+    <p class="text-small" style="opacity:0.4;">2026</p>
+  </div>
+</section>
+
+<!-- ============================================
+     JAVASCRIPT: Navigation + Reveal
+     ============================================ -->
+<script>
+(function() {
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  const progress = document.getElementById('progress');
+  const counter = document.getElementById('counter');
+  const hint = document.getElementById('hint');
+  let current = 0;
+  let isScrolling = false;
+
+  function updateUI() {
+    const pct = ((current + 1) / total) * 100;
+    progress.style.width = pct + '%';
+    counter.textContent = (current + 1) + ' / ' + total;
+
+    // Adapt counter color based on slide bg
+    const slide = slides[current];
+    const isDark = slide.classList.contains('slide--dark') ||
+                   slide.classList.contains('slide--verde-escuro') ||
+                   slide.classList.contains('slide--verde') ||
+                   slide.classList.contains('slide--laranja') ||
+                   slide.classList.contains('slide--azul');
+    counter.style.color = isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.3)';
+    hint.style.color = isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.2)';
+  }
+
+  function goTo(index) {
+    if (index < 0 || index >= total) return;
+    current = index;
+    slides[current].scrollIntoView({ behavior: 'smooth' });
+    updateUI();
+    if (current > 0) hint.style.opacity = '0';
+  }
+
+  // Keyboard
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+      e.preventDefault(); goTo(current + 1);
+    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      e.preventDefault(); goTo(current - 1);
+    } else if (e.key === 'Home') {
+      e.preventDefault(); goTo(0);
+    } else if (e.key === 'End') {
+      e.preventDefault(); goTo(total - 1);
+    }
+  });
+
+  // Touch
+  let touchStartY = 0;
+  document.addEventListener('touchstart', function(e) { touchStartY = e.touches[0].clientY; });
+  document.addEventListener('touchend', function(e) {
+    const diff = touchStartY - e.changedTouches[0].clientY;
+    if (Math.abs(diff) > 50) { diff > 0 ? goTo(current + 1) : goTo(current - 1); }
+  });
+
+  // Scroll snap observer
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        current = Array.from(slides).indexOf(entry.target);
+        updateUI();
+        // Trigger reveals
+        entry.target.querySelectorAll('.reveal').forEach(function(el) {
+          el.classList.add('visible');
+        });
+      }
+    });
+  }, { threshold: 0.5 });
+
+  slides.forEach(function(slide) { observer.observe(slide); });
+
+  // Wheel debounce
+  document.addEventListener('wheel', function(e) {
+    if (isScrolling) return;
+    isScrolling = true;
+    if (e.deltaY > 20) goTo(current + 1);
+    else if (e.deltaY < -20) goTo(current - 1);
+    setTimeout(function() { isScrolling = false; }, 800);
+  }, { passive: true });
+
+  // Init
+  updateUI();
+  slides[0].querySelectorAll('.reveal').forEach(function(el) { el.classList.add('visible'); });
+})();
+</script>
+
+</body>
+</html>

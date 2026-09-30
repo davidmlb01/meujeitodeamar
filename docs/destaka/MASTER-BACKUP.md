@@ -1,6 +1,18 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-09-29 (Dashboard limitado + paywall + auditoria pré-cliente)
-**Status:** MVP em produção. Dashboard com modelo freemium (score gratuito, features bloqueadas com paywall contextual). Onboarding redesenhado. Build limpo. Auditoria completa: zero blockers. Pronto para primeira cliente.
+**Ultima atualizacao:** 2026-09-30 (Auditoria Stripe webhook)
+**Status:** MVP em produção. Dashboard com modelo freemium (score gratuito, features bloqueadas com paywall contextual). Onboarding redesenhado. Build limpo. Auditoria completa: zero blockers. Stripe webhook corrigido. Pronto para primeira cliente.
+
+---
+
+## Sessão 2026-09-30: Auditoria Stripe Webhook
+
+### Auditoria completa
+- [x] Código webhook auditado: constructEvent com signing secret, trata checkout.session.completed e customer.subscription.deleted
+- [x] 6 env vars Stripe confirmadas no Vercel (STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, STRIPE_PRICE_PRO, STRIPE_PRICE_ESSENCIAL, STRIPE_PRICE_AGENCIA, NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
+- [x] Endpoint duplicado removido no dashboard Stripe (2 endpoints para mesma URL, mantido "Destaka webhook principal")
+- [x] Signing secret corrigido: Vercel tinha o secret do endpoint deletado (whsec_jn84...), atualizado para o correto (whsec_oogZ...)
+- [x] Redeploy produção aplicado (dpl_EzHnFcxWTffH4kEgzESHv2QEXZ3X)
+- [x] Webhook ativo: 4 eventos, 0% taxa de erros
 
 ---
 
