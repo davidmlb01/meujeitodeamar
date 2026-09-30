@@ -1,10 +1,41 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-09-30 (Auditoria Stripe webhook)
-**Status:** MVP em produção. Dashboard com modelo freemium (score gratuito, features bloqueadas com paywall contextual). Onboarding redesenhado. Build limpo. Auditoria completa: zero blockers. Stripe webhook corrigido. Pronto para primeira cliente.
+**Ultima atualizacao:** 2026-09-30 (Auditoria de segurança completa)
+**Status:** MVP em produção. Dashboard com modelo freemium (score gratuito, features bloqueadas com paywall contextual). Onboarding redesenhado. Build limpo. Auditoria de segurança: 13 vulnerabilidades corrigidas. Stripe webhook corrigido. Pronto para primeira cliente.
 
 ---
 
-## Sessão 2026-09-30: Auditoria Stripe Webhook
+## Sessão 2026-09-30 (2): Auditoria de Segurança Completa
+
+### 2 CRITICAL corrigidos
+- [x] CRIT-01: .env.check com segredos reais de produção deletado do disco (SUPABASE_SERVICE_ROLE_KEY, GOOGLE_CLIENT_SECRET, ENCRYPTION_KEY expostos)
+- [x] CRIT-02: open redirect no Stripe checkout — origin header vinha do cliente sem validação, corrigido com allowlist
+
+### 5 HIGH corrigidos
+- [x] HIGH-01: .single() → .maybeSingle() em 10 rotas (dashboard, optimization/plan, stripe/status, stripe/checkout, score/calculate, optimization/execute, posts/approve, reviews/approve, gbp/optimize/apply)
+- [x] HIGH-02: Zod validation adicionado em posts/approve e reviews/approve (POST + DELETE)
+- [x] HIGH-03: optimization/execute usava request.url como base para fetch interno (SSRF), corrigido para URL fixa
+- [x] HIGH-04: error bodies da GBP API sanitizados em gbp/optimize/apply, posts/approve, reviews/approve
+- [x] HIGH-05: INNGEST_SIGNING_KEY confirmada no Vercel (já estava configurada, não era vulnerável)
+
+### 2 MEDIUM corrigidos
+- [x] MED-01: checklist/[key] — key validada contra Set de keys permitidas (previne inserção de registros espúrios)
+- [x] MED-03: log de coordenadas do estabelecimento removido em produção (LGPD)
+
+### Arquivos modificados (10 arquivos, commit b7d737d2)
+- src/app/api/stripe/checkout/route.ts (allowlist origin + .maybeSingle)
+- src/app/api/dashboard/route.ts (.maybeSingle)
+- src/app/api/optimization/plan/route.ts (.maybeSingle)
+- src/app/api/optimization/execute/route.ts (.maybeSingle + URL fixa)
+- src/app/api/score/calculate/route.ts (.maybeSingle)
+- src/app/api/posts/approve/route.ts (Zod + .maybeSingle + error sanitizado)
+- src/app/api/reviews/approve/route.ts (Zod + .maybeSingle + error sanitizado)
+- src/app/api/gbp/optimize/apply/route.ts (.maybeSingle + errors sanitizados)
+- src/app/api/checklist/[key]/route.ts (key validation)
+- src/app/api/public/verify/route.ts (log removido em prod)
+
+---
+
+## Sessão 2026-09-30 (1): Auditoria Stripe Webhook
 
 ### Auditoria completa
 - [x] Código webhook auditado: constructEvent com signing secret, trata checkout.session.completed e customer.subscription.deleted
