@@ -44,6 +44,8 @@
 - [x] Signing secret corrigido: Vercel tinha o secret do endpoint deletado (whsec_jn84...), atualizado para o correto (whsec_oogZ...)
 - [x] Redeploy produção aplicado (dpl_EzHnFcxWTffH4kEgzESHv2QEXZ3X)
 - [x] Webhook ativo: 4 eventos, 0% taxa de erros
+- [x] Stripe MCP instalado e autenticado (conta UNLMTD DIGITAL LTDA, permissao escrita)
+- [x] Supabase Pro ($25/mes) ativado em 01/10
 
 ---
 
