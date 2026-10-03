@@ -1,10 +1,73 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-02 (Inngest pipeline destravado + auditoria estabilidade)
-**Status:** MVP em produção. Pipeline Inngest completo funcionando (8 funções ativas). 17 crash points (.single()) corrigidos. Teste end-to-end: todas as rotas OK. Pronto para primeira cliente.
+**Ultima atualizacao:** 2026-10-03 (Dashboard v2: mapa + keywords + redesign)
+**Status:** Dashboard v2 em producao. Mapa de posicionamento local (diferencial), keywords insight automatico, redesign visual. 12 Inngest functions. QA aprovado. Deploy completo.
 
 ---
 
-## Sessão 2026-10-02: Inngest Pipeline + Auditoria de Estabilidade
+## Sessao 2026-10-03: Dashboard v2 (Epic DESTAKA-EPIC-003)
+
+### Origem
+- Analise competitiva do GBP Scale (TikTok @gbpscale.oficial) via /watch skill
+- Briefing CMO: mapa e diferencial verdadeiro, keywords dashboard nao (table stakes)
+- Pipeline AIOX completo: 8 agentes, 15 stories, 4 waves
+
+### Wave 1: Mapa de Posicionamento Local (P0)
+- [x] Spike GBP API: driving direction metrics viavel (lat/lng por regiao)
+- [x] Migration 019: geo_snapshots + lat/lng no gmb_profiles
+- [x] geo-analyzer.ts: classifyRegions() Haversine + zonas strong/medium/weak
+- [x] Inngest geo-collector: cron segunda 06:00 UTC
+- [x] GET /api/dashboard/map: paywall server-side
+- [x] MapCard + MapContent: Leaflet dark theme, heatmap, blur free tier
+
+### Wave 2: Keywords Insight Automatico (P1)
+- [x] Migration 020: keyword_snapshots (unique constraint dedup)
+- [x] Inngest keyword-snapshot: cron segunda 07:00 UTC
+- [x] GET /api/dashboard/keywords: tendencia + gaps competitivos
+- [x] KeywordInsightCard: linguagem humana, badge NOVO, oportunidade
+
+### Wave 3: Redesign Visual (P2)
+- [x] DashboardContent refatorado: hierarquia 4 niveis
+- [x] Hero: Score + Mapa lado a lado
+- [x] Metricas: 4 cards em grid
+- [x] Insights: Keywords + Proximas acoes
+- [x] Detalhes: categorias colapsaveis + labels humanizados
+
+### Seguranca (QA: 2 CRITICAL + 3 HIGH corrigidos)
+- [x] RLS INSERT/UPDATE restrito a service_role
+- [x] gbp_location_id validado contra regex
+- [x] Paywall server-side nos endpoints novos
+- [x] Unique constraints + upsert para dedup cron
+- [x] L.divIcon em useMemo, fetch res.ok check
+
+### Deploy
+- [x] Git push: dee90b35 (destaka-remote)
+- [x] Migrations aplicadas via supabase db query --linked
+- [x] Inngest sync: "Successfully registered" (12 functions)
+- [x] Smoke test: 6/6 endpoints OK
+
+### Arquivos novos (14)
+- supabase/migrations/019_geo_snapshots.sql
+- supabase/migrations/020_keyword_snapshots.sql
+- src/lib/gmb/geo-analyzer.ts
+- src/lib/inngest/functions/geo-collector.ts
+- src/lib/inngest/functions/keyword-snapshot.ts
+- src/app/api/dashboard/map/route.ts
+- src/app/api/dashboard/keywords/route.ts
+- src/components/dashboard/MapCard.tsx
+- src/components/dashboard/MapContent.tsx
+- src/components/dashboard/KeywordInsightCard.tsx
+- src/components/dashboard/DashboardContent.tsx (refatorado)
+- src/app/api/inngest/route.ts (2 functions adicionadas)
+- package.json (react-leaflet, leaflet)
+
+### Pendente
+- [ ] Confirmar segunda-feira (07/10) que geo-collector e keyword-snapshot dispararam
+- [ ] Validar mapa com dados reais apos primeira coleta
+- [ ] GBP API v4 depreciacao: monitorar e migrar quando v1 incluir driving directions
+
+---
+
+## Sessao 2026-10-02: Inngest Pipeline + Auditoria de Estabilidade
 
 ### Inngest pipeline destravado
 - [x] Diagnosticado: apenas 3 de 8 funções Destaka rodavam (review-monitor, post-generator, score-calculator)
