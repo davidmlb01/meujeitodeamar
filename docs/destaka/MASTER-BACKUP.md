@@ -1,6 +1,39 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-09-30 (Auditoria de segurança completa)
-**Status:** MVP em produção. Dashboard com modelo freemium (score gratuito, features bloqueadas com paywall contextual). Onboarding redesenhado. Build limpo. Auditoria de segurança: 13 vulnerabilidades corrigidas. Stripe webhook corrigido. Pronto para primeira cliente.
+**Ultima atualizacao:** 2026-10-02 (Inngest pipeline destravado + auditoria estabilidade)
+**Status:** MVP em produção. Pipeline Inngest completo funcionando (8 funções ativas). 17 crash points (.single()) corrigidos. Teste end-to-end: todas as rotas OK. Pronto para primeira cliente.
+
+---
+
+## Sessão 2026-10-02: Inngest Pipeline + Auditoria de Estabilidade
+
+### Inngest pipeline destravado
+- [x] Diagnosticado: apenas 3 de 8 funções Destaka rodavam (review-monitor, post-generator, score-calculator)
+- [x] 4 funções paradas disparadas manualmente: gbp-audit, competitor-monitor, monthly-report, gbp-optimizer (todas completaram)
+- [x] App Inngest re-sincronizado (PUT /api/inngest)
+- [x] instagram-sync: event trigger adicionado (destaka/instagram.sync.requested)
+- [x] instagram-sync disparado manualmente
+
+### Auditoria de estabilidade (17 .single() corrigidos)
+- [x] 7 páginas dashboard: posts, reviews, optimizations, competitors, plan, configuracoes, indicar
+- [x] 6 API routes: stripe/status, reports/send, competitors/discover, gbp/import, places/populate, posts/approve
+- [x] 1 helper: subscription.ts
+- [x] Auth callback: origin validado contra allowlist
+
+### Teste end-to-end
+- [x] 5 páginas públicas: 200 OK (landing, login, privacy, termos, verificar)
+- [x] 9 páginas protegidas: 307 redirect para /login
+- [x] 8 APIs: 401/405 corretos sem auth
+- [x] SEO: robots.txt + sitemap.xml respondendo
+- [x] 404 customizada funcionando
+
+### Commits (3)
+- 7b8da13: feat(inngest): add event trigger to instagram-sync
+- e599743: fix(security): validate origin in auth callback + .maybeSingle() dashboard
+- 95f8b19: fix(stability): .maybeSingle() across 14 files
+
+### Pendente
+- [ ] Confirmar segunda-feira (06/10) que crons Inngest dispararam sozinhos
+- [ ] crm-destaka: 3 funções falhando 100% (investigar em sessão futura)
 
 ---
 
