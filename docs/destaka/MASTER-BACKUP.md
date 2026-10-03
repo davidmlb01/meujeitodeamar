@@ -60,10 +60,20 @@
 - src/app/api/inngest/route.ts (2 functions adicionadas)
 - package.json (react-leaflet, leaflet)
 
-### Pendente
-- [ ] Confirmar segunda-feira (07/10) que geo-collector e keyword-snapshot dispararam
-- [ ] Validar mapa com dados reais apos primeira coleta
-- [ ] GBP API v4 depreciacao: monitorar e migrar quando v1 incluir driving directions
+### Pos-deploy: 5 bugs corrigidos
+- [x] resolve-orgs retornava [undefined] com event.data vazio (98059066)
+- [x] Auth callback sobrescrevia refresh_token com null no re-login (bb2467fe)
+- [x] gmb_profiles usa user_id nao organization_id (c70b665e)
+- [x] Coordenadas UNLMTD setadas manualmente no banco
+- [x] Regex gbp_location_id aceita locations/ID sem accounts/ (c12b7778)
+
+### Pendente (deep dive proxima sessao)
+- [ ] geo-collector e keyword-snapshot nao inserem dados (regex corrigido mas deploy nao propaga)
+- [ ] Verificar se GBP API v4 reportInsights ainda funciona (curl direto)
+- [ ] Testar keyword-snapshot isoladamente (usa API v1)
+- [ ] Adicionar logs detalhados em cada step das functions
+- [ ] Debug doc: docs/destaka/DEBUG-GEO-KEYWORDS.md
+- [ ] Score instantaneo no primeiro login (nao depender de cron)
 
 ---
 
