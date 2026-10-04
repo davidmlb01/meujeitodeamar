@@ -67,13 +67,19 @@
 - [x] Coordenadas UNLMTD setadas manualmente no banco
 - [x] Regex gbp_location_id aceita locations/ID sem accounts/ (c12b7778)
 
-### Pendente (deep dive proxima sessao)
-- [ ] geo-collector e keyword-snapshot nao inserem dados (regex corrigido mas deploy nao propaga)
-- [ ] Verificar se GBP API v4 reportInsights ainda funciona (curl direto)
-- [ ] Testar keyword-snapshot isoladamente (usa API v1)
-- [ ] Adicionar logs detalhados em cada step das functions
-- [ ] Debug doc: docs/destaka/DEBUG-GEO-KEYWORDS.md
-- [ ] Score instantaneo no primeiro login (nao depender de cron)
+### Deep dive pos-deploy (resolvido)
+- [x] GBP API v4 reportInsights retorna 404 (depreciada). geo-collector migrado para Places API + concorrentes
+- [x] gbp_location_id era Place ID (ChIJ...) em vez de location name. Corrigido no banco
+- [x] scores.score_total nao existe, coluna real e total. Dashboard mostrava "Analisando" com score 45 no banco
+- [x] Free tier crashava: fetch retornava {paywall:true}, MapCard tentava data.zones.filter(). Skip fetch quando !isSubscriber
+- [x] Callback agora dispara 4 functions no login (score, audit, geo, keywords). Dados instantaneos
+- [x] keyword-snapshot funciona (status ok, 0 keywords porque UNLMTD e perfil teste)
+- [x] geo-collector funciona (1 snapshot inserido)
+
+### Pendente
+- [ ] Testar com perfil real (clinica/pet shop com buscas no Google)
+- [ ] Places API key: restrita por IP, nao funciona do Vercel para place details dos concorrentes. Verificar restricoes no GCP
+- [ ] CRIT-01 pre-existente: token-refresh.ts fallback plaintext
 
 ---
 
