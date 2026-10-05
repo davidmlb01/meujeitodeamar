@@ -1,6 +1,33 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-03 (Dashboard v2: mapa + keywords + redesign)
-**Status:** Dashboard v2 em producao. Mapa de posicionamento local (diferencial), keywords insight automatico, redesign visual. 12 Inngest functions. QA aprovado. Deploy completo.
+**Ultima atualizacao:** 2026-10-05 (EPIC-004: Diagnostico como Vendas + fixes visuais)
+**Status:** Pagina de diagnostico em producao. Score 45/100 (UNLMTD), mapa OpenStreetMap dark theme, concorrentes, oferta com price anchoring. Pendente: coleta reviews UNLMTD, display rating 0.0, debug score-calculator Inngest, Wave 3 URL compartilhavel.
+
+---
+
+## Sessao 2026-10-05: Validacao Visual Diagnostico + Fixes
+
+### Fixes aplicados (commit f210f43b)
+- [x] CSP: adicionado *.tile.openstreetmap.org em img-src e connect-src (mapa aparecia vazio)
+- [x] Logo: proporcao xs→sm na pagina de diagnostico (era minuscula)
+- [x] Deploy producao validado visualmente
+
+### Validacao visual em producao
+- [x] Header: logo Destaka Saude proporcional
+- [x] Hero: score 45/100 animado, copy dinamica por faixa
+- [x] Mapa: tiles dark theme carregando (Cotia, Embu, Diadema, Santo Andre), marcador central, legenda
+- [x] Concorrentes: 3 competitors + UNLMTD em destaque vermelho
+- [x] Oferta: price anchoring R$2.000 agencia vs R$7/dia, CTA "Quero mais clientes"
+
+### Descobertas
+- UNLMTD tem 0 reviews na tabela `reviews` (rating 0.0 e 0 avaliacoes na secao concorrentes)
+- Competitors parecem seed data (Marketing360 Brasil, Agencia Digital Pro, DigitalBoost Agency)
+- Coluna `reply` nao existe na tabela reviews (query falha com essa coluna)
+
+### Pendente proxima sessao
+- [ ] Investigar coleta de reviews Inngest (UNLMTD sem reviews)
+- [ ] UX: display "Sem avaliacoes" em vez de "0.0" quando sem reviews
+- [ ] Debug score-calculator Inngest (nao cria rows novas)
+- [ ] Wave 3: URL compartilhavel /api/diagnostico/[hash] + redirect free tier
 
 ---
 
