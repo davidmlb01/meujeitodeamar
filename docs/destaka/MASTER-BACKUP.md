@@ -6,27 +6,37 @@
 
 ## Sessao 2026-10-05: Validacao Visual Diagnostico + Fixes
 
-### Fixes aplicados (commit f210f43b)
-- [x] CSP: adicionado *.tile.openstreetmap.org em img-src e connect-src (mapa aparecia vazio)
-- [x] Logo: proporcao xs→sm na pagina de diagnostico (era minuscula)
-- [x] Deploy producao validado visualmente
+### Commits producao
+- `f210f43b` — CSP OpenStreetMap tiles + logo xs→sm
+- `20dd9f21` — Redesign hero (score+mapa lado a lado), fix tipografia (italic, pesos), rating N/A
+- `140499e5` — Score 120px centralizado no card, barras quick wins sempre visiveis com fallback
 
-### Validacao visual em producao
-- [x] Header: logo Destaka Saude proporcional
-- [x] Hero: score 45/100 animado, copy dinamica por faixa
-- [x] Mapa: tiles dark theme carregando (Cotia, Embu, Diadema, Santo Andre), marcador central, legenda
-- [x] Concorrentes: 3 competitors + UNLMTD em destaque vermelho
-- [x] Oferta: price anchoring R$2.000 agencia vs R$7/dia, CTA "Quero mais clientes"
+### Redesign hero (conforme sketch David)
+- [x] Grid 2 colunas: score esquerda, mapa direita (stacked mobile)
+- [x] Score: circle 120px, font 48px, centralizado no card com copy abaixo
+- [x] Mapa: thumbnail 160px com bullets de raio e regioes
+- [x] Impact statement: "Voce esta perdendo ate 3 clientes por semana"
+- [x] 3 barras quick wins: rapidos (verde), estrategicos (amarelo), continuo (teal)
+- [x] Barras sempre visiveis com fallback quando gaps vazio (5 rapidos +20pts, 4 estrategicos +15pts)
+- [x] CTA primario antes dos concorrentes
+
+### Fixes tipografia e UX
+- [x] CSP: *.tile.openstreetmap.org em img-src e connect-src
+- [x] Logo: xs→sm na pagina de diagnostico
+- [x] Removido fontStyle italic da frase concorrentes
+- [x] fontWeight padronizado 600 (era mix 500/600/700)
+- [x] Rating 0.0 exibe "N/A" e "Sem avaliacoes"
 
 ### Descobertas
-- UNLMTD tem 0 reviews na tabela `reviews` (rating 0.0 e 0 avaliacoes na secao concorrentes)
+- UNLMTD tem 0 reviews na tabela `reviews`
 - Competitors parecem seed data (Marketing360 Brasil, Agencia Digital Pro, DigitalBoost Agency)
-- Coluna `reply` nao existe na tabela reviews (query falha com essa coluna)
+- Coluna `reply` nao existe na tabela reviews
+- gaps (audit_report) vazio para UNLMTD, barras usam fallback
 
 ### Pendente proxima sessao
 - [ ] Investigar coleta de reviews Inngest (UNLMTD sem reviews)
-- [ ] UX: display "Sem avaliacoes" em vez de "0.0" quando sem reviews
 - [ ] Debug score-calculator Inngest (nao cria rows novas)
+- [ ] Popular audit_report para UNLMTD (gaps reais em vez de fallback)
 - [ ] Wave 3: URL compartilhavel /api/diagnostico/[hash] + redirect free tier
 
 ---
