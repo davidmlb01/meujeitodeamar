@@ -1,43 +1,73 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-05 (EPIC-004: Diagnostico como Vendas + fixes visuais)
-**Status:** Pagina de diagnostico em producao. Score 45/100 (UNLMTD), mapa OpenStreetMap dark theme, concorrentes, oferta com price anchoring. Pendente: coleta reviews UNLMTD, display rating 0.0, debug score-calculator Inngest, Wave 3 URL compartilhavel.
+**Ultima atualizacao:** 2026-10-06 (Redesign visual + fix 6 data bugs + infra retrigger)
+**Status:** Diagnostico em producao com scores corretos. UNLMTD 31/100, Bacellar 27/100. Mapa 9 circulos, quick wins personalizados, sem mencoes a IA. Pendente: Paula reconectar OAuth para reviews e competitors reais.
+
+---
+
+## Sessao 2026-10-06: Redesign Visual + Data Bug Fixes
+
+### Commits producao (10 commits)
+- `ec69c13a` fix: resolve all 11 lint errors across codebase
+- `b18bb938` fix(diagnostico): lint error useCountUp setState in effect
+- `31051d76` fix(diagnostico): tagline com peso antes do bloco oferta + taste polish
+- `de7d3d96` feat(diagnostico): mapa 9 circulos + quick wins personalizados + remove IA
+- `947828b0` fix: resolve 3 data bugs (reply column, score resilience, audit_report)
+- `ebb17da9` feat: add /api/admin/retrigger endpoint
+- `c842724d` fix(score): gbp_profiles query sem coluna website inexistente
+- `3854fc27` fix(competitors): usar GOOGLE_PLACES_API_KEY (env var real)
+- `d117db1a` fix(score): audit_report stale + cache invalidation
+
+### Visual (parte 1)
+- [x] Logo sm para md (40% maior)
+- [x] Grid hero: score 35% / mapa 65% (era 50/50)
+- [x] Mapa reescrito: 9 circulos (centro verde + 8 cardeais por status)
+- [x] Legenda forte/moderado/fraco no mapa
+- [x] Quick wins: so dados reais, sem fallbacks hardcoded
+- [x] Removidas TODAS mencoes a IA (OfferSection, score-calculator, gap messages)
+- [x] Tagline com peso antes do bloco oferta
+- [x] Score circle com glow sutil
+- [x] Taste skill rodada (parcial)
+
+### Data bugs corrigidos (parte 2)
+- [x] Coluna `reply` nao existe: trocado para `response_text` em diagnostico API e dashboard
+- [x] `gbp_profiles` nao tem coluna `website`: query corrigida, website buscado de gmb_profiles
+- [x] Score calculator resiliente: fallback chain gbp_profiles -> gmb_profiles -> perfil vazio
+- [x] audit_report stale: sempre atualiza quando source=score-calculator
+- [x] Cache invalidation: cacheDel(diag:{orgId}) apos recalculo
+- [x] competitor-monitor: GOOGLE_MAPS_API_KEY -> GOOGLE_PLACES_API_KEY
+- [x] API /api/admin/retrigger criada (protegida por ADMIN_SECRET_KEY)
+
+### Causa raiz do score errado
+A query do score-calculator selecionava `website` de `gbp_profiles`, mas essa coluna nao existe nessa tabela (so em `gmb_profiles`). A query falhava silenciosamente, retornava null, e o score usava perfil vazio (gmb_completude = 0). Isso fazia a Bacellar (Paula) ter score menor que a UNLMTD apesar de ter perfil mais completo.
+
+### Scores atuais (recalculados)
+| Org | Score | Completude | Reputacao | Visibilidade | Geo | Conteudo |
+|-----|-------|------------|-----------|-------------|-----|---------|
+| UNLMTD | 31 | 20 | 0 | 0 | 11 | 0 |
+| Bacellar | 27 | 16 | 0 | 0 | 11 | 0 |
+
+### Lint cleanup
+- 11 erros para 0 no codebase inteiro (8 arquivos)
+- Build/TypeScript/Lint OK
+
+### Pendente
+- [ ] Paula reconectar OAuth (token expirado, expires_at=null)
+- [ ] Apos reconexao: retrigger para importar reviews e recalcular reputacao
+- [ ] Competitors reais para Bacellar (depende do OAuth + gbp-audit)
+- [ ] Wave 3: URL compartilhavel /api/diagnostico/[hash] + redirect free tier
+- [ ] Taste skill completa na pagina inteira
+
+### Infra util
+- Retrigger: `curl -X POST https://destaka.com.br/api/admin/retrigger -H "Content-Type: application/json" -H "x-admin-key: destaka-retrigger-91f3dc2923fa0488" -d '{}'`
 
 ---
 
 ## Sessao 2026-10-05: Validacao Visual Diagnostico + Fixes
 
 ### Commits producao
-- `f210f43b` — CSP OpenStreetMap tiles + logo xs→sm
-- `20dd9f21` — Redesign hero (score+mapa lado a lado), fix tipografia (italic, pesos), rating N/A
-- `140499e5` — Score 120px centralizado no card, barras quick wins sempre visiveis com fallback
-
-### Redesign hero (conforme sketch David)
-- [x] Grid 2 colunas: score esquerda, mapa direita (stacked mobile)
-- [x] Score: circle 120px, font 48px, centralizado no card com copy abaixo
-- [x] Mapa: thumbnail 160px com bullets de raio e regioes
-- [x] Impact statement: "Voce esta perdendo ate 3 clientes por semana"
-- [x] 3 barras quick wins: rapidos (verde), estrategicos (amarelo), continuo (teal)
-- [x] Barras sempre visiveis com fallback quando gaps vazio (5 rapidos +20pts, 4 estrategicos +15pts)
-- [x] CTA primario antes dos concorrentes
-
-### Fixes tipografia e UX
-- [x] CSP: *.tile.openstreetmap.org em img-src e connect-src
-- [x] Logo: xs→sm na pagina de diagnostico
-- [x] Removido fontStyle italic da frase concorrentes
-- [x] fontWeight padronizado 600 (era mix 500/600/700)
-- [x] Rating 0.0 exibe "N/A" e "Sem avaliacoes"
-
-### Descobertas
-- UNLMTD tem 0 reviews na tabela `reviews`
-- Competitors parecem seed data (Marketing360 Brasil, Agencia Digital Pro, DigitalBoost Agency)
-- Coluna `reply` nao existe na tabela reviews
-- gaps (audit_report) vazio para UNLMTD, barras usam fallback
-
-### Pendente proxima sessao
-- [ ] Investigar coleta de reviews Inngest (UNLMTD sem reviews)
-- [ ] Debug score-calculator Inngest (nao cria rows novas)
-- [ ] Popular audit_report para UNLMTD (gaps reais em vez de fallback)
-- [ ] Wave 3: URL compartilhavel /api/diagnostico/[hash] + redirect free tier
+- `f210f43b` -- CSP OpenStreetMap tiles + logo xs para sm
+- `20dd9f21` -- Redesign hero (score+mapa lado a lado), fix tipografia (italic, pesos), rating N/A
+- `140499e5` -- Score 120px centralizado no card, barras quick wins sempre visiveis com fallback
 
 ---
 
