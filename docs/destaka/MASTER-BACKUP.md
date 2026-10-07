@@ -1,10 +1,32 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-06 (Redesign visual + fix 6 data bugs + infra retrigger)
-**Status:** Diagnostico em producao com scores corretos. UNLMTD 31/100, Bacellar 27/100. Mapa 9 circulos, quick wins personalizados, sem mencoes a IA. Pendente: Paula reconectar OAuth para reviews e competitors reais.
+**Ultima atualizacao:** 2026-10-06 (Redesign visual + data bugs + Wave 3 URL compartilhavel)
+**Status:** Diagnostico em producao com scores corretos e URL compartilhavel. UNLMTD 31/100, Bacellar 27/100. Pagina publica /d/[hash] live. Pendente: Paula reconectar OAuth para reviews e competitors reais.
 
 ---
 
-## Sessao 2026-10-06: Redesign Visual + Data Bug Fixes
+## Sessao 2026-10-06 (parte 3): Wave 3 + Taste Polish
+
+### Commits
+- `6d764e2f` feat(diagnostico): pagina publica /d/[hash] + botao compartilhar + taste polish
+
+### Wave 3: URL compartilhavel
+- [x] /d/[hash] pagina publica read-only (sem auth, dados publicos)
+- [x] /api/diagnostico/share retorna hash da org autenticada
+- [x] ShareButton no header (copiar link para clipboard)
+- [x] Fluxo: logado ve diagnostico -> copia link -> envia -> destinatario ve versao publica
+
+### Taste polish
+- [x] Hero personalizado: H1 com nome do negocio + endereco + eyebrow "Diagnostico de visibilidade"
+- [x] OfferSection subtitulo restaurado: "Enquanto voce cuida dos seus pacientes, o Destaka cuida do seu Google."
+
+### Arquivos novos
+- src/app/d/[hash]/page.tsx (pagina publica)
+- src/app/api/diagnostico/share/route.ts (gerar hash)
+- src/components/diagnostico/ShareButton.tsx
+
+---
+
+## Sessao 2026-10-06 (parte 2): Data Bug Fixes
 
 ### Commits producao (10 commits)
 - `ec69c13a` fix: resolve all 11 lint errors across codebase
