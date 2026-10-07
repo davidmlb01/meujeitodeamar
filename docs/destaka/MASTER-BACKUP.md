@@ -1,6 +1,22 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-06 (Redesign visual + data bugs + Wave 3 URL compartilhavel)
-**Status:** Diagnostico em producao com scores corretos e URL compartilhavel. UNLMTD 31/100, Bacellar 27/100. Pagina publica /d/[hash] live. Pendente: Paula reconectar OAuth para reviews e competitors reais.
+**Ultima atualizacao:** 2026-10-06 (Redesign visual + data bugs + Wave 3 + fix OAuth status)
+**Status:** Diagnostico em producao com scores corretos, URL compartilhavel, e banner de reconexao OAuth funcional. UNLMTD 31/100, Bacellar 27/100. Pendente: Paula acessar dashboard (banner vai guiar reconexao automaticamente).
+
+---
+
+## Sessao 2026-10-06 (parte 4): Fix OAuth Status Detection
+
+### Commits
+- `d8dcbdd5` fix(auth): /api/users/status agora verifica token real
+
+### Bug corrigido
+- /api/users/status retornava sempre `gmb_token_invalid: false` (hardcoded)
+- Agora valida access_token via Google tokeninfo API
+- Se invalido e sem refresh_token funcional, retorna true
+- TokenInvalidBanner aparece no dashboard automaticamente
+- Banner leva para /configuracoes com botao "Reconectar conta Google"
+- Reconexao usa prompt=consent + access_type=offline (garante novo refresh_token)
+- Callback dispara gbp-audit + score-calculator automaticamente
 
 ---
 
