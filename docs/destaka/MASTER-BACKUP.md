@@ -4,31 +4,48 @@
 
 ---
 
-## Sessao 2026-10-08: Stripe Gate + Plano Unico R$197
+## Sessao 2026-10-08: Stripe Gate + Plano Unico + Onboarding
 
 ### Commits
 - `b320611f` feat(stripe): plano unico R$197 + Stripe gate antes do dashboard
+- `8d25da57` feat(onboarding): restaura onboarding pos-pagamento com 4 steps
 
 ### Decisao
 - **Plano unico R$197/mes**: removidos Essencial (R$147) e Agencia (R$497). Apenas um plano ate segunda ordem do David.
 
 ### Fluxo implementado
-- Login > Diagnostico (free) > Stripe checkout > Dashboard (pago)
+- Login > Diagnostico (free) > Stripe checkout > Onboarding (4 steps) > Dashboard (pago)
 - Auth callback redireciona por subscription status
 - Dashboard redireciona non-subscribers para /diagnostico
+- Dashboard redireciona subscribers sem onboarding para /onboarding
 - Diagnostico layout redireciona subscribers para /dashboard
 - Middleware protege /diagnostico (requer auth)
+- Checkout success > /onboarding, cancel > /diagnostico
+
+### Onboarding pos-pagamento (restaurado + adaptado)
+- Restaurado de `131b7802` (removido em 29/09 como "orfao"), adaptado para fluxo pos-Stripe
+- 4 steps: (1) contato (WhatsApp + Instagram + consentimento), (2) rotina (desafio + volume), (3) servicos (lista + diferenciais), (4) automacao (automatico vs aprovacao)
+- Consentimento: "Autorizo o Destaka a responder minhas avaliacoes e criar posts" (sem mencionar IA, decisao David)
+- API UPDATE org existente (nao INSERT): seta lgpd_ai_consent, phone, instagram_handle, automation_preference, challenge, patient_volume, services, differentials
+- Prefill: le dados da org existente, redireciona se lgpd_ai_consent ja definido
+- Dispara 4 Inngest jobs: gbp-audit, score-calculate, geo-collect, keywords-snapshot
+- Desbloqueio critico: lgpd_ai_consent = true habilita review-monitor (antes bloqueava toda a org)
 
 ### Bug fix
 - CTAs do diagnostico (OfferSection, StickyCTA, CTA inline) usavam `<a href="/api/stripe/checkout">` (GET), mas a rota so aceita POST. Nunca funcionaram. Corrigido para `<button onClick>` com fetch POST.
 
-### Arquivos modificados (15)
+### Arquivos novos (3)
+- src/app/(dashboard)/onboarding/page.tsx (4 steps, animacao de ativacao)
+- src/app/api/onboarding/route.ts (UPDATE org + Inngest dispatch)
+- src/app/api/onboarding/prefill/route.ts (le org existente)
+
+### Arquivos modificados (15+2)
 - src/lib/stripe/index.ts (PLAN unico, PLANS deprecated)
-- src/app/api/stripe/checkout/route.ts (sem param plan)
+- src/app/api/stripe/checkout/route.ts (sem param plan, success > /onboarding)
 - src/app/api/auth/callback/route.ts (redirect por subscription)
 - src/lib/supabase/middleware.ts (/diagnostico protegida, login > /diagnostico)
 - src/app/(diagnostico)/layout.tsx (subscriber > /dashboard)
-- src/app/(dashboard)/dashboard/page.tsx (non-subscriber > /diagnostico)
+- src/app/(dashboard)/dashboard/page.tsx (non-subscriber > /diagnostico, sem onboarding > /onboarding)
 - src/app/(diagnostico)/diagnostico/page.tsx (CTA GET > POST)
 - src/components/diagnostico/OfferSection.tsx (CTA GET > POST)
 - src/components/diagnostico/StickyCTA.tsx (CTA GET > POST)
