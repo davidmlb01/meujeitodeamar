@@ -1,6 +1,46 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-06 (Redesign visual + data bugs + Wave 3 + fix OAuth status)
-**Status:** Diagnostico em producao com scores corretos, URL compartilhavel, e banner de reconexao OAuth funcional. UNLMTD 31/100, Bacellar 27/100. Pendente: Paula acessar dashboard (banner vai guiar reconexao automaticamente).
+**Ultima atualizacao:** 2026-10-08 (Stripe gate + plano unico R$197)
+**Status:** Fluxo Login>Diagnostico>Stripe>Dashboard implementado. Plano unico R$197/mes (sem tiers). Non-subscribers veem diagnostico, subscribers veem dashboard. CTAs corrigidos. Pendente: Paula acessar dashboard (banner OAuth vai guiar reconexao).
+
+---
+
+## Sessao 2026-10-08: Stripe Gate + Plano Unico R$197
+
+### Commits
+- `b320611f` feat(stripe): plano unico R$197 + Stripe gate antes do dashboard
+
+### Decisao
+- **Plano unico R$197/mes**: removidos Essencial (R$147) e Agencia (R$497). Apenas um plano ate segunda ordem do David.
+
+### Fluxo implementado
+- Login > Diagnostico (free) > Stripe checkout > Dashboard (pago)
+- Auth callback redireciona por subscription status
+- Dashboard redireciona non-subscribers para /diagnostico
+- Diagnostico layout redireciona subscribers para /dashboard
+- Middleware protege /diagnostico (requer auth)
+
+### Bug fix
+- CTAs do diagnostico (OfferSection, StickyCTA, CTA inline) usavam `<a href="/api/stripe/checkout">` (GET), mas a rota so aceita POST. Nunca funcionaram. Corrigido para `<button onClick>` com fetch POST.
+
+### Arquivos modificados (15)
+- src/lib/stripe/index.ts (PLAN unico, PLANS deprecated)
+- src/app/api/stripe/checkout/route.ts (sem param plan)
+- src/app/api/auth/callback/route.ts (redirect por subscription)
+- src/lib/supabase/middleware.ts (/diagnostico protegida, login > /diagnostico)
+- src/app/(diagnostico)/layout.tsx (subscriber > /dashboard)
+- src/app/(dashboard)/dashboard/page.tsx (non-subscriber > /diagnostico)
+- src/app/(diagnostico)/diagnostico/page.tsx (CTA GET > POST)
+- src/components/diagnostico/OfferSection.tsx (CTA GET > POST)
+- src/components/diagnostico/StickyCTA.tsx (CTA GET > POST)
+- src/app/(dashboard)/dashboard/upgrade/page.tsx (sem plan param)
+- src/app/(dashboard)/dashboard/components/FreeDashboard.tsx (sem plan param)
+- src/app/(dashboard)/dashboard/plan/CheckoutButton.tsx (sem plan param)
+- src/components/dashboard/hooks/useOptimizationWizard.ts (sem plan param)
+- src/components/dashboard/IndicarContent.tsx ("plano Pro" > "Destaka")
+- src/components/dashboard/ConfiguracoesContent.tsx ("Pro" > "Ativo")
+
+### Build
+- 0 erros, deploy automatico via Vercel
 
 ---
 
@@ -331,7 +371,7 @@ Login > Diagnostico basico > Stripe > Onboarding > Dashboard
 
 ### Pendente
 - [ ] Aplicar migration 011 no Supabase (supabase db push)
-- [ ] Routing: Stripe gate antes do onboarding (hoje Stripe so cobra na otimizacao)
+- [x] Routing: Stripe gate antes do dashboard (08/10: non-subscribers > /diagnostico, plano unico R$197)
 
 ---
 
