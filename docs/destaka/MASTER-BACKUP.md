@@ -1,6 +1,30 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-08 (Stripe gate + plano unico R$197)
-**Status:** Fluxo Login>Diagnostico>Stripe>Dashboard implementado. Plano unico R$197/mes (sem tiers). Non-subscribers veem diagnostico, subscribers veem dashboard. CTAs corrigidos. Pendente: Paula acessar dashboard (banner OAuth vai guiar reconexao).
+**Ultima atualizacao:** 2026-10-09 (Stripe gate + onboarding + email drip)
+**Status:** Fluxo completo Login>Diagnostico>Stripe>Onboarding>Dashboard. Plano unico R$197/mes. Onboarding 4 steps (contato, rotina, servicos, automacao). Email drip completo: 7 onboarding + mensal + lead magnet + token alert + review approval. Pendente: Paula acessar, configurar DESTAKA_WHATSAPP_NUMBER no Vercel.
+
+---
+
+## Sessao 2026-10-09: Email Drip (Sessao 7)
+
+### Commits
+- `dda7870f` feat(email): conecta notificacao de review pendente ao review-monitor
+- `01d5e15e` fix(email): acentuacao PT-BR + revisao copy em todos os templates
+
+### Review-monitor conectado
+- Quando automation_preference = manual e review gera resposta pendente, envia email ao professional owner
+- Email inclui: estrelas, texto da avaliacao, resposta sugerida, botao "Revisar e aprovar"
+- Envio fire-and-forget (nao bloqueia monitor se falhar)
+
+### Revisao de copy (4 templates)
+- [x] Onboarding (7 emails): 30+ palavras sem acento corrigidas
+- [x] Lead magnet: "otimizacoes", "Voce" corrigidos
+- [x] Token reconnect: URL /saude/configuracoes > /configuracoes
+- [x] Review approval: "pela Destaka" > "pelo Destaka", URL /saude/dashboard > /dashboard
+- [x] Zero mencoes a IA em qualquer template
+- [x] WhatsApp: numero fake substituido por env var DESTAKA_WHATSAPP_NUMBER
+
+### Pendente
+- [ ] Configurar DESTAKA_WHATSAPP_NUMBER no Vercel (numero real do David)
 
 ---
 
