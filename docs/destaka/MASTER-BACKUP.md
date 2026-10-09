@@ -1,6 +1,25 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-09 (Sessoes 5-8 completas)
-**Status:** Fluxo completo Login>Diagnostico>Stripe>Onboarding>Dashboard. Plano unico R$197/mes. Onboarding 4 steps. Email drip completo (7 onboarding + mensal + lead magnet + token alert + review approval). Tracking GA4 + Meta Pixel + UTMs pronto (pendente configurar env vars). Pendente: Paula acessar, configurar DESTAKA_WHATSAPP_NUMBER + NEXT_PUBLIC_GA4_ID + NEXT_PUBLIC_META_PIXEL_ID no Vercel, aplicar migration 022.
+**Ultima atualizacao:** 2026-10-09 (Sessoes 5-9 completas)
+**Status:** Fluxo completo Login>Diagnostico>Stripe>Onboarding>Dashboard. Plano unico R$197/mes. Onboarding 4 steps. Email drip completo. Tracking GA4 + Meta Pixel + UTMs pronto. Admin dashboard com MRR, tokens, leads, retrigger. Pendente: sessao 10 (launch polish), configurar env vars tracking no Vercel, aplicar migration 022.
+
+---
+
+## Sessao 2026-10-09: Admin Dashboard (Sessao 9)
+
+### Commits
+- `9f208a64` feat(admin): painel completo com MRR, tokens, leads UTM, retrigger e tendencia
+
+### O que tem no /admin agora
+- **5 stats**: MRR (pagantes x R$197), pagantes, free, score medio, tokens quebrados
+- **Tabela clientes**: subscription badge (Pagante/Free/Cancelado), token badge vermelho se quebrado, score + delta (tendencia vs snapshot anterior), UTM source, status onboarding, contagem de pendencias
+- **Tokens com problema**: secao dedicada com alerta vermelho, mostra orgs com entrega parada
+- **Ultimos leads**: tabela com email, negocio, score, fonte UTM (source/medium), data
+- **Retrigger por org**: botao inline (icone refresh) dispara gbp-audit + score-calculate + competitors-discover
+
+### Arquivos novos/modificados
+- src/app/(admin)/admin/page.tsx (reescrito completo, 280 linhas)
+- src/app/(admin)/admin/RetriggerButton.tsx (novo, client component)
+- src/app/api/admin/retrigger/route.ts (aceita auth via session ou header)
 
 ---
 
