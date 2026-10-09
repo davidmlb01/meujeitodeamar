@@ -1,6 +1,47 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-09 (Stripe gate + onboarding + email drip)
-**Status:** Fluxo completo Login>Diagnostico>Stripe>Onboarding>Dashboard. Plano unico R$197/mes. Onboarding 4 steps (contato, rotina, servicos, automacao). Email drip completo: 7 onboarding + mensal + lead magnet + token alert + review approval. Pendente: Paula acessar, configurar DESTAKA_WHATSAPP_NUMBER no Vercel.
+**Ultima atualizacao:** 2026-10-09 (Sessoes 5-8 completas)
+**Status:** Fluxo completo Login>Diagnostico>Stripe>Onboarding>Dashboard. Plano unico R$197/mes. Onboarding 4 steps. Email drip completo (7 onboarding + mensal + lead magnet + token alert + review approval). Tracking GA4 + Meta Pixel + UTMs pronto (pendente configurar env vars). Pendente: Paula acessar, configurar DESTAKA_WHATSAPP_NUMBER + NEXT_PUBLIC_GA4_ID + NEXT_PUBLIC_META_PIXEL_ID no Vercel, aplicar migration 022.
+
+---
+
+## Sessao 2026-10-09: Ads Tracking + UTMs (Sessao 8)
+
+### Commits
+- `24370c4d` feat(tracking): GA4 + Meta Pixel + UTMs + eventos de conversao
+
+### Infraestrutura de tracking
+- TrackingScripts.tsx: GA4 e Meta Pixel condicionais (so carregam se env var existir)
+- UTM capture: cookie destaka_utm captura de qualquer pagina, persiste 30 dias, sobrevive ao OAuth redirect
+- Auth callback: le cookie UTM e salva utm_source/medium/campaign na org ao criar conta
+- Lead capture API: aceita e persiste 5 campos UTM (source, medium, campaign, content, term)
+
+### Eventos de conversao (GA4 + Meta Pixel simultaneamente)
+- begin_checkout: disparado nos 3 CTAs do diagnostico (inline, OfferSection, StickyCTA) com valor R$197
+- purchase: disparado no onboarding (pos-Stripe redirect) com valor R$197
+- onboarding_complete: disparado ao finalizar animacao de ativacao
+
+### Migration 022
+- leads: utm_source, utm_medium, utm_campaign, utm_content, utm_term
+- organizations: utm_source, utm_medium, utm_campaign
+
+### Arquivos novos (3)
+- src/components/TrackingScripts.tsx
+- src/lib/tracking/events.ts
+- supabase/migrations/022_utm_tracking.sql
+
+### Arquivos modificados (7)
+- src/app/layout.tsx (TrackingScripts + Suspense)
+- src/app/api/public/capture-lead/route.ts (aceita UTMs)
+- src/app/api/auth/callback/route.ts (le UTM cookie)
+- src/app/(diagnostico)/diagnostico/page.tsx (trackBeginCheckout)
+- src/components/diagnostico/OfferSection.tsx (trackBeginCheckout)
+- src/components/diagnostico/StickyCTA.tsx (trackBeginCheckout)
+- src/app/(dashboard)/onboarding/page.tsx (trackPurchase + trackOnboardingComplete)
+
+### Pendente
+- [ ] Criar conta GA4 e configurar NEXT_PUBLIC_GA4_ID no Vercel
+- [ ] Criar Meta Pixel e configurar NEXT_PUBLIC_META_PIXEL_ID no Vercel
+- [ ] Aplicar migration 022 (supabase db push)
 
 ---
 
