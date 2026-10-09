@@ -1,6 +1,54 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-09 (Sessoes 5-9 completas)
-**Status:** Fluxo completo Login>Diagnostico>Stripe>Onboarding>Dashboard. Plano unico R$197/mes. Onboarding 4 steps. Email drip completo. Tracking GA4 + Meta Pixel + UTMs pronto. Admin dashboard com MRR, tokens, leads, retrigger. Pendente: sessao 10 (launch polish), configurar env vars tracking no Vercel, aplicar migration 022.
+**Ultima atualizacao:** 2026-10-09 (EPIC-004 COMPLETO, sessoes 5-10)
+**Status:** Produto pronto pra lancamento. Fluxo Login>Diagnostico>Stripe>Onboarding>Dashboard. Plano unico R$197/mes. Onboarding 4 steps. Email drip completo (7 onboarding + mensal + lead magnet + token alert + review approval). Tracking GA4 + Meta Pixel + UTMs. Admin dashboard com MRR, tokens, leads, retrigger. CSP headers configurados. Zero mencoes a IA em copy do cliente. Pendentes operacionais: configurar GA4_ID + META_PIXEL_ID + WHATSAPP_NUMBER no Vercel, aplicar migration 022, Paula acessar dashboard.
+
+---
+
+## Sessao 2026-10-09: Launch Polish (Sessao 10)
+
+### Commits
+- `9419e0e2` feat(launch): CSP headers + remocao de mencoes a IA + correcao genero marca
+
+### CSP Headers
+- X-Frame-Options: DENY
+- X-Content-Type-Options: nosniff
+- Referrer-Policy: strict-origin-when-cross-origin
+- Content-Security-Policy completa (GA4, Meta Pixel, Stripe, Supabase, CartoDB, Google APIs)
+
+### Copy limpa
+- "A Destaka" > "O Destaka" em 10+ ocorrencias (landing page, VerifyTool, FAQ)
+- "Preciso da Destaka" > "Preciso do Destaka" no FAQ
+- "gerados com IA" > "automáticos" na landing page e plan page
+- "criados por IA" > "automáticos" na plan page
+- "Gerar com IA" > "Sugerir resposta" no botao de reviews do dashboard
+- Acentuacao corrigida no VerifyTool (otimizacoes, relatorio, comunicacoes)
+- Mantidas mencoes a IA em privacy e termos (exigencia LGPD)
+
+### EPIC-004 FECHADO
+- 10 sessoes completas (04-09/10/2026)
+- 8 commits de implementacao
+- Produto pronto pra lancamento
+
+---
+
+## EPIC-004: Resumo Final
+
+| Sessao | Data | Escopo | Commit |
+|---|---|---|---|
+| 1-4 | 04-06/10 | Diagnostico visual, data bugs, Wave 3 URLs, OAuth fix | 6 commits |
+| 5 | 08/10 | Stripe gate + plano unico R$197 | `b320611f` |
+| 6 | 08/10 | Onboarding pos-pagamento 4 steps | `8d25da57` |
+| 7 | 09/10 | Email drip + review notification + copy | `dda7870f` + `01d5e15e` |
+| 8 | 09/10 | GA4 + Meta Pixel + UTMs | `24370c4d` |
+| 9 | 09/10 | Admin dashboard completo | `9f208a64` |
+| 10 | 09/10 | CSP + remocao IA + genero marca | `9419e0e2` |
+
+### Pendentes operacionais (nao codigo)
+- [ ] Configurar NEXT_PUBLIC_GA4_ID no Vercel
+- [ ] Configurar NEXT_PUBLIC_META_PIXEL_ID no Vercel
+- [ ] Configurar DESTAKA_WHATSAPP_NUMBER no Vercel
+- [ ] Aplicar migration 022 (supabase db push)
+- [ ] Paula acessar dashboard (token banner vai guiar reconexao)
 
 ---
 
