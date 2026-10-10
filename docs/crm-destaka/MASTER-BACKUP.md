@@ -1,7 +1,7 @@
 # CRM Destaka — MASTER-BACKUP
 
 > Espelho local do Obsidian MOC. Fonte de verdade: `projects/crm-destaka/MOC.md` no vault.
-> Ultima sincronizacao: 2026-09-09
+> Ultima sincronizacao: 2026-10-10
 
 ---
 
@@ -30,6 +30,43 @@ CRM para profissionais de saude. Standalone: funciona sem o Destaka GMB, mas int
 | Phone validation | libphonenumber-js |
 | Deploy | Vercel (linkado: david-8558s-projects/crm-destaka) |
 | Pagamentos | Stripe (V1.1) |
+
+---
+
+## Estado (10/10/2026) — SESSAO 6: Ondas 1 + 2
+
+### Onda 1: Fundacao para Escalar (commit ad62eb8, 23 arquivos, 1.144 linhas)
+- [x] Multi-usuario RBAC: org_members, roles owner/admin/staff/viewer
+- [x] fn_user_org_ids(): resolve orgs do usuario, todas RLS reescritas
+- [x] Auth callback: cria org_member + aceita convites por email
+- [x] requireAuth(role): guard unificado com RBAC
+- [x] Audit log append-only (compliance LGPD)
+- [x] Vocabulario configuravel (saude/pet/juridico/contabil/imoveis)
+- [x] Pagina gestao de equipe (/settings/team)
+- [x] Pagina historico atividades (/settings/audit)
+- [x] Migrations: 015_org_members, 016_audit_log, 017_vocabulary
+
+### Onda 2: Comunicacao Real (commit 8a000f6, 13 arquivos, 1.040 linhas)
+- [x] messages: historico inbound/outbound
+- [x] message_templates: templates com variaveis ({nome}, {telefone})
+- [x] follow_up_sequences: cadencias configuraveis (dia 1, 3, 7)
+- [x] follow_up_runs: execucao por paciente com stop_on_reply
+- [x] handle-reactivation: handler Inngest para crm/reactivation.requested
+- [x] process-follow-ups: cron horario
+- [x] WhatsApp client abstrato (v1 queued, v2 integra provedor)
+- [x] Inbox UI (/inbox): chat unificado, templates rapidos, polling 10s
+- [x] Webhook WhatsApp (/api/webhooks/whatsapp)
+- [x] APIs: /templates, /messages, /messages/send, /sequences
+- [x] Migration: 018_messages_and_templates
+
+### Pendente: Onda 3
+- [ ] Agente IA para atendimento (RAG + handoff humano)
+- [ ] Automacoes visuais (editor QUANDO/SE/ENTAO)
+- [ ] Agenda integrada + vitrine publica
+
+### Deploy
+- Vercel: success (fix git author email davidmlb@gmail.com)
+- Supabase: 4 migrations aplicadas (015-018), projeto restaurado
 
 ---
 
@@ -196,12 +233,10 @@ Stories movidas:
 - [x] Fix middleware: /api/inngest excluido da auth (commit 41e6716, 09/09)
 - [x] Bucket patient-files criado no Supabase Storage (private, 10MB, PNG/JPEG/WebP/PDF/DOCX) (09/09)
 - [x] Migration 014_storage_rls.sql: RLS policies org-scoped aplicadas em producao (corrigido para google_sub, commit a2dc795, 09/09)
-- [ ] Criar bucket patient-files no Supabase Storage (Private)
+- [x] Onda 1: Multi-usuario RBAC + Audit Log + Vocabulario (10/10)
+- [x] Onda 2: Inbox + Templates + Follow-up + Webhook WhatsApp (10/10)
 - [~] Setup WABA: Gupshup bloqueado (exige Meta BM). Chip em maos. Proximo passo: terceiro criar Business Manager com CNPJ UNLMTD
-- [ ] CRM-05 Inbox WhatsApp (bloqueada por WABA)
-- [ ] CRM-08 WhatsApp Meta Cloud API (bloqueada por WABA)
+- [ ] Onda 3: Agente IA + Automacoes visuais + Agenda
 - [ ] CRM-09 Import CSV (backlog)
 - [ ] CRM-07 Modulo GMB (backlog)
-- [ ] CRM-10 RAG Knowledge Base (V2, pos-WhatsApp)
-- [ ] CRM-11 Automacoes QUANDO/SE/ENTAO (V2, pos-WhatsApp)
 - [ ] Validar R$997 com 5 profissionais de saude
