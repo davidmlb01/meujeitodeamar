@@ -1,6 +1,67 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-10 (Security audit + email overhaul + migrations aplicadas)
-**Status:** Produto em producao, security hardened. 6 vulnerabilidades corrigidas (admin auth, XSS emails, Stripe origin, rate limit, RLS, Inngest). Emails: 64 correcoes de acentuacao, design unificado (paleta Gray, logo PinMark, score-colors hex), regra copy-design-gate criada. Migrations 013 (RLS) e 022 (UTMs) aplicadas em producao. Pendentes operacionais: configurar GA4_ID + META_PIXEL_ID + WHATSAPP_NUMBER no Vercel, Paula acessar dashboard.
+**Ultima atualizacao:** 2026-10-10 sessao 2 (Email system overhaul completo)
+**Status:** Produto em producao, security hardened, emails finalizados. Sistema de email completo: 6 onboarding (Hormozi + design gate WCAG AA), relatorio mensal recorrente com metricas reais, 3 transacionais (lead-magnet, token-reconnect, review-approval) com Hormozi. report-compiler com queries reais. Inngest passa dados dinamicos nos dias 1, 7, 30. Pendentes operacionais: GA4_ID, META_PIXEL_ID, WHATSAPP_NUMBER no Vercel, caixa suporte@destaka.com.br, Paula acessar dashboard.
+
+---
+
+## Sessao 2026-10-10 (sessao 2): Email System Overhaul
+
+### Commits (Destaka repo)
+- `cb7c0e3` fix(security): 6 achados do audit pre-lancamento
+- `55832eb` feat(email): copy review + design unificado + logo em todos os templates
+- `9f292cb` chore: instala cloudflare/security-audit-skill
+- `6dcea7f` feat(email): copy Hormozi + relatorio mensal recorrente + design gate
+- `12f367f` fix(email): atualiza callers para novas assinaturas dos templates
+- `3327050` feat(email): dados reais no compiler + Hormozi nos 3 emails restantes
+
+### Security Audit (Cloudflare security-audit-skill)
+- CRITICAL: Admin page client inline > createServiceClient (layout ja tinha auth)
+- HIGH: escapeHtml() em 15+ variaveis em 5 templates (XSS prevention)
+- MEDIUM: Stripe Origin header > NEXT_PUBLIC_APP_URL
+- MEDIUM: Rate limit fail-closed (503) em capture-lead e verify
+- VALIDATED: INNGEST_SIGNING_KEY confirmado no Vercel
+- VALIDATED: RLS ativo em organizations, professionals, google_tokens, leads
+- Migration 013 (RLS) criada, migration 022 (UTMs) aplicada
+
+### Onboarding (6 emails, era 7, dia 21 removido)
+- Copy Hormozi: tudo conecta a "mais pacientes no consultorio"
+- Design gate UMA: 2 rodadas, contraste WCAG AA (#0f766e teal-700)
+- Logo PinMark + "Destaka Saude" em todos
+- Footer: "Voce cuida dos seus pacientes. O Destaka Saude cuida de trazer os proximos."
+- Suporte: suporte@destaka.com.br nos dias 0, 3, 14, 30
+- Gender-aware: bem-vindo/bem-vinda via parametro
+- Dia 1: score inicial dinamico
+- Dia 3: 2 acoes (avaliacoes + fotos) com dados concretos e script pratico
+- Dia 7: posts reais + score delta
+- Dia 30: score comparativo, metricas de pacientes, aviso de relatorio mensal
+
+### Relatorio Mensal Recorrente (monthly-report.ts)
+- Novo: secao "dias como cliente" com copy contextual por faixa
+- Novo: evolucao desde o inicio (score_initial > score_current)
+- Novo: metricas de pacientes (views, site, ligacoes, WhatsApp) em grid 2x2
+- FAIXA_COLOR ajustada para WCAG AA
+- Badge com cor -800 para contraste
+- Footer + suporte + nome da org
+
+### 3 Emails Transacionais (Hormozi + design)
+- lead-magnet: "quantos pacientes voce esta perdendo" + CTA "Quero atrair mais pacientes"
+- token-reconnect: "pacientes nao estao te encontrando agora" + consequencia pratica
+- review-approval: "sua resposta conquista o proximo paciente"
+- Todos: header Destaka Saude, botao teal-700, footer unificado, suporte
+
+### Infraestrutura
+- report-compiler.ts: queries reais (days_as_customer, score_initial)
+- onboarding-email-sequence.ts: passa dados dinamicos nos dias 1, 7, 30
+- Regra copy-design-gate.md criada (nunca mais @dev escreve copy)
+- Coluna Codebase Path no CLAUDE.md
+- Cloudflare security-audit-skill instalada
+
+### Pendentes operacionais (nao codigo)
+- [ ] Configurar NEXT_PUBLIC_GA4_ID no Vercel
+- [ ] Configurar NEXT_PUBLIC_META_PIXEL_ID no Vercel
+- [ ] Configurar DESTAKA_WHATSAPP_NUMBER no Vercel
+- [ ] Configurar caixa de entrada suporte@destaka.com.br (Cloudflare Email Routing ou Google Workspace)
+- [ ] Paula acessar dashboard
 
 ---
 
