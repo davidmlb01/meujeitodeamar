@@ -1,6 +1,50 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-09 (EPIC-004 COMPLETO, sessoes 5-10)
-**Status:** Produto pronto pra lancamento. Fluxo Login>Diagnostico>Stripe>Onboarding>Dashboard. Plano unico R$197/mes. Onboarding 4 steps. Email drip completo (7 onboarding + mensal + lead magnet + token alert + review approval). Tracking GA4 + Meta Pixel + UTMs. Admin dashboard com MRR, tokens, leads, retrigger. CSP headers configurados. Zero mencoes a IA em copy do cliente. Pendentes operacionais: configurar GA4_ID + META_PIXEL_ID + WHATSAPP_NUMBER no Vercel, aplicar migration 022, Paula acessar dashboard.
+**Ultima atualizacao:** 2026-10-10 (Security audit + email overhaul + migrations aplicadas)
+**Status:** Produto em producao, security hardened. 6 vulnerabilidades corrigidas (admin auth, XSS emails, Stripe origin, rate limit, RLS, Inngest). Emails: 64 correcoes de acentuacao, design unificado (paleta Gray, logo PinMark, score-colors hex), regra copy-design-gate criada. Migrations 013 (RLS) e 022 (UTMs) aplicadas em producao. Pendentes operacionais: configurar GA4_ID + META_PIXEL_ID + WHATSAPP_NUMBER no Vercel, Paula acessar dashboard.
+
+---
+
+## Sessao 2026-10-10: Security Audit + Email Overhaul
+
+### Commits
+- `cb7c0e3` fix(security): 6 achados do audit pre-lancamento
+- `55832eb` feat(email): copy review + design unificado + logo em todos os templates
+- `9f292cb` chore: instala cloudflare/security-audit-skill
+
+### Security (Cloudflare security-audit-skill, perfil quick)
+- **CRITICAL corrigido:** Admin page usava client inline ao inves de createServiceClient (layout.tsx ja tinha auth)
+- **HIGH corrigido:** HTML injection em 5 templates de email. escapeHtml() aplicado em 15+ variaveis user-controlled
+- **MEDIUM corrigido:** Stripe checkout usava Origin header spoofable. Substituido por NEXT_PUBLIC_APP_URL
+- **MEDIUM corrigido:** Rate limit fail-open quando Redis indisponivel. Agora retorna 503 em capture-lead e verify
+- **VALIDATED:** INNGEST_SIGNING_KEY confirmado no Vercel
+- **VALIDATED:** RLS ativo em organizations, professionals, google_tokens, leads (policies existentes no dashboard)
+
+### Copy Review (64 correcoes)
+- 44 acentos corrigidos nos 7 emails de onboarding
+- 6 correcoes no lead-magnet (GMB > Google, acentos, CTA)
+- 5 correcoes no token-reconnect (acentos, "restabelecida")
+- 4 correcoes no review-approval (acentos)
+- 5 correcoes no monthly-report ("review" > "avaliacao", virgula)
+
+### Design Unificado
+- Lead-magnet: paleta Stone > Gray, font-family sistema, max-width 580px, radius 10px
+- Score-colors: CSS variables > hex fixos (bug critico em email clients)
+- Monthly report: removido transition e inline-flex (incompativeis com email)
+- Logo PinMark: aplicado em todos os 5 templates (img + "Destaka" 18px bold)
+- Headers, footers, CTAs unificados em todos os templates
+
+### Infraestrutura
+- Regra copy-design-gate.md criada (nunca mais @dev escreve copy)
+- Coluna Codebase Path adicionada ao indice de projetos no CLAUDE.md
+- Cloudflare security-audit-skill instalada no projeto
+- Migration 013 (RLS core tables) criada
+- Migration 022 (UTM tracking) aplicada em producao via supabase db query
+
+### Pendentes operacionais (nao codigo)
+- [ ] Configurar NEXT_PUBLIC_GA4_ID no Vercel
+- [ ] Configurar NEXT_PUBLIC_META_PIXEL_ID no Vercel
+- [ ] Configurar DESTAKA_WHATSAPP_NUMBER no Vercel
+- [ ] Paula acessar dashboard (token banner vai guiar reconexao)
 
 ---
 

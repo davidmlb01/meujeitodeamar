@@ -76,16 +76,17 @@ Quando um agente esta ativo: seguir persona, expertise e workflow patterns desse
 
 ### Indice de Projetos Ativos
 
-| Projeto | MOC | Status |
-|---------|-----|--------|
-| Freud | projects/freud/MOC.md | V1 live, Meta Ads |
-| EasySite | projects/easysite/MOC.md | Bot v2 ativo |
-| Destaka | projects/destaka/MOC.md | MVP producao |
-| GMM | projects/gmm/MOC.md | Pausado (virou Destaka) |
-| Mulambada | projects/mulambada/MOC.md | Kickoff completo |
-| Energy Tech | projects/energy-tech/MOC.md | 1a entrega 30/04 |
-| UNLMTD | projects/unlmtd/MOC.md | Brandbook pronto |
-| Brivia | projects/brivia/MOC.md | Tagline fechada: Built Forward |
+| Projeto | MOC | Codebase Path | Status |
+|---------|-----|---------------|--------|
+| Freud | projects/freud/MOC.md | /Users/davidlevy/Desktop/PJ/meujeitodeamar | V1 live, Meta Ads |
+| EasySite | projects/easysite/MOC.md | (packages/ neste repo) | Bot v2 ativo |
+| Destaka | projects/destaka/MOC.md | /Users/davidlevy/Desktop/PJ/DESTAKA | MVP producao |
+| CRM Destaka | — | /Users/davidlevy/Desktop/PJ/crm-destaka | Kickoff |
+| GMM | projects/gmm/MOC.md | /Users/davidlevy/Desktop/PJ/GMM | Pausado (virou Destaka) |
+| Mulambada | projects/mulambada/MOC.md | — | Kickoff completo |
+| Energy Tech | projects/energy-tech/MOC.md | — | 1a entrega 30/04 |
+| UNLMTD | projects/unlmtd/MOC.md | /Users/davidlevy/Desktop/PJ/UNLMTD-design-system | Brandbook pronto |
+| Brivia | projects/brivia/MOC.md | — | Tagline fechada: Built Forward |
 
 ### Protocolos detalhados (ler sob demanda do vault):
 - `reference/aiox-protocols.md` — agents, authority, squads
