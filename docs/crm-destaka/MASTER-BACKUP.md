@@ -59,10 +59,16 @@ CRM para profissionais de saude. Standalone: funciona sem o Destaka GMB, mas int
 - [x] APIs: /templates, /messages, /messages/send, /sequences
 - [x] Migration: 018_messages_and_templates
 
-### Pendente: Onda 3
-- [ ] Agente IA para atendimento (RAG + handoff humano)
-- [ ] Automacoes visuais (editor QUANDO/SE/ENTAO)
-- [ ] Agenda integrada + vitrine publica
+### Onda 3: Diferenciacao (commit 85e6f53, 17 arquivos, 1.103 linhas)
+- [x] AI Agent: Claude SDK + RAG + handoff humano + sanitizer LGPD
+- [x] Knowledge Base: artigos por categoria
+- [x] Agent Config: persona, modelo, auto-reply, handoff keywords
+- [x] handle-ai-agent: Inngest handler crm/message.inbound
+- [x] Appointments: CRUD + filtro por data
+- [x] Booking API publica: slots + agendamento sem auth
+- [x] Agenda UI (/agenda): visualizacao diaria
+- [x] Migration: 019_ai_agent (5 tabelas)
+- [x] ANTHROPIC_API_KEY no Vercel
 
 ### Deploy
 - Vercel: success (fix git author email davidmlb@gmail.com)
@@ -235,8 +241,8 @@ Stories movidas:
 - [x] Migration 014_storage_rls.sql: RLS policies org-scoped aplicadas em producao (corrigido para google_sub, commit a2dc795, 09/09)
 - [x] Onda 1: Multi-usuario RBAC + Audit Log + Vocabulario (10/10)
 - [x] Onda 2: Inbox + Templates + Follow-up + Webhook WhatsApp (10/10)
+- [x] Onda 3: Agente IA + Knowledge Base + Agenda + Booking (10/10)
 - [~] Setup WABA: Gupshup bloqueado (exige Meta BM). Chip em maos. Proximo passo: terceiro criar Business Manager com CNPJ UNLMTD
-- [ ] Onda 3: Agente IA + Automacoes visuais + Agenda
 - [ ] CRM-09 Import CSV (backlog)
 - [ ] CRM-07 Modulo GMB (backlog)
 - [ ] Validar R$997 com 5 profissionais de saude
