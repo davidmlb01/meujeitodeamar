@@ -1,6 +1,31 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-11 (Security audit + GA4 + EPICs 005-010)
-**Status:** Produto em producao, security hardened, GA4 ativo, 6 EPICs QA aprovado. VIP bypass ativo para david@unlmtd.etc.br (subscription + admin). Dados UNLMTD limpos para teste de primeiro acesso. Pendentes: META_PIXEL_ID, WHATSAPP_NUMBER, suporte@destaka.com.br, Paula dashboard.
+**Ultima atualizacao:** 2026-10-12 (Landing page redesign + email suporte)
+**Status:** Produto em producao, security hardened, GA4 ativo, 6 EPICs QA aprovado. VIP bypass ativo para david@unlmtd.etc.br. Landing page redesenhada com copy Hormozi. suporte@destaka.com.br ativo. Pendentes: META_PIXEL_ID, WHATSAPP_NUMBER, Paula dashboard.
+
+---
+
+## Sessao 2026-10-12: Landing Page Redesign + Email Suporte
+
+### Commits (Destaka repo)
+- `ea0b51b` feat(landing): redesign enxuto com copy Hormozi
+
+### Landing page
+- Estrutura: Hero > Custo da Invisibilidade > O Problema Real > Manifesto > Como Funciona > Recursos
+- Removido: FAQ section, tabela comparativa com agencias
+- Copy Hormozi: cards com dados concretos (15-25 pacientes/mes, 51%, 88%)
+- Garantia Destaka em bloco visual proprio
+- Nav: logo 30% maior, menu so "Como funciona" + "Recursos"
+- Manifesto: texto David, CTA emocional
+- Zero mencao a preco (decisao David)
+
+### Email suporte
+- suporte@destaka.com.br funciona via ImprovMX catch-all (ja existia)
+
+### Pendentes operacionais
+- [x] suporte@destaka.com.br
+- [ ] NEXT_PUBLIC_META_PIXEL_ID no Vercel
+- [ ] DESTAKA_WHATSAPP_NUMBER no Vercel
+- [ ] Paula acessar dashboard
 
 ---
 
