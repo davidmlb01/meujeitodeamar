@@ -1,6 +1,63 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-10 sessao 2 (Email system overhaul completo)
-**Status:** Produto em producao, security hardened, emails finalizados. Sistema de email completo: 6 onboarding (Hormozi + design gate WCAG AA), relatorio mensal recorrente com metricas reais, 3 transacionais (lead-magnet, token-reconnect, review-approval) com Hormozi. report-compiler com queries reais. Inngest passa dados dinamicos nos dias 1, 7, 30. Pendentes operacionais: GA4_ID, META_PIXEL_ID, WHATSAPP_NUMBER no Vercel, caixa suporte@destaka.com.br, Paula acessar dashboard.
+**Ultima atualizacao:** 2026-10-11 (Full security audit + GA4)
+**Status:** Produto em producao, security hardened (2 rounds de audit, 33+ achados corrigidos), GA4 ativo (G-78LS37EELB). Pendentes operacionais: META_PIXEL_ID no Vercel, WHATSAPP_NUMBER no Vercel, caixa suporte@destaka.com.br, Paula acessar dashboard.
+
+---
+
+## Sessao 2026-10-11: Full Security Audit + GA4
+
+### Commits (Destaka repo)
+- `0d950ee` fix(security): audit completo - 7 CRITICALs + 7 HIGHs corrigidos
+- `5616c88` fix(security): revert proxy.ts rename (Next.js 16 convention) + fix zod record type
+- `6046e72` fix(security): re-audit round 2 - 13 fixes restantes
+- `2027948` feat(security): share_hash column + direct indexed lookup
+
+### Round 1: 7 CRITICALs + 10 HIGHs
+- ENCRYPTION_KEY guards em 4 rotas (sem degradacao silenciosa com ?? '')
+- INNGEST_SIGNING_KEY hard throw em producao
+- error.message leak corrigido em reviews route
+- admin/retrigger: rate limit + timingSafeEqual com HMAC + guard empty key
+- SVG sanitizer: bloqueia href, xlink:href, `<a>`, `<use>`, single-quote handlers
+- gbp/optimize/apply: zod discriminatedUnion validation
+- posts/approve POST: PostIdSchema safeParse
+- Stripe: null checks em STRIPE_SECRET_KEY e STRIPE_PRICE_PRO
+- Resend: null checks em client.ts e email/index.ts
+- Rate limit: corrigido > para >= em verify e capture-lead
+
+### Round 2: 13 fixes adicionais
+- Cookie forwarding eliminado em optimization/execute (SSRF fix)
+- Email subject header injection: strip \r\n em placeName e reviewAuthor
+- CORS restritivo nos /api/* (proxy.ts)
+- unsafe-eval removido do CSP
+- Cookie httpOnly/secure/sameSite enforced no Supabase middleware
+- Phone masking nos 3 WhatsApp providers (LGPD)
+- CSP duplicado removido do next.config.ts
+- Token plaintext fallback removido em users/status
+- X-Frame-Options DENY no proxy
+- safeCompare com HMAC (sem length timing oracle)
+- Rate limit por email no capture-lead (2/dia, previne relay abuse)
+- Rate limit no diagnostico/[hash] (30/hora)
+- admin/retrigger off-by-one >= 5
+
+### Migration 023: share_hash
+- Coluna share_hash TEXT com unique index na tabela organizations
+- diagnostico/[hash]: lookup direto O(1) em vez de O(n) full table scan
+- diagnostico/share: grava share_hash na org ao gerar URL
+- Auto-backfill: orgs antigas preenchem share_hash na primeira visita
+- Service role client no endpoint publico (RLS bloqueia anon)
+
+### GA4
+- Propriedade criada: "Destaka" na conta "Meu Jeito de Amar"
+- Measurement ID: G-78LS37EELB
+- NEXT_PUBLIC_GA4_ID configurado no Vercel (production)
+- Codigo de tracking ja existia em TrackingScripts.tsx
+
+### Pendentes operacionais (nao codigo)
+- [x] Configurar NEXT_PUBLIC_GA4_ID no Vercel
+- [ ] Configurar NEXT_PUBLIC_META_PIXEL_ID no Vercel
+- [ ] Configurar DESTAKA_WHATSAPP_NUMBER no Vercel
+- [ ] Configurar caixa de entrada suporte@destaka.com.br
+- [ ] Paula acessar dashboard
 
 ---
 
