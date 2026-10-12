@@ -1,6 +1,6 @@
 # MASTER-BACKUP: Destaka
 **Ultima atualizacao:** 2026-10-11 (Security audit + GA4 + EPICs 005-010)
-**Status:** Produto em producao, security hardened, GA4 ativo (G-78LS37EELB), 6 EPICs implementados e QA aprovado (6/6 PASS). Pendentes operacionais: META_PIXEL_ID no Vercel, WHATSAPP_NUMBER no Vercel, caixa suporte@destaka.com.br, Paula acessar dashboard.
+**Status:** Produto em producao, security hardened, GA4 ativo, 6 EPICs QA aprovado. VIP bypass ativo para david@unlmtd.etc.br (subscription + admin). Dados UNLMTD limpos para teste de primeiro acesso. Pendentes: META_PIXEL_ID, WHATSAPP_NUMBER, suporte@destaka.com.br, Paula dashboard.
 
 ---
 
