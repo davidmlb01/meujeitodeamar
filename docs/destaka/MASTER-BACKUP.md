@@ -1,6 +1,85 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-11 (Full security audit + GA4)
-**Status:** Produto em producao, security hardened (2 rounds de audit, 33+ achados corrigidos), GA4 ativo (G-78LS37EELB). Pendentes operacionais: META_PIXEL_ID no Vercel, WHATSAPP_NUMBER no Vercel, caixa suporte@destaka.com.br, Paula acessar dashboard.
+**Ultima atualizacao:** 2026-10-11 (Security audit + GA4 + EPICs 005-010)
+**Status:** Produto em producao, security hardened, GA4 ativo (G-78LS37EELB), 6 EPICs implementados (Geo Expansion, Competitive Intelligence, Instagram to GBP, Patient Funnel, Review Intelligence, Smart Alerts). Pendentes operacionais: META_PIXEL_ID no Vercel, WHATSAPP_NUMBER no Vercel, caixa suporte@destaka.com.br, Paula acessar dashboard.
+
+---
+
+## Sessao 2026-10-11 (parte 2): EPICs 005-010
+
+### Commits (Destaka repo)
+- `7e28e78` feat: EPICs 005-010 implementados em paralelo
+- `fd5e5c6` feat: EPICs 005-010 integracoes + leaflet fix
+- `33897c1` fix: lazy init for Stripe priceId + Resend client
+
+### EPIC-005: Geo Expansion Engine
+- Inngest function `geo-expansion-engine` (seg 8am, apos geo-collector)
+- Reverse geocoding de zonas fracas para nomes de bairros (Google Geocoding API)
+- Post geo-targeted automatico via Claude (menciona bairro/regiao alvo)
+- Description enrichment com keywords geograficas
+- Migration 026: tabela `geo_expansion_log`
+- Dashboard: GeoExpansionCard com evolucao do raio + mini bar chart
+- API route: /api/dashboard/geo-expansion
+- SEMPRE automatico, independente de automation_preference
+
+### EPIC-006: Competitive Intelligence
+- Onboarding: CategoryChecklist com categorias sugeridas dos concorrentes
+- API route: /api/onboarding/suggested-categories
+- Keywords como inteligencia INTERNA (NUNCA visivel ao usuario)
+  - Injetadas no post-generator, gbp-optimizer, instagram-sync
+  - Incorporadas naturalmente nos prompts do Claude
+- Fotos: Instagram first, fallback pedido manual
+- Helper: photos/strategy.ts (getPhotoStrategy, getPhotoGap)
+
+### EPIC-007: Instagram to GBP Auto-Publisher
+- Pipeline completo: scrape Instagram + rewrite IA + publish no GBP
+- Sem OAuth Meta (scrape ja funcionava)
+- Rate limit: max 2 posts/semana por org
+- Status tracking: instagram_posts.status = 'published_gbp'
+- Posts inseridos na tabela unificada `posts` (source: 'instagram')
+
+### EPIC-008: Patient Conversion Funnel
+- Inngest function `performance-collector` (seg 8am)
+- GBP Performance API: impressoes, views, phone, directions, website
+- Migration 025: tabela `performance_metrics`
+- Dashboard: PatientFunnelCard com funil vertical
+  - Impressoes > Visualizacoes > Acoes (ligacoes, rotas, site)
+  - Delta vs semana anterior
+- Integrado no DashboardContent.tsx
+- Dados reais no relatorio mensal (profile_views, phone_clicks, website_clicks)
+
+### EPIC-009: Review Intelligence no Relatorio Mensal
+- Analise de sentimento via Claude no report-compiler
+- Extracao de temas: top 3 elogios + pontos de atencao
+- Secao "Avaliacoes do mes" no template do monthly-report
+- NAO tem dashboard separado (so relatorio)
+
+### EPIC-010: Smart Alerts
+- Alerta 1: Review negativo (1-3 estrelas)
+  - Email imediato ao profissional
+  - ZERO auto-resposta (profissional deve responder pessoalmente)
+  - review-monitor modificado: rating <= 3 pula Claude, envia email
+  - Dedup via alerts_sent (1 alerta por review_id)
+- Alerta 2: Token Google desconectado
+  - Email ao profissional com CTA reconectar
+  - Max 1 alerta/dia por org
+  - Integrado em gbp-audit e review-monitor
+- Migration 024: tabela `alerts_sent`
+- Templates: review-alert.ts, token-alert.ts
+- Helper: token-alert-helper.ts
+
+### Decisoes estrategicas (David, 2026-10-11)
+- Keywords sao inteligencia interna, NUNCA visivel ao usuario
+- Reviews 1-3 estrelas: ZERO auto-resposta, email imediato
+- Expansao geografica: SEMPRE automatica
+- Fotos: puxa do Instagram primeiro, so pede manual se nao tiver
+- Funil de pacientes: numeros puros, sem "faca X para Y"
+- Instagram to GBP: scrape (sem OAuth Meta)
+
+### Pendentes operacionais
+- [ ] NEXT_PUBLIC_META_PIXEL_ID no Vercel
+- [ ] DESTAKA_WHATSAPP_NUMBER no Vercel
+- [ ] Caixa suporte@destaka.com.br
+- [ ] Paula acessar dashboard
 
 ---
 
