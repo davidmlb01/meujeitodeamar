@@ -21,11 +21,18 @@
 ### Email suporte
 - suporte@destaka.com.br funciona via ImprovMX catch-all (ja existia)
 
+### Taste-skill audit (landing)
+- En-dash fix, eyebrow count 5->2, hero stack cleanup
+
+### Admin audit (Critical + High)
+- `7997600` fix(admin): x-admin-key removido, error feedback, h1, a11y, mobile scroll
+
 ### Pendentes operacionais
 - [x] suporte@destaka.com.br
 - [ ] NEXT_PUBLIC_META_PIXEL_ID no Vercel
 - [ ] DESTAKA_WHATSAPP_NUMBER no Vercel
 - [ ] Paula acessar dashboard
+- [ ] Testar fluxo completo david@unlmtd.etc.br
 
 ---
 
