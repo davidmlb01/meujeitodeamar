@@ -1,6 +1,66 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-12 (Landing page redesign + email suporte)
-**Status:** Produto em producao, security hardened, GA4 ativo, 6 EPICs QA aprovado. VIP bypass ativo para david@unlmtd.etc.br. Landing page redesenhada com copy Hormozi. suporte@destaka.com.br ativo. Pendentes: META_PIXEL_ID, WHATSAPP_NUMBER, Paula dashboard.
+**Ultima atualizacao:** 2026-10-14 (Go-live audit + landing generica + layout polish + test-cycle)
+**Status:** Produto em producao, go-live aprovado. Landing generica em destaka.com.br, saude em /saude. Layout polished em todas as paginas. 9/9 funcoes Inngest completadas. VIP bypass ativo para david@unlmtd.etc.br. Pendentes: META_PIXEL_ID, WHATSAPP_NUMBER, primeiro cliente real para validar dados.
+
+---
+
+## Sessao 2026-10-14: Go-Live Audit + Landing Generica + Test Cycle
+
+### Commits (Destaka repo)
+- `f05a607` feat: landing generica multi-vertical + layout polish + test-cycle
+
+### Go-live audit
+- Build: PASS (zero erros)
+- Producao: 7 rotas testadas (200, 404, 307 redirect corretos)
+- SEO: 8/8 requisitos (canonical, robots, sitemap, OG, JSON-LD, 404, www redirect)
+- Security headers: CSP, HSTS, X-Frame-Options DENY, nosniff
+- Env vars: 36/36 configuradas no Vercel
+- Stripe: checkout, webhook, price IDs corretos
+- VIP bypass: funcional (3 layers: VIP > Redis > DB > Stripe)
+- Emails: todas URLs destaka.com.br, zero localhost
+
+### Landing generica (destaka.com.br)
+- Copy Hormozi v2: "Google Meu Negocio" em vez de "Google" sozinho
+- Hero: 3 stats (46%, 76%, 88%) + sub focado em competitividade
+- Custo da invisibilidade: 3 cards de dor textual (sem numeros soltos)
+- Nova secao "Aparecer Primeiro": "Voce e o melhor. O Google so precisa saber disso."
+- "Perfis com Destaka recebem ate 7x mais cliques" (substituiu "3x visualizacoes")
+- Manifesto: "na raca" + max-w constraint para evitar quebra feia
+- Logo sem vertical, footer generico
+
+### Landing saude (/saude)
+- Copia da landing anterior preservada com canonical /saude
+- Sitemap atualizado com /saude (priority 0.9)
+
+### Layout polish (todas as paginas)
+- Inspirado na /verificar (melhor respiracao, hierarquia limpa)
+- line-height 1.7 uniforme, tracking -1px/-1.5px (era -2.5px)
+- max-w-5xl/4xl (era 6xl), padding generoso (p-7/p-8)
+- Texto minimo 14px (era 13px)
+- Aplicado em: landing, /saude, /diagnostico, /dashboard
+
+### Dashboard fixes
+- Logo sem "Saude" hardcoded (DashboardLayout, MobileNav, d/[hash])
+- "Seus Pacientes" -> "Seus Clientes"
+- Titulo duplicado removido no PatientFunnelCard
+- Acentos corrigidos na /verificar
+
+### Test cycle (Inngest)
+- Rota admin/test-cycle criada (dispara 9 funcoes para VIP)
+- 9/9 funcoes Completed no Inngest dashboard
+- Perfil UNLMTD vazio (0 reviews, 0 fotos, SAB) nao gera dados visiveis
+- Token Google valido (gmb_token_invalid: false)
+- Conclusao: sistema funciona, perfil de teste e que nao tem conteudo
+
+### Pitches criados
+- Pitch 1 "O Invisivel": emocional/aspiracional, narrativo
+- Pitch 2 "O que voce recebe": Hormozi stack de valor, R$3.200 vs R$197
+
+### Pendentes
+- [ ] NEXT_PUBLIC_META_PIXEL_ID no Vercel
+- [ ] DESTAKA_WHATSAPP_NUMBER no Vercel
+- [ ] Primeiro cliente real (Paula) para validar dados no dashboard
+- [ ] Revisar landing generica visualmente (David nao conseguiu ver local)
 
 ---
 
