@@ -1,14 +1,35 @@
 {
   "language": "portuguese",
+  "permissions": {
+    "deny": [
+      "Bash(sudo:*)",
+      "Bash(rm -rf /*)",
+      "Bash(chmod 777:*)",
+      "Bash(ssh:*)",
+      "Bash(> /dev/:*)"
+    ]
+  },
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/block-secrets.sh\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "cd \"/Users/davidlevy/Desktop/PJ/BIG HEAD\" && if git status --porcelain docs/MASTER-BACKUP.md | grep -q .; then git add docs/MASTER-BACKUP.md && git commit -m \"auto: session backup $(date '+%Y-%m-%d %H:%M')\" && echo '{\"systemMessage\": \"✅ MASTER-BACKUP.md salvo localmente (push manual necessário).\"}'; fi 2>/dev/null || true",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/session-backup.sh\"",
             "timeout": 30,
-            "statusMessage": "Salvando backup da sessão..."
+            "statusMessage": "Salvando backup da sessao..."
           }
         ]
       }
