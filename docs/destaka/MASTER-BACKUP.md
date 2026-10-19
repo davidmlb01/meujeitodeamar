@@ -1,6 +1,41 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-19 (Vocab vertical COMPLETO + callers + QA)
-**Status:** Produto em producao, go-live aprovado. Sistema de vocabulario por vertical COMPLETO em TODAS as superficies e TODOS os callers. ZERO pendencias tecnicas. Pendentes operacionais: META_PIXEL_ID, WHATSAPP_NUMBER, primeiro cliente real.
+**Ultima atualizacao:** 2026-10-19 (Vocab completo + Security A(98) + Code Review)
+**Status:** Produto em producao. Vocab vertical completo em todas as superficies. Security grade A (98/100). Code review aprovado. ZERO pendencias tecnicas. Pendentes operacionais: META_PIXEL_ID, WHATSAPP_NUMBER, primeiro cliente real.
+
+---
+
+## Sessao 2026-10-19 (parte 4): Security Audit + Code Review
+
+### Commits (Destaka repo)
+- `ce3b148` fix: code review cleanup - consolidar fontes de verdade + polish
+
+### Commits (BIG HEAD repo)
+- `a570840` security: prompt defenses no CLAUDE.md
+- `a50788b` security: grade A (98/100) - defesas completas + hooks + deny lists
+
+### Security Audit (AgentShield)
+- F (37/100) -> A (98/100)
+- 57 criticals -> 0 criticals, 0 high
+- Removidas 377 allow rules acumuladas (bash -c, find, etc.)
+- Removidas 5 chaves hardcoded (Stripe test/live, Google API, Supabase, Inngest)
+- CLAUDE.md: 12 defesas de prompt adicionadas
+- settings.json: deny list + PreToolUse hook (block-secrets.sh)
+- settings.local.json: limpo e scoped (local, nao commitado)
+
+### Code Review (5 items resolvidos)
+- getTagline duplicado em diagnostico/page.tsx removido, usa vertical-vocab.ts
+- Triple getVocab no ReviewQRCard -> single call
+- Operador precedencia (org.specialty as string) ?? null corrigido
+- opengraph-image.tsx: "Destaka Saude" -> "Destaka" generico
+- Pet vocab: "profissional pet" -> "veterinario", "tutores" -> "animais"
+
+### QA Final
+- Build: PASS
+- TypeScript: PASS
+- Lint: zero erros em codigo de producao
+
+### Pendente tecnico (nao urgente)
+- Regenerar Supabase types para incluir specialty (elimina casts `as string`)
 
 ---
 
