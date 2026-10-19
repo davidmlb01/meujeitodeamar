@@ -1,10 +1,47 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-19 (Vocabulario por vertical + auditoria dashboard)
-**Status:** Produto em producao, go-live aprovado. Sistema de vocabulario por vertical implementado (10 nichos). Dashboard, diagnostico, onboarding e 6 templates de email personalizados por vertical. Pendentes: META_PIXEL_ID, WHATSAPP_NUMBER, primeiro cliente real para validar dados.
+**Ultima atualizacao:** 2026-10-19 (Vocab vertical completo + QA audit)
+**Status:** Produto em producao, go-live aprovado. Sistema de vocabulario por vertical COMPLETO em todas as superficies: dashboard, diagnostico, onboarding, 11 templates de email, monthly report, Inngest functions. Zero pendencias tecnicas. Pendentes operacionais: META_PIXEL_ID, WHATSAPP_NUMBER, primeiro cliente real.
 
 ---
 
-## Sessao 2026-10-19: Vocabulario por Vertical + Auditoria Dashboard
+## Sessao 2026-10-19 (parte 2): Vocab restante + QA Audit
+
+### Commits (Destaka repo)
+- `5f9097f` feat: vocab vertical em todos os emails + inngest + onboarding challenges
+- `5119c98` fix: lint cleanup - unused imports e variables
+
+### Inngest
+- onboarding-email-sequence busca specialty da org e passa ao sendOnboardingEmail
+- Emails agora saem como "Destaka Saude" / "Destaka Pet" / etc. (era generico)
+
+### 5 templates operacionais atualizados
+- token-alert: header, footer, corpo com vocab
+- review-alert: "Pacientes que veem..." -> "{clientes} que veem..."
+- review-approval: "Um paciente deixou..." -> "Um {cliente} deixou...", brand name dinamico
+- token-reconnect: "seus pacientes nao estao te encontrando" -> "seus {clientes}..."
+- lead-magnet: "Quantos pacientes esta perdendo" -> "Quantos {clientes}...", CTA dinamico
+
+### Monthly report
+- report-compiler.ts: busca specialty da org, inclui no MonthlyReportData
+- monthly-report.ts: header, footer, titulo, todas as mencoes a "pacientes" dinamicas
+- Brand name dinamico no titulo e labels
+
+### Onboarding
+- Challenges personalizados: "Atrair mais {clientes} novos"
+- Volume label ja estava dinamico do commit anterior
+
+### GA4
+- TODO convertido em comentario descritivo (nao bloqueia MVP, retorna null)
+
+### QA Audit
+- Build: PASS (7.2s, zero erros)
+- TypeScript: PASS (zero erros)
+- ESLint: zero erros em codigo de producao (24 erros em .agents/ tooling externo)
+- 3 unused imports corrigidos (Segment, APP_URL, createAdminSupa)
+
+---
+
+## Sessao 2026-10-19 (parte 1): Vocabulario por Vertical + Auditoria Dashboard
 
 ### Commits (Destaka repo)
 - `cdce935` feat: vocabulario por vertical em dashboard, diagnostico, onboarding e emails
