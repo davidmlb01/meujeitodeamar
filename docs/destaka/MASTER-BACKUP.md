@@ -1,6 +1,28 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-19 (Vocab vertical completo + QA audit)
-**Status:** Produto em producao, go-live aprovado. Sistema de vocabulario por vertical COMPLETO em todas as superficies: dashboard, diagnostico, onboarding, 11 templates de email, monthly report, Inngest functions. Zero pendencias tecnicas. Pendentes operacionais: META_PIXEL_ID, WHATSAPP_NUMBER, primeiro cliente real.
+**Ultima atualizacao:** 2026-10-19 (Vocab vertical COMPLETO + callers + QA)
+**Status:** Produto em producao, go-live aprovado. Sistema de vocabulario por vertical COMPLETO em TODAS as superficies e TODOS os callers. ZERO pendencias tecnicas. Pendentes operacionais: META_PIXEL_ID, WHATSAPP_NUMBER, primeiro cliente real.
+
+---
+
+## Sessao 2026-10-19 (parte 3): Callers de email operacional
+
+### Commits (Destaka repo)
+- `632f2bc` feat: propaga specialty em todos os callers de email operacional
+
+### Callers atualizados
+- review-monitor.ts: passa org.specialty ao sendNegativeReviewAlert e sendReviewApprovalEmail
+- token-alert-helper.ts: busca specialty da org, passa ao sendTokenDisconnectedAlert
+- gmb/auth.ts: busca specialty da org, passa ao sendTokenReconnectEmail
+- capture-lead/route.ts: aceita specialty no body Zod schema
+- useLeadCapture.ts: propaga specialty no fetch
+- VerifyTool.tsx: detecta segment dos types do Google Places e passa ao lead magnet
+
+### Resultado final
+- 100% dos emails em 100% dos fluxos saem personalizados por vertical
+- Saude: "Destaka Saude", "pacientes", "consultorio", "consulta"
+- Pet: "Destaka Pet", "tutores", "clinica", "atendimento"
+- Juridico: "Destaka Juridico", "clientes", "escritorio", "atendimento"
+- Etc. para todos os 10 verticais
 
 ---
 
