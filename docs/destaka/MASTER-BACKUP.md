@@ -1,6 +1,58 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-14 (Go-live audit + landing generica + layout polish + test-cycle)
-**Status:** Produto em producao, go-live aprovado. Landing generica em destaka.com.br, saude em /saude. Layout polished em todas as paginas. 9/9 funcoes Inngest completadas. VIP bypass ativo para david@unlmtd.etc.br. Pendentes: META_PIXEL_ID, WHATSAPP_NUMBER, primeiro cliente real para validar dados.
+**Ultima atualizacao:** 2026-10-19 (Vocabulario por vertical + auditoria dashboard)
+**Status:** Produto em producao, go-live aprovado. Sistema de vocabulario por vertical implementado (10 nichos). Dashboard, diagnostico, onboarding e 6 templates de email personalizados por vertical. Pendentes: META_PIXEL_ID, WHATSAPP_NUMBER, primeiro cliente real para validar dados.
+
+---
+
+## Sessao 2026-10-19: Vocabulario por Vertical + Auditoria Dashboard
+
+### Commits (Destaka repo)
+- `cdce935` feat: vocabulario por vertical em dashboard, diagnostico, onboarding e emails
+
+### Sistema de vocabulario por vertical
+- Novo arquivo: `src/lib/vertical-vocab.ts` (fonte canonica)
+- 10 verticais: saude, pet, juridico, contabil, imoveis, beleza, fitness, restaurante, automotivo + default
+- Cada vertical define: clientes, cliente, local, atendimento, profissional, volumeLabel, tagline, emailFooter, brandLabel
+- Funcoes exportadas: `getVocab(specialty)`, `getBrandName(specialty)`
+
+### Dashboard personalizado por vertical
+- ReviewQRCard: "recepcao do {local}. Seus {clientes}"
+- CompetitorsContent + OpportunitiesSection: "avaliacao ao {cliente}...cada {atendimento}" + "seus {clientes} mais buscam"
+- IndicarContent: "colega {profissional}"
+- OptimizationWizard: "outro {profissional}?"
+- DashboardContent: consome specialty da API e distribui vocab
+- Pages server (reviews, competitors, indicar): buscam specialty da org e passam como prop
+- API /api/dashboard: retorna specialty no response
+
+### Diagnostico
+- OfferSection: "cuida dos seus {clientes}" via detectSegment()
+
+### Onboarding
+- Volume label dinamico: "Quantos {clientes} voce atende por semana?"
+
+### Emails (6 templates dia 0-30)
+- Header: "Destaka {brandLabel}" (dinamico)
+- Footer: frase personalizada por vertical
+- Corpo: pacientes/tutores/clientes em todos os 6 emails
+- From: "Destaka Saude" / "Destaka Pet" / etc. (dinamico)
+- sendOnboardingEmail aceita specialty e propaga para todos os templates
+
+### Auditoria do dashboard
+- Zero TODOs criticos, nenhum placeholder, nenhuma feature incompleta
+- 1 TODO GA4 (service account, nao critico)
+- Empty states todos tratados corretamente
+- MapCard presente no dash: UNLMTD nao mostra mapa (SAB sem endereco fixo, esperado)
+- Carregamento dashboard: instantaneo com Supabase Pro (lentidao do teste era cold start de infra)
+
+### Decisoes (David, 2026-10-19)
+- Copy SEMPRE personalizada por vertical, nunca generica
+- Saude = pacientes, consultorio, consulta, profissional de saude
+- Implementar personalizacao em todas as superficies: dash, diagnostico, onboarding, emails
+
+### Pendentes
+- [ ] NEXT_PUBLIC_META_PIXEL_ID no Vercel
+- [ ] DESTAKA_WHATSAPP_NUMBER no Vercel
+- [ ] Primeiro cliente real (Paula) para validar dados no dashboard
 
 ---
 
