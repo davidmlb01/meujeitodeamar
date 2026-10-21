@@ -1,6 +1,66 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-20 (Vocab + Security + Code Review + Testes producao)
-**Status:** Produto em producao, testado. Vocab vertical completo. Security A (98/100). Code review aprovado. Testes producao: 10 rotas ok, 5 APIs ok, SEO ok, headers ok. ZERO pendencias tecnicas. Pendentes operacionais: META_PIXEL_ID, WHATSAPP_NUMBER, primeiro cliente real.
+**Ultima atualizacao:** 2026-10-20 (EPIC Programa de Indicacao iniciado)
+**Status:** Produto em producao. Programa de Indicacao: Fases 0-4 completas (banco + stripe + captura + webhook). Proximo: Fase 5 (codigos automaticos no onboarding).
+
+---
+
+## Sessao 2026-10-20: EPIC Programa de Indicacao
+
+### Board Meeting (CEO + CMO + CFO + CTO + Hormozi)
+
+**Premissas fechadas (unanimidade):**
+- Gatilho do cliente: 2a mensalidade paga do indicado (filtra churn rapido)
+- Comissao: 30% sobre valor efetivamente pago (nao preco cheio)
+- Teto do desconto: 100% (5 indicados = "nunca mais pague")
+
+**Ajustes aprovados:**
+- North Star Metric: "% de novos clientes vindos por indicacao", meta 40% em 6 meses
+- Lancamento faseado: clientes primeiro (Fases 0-6), depois parceiros e instituicoes (7-8)
+- Dream Outcome como headline: "Indique 5 colegas e nunca mais pague"
+- Race condition no webhook: resolver com transacao ou fila serial por cliente
+- Webhook ordering: tratar invoice.paid antes de checkout.session.completed gracefully
+- Validar com contador: RPA ou NF para pagamento de comissoes antes do lancamento
+
+**Riscos aceitos:**
+- Churn em bloco de instituicoes (monitorar por cohort)
+- Dependencia de ganho de posicao para gatilho (adicionar gatilho alternativo: primeiro relatorio positivo)
+
+### Fase 1: Banco de Dados (migration 028)
+
+**Commit (Destaka repo):** pendente
+**Arquivo:** `supabase/migrations/028_referral_program.sql`
+
+**5 tabelas criadas:**
+- `partners`: nome, email, whatsapp, pix_key, logo, type (influencer/commercial/institution), reward_rule (none/commission/report)
+- `referral_codes`: code unico, owner_type (client/partner/institution), FK para user ou partner, stripe_coupon_id, landing_slug
+- `referrals`: quem foi indicado, por qual codigo, subscription, status (pending/active/cancelled)
+- `rewards`: tipo (discount/commission), invoice, valor, status (pending/applied/paid/reversed)
+- `stripe_events`: idempotencia de webhook (event_id unico)
+
+**RLS:**
+- partners e stripe_events: service_role only
+- referral_codes: cliente ve seu proprio codigo
+- referrals: ve como indicador ou como indicado
+- rewards: ve recompensas das proprias indicacoes
+
+**Helper function:** `count_active_referrals(user_id)` para recalculo de cupom
+
+### Fases restantes (10 total)
+- [x] Fase 0: Regras fechadas (board meeting)
+- [x] Fase 1: Banco de dados (migration 028 aplicada no Supabase)
+- [x] Fase 2: Configurar Stripe (7 cupons test mode criados)
+- [x] Fase 3: Capturar codigo (proxy.ts + checkout integrado)
+- [x] Fase 4: Webhook (invoice.paid, charge.refunded, recalculo cupom)
+- [ ] Fase 5: Codigos automaticos (onboarding)
+- [ ] Fase 6: Telas para quem indica
+- [ ] Fase 7: Instituicoes + landing propria
+- [ ] Fase 8: Pedir indicacao no momento certo
+- [ ] Fase 9: Lancamento
+
+### Pendentes operacionais (anteriores)
+- [ ] NEXT_PUBLIC_META_PIXEL_ID no Vercel
+- [ ] DESTAKA_WHATSAPP_NUMBER no Vercel
+- [ ] Primeiro cliente real (Paula) para validar dados no dashboard
 
 ---
 
