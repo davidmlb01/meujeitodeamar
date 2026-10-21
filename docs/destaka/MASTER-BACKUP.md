@@ -1,6 +1,6 @@
 # MASTER-BACKUP: Destaka
 **Ultima atualizacao:** 2026-10-20 (EPIC Programa de Indicacao iniciado)
-**Status:** Produto em producao. Programa de Indicacao: Fases 0-4 completas (banco + stripe + captura + webhook). Proximo: Fase 5 (codigos automaticos no onboarding).
+**Status:** Produto em producao. Programa de Indicacao: Fases 0-8 completas. Proximo: Fase 9 (lancamento).
 
 ---
 
@@ -51,11 +51,19 @@
 - [x] Fase 2: Configurar Stripe (7 cupons test mode criados)
 - [x] Fase 3: Capturar codigo (proxy.ts + checkout integrado)
 - [x] Fase 4: Webhook (invoice.paid, charge.refunded, recalculo cupom)
-- [ ] Fase 5: Codigos automaticos (onboarding)
-- [ ] Fase 6: Telas para quem indica
-- [ ] Fase 7: Instituicoes + landing propria
-- [ ] Fase 8: Pedir indicacao no momento certo
-- [ ] Fase 9: Lancamento
+- [x] Fase 5: Codigos automaticos (onboarding, generate-code.ts)
+- [x] Fase 6: Telas do indicador (API /api/referral, dashboard com progresso/WhatsApp)
+- [x] Fase 7: Instituicoes + landing destaka.com.br/[SLUG] + API relatorio
+- [x] Fase 8: Gatilho automatico (Inngest referral-trigger, score +5 ou impressoes +20%, cooldown 30d)
+- [ ] Fase 9: Lancamento (chaves live, gerar codigos para base, comunicar clientes)
+
+### Commits do programa de indicacao (Destaka repo)
+- `c37cc7d` feat: programa de indicacao - fases 1-3
+- `5df8e1e` docs: mark REF-001.1 to REF-001.3 as done
+- `9a4f43d` feat: gerar codigo no onboarding (fase 5)
+- `cc88a96` feat: telas do indicador no dashboard (fase 6)
+- `c761a3f` feat: landing de instituicao + API relatorio (fase 7)
+- `1d045c3` feat: gatilho automatico de indicacao (fase 8)
 
 ### Pendentes operacionais (anteriores)
 - [ ] NEXT_PUBLIC_META_PIXEL_ID no Vercel
