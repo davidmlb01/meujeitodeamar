@@ -1,6 +1,6 @@
 # MASTER-BACKUP: Destaka
 **Ultima atualizacao:** 2026-10-20 (EPIC Programa de Indicacao iniciado)
-**Status:** Produto em producao. Programa de Indicacao: Fases 0-8 completas. Proximo: Fase 9 (lancamento).
+**Status:** Produto em producao. Programa de Indicacao: Fases 0-9 completas. QA deep review aprovado. Pronto para primeiro cliente (Paula).
 
 ---
 
@@ -55,7 +55,16 @@
 - [x] Fase 6: Telas do indicador (API /api/referral, dashboard com progresso/WhatsApp)
 - [x] Fase 7: Instituicoes + landing destaka.com.br/[SLUG] + API relatorio
 - [x] Fase 8: Gatilho automatico (Inngest referral-trigger, score +5 ou impressoes +20%, cooldown 30d)
-- [ ] Fase 9: Lancamento (chaves live, gerar codigos para base, comunicar clientes)
+- [x] Fase 9: Lancamento (cupons LIVE criados, webhook events adicionados, codigo PAULA criado)
+
+### QA Deep Review (2026-10-22)
+- 12/12 testes PASS na auditoria inicial
+- 2 bugs HIGH corrigidos: race condition pos-pagamento, organization_members→professionals
+- Dados Paula verificados no banco: org ok, public.users ok, gmb_profiles ok, referral code PAULA ok
+- lgpd_ai_consent=null (onboarding vai aparecer normalmente)
+- google_tokens=null (sera salvo no login)
+- gbp_profiles=null (sera populado pelos Inngest jobs no login)
+- Fluxo completo de 14 passos validado
 
 ### Commits do programa de indicacao (Destaka repo)
 - `c37cc7d` feat: programa de indicacao - fases 1-3
@@ -64,6 +73,8 @@
 - `cc88a96` feat: telas do indicador no dashboard (fase 6)
 - `c761a3f` feat: landing de instituicao + API relatorio (fase 7)
 - `1d045c3` feat: gatilho automatico de indicacao (fase 8)
+- `3080bd8` fix: fluxo pos-pagamento (race condition, prefill, webhook FK)
+- `3fd4d5c` fix: QA review (race condition onboarding→dashboard, skip code duplicado)
 
 ### Pendentes operacionais (anteriores)
 - [ ] NEXT_PUBLIC_META_PIXEL_ID no Vercel
