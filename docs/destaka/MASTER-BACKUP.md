@@ -1,6 +1,39 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-23 (EMERGENCIA: 10 bugs criticos corrigidos para Paula, 1a cliente paga)
-**Status:** Fixes criticos deployados. Score Paula 29->37. Audit e optimization gerados. Pendentes: reviews 0 (GBP API), competitors 0, photo_count corrigido manualmente.
+**Ultima atualizacao:** 2026-10-23 (EMERGENCIA resolvida: Score Paula 29->43, constraints DB corrigidos, optimizer fix)
+**Status:** Score Paula 43/100 (funcional). CHECK constraints removidos. Optimizer corrigido (normaliza audit format). Onboarding data preservado no audit. Pendentes: Claude API fallback no optimizer (ANTHROPIC_API_KEY com \\n?), reviews 0, competitors 0.
+
+---
+
+## Sessao 2026-10-23 (continuacao noturna): Score + Constraints + Optimizer
+
+### Commits (Destaka repo)
+- `2c4ec86` fix: onboarding data preservado + score conta attributes object
+- `fc4a3a8` fix: attributeCount suporta dict e array (helper countAttributes)
+- `f11e49d` fix: optimizer normaliza audit_report format + severity levels
+
+### Problema encontrado: CHECK CONSTRAINTS na tabela scores
+Os constraints limitavam gmb_completude a max 25 (scorer antigo). O scorer rebalanceado calcula ate 40, mas o DB rejeitava silenciosamente. REMOVIDOS via `supabase db query --linked`.
+
+### Score Paula: 29 -> 43/100 (funcional)
+- completude: 16 -> 30 (+description 10, +attributes 6, +photos 8, +hours 4, +categories 2)
+- reputacao: 0 (sem reviews)
+- visibilidade: 2
+- retencao: 11
+- conversao: 0 (sem posts)
+
+### Fixes adicionais
+- gbp-audit: merge inteligente preserva attributes/services/photo_count do onboarding
+- score-calculator: attributeCount suporta dict {wifi:true} (onboarding) e array (GBP API)
+- gbp-optimizer: normaliza {issues} para {gaps}, severity em PT e EN
+
+### Aprendizados criticos (NUNCA repetir)
+1. **CHECK CONSTRAINTS devem acompanhar refactoring de scorer** - ao rebalancear pesos, atualizar constraints
+2. **Testes end-to-end com cliente real ANTES do lancamento** - testar fluxo completo onboarding->collectors->dashboard
+3. **gbp_location_id deve ser validado** - Place ID (ChIJ) != location name (accounts/*/locations/*)
+4. **Onboarding data nao pode ser sobrescrito por arrays vazios** - merge inteligente obrigatorio
+5. **Audit report format deve ser padronizado** - dois formatos (issues/gaps) causam bugs silenciosos
+6. **Inngest functions precisam de re-sync apos deploy** - PUT /api/inngest obrigatorio
+7. **subscription.activated deve disparar TODOS os collectors** - onboarding-data-bootstrap essencial
 
 ---
 
