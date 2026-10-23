@@ -1,6 +1,67 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-20 (EPIC Programa de Indicacao iniciado)
-**Status:** Produto em producao. Programa de Indicacao: Fases 0-9 completas. QA deep review aprovado. Pronto para primeiro cliente (Paula).
+**Ultima atualizacao:** 2026-10-23 (EMERGENCIA: 10 bugs criticos corrigidos para Paula, 1a cliente paga)
+**Status:** Fixes criticos deployados. Score Paula 29->37. Audit e optimization gerados. Pendentes: reviews 0 (GBP API), competitors 0, photo_count corrigido manualmente.
+
+---
+
+## Sessao 2026-10-22/23: EMERGENCIA Producao - 10 Bugs Criticos
+
+### Problema
+Paula (Bacellar Fisioterapia, 1a cliente paga) contratou e o produto nao entregou nada:
+- Score 29/100 com perfil completo (10 fotos, logo, capa)
+- "Execute um diagnostico primeiro" ao clicar Otimizar
+- Checklist mostrando itens feitos como pendentes
+- Zero concorrentes, zero reviews, zero metricas
+- Mapa nao aparecia no diagnostico
+- 3 blocos de acoes rapidas nao apareciam
+
+### Causa Raiz
+Stripe webhook enviava APENAS destaka/subscription.activated, que ativava so emails/WhatsApp.
+NENHUM collector de dados era disparado na hora da assinatura.
+Alem disso: gbp_location_id era Place ID (ChIJ...) ao inves de location name (accounts/*/locations/*).
+
+### Commits (Destaka repo)
+- `76e4f15` fix(critical): 10 bugs producao - bootstrap + diagnostico + checklist
+- `48f003f` fix(gbp-audit): corrige gbp_location_id quando valor e Place ID
+
+### Fixes Implementados
+
+1. **onboarding-data-bootstrap.ts** (NOVO): Inngest function que escuta subscription.activated e faz fan-out de 6 eventos (audit, competitors, reviews, geo, performance, keywords). Todos os collectors agora rodam na hora da assinatura.
+
+2. **Diagnostico API**: Query de gbp_profiles corrigida de user_id para organization_id. Mapa com fallback usando coordenadas do perfil quando geo_snapshots vazio.
+
+3. **Checklist API**: Auto-detect itens feitos a partir de dados reais do GBP (photo_count, reviews). Nao depende mais de check manual.
+
+4. **OptimizationWizard**: Mostra erro real da API ao inves de mensagem generica.
+
+5. **gbp-audit.ts**: Corrige gbp_location_id quando valor existente e Place ID (ChIJ...) ao inves de location name.
+
+6. **Places API**: Campo geometry adicionado ao getPlaceDetails para retornar lat/lng na /verificar.
+
+7. **Checklist copy**: "pacientes" e "consultorio" trocados por termos genericos.
+
+### Acoes Manuais no Banco (Paula)
+- gbp_location_id corrigido de ChIJ... para locations/12072130330864442252
+- gbp_profiles duplicado com Place ID removido
+- photo_count atualizado para 10 (valor real do Places API)
+- Cache Redis limpo (diag + subscription)
+- 9 funcoes Inngest disparadas manualmente
+
+### Resultado Paula (apos fixes)
+- Score: 29 -> 37/100 (subiu 8 pontos)
+- Description: NULL -> texto real da Bacellar
+- Audit: 0 issues -> 3 issues reais (posts, reviews, atributos)
+- Optimization report: NULL -> gerado
+- photo_count: 0 -> 10
+- Reviews: 0 (GBP API nao retornou, investigar)
+- Competitors: 0 (investigar)
+
+### Pendentes
+- [ ] Reviews = 0: investigar por que GBP API nao retorna reviews
+- [ ] Competitors = 0: investigar por que competitor-monitor nao populou
+- [ ] photo_count: GBP Business Profile API retorna 0, Places API retorna 10. Discrepancia
+- [ ] NEXT_PUBLIC_META_PIXEL_ID no Vercel
+- [ ] DESTAKA_WHATSAPP_NUMBER no Vercel
 
 ---
 
