@@ -1,6 +1,41 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-23 (EMERGENCIA resolvida: Score Paula 29->43, constraints DB corrigidos, optimizer fix)
-**Status:** Score Paula 43/100 (funcional). CHECK constraints removidos. Optimizer corrigido (normaliza audit format). Onboarding data preservado no audit. Pendentes: Claude API fallback no optimizer (ANTHROPIC_API_KEY com \\n?), reviews 0, competitors 0.
+**Ultima atualizacao:** 2026-10-23 (Score Paula 29->59, Claude Haiku ativo, env vars corrigidas)
+**Status:** Score Paula 59/100 (funcional). Optimizer gera sugestoes personalizadas via Claude Haiku 4.5. 168 reviews importadas. 12 env vars corrigidas. Post notification implementada. Pendentes: competitors 0, modelos Sonnet/Opus indisponiveis.
+
+---
+
+## Sessao 2026-10-23 (dia): Env vars + Claude Haiku + Reviews + Score 59
+
+### Commits (Destaka repo)
+- `8ff45b5` feat: notifica profissional por email quando post pending
+- `147cf30` fix: modelo claude-haiku-4-5 (unico disponivel na API key)
+
+### 12 env vars corrigidas no Vercel
+Todas tinham `\n` literal no final, causando falhas silenciosas:
+ANTHROPIC_API_KEY, GOOGLE_PLACES_API_KEY, APIFY_API_TOKEN, GITHUB_REPO,
+GITHUB_TOKEN, NEXT_PUBLIC_DEMO_MODE, NEXT_PUBLIC_GA4_ID, NEXT_PUBLIC_SENTRY_DSN,
+SENTRY_DSN, SLACK_WEBHOOK_URL, STRIPE_PRICE_AGENCIA, STRIPE_PRICE_ESSENCIAL
+
+### Claude API
+- ANTHROPIC_API_KEY ativa mas so acessa Haiku 4.5 (Sonnet/Opus retornam not_found)
+- Modelo atualizado para claude-haiku-4-5-20251001
+- Optimizer agora gera sugestoes PERSONALIZADAS via Claude:
+  - 3 descricoes (SEO, conversao, confianca) com keywords de fisioterapia RJ
+  - 3 categorias sugeridas (Clinica de Fisioterapia, Consultorio de Saude, Centro de Reabilitacao)
+  - 5 atributos sugeridos
+  - 5 servicos otimizados com keywords
+
+### Score Paula: 29 -> 59/100
+- completude: 30/40 (description + attributes + photos + hours + categories)
+- reputacao: 16/20 (168 reviews, 5.0 avg)
+- visibilidade: 2/15
+- retencao: 11/15
+- conversao: 0/10
+
+### Aprendizados adicionais
+8. **Env vars no Vercel devem ser auditadas** - `\n` literal causa falhas silenciosas em API keys
+9. **Testar API key com curl antes de assumir que funciona** - model not_found != key invalida
+10. **Claude Haiku 4.5 e suficiente para optimizer** - nao precisa de Sonnet para gerar sugestoes
 
 ---
 

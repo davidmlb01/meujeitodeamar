@@ -62,3 +62,8 @@ Verificar que o produto entrega valor IMEDIATAMENTE:
 | Checklist manual, nao auto-detect | API so lia checklist_progress | API cruza com gbp_profiles | Sempre auto-detectar o que ja esta feito |
 | Mapa nao aparecia | Dependia de geo_snapshots (vazio) | Fallback com coordenadas | Sempre ter fallback visual |
 | Erro generico "Execute diagnostico" | API retornava 404, client mostrava mensagem fixa | Mostrar erro real | Nunca usar mensagens de erro genericas |
+| 12 env vars com `\n` no Vercel | Valores colados com newline no terminal | Removidas e re-adicionadas | Auditar env vars com `vercel env pull` e verificar trailing chars |
+| Claude API "model not found" | API key so acessa Haiku 4.5, nao Sonnet/Opus | Modelo atualizado para haiku | Testar API key com curl antes de assumir que funciona |
+| Optimizer caindo em fallback | Modelo indisponivel + audit format incompativel | Modelo + normaliza format | Sempre logar o motivo do fallback, nunca falhar silenciosamente |
+| Reviews = 0 com 168 reviews reais | GBP Business API nao retornava, Places API sim | Inserir via Places API | Usar Places API como fallback quando GBP API nao retorna reviews |
+| Post pending 23 dias sem notificacao | Modo manual sem email de aviso | Email ao owner | SEMPRE notificar o usuario quando ha acao pendente |
