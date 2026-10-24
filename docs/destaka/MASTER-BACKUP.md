@@ -1,6 +1,41 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-23 (Score Paula 29->59, Claude Haiku ativo, env vars corrigidas)
-**Status:** Score Paula 59/100 (funcional). Optimizer gera sugestoes personalizadas via Claude Haiku 4.5. 168 reviews importadas. 12 env vars corrigidas. Post notification implementada. Pendentes: competitors 0, modelos Sonnet/Opus indisponiveis.
+**Ultima atualizacao:** 2026-10-24 (Optimizer regras + bairro SEO + performance + atributos reais)
+**Status:** Score Paula 59/100. Dashboard completo. Optimizer personalizado com regras: nao inventar servicos/categorias, geo-copy "perto de", bairro no SEO. PENDENTE: ler atributos reais do GBP (nao onboarding), aplicar otimizacoes via GBP PATCH API, performance-collector automatico.
+
+---
+
+## Sessao 2026-10-24: Regras do optimizer + bairro + performance + atributos
+
+### Commits (Destaka repo)
+- `b522f40` fix: extracao de bairro via lista conhecida (Copacabana, etc)
+- `2b96c6f` fix: geo-copy regra "perto de" para bairros vizinhos
+- `9be8816` feat: bairro na descricao SEO + accounts/ prefix no location
+- `1c1d930` fix: NUNCA inventar servicos ou categorias inexistentes
+- `3f6fff8` docs: regra nunca inventar servicos/categorias
+- `a5937fe` fix: performance resolve accounts/ prefix
+- `7091eea` feat: regras de copy inegociaveis + optimizer enriquece descricao
+- `6ff8e06` feat: auto-apply descricao SEO no banco
+- `8ff45b5` feat: notifica profissional quando post pending
+
+### Regras adicionadas ao optimizer
+1. NUNCA inventar servicos que o profissional nao oferece (ex: Reabilitacao Infantil)
+2. NUNCA sugerir categorias de negocio diferente (ex: Studio de Pilates para fisioterapeuta)
+3. Descricao: otimizar existente, nao substituir. Manter tom e essencia.
+4. Geo-copy: "em [bairro proprio]" + "perto de [bairro vizinho]" (nunca "em" bairro vizinho)
+5. Bairro extraido do endereco via lista conhecida (Copacabana, Ipanema, etc)
+6. Acentuacao perfeita obrigatoria em todos os textos
+
+### Problema identificado: atributos
+Os atributos no banco (wifi, parking, etc.) sao do onboarding, nao do GBP real.
+O perfil real da Paula no Google mostra: acessibilidade, banheiro, agendamento,
+cartao credito/debito, NFC, estacionamento na rua. Wi-Fi NAO aparece no GBP.
+PENDENTE: ler atributos reais da GBP API e sincronizar.
+
+### Performance metrics
+- gbp_location_id corrigido para accounts/{id}/locations/{id}
+- Performance API requer esse formato completo
+- Dados inseridos manualmente para Paula (Maps=890, Search=1280, Phone=45, Site=89)
+- PENDENTE: automatizar via GBP Performance API (pode precisar de scope/billing)
 
 ---
 
