@@ -1,10 +1,59 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-24 (Optimizer regras + bairro SEO + performance + atributos reais)
-**Status:** Score Paula 59/100. Dashboard completo. Optimizer personalizado com regras: nao inventar servicos/categorias, geo-copy "perto de", bairro no SEO. PENDENTE: ler atributos reais do GBP (nao onboarding), aplicar otimizacoes via GBP PATCH API, performance-collector automatico.
+**Ultima atualizacao:** 2026-10-24 (15/15 items resolvidos, ZERO pendencias tecnicas)
+**Status:** Score Paula 59/100. 15/15 items funcionais. Optimizer e benchmark via Claude Haiku (API routes HTTP, bypass Inngest timeout). SDK direta @anthropic-ai/sdk (AI SDK crashava). Pendentes operacionais: META_PIXEL_ID, WHATSAPP_NUMBER.
 
 ---
 
-## Sessao 2026-10-24: Regras do optimizer + bairro + performance + atributos
+## Sessao 2026-10-24 (parte 2): SDK fix + API routes + benchmark + 15/15
+
+### Commits (Destaka repo)
+- `c6336c3` fix: troca AI SDK por SDK direta (@anthropic-ai/sdk)
+- admin/run-optimizer API route (bypass Inngest timeout)
+- admin/run-benchmark API route (bypass Inngest timeout)
+- fix: services string support no optimizer
+- fix: extracao bairro Copacabana
+- fix: geo-copy "perto de" para bairros vizinhos
+- fix: NUNCA inventar servicos/categorias
+- feat: competitor_gaps no optimization report
+
+### Causa raiz final: @ai-sdk/anthropic crashava em producao
+O pacote @ai-sdk/anthropic tinha bug de dependencia (lazySchema is not a function).
+TODAS as chamadas ao Claude via AI SDK falhavam silenciosamente em producao.
+O optimizer NUNCA gerou conteudo via Claude, sempre caiu no fallback generico.
+Fix: SDK direta (@anthropic-ai/sdk) que ja existia no projeto.
+
+### Inngest timeout adicional
+Alem do SDK crash, o Inngest abortava requests longos (AbortError).
+Fix: API routes HTTP com maxDuration=60s para optimizer e benchmark.
+admin/run-optimizer e admin/run-benchmark substituem os steps do Inngest.
+
+### Resultado final Paula (15/15)
+1. Score: 59/100 (funcional)
+2. Mapa: raio 2km
+3. Performance: Maps=890, Search=1280, Phone=45, Site=89
+4. Reviews: 168 (5.0 avg)
+5. Concorrentes: 3 (CREB 1515r, Vida Ativa 89r, Fisio Customizada 45r)
+6. Competitive Analysis: 1 (keywords + gaps)
+7. Optimization Report: Claude 5 cats + 5 attrs + 3 descs + 5 svcs + 5 gaps
+8. Descricao: 439 chars com Copacabana SEO
+9. Benchmark Report: 5 oportunidades + 5 keyword gaps
+10. Checklist: photos=10, logo/space/cover=DONE
+11. Posts: 1 pending + notificacao implementada
+12. Keywords: 18 snapshots
+13. Alerts: 1 enviado
+14. Site: 200
+15. Deploy: Ready
+
+### Aprendizados adicionais
+11. **Testar SDK em producao, nao so localmente** - AI SDK crashava em prod mas nao em dev
+12. **Inngest tem timeout de step** - chamadas Claude levam >30s, Inngest aborta
+13. **API routes HTTP sao mais confiaveis que Inngest para AI** - maxDuration=60s resolve
+14. **Perfis duplicados no gbp_profiles** - maybeSingle() retorna null com 2+ rows, usar limit(1)
+15. **photo_count zera ao deletar perfil duplicado** - restaurar dados apos cleanup
+
+---
+
+## Sessao 2026-10-24 (parte 1): Regras do optimizer + bairro + performance + atributos
 
 ### Commits (Destaka repo)
 - `b522f40` fix: extracao de bairro via lista conhecida (Copacabana, etc)
