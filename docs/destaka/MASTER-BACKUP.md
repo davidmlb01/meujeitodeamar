@@ -1,6 +1,6 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-27 (GBP fixes + security rotation + QA cleanup)
-**Status:** Score Paula 59/100. 15/15 items funcionais. Atributos GBP sincronizam da API real. Performance via admin/run-performance. 6 secrets rotacionadas. Resend DNS verificado. QA: 46 unused removidos, 8 debug logs removidos, build limpo. Pendentes: Paula reconectar Google, META_PIXEL_ID, WHATSAPP_NUMBER.
+**Ultima atualizacao:** 2026-10-27 (GBP fixes + security rotation + QA + security headers)
+**Status:** Score Paula 59/100. 15/15 items funcionais. Atributos GBP sincronizam da API real. Performance via admin/run-performance. 6 secrets rotacionadas. Security headers hardened (CORS, HSTS preload, COOP, CORP, XSS). QA limpo. Pendentes: Paula reconectar Google, META_PIXEL_ID, WHATSAPP_NUMBER, CSP nonce (staging).
 
 ---
 
@@ -50,9 +50,22 @@
 - Health check producao: site 200, Inngest 16/16 functions, optimizer OK, Supabase OK
 - env vars corrigidas com `printf` (sem `\n` trailing)
 
+### Security headers hardened (commit `c8787d1`)
+- CORS: `Access-Control-Allow-Origin: *` → `https://destaka.com.br` (via next.config.ts headers)
+- HSTS: adicionado `preload` (submeter em hstspreload.org quando pronto)
+- Adicionados: Cross-Origin-Opener-Policy: same-origin, Cross-Origin-Resource-Policy: same-origin, X-XSS-Protection: 1; mode=block
+- CSP `unsafe-inline` mantido intencionalmente: remover com nonces arriscaria quebrar Stripe, Google Login, GTM, Facebook Pixel. Fazer quando houver staging.
+
+### Aprendizados
+20. **`vercel env pull` gera arquivo com TODAS as secrets em texto plano** - sempre verificar .gitignore antes
+21. **`echo` adiciona `\n` ao valor de env vars no Vercel** - usar `printf` para evitar trailing newline
+22. **Security headers devem ser auditados periodicamente** - Vercel injeta `Access-Control-Allow-Origin: *` por default em static assets
+23. **CSP nonce so implementar com staging** - risco de quebrar integrações de terceiros (Stripe, Google, GTM)
+
 ### Pendente
 - Paula precisa reconectar Google no dashboard (ENCRYPTION_KEY rotacionada)
 - META_PIXEL_ID e WHATSAPP_NUMBER nao configurados
+- CSP nonce (substituir unsafe-inline) quando tiver ambiente de staging
 
 ---
 
