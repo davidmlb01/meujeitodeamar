@@ -1,6 +1,6 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-27 (GBP attributes fix + security rotation + Resend DNS)
-**Status:** Score Paula 59/100. 15/15 items funcionais. Atributos GBP agora sincronizam da API real. Performance metrics via admin/run-performance. 6 secrets rotacionadas apos vazamento. Resend dominio destaka.com.br verificado. Pendentes: Paula reconectar Google, META_PIXEL_ID, WHATSAPP_NUMBER.
+**Ultima atualizacao:** 2026-10-27 (GBP fixes + security rotation + QA cleanup)
+**Status:** Score Paula 59/100. 15/15 items funcionais. Atributos GBP sincronizam da API real. Performance via admin/run-performance. 6 secrets rotacionadas. Resend DNS verificado. QA: 46 unused removidos, 8 debug logs removidos, build limpo. Pendentes: Paula reconectar Google, META_PIXEL_ID, WHATSAPP_NUMBER.
 
 ---
 
@@ -39,6 +39,16 @@
 17. **git-filter-repo e a ferramenta correta para limpar historico** - nao usar filter-branch (deprecated)
 18. **Rotacionar credentials ANTES de limpar historico** - alguem pode ter copiado antes da limpeza
 19. **readMask da GBP API precisa listar explicitamente cada campo** - campos omitidos retornam undefined, nao vazio
+
+### QA completo
+- Build: zero erros TypeScript em src/
+- Lint: 56 warnings → 10 (parametros Next.js irremovíveis)
+- 46 unused imports/vars removidos em 35 arquivos (commit `02bff94`)
+- 8 debug console.log removidos (mantidos error handlers + Inngest logs)
+- Migration duplicada (013_rls_core_tables 2.sql) deletada
+- 5 arquivos .env locais com secrets antigos deletados do disco
+- Health check producao: site 200, Inngest 16/16 functions, optimizer OK, Supabase OK
+- env vars corrigidas com `printf` (sem `\n` trailing)
 
 ### Pendente
 - Paula precisa reconectar Google no dashboard (ENCRYPTION_KEY rotacionada)
