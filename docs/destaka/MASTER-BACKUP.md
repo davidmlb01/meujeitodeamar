@@ -1,6 +1,48 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-24 (15/15 items resolvidos, ZERO pendencias tecnicas)
-**Status:** Score Paula 59/100. 15/15 items funcionais. Optimizer e benchmark via Claude Haiku (API routes HTTP, bypass Inngest timeout). SDK direta @anthropic-ai/sdk (AI SDK crashava). Pendentes operacionais: META_PIXEL_ID, WHATSAPP_NUMBER.
+**Ultima atualizacao:** 2026-10-27 (GBP attributes fix + security rotation + Resend DNS)
+**Status:** Score Paula 59/100. 15/15 items funcionais. Atributos GBP agora sincronizam da API real. Performance metrics via admin/run-performance. 6 secrets rotacionadas apos vazamento. Resend dominio destaka.com.br verificado. Pendentes: Paula reconectar Google, META_PIXEL_ID, WHATSAPP_NUMBER.
+
+---
+
+## Sessao 2026-10-27: GBP Attributes Fix + Performance API + Security Rotation
+
+### Commits (Destaka repo)
+- `013528d` fix: sync atributos reais do GBP + admin/run-performance API
+- `f9a267a` fix(security): remove production env file from history + gitignore
+
+### Fix 1: Atributos reais do GBP API
+- Causa raiz: `listLocations()` readMask nao incluia `attributes` nem `serviceItems`
+- GBP API retornava undefined, merge inteligente sempre preservava dados do onboarding
+- Fix: adicionado `attributes,serviceItems` ao readMask em gbp-client.ts
+
+### Fix 2: Performance metrics automatizados
+- Criada rota POST /api/admin/run-performance (maxDuration=60, mesma arquitetura de run-optimizer e run-benchmark)
+- Coleta ultimos 7 dias da GBP Performance API, agrega impressions + actions, upsert semanal
+
+### Incidente de seguranca: arquivo production com secrets no git
+- Arquivo `production` (gerado por `vercel env pull`) commitado acidentalmente em `8965af8`
+- Continha: GOOGLE_CLIENT_ID/SECRET, RESEND_API_KEY, SUPABASE_SERVICE_ROLE_KEY, ENCRYPTION_KEY, NEXTAUTH_SECRET, ADMIN_SECRET_KEY
+- Resolucao:
+  1. Git history limpo com git-filter-repo (force push)
+  2. `.gitignore` corrigido (adicionado `production` como regra)
+  3. 6 secrets rotacionadas no Vercel
+  4. Google Client Secret rotacionado no Google Cloud Console + Supabase auth config
+  5. Resend key antiga ja invalida, nova criada
+
+### Resend dominio destaka.com.br configurado
+- Adicionado na team unlmtd do Resend
+- DNS na Hostinger: DKIM, SPF (rsend + send), DMARC
+- Todos verificados (check verde)
+
+### Aprendizados
+16. **Nunca rodar `vercel env pull` sem .gitignore protegendo o arquivo** - o arquivo gerado contem TODAS as secrets em texto plano
+17. **git-filter-repo e a ferramenta correta para limpar historico** - nao usar filter-branch (deprecated)
+18. **Rotacionar credentials ANTES de limpar historico** - alguem pode ter copiado antes da limpeza
+19. **readMask da GBP API precisa listar explicitamente cada campo** - campos omitidos retornam undefined, nao vazio
+
+### Pendente
+- Paula precisa reconectar Google no dashboard (ENCRYPTION_KEY rotacionada)
+- META_PIXEL_ID e WHATSAPP_NUMBER nao configurados
 
 ---
 
