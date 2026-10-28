@@ -1,6 +1,42 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-27 (GBP fixes + security rotation + QA + security headers)
-**Status:** Score Paula 59/100. 15/15 items funcionais. Atributos GBP sincronizam da API real. Performance via admin/run-performance. 6 secrets rotacionadas. Security headers hardened (CORS, HSTS preload, COOP, CORP, XSS). QA limpo. Pendentes: Paula reconectar Google, META_PIXEL_ID, WHATSAPP_NUMBER, CSP nonce (staging).
+**Ultima atualizacao:** 2026-10-28 (QR code real + nav Entrar + health check + roteiros video)
+**Status:** Score Paula 59/100. 16/16 features verificadas e funcionais. QR code avaliações escaneável. Nav com botão Entrar (CTAs diagnóstico nos blocos da página). Roteiros video prontos (2 versões). Pendentes: Paula reconectar Google, META_PIXEL_ID, WHATSAPP_NUMBER, CSP nonce (staging).
+
+---
+
+## Sessao 2026-10-28: QR Code Real + Nav Entrar + Health Check + Roteiros Video
+
+### Commits (Destaka repo)
+- `3fafbef` fix: QR code de avaliações escaneável (lib qrcode)
+- `869bad0` fix: nav botão Entrar (remove Diagnóstico gratuito da nav)
+
+### Fix 1: QR code real
+- Placeholder SVG decorativo substituído por QR escaneável via lib `qrcode`
+- Gera SVG real a partir da URL de review do Google (`search.google.com/local/writereview?placeid=...`)
+- Error correction level M, 256px, cores #333/#fff
+
+### Fix 2: Nav landing e /saude
+- Botão principal da nav trocado de "Diagnóstico gratuito" para "Entrar"
+- "Diagnóstico gratuito" é CTA de conversão, pertence aos blocos da página (6 botões em /, 5 em /saude)
+- /login + callback já redireciona assinantes para /dashboard automaticamente
+
+### Health check completo (16 features)
+Score, mapa, performance, reviews (QR), posts, concorrentes, otimizações, indicar, configurações, login, diagnóstico, 404, Inngest 16/16, landing, /saude, admin. Todos OK.
+
+### Roteiros video explicativo (para Paula compartilhar)
+- Video 1: benefícios (8 cenas, CTA "Faça seu diagnóstico gratuito")
+- Video 2: passo a passo (8 cenas, destaka.com.br)
+- Zero menção a IA, dados reais, texto curto por cena
+
+### Aprendizados
+24. **QR code placeholder não é aceitável em produção** - sempre instalar lib real
+25. **CTA de conversão não é item de navegação** - nav é para orientação e acesso
+26. **Health check antes de cliente reconectar** - verificar todas as features
+
+### Pendente
+- Paula reconectando Google no dashboard (ENCRYPTION_KEY rotacionada)
+- META_PIXEL_ID e WHATSAPP_NUMBER não configurados
+- CSP nonce quando tiver staging
 
 ---
 
