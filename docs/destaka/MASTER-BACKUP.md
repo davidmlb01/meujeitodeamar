@@ -1,6 +1,54 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-28 (QR code real + nav Entrar + health check + roteiros video)
-**Status:** Score Paula 59/100. 16/16 features verificadas e funcionais. QR code avaliações escaneável. Nav com botão Entrar (CTAs diagnóstico nos blocos da página). Roteiros video prontos (2 versões). Pendentes: Paula reconectar Google, META_PIXEL_ID, WHATSAPP_NUMBER, CSP nonce (staging).
+**Ultima atualizacao:** 2026-10-29 (auditoria presencial Paula: 21 issues criticos)
+**Status:** CRITICO. Score caiu de 59 para 53. Performance vazia, concorrentes sumiram, posts em branco, reviews sem respostas geradas, NaN undefined, textos sem acento, menção a IA. 21 issues documentados. Protocolo completo obrigatorio: UMA > Quinn > Dex > Quinn.
+
+---
+
+## Sessao 2026-10-29: Auditoria Presencial com Paula — 21 Issues
+
+### Contexto
+Paula reconectou Google. David revisou dashboard ao vivo. Resultado: produto não entrega o que promete em múltiplas features.
+
+### 21 Issues Documentados
+
+**CRITICOS (produto não funciona):**
+1. Performance vazia: 4 cards "coletando", dados anteriores sumiram
+2. Concorrentes vazio: 3 concorrentes anteriores sumiram completamente
+3. Posts em branco: nenhum post gerado, crons não dispararam
+4. Reviews sem resposta sugerida: mostra "Responder" manual, deveria ter resposta Claude pronta
+5. Fluxo reviews quebrado: "Aguardando aprovação" vazio vs "Aguardando" na tab Todas
+6. Score caiu 59 > 53: dados perdidos impactaram recálculo
+7. Atributos do onboarding não aplicados: "Configure Wi-Fi, estacionamento" como pendente
+
+**UX/COPY (confuso para usuario):**
+8. Botão "Otimizar meu perfil" no dashboard principal: remover
+9. Mapa: 1 bolinha, diz "4 bairros", sem legenda, sem explicação
+10. "Melhorias encontradas" + "Revisar antes de aplicar": confuso
+11. Textos genéricos "Próximas ações"
+12. "Verificar perfil no Google": sem direcional
+13. "Responder avaliações em aberto": terceiriza pro cliente
+14. Reviews sem nome real: "Cliente 84" em vez do nome
+
+**BUGS:**
+15. "NaN undefined" nas tarefas concluídas
+16. Textos sem acento: "avaliacoes", "automaticas", "Configuracoes"
+17. Menção a IA na copy voltada ao cliente
+
+**NEGOCIO:**
+18. Link indicação genérico: destaka.com.br/?ref=PAULA
+19. Deveria ser destaka.com.br/saude?ref=PAULA (respeitar vertical)
+
+**EXTRAS (sessao 28/10 ainda pendentes):**
+20. META_PIXEL_ID e WHATSAPP_NUMBER não configurados
+21. CSP nonce quando tiver staging
+
+### Decisao David
+Protocolo completo obrigatorio. Squad completa: UMA (UX/design) > Quinn (QA gate) > Dex (dev) > Quinn (QA final). Sem atalhos. YOLO mode. Autorizações em batch.
+
+### Aprendizados
+27. Health check de código não substitui health check de produto
+28. Dados perdidos após rotação de secrets precisam ser re-coletados ativamente
+29. Nunca declarar "100% funcional" sem testar com conta real de cliente
 
 ---
 
