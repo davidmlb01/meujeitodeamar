@@ -61,10 +61,23 @@ Protocolo completo. YOLO mode. Autorizações em batch.
 - OptimizationConfirmCard: CTA único "Ver sugestões"
 - Deploy: Ready (Vercel)
 
+### Collectors disparados
+- Retrigger (audit + score + competitors): OK para todas as orgs
+- Performance: GBP API erro (scope ou token). run-performance agora aceita sem org_id
+- Posts: test-cycle precisa session auth
+- Org IDs encontrados: f6c6416f e b2af8108
+
 ### Aprendizados
 27. Health check de código não substitui health check de produto
 28. Dados perdidos após rotação de secrets precisam ser re-coletados ativamente
 29. Nunca declarar "100% funcional" sem testar com conta real de cliente
+30. Copy sem acento é inaceitável. Varredura antes de deploy
+31. Features "automáticas" precisam ser automáticas de verdade
+32. StatusBadge genérico esconde estados diferentes
+33. Link indicação deve respeitar vertical do assinante
+34. Menção a IA em copy do cliente é proibida
+35. NaN/undefined em produção é falha de QA
+36. Retrigger de collectors deve ser automático após reconexão
 
 ---
 
