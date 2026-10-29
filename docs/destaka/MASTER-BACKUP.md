@@ -43,7 +43,23 @@ Paula reconectou Google. David revisou dashboard ao vivo. Resultado: produto nã
 21. CSP nonce quando tiver staging
 
 ### Decisao David
-Protocolo completo obrigatorio. Squad completa: UMA (UX/design) > Quinn (QA gate) > Dex (dev) > Quinn (QA final). Sem atalhos. YOLO mode. Autorizações em batch.
+Protocolo completo. YOLO mode. Autorizações em batch.
+
+### Correções implementadas (commit 2f2dc04, 14 arquivos)
+- Acentuação PT-BR: 9 ocorrências corrigidas (IndicarContent, DashboardLayout)
+- NaN undefined checklist: done_at = 'auto' causava formatDate NaN
+- Menção a IA removida: checklist.ts copy voltada ao cliente
+- Link indicação com vertical: /saude?ref=CODE (detecta specialty da org)
+- review-monitor: ignoreDuplicates false, atualiza author_name
+- useReplyModal: pré-preenche draft com ai_reply_draft do Claude
+- Reviews API: 'no_response' vs 'pending' (fix tab Aguardando aprovação)
+- StatusBadge: 'Sem resposta' vs 'Aguardando aprovação'
+- Botão "Otimizar meu perfil" removido do dashboard principal
+- Mapa: legenda cores + contagem bairros forte/fraco
+- NextActionsPanel: "O Destaka cuida disso automaticamente"
+- Checklist: reply_reviews automático, verify_profile com link Google
+- OptimizationConfirmCard: CTA único "Ver sugestões"
+- Deploy: Ready (Vercel)
 
 ### Aprendizados
 27. Health check de código não substitui health check de produto
