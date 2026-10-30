@@ -1,6 +1,6 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-29 (21 issues corrigidos + migração GBP API + dados reais)
-**Status:** Score real 47/100 (antes inflado por reviews fabricadas). 14 reviews reais com nomes verdadeiros. 14 respostas Claude geradas (pending). 7 concorrentes visíveis. GBP v4 descontinuada, migrado para Places API. Pendente: performance (refresh token), posts (GBP v4 sem substituto).
+**Ultima atualizacao:** 2026-10-30 (GBP v4 bloqueada, posts gerados, performance investigada)
+**Status:** Score real 47/100. 14 reviews reais. 14 respostas Claude (pending). 4 posts gerados (pending). 7 concorrentes visíveis. GBP v4 bloqueada permanentemente pelo Google (PERMISSION_DENIED). Próxima sessão: integrar com plataforma terceira (Publer/Birdeye) para posts e reviews reply.
 
 ---
 
