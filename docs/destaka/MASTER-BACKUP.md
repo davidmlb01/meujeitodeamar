@@ -1,6 +1,6 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-29 (auditoria presencial Paula: 21 issues criticos)
-**Status:** CRITICO. Score caiu de 59 para 53. Performance vazia, concorrentes sumiram, posts em branco, reviews sem respostas geradas, NaN undefined, textos sem acento, menção a IA. 21 issues documentados. Protocolo completo obrigatorio: UMA > Quinn > Dex > Quinn.
+**Ultima atualizacao:** 2026-10-29 (21 issues corrigidos + migração GBP API + dados reais)
+**Status:** Score real 47/100 (antes inflado por reviews fabricadas). 14 reviews reais com nomes verdadeiros. 14 respostas Claude geradas (pending). 7 concorrentes visíveis. GBP v4 descontinuada, migrado para Places API. Pendente: performance (refresh token), posts (GBP v4 sem substituto).
 
 ---
 
@@ -67,6 +67,23 @@ Protocolo completo. YOLO mode. Autorizações em batch.
 - Posts: test-cycle precisa session auth
 - Org IDs encontrados: f6c6416f e b2af8108
 
+### Migração GBP API
+- Google descontinuou mybusiness.googleapis.com/v4 (reviews, posts, reply, media)
+- review-monitor migrado para Places API fallback (10 reviews por ciclo, newest + most_relevant)
+- 163 reviews fabricadas deletadas, 14 reais inseridas com nomes verdadeiros
+- 14 respostas Claude geradas (pending para aprovação)
+- replyToReview/createPost: graceful fallback quando GBP v4 indisponível
+- Concorrentes: fix query user_id, 7 concorrentes visíveis
+- test-cycle: aceita admin key. run-performance: aceita sem org_id
+- Score real: 47/100 (antes 53 com dados parciais, antes 59 com reviews fabricadas)
+
+### Commits adicionais (Destaka repo)
+- `7b4a445` fix: competitors query usa user_id
+- `b177500` fix: migra reviews para Places API fallback
+- `51a357a` fix: Places API busca 10 reviews (newest + most_relevant)
+- `aaaa769` fix: test-cycle aceita x-admin-key
+- `62b6c97` fix: type error run-performance
+
 ### Aprendizados
 27. Health check de código não substitui health check de produto
 28. Dados perdidos após rotação de secrets precisam ser re-coletados ativamente
@@ -78,6 +95,9 @@ Protocolo completo. YOLO mode. Autorizações em batch.
 34. Menção a IA em copy do cliente é proibida
 35. NaN/undefined em produção é falha de QA
 36. Retrigger de collectors deve ser automático após reconexão
+37. Google descontinua APIs sem substituto. Verificar status periodicamente
+38. Reviews fabricadas inflam score. Dados reais revelam estado verdadeiro
+39. Places API antiga ainda funciona. Combinar sorts maximiza cobertura
 
 ---
 
