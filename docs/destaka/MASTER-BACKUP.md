@@ -1,6 +1,6 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-30 (GBP v4 bloqueada, posts gerados, performance investigada)
-**Status:** Score real 47/100. 14 reviews reais. 14 respostas Claude (pending). 4 posts gerados (pending). 7 concorrentes visíveis. GBP v4 bloqueada permanentemente pelo Google (PERMISSION_DENIED). Próxima sessão: integrar com plataforma terceira (Publer/Birdeye) para posts e reviews reply.
+**Ultima atualizacao:** 2026-10-30 (Zernio integrado e deployado, aguardando Paula autorizar)
+**Status:** Score 47/100. 14 reviews reais + 14 respostas Claude. 4 posts pending. 7 concorrentes. Integração Zernio implementada e deployada (posts + reviews + analytics). Profile Paula criado no Zernio. Aguardando Paula autorizar Google via Zernio (segunda-feira).
 
 ---
 
