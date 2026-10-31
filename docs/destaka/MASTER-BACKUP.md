@@ -1,6 +1,34 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-30 (Zernio integrado e deployado, aguardando Paula autorizar)
-**Status:** Score 47/100. 14 reviews reais + 14 respostas Claude. 4 posts pending. 7 concorrentes. Integração Zernio implementada e deployada (posts + reviews + analytics). Profile Paula criado no Zernio. Aguardando Paula autorizar Google via Zernio (segunda-feira).
+**Ultima atualizacao:** 2026-10-30 (7 pendencias resolvidas, deploy Ready)
+**Status:** Score 47/100. 14 reviews reais + 14 respostas Claude. 4 posts pending. 7 concorrentes (expandido para 5 max). Zernio integrado e deployado. CSP nonce implementado. Falhas silenciosas eliminadas (post-generator + instagram-sync). Performance cards com fallback. Mapa com grid 8 pontos. Migration 030 aplicada. Aguardando Paula autorizar Google via Zernio.
+
+---
+
+## Sessao 2026-10-30 (noturna): 7 Pendencias Resolvidas
+
+### Contexto
+YOLO mode. 7 frentes executadas em paralelo. Build OK, deploy Ready, QA 40/40 PASS.
+
+### Mudancas implementadas
+
+1. **CSP nonce** (proxy.ts, layout.tsx, TrackingScripts.tsx): unsafe-inline removido do script-src, nonce gerado por request via crypto.randomUUID(), passado via x-csp-nonce header. style-src mantido com unsafe-inline (86+ arquivos com inline styles)
+2. **Post-generator falhas silenciosas** (post-generator.ts): status 'failed' quando Zernio+GBP falham (antes era 'pending'). Campo error_detail. Email catch logado. Warning para org sem Zernio
+3. **Instagram-sync Zernio** (instagram-sync.ts): publish migrado para Zernio-first com fallback GBP v4. publishViaZernio helper
+4. **Performance cards** (dashboard/route.ts, MetricCard.tsx): performance_metrics table como fallback antes de gmb_metrics. "Disponivel em breve" em vez de "(coletando)"
+5. **Dashboard mapa** (MapContent.tsx, MapCard.tsx): grid 8 pontos cardeais quando zonas < 6. Mapa com 1+ zona (antes 2+). radiusKm passado
+6. **Competitors** (competitors.ts): descoberta expandida de 3 para 5, busca de 5 para 8 placeIds
+7. **Migration 030** (030_posts_error_detail.sql): coluna error_detail em posts. Aplicada via supabase db query
+
+### Commits
+- `29f2513` fix: 7 pendencias resolvidas (11 arquivos)
+- `ef6b85a` fix: add @zernio/node to committed dependencies
+
+### Aprendizados
+42. Falha silenciosa e pior que falha ruidosa. Distinguir 'pending' de 'failed'
+43. unsafe-inline no CSP anula protecao XSS. Nonce por request e o padrao correto
+44. Package instalado mas nao commitado causa build failure no Vercel
+45. Zernio analytics e post-level, nao profile-level. Nao substitui GBP Performance API
+46. Grid de pontos cardeais preenche mapa com poucos dados reais
 
 ---
 
