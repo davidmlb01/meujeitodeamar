@@ -1,6 +1,6 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-30 (7 pendencias resolvidas, deploy Ready)
-**Status:** Score 47/100. 14 reviews reais + 14 respostas Claude. 4 posts pending. 7 concorrentes (expandido para 5 max). Zernio integrado e deployado. CSP nonce implementado. Falhas silenciosas eliminadas (post-generator + instagram-sync). Performance cards com fallback. Mapa com grid 8 pontos. Migration 030 aplicada. Aguardando Paula autorizar Google via Zernio.
+**Ultima atualizacao:** 2026-10-30 (7 pendencias + geotag EXIF + migration 029 aplicada)
+**Status:** Score 47/100. 14 reviews reais + 14 respostas Claude. 4 posts pending. 5 concorrentes max. Zernio integrado. CSP nonce. Geotag EXIF nas fotos. Falhas silenciosas eliminadas. Performance cards com dados reais (Maps=890, Search=1280). Migrations 029+030 aplicadas. Aguardando Paula autorizar Google via Zernio.
 
 ---
 
@@ -23,12 +23,29 @@ YOLO mode. 7 frentes executadas em paralelo. Build OK, deploy Ready, QA 40/40 PA
 - `29f2513` fix: 7 pendencias resolvidas (11 arquivos)
 - `ef6b85a` fix: add @zernio/node to committed dependencies
 
+### Geotag EXIF integrado
+- geotagAndUpload(): busca lat/lng do gmb_profiles, aplica EXIF, upload Supabase Storage, retorna URL
+- Integrado no post-generator e instagram-sync (antes de publicar)
+- Bucket: post-images (publico). Fallback seguro se falhar
+- Commit: 1f68f3b. Deploy: Ready
+
+### Migration 029 aplicada
+- zernio_profile_id e zernio_account_id nao existiam no banco (migration nunca havia sido aplicada)
+- Aplicada via supabase db query. Profile Paula setado manualmente
+- Novos usuarios: ensureZernioProfile no OAuth callback preenche automaticamente
+
+### Dados de performance
+- performance_metrics tem dados para Paula: Maps=890, Search=1280, Website=89, Tel=45 (semana 20/10)
+- Dashboard API agora busca essa tabela como fallback. Cards vao mostrar numeros reais
+
 ### Aprendizados
 42. Falha silenciosa e pior que falha ruidosa. Distinguir 'pending' de 'failed'
 43. unsafe-inline no CSP anula protecao XSS. Nonce por request e o padrao correto
 44. Package instalado mas nao commitado causa build failure no Vercel
 45. Zernio analytics e post-level, nao profile-level. Nao substitui GBP Performance API
 46. Grid de pontos cardeais preenche mapa com poucos dados reais
+47. Migrations nao aplicadas sao bloqueadores silenciosos. Verificar schema em producao
+48. Geotag EXIF em fotos reforca geolocalizacao do perfil no Google
 
 ---
 
