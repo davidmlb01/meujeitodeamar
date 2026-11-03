@@ -1,6 +1,6 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-10-30 (7 pendencias + geotag EXIF + migration 029 aplicada)
-**Status:** Score 47/100. 14 reviews reais + 14 respostas Claude. 4 posts pending. 5 concorrentes max. Zernio integrado. CSP nonce. Geotag EXIF nas fotos. Falhas silenciosas eliminadas. Performance cards com dados reais (Maps=890, Search=1280). Migrations 029+030 aplicadas. Aguardando Paula autorizar Google via Zernio.
+**Ultima atualizacao:** 2026-11-02 (GPS EXIF real + migrations sync + probe analytics)
+**Status:** Score 47/100. 14 reviews reais + 14 respostas Claude. 4 posts pending. 5 concorrentes max. Zernio integrado. CSP nonce funcionando. GPS EXIF real (piexifjs). Migrations 001-030 sincronizadas. Probe automatico de analytics pronto. Performance dados existem no banco. Aguardando Paula autorizar Google via Zernio.
 
 ---
 
@@ -46,6 +46,43 @@ YOLO mode. 7 frentes executadas em paralelo. Build OK, deploy Ready, QA 40/40 PA
 46. Grid de pontos cardeais preenche mapa com poucos dados reais
 47. Migrations nao aplicadas sao bloqueadores silenciosos. Verificar schema em producao
 48. Geotag EXIF em fotos reforca geolocalizacao do perfil no Google
+49. Performance automatica e inegociavel. Dados congelados com data nao sao aceitaveis
+
+---
+
+## Sessao 2026-11-02: GPS EXIF + Migrations Sync + Probe Analytics
+
+### GPS EXIF real
+- piexifjs instalado e integrado no geotag.ts
+- GPSLatitude/GPSLongitude/GPSLatitudeRef/GPSLongitudeRef nativos no GPS IFD
+- Antes: coordenadas no texto da ImageDescription (IFD0). Agora: GPS nativo
+- Google da mais peso a GPS IFD nativo no ranking local
+- Commit: 09c5552. Deploy: Ready
+
+### Supabase migrations sincronizadas
+- Registry tinha 12 entradas (001-012), local tinha 30 arquivos
+- Tabelas existiam (aplicadas via db query ao longo do tempo) mas nao registradas
+- INSERT INTO schema_migrations com ON CONFLICT DO NOTHING: 001-030 sincronizadas
+- db push vai funcionar para futuras migrations
+
+### CSP nonce confirmado
+- curl https://destaka.com.br retorna `nonce-{uuid}` no script-src e x-csp-nonce header
+- Pendencia resolvida
+
+### Probe automatico Zernio analytics
+- probeAnalytics(accountId): testa getAnalytics sem filtro de post
+- Roda automaticamente em ensureZernioProfile apos accountId preenchido
+- getPerformanceViaZernio(): mapeia resposta para formato dashboard
+- Endpoint: GET /api/admin/probe-zernio-analytics (x-admin-key)
+- Commit: 9e7c7d9. Deploy: Ready
+
+### Decisao: Performance metrics
+- GBP Performance API retorna 404 (bloqueada)
+- Dados no banco sao snapshot congelado (semana 20/10)
+- PROIBIDO mostrar dados desatualizados com data em producao
+- PROIBIDO pedir ao usuario (contra conceito piloto automatico)
+- Prioridade 1: testar Zernio analytics apos Paula conectar
+- Plano B se Zernio falhar: rank tracking via Places API + metricas proprias
 
 ---
 
