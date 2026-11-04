@@ -1,6 +1,56 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-02 (auditoria tripla completa, zero findings)
-**Status:** Score 47/100. 14 reviews reais + 14 respostas Claude. 4 posts pending. 5 concorrentes max. Zernio integrado. CSP nonce. GPS EXIF real. Security A(100/100). QA 56/56. Code audit 17/17 resolvidos. Migrations sync. Probe analytics pronto. Aguardando Paula autorizar Zernio.
+**Ultima atualizacao:** 2026-11-03 (Performance API desbloqueada, dados reais populados)
+**Status:** Score 47/100. Performance API funcionando (GET direto, sem Zernio). Dados reais: Search 352, Maps 78 (outubro). 14 reviews reais. Zernio connect pendente (exige redirect flow separado). 6 bugs dashboard reportados. 10 itens estrategicos registrados.
+
+---
+
+## Sessao 2026-11-03: Performance API + Bugs + Estrategia
+
+### Performance API desbloqueada
+- Bug 1: endpoint usava POST (404). API aceita GET com query params
+- Bug 2: parser iterava so o nivel externo de multiDailyMetricTimeSeries. dailyMetric esta em dailyMetricTimeSeries[] (nivel interno)
+- Formato correto: GET locations/{id}:fetchMultiDailyMetricsTimeSeries?dailyMetrics=X&dailyRange.start_date.year=Y...
+- Dados reais inseridos: semana 26/10 (Search 352, Maps 78) e semana 02/11 (Search 49, Maps 12)
+- Cron semanal (segunda 08:00 UTC) vai manter atualizado
+- NAO precisa de Zernio para performance. Token Google com business.manage basta
+
+### Zernio connect
+- Paula logou no Destaka (OAuth Supabase), mas nao no Zernio (OAuth separado)
+- Zernio exige redirect flow para GBP (nao aceita token externo)
+- Callback handler criado: /api/zernio/callback
+- Endpoint admin criado: /api/admin/force-zernio-connect
+- Auto-redirect no dashboard: planejado para proxima sessao (nao deployado para nao interromper Paula)
+
+### Bugs dashboard (reportados por David)
+- [ ] Posts automaticos nao apareceram
+- [ ] "Melhorar o perfil" sem link para verificar
+- [ ] "Responder avaliacoes" aparecendo (deveria ser automatico)
+- [ ] Retangulo vazio abaixo dos boxes de performance
+- [ ] Concorrentes errados (CREB Botafogo vs Studio Jun / CTM)
+- [ ] Site lento ao mudar de aba
+
+### Itens estrategicos (proximos passos)
+- [ ] Usar estrutura EasySite para Destaka (Facebook page, WhatsApp bot)
+- [ ] Custo API Google direta vs Zernio (build vs buy)
+- [ ] Conexao Google + Zernio em unico login
+- [ ] Planejamento social media + atendimento usuarios
+- [ ] Relatorio mensal automatico
+- [ ] Verificar emails Resend
+- [ ] Upsell site para quem nao tem
+- [ ] Oferta SEO/Blog para quem ja tem site
+- [ ] Adicionar Studio Jun + CTM como concorrentes da Paula
+- [ ] Performance do site (lentidao ao mudar aba)
+
+### Commits
+- `3c9d4ec` fix: performance collector usa GET em vez de POST
+- `e548ec2` fix: run-performance admin endpoint usa GET
+- `a21a06d` fix: parser itera dailyMetricTimeSeries aninhado
+
+### Aprendizados
+55. POST vs GET na API do Google pode ser 404 vs 200
+56. Nesting profundo em APIs retorna zeros sem erro no parser
+57. "API bloqueada" nao significa todas as APIs. Performance funciona, Management nao
+58. Resolver o problema do cliente nao depende de resolver todos os problemas
 
 ---
 
