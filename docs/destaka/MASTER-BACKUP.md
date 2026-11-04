@@ -52,11 +52,24 @@
 - `e548ec2` fix: run-performance admin endpoint usa GET
 - `a21a06d` fix: parser itera dailyMetricTimeSeries aninhado
 
+### Principio Central (definido 03/11)
+**Tudo existe para colocar o usuario em primeiro lugar na busca do Google.**
+Cada feature serve a esse objetivo. Se nao sobe o ranking, nao deveria existir.
+Motor de ranking completo documentado no MOC (7 camadas, 20+ itens).
+
+### Concorrentes corrigidos (03/11)
+- Algoritmo buscava "saude Rio de Janeiro" (specialty null + cidade inteira)
+- Corrigido para inferir do nome + services: "quiropraxia Copacabana"
+- Studio Jun (460 reviews, 4.9) e CMT (403, 5.0) agora no dashboard
+- Paula e 3a. Meta: 1a. Gap: 291 reviews vs Studio Jun
+
 ### Aprendizados
 55. POST vs GET na API do Google pode ser 404 vs 200
 56. Nesting profundo em APIs retorna zeros sem erro no parser
 57. "API bloqueada" nao significa todas as APIs. Performance funciona, Management nao
 58. Resolver o problema do cliente nao depende de resolver todos os problemas
+59. Concorrentes sao definidos pela keyword de busca, nao pela categoria GBP. O usuario busca "quiropraxia copacabana", nao "physiotherapist Rio de Janeiro"
+60. Tudo que o produto faz tem que passar pelo filtro "isso sobe o usuario no ranking?". Se nao sobe, nao deveria existir
 
 ---
 
