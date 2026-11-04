@@ -22,12 +22,18 @@
 - Auto-redirect no dashboard: planejado para proxima sessao (nao deployado para nao interromper Paula)
 
 ### Bugs dashboard (reportados por David)
-- [ ] Posts automaticos nao apareceram
-- [ ] "Melhorar o perfil" sem link para verificar
-- [ ] "Responder avaliacoes" aparecendo (deveria ser automatico)
-- [ ] Retangulo vazio abaixo dos boxes de performance
-- [ ] Concorrentes errados (CREB Botafogo vs Studio Jun / CTM)
-- [ ] Site lento ao mudar de aba
+- [ ] Posts automaticos: cron ativo (seg/qua/sex 10h) mas BLOQUEADO por falta de zernio_account_id. 4 posts pending no banco
+- [x] "Melhorar o perfil": link direto para business.google.com/locations adicionado (commit 80d7f47)
+- [x] "Responder avaliacoes": copy corrigida para refletir que e automatico (commit 80d7f47)
+- [x] Retangulo vazio: era PatientFunnelCard sem dados. Dados de performance populados, funil vai funcionar
+- [ ] Concorrentes errados: algoritmo busca por categoria+cidade generica. Studio Jun e CTM nao encontrados no Google Places (pedir nomes exatos ao David)
+- [ ] Site lento: force-dynamic em 8 paginas do dashboard. Cada navegacao faz 4 queries Supabase (getUser + professional + org + isSubscriber). Refatoracao necessaria: mover auth para context provider no layout
+
+### Verificacoes (agentes)
+- Emails Resend: ATIVOS. 7 emails onboarding + review approval + token alerts + monthly report
+- Relatorio mensal: ATIVO. Cron dia 1 do mes 8h UTC. Compila score, reviews, posts, performance
+- Post generator: ATIVO. Cron seg/qua/sex 10h. Bloqueado por zernio_account_id
+- Inngest: 16 functions registradas e ativas
 
 ### Itens estrategicos (proximos passos)
 - [ ] Usar estrutura EasySite para Destaka (Facebook page, WhatsApp bot)
