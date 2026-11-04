@@ -18,7 +18,8 @@ Agente executa tarefa
 
 ### Copy e Texto
 - [ ] Nenhum travessão (—) em nenhum trecho — regra absoluta
-- [ ] Português correto, sem erros de grafia
+- [ ] **REVISÃO ORTOGRÁFICA OBRIGATÓRIA** antes de finalizar: acentos (ã, é, ç, ó, í, ú, â, ê, ô), vírgulas, concordância, crase. Zero tolerância. Texto voltado ao público tem que estar PERFEITO
+- [ ] Português 100% correto, sem erros de grafia, sem letras faltando
 - [ ] Tom coerente com o briefing do projeto
 - [ ] CTAs presentes onde necessário
 - [ ] Sem frases truncadas ou incompletas

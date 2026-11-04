@@ -55,6 +55,7 @@ Quando um agente esta ativo: seguir persona, expertise e workflow patterns desse
 - **NUNCA** usar travessao (—) em nenhum texto
 - **NUNCA** texto sem acentos/cedilhas (PT-BR 100% correto)
 - **NUNCA** dados falsos/mock/estimativas em interface do usuario
+- **REVISÃO ORTOGRÁFICA OBRIGATÓRIA** em TUDO que toca o público (site, email, WhatsApp, notificação, checklist, dashboard, landing page). Antes de finalizar qualquer alteração: revisar acentos, vírgulas, concordância, crase. Texto imperfeito NÃO sai para produção
 - **Quality gate**: auditoria obrigatoria antes de entregar ao David
 - **YOLO mode**: chamar David so para decisoes que realmente dependem dele
 - **Kanban**: eu movo tarefas nos MASTER-BACKUPs ([ ] > [~] > [x])
