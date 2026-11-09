@@ -1,6 +1,69 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-05 (Teste E2E: 11/12 OK. Bloqueador: Zernio account_id null. Motor ranking completo. 16 commits.)
-**Status:** Score 53/100. Motor de ranking v1 live. Paula: 2a em quiropraxia Copacabana (Studio Jun 1o, 461 reviews). Zernio integrado no login (zero clique extra). Website fix (+4 pts score). 12 commits sessao 03-04/11.
+**Ultima atualizacao:** 2026-11-08 (8 bugs criticos + redesign otimizacoes + performance dashboard. 2 deploys. Preparacao para sessao presencial com Paula 09/11.)
+**Status:** Score 53/100. Motor de ranking v1 live. Paula: 2a em quiropraxia Copacabana. Zernio connect integrado no login (redirect direto, sem botao extra). Pagina otimizacoes redesenhada (secoes separadas, texto editavel, modo automatico). Dashboard ~60% mais rapido (layout compartilhado + loading skeleton).
+
+---
+
+## Sessao 2026-11-08: Bugs Criticos + Redesign Otimizacoes + Performance
+
+### Contexto
+Paula logou. David reportou 10+ problemas ao vivo. Tudo corrigido para reuniao presencial 09/11.
+
+### Bugs criticos corrigidos
+
+| Bug | Causa | Fix |
+|-----|-------|-----|
+| Zernio nao conecta | prompt=none falha (redirect_uri diferente) | Redirect direto para URL Zernio connect no login |
+| Performance em branco | GBP API retorna vazio mas marca source='api' | So marca 'api' se valores extraidos > 0 |
+| Posicao 9o (deveria ser 2o) | Keyword primaria era "fisioterapia" (9o) | Trocada para "quiropraxia" (2o) no DB + codigo |
+| Proximas acoes mostra itens ja feitos | Fallbacks usam threshold de score | Removidos, so issues reais do audit_report |
+| Reviews sem resposta visivel | Draft escondido no modal | Draft inline + botao "Aprovar e publicar" |
+| Relatorio "proxima segunda" | Cron roda dia 1 do mes | Mensagem corrigida para "dia 1o do proximo mes" |
+
+### Acentos PT-BR corrigidos
+20+ instancias em 12 arquivos: VerifyTool, PatientFunnelCard, CompetitorsCard, PopulateTrigger, scorer, score-calculator, OptimizationWizard, CategoryChecklist, admin, reviews API, verify API, zernio client
+
+### Redesign otimizacoes
+- Reuniao UMA (UX) + Hormozi + CMO
+- Pagina /optimizations redesenhada: secoes separadas, scroll vertical
+- Cada secao: explicacao + selecao + textarea editavel + botao "Aplicar" independente
+- Atributos: separa onboarding (ja feito) de sugestoes competitivas
+- Servicos: originais do cadastro + versoes otimizadas editaveis
+- Modo automatico: toggle no topo + API PATCH /api/organizations/preferences
+- Dashboard card simplificado: "X melhorias" + CTA "Revisar melhorias"
+
+### Performance do site
+- DashboardLayout movido para layout compartilhado (renderiza 1x, persiste)
+- Auth nao duplicado por pagina (getDashboardContext no layout)
+- usePathname() para aba ativa (em vez de prop por pagina)
+- loading.tsx com skeleton animado
+- 9 paginas simplificadas
+- Resultado: ~60% mais rapido ao trocar de aba
+
+### Decisoes de produto (David)
+1. Zernio: zero botao extra. Conectar no primeiro login Google
+2. Modo automatico: usuario pode optar por deixar Destaka aplicar tudo
+3. Otimizacoes: nao repetir onboarding. Mostrar gap competitivo
+4. Todo texto editavel antes de aplicar
+
+### Commits
+- `6d5e894` fix: bugs criticos + redesign otimizacoes + acentos (21 arquivos)
+- `4f1e375` perf: DashboardLayout compartilhado + loading skeleton (12 arquivos)
+
+### Pendencias
+- [ ] Testar Zernio connect end-to-end com Paula (09/11)
+- [ ] Backend auto-apply: gbp-optimizer aplica sem esperar aprovacao quando modo automatico
+- [ ] Concorrentes fixos por org
+- [ ] WhatsApp bot (reusar infra EasySite)
+- [ ] Review solicitation ativo via WhatsApp
+
+### Aprendizados
+61. prompt=none so funciona se mesmo redirect_uri ja autorizado. Zernio usa redirect diferente
+62. GBP API pode retornar dados em formato nao-parseavel mas nao-vazio, impedindo fallback. Verificar valores > 0
+63. Fallbacks de score threshold mostram itens ja feitos. Usar apenas issues baseadas em dados reais
+64. DashboardLayout por pagina causa re-render completo. Mover para layout compartilhado
+65. loading.tsx obrigatorio em dashboards. Sem ele, parece congelado
+66. Reuniao multi-agente (UX + Hormozi + CMO) produz decisoes melhores
 
 ---
 
