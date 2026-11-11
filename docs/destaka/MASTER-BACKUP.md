@@ -52,6 +52,7 @@ EPIC-005 com 11 stories em 3 waves. 10 stories deployed, 1 pendente (WhatsApp, d
 | Landing page /r/slug 404 | google_place_id nao existe em organizations | Busca via gmb_profiles com fallback professionals |
 | Paula snapshot 0 reviews | audit_report.review_count null | Usa google_review_count (170) como fallback |
 | Slug muito longo | SQL LOWER(REPLACE) gerou slug enorme | Encurtado para "paula-bacellar" |
+| Build local quebrado | node_modules corrompido (LibraryTemplatePlugin) | rm node_modules + npm install fresh |
 
 ### Verificacoes confirmadas
 - [x] Snapshots: Paula 170, Studio Jun 460, CMT 405 + 5 concorrentes
@@ -63,7 +64,7 @@ EPIC-005 com 11 stories em 3 waves. 10 stories deployed, 1 pendente (WhatsApp, d
 - [ ] Story 5.1: WhatsApp Reviews (Meta Business API approval)
 - [ ] Velocity chart aparece apos 2+ semanas de snapshots
 - [ ] Fotos IA nos posts (Story 5.10 parcial)
-- [ ] Build local quebrado (cache node_modules). Usar tsc --noEmit + Vercel
+- [x] Build local restaurado (rm node_modules + npm install)
 
 ### Aprendizados
 67. Inngest event via POST direto ao endpoint falha em producao (requer signing). Usar inn.gs/e/{EVENT_KEY}
