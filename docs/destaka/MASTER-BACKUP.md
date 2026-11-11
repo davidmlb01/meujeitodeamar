@@ -1,6 +1,6 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-11 (EPIC-005 Core Delivery completo: 10/11 stories deployed. Wave 2 + Wave 3. 4 tabelas, 7 commits, 4 deploys.)
-**Status:** Score 58/100. Motor de ranking v2 com inteligencia competitiva. Paula: 2a em quiropraxia Copacabana, 15/16 pontos geo-grid no top 3. EPIC-005 entregue (review velocity, alertas concorrentes, previsao ultrapassagem, geo-grid slider, landing review, CTA posts, comparativo visual, monitoramento edicoes). Unica pendente: WhatsApp Reviews (Meta API approval).
+**Ultima atualizacao:** 2026-11-11 (EPIC-005 completo: 10/11 stories, 8 commits, 5 deploys. 3 fixes pos-deploy: CartoDB>OSM, landing page place_id, snapshot reviews. Landing live: destaka.com.br/r/paula-bacellar)
+**Status:** Score 58/100. Motor de ranking v2 com inteligencia competitiva. Paula: 2a em quiropraxia Copacabana, 15/16 pontos geo-grid no top 3. Landing page review live. EPIC-005 entregue. Unica pendente: WhatsApp Reviews (Meta API approval).
 
 ---
 
@@ -40,13 +40,29 @@ EPIC-005 com 11 stories em 3 waves. 10 stories deployed, 1 pendente (WhatsApp, d
 - `2327b42` feat: competitor alerts + overtake prediction (Story 5.4 + 5.5)
 - `67bfb9a` feat: unauthorized edit detection + alert (Story 5.7)
 - `3dedc03` feat: Wave 3 complete (Stories 5.8-5.11)
+- `32a0487` fix: landing page busca place_id de gmb_profiles + snapshot usa google_review_count
+- `8b20c3e` fix: geo-grid map tiles OSM em vez de CartoDB (API KEY REQUIRED)
+- `53f8460` docs: EPIC-005 status update 10/11 DONE
+
+### Fixes pos-deploy
+
+| Bug | Causa | Fix |
+|-----|-------|-----|
+| Mapa "API KEY REQUIRED" | CartoDB basemaps exigem API key | Trocado para OpenStreetMap tiles |
+| Landing page /r/slug 404 | google_place_id nao existe em organizations | Busca via gmb_profiles com fallback professionals |
+| Paula snapshot 0 reviews | audit_report.review_count null | Usa google_review_count (170) como fallback |
+| Slug muito longo | SQL LOWER(REPLACE) gerou slug enorme | Encurtado para "paula-bacellar" |
+
+### Verificacoes confirmadas
+- [x] Snapshots: Paula 170, Studio Jun 460, CMT 405 + 5 concorrentes
+- [x] Landing: destaka.com.br/r/paula-bacellar (HTTP 200, link Google Reviews correto)
+- [x] Geo-grid: mapa OSM funcional, 15/16 top 3, 1 amarelo (4o)
+- [x] EPIC-005 doc: todas as stories marcadas
 
 ### Pendencias
 - [ ] Story 5.1: WhatsApp Reviews (Meta Business API approval)
-- [ ] Verificar snapshots da Paula (competitor-monitor disparado)
-- [ ] Verificar landing page /r/{slug} da Paula
-- [ ] Encurtar review_slug da Paula
 - [ ] Velocity chart aparece apos 2+ semanas de snapshots
+- [ ] Fotos IA nos posts (Story 5.10 parcial)
 - [ ] Build local quebrado (cache node_modules). Usar tsc --noEmit + Vercel
 
 ### Aprendizados
@@ -55,6 +71,9 @@ EPIC-005 com 11 stories em 3 waves. 10 stories deployed, 1 pendente (WhatsApp, d
 69. Recharts em dark mode: usar contentStyle com background escuro no Tooltip
 70. Landing page como Server Component: tracking via insert server-side e mais confiavel que client-side
 71. CTA no prompt > CTA via API: Zernio nao suporta callToAction nativo
+72. CartoDB basemaps agora exigem API key. Usar OpenStreetMap tiles (gratuito, sem auth)
+73. google_place_id esta em gmb_profiles (via user_id), nao em organizations. Joins precisam passar por professionals
+74. audit_report.review_count pode ser null mesmo com reviews reais. Sempre usar google_review_count como fallback
 
 ---
 
