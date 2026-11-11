@@ -1,6 +1,6 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-11 (EPIC-005 completo: 10/11 stories, 8 commits, 5 deploys. 3 fixes pos-deploy: CartoDB>OSM, landing page place_id, snapshot reviews. Landing live: destaka.com.br/r/paula-bacellar)
-**Status:** Score 58/100. Motor de ranking v2 com inteligencia competitiva. Paula: 2a em quiropraxia Copacabana, 15/16 pontos geo-grid no top 3. Landing page review live. EPIC-005 entregue. Unica pendente: WhatsApp Reviews (Meta API approval).
+**Ultima atualizacao:** 2026-11-11 (EPIC-005 completo + cleanup UI + reuniao estrategica GTM. 10 commits Destaka. Concorrentes enxugados: top 3, sem insights mal feitos. Regra: nao mexer em UI/copy sem time de design.)
+**Status:** Score 58/100. Motor de ranking v2. Paula: 2a quiropraxia Copacabana, 15/16 geo-grid top 3. Pagina concorrentes limpa (top 3 so). GTM: beta fechado 10 profissionais recomendado. Pendente: WhatsApp (Meta API), pricing na landing, Kit de Reviews.
 
 ---
 
@@ -60,11 +60,28 @@ EPIC-005 com 11 stories em 3 waves. 10 stories deployed, 1 pendente (WhatsApp, d
 - [x] Geo-grid: mapa OSM funcional, 15/16 top 3, 1 amarelo (4o)
 - [x] EPIC-005 doc: todas as stories marcadas
 
+### Cleanup UI (feedback David)
+- Concorrentes: top 3 so (removidos 4 irrelevantes). Commit aa72687
+- Velocity chart: escondido com <2 pontos de dados
+- Badges "Recomendado" amarelos: removidos
+- InsightsSection "O que o Destaka faz por voce": REMOVIDA (commit f07a60b). Dados de concorrentes disfarçados de beneficio. David: "nao faz o menor sentido"
+- REGRA NOVA: nao mexer em UI/copy voltada ao usuario sem chamar time de branding/Hormozi/CMO
+
+### Reuniao Estrategica GTM (Hormozi + Board + CMO)
+- **Hormozi:** oferta incompleta. WhatsApp automatico bloqueado = promessa "piloto automatico" com buraco. Criar Kit de Aceleracao de Reviews (QR + mensagens + script + meta). Garantia: "1o lugar em 90 dias ou devolvemos"
+- **Board:** vendendo dashboard, deveria vender resultado. Pergunta do usuario: "quantos pacientes novos ganhei?". Lançar como "servico que coloca voce em primeiro" nao como "plataforma de gestao"
+- **CMO:** beta fechado 10 profissionais semana que vem (indicacao Paula + outreach). Landing com 1 CTA (diagnostico gratis). GTM aberto so apos WhatsApp + landing validada
+- **Consenso:** beta fechado, nao GTM aberto
+
 ### Pendencias
 - [ ] Story 5.1: WhatsApp Reviews (Meta Business API approval)
 - [ ] Velocity chart aparece apos 2+ semanas de snapshots
 - [ ] Fotos IA nos posts (Story 5.10 parcial)
 - [x] Build local restaurado (rm node_modules + npm install)
+- [ ] Reuniao design (UMA + Hormozi + CMO) para insights na pagina de concorrentes
+- [ ] Pricing visivel + depoimento Paula na landing /saude
+- [ ] Kit de Aceleracao de Reviews
+- [ ] REGRA: nao mexer em UI/copy sem chamar time
 
 ### Aprendizados
 67. Inngest event via POST direto ao endpoint falha em producao (requer signing). Usar inn.gs/e/{EVENT_KEY}
@@ -75,6 +92,8 @@ EPIC-005 com 11 stories em 3 waves. 10 stories deployed, 1 pendente (WhatsApp, d
 72. CartoDB basemaps agora exigem API key. Usar OpenStreetMap tiles (gratuito, sem auth)
 73. google_place_id esta em gmb_profiles (via user_id), nao em organizations. Joins precisam passar por professionals
 74. audit_report.review_count pode ser null mesmo com reviews reais. Sempre usar google_review_count como fallback
+75. NAO ir direto no codigo para UI/copy. Chamar time de design/branding primeiro. Dados de concorrentes disfarçados de beneficio nao fazem sentido para o usuario
+76. "Muito BI, pouco vantagem": dashboard deve mostrar beneficio claro, nao dados brutos. Profissional quer saber "quantos pacientes ganhei", nao "seu velocity e 2.3/sem"
 
 ---
 
