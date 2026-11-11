@@ -1,6 +1,60 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-08 (8 bugs criticos + redesign otimizacoes + performance dashboard. 2 deploys. Preparacao para sessao presencial com Paula 09/11.)
-**Status:** Score 53/100. Motor de ranking v1 live. Paula: 2a em quiropraxia Copacabana. Zernio connect integrado no login (redirect direto, sem botao extra). Pagina otimizacoes redesenhada (secoes separadas, texto editavel, modo automatico). Dashboard ~60% mais rapido (layout compartilhado + loading skeleton).
+**Ultima atualizacao:** 2026-11-11 (EPIC-005 Core Delivery completo: 10/11 stories deployed. Wave 2 + Wave 3. 4 tabelas, 7 commits, 4 deploys.)
+**Status:** Score 58/100. Motor de ranking v2 com inteligencia competitiva. Paula: 2a em quiropraxia Copacabana, 15/16 pontos geo-grid no top 3. EPIC-005 entregue (review velocity, alertas concorrentes, previsao ultrapassagem, geo-grid slider, landing review, CTA posts, comparativo visual, monitoramento edicoes). Unica pendente: WhatsApp Reviews (Meta API approval).
+
+---
+
+## Sessao 2026-11-11: EPIC-005 Core Delivery Completo
+
+### Contexto
+EPIC-005 com 11 stories em 3 waves. 10 stories deployed, 1 pendente (WhatsApp, depende Meta).
+
+### Wave 2: Inteligencia Competitiva
+
+| Story | Feature | Detalhes |
+|-------|---------|----------|
+| 5.3 | Review Velocity Dashboard | Grafico Recharts, tabela competitor_snapshots, dados semanais |
+| 5.4 | Alertas Concorrentes | Inngest competitor-alert (seg 9am UTC), email se 5+ reviews/semana |
+| 5.5 | Previsao Ultrapassagem | overtake-predictor.ts, semanas para ultrapassar, integrado no velocity |
+| 5.6 | QR Code Personalizado | Ja existia (ReviewQRCard) |
+| 5.7 | Monitoramento Edicoes | gbp-audit compara campos antes/depois, profile_change_log, email alerta |
+
+### Wave 3: Polimento
+
+| Story | Feature | Detalhes |
+|-------|---------|----------|
+| 5.8 | Geo-Grid Slider Temporal | API 8 semanas historico, botoes semana no GeoGridMap |
+| 5.9 | Landing Page Review | /r/[slug], visual Destaka, review_link_clicks tracking |
+| 5.10 | CTA nos Posts | Prompt exige CTA no final de cada post |
+| 5.11 | Comparativo Visual | CompetitiveTimeline dual-axis (posicao + reviews), pagina Concorrentes |
+
+### Tabelas criadas
+- `competitor_snapshots` (org_id, competitor_id, name, review_count, avg_rating, snapshot_date, is_self)
+- `profile_change_log` (org_id, changes jsonb, detected_at, source)
+- `review_link_clicks` (org_id, clicked_at)
+- Coluna `review_slug` em organizations
+
+### Commits
+- `c5968bb` feat: geo-grid visibility map dashboard component
+- `eb72a2f` feat: review velocity dashboard (Story 5.3)
+- `2327b42` feat: competitor alerts + overtake prediction (Story 5.4 + 5.5)
+- `67bfb9a` feat: unauthorized edit detection + alert (Story 5.7)
+- `3dedc03` feat: Wave 3 complete (Stories 5.8-5.11)
+
+### Pendencias
+- [ ] Story 5.1: WhatsApp Reviews (Meta Business API approval)
+- [ ] Verificar snapshots da Paula (competitor-monitor disparado)
+- [ ] Verificar landing page /r/{slug} da Paula
+- [ ] Encurtar review_slug da Paula
+- [ ] Velocity chart aparece apos 2+ semanas de snapshots
+- [ ] Build local quebrado (cache node_modules). Usar tsc --noEmit + Vercel
+
+### Aprendizados
+67. Inngest event via POST direto ao endpoint falha em producao (requer signing). Usar inn.gs/e/{EVENT_KEY}
+68. Supabase upsert com onConflict em colunas compostas funciona, mas unique constraint precisa cobrir todas as colunas
+69. Recharts em dark mode: usar contentStyle com background escuro no Tooltip
+70. Landing page como Server Component: tracking via insert server-side e mais confiavel que client-side
+71. CTA no prompt > CTA via API: Zernio nao suporta callToAction nativo
 
 ---
 
