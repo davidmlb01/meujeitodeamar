@@ -73,15 +73,21 @@ EPIC-005 com 11 stories em 3 waves. 10 stories deployed, 1 pendente (WhatsApp, d
 - **CMO:** beta fechado 10 profissionais semana que vem (indicacao Paula + outreach). Landing com 1 CTA (diagnostico gratis). GTM aberto so apos WhatsApp + landing validada
 - **Consenso:** beta fechado, nao GTM aberto
 
-### Pendencias
-- [ ] Story 5.1: WhatsApp Reviews (Meta Business API approval)
-- [ ] Velocity chart aparece apos 2+ semanas de snapshots
-- [ ] Fotos IA nos posts (Story 5.10 parcial)
-- [x] Build local restaurado (rm node_modules + npm install)
-- [ ] Reuniao design (UMA + Hormozi + CMO) para insights na pagina de concorrentes
-- [ ] Pricing visivel + depoimento Paula na landing /saude
-- [ ] Kit de Aceleracao de Reviews
-- [ ] REGRA: nao mexer em UI/copy sem chamar time
+### Conclusao
+- Landing /saude ja existe (694 linhas) e esta posicionada corretamente
+- Pricing R$197 no schema mas nao visivel na pagina
+- David vai pedir depoimento da Paula e confirmar preco
+
+### Proximos passos (David decide prioridade 12/11)
+- [ ] Pricing visivel na /saude (depende David confirmar valor)
+- [ ] Kit de Aceleracao de Reviews (sem bloqueador, pode comecar)
+- [ ] Testar onboarding completo com 2o cliente
+- [ ] Depoimento Paula (David vai pedir)
+- [ ] Lista 10 profissionais para beta fechado
+- [ ] Story 5.1: WhatsApp Reviews (Meta API approval)
+- [ ] Reuniao design para insights pagina concorrentes
+- [ ] Velocity chart (apos 2+ semanas snapshots)
+- [x] Build local restaurado
 
 ### Aprendizados
 67. Inngest event via POST direto ao endpoint falha em producao (requer signing). Usar inn.gs/e/{EVENT_KEY}
