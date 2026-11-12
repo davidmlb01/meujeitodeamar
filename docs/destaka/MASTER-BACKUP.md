@@ -1,6 +1,52 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-11 (EPIC-005 completo + cleanup UI + reuniao estrategica GTM. 10 commits Destaka. Concorrentes enxugados: top 3, sem insights mal feitos. Regra: nao mexer em UI/copy sem time de design.)
-**Status:** Score 58/100. Motor de ranking v2. Paula: 2a quiropraxia Copacabana, 15/16 geo-grid top 3. Pagina concorrentes limpa (top 3 so). GTM: beta fechado 10 profissionais recomendado. Pendente: WhatsApp (Meta API), pricing na landing, Kit de Reviews.
+**Ultima atualizacao:** 2026-11-12 (Zernio removido do login, banner na dashboard. WhatsApp share para reviews. GBP API direta: gratuita, formulario preparado, 14 dias aprovacao. Elimina Zernio + custo variavel.)
+**Status:** Score 58/100. Motor de ranking v2. Paula: 2a quiropraxia Copacabana, 15/16 geo-grid top 3. Login limpo (sem Zernio). Aplicacao GBP API direta pendente (David submeter). Beta fechado em preparacao.
+
+---
+
+## Sessao 2026-11-12: Zernio fora do login + WhatsApp share + GBP API direta
+
+### Mudancas implementadas
+
+| Mudanca | Commit | Detalhe |
+|---------|--------|---------|
+| Botao WhatsApp share | 3f25cfc | navigator.share() + wa.me fallback, mensagem com tom de gratidao |
+| Zernio removido do login | 294d518 | Callback vai direto pro dashboard. Banner na dash para opt-in |
+| Banner "Ative a publicacao" | 294d518 | So aparece sem zernio_account_id. Sem mencao a Zernio |
+| Cursor pointer global | e3eb8b3 | CSS: button, a, select, summary = cursor:pointer |
+| Texto banner ajustado | e3eb8b3 | Sem "automaticamente", sem "10 segundos" |
+
+### Pesquisa GBP API direta
+
+A GBP API e gratuita e faz posts + reviews + profile data. Processo:
+- Formulario gratis em developers.google.com/my-business/content/prereqs
+- Aprovacao em 14 dias, 300 QPM
+- Destaka precisa ser manager no perfil do cliente (1 aceite email, unica vez)
+- Elimina Zernio, elimina tela OAuth extra, elimina custo variavel
+
+Comparativo com 50 clientes:
+
+| Opcao | Custo/mes | OAuth extra |
+|---|---|---|
+| API direta | R$0 | Nao |
+| Zernio (atual) | ~R$810 | Sim |
+| SocialAPI.ai | ~R$545 | Provavel |
+
+Google Cloud project: 248596818772. Texto do formulario preparado.
+
+### Pendencias
+- [ ] David: submeter formulario GBP API
+- [ ] David: habilitar 3 APIs no Cloud Console
+- [ ] Pricing visivel na /saude (R$197)
+- [ ] Kit de Aceleracao de Reviews
+- [ ] Depoimento Paula
+- [ ] Lista 10 profissionais beta
+
+### Aprendizados
+77. GBP API nao foi "fechada". O acesso e gratuito mas precisa de aprovacao manual (14 dias). "Approved partners" = quem preencheu o formulario, nao um programa pago
+78. Zernio so e necessario para publicar posts e responder reviews. Performance, audit, geo, score funcionam sem ele
+79. navigator.share() no mobile abre sheet nativo do celular (WhatsApp, SMS, qualquer app). Melhor que wa.me direto
+80. Manager invite: cliente aceita 1 email do Google, unica vez. Pode entrar no onboarding
 
 ---
 
