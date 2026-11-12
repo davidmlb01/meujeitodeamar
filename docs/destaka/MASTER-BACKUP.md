@@ -1,6 +1,6 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-12 (Zernio removido do login, banner na dashboard. WhatsApp share para reviews. GBP API direta: gratuita, formulario preparado, 14 dias aprovacao. Elimina Zernio + custo variavel.)
-**Status:** Score 58/100. Motor de ranking v2. Paula: 2a quiropraxia Copacabana, 15/16 geo-grid top 3. Login limpo (sem Zernio). Aplicacao GBP API direta pendente (David submeter). Beta fechado em preparacao.
+**Ultima atualizacao:** 2026-11-12 (Zernio fora do login, banner na dash. Kit de Reviews imprimivel. GBP API v4 BLOQUEADA, Zernio mantido. Beta fechado em preparacao.)
+**Status:** Score 58/100. Motor de ranking v2. Paula: 2a quiropraxia Copacabana, 15/16 geo-grid top 3. Login limpo. Kit Reviews pronto. Pendente: depoimento Paula, lista 10 profissionais, teste onboarding 2o cliente.
 
 ---
 
@@ -32,21 +32,27 @@ Comparativo com 50 clientes:
 | Zernio (atual) | ~R$810 | Sim |
 | SocialAPI.ai | ~R$545 | Provavel |
 
-Google Cloud project: 248596818772. Texto do formulario preparado.
+Google Cloud project: 248596818772.
 
-### Pendencias
-- [ ] David: submeter formulario GBP API
-- [ ] David: habilitar 3 APIs no Cloud Console
-- [ ] Pricing visivel na /saude (R$197)
-- [ ] Kit de Aceleracao de Reviews
-- [ ] Depoimento Paula
-- [ ] Lista 10 profissionais beta
+**GBP API v4 BLOQUEADA:** mybusiness.googleapis.com removida da biblioteca do Cloud Console. Projetos novos nao conseguem ativar. Testado: 403 em listReviews, listPosts, createPost. Zernio mantido (acesso legado). NAO TENTAR NOVAMENTE.
+
+**Kit de Reviews implementado** (commit 5b0e286): /dashboard/kit-reviews. Cartao A5 imprimivel + 3 mensagens WhatsApp + meta semanal.
+
+### Pendencias (beta)
+- [x] Kit de Aceleracao de Reviews
+- [ ] Depoimento Paula (David vai pedir)
+- [ ] Lista 10 profissionais (David monta)
+- [ ] Testar onboarding 2o cliente
+- [ ] Remover /api/admin/test-gbp-direct (temporario)
 
 ### Aprendizados
-77. GBP API nao foi "fechada". O acesso e gratuito mas precisa de aprovacao manual (14 dias). "Approved partners" = quem preencheu o formulario, nao um programa pago
+77. GBP API v4 (posts/reviews) esta BLOQUEADA para projetos novos. mybusiness.googleapis.com removida da biblioteca. Formulario de aplicacao so cobre APIs novas. NAO TENTAR NOVAMENTE
 78. Zernio so e necessario para publicar posts e responder reviews. Performance, audit, geo, score funcionam sem ele
 79. navigator.share() no mobile abre sheet nativo do celular (WhatsApp, SMS, qualquer app). Melhor que wa.me direto
 80. Manager invite: cliente aceita 1 email do Google, unica vez. Pode entrar no onboarding
+81. Nao refazer pesquisas/testes que ja foram feitos. Verificar contexto existente (codigo, comentarios, sessoes anteriores) antes de propor caminhos
+82. Fluxo de vendas: landing > diagnostico > proposta com pricing. Pricing NAO aparece na landing. Sempre foi assim
+83. Kit de Reviews como pagina imprimivel (Ctrl+P) em vez de PDF gerado. Sem dependencia extra, mesmo resultado
 
 ---
 
