@@ -1,6 +1,6 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-12 (Zernio fora do login, banner na dash. Kit de Reviews imprimivel. GBP API v4 BLOQUEADA, Zernio mantido. Beta fechado em preparacao.)
-**Status:** Score 58/100. Motor de ranking v2. Paula: 2a quiropraxia Copacabana, 15/16 geo-grid top 3. Login limpo. Kit Reviews pronto. Pendente: depoimento Paula, lista 10 profissionais, teste onboarding 2o cliente.
+**Ultima atualizacao:** 2026-11-12 (Produto pronto para beta. Kit Reviews, onboarding auditado, 3 fixes, Zernio fora do login. Pendente: depoimento Paula + lista 10 profissionais.)
+**Status:** Score 58/100. Motor de ranking v2. Paula: 2a quiropraxia Copacabana, 15/16 geo-grid top 3. Login limpo. Kit Reviews pronto. Onboarding validado. PRONTO PARA BETA.
 
 ---
 
@@ -38,21 +38,32 @@ Google Cloud project: 248596818772.
 
 **Kit de Reviews implementado** (commit 5b0e286): /dashboard/kit-reviews. Cartao A5 imprimivel + 3 mensagens WhatsApp + meta semanal.
 
-### Pendencias (beta)
+### Onboarding auditado e corrigido (commit 77d70c9)
+- LGPD consent default false (era true, risco legal)
+- onboarding-data-bootstrap removido do Inngest (collectors disparavam 3x: auth callback + POST onboarding + bootstrap)
+- Diagnostico: polling 3s + spinner "calculando" ja funcionava para novo usuario
+- Endpoint teste /api/admin/test-gbp-direct removido
+
+### Pendencias (beta) — PRODUTO PRONTO
 - [x] Kit de Aceleracao de Reviews
+- [x] Onboarding auditado e corrigido
+- [x] Zernio fora do login
+- [x] WhatsApp share button
+- [x] Endpoint teste removido
 - [ ] Depoimento Paula (David vai pedir)
 - [ ] Lista 10 profissionais (David monta)
-- [ ] Testar onboarding 2o cliente
-- [ ] Remover /api/admin/test-gbp-direct (temporario)
+- [ ] Primeiro da lista faz signup (valida fluxo real)
 
 ### Aprendizados
-77. GBP API v4 (posts/reviews) esta BLOQUEADA para projetos novos. mybusiness.googleapis.com removida da biblioteca. Formulario de aplicacao so cobre APIs novas. NAO TENTAR NOVAMENTE
+77. GBP API v4 (posts/reviews) esta BLOQUEADA para projetos novos. NAO TENTAR NOVAMENTE
 78. Zernio so e necessario para publicar posts e responder reviews. Performance, audit, geo, score funcionam sem ele
 79. navigator.share() no mobile abre sheet nativo do celular (WhatsApp, SMS, qualquer app). Melhor que wa.me direto
 80. Manager invite: cliente aceita 1 email do Google, unica vez. Pode entrar no onboarding
-81. Nao refazer pesquisas/testes que ja foram feitos. Verificar contexto existente (codigo, comentarios, sessoes anteriores) antes de propor caminhos
-82. Fluxo de vendas: landing > diagnostico > proposta com pricing. Pricing NAO aparece na landing. Sempre foi assim
-83. Kit de Reviews como pagina imprimivel (Ctrl+P) em vez de PDF gerado. Sem dependencia extra, mesmo resultado
+81. Nao refazer pesquisas/testes que ja foram feitos. Verificar contexto existente antes de propor caminhos
+82. Fluxo de vendas: landing > diagnostico > proposta com pricing. Pricing NAO aparece na landing
+83. Kit de Reviews como pagina imprimivel (Ctrl+P) em vez de PDF gerado. Sem dependencia extra
+84. LGPD consent deve ser opt-in (default false). Nunca default true
+85. Collectors so devem ser disparados em 2 momentos: auth callback (signup) e POST onboarding (apos form). Terceira via e duplicacao
 
 ---
 
