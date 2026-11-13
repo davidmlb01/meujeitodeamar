@@ -1,6 +1,40 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-12 (Produto pronto para beta. Kit Reviews, onboarding auditado, 3 fixes, Zernio fora do login. Pendente: depoimento Paula + lista 10 profissionais.)
-**Status:** Score 58/100. Motor de ranking v2. Paula: 2a quiropraxia Copacabana, 15/16 geo-grid top 3. Login limpo. Kit Reviews pronto. Onboarding validado. PRONTO PARA BETA.
+**Ultima atualizacao:** 2026-11-13 (Auditoria signup: double checkout bloqueado, subscriber sem onboarding corrigido, collectors deduplicados, erros silenciosos removidos. Funil "Seus Clientes" corrigido.)
+**Status:** Score 58/100. Motor de ranking v2. Paula: 2a quiropraxia Copacabana, 15/16 geo-grid top 3. Login limpo. Kit Reviews pronto. Onboarding validado. Signup auditado. PRONTO PARA BETA.
+
+---
+
+## Sessao 2026-11-13: Auditoria de Signup + Fix Funil Performance
+
+### Auditoria completa do fluxo de signup
+
+Fluxo mapeado: landing > login (Google OAuth) > callback (cria org + professional + tokens) > diagnostico (score) > Stripe checkout > onboarding (7 etapas) > dashboard.
+
+### Fixes aplicados (commit fbb41ce)
+
+| # | Severidade | Issue | Fix |
+|---|-----------|-------|-----|
+| 1 | CRITICAL | Subscriber podia pagar 2x (checkout nao verificava subscription) | isActiveSubscriber() no inicio do checkout route |
+| 2 | MEDIUM | Subscriber sem onboarding preso no diagnostico | CTA "Completar meu cadastro" + redirect /onboarding |
+| 3 | LOW | Collectors duplicados 2x (auth callback + onboarding POST) | Auth callback dispara apenas gbp.audit |
+| 4 | LOW | Erro silencioso no CTA (.catch vazio) | Alert com mensagem descritiva |
+
+Arquivos modificados: stripe/checkout/route.ts, diagnostico/page.tsx, diagnostico/route.ts, OfferSection.tsx, StickyCTA.tsx, useDiagnostico.ts, auth/callback/route.ts
+
+### Fix funil "Seus Clientes" (commit 654949b)
+
+**Problema:** GBP Performance API nao tem metrica de "profile views". Collector copiava impressoes para views, resultando em numeros identicos no funil (71 encontraram = 71 viram perfil).
+
+**Fix:** Funil de 3 etapas para 2 (encontraram > tomaram acao). Adicionado breakdown Busca/Maps e taxa de conversao.
+
+Arquivos: PatientFunnelCard.tsx, performance-collector.ts
+
+### Aprendizados
+
+86. GBP Performance API (businessprofileperformance/v1) so tem BUSINESS_IMPRESSIONS, nao tem "profile views" separado
+87. Checkout route DEVE verificar subscription ativa antes de criar sessao Stripe
+88. Dados duplicados no funil enganam o usuario. Melhor mostrar menos etapas com dados reais
+89. Auth callback de novo usuario so precisa disparar gbp.audit (popula diagnostico). Os demais collectors ficam no onboarding POST
 
 ---
 
