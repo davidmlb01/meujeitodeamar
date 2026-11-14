@@ -41,6 +41,20 @@ checkout/route.ts (linhas 126-130):
 - Plugin `tools` v0.20.0 instalado
 - MCP Stripe em ~/.claude.json (url: https://mcp.stripe.com/), nao carregou na sessao (requer restart)
 
+### EPIC-006: Personalização Multi-Vertical (Waves 1-4 DONE)
+
+7 falhas sistêmicas identificadas e corrigidas:
+
+| Wave | Status | Commits | Escopo |
+|------|--------|---------|--------|
+| 1. Infra | DONE | 9afab94 | VerticalVocab expandido (8 campos, 5 verticais novas, getEngineContext()). Specialty editável no onboarding |
+| 2. Engines IA | DONE | ba459ba | 7 engines convertidos (post, review, audit, optimizer, competitor, compliance, analyzer) |
+| 3. Competitors | DONE | 5eb1b74 | PlacesClient multi-vertical. Race condition audit/optimizer corrigida |
+| 4. UI Copy | DONE | 5eb1b74 | 12+ arquivos, zero "pacientes/clínica" hardcoded |
+| 5. Validação | PENDENTE | - | Test suite com 3 perfis (saude, floricultura, jurídico) |
+
+Doc: docs/epics/EPIC-006-multi-vertical-personalization.md
+
 ### Aprendizados
 
 90. Stripe Coupon != Promotion Code. Coupon e a regra de desconto. Promotion Code e o codigo digitavel. Para o cliente usar no checkout com allow_promotion_codes, precisa criar os dois
