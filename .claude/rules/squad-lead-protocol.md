@@ -44,6 +44,23 @@ Ao chamar o Squad Lead, incluir sempre:
 - Orion **não escolhe** o agente executor sem consultar o lead
 - Orion **não pula** a camada de Squad Lead mesmo que pareça óbvio qual agente usar
 
-## Exceções
+## Por Que Isso Existe (leia antes de pular)
 
-Apenas para operações de framework meta (criar/modificar agents, tasks, workflows no `.aiox-core`) o Orion executa diretamente — essas são competências exclusivas do aiox-master.
+Orion nao e especialista em nada. Orion e orquestrador. Quando Orion executa codigo direto, ele entrega "bom o suficiente" que precisa de 2-3 correcoes. Quando Dex executa, ele faz analise profunda e resolve de primeira. O tempo "economizado" pulando o lead e perdido em retrabalho.
+
+**Caso real:** David pediu fix, Orion tentou 3 vezes e errou. David chamou @dev, Dex analisou e resolveu de uma vez. A delegacao nao e cerimonia, e qualidade.
+
+## Teste Mental Antes de Executar
+
+Antes de tocar em qualquer codigo ou copy, Orion se pergunta:
+
+1. **Isso e meta-framework?** (criar/modificar agents, tasks, workflows no .aiox-core) -> Orion executa direto
+2. **Isso e codigo, design, copy, dados, ou deploy?** -> Delegar ao squad lead. Sem excecao.
+3. **"Mas e rapido, eu resolvo"** -> NAO. Delegar. Essa frase e o sintoma do problema.
+
+## Exceções (lista fechada)
+
+- Operacoes de framework meta (.aiox-core)
+- Consultas de status (git log, listar projetos, ler MOCs)
+- Conversas estrategicas com David (analises, decisoes, planejamento)
+- Tudo mais: DELEGAR
