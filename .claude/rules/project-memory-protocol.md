@@ -48,20 +48,36 @@ type: project
 **How to apply:** Ao perguntar sobre {projeto}, ler este arquivo antes de qualquer resposta.
 ```
 
-## Processo de Fim de Sessão (TODOS os projetos)
+## Processo de Fim de Sessao — INGEST (obrigatorio)
 
-Ao fim de qualquer sessão de trabalho:
+Ao fim de qualquer sessao de trabalho, aplicar o INGEST do wiki (ver `WIKI-SCHEMA.md` no vault):
 
-1. Listar todos os projetos tocados na sessão
-2. Para cada projeto: atualizar `project_{nome}_complete.md` com decisões novas e estado atual
-3. Atualizar MEMORY.md se necessário (nova entrada ou descrição desatualizada)
-4. Commit + push dos MASTER-BACKUPs modificados
+1. Atualizar MOC do projeto no Obsidian
+2. Para cada decisao tomada: criar/atualizar pagina em `decisions/`
+3. Para cada bug/erro encontrado: criar pagina em `learnings/`
+4. Para cada pattern reutilizavel: criar em `patterns/`
+5. Para cada entidade nova: criar/atualizar em `entities/`
+6. Atualizar MASTER-BACKUP no BIG HEAD
+7. Commit + push
 
-## Projetos Ativos Conhecidos (atualizar conforme crescem)
+## Processo de Inicio de Sessao — QUERY (obrigatorio)
 
-| Projeto | MASTER-BACKUP | Arquivo Memória |
-|---------|--------------|-----------------|
-| Freud (meujeitodeamar) | `docs/MASTER-BACKUP.md` | `project_freud_complete.md` |
-| EasySite | `docs/easysite/MASTER-BACKUP.md` | `project_easysite_complete.md` |
-| GMM | — | `project_gmm_complete.md` |
-| UNLMTD | — | `project_unlmtd_brandbook.md` |
+Antes de comecar qualquer tarefa tecnica:
+
+1. Consultar `patterns/` por padroes relevantes ao que vai ser feito
+2. Consultar `learnings/` por erros passados no mesmo dominio
+3. Consultar `entities/` da ferramenta/servico envolvido
+
+## Vault Wiki Structure
+
+```
+Joker's Mind/
+  projects/     # MOC por projeto (status, decisoes, links)
+  entities/     # Pessoas, empresas, ferramentas, servicos
+  patterns/     # Padroes reutilizaveis entre projetos
+  decisions/    # ADRs (por que escolhemos X em vez de Y)
+  learnings/    # Erros, bugs, fixes, o que aprendemos
+  reference/    # Protocolos, workflows, brandbooks
+```
+
+Schema completo: `WIKI-SCHEMA.md` no vault
