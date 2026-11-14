@@ -73,6 +73,27 @@ Dois tracks no mesmo sistema (migration 028, webhook route.ts):
 - Link: destaka.com.br?ref=MARINABELA
 - Fluxo completo: link > cookie > checkout aplica desconto > metadata grava > webhook cria referral > invoice.paid calcula comissao
 
+### Fix critico: score do dashboard do usuario (commit cee5a17)
+
+Colunas legadas do banco estavam mapeadas erradas na API /api/dashboard:
+- `visibilidade` = keywords (scorer), mas dashboard lia como `score_posts`
+- `retencao` = alcance_geo (scorer), mas dashboard lia como `score_servicos`
+- `conversao` = conteudo (scorer), mas dashboard lia como `score_atributos`
+
+Resultado: "Novidades no Google" mostrava 2/15 (keywords) em vez dos 6 posts reais publicados. "Recursos do negocio" mostrava 10/5 (conteudo, sem cap).
+
+Fix: API agora busca dados reais:
+- Posts: `count` de posts com status=published nos ultimos 30 dias
+- Servicos: `services[]` da org + details do scorer
+- Atributos: `details.attributes` do scorer com fallback
+
+Cap: `Math.min(score, maxScore)` no makeCategory + `Math.min(percentage, 100)` no ScoreCard.
+
+### Aprendizados
+102. Colunas legadas de score (visibilidade, retencao, conversao) NAO correspondem ao que o nome sugere. Sempre consultar toLegacyBreakdown() para entender o mapeamento real
+103. Places API nao retorna reviewsRepliedCount, lastPostDaysAgo, servicesCount nem attributesCount. Scorer baseado so em Places API sempre subestima o score
+104. Supabase `select('id', { count: 'exact', head: true })` retorna count no `.count`, nao no `.data`
+
 ### Cleanup de dados
 
 - UNLMTD deletada do Supabase (perfil teste, score 32, puxava metricas)
