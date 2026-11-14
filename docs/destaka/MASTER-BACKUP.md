@@ -51,13 +51,21 @@ checkout/route.ts (linhas 126-130):
 | 2. Engines IA | DONE | ba459ba | 7 engines convertidos (post, review, audit, optimizer, competitor, compliance, analyzer) |
 | 3. Competitors | DONE | 5eb1b74 | PlacesClient multi-vertical. Race condition audit/optimizer corrigida |
 | 4. UI Copy | DONE | 5eb1b74 | 12+ arquivos, zero "pacientes/clínica" hardcoded |
-| 5. Validação | PENDENTE | - | Test suite com 3 perfis (saude, floricultura, jurídico) |
+| 5. Validação | DONE | 5cc5106 | Test suite 63/63 passando (saude, flores, jurídico) |
 
 Doc: docs/epics/EPIC-006-multi-vertical-personalization.md
 
 ### Aprendizados
 
 90. Stripe Coupon != Promotion Code. Coupon e a regra de desconto. Promotion Code e o codigo digitavel. Para o cliente usar no checkout com allow_promotion_codes, precisa criar os dois
+91. Stripe CLI `stripe post /v1/promotion_codes` usa formato novo: `promotion[type]=coupon` e `promotion[coupon]=ID`
+92. Stripe CLI requer `--live` flag para operar em producao
+93. Stripe MCP configurado como HTTP MCP precisa de restart do Claude Code para carregar tools
+94. NUNCA construir produto inteiro testando com um unico perfil. Testar com pelo menos 3 verticais diferentes desde o inicio
+95. Fallbacks de IA NUNCA devem assumir um nicho especifico. DEFAULT deve ser generico o suficiente para qualquer negocio
+96. getEngineContext() e o contrato central: todo engine de IA, todo email, toda UI deve passar por ele. Sem exceção
+97. detectSegment() so funciona com categorias em portugues. Categorias GBP em ingles caem no default
+98. Race conditions em Inngest: se funcao B depende do output de A, B deve verificar se A completou antes de rodar Coupon e a regra de desconto. Promotion Code e o codigo digitavel. Para o cliente usar no checkout com allow_promotion_codes, precisa criar os dois
 91. Stripe CLI `stripe post /v1/promotion_codes` usa formato novo: `promotion[type]=coupon` e `promotion[coupon]=ID` (nao mais `-d coupon=ID` direto)
 92. Stripe CLI requer `--live` flag para operar em producao. Sem ela, recusa o comando
 93. Stripe MCP configurado como HTTP MCP (type: http, url: https://mcp.stripe.com/) precisa de restart do Claude Code para carregar tools
