@@ -1,6 +1,6 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-14 (Redesign admin dashboard completo. Paleta verde premium. Sparklines, sombras, gradientes.)
-**Status:** Score 58/100. Motor de ranking v2. Paula: 2a quiropraxia Copacabana, 15/16 geo-grid top 3. Login limpo. Kit Reviews pronto. Onboarding validado. Signup auditado. Admin redesenhado. PRONTO PARA BETA.
+**Ultima atualizacao:** 2026-11-14 (Redesign admin + fix RLS + fix build Vercel + cleanup post fantasma. Deploy em producao OK.)
+**Status:** Paula score 70 (forte), pagante ativa. UNLMTD teste score 32. Admin redesenhado e deployed. PRONTO PARA BETA.
 
 ---
 
@@ -27,11 +27,19 @@ Uma (UX) criou design brief > Quinn (QA) rodou quality gate > Dex (Dev) implemen
 - FAIL corrigido: waiver tipografia para UI chrome de dashboard (min 11px)
 - Design brief v1.1: docs/design-briefs/admin-dashboard-redesign.md
 
+### Bugs corrigidos em producao
+1. **RLS bloqueava admin (CRITICO):** createServiceClient (do @supabase/ssr) incluia cookies de sessao do usuario logado. Mesmo com service_role_key, o Supabase aplicava RLS via auth.uid(). Admin so via a org onde era professional. Fix: trocar para createClient direto do @supabase/supabase-js sem cookies
+2. **Build Vercel falha:** upgrade/page.tsx tinha 'use client' mas importava getDashboardContext (usa next/headers). Fix: extrair UpgradeContent.tsx como Client Component separado
+3. **Post fantasma UNLMTD:** post educativo de 14/out com conteudo generico errado ficava como "1 pendente". Deletado via Supabase REST API
+
 ### Aprendizados
 94. Server Components do Next.js nao suportam event handlers (onMouseEnter etc). Usar CSS :hover
 95. className duplicado em JSX causa build error silencioso (segundo atributo sobrescreve o primeiro)
 96. CSP strict bloqueia eval() que React precisa em dev mode. Adicionar unsafe-eval so em NODE_ENV !== production
 97. Turbopack pode ter erros intermitentes com next/headers que nao afetam dev server
+98. Ao bypassar auth para preview, lembrar que o middleware/proxy TAMBEM faz redirect (nao so o layout)
+99. createServiceClient do @supabase/ssr SEMPRE inclui cookies. Para queries admin que precisam ver tudo, usar createClient direto do @supabase/supabase-js com service_role_key
+100. Client Component ('use client') nao pode importar modulos que usam next/headers. Separar em arquivo proprio
 98. Ao bypassar auth para preview, lembrar que o middleware/proxy tambem faz redirect (nao so o layout)
 
 ### Commit
