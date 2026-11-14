@@ -1,6 +1,41 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-14 (Diagnostico cupom Paula. Cupom Marina criado. Stripe CLI instalada.)
-**Status:** Score 58/100. Motor de ranking v2. Paula: 2a quiropraxia Copacabana, 15/16 geo-grid top 3. Login limpo. Kit Reviews pronto. Onboarding validado. Signup auditado. PRONTO PARA BETA.
+**Ultima atualizacao:** 2026-11-14 (Redesign admin dashboard completo. Paleta verde premium. Sparklines, sombras, gradientes.)
+**Status:** Score 58/100. Motor de ranking v2. Paula: 2a quiropraxia Copacabana, 15/16 geo-grid top 3. Login limpo. Kit Reviews pronto. Onboarding validado. Signup auditado. Admin redesenhado. PRONTO PARA BETA.
+
+---
+
+## Sessao 2026-11-14 (tarde): Redesign Admin Dashboard
+
+### Protocolo de execucao
+Uma (UX) criou design brief > Quinn (QA) rodou quality gate > Dex (Dev) implementou.
+
+### Componentes novos
+- `AdminSidebar.tsx`: sidebar 240px colapsavel, 5 nav items, badge de alertas, Client Component
+- `AdminAlertBar.tsx`: barra condicional (tokens quebrados + itens pendentes)
+- `admin-tokens.css`: 32 tokens CSS (paleta verde #051F20 a #DAF1DE, sombras sm/md/lg, gradientes)
+- `ConversionDonutChart`: donut de conversao (PieChart Recharts, dados existentes)
+
+### Visual
+- KPI cards: icones 44px em containers coloridos, numeros 32px/900, sparklines SVG inline (MRR, Score, Leads)
+- Sombras em camadas com hover via CSS (Server Components nao suportam onMouse)
+- Gradientes sutis em cards de destaque
+- Sidebar arredondada (border-radius 0 20px 20px 0) com sombra profunda
+- Tabelas com cabecalhos explicitos (11px/700 uppercase)
+
+### QA gate
+- FAIL corrigido: contraste text-muted #4A7A66 > #7AB49A
+- FAIL corrigido: waiver tipografia para UI chrome de dashboard (min 11px)
+- Design brief v1.1: docs/design-briefs/admin-dashboard-redesign.md
+
+### Aprendizados
+94. Server Components do Next.js nao suportam event handlers (onMouseEnter etc). Usar CSS :hover
+95. className duplicado em JSX causa build error silencioso (segundo atributo sobrescreve o primeiro)
+96. CSP strict bloqueia eval() que React precisa em dev mode. Adicionar unsafe-eval so em NODE_ENV !== production
+97. Turbopack pode ter erros intermitentes com next/headers que nao afetam dev server
+98. Ao bypassar auth para preview, lembrar que o middleware/proxy tambem faz redirect (nao so o layout)
+
+### Commit
+01ca3e4 feat(admin): redesign completo do dashboard administrativo
 
 ---
 
