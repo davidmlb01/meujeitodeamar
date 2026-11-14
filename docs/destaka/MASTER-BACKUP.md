@@ -40,6 +40,23 @@ Uma (UX) criou design brief > Quinn (QA) rodou quality gate > Dex (Dev) implemen
 98. Ao bypassar auth para preview, lembrar que o middleware/proxy TAMBEM faz redirect (nao so o layout)
 99. createServiceClient do @supabase/ssr SEMPRE inclui cookies. Para queries admin que precisam ver tudo, usar createClient direto do @supabase/supabase-js com service_role_key
 100. Client Component ('use client') nao pode importar modulos que usam next/headers. Separar em arquivo proprio
+101. Secao de indicacoes usa 4 tabelas (partners, referral_codes, referrals, rewards) com joins em memoria via Record maps. Zero queries N+1
+
+### Secao de Indicacoes (commit 827996b)
+
+Adicionada ao admin dashboard entre Top Movers e Trafego:
+- Cabecalho com totais (indicacoes, parceiros, de clientes)
+- Tabela de parceiros: nome, tipo, codigos, indicacoes, ativos, comissao, status
+- Indicacoes de clientes em resumo
+- Estado vazio graceful
+- 4 queries adicionais no getAdminData (partners, referral_codes, referrals, rewards)
+- PartnerSummary computed em memoria (sem query extra)
+
+### Cleanup de dados
+
+- UNLMTD deletada do Supabase (perfil teste, score 32, puxava metricas)
+- Post fantasma educativo de 14/out deletado
+- Acentos corrigidos em 6 arquivos (24 substituicoes)
 98. Ao bypassar auth para preview, lembrar que o middleware/proxy tambem faz redirect (nao so o layout)
 
 ### Commit
