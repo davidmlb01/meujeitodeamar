@@ -2,9 +2,9 @@
 
 ## Regra Central
 
-**Nem toda tarefa precisa do modelo mais caro.** O Opus e o cirurgiao. O Sonnet e o clinico geral. O Haiku e o enfermeiro. ChatGPT e o freelancer de copy. Cada um no seu escopo.
+**Nem toda tarefa precisa do modelo mais caro.** O Opus e o cirurgiao. O Sonnet e o clinico geral. O Haiku e o enfermeiro. Cada um no seu escopo.
 
-## Camadas de Roteamento
+## Camadas de Roteamento (3 camadas Claude)
 
 ### Camada 1: OPUS (estrategia + decisao + complexidade alta)
 
@@ -68,23 +68,9 @@
 
 ---
 
-### Camada 4: ChatGPT (budget alternativo)
+### Tarefas de copy e conteudo
 
-**Quando usar:** Tarefas de copy, conteudo, pesquisa de mercado que nao precisam de acesso ao codebase.
-
-**Como usar:** David executa no ChatGPT separadamente, ou via API se integrado.
-
-| Tarefa | Modelo sugerido |
-|--------|----------------|
-| Copy de landing page | GPT-4o |
-| Posts para redes sociais | GPT-4o |
-| Email sequences (onboarding, marketing) | GPT-4o |
-| Pesquisa de mercado / concorrentes | GPT-4o |
-| Brainstorming de naming / taglines | GPT-4o |
-| Traducoes | GPT-4o mini |
-| Reformulacao de texto | GPT-4o mini |
-
-**Economia vs Opus:** ~95% (budget separado, nao consome Claude tokens)
+Copy, posts, emails e naming rodam no **Sonnet** (bom o suficiente para texto criativo, 60-70% mais barato que Opus). Se precisar de qualidade maxima em copy estrategica, escala para Opus.
 
 ---
 
@@ -164,13 +150,13 @@ A conversa com David roda SEMPRE no Opus (e o modelo da sessao). O roteamento ac
 - NAO usar Opus para ler 50 arquivos e coletar contexto (despachar Haiku para isso)
 - NAO escalar para Opus "por precaucao" se Sonnet resolveu
 - NAO misturar modelos dentro de uma unica tarefa atomica (decidir o modelo ANTES de comecar)
-- NAO usar ChatGPT para tarefas que precisam de acesso ao codebase local
+- NAO despachar copy estrategica no Haiku (usar Sonnet no minimo)
 
 ---
 
 ## Quando Revisar Este Protocolo
 
-- Se novos modelos forem lancados (ex: Claude 5, GPT-5)
+- Se novos modelos forem lancados (ex: Claude 5)
 - Se os precos mudarem significativamente
 - Se a qualidade do Haiku/Sonnet se mostrar insuficiente para alguma categoria
 - A cada 30 dias, revisar as metricas de uso real vs expectativa
