@@ -93,6 +93,12 @@ Cap: `Math.min(score, maxScore)` no makeCategory + `Math.min(percentage, 100)` n
 102. Colunas legadas de score (visibilidade, retencao, conversao) NAO correspondem ao que o nome sugere. Sempre consultar toLegacyBreakdown() para entender o mapeamento real
 103. Places API nao retorna reviewsRepliedCount, lastPostDaysAgo, servicesCount nem attributesCount. Scorer baseado so em Places API sempre subestima o score
 104. Supabase `select('id', { count: 'exact', head: true })` retorna count no `.count`, nao no `.data`
+105. Score total DEVE ser a soma das categorias exibidas. Dois scorers com pesos diferentes produzem totais inconsistentes. Fonte unica: computar no momento da exibicao
+106. Nunca confiar em colunas legadas renomeadas (visibilidade, retencao, conversao) sem verificar toLegacyBreakdown(). Nomes mentem
+
+### Fix: score total desconectado (commit 3100da9)
+
+score-calculator.ts (cron) usa pesos 40/20/15/15/10. gmb/scorer.ts (dashboard) usa max 25+20+25+15+10+5=100. Total vinha do cron, categorias do dashboard. Fix: computedTotal = soma das 6 categorias. profile.score = computedTotal. Uma fonte de verdade.
 
 ### Cleanup de dados
 
