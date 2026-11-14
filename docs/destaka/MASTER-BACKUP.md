@@ -52,6 +52,27 @@ Adicionada ao admin dashboard entre Top Movers e Trafego:
 - 4 queries adicionais no getAdminData (partners, referral_codes, referrals, rewards)
 - PartnerSummary computed em memoria (sem query extra)
 
+### Programa de Indicacoes: operacional
+
+Dois tracks no mesmo sistema (migration 028, webhook route.ts):
+
+**Track 1: Clientes (owner_type: 'client')**
+- Indica com ?ref=CODIGO, cookie 90 dias
+- Ativacao na 2a mensalidade paga (REFERRAL_TRIGGER_INVOICE = 2)
+- Desconto escalonado: 1=20%, 2=40%, 3=60%, 4=80%, 5+=100%
+- Webhook recalcula cupom do indicador automaticamente
+
+**Track 2: Influenciadores/parceiros (owner_type: 'partner')**
+- Comissao 30% (PARTNER_COMMISSION_RATE) sobre 3 primeiras mensalidades (PARTNER_COMMISSION_MONTHS)
+- Reward criado como 'pending' na tabela rewards (pagar via Pix)
+- Parceiro nao precisa ser assinante
+
+**Marina cadastrada:**
+- Partner ID: 97b11c26-c704-4e5f-a565-35009edb0b0a
+- Codigo: MARINABELA, stripe_coupon_id: hnEbF3HL (100% off, 1 mes)
+- Link: destaka.com.br?ref=MARINABELA
+- Fluxo completo: link > cookie > checkout aplica desconto > metadata grava > webhook cria referral > invoice.paid calcula comissao
+
 ### Cleanup de dados
 
 - UNLMTD deletada do Supabase (perfil teste, score 32, puxava metricas)
