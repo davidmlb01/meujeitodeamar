@@ -1,6 +1,52 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-13 (Auditoria signup: double checkout bloqueado, subscriber sem onboarding corrigido, collectors deduplicados, erros silenciosos removidos. Funil "Seus Clientes" corrigido.)
+**Ultima atualizacao:** 2026-11-14 (Diagnostico cupom Paula. Cupom Marina criado. Stripe CLI instalada.)
 **Status:** Score 58/100. Motor de ranking v2. Paula: 2a quiropraxia Copacabana, 15/16 geo-grid top 3. Login limpo. Kit Reviews pronto. Onboarding validado. Signup auditado. PRONTO PARA BETA.
+
+---
+
+## Sessao 2026-11-14: Diagnostico Cupom + Stripe CLI Setup
+
+### Problema: Cupom Paula100 nao funcionou no checkout
+
+**Causa raiz:** No Stripe, Coupon e Promotion Code sao coisas diferentes.
+- **Coupon** = regra de desconto (objeto interno, nao digitavel pelo cliente)
+- **Promotion Code** = codigo que o cliente digita no checkout, aponta para um Coupon
+
+David criou um Coupon "Paula100" no dashboard, mas nao criou o Promotion Code associado. O checkout do Destaka usa `allow_promotion_codes: true` (linha 129 de `checkout/route.ts`), que mostra o campo "Adicionar codigo promocional". Esse campo so aceita Promotion Codes, nao Coupon IDs.
+
+### Fluxo do checkout (referencia)
+
+```
+checkout/route.ts (linhas 126-130):
+  - Se tem cookie de referral com stripe_coupon_id → aplica via discounts[]
+  - Se NAO tem referral → abre com allow_promotion_codes: true (campo digitavel)
+```
+
+### Cupom Marina (Bela do Dia) criado
+
+| Item | Valor |
+|------|-------|
+| Coupon ID | hnEbF3HL |
+| Coupon name | Beta 100% - Marina Bela do Dia |
+| Desconto | 100% off, primeiro mes |
+| Promotion Code | MARINABELA |
+| Promo ID | promo_1UbikjAwJUjY0HfePRQbgejB |
+| Limite | 1 uso |
+| Status | Ativo, producao (UNLMTD DIGITAL LTDA) |
+
+### Stripe CLI instalada
+
+- Versao: 1.55.11 (via Homebrew)
+- Conta: UNLMTD DIGITAL LTDA (acct_1TGkL0AwJUjY0Hfe), live mode
+- Plugin `tools` v0.20.0 instalado
+- MCP Stripe em ~/.claude.json (url: https://mcp.stripe.com/), nao carregou na sessao (requer restart)
+
+### Aprendizados
+
+90. Stripe Coupon != Promotion Code. Coupon e a regra de desconto. Promotion Code e o codigo digitavel. Para o cliente usar no checkout com allow_promotion_codes, precisa criar os dois
+91. Stripe CLI `stripe post /v1/promotion_codes` usa formato novo: `promotion[type]=coupon` e `promotion[coupon]=ID` (nao mais `-d coupon=ID` direto)
+92. Stripe CLI requer `--live` flag para operar em producao. Sem ela, recusa o comando
+93. Stripe MCP configurado como HTTP MCP (type: http, url: https://mcp.stripe.com/) precisa de restart do Claude Code para carregar tools
 
 ---
 
