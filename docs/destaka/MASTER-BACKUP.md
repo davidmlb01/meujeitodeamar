@@ -1,6 +1,46 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-14 (Redesign admin + fix RLS + fix build Vercel + cleanup post fantasma. Deploy em producao OK.)
-**Status:** Paula score 70 (forte), pagante ativa. UNLMTD teste score 32. Admin redesenhado e deployed. PRONTO PARA BETA.
+**Ultima atualizacao:** 2026-11-15 (Score admin sincronizado com dashboard usuario + GA4 Data API implementada. Deploy em producao OK.)
+**Status:** Paula score 85 (forte), pagante ativa. Admin com score real + trafego GA4. PRONTO PARA BETA.
+
+---
+
+## Sessao 2026-11-15: Score Admin + GA4 Integration
+
+### Score admin desatualizado (fix critico)
+
+Admin mostrava score 70 (tabela `scores`, cron scorer com 5 categorias e pesos 40/20/15/15/10).
+Dashboard usuario mostrava 85 (computedTotal, soma de 6 categorias: info 25 + fotos 20 + avaliacoes + posts 15 + servicos 10 + atributos 5).
+
+Fix: admin agora busca dados reais (gbp_profiles.photo_count, posts publicados ultimos 30 dias, services da org) e computa score com mesma logica do dashboard. `realScoreByOrg` retornado por `getAdminData()`. avgScore e tabela de clientes usam score real.
+
+### Labels corrigidos
+
+- PatientFunnelCard: "Seus clientes esta semana" > "Seus clientes na semana passada"
+  - Performance collector roda segundas 8h UTC (`0 8 * * 1`), dados sao sempre da semana anterior
+- Admin KPI: "Tokens" > "Tokens quebrados" (0 confundia, parecia total de tokens)
+
+### GA4 Data API (trafego do site no admin)
+
+Stub `getPageViews()` substituido por implementacao real:
+- JWT auth nativo com `node:crypto` (createSign RSA-SHA256), zero deps extras
+- Fetch direto para `analyticsdata.googleapis.com/v1beta/properties/{id}:runReport`
+- Retorna top 20 paginas por screenPageViews dos ultimos 30 dias
+- Graceful fallback: retorna null se env vars nao configuradas
+
+Service account: `destaka-ga4-reader@destaka-492513.iam.gserviceaccount.com`
+GA4 Property ID: 558460891
+Env vars no Vercel: `GA4_SERVICE_ACCOUNT_KEY` + `GA4_PROPERTY_ID`
+Google Analytics Data API: ja estava ativada no projeto destaka-492513
+
+### Aprendizados
+107. Admin e dashboard usuario DEVEM usar mesma logica de score. Dois scorers com pesos diferentes sempre divergem. Fonte unica: computar no momento da exibicao a partir dos mesmos dados
+108. Performance collector roda semanal (segundas). Labels de periodo devem refletir isso ("semana passada", nao "esta semana")
+109. GA4 Data API requer: (1) service account com chave JSON, (2) acesso Viewer na propriedade GA4, (3) API ativada no GCloud. JWT auth pode ser feito com crypto nativo, sem google-auth-library
+
+### Commits
+- cd2b941 fix(dashboard): score admin usa mesma logica do dashboard usuario + label semana corrigido
+- 89173db fix(admin): label "Tokens" renomeado para "Tokens quebrados"
+- d81fc8b feat(admin): implementar GA4 Data API real para trafego do site
 
 ---
 
