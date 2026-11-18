@@ -1,6 +1,57 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-17 (Instagram-sync completo + UX posts redesign + botao publicar fix. Deploy em producao OK.)
-**Status:** Paula score 85 (forte), pagante ativa. 3 posts pendentes pra aprovar. Admin com score real + GA4. PRONTO PARA BETA.
+**Ultima atualizacao:** 2026-11-17 (Geotagging manual + QA completo 26/26 itens + revisao ortografica total. Deploy em producao OK.)
+**Status:** Paula score 85 (forte), pagante ativa. 3 posts pendentes pra aprovar. Admin com score real + GA4. QA zerado. PRONTO PARA BETA.
+
+---
+
+## Sessao 2026-11-17 (continuacao): Geotagging + QA Completo
+
+### Geotagging no fluxo manual
+
+Rota `/api/posts/[id]/publish` enviava imagem crua do Instagram pro Zernio sem geotagging. No fluxo automatico do instagram-sync, o geotagAndUpload ja rodava. Fix: rota agora aplica geotagAndUpload antes de enviar pro Zernio.
+
+Problema adicional: `geotagAndUpload` buscava coordenadas de `gbp_profiles` (tabela sem lat/lng). Coordenadas reais estao em `gmb_profiles` (via professionals.user_id). Fix: busca via `professionals` > `gmb_profiles`. Paula: lat -22.9784, lng -43.1910 (Copacabana).
+
+Beneficio duplo: (1) imagens com GPS EXIF reforçam ranking local, (2) URL permanente no Supabase Storage em vez de CDN Instagram que expira.
+
+### Auditoria QA completa (Quinn)
+
+Subagent QA rodou auditoria em 8 arquivos. Resultado: 0 criticos, 3 altos, 10 medios, 13 baixos. Todos 26 corrigidos.
+
+**ALTO (3):**
+- geotag.ts: validacao de host usava `.includes()` (risco SSRF). Fix: `.startsWith()`
+- publish/route.ts: erro 401 em ingles "Unauthorized". Fix: "Sessao expirada. Faca login novamente."
+- publish/route.ts: updates de banco sem verificacao de erro. Fix: `{ error }` checado
+
+**MEDIO (10):**
+- admin/page.tsx: 5 textos sem acento (Ultimo>Último, Acoes>Ações, organico>orgânico, Graficos>Gráficos, invalido>inválido)
+- geotag.ts: 'Negocio' > 'Negócio'
+- PostsContent.tsx: cursor 'default' > 'not-allowed' em botao desabilitado
+- usePosts.ts: fetch nativo > apiFetch (consistencia)
+- instagram-sync.ts: 2 logs/dados sem acento (publicacao>publicação)
+
+**BAIXO (13):**
+- PostsContent.tsx: comentarios com travessao (───) removidos
+- usePosts.ts: clearJustPublished morto removido, useCallback removido
+- scraper.ts: token Apify de query string > header Authorization
+- scraper.ts: cast duplo removido, videoUrl na interface ApifyPostRaw
+- instagram-sync.ts: photo_suggestion null em vez de string literal
+- instagram-sync.ts: console.warn pra orgs sem gbp_location_id
+- admin/page.tsx: linhas em branco em <tr> removidas
+- admin/page.tsx: Math.min redundante removido, let>const
+
+### Aprendizados
+115. geotagAndUpload precisa buscar coordenadas via professionals > gmb_profiles, nao de gbp_profiles (tabela sem lat/lng)
+116. URLs de CDN do Instagram expiram em dias. Sempre fazer upload pro Storage antes de publicar
+117. Validacao de hosts com .includes() e vulneravel a SSRF (evil-scontent-attack.com passaria). Usar .startsWith()
+118. Token de API na query string aparece em logs. Sempre enviar via header Authorization
+119. QA deve rodar ANTES do deploy, nao depois. Nesta sessao rodou tarde e encontrou 26 itens que ja estavam em producao
+
+### Commits adicionais
+- f6e0fd4 fix(publish): geotagging no fluxo manual + corrigir busca de coordenadas
+- d7536a0 fix(copy): revisao ortografica completa
+- 9d4613c fix(qa): auditoria Quinn - 3 altos + 10 medios corrigidos
+- 70680a2 fix(qa): resolver todos os itens restantes da auditoria Quinn
 
 ---
 
