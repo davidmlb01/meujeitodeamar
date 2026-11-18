@@ -1,6 +1,75 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-15 (Score admin sincronizado com dashboard usuario + GA4 Data API implementada. Deploy em producao OK.)
-**Status:** Paula score 85 (forte), pagante ativa. Admin com score real + trafego GA4. PRONTO PARA BETA.
+**Ultima atualizacao:** 2026-11-17 (Instagram-sync completo + UX posts redesign + botao publicar fix. Deploy em producao OK.)
+**Status:** Paula score 85 (forte), pagante ativa. 3 posts pendentes pra aprovar. Admin com score real + GA4. PRONTO PARA BETA.
+
+---
+
+## Sessao 2026-11-16/17: Instagram-Sync + UX Posts Redesign
+
+### Instagram-sync: modo manual nao criava posts pendentes
+
+Quando `automation_preference = 'manual'`, o Step 7 do instagram-sync pulava a publicacao mas nao criava registro em `posts` com status `pending`. Posts ficavam "parados" na tabela `instagram_posts` como `ready` sem caminho pro usuario aprovar.
+
+Fix: quando modo != automatico, criar post na tabela `posts` com `status: pending`. Dedup por conteudo evita duplicatas se cron rodar multiplas vezes.
+
+### Scraper: filtro de data removido
+
+Scraper filtrava posts dos ultimos 30 dias (depois 6 meses). Perfil da Paula tem 50+ posts desde 2020 mas poucos recentes. Fix: removido filtro de data. Dedup por `instagram_post_id` + limite de 3/semana controlam volume. Apify retorna 50 posts por execucao.
+
+### Limites ajustados
+
+- `MAX_GBP_PUBLISHES_PER_WEEK`: 2 > 3 (alinhado com meta de 3 posts/semana)
+- Status `published_gbp` nao existe no check constraint, trocado por `published`
+- Coluna `source` nao existe na tabela `posts`, removida dos inserts
+
+### Botao Publicar quebrado (bug critico)
+
+Rota `/api/posts/[id]/publish` fazia `select('id, content, image_url')` mas coluna `image_url` nao existe na tabela `posts`. Supabase retornava erro, frontend mostrava toast de erro mas sem feedback visual claro. Fix: usar `photo_suggestion`.
+
+### Redesign UX pagina de posts (protocolo Uma > Quinn > Dex)
+
+**Uma (UX):** Design brief com 7 problemas identificados e fluxo ideal do usuario.
+
+**Quinn (QA):** Sem bloqueadores. Validou tokens visuais e contrastes.
+
+**Dex (Dev):** Implementacao completa:
+- Contadores com badge: "Aguardando aprovacao (3)" e "Publicados (6)"
+- Dot indicators coloridos (amber pendente, green publicado)
+- Divisor visual entre secoes (1px rgba)
+- Botao "Publicar no Google" com Spinner + "Publicando..." durante acao
+- Card pendente muda de amber pra green durante publicacao (opacity 0.7)
+- Toast de sucesso em TODAS as acoes (publicar, descartar, gerar, modo)
+- `justPublishedId`: post recem-publicado aparece com borda verde + checkmark por 4s
+- `active:scale-[0.97]` feedback em todos os botoes
+- `cursor: pointer` / `cursor: wait` em todos os estados
+- Console.log de debug removido
+- TYPE_LABELS expandido (educativo, bairro)
+- Empty state claro: "Nenhum post publicado ainda. Aprove um post acima ou gere um novo."
+
+### Estado atual dos posts da Paula
+
+| Tabela | Status | Contagem |
+|--------|--------|----------|
+| posts | pending | 3 |
+| posts | published | 6 |
+| instagram_posts | ready | 3 |
+| instagram_posts | published | 2 |
+| instagram_posts | skipped | 3 |
+
+### Aprendizados
+110. Tabela `posts` nao tem coluna `image_url` nem `source`. Usar `photo_suggestion` para imagens. Sempre verificar schema real antes de fazer select
+111. Check constraint de `instagram_posts` nao aceita `published_gbp` nem `pending_approval`. Status validos: ready, published, skipped, failed
+112. Scraper do Apify retorna posts por relevancia, nao por data. Filtro de data pode descartar conteudo valido. Melhor: sem filtro + dedup por ID
+113. Modo manual do instagram-sync DEVE criar registro em `posts` com status pending, senao o conteudo fica preso na tabela `instagram_posts` sem caminho de aprovacao
+114. UX de aprovacao precisa de: cursor pointer, estado loading visivel (spinner + texto), toast de sucesso, transicao visual entre estados, contadores. Sem isso o usuario nao sabe se a acao funcionou
+
+### Commits
+- 7f8443a fix(instagram-sync): modo manual agora cria posts pendentes
+- e1a22ec fix(scraper): remover filtro de data, usar todo historico
+- e60891a fix(instagram-sync): MAX_GBP_PUBLISHES_PER_WEEK de 2 para 3
+- ed399fa fix(posts): botao publicar quebrado + UX de aprovacao
+- bc5a810 fix(scraper): remover filtro de data, usar todo historico do Instagram
+- ac9471a feat(posts): redesign UX completo da pagina de aprovacao de posts
 
 ---
 
