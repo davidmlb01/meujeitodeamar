@@ -1,6 +1,82 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-17 (Geotagging manual + QA completo 26/26 itens + revisao ortografica total. Deploy em producao OK.)
-**Status:** Paula score 85 (forte), pagante ativa. 3 posts pendentes pra aprovar. Admin com score real + GA4. QA zerado. PRONTO PARA BETA.
+**Ultima atualizacao:** 2026-11-18 (Performance 3 fases + agendamento Mon/Wed/Fri + revisao ortografica 34 arquivos. Deploy OK.)
+**Status:** Paula score 85 (forte), pagante ativa. Posts com agendamento automatico. Dashboard <1.5s. PRONTO PARA BETA.
+
+---
+
+## Sessao 2026-11-18: Performance + Agendamento + Ortografia
+
+### Performance: 3 fases completas
+
+**Fase 1 (ganho imediato, -900ms a -2.8s):**
+- GBP Performance API removida da hot path do /api/dashboard. Dados ja existem no banco via cron. Eliminados imports GBPClient e getValidGmbToken
+- /api/dashboard/gap: 7 queries independentes em Promise.all (antes sequenciais)
+- /api/posts: 3 queries em Promise.all
+
+**Fase 2 (cache + bundle):**
+- 5 componentes migrados de useEffect+fetch pra useSWR: PatientFunnelCard, GapAnalysisCard, RankingCard, MapCard, GeoGridMap. Cache entre navegacoes, dedup, revalidacao automatica
+- RankingChart: lazy loading via dynamic import (Recharts ~450KB so carrega quando visivel)
+
+**Fase 3 (Server Component seeding):**
+- Logica de dados extraida pra `src/lib/dashboard/get-dashboard-data.ts` (funcao reutilizavel)
+- API route agora e wrapper fino (13 linhas)
+- Server Component chama getDashboardData direto e passa como initialData pro DashboardContent
+- useDashboard pula revalidateOnMount quando tem fallbackData
+- Resultado: zero loading skeleton no dashboard principal
+
+**Resultado:**
+| Aba | Antes | Agora |
+|-----|-------|-------|
+| Dashboard (1a visita) | 3-6s | 500ms-1.5s |
+| Dashboard (retorno) | 3-6s | ~0ms (SWR) |
+| Posts | 400-700ms | 200-400ms |
+
+### Agendamento de posts Mon/Wed/Fri
+
+Novo fluxo: usuario aprova > post agendado pro proximo slot (seg/qua/sex 10h BRT). Se aprovado depois do horario, publica imediatamente.
+
+**Novos arquivos:**
+- `src/lib/posts/schedule.ts`: getNextPublishSlot (calcula proximo slot livre), formatScheduleLabel
+- `src/lib/inngest/functions/scheduled-post-publisher.ts`: cron `0 13 * * 1,3,5`, busca posts com status=scheduled e scheduled_at<=now, publica via Zernio com geotagging
+
+**Rota /api/posts/[id]/publish reescrita:**
+- Busca posts ja agendados pra evitar conflito de data (1 post por dia)
+- Se slot <= now (usuario atrasou), publica direto via Zernio
+- Senao, agenda com status=scheduled + scheduled_at
+
+**UI atualizada:**
+- Botao: "Aprovar e agendar" (antes "Publicar no Google")
+- Toast: "Post agendado para segunda (18/11) as 10h"
+- Nova secao "Agendados" com icone de relogio, badge de contagem, data formatada
+- 3 secoes visuais: Pendentes (amber) > Agendados (blue) > Publicados (green)
+
+### Revisao ortografica completa do projeto
+
+Auditoria Quinn varreu todo o codebase: ~65 erros em 27 arquivos.
+34 arquivos corrigidos em um unico commit.
+
+**Categorias de erros corrigidos:**
+- APIs (15 rotas): invalido, nao, organizacao, diagnostico, indisponivel, obrigatorio, regiao
+- Scorer + analyzer: negocio, endereco, servico, descricao, avaliacoes, acessivel
+- WhatsApp templates: ola, ja, automatico, proximos, presenca, horario, diferenca, duvida, mes, relatorio
+- Email: voce, esta
+- UI components: diagnostico, disponivel, proximos, acoes, negocio, relatorio
+- Privacy/termos: travessoes removidos (regra absoluta), Producoes > Producoes
+- Opengraph: travessao removido
+
+### Aprendizados
+120. GBP Performance API na hot path bloqueia o dashboard por 300ms-2s. Dados ja existem no banco via cron, nao tem motivo pra chamar API externa no request do usuario
+121. Promise.all em queries independentes e o ganho mais facil: gap route tinha 7 queries sequenciais que nao dependiam umas das outras
+122. Server Component seeding com getDashboardData como funcao reutilizavel elimina loading skeleton. useDashboard ja suportava fallbackData, so precisava passar
+123. Agendamento de posts precisa de dedup por data (1 por dia de publicacao) e fallback pra publicacao imediata quando usuario aprova atrasado
+124. Revisao ortografica deve ser automatizada: 65 erros em 27 arquivos passaram despercebidos por semanas. Considerar lint rule ou hook pre-commit
+
+### Commits
+- 5ab4b70 perf: Fase 1 (GBP API + Promise.all gap + posts)
+- 2d2096c perf: Fase 2 (SWR 5 componentes + lazy RankingChart)
+- 5086aa6 perf: Fase 3 (Server Component seeding)
+- 521487e feat: agendamento Mon/Wed/Fri
+- 8f2a098 fix(copy): revisao ortografica completa (34 arquivos)
 
 ---
 
