@@ -1,6 +1,76 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-18 (Performance 3 fases + agendamento Mon/Wed/Fri + revisao ortografica 34 arquivos. Deploy OK.)
-**Status:** Paula score 85 (forte), pagante ativa. Posts com agendamento automatico. Dashboard <1.5s. PRONTO PARA BETA.
+**Ultima atualizacao:** 2026-11-19 (Review-monitor blindado: 5 bugs criticos + QA 23/23 + seguranca 8 fixes + Next.js 16.4.6. Deploy OK.)
+**Status:** Paula score 85 (forte), pagante ativa. Posts agendados. Dashboard <1.5s. Reviews com sugestao IA + aprovacao manual. Seguranca auditada. PRONTO PARA BETA.
+
+---
+
+## Sessao 2026-11-19: Review-Monitor + QA + Seguranca
+
+### Review-monitor: 5 bugs criticos corrigidos
+
+1. **Dedup UUID vs string**: review_responses.review_id (UUID FK) comparado com Google review ID (string). Nunca dava match, gerava resposta duplicada a cada 6h. Fix: resolucao em 2 passos (UUID > Google ID)
+2. **Erro silencioso**: catch sem log engolia falhas de geracao IA. Fix: console.error + contador generations_failed
+3. **IDs diferentes por fonte**: Places API e Zernio retornam IDs diferentes para o mesmo review. Criava duplicatas. Fix: dedup por autor+rating+data em memoria (batch, sem N+1)
+4. **Modo manual ignorado**: reviews com reply no Google eram pulados, usuario nunca via. Fix: gera pending para aprovacao
+5. **Endpoint faltante**: /api/reviews/generate-reply nao existia (botao "Sugerir resposta" dava 404). Criado com LGPD check
+
+### Dados limpos
+- ~80 review_responses zombie deletadas (bug de dedup gerava a cada 6h desde 30/out)
+- 2 reviews duplicados (Places format) deletados
+- Respostas pendentes geradas para Thiago Guerreiro Bastos e Dennis Bernardino
+
+### QA completo: 23/23 itens
+- C-01: Threshold negativas unificado (< 4 estrelas em monitor, API e UI)
+- C-02: N+1 queries eliminadas (dedup em memoria com batch load)
+- C-03: Places API fallback com log quando profissional ausente
+- C-04: upsert com ignoreDuplicates:true (race condition)
+- A-01: ignoreReview com toast de erro
+- A-02: Status 'approved' removido (nunca escrito)
+- A-03: LGPD check no generate-reply
+- A-05: max_tokens 4096 > 512
+- A-06: Validacao zod no PATCH /api/reviews/[id]
+- M-02: Reviews ignorados visiveis no filtro "Todas"
+- M-04: Erro de geracao nao polui campo publicavel
+- M-05: Badges corrigidos (noResponseCount, negativeCount)
+- M-07: tone null usa fallback 'proximo'
+- M-08: Badge de contagem no filtro "Negativas (1-3)"
+- B-01: formatDate wrapper removido
+- B-04: Texto botao alinhado ("Aprovar e publicar")
+- B-05: Catch do alerta negativo loga erro completo
+
+### Auditoria de seguranca: 8 itens corrigidos
+- CRIT-02: Endpoints debug removidos (posts-diag, posts-debug expunham service key)
+- CRIT-03: Fallback org ID hardcoded removido
+- ALTO-01: Stack trace removido da resposta HTTP
+- ALTO-02: JWT decode manual sem verificacao removido
+- ALTO-03: Comparacao timing-safe no admin key (verifyAdminKey)
+- ALTO-04: Referral cookie limitado a 20 chars
+- CRIT-01: Next.js 16.2.3 > 16.4.6 (30+ CVEs resolvidos)
+
+### UI reviews redesenhada
+- Secoes visuais: "Aguardando resposta" (amber) e "Respondidas" (green)
+- Badges em todos os filtros
+- Botao consistente "Aprovar e publicar"
+
+### Cron: 6h > 3h
+
+### Aprendizados
+125. review_responses.review_id e FK para reviews.id (UUID), nao Google review ID. Comparacao direta nunca funciona
+126. Places API e Zernio retornam IDs diferentes para o mesmo review do Google. Dedup deve ser por autor+rating+data, nao por review_id
+127. Modo manual NUNCA deve pular reviews silenciosamente. O usuario precisa ver tudo e decidir
+128. Endpoints de debug sem auth em producao sao bombas-relogio. Deletar antes de dormir
+129. JWT decode manual (split('.')[1] + base64) NAO verifica assinatura. Qualquer pessoa pode forjar. Sempre usar supabase.auth.getUser()
+
+### Commits
+- f08468f fix(reviews): dedup + erro silencioso + cron 3h + UI secoes
+- 7f263a6 fix(reviews): dedup cross-source
+- 73ed5d5 fix(reviews): sync replies existentes
+- cb0667e fix(reviews): modo manual
+- 94576dc fix(reviews): generate-reply + limite 30d + log email
+- 3f0ade1 fix(reviews): QA gate 8 fixes + threshold
+- 6822a15 fix(reviews): QA restante
+- 80b798b fix(security): 3 criticos + 5 altos
+- 217df01 chore(security): Next.js 16.4.6
 
 ---
 
