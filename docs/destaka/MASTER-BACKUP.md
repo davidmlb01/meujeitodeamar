@@ -1,6 +1,6 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-19 (Review-monitor blindado: 5 bugs criticos + QA 23/23 + seguranca 8 fixes + Next.js 16.4.6. Deploy OK.)
-**Status:** Paula score 85 (forte), pagante ativa. Posts agendados. Dashboard <1.5s. Reviews com sugestao IA + aprovacao manual. Seguranca auditada. PRONTO PARA BETA.
+**Ultima atualizacao:** 2026-11-19 (Review-monitor blindado + QA 23/23 + seguranca 8 fixes + Next.js 16.4.6 + keywords corrigido + Zernio pagination + Copacabana nos posts. 12 commits. Deploy OK.)
+**Status:** Paula score 85/71 (dashboard/cron, unificar pendente). Pagante ativa. Posts agendados com keywords locais. Dashboard <1.5s. Reviews com sugestao IA + aprovacao manual. Keywords voltaram a coletar (paradas desde out). Seguranca auditada. PRONTO PARA BETA.
 
 ---
 
@@ -71,6 +71,32 @@
 - 6822a15 fix(reviews): QA restante
 - 80b798b fix(security): 3 criticos + 5 altos
 - 217df01 chore(security): Next.js 16.4.6
+- 4f69734 fix(reviews): modo manual sync replies existentes
+- 2b18003 fix(gbp): Performance API 404 (accounts/ prefix)
+- d624a89 fix(ranking): Zernio pagination + Copacabana nos posts
+
+### Dados limpos (segunda rodada)
+- 248 review_responses zombie deletadas (13 published legítimas mantidas)
+- 37 pending zombie deletadas (2 legítimas mantidas: Thiago + Dennis)
+
+### Keyword-snapshot corrigido
+GBP Performance API retornava 404 porque o path incluía accounts/{id}/ mas a API espera só locations/{id}. Parado desde 19/out. Corrigido, dados novos coletados (semana 16/nov): "bacellar" subiu de 33 para 91 impressões (+175%).
+
+### Visibilidade da Paula (diagnóstico)
+- 82 impressões/semana (baixo), geo grid 1/12 forte, 9/12 fraco
+- Gap: 169 reviews vs Studio Jun 460 e CMT 405
+- Review solicitation já roda toda quarta (email com link + sugestão WhatsApp)
+- Posts agora incluem "Copacabana" como keyword local
+- Zernio agora pagina todas as 169 reviews (antes só 50)
+
+### Score dual (pendente unificar)
+Dashboard mostra 85 (6 categorias visíveis), cron armazena 71 (inclui visibilidade 2/15). São fórmulas diferentes. Precisa unificar em sessão futura.
+
+### Aprendizados
+130. GBP Performance API usa path locations/{id} sem accounts/ prefix. Outras APIs GBP usam accounts/{id}/locations/{id}. Sempre strip o prefix para Performance API
+131. Zombie data polui métricas silenciosamente. Bugs de dedup geram dados em cada execução do cron sem ninguém perceber. Sempre verificar contagem de registros por entidade
+132. Dois scores diferentes confundem todo mundo. Uma fonte de verdade, sempre
+133. Review solicitation é o fator #1 para ranking local. Não adianta perfil perfeito sem volume de reviews. 169 vs 460 é o gap real
 
 ---
 
