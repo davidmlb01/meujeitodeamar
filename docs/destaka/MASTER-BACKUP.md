@@ -1,6 +1,24 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-24 (Reviews em aberto corrigidas. Botao aprovar posts corrigido. Dashboard verificado com Paula. Taxa conversao 20%. 27 commits sessoes 19-24/11. Deploy OK.)
-**Status:** Score 85 (unificado). 5 posts/semana com keywords locais + bairros vizinhos. Reviews com sugestao IA + aprovacao. Pecanha ativo. Gate 5 ativo. Taxa conversao 20% (dobro da media). Posts aprovados por Paula. PRONTO PARA BETA.
+**Ultima atualizacao:** 2026-11-24 (Double-check floricultura Marina. Bug onboarding corrigido: floricultura faltava na lista de specialties. Cupom MARINABELA verificado no Stripe e Supabase. Deploy OK.)
+**Status:** Score 85 (unificado). 5 posts/semana com keywords locais + bairros vizinhos. Reviews com sugestao IA + aprovacao. Pecanha ativo. Gate 5 ativo. Taxa conversao 20% (dobro da media). Multi-vertical flores pronto. PRONTO PARA BETA + PRIMEIRA FLORICULTURA.
+
+---
+
+## Sessao 2026-11-24 (tarde): Double-Check Floricultura + Marina
+
+### Bug critico corrigido
+- "Floricultura" nao aparecia no onboarding frontend (ALL_SPECIALTIES e SPECIALTY_LABELS)
+- Backend 100% pronto (vocab, segment detection, engines IA, testes)
+- Fix: 2 linhas em onboarding/page.tsx. Commit 713ed8c, deploy OK
+
+### Verificacoes completas
+- Stripe: cupom hnEbF3HL (100% off, once, ativo), promotion code MARINABELA (ativo, 0 usos)
+- Supabase: referral_codes MARINABELA (partner, stripe_coupon_id=hnEbF3HL, active=true)
+- Cupons escalonados (REF_INDICADOR_20 a 100): todos ativos
+- Fluxo referral: cookie → checkout → cupom → webhook → indicacao. Validado
+
+### Aprendizado
+144. Backend multi-vertical completo nao garante que o frontend oferece a opcao. Sempre verificar a UI de selecao quando adicionar vertical nova
 
 ---
 
