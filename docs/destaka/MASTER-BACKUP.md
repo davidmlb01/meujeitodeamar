@@ -1,6 +1,73 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-24 (Double-check floricultura Marina. Bug onboarding corrigido: floricultura faltava na lista de specialties. Cupom MARINABELA verificado no Stripe e Supabase. Deploy OK.)
-**Status:** Score 85 (unificado). 5 posts/semana com keywords locais + bairros vizinhos. Reviews com sugestao IA + aprovacao. Pecanha ativo. Gate 5 ativo. Taxa conversao 20% (dobro da media). Multi-vertical flores pronto. PRONTO PARA BETA + PRIMEIRA FLORICULTURA.
+**Ultima atualizacao:** 2026-11-24 (WhatsApp Review Automation completo Fases 0-6. Kapso como provider unico. 20 arquivos, 399 testes, deploy em producao. Templates submetidos a Meta.)
+**Status:** Score 85 (unificado). 5 posts/semana. Reviews com IA. Pecanha ativo. Taxa conversao 20%. Multi-vertical flores pronto. **WhatsApp Review Automation construido (aguardando templates Meta + Coexistence Paula).**
+
+---
+
+## Sessao 2026-11-24 (noite): WhatsApp Review Automation Completo
+
+### Decisoes
+
+145. Kapso como provider unico para todo WhatsApp do Destaka (zero markup, plano Free R$0)
+146. Numero Destaka +55 21 99594-8188 para onboarding/suporte; numeros das clinicas via Coexistence para reviews
+147. Claude Haiku 4.5 para deteccao de consulta (R$0.001/extracao, zero retention Anthropic)
+148. Template submetido como UTILITY (R$0.035/msg vs R$0.3217 marketing)
+
+### O que foi construido (6 fases, 1 sessao)
+
+**Fase 0:** Reconhecimento do repo. Divergencias: Inngest (nao QStash), organization_id (nao clinic_id). WhatsApp client existente preservado.
+
+**Fase 1:** Migration 032 com 6 tabelas: whatsapp_connections, patient_contacts (telefone cifrado AES-256-GCM, hash SHA-256 para busca), appointment_events, review_requests (1 por evento, UNIQUE), wa_message_dedup, review_settings. RLS em todas. 61 testes.
+
+**Fase 2:** Interface WhatsAppReviewProvider (createSetupLink, verifyWebhook, parseEvents, sendTemplate, getConnectionStatus). FakeProvider com 14 eventos sinteticos. Factory com fake + kapso. 120 testes.
+
+**Fase 3:** Rota POST /api/whatsapp/webhook. Idempotencia (SHA-256 hash do message_id). Ignora grupos, media sem texto, mensagens da API. Cria/atualiza contato. Texto em memoria via detection_payload (nunca persiste). Opt-out por keyword (SAIR, PARAR). **Teste de aceite: texto marcador provado ausente em banco e logs.** 48 testes.
+
+**Fase 4:** Filtro de keywords (13 termos agenda + 8 cancelamento + patterns data/hora). Extracao LLM (Haiku, recebe apenas texto+direcao+timestamp, sem nome/telefone). Parser robusto (markdown, datas invalidas, confidence cap). 62 mensagens sinteticas PT-BR. **Precision 100%, 0 falsos positivos.** 118 testes.
+
+**Fase 5:** Agendamento: evento detectado -> review_request com scheduled_for (data consulta + delay, janela 9-18h, domingo->segunda). 5 guardas no envio: (1) evento nao superseded, (2) paciente nao opted out, (3) intervalo minimo 180d, (4) clinica ativa/conectada/fora sombra, (5) cap mensal 150. Modo sombra: detecta mas nao envia. Link curto /r/review/:id com tracking de clique. Cancelamento supersede evento + cancela request. Remarcacao supersede antigo + cria novo. Dedup mesma data. Inngest function wa-review-sender (cron 15min, concurrency 1). 52 testes.
+
+**Fase 6:** Adapter Kapso real. src/lib/kapso/client.ts (SDK wrapper, sendTemplate, verifyWebhookSignature). review-adapter.ts (implementa WhatsAppReviewProvider, parseia webhooks Kapso v2). send-adapter.ts (implementa WhatsAppClient para onboarding). Factory atualizada: WHATSAPP_PROVIDER=kapso e WA_REVIEW_PROVIDER=kapso. TypeScript compila sem erros.
+
+### Infraestrutura configurada
+
+- Conta Kapso criada (plano Free), numero Destaka conectado (Connected + Passed)
+- 10 env vars no Vercel (KAPSO_API_KEY, KAPSO_DESTAKA_PHONE_ID, KAPSO_WEBHOOK_SECRET, WA_REVIEW_PROVIDER, WHATSAPP_PROVIDER)
+- Webhook Kapso: ID 7232e4f3, URL destaka.com.br/api/whatsapp/webhook, 5 eventos, payload v2
+- 6 tabelas Supabase criadas com RLS (migration 032 aplicada)
+- whatsapp_connection da Paula: ID 62b9bb8e, status pending
+- review_settings da Paula: delay 1d, intervalo 180d, cap 150, threshold 0.85, google_review_url com Place ID
+- Templates submetidos: pedido_avaliacao_v1 (ID 1692963842624894) e _sem_nome (ID 1670773121513134), PENDING, UTILITY
+- Deploy em producao: 80f964c + 30f6c38
+
+### Pendencias
+
+- [ ] Meta aprovar templates pedido_avaliacao_v1 e _sem_nome (minutos a 48h)
+- [ ] Paula conectar WhatsApp Business via Coexistence na Kapso
+- [ ] Atualizar whatsapp_connection da Paula com phone_number_id e status shadow
+- [ ] 7 dias de modo sombra antes de ativar envio real
+- [ ] Plano Instagram Destaka / Destaka Saude (nao iniciado, prioridade zero)
+
+### Arquivos criados/modificados
+
+| Arquivo | Linhas |
+|---------|--------|
+| supabase/migrations/032_whatsapp_review_automation.sql | DDL 6 tabelas |
+| src/lib/wa-reviews/db.ts | Camada de acesso (24 funcoes) |
+| src/lib/wa-reviews/provider.ts | Interface + factory |
+| src/lib/wa-reviews/fake-provider.ts | FakeProvider + 14 eventos |
+| src/lib/wa-reviews/webhook-processor.ts | Processador com DI |
+| src/lib/wa-reviews/detection.ts | Keywords + LLM + parser |
+| src/lib/wa-reviews/scheduler.ts | Agendamento + 5 guardas |
+| src/app/api/whatsapp/webhook/route.ts | Rota webhook |
+| src/app/r/review/[id]/route.ts | Redirect + click tracking |
+| src/lib/inngest/functions/wa-review-sender.ts | Cron 15min |
+| src/lib/kapso/client.ts | SDK wrapper |
+| src/lib/kapso/review-adapter.ts | KapsoReviewProvider |
+| src/lib/kapso/send-adapter.ts | KapsoWhatsAppClient |
+| src/lib/whatsapp/client.ts | +kapso na factory |
+| src/app/api/inngest/route.ts | +waReviewSender |
+| 5 arquivos de teste | 399 testes |
 
 ---
 
