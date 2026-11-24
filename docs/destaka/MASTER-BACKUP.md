@@ -1,6 +1,58 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-19 (Review-monitor blindado + QA 23/23 + seguranca 8 fixes + Next.js 16.4.6 + keywords corrigido + Zernio pagination + Copacabana nos posts. 12 commits. Deploy OK.)
-**Status:** Paula score 85/71 (dashboard/cron, unificar pendente). Pagante ativa. Posts agendados com keywords locais. Dashboard <1.5s. Reviews com sugestao IA + aprovacao manual. Keywords voltaram a coletar (paradas desde out). Seguranca auditada. PRONTO PARA BETA.
+**Ultima atualizacao:** 2026-11-23 (Score unificado 85. 5 posts/semana na segunda. Keywords com bairros vizinhos. Descricoes de servicos. Product checklist Gate 5. 18 commits total sessoes 19-23/11. Deploy OK.)
+**Status:** Paula score 85 (unificado). Pagante ativa. 5 posts/semana com keywords locais (Copacabana + vizinhos). Dashboard <1.5s. Reviews com sugestao IA + aprovacao manual. Keywords coletando. Servicos com descricoes editaveis. Seguranca auditada. Gate 5 produto ativo. PRONTO PARA BETA.
+
+---
+
+## Sessao 2026-11-23: Score Unificado + 5 Posts + Descricoes + Gate 5
+
+### Score unificado
+Dashboard mostrava 85, cron armazenava 71 (formulas diferentes). David pediu para unificar. score-calculator agora computa o mesmo total do dashboard (6 categorias: info basica, fotos, avaliacoes, posts, servicos, atributos). Breakdown interno preservado para analytics.
+
+### 5 posts por semana gerados na segunda
+- Cron: apenas segunda 10h UTC
+- Gera 5 posts de uma vez, cada um agendado para um dia util (seg-sex 13h UTC)
+- Paula ve todos na segunda e aprova/edita
+- scheduled-post-publisher publica no dia correto
+- Instagram ready posts integrados no loop (nao mais shortcut que saia da funcao)
+- Guard contra duplicatas se cron rodar duas vezes
+
+### Keywords com bairros vizinhos
+- ranking_keywords usada completa ("quiropraxia Copacabana" em vez de so "quiropraxia")
+- Neighborhood extraido de addressLines (fallback quando formattedAddress ausente)
+- Rotacao por indice: cada post usa bairro diferente (Ipanema, Leme, Botafogo, Leblon, Flamengo)
+
+### Descricoes de servicos
+- 4 descricoes geradas com keywords locais (150-250 chars cada)
+- UI atualizada: nome editavel + descricao editavel (textarea)
+- Atributos marcados como aplicados (nao reaparecem)
+- applied_sections corrigido (services e attributes estavam marcados como aplicados sem estar)
+
+### Product Checklist (Gate 5)
+Regra obrigatoria criada em `.claude/rules/product-checklist.md`. Antes de dizer "feito":
+1. Simular fluxo como usuaria final
+2. Todo conteudo IA editavel
+3. Dados batem com o combinado
+4. Nada resolvido reaparece
+5. Decisoes anteriores respeitadas
+
+Motivacao: erros repetidos (score errado, campos sem edicao, dados reaparecendo, frequencias erradas).
+
+### Aprendizados
+134. Duas formulas de score = confusao garantida. Uma fonte de verdade, sempre
+135. Shortcut de Instagram no post-generator interceptava a funcao inteira e impedia geracao dos 5 posts. Integrar no loop, nao sair cedo
+136. keyword.split(' ')[0] cortava o bairro da keyword. Usar keyword completa da ranking_keywords
+137. addressLines e o fallback quando formattedAddress e sublocality estao ausentes. Verificar todos os campos de endereco
+138. applied_sections pode mentir. Verificar se o item foi REALMENTE aplicado antes de marcar
+139. Product checklist previne retrabalho. Sem ele, cada entrega tem 50% de chance de voltar
+
+### Commits sessao 23/11
+- 63d6ea7 fix: unificar score (85) + gerar 5 posts na segunda
+- 8cef371 fix(posts): integrar Instagram ready no loop de 5 posts
+- 3234f8f fix(posts): keywords com bairro + neighborhood via addressLines
+- 79cfb31 fix(optimizations): descricoes de servicos + atributos aplicados
+- 336d9cb fix(optimizations): descricoes editaveis pela usuaria
+- 4c7e8f9 docs: product checklist obrigatorio (Gate 5)
 
 ---
 
