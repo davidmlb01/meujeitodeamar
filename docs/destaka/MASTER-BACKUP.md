@@ -1,6 +1,54 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-23 (Score unificado 85. 5 posts/semana na segunda. Keywords com bairros vizinhos. Descricoes de servicos. Product checklist Gate 5. 18 commits total sessoes 19-23/11. Deploy OK.)
-**Status:** Paula score 85 (unificado). Pagante ativa. 5 posts/semana com keywords locais (Copacabana + vizinhos). Dashboard <1.5s. Reviews com sugestao IA + aprovacao manual. Keywords coletando. Servicos com descricoes editaveis. Seguranca auditada. Gate 5 produto ativo. PRONTO PARA BETA.
+**Ultima atualizacao:** 2026-11-23 (Score unificado 85. 5 posts/semana. Pecanha criado. Gate 5. 20 commits total sessoes 19-23/11. Deploy OK.)
+**Status:** Score 85 (unificado). 5 posts/semana com keywords locais + bairros vizinhos. Reviews com sugestao IA + aprovacao. Pecanha monitora produto 2x/dia e despacha correcoes. Gate 5 ativo. PRONTO PARA BETA.
+
+---
+
+## Sessao 2026-11-23 (noite): Pecanha + correções de produto
+
+### Agente Pecanha (Product Verification Agent)
+- Roda 2x/dia (10h + 16h BRT) seg-sex + relatorio semanal sexta
+- Verifica para TODAS as orgs ativas: posts, reviews, score, otimizacoes
+- Quando encontra falha: despacha correcao automatica via Inngest
+  - Posts faltando: re-dispara post-generator
+  - Reviews sem resposta: re-dispara review-monitor
+  - Score nao calculado: re-dispara score-calculator
+- Envia email ao David: relatorio + acoes tomadas
+- Nunca corrige direto, sempre delega ao responsavel (@dev Dex)
+- Squad: QA (sob Quinn)
+- Arquivos: .aiox-core/development/agents/pecanha.md + src/lib/inngest/functions/product-verifier.ts
+
+### Correcoes de produto
+- Score unificado: cron agora computa mesma formula do dashboard (85)
+- 5 posts gerados na segunda com agenda seg-sex (nao mais 1/dia)
+- Instagram shortcut removido (interceptava e saia sem gerar os 5 posts)
+- Keywords completas ("quiropraxia Copacabana" em vez de so "quiropraxia")
+- Neighborhood via addressLines (fallback quando formattedAddress ausente)
+- Descricoes de servicos editaveis (textarea, nao texto estatico)
+- Atributos ja aplicados nao reaparecem
+- 3 posts antigos sem agenda limpos
+
+### Product Checklist (Gate 5)
+Regra obrigatoria em .claude/rules/product-checklist.md:
+1. Simular fluxo como usuaria final
+2. Todo conteudo IA editavel
+3. Dados batem com o combinado
+4. Nada resolvido reaparece
+5. Decisoes anteriores respeitadas
+
+### Aprendizados
+134-139: (sessao anterior, mantidos)
+140. Agente de verificacao precisa despachar correcao, nao so alertar. Se depende do David pra agir, o problema fica parado
+141. Pensar no produto para TODOS os usuarios, nao so para um caso especifico. Paula e a primeira mas nao a unica
+
+### Commits sessao 23/11
+- 63d6ea7 fix: unificar score (85) + gerar 5 posts na segunda
+- 8cef371 fix(posts): integrar Instagram ready no loop de 5 posts
+- 3234f8f fix(posts): keywords com bairro + neighborhood via addressLines
+- 79cfb31 fix(optimizations): descricoes de servicos + atributos aplicados
+- 336d9cb fix(optimizations): descricoes editaveis pela usuaria
+- 4c7e8f9 docs: product checklist obrigatorio (Gate 5)
+- 9047f85 feat: criar agente Pecanha (verificacao de produto automatica)
 
 ---
 
