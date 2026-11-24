@@ -1,6 +1,6 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-23 (Score unificado 85. 5 posts/semana. Pecanha criado. Gate 5. 20 commits total sessoes 19-23/11. Deploy OK.)
-**Status:** Score 85 (unificado). 5 posts/semana com keywords locais + bairros vizinhos. Reviews com sugestao IA + aprovacao. Pecanha monitora produto 2x/dia e despacha correcoes. Gate 5 ativo. PRONTO PARA BETA.
+**Ultima atualizacao:** 2026-11-24 (Pecanha testado e funcionando. ADMIN_ALERT_EMAIL configurado. Acentos corrigidos. 24 commits total sessoes 19-24/11. Deploy OK.)
+**Status:** Score 85 (unificado). 5 posts/semana com keywords locais + bairros vizinhos. Reviews com sugestao IA + aprovacao. Pecanha ativo (2x/dia, despacha correcoes, reporta ao David). Gate 5 ativo. PRONTO PARA BETA.
 
 ---
 
