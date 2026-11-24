@@ -35,6 +35,12 @@ Referencia completa: `docs/reference/design-quality-gate.md`
 - Sem TODOs ou placeholders
 - Revisao ortografica feita
 
+## Gate 5: Produto (antes de dizer "feito")
+
+Checklist completo em `rules/product-checklist.md` (projetos com UI).
+Resumo: simular o fluxo como usuaria final. Todo conteudo IA e editavel.
+Dados combinados batem. Nada resolvido reaparece. Decisoes anteriores respeitadas.
+
 ## Regra
 
 - Nenhum gate e pulado "para economizar tempo"
