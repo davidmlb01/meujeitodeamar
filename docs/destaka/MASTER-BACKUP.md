@@ -1,6 +1,38 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-24 (Pecanha testado e funcionando. ADMIN_ALERT_EMAIL configurado. Acentos corrigidos. 24 commits total sessoes 19-24/11. Deploy OK.)
-**Status:** Score 85 (unificado). 5 posts/semana com keywords locais + bairros vizinhos. Reviews com sugestao IA + aprovacao. Pecanha ativo (2x/dia, despacha correcoes, reporta ao David). Gate 5 ativo. PRONTO PARA BETA.
+**Ultima atualizacao:** 2026-11-24 (Reviews em aberto corrigidas. Botao aprovar posts corrigido. Dashboard verificado com Paula. Taxa conversao 20%. 27 commits sessoes 19-24/11. Deploy OK.)
+**Status:** Score 85 (unificado). 5 posts/semana com keywords locais + bairros vizinhos. Reviews com sugestao IA + aprovacao. Pecanha ativo. Gate 5 ativo. Taxa conversao 20% (dobro da media). Posts aprovados por Paula. PRONTO PARA BETA.
+
+---
+
+## Sessao 2026-11-24: Sessao com Paula + fixes em producao
+
+### Fixes em producao (durante sessao com Paula)
+- 5 reviews antigas (Naila, Ana Leticia, Viviane, Vanessa, Helena) apareciam como "em aberto" mas ja tinham sido respondidas no Google. Marcadas como published no banco
+- Botao "Aprovar e agendar" nao funcionava: check constraint `posts_status_check` nao aceitava status `scheduled`. Mudado para `approved` (aceito pela constraint). Publisher atualizado para buscar `approved` tambem
+- Endpoint publish: quando slot ja passou, calcula proximo slot em vez de publicar imediato (modo manual = Paula decide)
+- Pecanha: acentos corrigidos em todas as mensagens do email
+
+### Dados verificados com Paula
+- Performance (181 buscas, 54 views Maps, 5 acessos site): conferido no banco, correto
+- Score 85: breakdown conferido (25+20+20+10+5+5), correto
+- Geo grid: 13 zonas, posicao 4 em Copacabana, 3 nos bairros ao redor
+
+### Insight de conversao
+- Taxa de conversao subiu de 10.9% (semana 26/out) para 20% (semana 23/nov)
+- Menos buscas mas mais qualificadas: quem chega ao perfil converte mais
+- Possivel reflexo de: descricao otimizada, respostas a avaliacoes, posts regulares
+- Proximo passo: reverter queda de buscas com volume de posts + keywords + reviews
+
+### Aprendizados
+142. Check constraints do banco podem bloquear features silenciosamente. Sempre verificar quais status sao aceitos antes de usar um novo
+143. Taxa de conversao importa mais que volume bruto de buscas. Perfil otimizado atrai publico certo
+
+### Commits sessao 24/11
+- ccd86b5 chore: trigger redeploy para ADMIN_ALERT_EMAIL
+- b938fb8 fix(pecanha): acentos em todos os emails
+- a7b1f2c fix(pecanha): acentos nas mensagens internas
+- f6de138 fix: reviews em aberto + aprovacao de posts
+- 0406bf7 fix(posts): status approved em vez de scheduled
 
 ---
 
