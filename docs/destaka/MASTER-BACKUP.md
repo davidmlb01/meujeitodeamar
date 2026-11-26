@@ -1,6 +1,6 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-24 (WhatsApp Review Automation completo Fases 0-6. Kapso como provider unico. 20 arquivos, 399 testes, deploy em producao. Templates submetidos a Meta.)
-**Status:** Score 85 (unificado). 5 posts/semana. Reviews com IA. Pecanha ativo. Taxa conversao 20%. Multi-vertical flores pronto. **WhatsApp Review Automation construido (aguardando templates Meta + Coexistence Paula).**
+**Ultima atualizacao:** 2026-11-24 (WhatsApp Review Automation Fases 0-6 + jornada WhatsApp redesenhada. 9 templates submetidos Meta. Gatilho manual implementado. Copy reescrita.)
+**Status:** Score 85 (unificado). 5 posts/semana. Reviews com IA. Pecanha ativo. Taxa conversao 20%. Multi-vertical flores pronto. **WhatsApp completo: 9 templates PENDING Meta, gatilho manual pronto, aguardando Coexistence Paula.**
 
 ---
 
@@ -40,12 +40,36 @@
 - Templates submetidos: pedido_avaliacao_v1 (ID 1692963842624894) e _sem_nome (ID 1670773121513134), PENDING, UTILITY
 - Deploy em producao: 80f964c + 30f6c38
 
+### Continuacao: jornada WhatsApp redesenhada
+
+Principio de produto: so notificar quando acao e necessaria.
+
+**Templates reescritos:** onboarding 5→3 (removidos dia 3 e 7). 4 novos de acao.
+**Gatilho manual:** POST /api/wa-reviews/request (qualquer nicho, sem deteccao).
+**9 templates submetidos a Meta (todos PENDING UTILITY):**
+
+| Template | ID Meta | Uso |
+|----------|---------|-----|
+| destaka_boas_vindas | 1945680783264203 | Dia 0 |
+| destaka_checkin | 4556427974603816 | Dia 14 |
+| destaka_resumo_mensal | 2444278462643490 | Dia 30 |
+| destaka_reconectar | 1215391048114681 | Conexao caiu |
+| destaka_nova_avaliacao | 1731425731944556 | Review para aprovar |
+| destaka_avaliacao_negativa | 1437983651382582 | Review 1-2 estrelas |
+| destaka_posts_pendentes | 2157570551516310 | Posts para aprovar |
+| pedido_avaliacao_v1 | 1692963842624894 | Pedido review (com nome) |
+| pedido_avaliacao_v1_sem_nome | 1670773121513134 | Pedido review (sem nome) |
+
+**Commits:** 79948fa (gatilho manual), 9446c41 (templates reescritos)
+
 ### Pendencias
 
-- [ ] Meta aprovar templates pedido_avaliacao_v1 e _sem_nome (minutos a 48h)
+- [ ] Meta aprovar 9 templates (minutos a 48h)
 - [ ] Paula conectar WhatsApp Business via Coexistence na Kapso
 - [ ] Atualizar whatsapp_connection da Paula com phone_number_id e status shadow
 - [ ] 7 dias de modo sombra antes de ativar envio real
+- [ ] Implementar gatilhos WhatsApp dos novos templates (reconectar, nova avaliacao, posts pendentes)
+- [ ] Padrao 2 de deteccao (nichos alem de saude)
 - [ ] Plano Instagram Destaka / Destaka Saude (nao iniciado, prioridade zero)
 
 ### Arquivos criados/modificados
