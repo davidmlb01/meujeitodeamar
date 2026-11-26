@@ -1,6 +1,6 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-24 (WhatsApp Review Automation Fases 0-6 + jornada WhatsApp redesenhada. 9 templates submetidos Meta. Gatilho manual implementado. Copy reescrita.)
-**Status:** Score 85 (unificado). 5 posts/semana. Reviews com IA. Pecanha ativo. Taxa conversao 20%. Multi-vertical flores pronto. **WhatsApp completo: 9 templates PENDING Meta, gatilho manual pronto, aguardando Coexistence Paula.**
+**Ultima atualizacao:** 2026-11-26 (9 templates Meta APROVADOS. Sistema WhatsApp pronto. Custo R$4.32/mes por cliente, 2.2% da mensalidade.)
+**Status:** Score 85 (unificado). 5 posts/semana. Reviews com IA. Pecanha ativo. Taxa conversao 20%. Multi-vertical flores pronto. **WhatsApp PRONTO: 9 templates aprovados, aguardando Coexistence Paula.**
 
 ---
 
@@ -64,7 +64,7 @@ Principio de produto: so notificar quando acao e necessaria.
 
 ### Pendencias
 
-- [ ] Meta aprovar 9 templates (minutos a 48h)
+- [x] Meta aprovar 9 templates (APROVADOS 26/11: 7 UTILITY R$0.035 + 2 MARKETING R$0.32)
 - [ ] Paula conectar WhatsApp Business via Coexistence na Kapso
 - [ ] Atualizar whatsapp_connection da Paula com phone_number_id e status shadow
 - [ ] 7 dias de modo sombra antes de ativar envio real
