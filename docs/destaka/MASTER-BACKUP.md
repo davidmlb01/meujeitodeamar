@@ -1,6 +1,6 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-26 (9 templates Meta APROVADOS. Sistema WhatsApp pronto. Custo R$4.32/mes por cliente, 2.2% da mensalidade.)
-**Status:** Score 85 (unificado). 5 posts/semana. Reviews com IA. Pecanha ativo. Taxa conversao 20%. Multi-vertical flores pronto. **WhatsApp PRONTO: 9 templates aprovados, aguardando Coexistence Paula.**
+**Ultima atualizacao:** 2026-11-27 (9 templates Meta APROVADOS. Review response engine: variacao de respostas corrigida. Novo signup Anchieta Landim Advogado.)
+**Status:** Score 85 (unificado). 5 posts/semana. Reviews com IA (variacao corrigida). Pecanha ativo. Taxa conversao 20%. Multi-vertical flores pronto. **WhatsApp PRONTO: 9 templates aprovados, aguardando Coexistence Paula.**
 
 ---
 
@@ -60,7 +60,23 @@ Principio de produto: so notificar quando acao e necessaria.
 | pedido_avaliacao_v1 | 1692963842624894 | Pedido review (com nome) |
 | pedido_avaliacao_v1_sem_nome | 1670773121513134 | Pedido review (sem nome) |
 
-**Commits:** 79948fa (gatilho manual), 9446c41 (templates reescritos)
+**Commits:** 79948fa (gatilho manual), 9446c41 (templates reescritos), e6f2693 (variacao respostas review)
+
+### Sessao 2026-11-27: Templates aprovados + Review Engine fix
+
+**9 templates Meta aprovados:** 7 UTILITY (R$0.035/msg) + 2 MARKETING (R$0.32/msg). Custo total estimado R$4.32/mes por cliente (2.2% da mensalidade R$197).
+
+**Review response engine corrigido:** respostas de avaliacao estavam saindo com estrutura e frases identicas (ex: "muito obrigado por essa avaliacao tao carinhosa" vs "obrigado por essas palavras tao carinhosas"). Adicionado sistema de variacao com 5 formatos de abertura, lista de sinonimos para evitar repeticao, e seed deterministico por review.
+
+**Novo signup:** Anchieta Landim Advogado (25/11, specialty "negocio local", sem referral Marina).
+
+**Marina:** cupom MARINABELA com 0 usos, tabela referrals vazia. Floricultura ainda nao conectou.
+
+**Coexistence:** verificado que exige login Facebook da clinica (exigencia Meta, sem alternativa oficial). Sugestao: David faz os passos no navegador e envia QR code para a Paula escanear.
+
+### Aprendizado
+
+149. Respostas de review geradas por IA precisam de instrucao explicita de variacao. Sem isso, o LLM converge para a mesma estrutura e vocabulario em todas as respostas. Seed deterministico por review garante que cada resposta usa um formato diferente.
 
 ### Pendencias
 
