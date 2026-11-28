@@ -1,6 +1,49 @@
 # MASTER-BACKUP: Destaka
-**Ultima atualizacao:** 2026-11-27 (9 templates Meta APROVADOS. Review response engine: variacao de respostas corrigida. Novo signup Anchieta Landim Advogado.)
-**Status:** Score 85 (unificado). 5 posts/semana. Reviews com IA (variacao corrigida). Pecanha ativo. Taxa conversao 20%. Multi-vertical flores pronto. **WhatsApp PRONTO: 9 templates aprovados, aguardando Coexistence Paula.**
+**Ultima atualizacao:** 2026-11-27 (Crons filtram assinantes ativos. Dashboard protegido. UTM/referrer tracking server-side. Floricultura no onboarding.)
+**Status:** Score 85 (unificado). 5 posts/semana. Reviews com IA (variacao corrigida). Pecanha ativo (so assinantes). Taxa conversao 20%. Multi-vertical flores pronto. Dashboard protegido. UTM tracking server-side. **WhatsApp PRONTO: 9 templates aprovados, aguardando Coexistence Paula.**
+
+---
+
+## Sessao 2026-11-27: Seguranca Crons + Dashboard Protegido + UTM Tracking
+
+### Fixes de seguranca (4 crons)
+- product-verifier, score-calculator, competitor-monitor, monthly-report: filtro `subscription_status = 'active'`
+- Antes: processavam TODAS as orgs. Anchieta Landim Advogado (signup organico 25/11, sem pagar) aparecia no Pecanha
+- Depois: so assinantes ativos
+
+### Dashboard protegido
+- get-dashboard-context redireciona nao-assinante para `/diagnostico`
+- Antes: qualquer usuario logado acessava o dashboard sem pagar
+
+### UTM e referrer tracking server-side
+- Proxy captura UTMs (httpOnly cookie, 30 dias) em vez de depender do JS client-side
+- Referrer captura hostname externo na primeira visita (ex: google.com)
+- Callback salva referrer na org ao criar
+- Migration 033: coluna `referrer` na tabela organizations
+
+### Floricultura no onboarding
+- "Floricultura" adicionada em ALL_SPECIALTIES e SPECIALTY_LABELS
+- Backend ja estava 100% pronto (vertical-vocab, segment detection, engines IA)
+
+### Cupom MARINABELA verificado
+- Stripe: hnEbF3HL ativo, 100% off, 0 usos
+- Supabase: referral_codes ativo, owner_type=partner
+
+### Anchieta Landim Advogado
+- Email: anchietalandim@gmail.com
+- Signup organico 25/11 (sem referral, sem UTMs)
+- Selecionou "negocio local" (nao "advogado")
+- Sem assinatura, agora invisivel para crons
+
+### Aprendizados
+144. Backend multi-vertical completo nao garante que o frontend oferece a opcao
+145. Todo cron que itera orgs DEVE filtrar por subscription_status = 'active'
+146. UTM tracking client-side falha quando o usuario vai direto pro login. Server-side e mais confiavel
+
+### Commits sessao 27/11
+- 713ed8c fix(onboarding): adicionar floricultura na lista de specialties
+- 1055454 fix: crons so processam assinantes ativos + dashboard protegido
+- ceff03c feat: tracking UTM e referrer server-side no proxy
 
 ---
 
